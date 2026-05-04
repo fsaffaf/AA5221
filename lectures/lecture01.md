@@ -1,8 +1,3 @@
----
-layout: default
-title: Lecture 1
----
-
 # Lecture 1: Introduction to R and RStudio
 
 ## Overview
