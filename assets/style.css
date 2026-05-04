@@ -1,1 +1,83 @@
+/* ================================
+   Global site styling
+   ================================ */
+
+body {
+  background-color: #0b0b0b;        /* Deep matte black */
+  color: #eaeaea;                   /* Soft white text */
+  font-family: "Inter", "Helvetica Neue", Arial, sans-serif;
+  line-height: 1.7;
+}
+
+/* Main content column */
+.main-container {
+  max-width: 900px;
+  margin: 6rem auto;
+  padding: 2rem;
+}
+
+/* ================================
+   Typography
+   ================================ */
+
+h1 {
+  font-size: 3rem;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.5rem;
+}
+
+h2 {
+  font-size: 1.4rem;
+  margin-top: 3rem;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid #2a2a2a;
+  padding-bottom: 0.5rem;
+}
+
+p {
+  margin: 1.2rem 0;
+}
+
+.subtitle {
+  font-size: 1.2rem;
+  color: #b5b5b5;
+  margin-bottom: 3rem;
+}
+
+/* ================================
+   Links
+   ================================ */
+
+a {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #9ddcff;                  /* Accent color */
+  text-decoration: underline;
+}
+
+/* ================================
+   Lists
+   ================================ */
+
+ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+ul li {
+  margin: 0.75rem 0;
+}
+
+/* ================================
+   Footer
+   ================================ */
+
+.footer {
+  margin-top: 5rem;
+  font-size: 0.9rem;
+  color: #888;
+}
 
