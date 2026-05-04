@@ -1,4 +1,13 @@
-#AA 5221
+---
+layout: default
+title: Home
+---
+
+<link rel="stylesheet" href="/assets/style.css">
+
+<div class="main-container">
+  
+  #AA 5221
 
 Instructor: Dr. Saffaf
 Institution: Saint Louis University
