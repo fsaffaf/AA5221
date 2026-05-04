@@ -74,16 +74,3 @@ pre {
   border-radius: 6px;
   margin: 1.5rem 0;
 }
-
-/* ===== Automatic Footer (CSS-only) ===== */
-
-.main-container::after {
-  content: "© 2026 Dr. Saffaf · Saint Louis University";
-  display: block;
-  margin-top: 4rem;
-  padding-top: 1rem;
-  border-top: 1px solid #333;
-  font-size: 0.85rem;
-  color: #888;
-  text-align: center;
-}
