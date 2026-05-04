@@ -75,9 +75,11 @@ pre {
   margin: 1.5rem 0;
 }
 
-/* ===== Footer ===== */
+/* ===== Automatic Footer (CSS-only) ===== */
 
-.footer {
+.main-container::after {
+  content: "© 2026 Dr. Saffaf · Saint Louis University";
+  display: block;
   margin-top: 4rem;
   padding-top: 1rem;
   border-top: 1px solid #333;
