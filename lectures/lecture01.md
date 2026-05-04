@@ -1,6 +1,3 @@
-<p><span style="font-family: inherit; font-size: 1rem;">🎧Use the Immersive Reader feature (button in top-right corner) to have this page read aloud.</span></p>
-<div>
-    <p>&nbsp;</p>
 </div>
 <div>
     <h2><span style="font-size: 18pt; font-family: 'Lato Extended', 'Helvetica Neue', Helvetica, Arial, sans-serif; color: #000000;"><strong>Overview</strong></span></h2>
