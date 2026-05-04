@@ -1,15 +1,142 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <title>{{ page.title }}</title>
+/* =========================================
+   Global reset & base theme
+   ========================================= */
 
-    <link rel="stylesheet" href="/assets/style.css">
-  </head>
+* {
+  box-sizing: border-box;
+}
 
-  <body>
-    <div class="main-container">
-      {{ content }}
-    </div>
-  </body>
-</html>
+body {
+  margin: 0;
+  background-color: #1e1e1e;      /* Dark gray background */
+  color: #d4d4d4;                 /* Light gray text */
+  font-family: -apple-system, BlinkMacSystemFont,
+               "Segoe UI", Roboto, Helvetica, Arial,
+               "SF Mono", "Fira Code", monospace;
+  line-height: 1.6;
+}
+
+/* =========================================
+   Main content layout
+   ========================================= */
+
+.main-container {
+  max-width: 900px;
+  margin: 5rem auto;
+  padding: 2rem;
+}
+
+/* =========================================
+   Headings
+   ========================================= */
+
+h1, h2, h3 {
+  font-weight: 500;
+  color: #ffffff;
+}
+
+h1 {
+  font-size: 2.8rem;
+  margin-bottom: 1.5rem;
+  letter-spacing: -0.02em;
+}
+
+h2 {
+  font-size: 1.4rem;
+  margin-top: 3.5rem;
+  border-bottom: 1px solid #333;
+  padding-bottom: 0.4rem;
+}
+
+h3 {
+  margin-top: 2rem;
+}
+
+/* =========================================
+   Paragraphs & text
+   ========================================= */
+
+p {
+  margin: 1.2rem 0;
+}
+
+/* =========================================
+   Links
+   ========================================= */
+
+a {
+  color: #9cdcfe;                 /* Subtle blue (VS Code‑style) */
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* =========================================
+   Lists
+   ========================================= */
+
+ul {
+  padding-left: 1.2rem;
+}
+
+li {
+  margin: 0.5rem 0;
+}
+
+/* =========================================
+   Code blocks (very CS‑vibe)
+   ========================================= */
+
+code {
+  background: #2d2d2d;
+  color: #dcdcaa;
+  padding: 0.15em 0.4em;
+  border-radius: 4px;
+  font-size: 0.95em;
+}
+
+pre {
+  background: #2d2d2d;
+  padding: 1rem;
+  overflow-x: auto;
+  border-radius: 6px;
+  margin: 1.5rem 0;
+}
+
+/* =========================================
+   Tables (clean, technical)
+   ========================================= */
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 2rem 0;
+  font-size: 0.95rem;
+}
+
+th, td {
+  border: 1px solid #333;
+  padding: 0.75rem;
+  text-align: left;
+}
+
+th {
+  background-color: #252526;
+  color: #ffffff;
+}
+
+tr:nth-child(even) {
+  background-color: #222;
+}
+
+/* =========================================
+   Footer
+   ========================================= */
+
+footer {
+  margin-top: 4rem;
+  color: #888;
+  font-size: 0.85rem;
+}
