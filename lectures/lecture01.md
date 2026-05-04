@@ -1,3 +1,12 @@
+---
+layout: default
+title: Home
+---
+
+<link rel="stylesheet" href="/assets/style.css">
+
+<div class="main-container">
+    
 </div>
 <div>
     <h2><span style="font-size: 18pt; font-family: 'Lato Extended', 'Helvetica Neue', Helvetica, Arial, sans-serif; color: #000000;"><strong>Overview</strong></span></h2>
