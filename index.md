@@ -1,8 +1,3 @@
----
-layout: default
-title: Home
----
-
 # AA 5221
 
 **Instructor:** Dr. Saffaf  
