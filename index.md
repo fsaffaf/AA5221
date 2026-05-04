@@ -1,7 +1,6 @@
----
-layout: default
-title: Home
----
+<link rel="stylesheet" href="assets/style.css">
+
+<div class="main-container">
 
 # AA 5221
 
@@ -19,3 +18,5 @@ Welcome to the course website. This site contains the written lecture notes and 
 ## Course Information
 
 - [Syllabus](syllabus.md)
+
+</div>
