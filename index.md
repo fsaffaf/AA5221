@@ -6,6 +6,6 @@ Institution: Saint Louis University
 Welcome. This website contains written lecture notes.
 
 ## Lectures
-- Lecture 1
+- [Lecture 1](lectures/lecture01.md)
 - Lecture 2
 - Lecture 3
