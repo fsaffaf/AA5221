@@ -1,118 +1,66 @@
-// assets/stars.js - subtle forward travel using tiny dots (perspective warp)
-(function(){
-  const canvas = document.getElementById('stars');
-  if (!canvas) return;
-  const ctx = canvas.getContext('2d', { alpha: true });
+---
+# This file is processed by Jekyll (Sass). It must include front matter.
+---
 
-  let W = 0, H = 0, DPR = 1;
-  let stars = [];
-  const BASE_COUNT = 220; // overall density; lowered on small screens
-  const MAX_DPR = 2;
+/* assets/css/style.scss - subtle forward-travel tiny-dot starfield */
+:root{
+  --bg:#03040a;
+  --nebula-1: rgba(40,30,60,0.10);
+  --nebula-2: rgba(10,20,40,0.08);
+  --accent:#9fe;
+}
 
-  function resize(){
-    DPR = Math.min(window.devicePixelRatio || 1, MAX_DPR);
-    W = canvas.width = Math.floor(window.innerWidth * DPR);
-    H = canvas.height = Math.floor(window.innerHeight * DPR);
-    canvas.style.width = window.innerWidth + 'px';
-    canvas.style.height = window.innerHeight + 'px';
-    ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
-    initStars();
-  }
-  window.addEventListener('resize', resize);
-  resize();
+html,body{height:100%;margin:0;}
+body{
+  background:
+    radial-gradient(1200px 600px at 10% 20%, var(--nebula-1), transparent 12%),
+    radial-gradient(900px 500px at 85% 80%, var(--nebula-2), transparent 10%),
+    var(--bg);
+  color:#fff;
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  overflow-x:hidden;
+}
 
-  function rand(a,b){ return Math.random()*(b-a)+a; }
+/* canvas behind content */
+canvas#stars{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  z-index:0;
+  pointer-events:none;
+  display:block;
+  mix-blend-mode:screen;
+}
 
-  // star properties: x,y in normalized coords (-1..1), z depth (0..1)
-  class Star {
-    constructor(){
-      this.reset(true);
-    }
-    reset(initial=false){
-      // spawn near center with random angle and depth
-      const angle = rand(0, Math.PI*2);
-      const r = initial ? Math.sqrt(Math.random()) * rand(0, 0.9) : rand(0, 0.12);
-      this.nx = Math.cos(angle) * r; // normalized x
-      this.ny = Math.sin(angle) * r; // normalized y
-      this.z = initial ? rand(0.02, 1) : rand(0.98, 1); // start far (near 1) when newly spawned to create forward motion
-      this.baseSize = rand(0.6, 1.6); // tiny dots
-      this.speed = rand(0.18, 0.6); // how fast z decreases (forward motion)
-      this.alpha = rand(0.35, 0.95);
-    }
-    update(dt){
-      // move forward by decreasing z
-      this.z -= this.speed * dt;
-      // slight random jitter to avoid perfectly straight lines
-      this.nx += Math.sin(this.z*50 + this.nx*10) * 0.0008 * dt * 60;
-      this.ny += Math.cos(this.z*50 + this.ny*10) * 0.0008 * dt * 60;
-      if (this.z <= 0.02 || Math.abs(this.screenX()) > W*1.2 || Math.abs(this.screenY()) > H*1.2) {
-        this.reset(false);
-      }
-    }
-    // convert normalized coords and depth to screen coords
-    screenX(){
-      // perspective: nearer (small z) => larger scale
-      const f = (1 - this.z) * 1.8 + 0.2;
-      return (this.nx * f) * (W/2) + (W/2);
-    }
-    screenY(){
-      const f = (1 - this.z) * 1.8 + 0.2;
-      return (this.ny * f) * (H/2) + (H/2);
-    }
-    draw(){
-      const x = this.screenX();
-      const y = this.screenY();
-      const size = Math.max(0.4, this.baseSize * ((1 - this.z) * 1.6 + 0.4));
-      // tiny soft dot
-      const g = ctx.createRadialGradient(x, y, 0, x, y, size*2);
-      const a = Math.max(0, Math.min(1, this.alpha));
-      g.addColorStop(0, `rgba(255,255,255,${a})`);
-      g.addColorStop(0.6, `rgba(200,220,255,${a*0.45})`);
-      g.addColorStop(1, `rgba(200,220,255,0)`);
-      ctx.fillStyle = g;
-      ctx.beginPath();
-      ctx.arc(x, y, size, 0, Math.PI*2);
-      ctx.fill();
-    }
-  }
+/* content above canvas */
+.main-container{
+  position:relative;
+  z-index:2;
+  padding:3rem 1.5rem;
+  max-width:900px;
+  margin:0 auto;
+}
 
-  function initStars(){
-    const count = window.innerWidth < 600 ? Math.floor(BASE_COUNT*0.45) : BASE_COUNT;
-    stars = [];
-    for (let i=0;i<count;i++) stars.push(new Star());
-  }
+h1{margin:0 0 .5rem 0;color:#fff;font-weight:600;}
+h2{margin-top:1.5rem;color:#dfefff;font-weight:500;}
+a{color:var(--accent);text-decoration:none;}
+a:hover{text-decoration:underline;}
 
-  // gentle clear to leave faint motion blur/trails
-  function clear(dt){
-    // alpha tuned for subtle trailing; larger alpha = shorter trails
-    ctx.fillStyle = 'rgba(0,0,0,0.28)';
-    ctx.fillRect(0,0,W,H);
-  }
+/* subtle vignette */
+body::after{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:1;
+  background:radial-gradient(60% 60% at 50% 45%, rgba(0,0,0,0) 40%, rgba(0,0,0,0.35) 100%);
+}
 
-  let last = performance.now();
-  function loop(now){
-    const dt = Math.min(0.05, (now - last)/1000);
-    last = now;
-
-    clear(dt);
-
-    // draw all stars
-    for (let s of stars){
-      s.update(dt);
-      s.draw();
-    }
-
-    requestAnimationFrame(loop);
-  }
-
-  // start
-  initStars();
-  last = performance.now();
-  requestAnimationFrame(loop);
-
-  // small API to reduce density if needed
-  window.__tinyStarfield = {
-    reduce() { stars = stars.slice(0, Math.max(8, Math.floor(stars.length*0.5))); },
-    restore() { initStars(); }
-  };
-})();
+/* small screens */
+@media (max-width:600px){
+  .main-container{padding:2rem 1rem;}
+}
