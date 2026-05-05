@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AA 5221 — Applied Analytics</title>
+  <title>AA 5221 — Course Materials</title>
 
-  <!-- Correct stylesheet link (THIS WAS THE ISSUE) -->
+  <!-- Your stylesheet -->
   <link rel="stylesheet" href="assets/style.css" />
 </head>
 
@@ -17,55 +17,31 @@
   <!-- Homepage Content -->
   <div class="home-container">
 
-    <h1>AA 5221</h1>
+    <!-- UPDATED TITLE (SAFE CHANGE) -->
+    <h1>
+      AA <span style="font-weight: 300; opacity: 0.85;">5221</span>
+    </h1>
 
     <p class="subtitle">
       Applied Analytics
     </p>
 
-    <!-- THIS TEXT IS NEW AND SHOULD BE OBVIOUS -->
-    <p class="intro-text">
-      Learn how raw data becomes insight.<br>
-      This course blends statistical thinking, programming in R,
-      and modern data‑analysis workflows.
-    </p>
-
     <div class="collapsible">
       <button class="collapse-toggle">
-        📘 Lecture Series ▼
+        Lectures ▼
       </button>
 
       <div class="collapse-content">
-        <a class="home-button" href="lectures/lecture01.html">
-          Lecture 01 · Computing with Data
-        </a>
-        <a class="home-button" href="lectures/lecture02.html">
-          Lecture 02 · Data Structures & Types
-        </a>
-        <a class="home-button" href="lectures/lecture03.html">
-          Lecture 03 · Importing & Cleaning Data
-        </a>
-        <a class="home-button" href="lectures/lecture04.html">
-          Lecture 04 · Exploring Data
-        </a>
-        <a class="home-button" href="lectures/lecture05.html">
-          Lecture 05 · Visualizing Patterns
-        </a>
-        <a class="home-button" href="lectures/lecture06.html">
-          Lecture 06 · Probability Foundations
-        </a>
-        <a class="home-button" href="lectures/lecture07.html">
-          Lecture 07 · Sampling & Distributions
-        </a>
-        <a class="home-button" href="lectures/lecture08.html">
-          Lecture 08 · Statistical Inference
-        </a>
-        <a class="home-button" href="lectures/lecture09.html">
-          Lecture 09 · Regression Models
-        </a>
-        <a class="home-button" href="lectures/lecture10.html">
-          Lecture 10 · From Data to Insight
-        </a>
+        <a class="home-button" href="lectures/lecture01.html">Lecture 1</a>
+        <a class="home-button" href="lectures/lecture02.html">Lecture 2</a>
+        <a class="home-button" href="lectures/lecture03.html">Lecture 3</a>
+        <a class="home-button" href="lectures/lecture04.html">Lecture 4</a>
+        <a class="home-button" href="lectures/lecture05.html">Lecture 5</a>
+        <a class="home-button" href="lectures/lecture06.html">Lecture 6</a>
+        <a class="home-button" href="lectures/lecture07.html">Lecture 7</a>
+        <a class="home-button" href="lectures/lecture08.html">Lecture 8</a>
+        <a class="home-button" href="lectures/lecture09.html">Lecture 9</a>
+        <a class="home-button" href="lectures/lecture10.html">Lecture 10</a>
       </div>
     </div>
 
@@ -82,8 +58,8 @@
     toggle.addEventListener("click", () => {
       content.classList.toggle("open");
       toggle.textContent = content.classList.contains("open")
-        ? "📘 Lecture Series ▲"
-        : "📘 Lecture Series ▼";
+        ? "Lectures ▲"
+        : "Lectures ▼";
     });
   </script>
 
