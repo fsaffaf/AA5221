@@ -1,218 +1,17 @@
-/* ===== Root Theme ===== */
-:root {
-  --bg: #0f172a;
-  --card: rgba(255, 255, 255, 0.05);
-  --border: rgba(255, 255, 255, 0.14);
-  --text: #e5e7eb;
-  --muted: #9ca3af;
-  --accent: #38bdf8;
-  --accent-soft: rgba(56, 189, 248, 0.15);
-  --code-bg: #020617;
-}
-
-/* ===== Base ===== */
-* {
-  box-sizing: border-box;
-}
-
-body {
-  margin: 0;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont,
-               "Segoe UI", Roboto, sans-serif;
-  background: radial-gradient(
-    circle at top,
-    #020617,
-    #0f172a 45%,
-    #020617 100%
-  );
-  color: var(--text);
-  line-height: 1.7;
-}
-
-/* ===== Container ===== */
-.main-container {
-  max-width: 1100px;
-  margin: auto;
-  padding: 3rem 2rem;
-}
-
-/* ===== Headings ===== */
-h1 {
-  font-size: 2.8rem;
-  font-weight: 800;
-  margin-bottom: 0.5rem;
-  letter-spacing: -0.03em;
-}
-
-h2 {
-  margin-top: 3rem;
-  margin-bottom: 1rem;
-  font-weight: 700;
-  border-left: 4px solid var(--accent);
-  padding-left: 0.75rem;
-}
-
-/* ===== Text ===== */
-p {
-  max-width: 75ch;
-  color: var(--text);
-}
-
-em {
-  color: var(--muted);
-}
-
-hr {
-  border: none;
-  border-top: 1px solid var(--border);
-  margin: 3rem 0;
-}
-
-/* ===== Cards ===== */
-table,
-ul {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  padding: 1.25rem;
-  backdrop-filter: blur(10px);
-}
-
-/* ===== Tables ===== */
-table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-thead th {
-  text-align: left;
-  font-weight: 600;
-  font-size: 0.9rem;
-  color: var(--accent);
-  border-bottom: 1px solid var(--border);
-  padding-bottom: 0.5rem;
-}
-
-tbody td {
-  padding: 0.75rem 0;
-  vertical-align: top;
-}
-
-tbody tr:not(:last-child) td {
-  border-bottom: 1px solid var(--border);
-}
-
-/* ===== Lists ===== */
-ul {
-  list-style: none;
-}
-
-ul li {
-  margin: 0.5rem 0;
-}
-
-/* ===== Links ===== */
-a {
-  color: var(--accent);
-  text-decoration: none;
-  font-weight: 500;
-}
-
-a:hover {
-  text-decoration: underline;
-}
-
-/* ===== Inline Code ===== */
-code {
-  background: var(--code-bg);
-  padding: 0.2rem 0.4rem;
-  border-radius: 6px;
-  font-family: "JetBrains Mono", Menlo, Consolas, monospace;
-  font-size: 0.9em;
-}
-
-/* ===== Footer Nav ===== */
-.back-link {
-  display: inline-block;
-  margin-top: 1.5rem;
-  font-weight: 600;
-  color: var(--accent);
-}
-
-/* ===== Small screens ===== */
-@media (max-width: 720px) {
-  h1 {
-    font-size: 2.1rem;
-  }
-}
-
-/* ===== Icon Cards (Reusable Component) ===== */
-.card {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 18px;
-  padding: 1.75rem;
-  margin-top: 2.5rem;
-  backdrop-filter: blur(12px);
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-}
-
-.card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 22px 40px rgba(0, 0, 0, 0.35);
-}
-
-/* Card header layout */
-.card-header {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  margin-bottom: 1rem;
-}
-
-/* Icon container */
-.card-icon {
-  width: 3rem;
-  height: 3rem;
-  border-radius: 14px;
-  background: var(--accent-soft);
-  color: var(--accent);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.6rem;
-}
-
-/* Remove global h2 decoration inside cards */
-.card h2 {
-  margin: 0;
-  padding: 0;
-  border: none;
-}
-
-
-/* Stars background styles (paste into assets/style.css) */
-html, body {
-  height: 100%;
-  margin: 0;
-}
-
+/* assets/style.css */
+html, body { height: 100%; margin: 0; }
 body {
   background: #000;
   color: #fff;
   font-family: Arial, Helvetica, sans-serif;
 }
-
-/* Canvas sits behind content */
 canvas#stars {
   position: fixed;
   inset: 0;
   z-index: -1;
   display: block;
-  pointer-events: none; /* allow clicks through the canvas */
+  pointer-events: none;
 }
-
-/* Ensure your page content is above the canvas */
 .main-container {
   position: relative;
   z-index: 1;
@@ -220,6 +19,4 @@ canvas#stars {
   max-width: 900px;
   margin: 0 auto;
 }
-
-/* Link color example — keep or replace with your theme */
 a { color: #9fe; }
