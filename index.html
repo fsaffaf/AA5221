@@ -3,9 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AA 5221 — Course Materials</title>
+  <title>AA 5221 — Applied Analytics & Research Methods I</title>
 
-  <!-- Main stylesheet -->
   <link rel="stylesheet" href="assets/style.css" />
 </head>
 
@@ -14,89 +13,111 @@
   <!-- Starfield Background -->
   <canvas id="starfield"></canvas>
 
-  <!-- Homepage Content -->
-  <div class="home-container">
+  <div style="display: flex; min-height: 100vh;">
 
-    <!-- Title -->
-    <h1 style="
-      font-size: 4rem;
-      font-weight: 900;
-      letter-spacing: 0.25em;
-      margin-bottom: 0.5rem;
-      text-transform: uppercase;
-      background: linear-gradient(180deg, #ffffff, #7dd3fc);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      text-shadow:
-        0 0 20px rgba(56, 189, 248, 0.35),
-        0 0 40px rgba(56, 189, 248, 0.15);
-    ">
-      AA <span style="font-weight: 300;">5221</span>
-    </h1>
-
-    <p class="subtitle" style="
-      letter-spacing: 0.35em;
-      text-transform: uppercase;
-      opacity: 0.85;
-      margin-bottom: 3rem;
-    ">
-      Applied Analytics
-    </p>
-
-    <!-- Lecture List Card -->
-    <div style="
-      max-width: 520px;
-      margin: 0 auto;
-      padding: 1.5rem;
-      background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(255,255,255,0.15);
-      border-radius: 18px;
+    <!-- Sidebar -->
+    <aside style="
+      width: 260px;
+      padding: 2rem 1.5rem;
+      background: rgba(10, 10, 20, 0.75);
       backdrop-filter: blur(12px);
-      box-shadow: 0 30px 60px rgba(0,0,0,0.4);
+      border-right: 1px solid rgba(255,255,255,0.12);
+      box-shadow: 8px 0 30px rgba(0,0,0,0.45);
     ">
 
+      <!-- Course Title -->
       <div style="
-        font-size: 0.85rem;
-        letter-spacing: 0.2em;
-        opacity: 0.7;
-        margin-bottom: 1rem;
+        font-size: 1.4rem;
+        font-weight: 800;
+        letter-spacing: 0.15em;
+        margin-bottom: 0.25rem;
       ">
-        LECTURES
+        AA 5221
       </div>
 
-      <a href="lectures/lecture01.html" style="display:block; padding:0.9rem 1rem; border-radius:12px; text-decoration:none;">
-        Lecture 01 · Computing with Data
-      </a>
-      <a href="lectures/lecture02.html" style="display:block; padding:0.9rem 1rem; border-radius:12px; text-decoration:none;">
-        Lecture 02 · Data Structures & Types
-      </a>
-      <a href="lectures/lecture03.html" style="display:block; padding:0.9rem 1rem; border-radius:12px; text-decoration:none;">
-        Lecture 03 · Importing & Cleaning Data
-      </a>
-      <a href="lectures/lecture04.html" style="display:block; padding:0.9rem 1rem; border-radius:12px; text-decoration:none;">
-        Lecture 04 · Exploring Data
-      </a>
-      <a href="lectures/lecture05.html" style="display:block; padding:0.9rem 1rem; border-radius:12px; text-decoration:none;">
-        Lecture 05 · Visualizing Patterns
-      </a>
-      <a href="lectures/lecture06.html" style="display:block; padding:0.9rem 1rem; border-radius:12px; text-decoration:none;">
-        Lecture 06 · Probability Foundations
-      </a>
-      <a href="lectures/lecture07.html" style="display:block; padding:0.9rem 1rem; border-radius:12px; text-decoration:none;">
-        Lecture 07 · Sampling & Distributions
-      </a>
-      <a href="lectures/lecture08.html" style="display:block; padding:0.9rem 1rem; border-radius:12px; text-decoration:none;">
-        Lecture 08 · Statistical Inference
-      </a>
-      <a href="lectures/lecture09.html" style="display:block; padding:0.9rem 1rem; border-radius:12px; text-decoration:none;">
-        Lecture 09 · Regression Models
-      </a>
-      <a href="lectures/lecture10.html" style="display:block; padding:0.9rem 1rem; border-radius:12px; text-decoration:none;">
-        Lecture 10 · From Data to Insight
-      </a>
+      <div style="
+        font-size: 0.75rem;
+        letter-spacing: 0.2em;
+        opacity: 0.7;
+        margin-bottom: 2rem;
+        text-transform: uppercase;
+      ">
+        Applied Analytics
+      </div>
 
-    </div>
+      <!-- Navigation -->
+      <nav style="display: flex; flex-direction: column; gap: 0.25rem;">
 
+        lectures/lecture01.html
+          Lecture 01
+        </a>
+        lectures/lecture02.html
+          Lecture 02
+        </a>
+        lectures/lecture03.html
+          Lecture 03
+        </a>
+        lectures/lecture04.html
+          Lecture 04
+        </a>
+        lectures/lecture05.html
+          Lecture 05
+        </a>
+        lectures/lecture06.html
+          Lecture 06
+        </a>
+        lectures/lecture07.html
+          Lecture 07
+        </a>
+        lectures/lecture08.html
+          Lecture 08
+        </a>
+        lectures/lecture09.html
+          Lecture 09
+        </a>
+        lectures/lecture10.html
+          Lecture 10
+        </a>
+
+      </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main style="
+      flex: 1;
+      padding: 4rem 3rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    ">
+
+      <h1 style="
+        font-size: 4rem;
+        font-weight: 900;
+        letter-spacing: 0.25em;
+        margin-bottom: 0.75rem;
+        text-transform: uppercase;
+        background: linear-gradient(180deg, #ffffff, #7dd3fc);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        text-shadow:
+          0 0 20px rgba(56, 189, 248, 0.35),
+          0 0 40px rgba(56, 189, 248, 0.15);
+      ">
+        AA <span style="font-weight: 300;">5221</span>
+      </h1>
+
+      <p style="
+        max-width: 50ch;
+        opacity: 0.85;
+        font-size: 1.05rem;
+      ">
+        A hands‑on introduction to statistical reasoning, programming in R,
+        and modern data analysis workflows.
+      </p>
+
+    </main>
   </div>
 
   <!-- Starfield Script -->
