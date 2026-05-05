@@ -50,6 +50,7 @@
   init();
 
   function loop(){
+    // semi-transparent fill creates trailing effect
     ctx.fillStyle = 'rgba(0,0,0,0.35)';
     ctx.fillRect(0, 0, w, h);
     for (const s of stars) { s.update(); s.draw(); }
