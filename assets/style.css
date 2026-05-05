@@ -1,61 +1,59 @@
-/* assets/style.css - subtle forward-travel space background */
+/* assets/style.css - subtle forward-travel tiny-dot starfield */
 :root{
-  --bg-color:#03040a;
-  --nebula-1: rgba(40, 30, 60, 0.12);
-  --nebula-2: rgba(10, 20, 40, 0.10);
-  --accent: #9fe;
+  --bg:#03040a;
+  --nebula-1: rgba(40,30,60,0.10);
+  --nebula-2: rgba(10,20,40,0.08);
+  --accent:#9fe;
 }
 
-/* page basics */
-html, body { height: 100%; margin: 0; }
-body {
-  background: radial-gradient(1200px 600px at 10% 20%, var(--nebula-1), transparent 12%),
-              radial-gradient(900px 500px at 85% 80%, var(--nebula-2), transparent 10%),
-              var(--bg-color);
-  color: #fff;
-  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  overflow-x: hidden;
+html,body{height:100%;margin:0;}
+body{
+  background:
+    radial-gradient(1200px 600px at 10% 20%, var(--nebula-1), transparent 12%),
+    radial-gradient(900px 500px at 85% 80%, var(--nebula-2), transparent 10%),
+    var(--bg);
+  color:#fff;
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  overflow-x:hidden;
 }
 
-/* canvas sits above the nebula gradients but behind content */
-canvas#stars {
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-  display: block;
-  pointer-events: none;
-  mix-blend-mode: screen; /* subtle brightening effect */
+/* canvas behind content */
+canvas#stars{
+  position:fixed;
+  inset:0;
+  z-index:0;
+  pointer-events:none;
+  display:block;
+  mix-blend-mode:screen;
 }
 
-/* content sits above the canvas */
-.main-container {
-  position: relative;
-  z-index: 2;
-  padding: 3rem 1.5rem;
-  max-width: 900px;
-  margin: 0 auto;
-  backdrop-filter: none;
+/* content above canvas */
+.main-container{
+  position:relative;
+  z-index:2;
+  padding:3rem 1.5rem;
+  max-width:900px;
+  margin:0 auto;
 }
 
-/* headings and links */
-h1 { font-weight: 600; letter-spacing: -0.02em; margin: 0 0 0.5rem 0; color: #fff; }
-h2 { margin-top: 1.5rem; color: #dfefff; font-weight: 500; }
-a { color: var(--accent); text-decoration: none; }
-a:hover { text-decoration: underline; }
+h1{margin:0 0 .5rem 0;color:#fff;font-weight:600;}
+h2{margin-top:1.5rem;color:#dfefff;font-weight:500;}
+a{color:var(--accent);text-decoration:none;}
+a:hover{text-decoration:underline;}
 
-/* subtle vignette so edges feel deeper */
-body::after {
-  content: "";
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 1;
-  background: radial-gradient(60% 60% at 50% 45%, rgba(0,0,0,0) 40%, rgba(0,0,0,0.35) 100%);
+/* subtle vignette */
+body::after{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:1;
+  background:radial-gradient(60% 60% at 50% 45%, rgba(0,0,0,0) 40%, rgba(0,0,0,0.35) 100%);
 }
 
-/* small screens: reduce padding and star density handled in JS */
-@media (max-width: 600px) {
-  .main-container { padding: 2rem 1rem; }
+/* small screens */
+@media (max-width:600px){
+  .main-container{padding:2rem 1rem;}
 }
