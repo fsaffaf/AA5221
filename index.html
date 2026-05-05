@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>AA 5221 — Course Materials</title>
 
-  <!-- Main Stylesheet -->
+  <!-- Your stylesheet -->
   <link rel="stylesheet" href="assets/style.css" />
 </head>
 
@@ -16,15 +16,15 @@
 
   <!-- Homepage Content -->
   <div class="home-container">
-    <h1>AA&nbsp;5221</h1>
+    <h1>AA 5221</h1>
 
     <p class="subtitle">
-      Applied Analytics · Course Materials
+      Applied Analytics — Course Materials
     </p>
 
     <p class="intro-text">
-      Lecture slides, walkthroughs, and supporting resources for the course.
-      Use the section below to navigate weekly materials.
+      Lecture notes, walkthroughs, and supporting resources for the course.
+      Use the section below to access weekly lecture materials.
     </p>
 
     <div class="collapsible">
@@ -33,13 +33,55 @@
       </button>
 
       <div class="collapse-content">
-        <a class="home-button" href="lectures/lecture01.html">Lecture 1 · Introduction to R &amp; RStudio</a>
-        <a class="home-button" href="lectures/lecture02.html">Lecture 2 · Data Structures</a>
-        <a class="home-button" href="lectures/lecture03.html">Lecture 3 · Data Import &amp; Cleaning</a>
-        <a class="home-button" href="lectures/lecture04.html">Lecture 4 · Descriptive Statistics</a>
-        <a class="home-button" href="lectures/lecture05.html">Lecture 5 · Data Visualization</a>
-        <a class="home-button" href="lectures/lecture06.html">Lecture 6 · Probability Concepts</a>
-        <a class="home-button" href="lectures/lecture07.html">Lecture 7 · Sampling &amp; Distributions</a>
-        <a class="home-button" href="lectures/lecture08.html">Lecture 8 · Statistical Inference</a>
-        <a class="home-button" href="lectures/lecture09.html">Lecture 9 · Regression Analysis</a>
-        <a class="home-button" href="lectures/lecture10.html">Lecture 10 · Putting It All Together</a>
+        <a class="home-button" href="lectures/lecture01.html">
+          Lecture 1 · Introduction to R &amp; RStudio
+        </a>
+        <a class="home-button" href="lectures/lecture02.html">
+          Lecture 2 · Data Structures
+        </a>
+        <a class="home-button" href="lectures/lecture03.html">
+          Lecture 3 · Data Import &amp; Cleaning
+        </a>
+        <a class="home-button" href="lectures/lecture04.html">
+          Lecture 4 · Descriptive Statistics
+        </a>
+        <a class="home-button" href="lectures/lecture05.html">
+          Lecture 5 · Data Visualization
+        </a>
+        <a class="home-button" href="lectures/lecture06.html">
+          Lecture 6 · Probability Concepts
+        </a>
+        <a class="home-button" href="lectures/lecture07.html">
+          Lecture 7 · Sampling &amp; Distributions
+        </a>
+        <a class="home-button" href="lectures/lecture08.html">
+          Lecture 8 · Statistical Inference
+        </a>
+        <a class="home-button" href="lectures/lecture09.html">
+          Lecture 9 · Regression Analysis
+        </a>
+        <a class="home-button" href="lectures/lecture10.html">
+          Lecture 10 · Integrating Concepts
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Starfield Script -->
+  <script src="assets/stars.js"></script>
+
+  <!-- Collapsible Menu Script -->
+  <script>
+    const toggle = document.querySelector(".collapse-toggle");
+    const content = document.querySelector(".collapse-content");
+
+    toggle.addEventListener("click", () => {
+      content.classList.toggle("open");
+      toggle.textContent = content.classList.contains("open")
+        ? "📘 Lectures ▲"
+        : "📘 Lectures ▼";
+    });
+  </script>
+
+</body>
+</html>
