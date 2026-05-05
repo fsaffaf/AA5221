@@ -1,12 +1,52 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Starfields</title>
-    <link rel="stylesheet" href="assets/style.css">
-</head>
-<body>
-    <canvas id="starfield"></canvas>
-    <script src="assets/stars.js"></script>
-</body>
-</html>
+/* ===== Homepage Overlay ===== */
+.home-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: white;
+    z-index: 10;
+    padding: 2rem;
+}
+
+.home-container h1 {
+    font-size: 3rem;
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.03em;
+}
+
+.subtitle {
+    font-size: 1.2rem;
+    opacity: 0.8;
+    margin-bottom: 2rem;
+}
+
+/* ===== Button Grid ===== */
+.button-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 260px;
+    margin: 0 auto;
+}
+
+/* ===== Buttons ===== */
+.home-button {
+    display: block;
+    padding: 0.9rem 1.2rem;
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 12px;
+    color: white;
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: 600;
+    backdrop-filter: blur(8px);
+    transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.home-button:hover {
+    background: rgba(255, 255, 255, 0.22);
+    transform: translateY(-3px);
+}
