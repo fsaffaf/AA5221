@@ -8,8 +8,17 @@ function resize() {
 resize();
 window.onresize = resize;
 
-const STAR_COUNT = 600;
-const SPEED = 0.02;
+// More stars + faster speed
+const STAR_COUNT = 700;
+const SPEED = 0.05;
+
+// Colors for stars (soft sci‑fi palette)
+const COLORS = [
+    "rgba(255,255,255,1)",   // white
+    "rgba(180,200,255,1)",   // pale blue
+    "rgba(255,220,180,1)",   // warm gold
+    "rgba(200,180,255,1)"    // lavender
+];
 
 let stars = [];
 
@@ -19,7 +28,8 @@ function initStars() {
         stars.push({
             x: (Math.random() - 0.5) * canvas.width,
             y: (Math.random() - 0.5) * canvas.height,
-            z: Math.random() * canvas.width
+            z: Math.random() * canvas.width,
+            color: COLORS[Math.floor(Math.random() * COLORS.length)]
         });
     }
 }
@@ -30,10 +40,13 @@ function update() {
 
     for (let star of stars) {
         star.z -= SPEED;
+
+        // Reset star when it reaches the viewer
         if (star.z <= 0) {
             star.x = (Math.random() - 0.5) * canvas.width;
             star.y = (Math.random() - 0.5) * canvas.height;
             star.z = canvas.width;
+            star.color = COLORS[Math.floor(Math.random() * COLORS.length)];
         }
 
         const k = 128 / star.z;
@@ -42,8 +55,9 @@ function update() {
 
         if (sx < 0 || sx >= canvas.width || sy < 0 || sy >= canvas.height) continue;
 
-        const size = (1 - star.z / canvas.width) * 2;
-        ctx.fillStyle = "white";
+        const size = (1 - star.z / canvas.width) * 2.2;
+
+        ctx.fillStyle = star.color;
         ctx.fillRect(sx, sy, size, size);
     }
 
