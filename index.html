@@ -17,7 +17,7 @@
   <!-- Homepage Content -->
   <div class="home-container">
 
-    <!-- SINGLE, STYLED TITLE -->
+    <!-- Styled Title -->
     <h1 style="
       font-size: 4rem;
       font-weight: 900;
@@ -43,40 +43,69 @@
       Applied Analytics
     </p>
 
-    <div class="collapsible">
-      <button class="collapse-toggle">
-        Lectures ▼
+    <!-- Lecture Dropdown Card -->
+    <div class="collapsible" style="
+      max-width: 420px;
+      margin: 0 auto;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 16px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.35);
+    ">
+
+      <!-- Trigger -->
+      <button class="collapse-toggle" style="
+        width: 100%;
+        padding: 1rem 1.25rem;
+        background: none;
+        border: none;
+        color: #e5e7eb;
+        font-size: 1rem;
+        font-weight: 600;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        cursor: pointer;
+      ">
+        <span>📘 Lectures</span>
+        <span class="chevron">▼</span>
       </button>
 
-      <div class="collapse-content">
-        <a class="home-button" href="lectures/lecture01.html">Lecture 1</a>
-        <a class="home-button" href="lectures/lecture02.html">Lecture 2</a>
-        <a class="home-button" href="lectures/lecture03.html">Lecture 3</a>
-        <a class="home-button" href="lectures/lecture04.html">Lecture 4</a>
-        <a class="home-button" href="lectures/lecture05.html">Lecture 5</a>
-        <a class="home-button" href="lectures/lecture06.html">Lecture 6</a>
-        <a class="home-button" href="lectures/lecture07.html">Lecture 7</a>
-        <a class="home-button" href="lectures/lecture08.html">Lecture 8</a>
-        <a class="home-button" href="lectures/lecture09.html">Lecture 9</a>
-        <a class="home-button" href="lectures/lecture10.html">Lecture 10</a>
+      <!-- Dropdown Content -->
+      <div class="collapse-content" style="
+        display: none;
+        padding: 0.5rem 0 0.75rem;
+      ">
+
+        <!-- Lecture Links -->
+        <a class="home-button" href="lectures/lecture01.html">Lecture 01 · Computing with Data</a>
+        <a class="home-button" href="lectures/lecture02.html">Lecture 02 · Data Structures & Types</a>
+        <a class="home-button" href="lectures/lecture03.html">Lecture 03 · Importing & Cleaning Data</a>
+        <a class="home-button" href="lectures/lecture04.html">Lecture 04 · Exploring Data</a>
+        <a class="home-button" href="lectures/lecture05.html">Lecture 05 · Visualizing Patterns</a>
+        <a class="home-button" href="lectures/lecture06.html">Lecture 06 · Probability Foundations</a>
+        <a class="home-button" href="lectures/lecture07.html">Lecture 07 · Sampling & Distributions</a>
+        <a class="home-button" href="lectures/lecture08.html">Lecture 08 · Statistical Inference</a>
+        <a class="home-button" href="lectures/lecture09.html">Lecture 09 · Regression Models</a>
+        <a class="home-button" href="lectures/lecture10.html">Lecture 10 · From Data to Insight</a>
       </div>
     </div>
-
   </div>
 
   <!-- Starfield Script -->
   <script src="assets/stars.js"></script>
 
-  <!-- Collapsible Menu Script -->
+  <!-- Dropdown Script -->
   <script>
     const toggle = document.querySelector(".collapse-toggle");
     const content = document.querySelector(".collapse-content");
+    const chevron = document.querySelector(".chevron");
 
     toggle.addEventListener("click", () => {
-      content.classList.toggle("open");
-      toggle.textContent = content.classList.contains("open")
-        ? "Lectures ▲"
-        : "Lectures ▼";
+      const open = content.style.display === "block";
+      content.style.display = open ? "none" : "block";
+      chevron.textContent = open ? "▼" : "▲";
     });
   </script>
 
