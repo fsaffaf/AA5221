@@ -1,39 +1,12 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>AA 5221</title>
-
-  <!-- Preload stylesheet for faster first paint -->
-  <link rel="preload" href="assets/style.css" as="style" onload="this.rel='stylesheet'">
-  <noscript><link rel="stylesheet" href="assets/style.css"></noscript>
+    <meta charset="UTF-8">
+    <title>Starfield</title>
+    <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
-  <canvas id="stars" aria-hidden="true"></canvas>
-
-  <div class="main-container">
-    <h1>AA 5221</h1>
-    <p>
-      Welcome to the course website. This site contains the written lecture
-      notes and supporting materials for <strong>AA 5221</strong>.
-    </p>
-
-    <h2>Lectures</h2>
-    <ul>
-      <li><a href="lectures/lecture01.html">Lecture 1: Introduction</a></li>
-      <li>Lecture 2 (coming soon)</li>
-      <li>Lecture 3 (coming soon)</li>
-    </ul>
-  </div>
-
-  <noscript>
-    <style>body{background:#000;color:#fff}</style>
-    <div class="main-container">
-      <p>Enable JavaScript to see the animated background.</p>
-    </div>
-  </noscript>
-
-  <script src="assets/stars.js" defer></script>
+    <canvas id="starfield"></canvas>
+    <script src="assets/stars.js"></script>
 </body>
 </html>
