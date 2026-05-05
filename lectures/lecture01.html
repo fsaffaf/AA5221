@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <title>Lecture 1 — Introduction to R and RStudio</title>
 
-    /AA5221/assets/style.css
+    <link rel="stylesheet" href="/AA5221/assets/style.css" />
   </head>
 
   <body>
@@ -17,208 +17,188 @@
         to have this page read aloud.</em>
       </p>
 
-      <!-- Overview -->
-      <section class="card">
-        <div class="card-header">
-          <div class="card-icon">📊</div>
-          <h2>Overview</h2>
-        </div>
-        <p>
-          RStudio is widely used across industries for data analysis and
-          visualization. It integrates with tools such as Python, SPSS, Excel,
-          Microsoft Word, and PowerPoint. It is free, open source, and supports
-          reproducible and shareable workflows.
-        </p>
-      </section>
+      <h2>Overview</h2>
+      <p>
+        RStudio is widely used across industries for data analysis and
+        visualization. It integrates with tools such as Python, SPSS, Excel,
+        Microsoft Word, and PowerPoint. It is free, open source, and supports
+        reproducible and shareable workflows.
+      </p>
 
-      <!-- Programming Concepts -->
-      <section class="card">
-        <div class="card-header">
-          <div class="card-icon">💡</div>
-          <h2>Programming Concepts</h2>
-        </div>
+      <h2>Programming Concepts</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Term</th>
+            <th>Definition</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Computer Programming Language</strong></td>
+            <td>
+              A language used to tell a computer what tasks to perform.
+              Examples include Python, Java, C++, and R.
+            </td>
+          </tr>
+          <tr>
+            <td><strong>R Programming Language</strong></td>
+            <td>
+              A language designed for statistical computing and data analysis.
+            </td>
+          </tr>
+          <tr>
+            <td><strong>Syntax</strong></td>
+            <td>
+              The rules that govern how instructions must be written for a
+              programming language to be understood.
+            </td>
+          </tr>
+          <tr>
+            <td><strong>Code</strong></td>
+            <td>
+              Written instructions created using a programming language.
+            </td>
+          </tr>
+        </tbody>
+      </table>
 
-        <table>
-          <thead>
-            <tr>
-              <th>Term</th>
-              <th>Definition</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong>Computer Programming Language</strong></td>
-              <td>
-                A language used to tell a computer what tasks to perform.
-                Examples include Python, Java, C++, and R.
-              </td>
-            </tr>
-            <tr>
-              <td><strong>R Programming Language</strong></td>
-              <td>
-                A language designed for statistical computing and data analysis.
-              </td>
-            </tr>
-            <tr>
-              <td><strong>Syntax</strong></td>
-              <td>
-                The rules that govern how instructions must be written.
-              </td>
-            </tr>
-            <tr>
-              <td><strong>Code</strong></td>
-              <td>
-                Written instructions created using a programming language.
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </section>
+      <h2>R Systems and Tools</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Term</th>
+            <th>Definition</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>R Platform (Old)</strong></td>
+            <td>
+              The original R interface consisting only of a console.
+            </td>
+          </tr>
+          <tr>
+            <td><strong>RStudio (New)</strong></td>
+            <td>
+              A user‑friendly interface for writing code, viewing data, and
+              visualizing results.
+            </td>
+          </tr>
+          <tr>
+            <td><strong>Base R</strong></td>
+            <td>
+              The core set of functions included with R by default.
+            </td>
+          </tr>
+          <tr>
+            <td><strong>Package</strong></td>
+            <td>
+              A collection of pre‑written functions that extend R’s capabilities.
+            </td>
+          </tr>
+        </tbody>
+      </table>
 
-      <!-- R Systems and Tools -->
-      <section class="card">
-        <div class="card-header">
-          <div class="card-icon">🛠️</div>
-          <h2>R Systems and Tools</h2>
-        </div>
+      <h2>Data Types</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Term</th>
+            <th>Definition</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Numerical</strong></td>
+            <td>Continuous numeric data.</td>
+          </tr>
+          <tr>
+            <td><strong>Factor</strong></td>
+            <td>Categorical data stored as labels.</td>
+          </tr>
+        </tbody>
+      </table>
 
-        <table>
-          <thead>
-            <tr>
-              <th>Term</th>
-              <th>Definition</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong>R Platform (Old)</strong></td>
-              <td>
-                The original R interface consisting only of a console.
-              </td>
-            </tr>
-            <tr>
-              <td><strong>RStudio (New)</strong></td>
-              <td>
-                A user‑friendly interface for writing code, viewing data,
-                and visualizing results.
-              </td>
-            </tr>
-            <tr>
-              <td><strong>Base R</strong></td>
-              <td>
-                The core set of functions included with R by default.
-              </td>
-            </tr>
-            <tr>
-              <td><strong>Package</strong></td>
-              <td>
-                A collection of pre‑written functions that extend R’s capabilities.
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </section>
+      <h2>Workflow and Interface</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Term</th>
+            <th>Definition</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Comments</strong></td>
+            <td>Lines beginning with <code>#</code> that explain code.</td>
+          </tr>
+          <tr>
+            <td><strong>R Markdown (.Rmd)</strong></td>
+            <td>
+              A file combining R code, output, and narrative text.
+            </td>
+          </tr>
+          <tr>
+            <td><strong>Source Panel</strong></td>
+            <td>
+              Where scripts are written, edited, and saved.
+            </td>
+          </tr>
+          <tr>
+            <td><strong>Console</strong></td>
+            <td>
+              Executes code interactively and displays output.
+            </td>
+          </tr>
+          <tr>
+            <td><strong>Environment</strong></td>
+            <td>
+              Displays variables and objects in memory.
+            </td>
+          </tr>
+          <tr>
+            <td><strong>Plot Pane</strong></td>
+            <td>
+              Displays graphical output and plots.
+            </td>
+          </tr>
+        </tbody>
+      </table>
 
-      <!-- Data Types -->
-      <section class="card">
-        <div class="card-header">
-          <div class="card-icon">🧬</div>
-          <h2>Data Types</h2>
-        </div>
-
-        <table>
-          <thead>
-            <tr>
-              <th>Term</th>
-              <th>Definition</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong>Numerical</strong></td>
-              <td>Continuous numeric data.</td>
-            </tr>
-            <tr>
-              <td><strong>Factor</strong></td>
-              <td>Categorical data stored as labels.</td>
-            </tr>
-          </tbody>
-        </table>
-      </section>
-
-      <!-- Workflow -->
-      <section class="card">
-        <div class="card-header">
-          <div class="card-icon">🧭</div>
-          <h2>Workflow and Interface</h2>
-        </div>
-
-        <table>
-          <thead>
-            <tr>
-              <th>Term</th>
-              <th>Definition</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong>Comments</strong></td>
-              <td>Lines beginning with <code>#</code> that explain code.</td>
-            </tr>
-            <tr>
-              <td><strong>R Markdown (.Rmd)</strong></td>
-              <td>
-                A file combining R code, output, and narrative text.
-              </td>
-            </tr>
-            <tr>
-              <td><strong>Source Panel</strong></td>
-              <td>
-                Where scripts are written, edited, and saved.
-              </td>
-            </tr>
-            <tr>
-              <td><strong>Console</strong></td>
-              <td>
-                Executes code interactively and displays output.
-              </td>
-            </tr>
-            <tr>
-              <td><strong>Environment</strong></td>
-              <td>
-                Displays variables and objects in memory.
-              </td>
-            </tr>
-            <tr>
-              <td><strong>Plot Pane</strong></td>
-              <td>
-                Displays graphical output and plots.
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </section>
-
-      <!-- Video Walkthrough -->
-      <section class="card">
-        <div class="card-header">
-          <div class="card-icon">🎥</div>
-          <h2>RStudio Interface Video Walkthrough</h2>
-        </div>
-
-        <ul>
-          <li>https://youtu.be/FIrsOBy5k58?t=150:16 — Open RStudio Interface</a></li>
-          <li>https://youtu.be/FIrsOBy5k58?t=681:08 — Create a New Script</a></li>
-          <li>https://youtu.be/FIrsOBy5k58?t=961:36 — What Is the Script Pane?</a></li>
-          <li>https://youtu.be/FIrsOBy5k58?t=1823:02 — Using the Environment Pane</a></li>
-          <li>https://youtu.be/FIrsOBy5k58?t=2363:57 — Using the Plot Pane</a></li>
-        </ul>
-      </section>
+      <h2>RStudio Interface Video Walkthrough</h2>
+      <ul>
+        <li>
+          <a href="https://youtu.be/FIrsOBy5k58?t=15" target="_blank">
+            0:16 — Open RStudio Interface
+          </a>
+        </li>
+        <li>
+          <a href="https://youtu.be/FIrsOBy5k58?t=68" target="_blank">
+            1:08 — Create a New Script
+          </a>
+        </li>
+        <li>
+          <a href="https://youtu.be/FIrsOBy5k58?t=96" target="_blank">
+            1:36 — What Is the Script Pane?
+          </a>
+        </li>
+        <li>
+          <a href="https://youtu.be/FIrsOBy5k58?t=182" target="_blank">
+            3:02 — Using the Environment Pane
+          </a>
+        </li>
+        <li>
+          <a href="https://youtu.be/FIrsOBy5k58?t=236" target="_blank">
+            3:57 — Using the Plot Pane
+          </a>
+        </li>
+      </ul>
 
       <hr />
 
       <p>
-        /AA5221/index.html← Back to Course Home</a>
+        <a href="/AA5221/index.html">← Back to Course Home</a>
       </p>
 
     </div>
