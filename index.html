@@ -4,7 +4,10 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>AA 5221</title>
-  <link rel="stylesheet" href="assets/style.css" />
+
+  <!-- Preload stylesheet for faster first paint -->
+  <link rel="preload" href="assets/style.css" as="style" onload="this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="assets/style.css"></noscript>
 </head>
 <body>
   <canvas id="stars" aria-hidden="true"></canvas>
@@ -23,6 +26,13 @@
       <li>Lecture 3 (coming soon)</li>
     </ul>
   </div>
+
+  <noscript>
+    <style>body{background:#000;color:#fff}</style>
+    <div class="main-container">
+      <p>Enable JavaScript to see the animated background.</p>
+    </div>
+  </noscript>
 
   <script src="assets/stars.js" defer></script>
 </body>
