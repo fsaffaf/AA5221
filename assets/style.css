@@ -14,3 +14,25 @@ html, body {
     height: 100vh;
     display: block;
 }
+
+/* Keep the starfield behind everything */
+#starfield {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1; /* background layer */
+}
+
+/* Homepage UI ABOVE the canvas */
+.home-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: white;
+    z-index: 10; /* foreground layer */
+    padding: 2rem;
+}
