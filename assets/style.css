@@ -1,4 +1,8 @@
-/* assets/style.css - subtle forward-travel tiny-dot starfield */
+---
+# This file is processed by Jekyll (Sass). It must include front matter.
+---
+
+/* assets/css/style.scss - subtle forward-travel tiny-dot starfield */
 :root{
   --bg:#03040a;
   --nebula-1: rgba(40,30,60,0.10);
