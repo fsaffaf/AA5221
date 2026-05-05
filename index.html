@@ -6,28 +6,83 @@
   <title>AA 5221 — Course Materials</title>
 
   <!-- Main stylesheet -->
-  <link rel="stylesheet" href="assets/style.css" />
+  assets/style.css
+
+  <!-- Inline styles for top dropdown -->
+  <style>
+    /* Top Lectures Button */
+    #top-lectures-nav {
+      position: fixed;
+      top: 24px;
+      right: 32px;
+      z-index: 1000;
+    }
+
+    #lectures-toggle {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.25);
+      color: white;
+      padding: 0.6rem 1rem;
+      border-radius: 14px;
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      cursor: pointer;
+      backdrop-filter: blur(12px);
+    }
+
+    #lectures-toggle:hover {
+      background: rgba(255,255,255,0.15);
+    }
+
+    /* Dropdown */
+    #lectures-dropdown {
+      display: none;
+      margin-top: 10px;
+      background: rgba(15,15,25,0.95);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 16px;
+      backdrop-filter: blur(14px);
+      box-shadow: 0 30px 70px rgba(0,0,0,0.6);
+      overflow: hidden;
+    }
+
+    #lectures-dropdown a {
+      display: block;
+      padding: 0.7rem 1.2rem;
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      text-decoration: none;
+      color: white;
+      opacity: 0.85;
+    }
+
+    #lectures-dropdown a:hover {
+      background: rgba(255,255,255,0.12);
+      opacity: 1;
+    }
+  </style>
 </head>
 
 <body>
 
-<!-- Top Lectures Dropdown -->
-<div id="top-lectures-nav">
-  <button id="lectures-toggle">Lectures ▾</button>
+  <!-- Top Lectures Dropdown -->
+  <div id="top-lectures-nav">
+    <button id="lectures-toggle">Lectures ▾</button>
 
-  <div id="lectures-dropdown">
-    lectures/lecture01.htmlLecture 01 · Computing with Data</a>
-    lectures/lecture02.htmlLecture 02 · Data Structures & Types</a>
-    lectures/lecture03.htmlLecture 03 · Importing & Cleaning Data</a>
-    lectures/lecture04.htmlLecture 04 · Exploring Data</a>
-    lectures/lecture05.htmlLecture 05 · Visualizing Patterns</a>
-    lectures/lecture06.htmlLecture 06 · Probability Foundations</a>
-    lectures/lecture07.htmlLecture 07 · Sampling & Distributions</a>
-    lectures/lecture08.htmlLecture 08 · Statistical Inference</a>
-    lectures/lecture09.htmlLecture 09 · Regression Models</a>
-    lectures/lecture10.htmlLecture 10 · From Data to Insight</a>
+    <div id="lectures-dropdown">
+      lectures/lecture01.htmlLecture 01 · Computing with Data</a>
+      lectures/lecture02.htmlLecture 02 · Data Structures & Types</a>
+      lectures/lecture03.htmlLecture 03 · Importing & Cleaning Data</a>
+      lectures/lecture04.htmlLecture 04 · Exploring Data</a>
+      lectures/lecture05.htmlLecture 05 · Visualizing Patterns</a>
+      lectures/lecture06.htmlLecture 06 · Probability Foundations</a>
+      lectures/lecture07.htmlLecture 07 · Sampling & Distributions</a>
+      lectures/lecture08.htmlLecture 08 · Statistical Inference</a>
+      lectures/lecture09.htmlLecture 09 · Regression Models</a>
+      lectures/lecture10.htmlLecture 10 · From Data to Insight</a>
+    </div>
   </div>
-</div>
 
   <!-- Starfield Background -->
   <canvas id="starfield"></canvas>
@@ -35,7 +90,6 @@
   <!-- Homepage Content -->
   <div class="home-container">
 
-    <!-- Title -->
     <h1 style="
       font-size: 4rem;
       font-weight: 900;
@@ -61,7 +115,7 @@
       Applied Analytics & Research Methods I
     </p>
 
-    <!-- Lecture List Card -->
+    <!-- Lecture Card -->
     <div style="
       max-width: 520px;
       margin: 0 auto;
@@ -82,43 +136,38 @@
         LECTURES
       </div>
 
-      <a href="lectures/lecture01.html" style="display:block; padding:0.9rem 1rem; border-radius:12px; text-decoration:none;">
-        Lecture 01 · Computing with Data
-      </a>
-      <a href="lectures/lecture02.html" style="display:block; padding:0.9rem 1rem; border-radius:12px; text-decoration:none;">
-        Lecture 02 · Data Structures & Types
-      </a>
-      <a href="lectures/lecture03.html" style="display:block; padding:0.9rem 1rem; border-radius:12px; text-decoration:none;">
-        Lecture 03 · Importing & Cleaning Data
-      </a>
-      <a href="lectures/lecture04.html" style="display:block; padding:0.9rem 1rem; border-radius:12px; text-decoration:none;">
-        Lecture 04 · Exploring Data
-      </a>
-      <a href="lectures/lecture05.html" style="display:block; padding:0.9rem 1rem; border-radius:12px; text-decoration:none;">
-        Lecture 05 · Visualizing Patterns
-      </a>
-      <a href="lectures/lecture06.html" style="display:block; padding:0.9rem 1rem; border-radius:12px; text-decoration:none;">
-        Lecture 06 · Probability Foundations
-      </a>
-      <a href="lectures/lecture07.html" style="display:block; padding:0.9rem 1rem; border-radius:12px; text-decoration:none;">
-        Lecture 07 · Sampling & Distributions
-      </a>
-      <a href="lectures/lecture08.html" style="display:block; padding:0.9rem 1rem; border-radius:12px; text-decoration:none;">
-        Lecture 08 · Statistical Inference
-      </a>
-      <a href="lectures/lecture09.html" style="display:block; padding:0.9rem 1rem; border-radius:12px; text-decoration:none;">
-        Lecture 09 · Regression Models
-      </a>
-      <a href="lectures/lecture10.html" style="display:block; padding:0.9rem 1rem; border-radius:12px; text-decoration:none;">
-        Lecture 10 · From Data to Insight
-      </a>
+      lectures/lecture01.htmlLecture 01 · Computing with Data</a>
+      lectures/lecture02.htmlLecture 02 · Data Structures & Types</a>
+      lectures/lecture03.htmlLecture 03 · Importing & Cleaning Data</a>
+      lectures/lecture04.htmlLecture 04 · Exploring Data</a>
+      lectures/lecture05.htmlLecture 05 · Visualizing Patterns</a>
+      lectures/lecture06.htmlLecture 06 · Probability Foundations</a>
+      lectures/lecture07.htmlLecture 07 · Sampling & Distributions</a>
+      lectures/lecture08.htmlLecture 08 · Statistical Inference</a>
+      lectures/lecture09.htmlLecture 09 · Regression Models</a>
+      lectures/lecture10.htmlLecture 10 · From Data to Insight</a>
 
     </div>
-
   </div>
 
   <!-- Starfield Script -->
-  <script src="assets/stars.js"></script>
+  assets/stars.jsscript>
+
+  <!-- Dropdown Logic -->
+  <script>
+    const toggle = document.getElementById("lectures-toggle");
+    const dropdown = document.getElementById("lectures-dropdown");
+
+    toggle.addEventListener("click", (e) => {
+      e.stopPropagation();
+      dropdown.style.display =
+        dropdown.style.display === "block" ? "none" : "block";
+    });
+
+    document.addEventListener("click", () => {
+      dropdown.style.display = "none";
+    });
+  </script>
 
 </body>
 </html>
