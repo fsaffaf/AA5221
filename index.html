@@ -1,38 +1,57 @@
-<canvas id="starfield"></canvas>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AA 5221 – Course Materials</title>
 
-<div class="home-container">
-    <h1>AA 5221</h1>
-    <p class="subtitle">Course Materials</p>
+    <!-- Your stylesheet -->
+    <link rel="stylesheet" href="assets/style.css">
+</head>
 
-    <div class="collapsible">
-        <button class="collapse-toggle">Lectures ▼</button>
+<body>
 
-        <div class="collapse-content">
-            <a class="home-button" href="lectures/lecture01.html">Lecture 1</a>
-            <a class="home-button" href="lectures/lecture02.html">Lecture 2</a>
-            <a class="home-button" href="lectures/lecture03.html">Lecture 3</a>
-            <a class="home-button" href="lectures/lecture04.html">Lecture 4</a>
-            <a class="home-button" href="lectures/lecture05.html">Lecture 5</a>
-            <a class="home-button" href="lectures/lecture06.html">Lecture 6</a>
-            <a class="home-button" href="lectures/lecture07.html">Lecture 7</a>
-            <a class="home-button" href="lectures/lecture08.html">Lecture 8</a>
-            <a class="home-button" href="lectures/lecture09.html">Lecture 9</a>
-            <a class="home-button" href="lectures/lecture10.html">Lecture 10</a>
+    <!-- Starfield Background -->
+    <canvas id="starfield"></canvas>
+
+    <!-- Homepage Content -->
+    <div class="home-container">
+        <h1>AA 5221</h1>
+        <p class="subtitle">Course Materials</p>
+
+        <div class="collapsible">
+            <button class="collapse-toggle">Lectures ▼</button>
+
+            <div class="collapse-content">
+                <a class="home-button" href="lectures/lecture01.html">Lecture 1</a>
+                <a class="home-button" href="lectures/lecture02.html">Lecture 2</a>
+                <a class="home-button" href="lectures/lecture03.html">Lecture 3</a>
+                <a class="home-button" href="lectures/lecture04.html">Lecture 4</a>
+                <a class="home-button" href="lectures/lecture05.html">Lecture 5</a>
+                <a class="home-button" href="lectures/lecture06.html">Lecture 6</a>
+                <a class="home-button" href="lectures/lecture07.html">Lecture 7</a>
+                <a class="home-button" href="lectures/lecture08.html">Lecture 8</a>
+                <a class="home-button" href="lectures/lecture09.html">Lecture 9</a>
+                <a class="home-button" href="lectures/lecture10.html">Lecture 10</a>
+            </div>
         </div>
     </div>
-</div>
 
-<script src="assets/stars.js"></script>
+    <!-- Starfield Script -->
+    <script src="assets/stars.js"></script>
 
-<script>
-    // Collapsible toggle
-    const toggle = document.querySelector(".collapse-toggle");
-    const content = document.querySelector(".collapse-content");
+    <!-- Collapsible Menu Script -->
+    <script>
+        const toggle = document.querySelector(".collapse-toggle");
+        const content = document.querySelector(".collapse-content");
 
-    toggle.addEventListener("click", () => {
-        content.classList.toggle("open");
-        toggle.textContent = content.classList.contains("open")
-            ? "Lectures ▲"
-            : "Lectures ▼";
-    });
-</script>
+        toggle.addEventListener("click", () => {
+            content.classList.toggle("open");
+            toggle.textContent = content.classList.contains("open")
+                ? "Lectures ▲"
+                : "Lectures ▼";
+        });
+    </script>
+
+</body>
+</html>
