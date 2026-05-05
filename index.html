@@ -1,106 +1,104 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>AA 5221</title>
-
-    <link rel="stylesheet" href="/AA5221/assets/style.css" />
-  </head>
-
-  <body>
-    <div class="main-container">
-      <h1>AA 5221</h1>
-      <p>
-        Welcome to the course website. This site contains the written lecture
-        notes and supporting materials for <strong>AA 5221</strong>.
-      </p>
-
-      <h2>Lectures</h2>
-      <ul>
-        <li>
-          <a href="/AA5221/lectures/lecture01.html">Lecture 1: Introduction</a>
-        </li>
-        <li>Lecture 2 (coming soon)</li>
-        <li>Lecture 3 (coming soon)</li>
-      </ul>
-
-      <!doctype html>
+<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Raining Stars Background</title>
+  <title>AA 5221</title>
+  <!-- Use a relative path unless you need absolute -->
+  <link rel="stylesheet" href="assets/style.css" />
   <style>
-    html,body { height:100%; margin:0; }
-    body { background:#000; color:#fff; font-family:Arial,Helvetica,sans-serif; }
-    canvas#stars { position:fixed; inset:0; z-index:-1; display:block; }
-    .content { position:relative; z-index:1; padding:3rem; }
+    /* Minimal styles for the demo; move to your style.css if preferred */
+    html, body { height: 100%; margin: 0; }
+    body { background: #000; color: #fff; font-family: Arial, Helvetica, sans-serif; }
+    canvas#stars { position: fixed; inset: 0; z-index: -1; display: block; }
+    .main-container { position: relative; z-index: 1; padding: 2rem; max-width: 900px; margin: 0 auto; }
+    a { color: #9fe; }
   </style>
 </head>
 <body>
-  <canvas id="stars"></canvas>
-  <div class="content">
-    <h1>My Site</h1>
-    <p>Content sits above the raining stars background.</p>
+  <canvas id="stars" aria-hidden="true"></canvas>
+
+  <div class="main-container">
+    <h1>AA 5221</h1>
+    <p>
+      Welcome to the course website. This site contains the written lecture
+      notes and supporting materials for <strong>AA 5221</strong>.
+    </p>
+
+    <h2>Lectures</h2>
+    <ul>
+      <li><a href="lectures/lecture01.html">Lecture 1: Introduction</a></li>
+      <li>Lecture 2 (coming soon)</li>
+      <li>Lecture 3 (coming soon)</li>
+    </ul>
   </div>
 
   <script>
-    const canvas = document.getElementById('stars');
-    const ctx = canvas.getContext('2d');
-    let w, h, stars = [], numStars = 120;
+    // Ensure the script runs after the DOM is ready
+    (function () {
+      const canvas = document.getElementById('stars');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      let w, h, stars = [], numStars = 120;
 
-    function resize() {
-      w = canvas.width = innerWidth;
-      h = canvas.height = innerHeight;
-    }
-    addEventListener('resize', resize);
-    resize();
-
-    function rand(min, max){ return Math.random()*(max-min)+min; }
-
-    class Star {
-      constructor(){
-        this.reset();
+      function resize() {
+        const dpr = Math.min(window.devicePixelRatio || 1, 2);
+        w = canvas.width = Math.floor(window.innerWidth * dpr);
+        h = canvas.height = Math.floor(window.innerHeight * dpr);
+        canvas.style.width = window.innerWidth + 'px';
+        canvas.style.height = window.innerHeight + 'px';
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
       }
-      reset(){
-        this.x = rand(0, w);
-        this.y = rand(-h, 0);
-        this.size = rand(0.6, 2.2);
-        this.speed = rand(0.4, 2.2);
-        this.alpha = rand(0.4, 1);
-        this.angle = rand(0.02, 0.12); // slight drift
+      window.addEventListener('resize', resize);
+      resize();
+
+      function rand(min, max){ return Math.random()*(max-min)+min; }
+
+      class Star {
+        constructor(){ this.reset(); }
+        reset(){
+          this.x = rand(0, w);
+          this.y = rand(-h, 0);
+          this.size = rand(0.6, 2.2);
+          this.speed = rand(0.4, 2.2);
+          this.alpha = rand(0.4, 1);
+          this.angle = rand(0.02, 0.12);
+        }
+        update(){
+          this.y += this.speed;
+          this.x += Math.sin(this.y * this.angle) * 0.5;
+          if (this.y > h + 10) this.reset();
+        }
+        draw(){
+          ctx.beginPath();
+          ctx.fillStyle = `rgba(255,255,255,${this.alpha})`;
+          ctx.arc(this.x, this.y, this.size, 0, Math.PI*2);
+          ctx.fill();
+        }
       }
-      update(){
-        this.y += this.speed;
-        this.x += Math.sin(this.y * this.angle) * 0.5;
-        if(this.y > h + 10) this.reset();
+
+      function init(){
+        stars = [];
+        for (let i = 0; i < numStars; i++) stars.push(new Star());
       }
-      draw(){
-        ctx.beginPath();
-        ctx.fillStyle = `rgba(255,255,255,${this.alpha})`;
-        ctx.arc(this.x, this.y, this.size, 0, Math.PI*2);
-        ctx.fill();
+
+      function loop(){
+        // motion blur trail
+        ctx.fillStyle = 'rgba(0,0,0,0.35)';
+        ctx.fillRect(0, 0, w, h);
+        for (const s of stars) { s.update(); s.draw(); }
+        requestAnimationFrame(loop);
       }
-    }
 
-    function init(){
-      stars = [];
-      for(let i=0;i<numStars;i++) stars.push(new Star());
-    }
+      init();
+      loop();
 
-    // motion blur trail: draw semi-transparent rect each frame
-    function loop(){
-      ctx.fillStyle = 'rgba(0,0,0,0.35)';
-      ctx.fillRect(0,0,w,h);
-      for(const s of stars){ s.update(); s.draw(); }
-      requestAnimationFrame(loop);
-    }
-
-    init();
-    loop();
-
-    // Optional: expose config for debugging in console
-    window.STAR_BG = { setCount(n){ numStars = n; init(); } };
+      // Optional: reduce particles on small screens for performance
+      if (window.innerWidth < 600) {
+        numStars = 60;
+        init();
+      }
+    })();
   </script>
 </body>
 </html>
