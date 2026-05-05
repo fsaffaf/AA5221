@@ -1,52 +1,38 @@
-/* ===== Homepage Overlay ===== */
-.home-container {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-    color: white;
-    z-index: 10;
-    padding: 2rem;
-}
+<canvas id="starfield"></canvas>
 
-.home-container h1 {
-    font-size: 3rem;
-    margin-bottom: 0.5rem;
-    letter-spacing: -0.03em;
-}
+<div class="home-container">
+    <h1>AA 5221</h1>
+    <p class="subtitle">Course Materials</p>
 
-.subtitle {
-    font-size: 1.2rem;
-    opacity: 0.8;
-    margin-bottom: 2rem;
-}
+    <div class="collapsible">
+        <button class="collapse-toggle">Lectures ▼</button>
 
-/* ===== Button Grid ===== */
-.button-grid {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    width: 260px;
-    margin: 0 auto;
-}
+        <div class="collapse-content">
+            <a class="home-button" href="lectures/lecture01.html">Lecture 1</a>
+            <a class="home-button" href="lectures/lecture02.html">Lecture 2</a>
+            <a class="home-button" href="lectures/lecture03.html">Lecture 3</a>
+            <a class="home-button" href="lectures/lecture04.html">Lecture 4</a>
+            <a class="home-button" href="lectures/lecture05.html">Lecture 5</a>
+            <a class="home-button" href="lectures/lecture06.html">Lecture 6</a>
+            <a class="home-button" href="lectures/lecture07.html">Lecture 7</a>
+            <a class="home-button" href="lectures/lecture08.html">Lecture 8</a>
+            <a class="home-button" href="lectures/lecture09.html">Lecture 9</a>
+            <a class="home-button" href="lectures/lecture10.html">Lecture 10</a>
+        </div>
+    </div>
+</div>
 
-/* ===== Buttons ===== */
-.home-button {
-    display: block;
-    padding: 0.9rem 1.2rem;
-    background: rgba(255, 255, 255, 0.12);
-    border: 1px solid rgba(255, 255, 255, 0.25);
-    border-radius: 12px;
-    color: white;
-    text-decoration: none;
-    font-size: 1.1rem;
-    font-weight: 600;
-    backdrop-filter: blur(8px);
-    transition: transform 0.2s ease, background 0.2s ease;
-}
+<script src="assets/stars.js"></script>
 
-.home-button:hover {
-    background: rgba(255, 255, 255, 0.22);
-    transform: translateY(-3px);
-}
+<script>
+    // Collapsible toggle
+    const toggle = document.querySelector(".collapse-toggle");
+    const content = document.querySelector(".collapse-content");
+
+    toggle.addEventListener("click", () => {
+        content.classList.toggle("open");
+        toggle.textContent = content.classList.contains("open")
+            ? "Lectures ▲"
+            : "Lectures ▼";
+    });
+</script>
