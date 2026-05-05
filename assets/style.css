@@ -7,8 +7,6 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
-/* Canvas sits behind content and doesn't block clicks */
 canvas#stars {
   position: fixed;
   inset: 0;
@@ -16,8 +14,6 @@ canvas#stars {
   display: block;
   pointer-events: none;
 }
-
-/* Page content above the canvas */
 .main-container {
   position: relative;
   z-index: 1;
@@ -25,7 +21,5 @@ canvas#stars {
   max-width: 900px;
   margin: 0 auto;
 }
-
-/* Simple link color */
 a { color: #9fe; text-decoration: none; }
 a:hover { text-decoration: underline; }
