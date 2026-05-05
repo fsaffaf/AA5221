@@ -1,0 +1,89 @@
+<div style="background:#3b7ed1;padding:12px 16px;border-radius:6px;">
+  <span style="color:#fff;font-size:14pt;font-family:system-ui,Arial;">
+    <strong>Overview</strong>
+  </span>
+</div>
+
+<p style="font-size:14pt;">
+  This page provides directions on how to convert your R Script file (code file) into an
+  R Markdown file (presentation file), and then into an RPubs URL (a shareable HTML file).
+</p>
+
+<p style="font-size:14pt;">
+  <strong style="color:#0e68b3;">Why convert R Script to R Markdown?</strong><br>
+  R Scripts save only code. R Markdown combines code, explanations, and results into
+  a single well‑formatted document.
+</p>
+
+<p style="font-size:14pt;">
+  <strong style="color:#0e68b3;">Why publish on RPubs?</strong><br>
+  RPubs allows anyone to view your results via a URL without needing RStudio.
+</p>
+
+<ul style="font-size:14pt;">
+  <li>
+    <a href="https://www.youtube.com/watch?v=DNS7i2m4sB0" target="_blank" rel="noopener">
+      R Markdown Introduction (YouTube)
+    </a>
+  </li>
+  <li>
+    <a href="https://rmarkdown.rstudio.com/lesson-2.html" target="_blank" rel="noopener">
+      R Markdown Guide (RStudio)
+    </a>
+  </li>
+</ul>
+
+<hr>
+
+<div style="background:#3b7ed1;padding:12px 16px;border-radius:6px;">
+  <span style="color:#fff;font-size:14pt;">
+    <strong>Step 1: Install and Load R Markdown</strong>
+  </span>
+</div>
+
+<pre>
+install.packages("rmarkdown")
+library(rmarkdown)
+</pre>
+
+<div style="background:#3b7ed1;padding:12px 16px;border-radius:6px;">
+  <span style="color:#fff;font-size:14pt;">
+    <strong>Step 2: Create a New R Markdown File</strong>
+  </span>
+</div>
+
+<p style="font-size:14pt;">
+  In RStudio: <mark>File → New File → R Markdown</mark>
+</p>
+
+<pre>
+Title: Assign 1: Q1
+Author: Your Name
+Output Format: HTML
+</pre>
+
+<div style="background:#3b7ed1;padding:12px 16px;border-radius:6px;">
+  <span style="color:#fff;font-size:14pt;">
+    <strong>Step 3: Review the New RMarkdown File</strong>
+  </span>
+</div>
+
+<pre>
+title: "Assign 1: Q1"
+author: "John Smith"
+output: html_document
+</pre>
+
+<div style="background:#3b7ed1;padding:12px 16px;border-radius:6px;">
+  <span style="color:#fff;font-size:14pt;">
+    <strong>Step 4: Delete the Default Content</strong>
+  </span>
+</div>
+
+<p style="font-size:14pt;">
+  Delete the boilerplate content that appears below the header, including:
+</p>
+
+<pre>
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
