@@ -16,7 +16,7 @@ body {
 }
 
 .tree {
-  width: 1000px;
+  width: 1100px;
   text-align: center;
 }
 
@@ -25,6 +25,7 @@ body {
   padding: 12px 16px;
   border-radius: 14px;
   min-width: 170px;
+  margin: 0 auto;
 }
 
 /* PROMPT */
@@ -62,7 +63,7 @@ body {
 /* LINES */
 .line {
   width: 2px;
-  height: 28px;
+  height: 26px;
   background: rgba(59,130,246,0.7);
   margin: 0 auto;
 }
@@ -74,18 +75,25 @@ body {
   width: 90%;
 }
 
-/* LAYOUT */
+/* ROWS */
 .row {
   display: flex;
   justify-content: space-between;
   gap: 20px;
 }
 
+/* BRANCH */
 .branch {
   flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.small-row {
+  display: flex;
+  gap: 12px;
+  margin-top: 5px;
 }
 </style>
 </head>
@@ -102,12 +110,19 @@ body {
   <div class="line"></div>
   <div class="horizontal"></div>
 
+  <!-- MAIN BRANCHES -->
   <div class="row">
 
     <!-- OBSERVATIONAL -->
     <div class="branch">
       <div class="node answer">Observational</div>
+
       <div class="line"></div>
+
+      <div class="node prompt">Select inferential test</div>
+
+      <div class="line"></div>
+
       <div class="node answer">
         <a href="code/chi_gof.html">Chi‑Square Goodness of Fit</a>
       </div>
@@ -115,35 +130,67 @@ body {
 
     <!-- CORRELATIONAL -->
     <div class="branch">
-      <div class="node answer">Correlation</div>
-      <div class="line"></div>
-
-      <div class="node answer">
-        <a href="code/chi_independence.html">Chi‑Square Test of Independence</a>
-      </div>
+      <div class="node answer">Correlational</div>
 
       <div class="line"></div>
 
-      <div class="node answer">
-        <a href="code/correlations.html">Pearson / Spearman Correlations</a>
+      <div class="node prompt">Select inferential test</div>
+
+      <div class="line"></div>
+
+      <!-- ✅ FIXED: parallel options -->
+      <div class="small-row">
+        <div class="node answer">
+          <a href="code/chi_independence.html">Chi‑Square Independence</a>
+        </div>
+
+        <div class="node answer">
+          <a href="code/correlations.html">Pearson / Spearman</a>
+        </div>
       </div>
     </div>
 
     <!-- QUASI -->
     <div class="branch">
-      <div class="node answer">Quasi-experiment</div>
+      <div class="node answer">Quasi‑experiment</div>
+
       <div class="line"></div>
+
+      <div class="node prompt">Select inferential test</div>
+
+      <div class="line"></div>
+
+      <!-- ✅ BOTH TEST TYPES -->
       <div class="node answer">
-        <a href="code/ttest_ind.html">t‑tests</a>
+        <a href="code/ttest_ind.html">Independent t‑test / Mann‑Whitney</a>
+      </div>
+
+      <div class="line"></div>
+
+      <div class="node answer">
+        <a href="code/ttest_dep.html">Dependent t‑test / Wilcoxon</a>
       </div>
     </div>
 
     <!-- TRUE -->
     <div class="branch">
       <div class="node answer">True experiment</div>
+
       <div class="line"></div>
+
+      <div class="node prompt">Select inferential test</div>
+
+      <div class="line"></div>
+
+      <!-- ✅ SAME OPTIONS (accurate logic) -->
       <div class="node answer">
-        <a href="code/ttest_dep.html">t‑tests</a>
+        <a href="code/ttest_ind.html">Independent t‑test / Mann‑Whitney</a>
+      </div>
+
+      <div class="line"></div>
+
+      <div class="node answer">
+        <a href="code/ttest_dep.html">Dependent t‑test / Wilcoxon</a>
       </div>
     </div>
 
