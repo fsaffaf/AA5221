@@ -5,24 +5,28 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>AA 5221 — Course Materials</title>
 
-  <!-- ✅ FIXED: CSS properly linked -->
-  <link rel="stylesheet" href="assets/style.css">
+  <!-- Keep your external CSS (this preserves your typography choices) -->
+  <link rel="stylesheet" href="assets/style.css" />
 
   <style>
+    /* Do NOT set font-family here — let assets/style.css control the title font */
+    html, body { height: 100%; }
     body {
       margin: 0;
-      background: black;
-      color: white;
+      background: #000; /* fallback behind stars */
+      color: #fff;
+      overflow-x: hidden;
     }
 
-    /* ✅ STARFIELD */
+    /* ✅ Starfield canvas behind everything */
     #starfield {
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+      inset: 0;
+      width: 100vw;
+      height: 100vh;
       z-index: -1;
+      pointer-events: none;
+      display: block;
     }
 
     /* Glass Nav */
@@ -44,6 +48,7 @@
       justify-content: flex-end;
       align-items: center;
       gap: 1.8rem;
+      flex-wrap: wrap;
     }
 
     .nav-item {
@@ -53,6 +58,8 @@
       text-transform: uppercase;
       color: rgba(255,255,255,0.85);
       cursor: pointer;
+      user-select: none;
+      text-decoration: none;
     }
 
     .nav-item:hover { color: white; }
@@ -68,11 +75,10 @@
       backdrop-filter: blur(16px);
       box-shadow: 0 30px 70px rgba(0,0,0,0.6);
       display: none;
+      overflow: hidden;
     }
 
-    .dropdown:hover .dropdown-panel {
-      display: block;
-    }
+    .dropdown:hover .dropdown-panel { display: block; }
 
     .dropdown-panel a {
       display: block;
@@ -81,6 +87,7 @@
       color: rgba(255,255,255,0.85);
       font-size: 0.7rem;
       letter-spacing: 0.12em;
+      white-space: nowrap;
     }
 
     .dropdown-panel a:hover {
@@ -91,133 +98,211 @@
     .home-container {
       padding-top: 6rem;
       text-align: center;
+      position: relative;
+      z-index: 1; /* above stars */
     }
   </style>
 </head>
 
 <body>
 
-<!-- ✅ NAV -->
-<nav class="glass-nav">
-  <div class="nav-inner">
+  <!-- ✅ NAV FIXED -->
+  <nav class="glass-nav">
+    <div class="nav-inner">
 
-    <div class="nav-item dropdown">
-      <span>Class Overview</span>
-      <div class="dropdown-panel">
-        <a href="lectures/science.html">What is Science?</a>
-        <a href="visual/decisiontree.html">Conceptual Overview</a>
+      <!-- CLASS OVERVIEW -->
+      <div class="nav-item dropdown">
+        <span>Class Overview</span>
+        <div class="dropdown-panel">
+          <a href="lectures/science.html">What is Science?</a>
+          <a href="visual/decisiontree.html">Conceptual Overview</a>
+        </div>
       </div>
-    </div>
 
-    <div class="nav-item dropdown">
-      <span>Research Methods</span>
-      <div class="dropdown-panel">
-        <a href="lectures/rdesigns.html">Research Designs</a>
-        <a href="interactive/researchdesign.html">Research Design Selector</a>
+      <!-- RESEARCH METHODS -->
+      <div class="nav-item dropdown">
+        <span>Research Methods</span>
+        <div class="dropdown-panel">
+          <a href="lectures/rdesigns.html">Research Designs</a>
+          <a href="interactive/researchdesign.html">Research Design Selector</a>
+        </div>
       </div>
-    </div>
 
-    <div class="nav-item dropdown">
-      <span>Measurement Theory</span>
-      <div class="dropdown-panel">
-        <a href="lectures/data-types.html">Types of Data</a>
+      <!-- MEASUREMENT THEORY -->
+      <div class="nav-item dropdown">
+        <span>Measurement Theory</span>
+        <div class="dropdown-panel">
+          <a href="lectures/data-types.html">Types of Data</a>
+        </div>
       </div>
-    </div>
 
-    <div class="nav-item dropdown">
-      <span>Descriptive Statistics</span>
-      <div class="dropdown-panel">
-        <a href="lectures/lecture02.html">Descriptive Statistics</a>
-        <a href="lectures/lecture02.html">Measures of Central Tendency</a>
-        <a href="lectures/lecture02.html">Normality</a>
+      <!-- DESCRIPTIVE -->
+      <div class="nav-item dropdown">
+        <span>Descriptive Statistics</span>
+        <div class="dropdown-panel">
+          <a href="lectures/lecture02.html">Descriptive Statistics</a>
+          <a href="lectures/lecture02.html#central-tendency">Measures of Central Tendency</a>
+          <a href="lectures/lecture02.html#normality">Normality</a>
+        </div>
       </div>
-    </div>
 
-    <div class="nav-item dropdown">
-      <span>Inferential Statistics</span>
-      <div class="dropdown-panel">
-        <a href="lectures/lecture02.html">Inferential Overview</a>
-        <a href="lectures/hypotheses.html">Hypothesis Testing</a>
-        <a href="lectures/lecture03.html">P‑Values & Effect Sizes</a>
+      <!-- INFERENTIAL -->
+      <div class="nav-item dropdown">
+        <span>Inferential Statistics</span>
+        <div class="dropdown-panel">
+          <a href="lectures/lecture02.html#inferential">Inferential Overview</a>
+          <a href="lectures/hypotheses.html">Hypothesis Testing</a>
+          <a href="lectures/lecture03.html">P‑Values &amp; Effect Sizes</a>
+        </div>
       </div>
-    </div>
 
-    <div class="nav-item dropdown">
-      <span>Visualizing Data</span>
-      <div class="dropdown-panel">
-        <a href="lectures/lecture01.html">Histograms</a>
-        <a href="lectures/lecture02.html">Boxplots</a>
-        <a href="lectures/lecture03.html">Scatterplots</a>
-        <a href="lectures/lecture03.html">Bar Graphs</a>
-        <a href="interactive/testselect.html">Normality Interpreter</a>
+      <!-- VISUALIZING -->
+      <div class="nav-item dropdown">
+        <span>Visualizing Data</span>
+        <div class="dropdown-panel">
+          <a href="lectures/lecture01.html#histograms">Histograms</a>
+          <a href="lectures/lecture02.html#boxplots">Boxplots</a>
+          <a href="lectures/lecture03.html#scatterplots">Scatterplots</a>
+          <a href="lectures/lecture03.html#bar-graphs">Bar Graphs</a>
+          <a href="interactive/testselect.html">Normality Interpreter</a>
+        </div>
       </div>
-    </div>
 
-    <div class="nav-item dropdown">
-      <span>RStudio</span>
-      <div class="dropdown-panel">
-        <a href="lectures/lecture01.html">Download RStudio</a>
-        <a href="lectures/intro-r.html">R Basics</a>
-        <a href="lectures/lecture03.html">R for Data Science</a>
-        <a href="lectures/lecture04.html">R Markdown & RPubs</a>
+      <!-- RSTUDIO -->
+      <div class="nav-item dropdown">
+        <span>RStudio</span>
+        <div class="dropdown-panel">
+          <a href="lectures/lecture01.html#rstudio">Download RStudio</a>
+          <a href="lectures/intro-r.html">R Basics</a>
+          <a href="lectures/lecture03.html#r4ds">R for Data Science</a>
+          <a href="lectures/lecture04.html">R Markdown &amp; RPubs</a>
+        </div>
       </div>
-    </div>
 
-    <div class="nav-item dropdown">
-      <span>R Code</span>
-      <div class="dropdown-panel">
-        <a href="interactive/testselect.html">Inferential Test Selector</a>
-        <a href="code/correlations.html">Correlations</a>
-        <a href="code/chi_independence.html">Chi‑Square Independence</a>
-        <a href="code/chi_gof.html">Chi‑Square GOF</a>
-        <a href="code/ttest_ind.html">Independent t‑test</a>
-        <a href="code/mann_whitney.html">Mann‑Whitney U</a>
-        <a href="code/ttest_dep.html">Dependent t‑test</a>
-        <a href="code/wilcoxon.html">Wilcoxon Signed Rank</a>
+      <!-- R CODE -->
+      <div class="nav-item dropdown">
+        <span>R Code</span>
+        <div class="dropdown-panel">
+          <a href="interactive/testselect.html#inferential">Inferential Test Selector</a>
+          <a href="code/correlations.html">Correlations</a>
+          <a href="code/chi_independence.html">Chi‑Square Independence</a>
+          <a href="code/chi_gof.html">Chi‑Square GOF</a>
+          <a href="code/ttest_ind.html">Independent t‑test</a>
+          <a href="code/mann_whitney.html">Mann‑Whitney U</a>
+          <a href="code/ttest_dep.html">Dependent t‑test</a>
+          <a href="code/wilcoxon.html">Wilcoxon Signed Rank</a>
+        </div>
       </div>
-    </div>
 
-    <div class="nav-item">
-      <a href="#faq" style="color:inherit; text-decoration:none;">FAQ</a>
-    </div>
+      <!-- FAQ -->
+      <a class="nav-item" href="#faq">FAQ</a>
 
+    </div>
+  </nav>
+
+  <!-- ✅ STARFIELD -->
+  <canvas id="starfield" aria-hidden="true"></canvas>
+
+  <!-- ✅ MAIN CONTENT -->
+  <div class="home-container">
+    <h1 style="
+      font-size: 4rem;
+      font-weight: 900;
+      letter-spacing: 0.25em;
+      margin-bottom: 0.5rem;
+      text-transform: uppercase;
+      background: linear-gradient(180deg, #ffffff, #7dd3fc);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow:
+        0 0 20px rgba(56, 189, 248, 0.35),
+        0 0 40px rgba(56, 189, 248, 0.15);
+    ">
+      AA <span style="font-weight:300;">5221</span>
+    </h1>
+
+    <p style="
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      opacity: 0.85;
+      margin-bottom: 3rem;
+    ">
+      Applied Analytics &amp; Research Methods I
+    </p>
   </div>
-</nav>
 
-<!-- ✅ STARFIELD -->
-<canvas id="starfield"></canvas>
+  <!-- ✅ INLINE STARFIELD SCRIPT (no external file needed) -->
+  <script>
+    (() => {
+      const canvas = document.getElementById("starfield");
+      if (!canvas) return;
 
-<!-- ✅ CONTENT -->
-<div class="home-container">
-  <h1 style="
-    font-size: 4rem;
-    font-weight: 900;
-    letter-spacing: 0.25em;
-    margin-bottom: 0.5rem;
-    text-transform: uppercase;
-    background: linear-gradient(180deg, #ffffff, #7dd3fc);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    text-shadow:
-      0 0 20px rgba(56, 189, 248, 0.35),
-      0 0 40px rgba(56, 189, 248, 0.15);
-  ">
-    AA <span style="font-weight:300;">5221</span>
-  </h1>
+      const ctx = canvas.getContext("2d", { alpha: true });
 
-  <p style="
-    letter-spacing: 0.35em;
-    text-transform: uppercase;
-    opacity: 0.85;
-    margin-bottom: 3rem;
-  ">
-    Applied Analytics & Research Methods I
-  </p>
-</div>
+      let w = 0, h = 0, dpr = 1;
+      let stars = [];
+      const STAR_COUNT = 220;
 
-<!-- ✅ FIXED: JS properly loaded -->
-<script src="assets/stars.js"></script>
+      function resize() {
+        dpr = Math.max(1, window.devicePixelRatio || 1);
+        w = Math.floor(window.innerWidth);
+        h = Math.floor(window.innerHeight);
 
+        canvas.style.width = w + "px";
+        canvas.style.height = h + "px";
+        canvas.width = Math.floor(w * dpr);
+        canvas.height = Math.floor(h * dpr);
+
+        // Draw in CSS pixels (so star sizes look right on retina)
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+        // Seed stars
+        stars = Array.from({ length: STAR_COUNT }, () => ({
+          x: Math.random() * w,
+          y: Math.random() * h,
+          r: Math.random() * 1.6 + 0.2,
+          s: Math.random() * 0.35 + 0.05,     // speed
+          a: Math.random() * 0.6 + 0.2,       // alpha
+          tw: Math.random() * 0.015 + 0.003   // twinkle amount
+        }));
+      }
+
+      function frame() {
+        ctx.clearRect(0, 0, w, h);
+
+        // Subtle space gradient background (behind stars)
+        const g = ctx.createRadialGradient(w * 0.5, h * 0.35, 0, w * 0.5, h * 0.5, Math.max(w, h));
+        g.addColorStop(0, "rgba(10, 15, 30, 0.35)");
+        g.addColorStop(1, "rgba(0, 0, 0, 1)");
+        ctx.fillStyle = g;
+        ctx.fillRect(0, 0, w, h);
+
+        // Draw stars
+        for (const s of stars) {
+          // Move down gently
+          s.y += s.s;
+          if (s.y > h + 5) {
+            s.y = -5;
+            s.x = Math.random() * w;
+          }
+
+          // Twinkle
+          s.a += (Math.random() - 0.5) * s.tw;
+          s.a = Math.max(0.08, Math.min(0.95, s.a));
+
+          ctx.beginPath();
+          ctx.fillStyle = `rgba(255,255,255,${s.a})`;
+          ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+          ctx.fill();
+        }
+
+        requestAnimationFrame(frame);
+      }
+
+      window.addEventListener("resize", resize, { passive: true });
+      resize();
+      frame();
+    })();
+  </script>
 </body>
 </html>
-``
