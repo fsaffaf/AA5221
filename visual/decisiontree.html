@@ -27,7 +27,7 @@ body {
 /* MAIN LINE */
 .flow-line {
   position: absolute;
-  top: 50%;
+  top: 70px;
   width: 100%;
   height: 4px;
   background: linear-gradient(
@@ -59,7 +59,7 @@ body {
   width: 220px;
 }
 
-/* CONNECTION NODE (like diagram dot) */
+/* CONNECTOR */
 .connector {
   width: 14px;
   height: 14px;
@@ -68,18 +68,23 @@ body {
   box-shadow:
     0 0 10px rgba(56,189,248,0.8),
     0 0 20px rgba(56,189,248,0.5);
-
-  margin-bottom: 12px;
+  margin-bottom: 10px;
 }
 
-/* BOX */
+/* ✅ EQUAL-SIZED BOX */
 .box {
+  width: 220px;
+  height: 120px;   /* forces equal height */
+  padding: 16px;
+  border-radius: 16px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
   background: rgba(10,15,30,0.7);
   border: 1px solid rgba(56,189,248,0.6);
-  border-radius: 16px;
-  padding: 16px 18px;
-  text-align: center;
-
   backdrop-filter: blur(14px);
 
   box-shadow:
@@ -102,7 +107,6 @@ body {
 .box a {
   color: #e2e8f0;
   text-decoration: none;
-  display: block;
 }
 
 /* TEXT */
@@ -110,15 +114,16 @@ body {
   font-size: 12px;
   letter-spacing: 0.08em;
   opacity: 0.7;
-  margin-bottom: 4px;
+  margin-bottom: 6px;
 }
 
 .main {
   font-weight: 600;
   font-size: 15px;
+  text-align: center;
 }
 
-/* OPTIONAL: FINAL EMPHASIS */
+/* FINAL */
 .final .box {
   border-color: #7dd3fc;
   box-shadow:
@@ -141,7 +146,7 @@ body {
     <div class="step">
       <div class="connector"></div>
       <div class="box">
-        #
+        <a href="#">
           <div class="title">STEP 1</div>
           <div class="main">Select Research Design</div>
         </a>
@@ -152,7 +157,7 @@ body {
     <div class="step">
       <div class="connector"></div>
       <div class="box">
-        #
+        <a href="#">
           <div class="title">STEP 2</div>
           <div class="main">Select Inferential Test</div>
         </a>
@@ -163,7 +168,7 @@ body {
     <div class="step">
       <div class="connector"></div>
       <div class="box">
-        #
+        <a href="#">
           <div class="title">STEP 3</div>
           <div class="main">Run Code in R</div>
         </a>
@@ -174,7 +179,7 @@ body {
     <div class="step final">
       <div class="connector"></div>
       <div class="box">
-        #
+        <a href="#">
           <div class="title">STEP 4</div>
           <div class="main">Report Results (R Markdown)</div>
         </a>
