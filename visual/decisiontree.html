@@ -20,10 +20,10 @@ body {
 .flow-wrapper {
   position: relative;
   width: 1000px;
-  height: 250px;
+  height: 260px;
 }
 
-/* SVG CURVE */
+/* CURVE */
 svg {
   position: absolute;
   top: 0;
@@ -37,16 +37,28 @@ path {
   filter: drop-shadow(0 0 8px rgba(56,189,248,0.7));
 }
 
-/* STEP */
+/* CONNECTOR DOT */
+.dot {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #38bdf8;
+  box-shadow:
+    0 0 10px rgba(56,189,248,0.9),
+    0 0 18px rgba(56,189,248,0.6);
+}
+
+/* STEP BOX */
 .step {
   position: absolute;
-  width: 160px;
-  height: 90px;
+  width: 170px;
+  height: 95px;
 
   display: flex;
-  align-items: center;
+  flex-direction: column;
   justify-content: center;
-  text-align: center;
+  align-items: center;
 
   background: rgba(10,15,30,0.75);
   border: 1px solid rgba(56,189,248,0.6);
@@ -58,36 +70,41 @@ path {
     0 8px 20px rgba(0,0,0,0.6),
     0 0 10px rgba(56,189,248,0.25);
 
-  transition: 0.2s;
+  transform: translate(-50%, -50%); /* ✅ true centering */
+  transition: 0.25s;
 }
 
 .step:hover {
-  transform: translateY(-6px);
+  transform: translate(-50%, -60%);
   box-shadow:
     0 15px 30px rgba(0,0,0,0.8),
     0 0 20px rgba(56,189,248,0.7);
 }
 
-/* LINK */
+/* TEXT */
 .step a {
   color: #e2e8f0;
   text-decoration: none;
-  font-size: 14px;
-  font-weight: 500;
-  line-height: 1.3;
+  text-align: center;
 }
 
-/* STEP POSITIONS ALONG CURVE */
-.step1 { top: 110px; left: 20px; }
-.step2 { top: 40px; left: 300px; }
-.step3 { top: 120px; left: 580px; }
-.step4 { top: 50px; left: 840px; }
+.step-number {
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  opacity: 0.7;
+  margin-bottom: 4px;
+}
 
-/* FINAL HIGHLIGHT */
+.step-title {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+/* FINAL */
 .final {
   border-color: #7dd3fc;
   box-shadow:
-    0 0 20px rgba(125,211,252,0.7),
+    0 0 18px rgba(125,211,252,0.7),
     inset 0 0 10px rgba(125,211,252,0.25);
 }
 
@@ -98,33 +115,44 @@ path {
 
 <div class="flow-wrapper">
 
-  <!-- CURVED LINE -->
-  <svg width="1000" height="250">
-    <path d="M 20 150 Q 250 20, 500 150 T 980 150" />
+  <!-- CURVE -->
+  <svg width="1000" height="260">
+    <path d="M 40 160 Q 250 20, 500 160 T 960 140" />
   </svg>
 
-  <!-- STEPS -->
-  <div class="step step1">
-    #
-      Select Research Design
+  <!-- DOTS (anchors on curve) -->
+  <div class="dot" style="left:40px; top:160px;"></div>
+  <div class="dot" style="left:300px; top:60px;"></div>
+  <div class="dot" style="left:600px; top:160px;"></div>
+  <div class="dot" style="left:960px; top:140px;"></div>
+
+  <!-- STEPS (centered on dots) -->
+
+  <div class="step" style="left:40px; top:160px;">
+    <a href="#">
+      <div class="step-number">STEP 1</div>
+      <div class="step-title">Select Research Design</div>
     </a>
   </div>
 
-  <div class="step step2">
-    #
-      Select Inferential Test
+  <div class="step" style="left:300px; top:60px;">
+    <a href="#">
+      <div class="step-number">STEP 2</div>
+      <div class="step-title">Select Inferential Test</div>
     </a>
   </div>
 
-  <div class="step step3">
-    #
-      Run Code in R
+  <div class="step" style="left:600px; top:160px;">
+    <a href="#">
+      <div class="step-number">STEP 3</div>
+      <div class="step-title">Run Code in R</div>
     </a>
   </div>
 
-  <div class="step step4 final">
-    #
-      Report Results (R Markdown)
+  <div class="step final" style="left:960px; top:140px;">
+    <a href="#">
+      <div class="step-number">STEP 4</div>
+      <div class="step-title">Report Results (R Markdown)</div>
     </a>
   </div>
 
