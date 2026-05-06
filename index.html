@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>AA 5221 — Course Materials</title>
 
-  <!-- ✅ FIXED: load CSS -->
+  <!-- ✅ FIXED: CSS properly linked -->
   <link rel="stylesheet" href="assets/style.css">
 
   <style>
@@ -13,10 +13,9 @@
       margin: 0;
       background: black;
       color: white;
-      font-family: sans-serif;
     }
 
-    /* ✅ STARFIELD CANVAS */
+    /* ✅ STARFIELD */
     #starfield {
       position: fixed;
       top: 0;
@@ -43,6 +42,7 @@
       padding: 0.75rem 2rem;
       display: flex;
       justify-content: flex-end;
+      align-items: center;
       gap: 1.8rem;
     }
 
@@ -113,7 +113,7 @@
       <span>Research Methods</span>
       <div class="dropdown-panel">
         <a href="lectures/rdesigns.html">Research Designs</a>
-        <a href="interactive/researchdesign.html">Design Selector</a>
+        <a href="interactive/researchdesign.html">Research Design Selector</a>
       </div>
     </div>
 
@@ -125,48 +125,55 @@
     </div>
 
     <div class="nav-item dropdown">
-      <span>Descriptive Stats</span>
+      <span>Descriptive Statistics</span>
       <div class="dropdown-panel">
-        <a href="lectures/lecture02.html">Overview</a>
-        <a href="lectures/lecture02.html">Central Tendency</a>
+        <a href="lectures/lecture02.html">Descriptive Statistics</a>
+        <a href="lectures/lecture02.html">Measures of Central Tendency</a>
         <a href="lectures/lecture02.html">Normality</a>
       </div>
     </div>
 
     <div class="nav-item dropdown">
-      <span>Inferential Stats</span>
+      <span>Inferential Statistics</span>
       <div class="dropdown-panel">
-        <a href="lectures/lecture02.html">Overview</a>
+        <a href="lectures/lecture02.html">Inferential Overview</a>
         <a href="lectures/hypotheses.html">Hypothesis Testing</a>
-        <a href="lectures/lecture03.html">P-Values</a>
+        <a href="lectures/lecture03.html">P‑Values & Effect Sizes</a>
       </div>
     </div>
 
     <div class="nav-item dropdown">
-      <span>Visualizing</span>
+      <span>Visualizing Data</span>
       <div class="dropdown-panel">
         <a href="lectures/lecture01.html">Histograms</a>
         <a href="lectures/lecture02.html">Boxplots</a>
         <a href="lectures/lecture03.html">Scatterplots</a>
-        <a href="interactive/testselect.html">Normality Tool</a>
+        <a href="lectures/lecture03.html">Bar Graphs</a>
+        <a href="interactive/testselect.html">Normality Interpreter</a>
       </div>
     </div>
 
     <div class="nav-item dropdown">
       <span>RStudio</span>
       <div class="dropdown-panel">
-        <a href="lectures/lecture01.html">Download</a>
+        <a href="lectures/lecture01.html">Download RStudio</a>
         <a href="lectures/intro-r.html">R Basics</a>
-        <a href="lectures/lecture04.html">R Markdown</a>
+        <a href="lectures/lecture03.html">R for Data Science</a>
+        <a href="lectures/lecture04.html">R Markdown & RPubs</a>
       </div>
     </div>
 
     <div class="nav-item dropdown">
       <span>R Code</span>
       <div class="dropdown-panel">
-        <a href="interactive/testselect.html">Test Selector</a>
+        <a href="interactive/testselect.html">Inferential Test Selector</a>
         <a href="code/correlations.html">Correlations</a>
-        <a href="code/ttest_ind.html">t-test</a>
+        <a href="code/chi_independence.html">Chi‑Square Independence</a>
+        <a href="code/chi_gof.html">Chi‑Square GOF</a>
+        <a href="code/ttest_ind.html">Independent t‑test</a>
+        <a href="code/mann_whitney.html">Mann‑Whitney U</a>
+        <a href="code/ttest_dep.html">Dependent t‑test</a>
+        <a href="code/wilcoxon.html">Wilcoxon Signed Rank</a>
       </div>
     </div>
 
@@ -190,17 +197,27 @@
     text-transform: uppercase;
     background: linear-gradient(180deg, #ffffff, #7dd3fc);
     -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;">
+    -webkit-text-fill-color: transparent;
+    text-shadow:
+      0 0 20px rgba(56, 189, 248, 0.35),
+      0 0 40px rgba(56, 189, 248, 0.15);
+  ">
     AA <span style="font-weight:300;">5221</span>
   </h1>
 
-  <p style="letter-spacing: 0.35em; opacity: 0.85;">
+  <p style="
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    opacity: 0.85;
+    margin-bottom: 3rem;
+  ">
     Applied Analytics & Research Methods I
   </p>
 </div>
 
-<!-- ✅ FIXED: load JS AFTER DOM -->
+<!-- ✅ FIXED: JS properly loaded -->
 <script src="assets/stars.js"></script>
 
 </body>
 </html>
+``
