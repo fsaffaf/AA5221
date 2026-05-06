@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Inferential Test Selector (Responsive Grid Flow)</title>
+
+  <style>
+    body {
+      font-family: Verdana, Geneva, sans-serif;
+      background: #f7fbfd;
+      margin: 0;
+      padding: 30px;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: auto;
+      background: white;
+      border-radius: 16px;
+      padding: 25px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .flow {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      align-items: stretch;
+    }
+
+    .step {
+      background: #f0f8ff;
+      border: 1px solid #c6ddea;
+      border-radius: 12px;
+      padding: 15px;
+      min-height: 240px;
+      display: flex;
+      flex-direction: column;
+      transition: all 0.2s ease;
+      opacity: 1;
+    }
+
+    .step.active {
+      border: 2px solid #0d4a75;
+      box-shadow: 0 6px 18px rgba(13,74,117,0.15);
+      transform: translateY(-2px);
+    }
+
+    .step.completed {
+      opacity: 0.5;
+    }
+
+    .step h3 {
+      font-size: 16px;
+      margin: 0 0 10px 0;
+    }
+
+    .btn-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: 5px;
+    }
+
+    button {
+      padding: 10px;
+      border: none;
+      border-radius: 8px;
+      background: #0d4a75;
+      color: white;
+      cursor: pointer;
+      font-size: 14px;
+      width: 100%;
+    }
+
+    button:hover {
+      opacity: 0.9;
+    }
+
+    .result {
+      margin-top: 20px;
+      padding: 20px;
+      background: #eaf6fc;
+      border-radius: 12px;
+      border: 1px solid #c6ddea;
+      display: none;
+    }
+
+    .result-inner {
+      display: grid;
+      grid-template-columns: 3fr 1fr;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .test {
+      font-size: 22px;
+      font-weight: bold;
+    }
+
+    .chi-square { color: #d00000; }
+    .ttest { color: #0057d9; }
+    .correlation { color: #0a7a2f; }
+
+    .startover {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 16px 20px;
+      border: none;
+      border-radius: 10px;
+      background: #333;
+      color: white;
+      cursor: pointer;
+      font-size: 18px;
+      width: auto;
+      justify-self: end;
+    }
+
+    @media (max-width: 768px) {
+      body { padding: 15px; }
+      .flow { grid-template-columns: 1fr; }
+      .result-inner { grid-template-columns: 1fr; }
+      .startover { justify-self: start; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <h1>Inferential Test Selector</h1>
+
+  <div class="flow">
+
+    <div class="step" id="step1">
+      <h3>What level of measurement is the data?</h3>
+      <div class="btn-group">
+        <button onclick="choose('measurement','categorical')">Categorical only (Chi-square tests)</button>
+        <button onclick="choose('measurement','cat_cont')">Categorical + Continuous (t-tests)</button>
+        <button onclick="choose('measurement','continuous')">Continuous only (Correlation)</button>
+      </div>
+    </div>
+
+    <div class="step" id="step2"></div>
+    <div class="step" id="step3"></div>
+
+  </div>
+
+  <div class="result" id="resultBox">
+    <h3>Recommended Test</h3>
+    <div class="result-inner">
+      <div class="test" id="resultText"></div>
+      <button class="startover" id="startBtn" onclick="resetAll()">↻ Start Over</button>
+    </div>
+  </div>
+
+</div>
+
+<script>
+
+const state = {
+  measurement: null,
+  design: null,
+  normality: null
+};
+
+function setStepState(id, stateClass) {
+  const el = document.getElementById(id);
+  el.classList.remove('active','completed');
+  el.classList.add(stateClass);
+}
+
+function choose(type, value) {
+  state[type] = value;
+
+  if (type === 'measurement') renderStep2(value);
+  if (type === 'design') handleDesign(value);
+  if (type === 'normality') showResult();
+}
+
+function renderStep2(value) {
+  const step2 = document.getElementById('step2');
+  setStepState('step2','active');
+
+  if (value === 'categorical') {
+    step2.innerHTML = `
+      <h3>What are the details of the research design?</h3>
+      <div class="btn-group">
+        <button onclick="choose('design','two_var')">Association between two different variables</button>
+        <button onclick="choose('design','one_var')">Expected vs observed data for one variable</button>
+      </div>
+    `;
+  }
+
+  if (value === 'cat_cont') {
+    step2.innerHTML = `
+      <h3>What are the details of the research design?</h3>
+      <div class="btn-group">
+        <button onclick="choose('design','between')">Between-subjects</button>
+        <button onclick="choose('design','within')">Within-subjects</button>
+      </div>
+    `;
+  }
+
+  if (value === 'continuous') {
+    step2.innerHTML = `
+      <h3>What are the details of the research design?</h3>
+      <div class="btn-group">
+        <button onclick="choose('design','relationship')">Relationship between variables</button>
+      </div>
+    `;
+  }
+
+  document.getElementById('step3').innerHTML = '';
+}
+
+function handleDesign(value) {
+
+  if (state.measurement === 'categorical') {
+    let test = '';
+
+    if (value === 'two_var') test = 'Chi-Square Test of Independence';
+    if (value === 'one_var') test = 'Chi-Square Goodness of Fit';
+
+    setStepState('step1','completed');
+    setStepState('step2','completed');
+
+    showResult(test, 'chi-square');
+    return;
+  }
+
+  const step3 = document.getElementById('step3');
+  setStepState('step3','active');
+
+  step3.innerHTML = `
+    <h3>Is the data normally distributed?</h3>
+    <div class="btn-group">
+      <button onclick="choose('normality','normal')">Normal</button>
+      <button onclick="choose('normality','not_normal')">Not normal</button>
+    </div>
+  `;
+}
+
+function showResult(testOverride=null, typeOverride=null) {
+
+  let test = testOverride;
+  let type = typeOverride;
+
+  if (!test) {
+    if (state.measurement === 'cat_cont' && state.design === 'between' && state.normality === 'normal') {
+      test = 'Independent t-test'; type = 'ttest';
+    }
+    if (state.measurement === 'cat_cont' && state.design === 'between' && state.normality === 'not_normal') {
+      test = 'Mann–Whitney U'; type = 'ttest';
+    }
+    if (state.measurement === 'cat_cont' && state.design === 'within' && state.normality === 'normal') {
+      test = 'Dependent t-test'; type = 'ttest';
+    }
+    if (state.measurement === 'cat_cont' && state.design === 'within' && state.normality === 'not_normal') {
+      test = 'Wilcoxon Signed-Rank'; type = 'ttest';
+    }
+    if (state.measurement === 'continuous' && state.normality === 'normal') {
+      test = 'Pearson Correlation'; type = 'correlation';
+    }
+    if (state.measurement === 'continuous' && state.normality === 'not_normal') {
+      test = 'Spearman Correlation'; type = 'correlation';
+    }
+  }
+
+  setStepState('step1','completed');
+  setStepState('step2','completed');
+  setStepState('step3','completed');
+
+  const el = document.getElementById('resultText');
+  el.innerText = test;
+  el.className = 'test ' + type;
+
+  document.getElementById('resultBox').style.display = 'block';
+}
+
+function resetAll() {
+  state.measurement = null;
+  state.design = null;
+  state.normality = null;
+
+  document.getElementById('step2').innerHTML = '';
+  document.getElementById('step3').innerHTML = '';
+
+  document.getElementById('resultBox').style.display = 'none';
+
+  document.querySelectorAll('.step').forEach(s => {
+    s.classList.remove('active','completed');
+  });
+}
+
+</script>
+
+</body>
+</html>
