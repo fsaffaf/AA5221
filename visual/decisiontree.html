@@ -2,228 +2,96 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Research Decision Tree</title>
-
+<title>Decision Tree</title>
 <style>
-body {
-  margin: 0;
-  font-family: system-ui;
-  background: radial-gradient(circle at top, #0b1220, #020617 70%);
-  color: white;
-  padding: 30px;
-}
+  body {
+    background: linear-gradient(135deg, #0a192f, #112e4a);
+    font-family: Arial, sans-serif;
+    color: white;
+    display: flex;
+    justify-content: center;
+    padding: 40px;
+  }
 
-.container {
-  max-width: 900px;
-  margin: auto;
-}
+  .tree {
+    text-align: center;
+  }
 
-.node {
-  background: rgba(15,23,42,.7);
-  border: 1px solid rgba(255,255,255,.15);
-  border-radius: 16px;
-  padding: 20px;
-  margin-bottom: 20px;
-  backdrop-filter: blur(12px);
-}
+  .node {
+    display: inline-block;
+    padding: 12px 20px;
+    margin: 10px auto;
+    border-radius: 12px;
+    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(0, 150, 255, 0.6);
+    box-shadow: 0 4px 12px rgba(0, 150, 255, 0.15);
+  }
 
-h2 {
-  color: #7dd3fc;
-}
+  .branch {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
 
-button {
-  margin-top: 8px;
-  margin-right: 8px;
-  padding: 10px;
-  border-radius: 10px;
-  border: none;
-  background: rgba(56,189,248,0.2);
-  color: white;
-  border: 1px solid rgba(56,189,248,0.4);
-  cursor: pointer;
-}
+  .line {
+    width: 2px;
+    height: 30px;
+    background: rgba(0, 150, 255, 0.6);
+    margin: 0 auto;
+  }
 
-button:hover {
-  background: rgba(56,189,248,0.35);
-}
+  .horizontal {
+    height: 2px;
+    width: 80%;
+    background: rgba(0, 150, 255, 0.6);
+    margin: 0 auto 10px auto;
+  }
 
-button.selected {
-  background: rgba(125,211,252,0.3);
-  box-shadow: 0 0 10px #7dd3fc;
-}
+  .options {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    margin-top: 10px;
+  }
 
-.hidden { display:none; }
+  .option {
+    flex: 1;
+  }
 </style>
 </head>
-
 <body>
 
-<div class="container">
+<div class="tree">
 
-<div class="node" id="step1">
-<h2>Step 1: Identify Research Design</h2>
-<p>Does the study include manipulation, random assignment, and high control?</p>
+  <!-- Top Node -->
+  <div class="node">Review the scenario</div>
 
-<button onclick="choose('design','true', this)">All 3 → True Experiment</button>
-<button onclick="choose('design','quasi', this)">1–2 → Quasi</button>
-<button onclick="choose('design','correlational', this)">0 → Correlational</button>
-</div>
+  <div class="line"></div>
 
-<div class="node hidden" id="step2">
-<h2>Step 2: Select Inferential Test</h2>
-<p>What type of variables are used?</p>
+  <!-- Second Node -->
+  <div class="node">Determine the research design</div>
 
-<button onclick="choose('testType','chi', this)">Categorical</button>
-<button onclick="choose('testType','ttest', this)">Categorical + Continuous</button>
-<button onclick="choose('testType','corr', this)">Continuous</button>
-</div>
+  <div class="line"></div>
+  <div class="horizontal"></div>
 
-<div class="node hidden" id="step3">
-<h2>Step 3: Check Normality</h2>
-<p>Is the data normally distributed?</p>
-
-<button onclick="choose('normal','yes', this)">Normal</button>
-<button onclick="choose('normal','no', this)">Not Normal</button>
-</div>
-
-<div class="node hidden" id="step4">
-<h2>Step 4: Descriptive Statistics</h2>
-<ul>
-<li>Mean, Median, Mode</li>
-<li>Standard deviation</li>
-<li>Frequency tables (categorical)</li>
-</ul>
-<button onclick="nextStep()">Continue →</button>
-</div>
-
-<div class="node hidden" id="step5">
-<h2>Step 5: Visualizations</h2>
-<ul>
-<li>Bar chart (categorical)</li>
-<li>Boxplot (group comparison)</li>
-<li>Histogram (continuous)</li>
-<li>Scatterplot (correlations)</li>
-</ul>
-<button onclick="nextStep()">Continue →</button>
-</div>
-
-<div class="node hidden" id="step6">
-<h2>Step 6: Hypothesis Decision</h2>
-<p>Did you reject the null hypothesis?</p>
-<button onclick="choose('hyp','reject', this)">Reject H₀</button>
-<button onclick="choose('hyp','fail', this)">Fail to reject H₀</button>
-</div>
-
-<div class="node hidden" id="step7">
-<h2>Step 7: Effect Size</h2>
-<ul>
-<li>t-test → Cohen’s d</li>
-<li>Chi-square → Cramér’s V</li>
-<li>Correlation → r</li>
-</ul>
-<button onclick="nextStep()">Continue →</button>
-</div>
-
-<div class="node hidden" id="step8">
-<h2>Step 8: APA Reporting</h2>
-<p id="apaOutput"></p>
-</div>
+  <!-- Options -->
+  <div class="options">
+    <div class="option">
+      <div class="node">1) Observational</div>
+    </div>
+    <div class="option">
+      <div class="node">2) Correlational</div>
+    </div>
+    <div class="option">
+      <div class="node">3) Quasi-experimental</div>
+    </div>
+    <div class="option">
+      <div class="node">4) True Experiment</div>
+    </div>
+  </div>
 
 </div>
-
-<script>
-
-var state = {
-design:null,
-testType:null,
-normal:null,
-hyp:null
-};
-
-function highlight(btn){
-let buttons = btn.parentElement.querySelectorAll("button");
-buttons.forEach(b => b.classList.remove("selected"));
-btn.classList.add("selected");
-}
-
-function choose(type, value, btn){
-state[type]=value;
-highlight(btn);
-
-if(type==="design"){
-document.getElementById("step2").classList.remove("hidden");
-}
-
-if(type==="testType"){
-if(value==="chi"){
-skipNormality("Chi-square test");
-} else {
-document.getElementById("step3").classList.remove("hidden");
-}
-}
-
-if(type==="normal"){
-determineTest();
-}
-
-if(type==="hyp"){
-document.getElementById("step7").classList.remove("hidden");
-}
-
-}
-
-function skipNormality(result){
-state.finalTest = result;
-document.getElementById("step4").classList.remove("hidden");
-}
-
-function determineTest(){
-if(state.testType==="ttest" && state.normal==="yes"){
-state.finalTest="t-test";
-}
-if(state.testType==="ttest" && state.normal==="no"){
-state.finalTest="Mann-Whitney / Wilcoxon";
-}
-if(state.testType==="corr" && state.normal==="yes"){
-state.finalTest="Pearson r";
-}
-if(state.testType==="corr" && state.normal==="no"){
-state.finalTest="Spearman rho";
-}
-
-document.getElementById("step4").classList.remove("hidden");
-}
-
-function nextStep(){
-if(!document.getElementById("step5").classList.contains("hidden")){
-document.getElementById("step6").classList.remove("hidden");
-return;
-}
-if(!document.getElementById("step4").classList.contains("hidden")){
-document.getElementById("step5").classList.remove("hidden");
-return;
-}
-if(!document.getElementById("step7").classList.contains("hidden")){
-generateAPA();
-document.getElementById("step8").classList.remove("hidden");
-return;
-}
-}
-
-function generateAPA(){
-
-let text = "The results of a " + state.finalTest;
-
-if(state.hyp==="reject"){
-text += " showed a statistically significant effect (p < .05).";
-} else {
-text += " were not statistically significant (p > .05).";
-}
-
-document.getElementById("apaOutput").innerText = text;
-}
-
-</script>
 
 </body>
 </html>
