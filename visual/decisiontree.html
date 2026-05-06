@@ -16,11 +16,10 @@
   }
 
   .tree {
-    width: 950px;
+    width: 1000px;
     text-align: center;
   }
 
-  /* BASE NODE */
   .node {
     padding: 14px 18px;
     border-radius: 14px;
@@ -28,7 +27,7 @@
     transition: all 0.2s ease;
   }
 
-  /* PROMPT */
+  /* PROMPTS */
   .prompt {
     background: rgba(8, 12, 25, 0.95);
     border: 1px solid rgba(59,130,246,0.9);
@@ -36,7 +35,6 @@
       0 0 12px rgba(59,130,246,0.5),
       inset 0 0 10px rgba(59,130,246,0.2);
     font-weight: 500;
-    letter-spacing: 0.03em;
   }
 
   /* ANSWERS */
@@ -51,7 +49,6 @@
     box-shadow: 0 0 14px rgba(56,189,248,0.4);
   }
 
-  /* LINKS */
   .node a {
     text-decoration: none;
     color: #cbd5f5;
@@ -62,10 +59,10 @@
     color: #7dd3fc;
   }
 
-  /* CONNECTORS */
+  /* LINES */
   .line {
     width: 2px;
-    height: 32px;
+    height: 30px;
     background: rgba(59,130,246,0.6);
     margin: 0 auto;
   }
@@ -74,10 +71,10 @@
     height: 2px;
     width: 100%;
     background: rgba(59,130,246,0.6);
-    margin: 0 auto 15px auto;
+    margin: 0 auto 15px;
   }
 
-  /* LAYOUT */
+  /* GRID */
   .row {
     display: grid;
     gap: 18px;
@@ -92,10 +89,6 @@
     grid-template-columns: repeat(3, 1fr);
   }
 
-  .row.eight {
-    grid-template-columns: repeat(4, 1fr);
-  }
-
   .center {
     display: flex;
     justify-content: center;
@@ -108,7 +101,7 @@
 
 <div class="tree">
 
-  <!-- TOP PROMPT -->
+  <!-- TOP -->
   <div class="center">
     <div class="node prompt">
       Review the scenario<br><br>
@@ -119,7 +112,7 @@
   <div class="line"></div>
   <div class="horizontal"></div>
 
-  <!-- DESIGN OPTIONS -->
+  <!-- RESEARCH DESIGNS -->
   <div class="row four">
     <div class="node answer">Observational</div>
     <div class="node answer">Correlational</div>
@@ -129,68 +122,54 @@
 
   <div class="line"></div>
 
-  <!-- MIDDLE PROMPT -->
+  <!-- TEST SELECTION PROMPT -->
   <div class="center">
     <div class="node prompt">Select the correct inferential test</div>
   </div>
 
   <div class="line"></div>
+  <div class="horizontal"></div>
 
-  <!-- NEW: INTERACTIVE SELECTOR -->
+  <!-- OBSERVATIONAL -->
   <div class="center">
-    <div class="node answer">
-      <a href="/interactive/testselect.html">Inferential Test Selector</a>
-    </div>
-  </div>
-
-  <div class="line"></div>
-  <div class="horizontal"></div>
-
-  <!-- NEW: CATEGORY OPTIONS -->
-  <div class="row three">
-    <div class="node answer">Correlations</div>
-    <div class="node answer">Chi-Square Tests</div>
-    <div class="node answer">t-Tests</div>
-  </div>
-
-  <div class="line"></div>
-  <div class="horizontal"></div>
-
-  <!-- TEST OPTIONS -->
-  <div class="row eight">
-
-    <div class="node answer">
-      <a href="code/stselect.html">Interactive Test Selector</a>
-    </div>
-
-    <div class="node answer">
-      <a href="code/correlations.html">Pearson / Spearman Correlations</a>
-    </div>
-
-    <div class="node answer">
-      <a href="code/chi_independence.html">Chi‑Square Independence</a>
-    </div>
-
     <div class="node answer">
       <a href="code/chi_gof.html">Chi‑Square Goodness of Fit</a>
     </div>
+  </div>
 
+  <div class="line"></div>
+  <div class="horizontal"></div>
+
+  <!-- CORRELATIONAL -->
+  <div class="row three">
+    <div class="node answer">
+      <a href="code/correlations.html">Pearson Correlation</a>
+    </div>
+    <div class="node answer">
+      <a href="code/correlations.html">Spearman Correlation</a>
+    </div>
+    <div class="node answer">
+      <a href="code/chi_independence.html">Chi‑Square Test of Independence</a>
+    </div>
+  </div>
+
+  <div class="line"></div>
+  <div class="horizontal"></div>
+
+  <!-- QUASI + TRUE EXPERIMENT -->
+  <div class="row four">
     <div class="node answer">
       <a href="code/ttest_ind.html">Independent t‑test</a>
     </div>
-
     <div class="node answer">
       <a href="code/mann_whitney.html">Mann‑Whitney U</a>
     </div>
-
     <div class="node answer">
       <a href="code/ttest_dep.html">Dependent t‑test</a>
     </div>
-
     <div class="node answer">
       <a href="code/wilcoxon.html">Wilcoxon Signed Rank</a>
     </div>
-
   </div>
 
 </div>
