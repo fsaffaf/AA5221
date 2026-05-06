@@ -1,0 +1,35 @@
+<div class="glass">
+  <h2>Research Design Selector</h2>
+
+  <p>Select which features your study has:</p>
+
+  <label><input type="checkbox" id="manip"> Manipulation</label><br>
+  <label><input type="checkbox" id="random"> Random Assignment</label><br>
+  <label><input type="checkbox" id="control"> High Control</label><br><br>
+
+  <button onclick="getDesign()">Determine Design</button>
+
+  <h3 id="result" style="margin-top:1rem;"></h3>
+</div>
+
+<script>
+function getDesign() {
+  const manip = document.getElementById("manip").checked;
+  const random = document.getElementById("random").checked;
+  const control = document.getElementById("control").checked;
+
+  let result = "";
+
+  if (manip && random && control) {
+    result = "✅ True Experiment";
+  } 
+  else if (!manip && !random && !control) {
+    result = "📊 Correlational Study";
+  } 
+  else {
+    result = "⚠️ Quasi-Experiment";
+  }
+
+  document.getElementById("result").textContent = result;
+}
+</script>
