@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>AA 5221 — Course Materials</title>
 
-  <!-- ✅ Correct: load your CSS (this brings back your original fonts) -->
+  <!-- ✅ Correct: load your CSS (restores your original fonts/styles) -->
   <link rel="stylesheet" href="assets/style.css" />
 
   <style>
@@ -18,7 +18,7 @@
       overflow-x: hidden;
     }
 
-    /* ✅ STARFIELD behind everything */
+    /* ✅ Starfield canvas behind everything */
     #starfield {
       position: fixed;
       inset: 0;
@@ -59,7 +59,7 @@
       color: rgba(255,255,255,0.85);
       cursor: pointer;
       user-select: none;
-      text-decoration: none;
+      text-decoration: none; /* so <a class="nav-item"> looks right */
     }
 
     .nav-item:hover { color: #fff; }
@@ -99,14 +99,27 @@
       padding-top: 6rem;
       text-align: center;
       position: relative;
+      z-index: 1; /* above the stars */
+    }
+
+    /* Optional: make room so content isn't hidden under fixed nav */
+    .spacer { height: 4.25rem; }
+
+    /* Optional FAQ section styling */
+    #faq {
+      max-width: 900px;
+      margin: 4rem auto 6rem;
+      padding: 0 1.25rem;
+      position: relative;
       z-index: 1;
+      opacity: 0.92;
     }
   </style>
 </head>
 
 <body>
 
-  <!-- ✅ NAV -->
+  <!-- ✅ NAV (fixed links) -->
   <nav class="glass-nav">
     <div class="nav-inner">
 
@@ -200,6 +213,8 @@
     </div>
   </nav>
 
+  <div class="spacer"></div>
+
   <!-- ✅ STARFIELD -->
   <canvas id="starfield" aria-hidden="true"></canvas>
 
@@ -231,7 +246,15 @@
     </p>
   </div>
 
-  <!-- ✅ INLINE STARFIELD SCRIPT -->
+  <!-- Optional FAQ anchor so the link has a target -->
+  <section id="faq">
+    <h2 style="letter-spacing:0.18em; text-transform:uppercase;">FAQ</h2>
+    <p style="opacity:0.85; line-height:1.6;">
+      Add your FAQ content here.
+    </p>
+  </section>
+
+  <!-- ✅ INLINE STARFIELD SCRIPT (always works) -->
   <script>
     (() => {
       const canvas = document.getElementById("starfield");
@@ -241,7 +264,7 @@
 
       let w = 0, h = 0, dpr = 1;
       let stars = [];
-      const STAR_COUNT = 240;
+      const STAR_COUNT = 260;
 
       function resize() {
         dpr = Math.max(1, window.devicePixelRatio || 1);
@@ -253,23 +276,23 @@
         canvas.width = Math.floor(w * dpr);
         canvas.height = Math.floor(h * dpr);
 
-        // Draw in CSS pixels
+        // draw in CSS pixels for crispness on retina
         ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
         stars = Array.from({ length: STAR_COUNT }, () => ({
           x: Math.random() * w,
           y: Math.random() * h,
           r: Math.random() * 1.6 + 0.2,
-          s: Math.random() * 0.35 + 0.05,     // speed
-          a: Math.random() * 0.6 + 0.2,       // alpha
-          tw: Math.random() * 0.02 + 0.004    // twinkle
+          s: Math.random() * 0.35 + 0.05,   // speed
+          a: Math.random() * 0.65 + 0.15,   // alpha
+          tw: Math.random() * 0.02 + 0.004  // twinkle intensity
         }));
       }
 
       function frame() {
         ctx.clearRect(0, 0, w, h);
 
-        // Soft space gradient (behind stars)
+        // subtle space gradient
         const g = ctx.createRadialGradient(w * 0.5, h * 0.35, 0, w * 0.5, h * 0.5, Math.max(w, h));
         g.addColorStop(0, "rgba(10, 15, 30, 0.35)");
         g.addColorStop(1, "rgba(0, 0, 0, 1)");
@@ -277,6 +300,7 @@
         ctx.fillRect(0, 0, w, h);
 
         for (const s of stars) {
+          // drift downward
           s.y += s.s;
           if (s.y > h + 5) {
             s.y = -5;
