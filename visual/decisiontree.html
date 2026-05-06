@@ -18,101 +18,114 @@ body {
     radial-gradient(circle at 50% 0%, #0a1022 0%, #020617 70%);
 }
 
-/* FLOW CONTAINER */
+/* WRAPPER */
 .flow-wrapper {
   position: relative;
   width: 1000px;
 }
 
-/* MAIN FLOW LINE */
+/* MAIN LINE */
 .flow-line {
   position: absolute;
   top: 50%;
-  left: 0;
   width: 100%;
-  height: 2px;
+  height: 4px;
   background: linear-gradient(
     to right,
-    rgba(56,189,248,0.2),
-    rgba(56,189,248,0.6),
-    rgba(56,189,248,0.2)
+    rgba(56,189,248,0.3),
+    rgba(56,189,248,0.9),
+    rgba(56,189,248,0.3)
   );
+
   box-shadow:
-    0 0 10px rgba(56,189,248,0.5);
+    0 0 15px rgba(56,189,248,0.7);
+
   z-index: 0;
 }
 
-/* STEPS ROW */
+/* STEP ROW */
 .flow {
   display: flex;
   justify-content: space-between;
   position: relative;
-  z-index: 1;
+  z-index: 2;
 }
 
-/* STEP BOX */
+/* EACH STEP */
 .step {
-  width: 220px;
-  padding: 20px 18px;
-  border-radius: 16px;
-  text-align: center;
-
-  background: rgba(10,15,30,0.6);
-  border: 1px solid rgba(59,130,246,0.5);
-  backdrop-filter: blur(14px);
-
-  box-shadow:
-    0 10px 30px rgba(0,0,0,0.6),
-    0 0 12px rgba(59,130,246,0.2),
-    inset 0 0 12px rgba(59,130,246,0.1);
-
-  transition: all 0.25s ease;
-
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 220px;
+}
+
+/* CONNECTION NODE (like diagram dot) */
+.connector {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #38bdf8;
+  box-shadow:
+    0 0 10px rgba(56,189,248,0.8),
+    0 0 20px rgba(56,189,248,0.5);
+
+  margin-bottom: 12px;
+}
+
+/* BOX */
+.box {
+  background: rgba(10,15,30,0.7);
+  border: 1px solid rgba(56,189,248,0.6);
+  border-radius: 16px;
+  padding: 16px 18px;
+  text-align: center;
+
+  backdrop-filter: blur(14px);
+
+  box-shadow:
+    0 10px 25px rgba(0,0,0,0.6),
+    0 0 12px rgba(56,189,248,0.25),
+    inset 0 0 10px rgba(56,189,248,0.12);
+
+  transition: 0.25s;
 }
 
 /* HOVER */
-.step:hover {
-  transform: translateY(-6px) scale(1.03);
+.box:hover {
+  transform: translateY(-6px);
   box-shadow:
-    0 20px 40px rgba(0,0,0,0.8),
-    0 0 25px rgba(56,189,248,0.6);
+    0 15px 35px rgba(0,0,0,0.8),
+    0 0 25px rgba(56,189,248,0.7);
 }
 
-/* LINK */
-.step a {
+/* LINKS */
+.box a {
   color: #e2e8f0;
   text-decoration: none;
-}
-
-/* ICON */
-.icon {
-  font-size: 20px;
-  margin-bottom: 8px;
+  display: block;
 }
 
 /* TEXT */
 .title {
   font-size: 12px;
-  opacity: 0.7;
   letter-spacing: 0.08em;
+  opacity: 0.7;
+  margin-bottom: 4px;
 }
 
 .main {
-  font-size: 15px;
   font-weight: 600;
-  margin-top: 4px;
+  font-size: 15px;
 }
 
-/* FINAL STEP GLOW */
-.final {
-  border: 1px solid rgba(56,189,248,0.9);
+/* OPTIONAL: FINAL EMPHASIS */
+.final .box {
+  border-color: #7dd3fc;
   box-shadow:
-    0 0 20px rgba(56,189,248,0.8),
-    inset 0 0 10px rgba(56,189,248,0.25);
+    0 0 18px rgba(125,211,252,0.7),
+    inset 0 0 10px rgba(125,211,252,0.2);
 }
+
 </style>
 </head>
 
@@ -120,45 +133,52 @@ body {
 
 <div class="flow-wrapper">
 
-  <!-- CONTINUOUS FLOW LINE -->
   <div class="flow-line"></div>
 
   <div class="flow">
 
     <!-- STEP 1 -->
     <div class="step">
-      <a href="#">
-        <div class="icon">🧠</div>
-        <div class="title">STEP 1</div>
-        <div class="main">Select Research Design</div>
-      </a>
+      <div class="connector"></div>
+      <div class="box">
+        #
+          <div class="title">STEP 1</div>
+          <div class="main">Select Research Design</div>
+        </a>
+      </div>
     </div>
 
     <!-- STEP 2 -->
     <div class="step">
-      <a href="#">
-        <div class="icon">📊</div>
-        <div class="title">STEP 2</div>
-        <div class="main">Choose Inferential Test</div>
-      </a>
+      <div class="connector"></div>
+      <div class="box">
+        #
+          <div class="title">STEP 2</div>
+          <div class="main">Select Inferential Test</div>
+        </a>
+      </div>
     </div>
 
     <!-- STEP 3 -->
     <div class="step">
-      <a href="#">
-        <div class="icon">💻</div>
-        <div class="title">STEP 3</div>
-        <div class="main">Run Analysis in R</div>
-      </a>
+      <div class="connector"></div>
+      <div class="box">
+        #
+          <div class="title">STEP 3</div>
+          <div class="main">Run Code in R</div>
+        </a>
+      </div>
     </div>
 
     <!-- STEP 4 -->
     <div class="step final">
-      <a href="#">
-        <div class="icon">📝</div>
-        <div class="title">STEP 4</div>
-        <div class="main">Report Results (R Markdown)</div>
-      </a>
+      <div class="connector"></div>
+      <div class="box">
+        #
+          <div class="title">STEP 4</div>
+          <div class="main">Report Results (R Markdown)</div>
+        </a>
+      </div>
     </div>
 
   </div>
