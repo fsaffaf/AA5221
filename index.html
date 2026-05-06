@@ -2,31 +2,10 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AA 5221 — Course Materials</title>
-
-  <!-- ✅ Correct: load your CSS (restores your original fonts/styles) -->
-  <link rel="stylesheet" href="assets/style.css" />
-
-  <style>
-    /* Do NOT set font-family here — let assets/style.css control typography */
-    html, body { height: 100%; }
-    body {
-      margin: 0;
-      background: #000; /* fallback behind stars */
-      color: #fff;
-      overflow-x: hidden;
-    }
-
-    /* ✅ Starfield canvas behind everything */
-    #starfield {
-      position: fixed;
-      inset: 0;
-      width: 100vw;
-      height: 100vh;
-      z-index: -1;
-      pointer-events: none;
-      display: block;
+  <meta name="viewport */  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    .glass-nav, .home-container, #faq {
+      position: relative;
+      z-index: 2;
     }
 
     /* Glass Nav */
@@ -59,7 +38,7 @@
       color: rgba(255,255,255,0.85);
       cursor: pointer;
       user-select: none;
-      text-decoration: none; /* so <a class="nav-item"> looks right */
+      text-decoration: none;
     }
 
     .nav-item:hover { color: #fff; }
@@ -98,20 +77,16 @@
     .home-container {
       padding-top: 6rem;
       text-align: center;
-      position: relative;
-      z-index: 1; /* above the stars */
     }
 
-    /* Optional: make room so content isn't hidden under fixed nav */
-    .spacer { height: 4.25rem; }
+    /* Spacer so content doesn’t hide under fixed nav */
+    .spacer { height: 4.5rem; }
 
-    /* Optional FAQ section styling */
+    /* Optional FAQ area so the FAQ link has a target */
     #faq {
       max-width: 900px;
       margin: 4rem auto 6rem;
       padding: 0 1.25rem;
-      position: relative;
-      z-index: 1;
       opacity: 0.92;
     }
   </style>
@@ -119,7 +94,7 @@
 
 <body>
 
-  <!-- ✅ NAV (fixed links) -->
+  <!-- ✅ NAV -->
   <nav class="glass-nav">
     <div class="nav-inner">
 
@@ -246,7 +221,7 @@
     </p>
   </div>
 
-  <!-- Optional FAQ anchor so the link has a target -->
+  <!-- Optional FAQ target -->
   <section id="faq">
     <h2 style="letter-spacing:0.18em; text-transform:uppercase;">FAQ</h2>
     <p style="opacity:0.85; line-height:1.6;">
@@ -254,7 +229,7 @@
     </p>
   </section>
 
-  <!-- ✅ INLINE STARFIELD SCRIPT (always works) -->
+  <!-- ✅ Inline Starfield Script -->
   <script>
     (() => {
       const canvas = document.getElementById("starfield");
@@ -276,7 +251,7 @@
         canvas.width = Math.floor(w * dpr);
         canvas.height = Math.floor(h * dpr);
 
-        // draw in CSS pixels for crispness on retina
+        // Draw in CSS pixels (crisp on retina)
         ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
         stars = Array.from({ length: STAR_COUNT }, () => ({
@@ -285,7 +260,7 @@
           r: Math.random() * 1.6 + 0.2,
           s: Math.random() * 0.35 + 0.05,   // speed
           a: Math.random() * 0.65 + 0.15,   // alpha
-          tw: Math.random() * 0.02 + 0.004  // twinkle intensity
+          tw: Math.random() * 0.02 + 0.004  // twinkle
         }));
       }
 
@@ -300,7 +275,6 @@
         ctx.fillRect(0, 0, w, h);
 
         for (const s of stars) {
-          // drift downward
           s.y += s.s;
           if (s.y > h + 5) {
             s.y = -5;
@@ -328,3 +302,30 @@
 
 </body>
 </html>
+  <title>AA 5221 — Course Materials</title>
+
+  <!-- ✅ Correct stylesheet link (this is what was broken before) -->
+  <link rel="stylesheet" href="assets/style.css" />
+
+  <style>
+    /* Do NOT set font-family here — let assets/style.css control typography */
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      background: #000; /* fallback behind stars */
+      color: #fff;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* ✅ Starfield sits behind content without negative z-index issues */
+    #starfield {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 0;
+      pointer-events: none;
+      display: block;
+    }
+
