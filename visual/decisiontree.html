@@ -21,73 +21,32 @@ body {
     radial-gradient(circle at 50% 0%, #0a1022 0%, #020617 70%);
 }
 
-/* ================= TITLE ================= */
+/* ================= SIMPLE TITLE ================= */
 
-.hero-title {
+.title {
   text-align: center;
   margin-bottom: 20px;
-  padding: 20px 30px;
-
-  background: rgba(10,15,30,0.5);
-  border: 1px solid rgba(56,189,248,0.2);
-  border-radius: 18px;
-
-  backdrop-filter: blur(16px);
-
-  box-shadow:
-    0 15px 40px rgba(0,0,0,0.6),
-    inset 0 0 12px rgba(56,189,248,0.08);
-}
-
-.title-text {
-  letter-spacing: 0.25em;
-  font-size: 15px;
-  font-weight: 500;
-
-  background: linear-gradient(180deg, #ffffff, #7dd3fc);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-
-  text-shadow: 0 0 12px rgba(56,189,248,0.35);
-}
-
-.title-text span {
-  display: block;
   font-size: 20px;
-  margin-top: 8px;
-  letter-spacing: 0.15em;
-
-  background: linear-gradient(180deg, #ffffff, #38bdf8);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-
-  text-shadow: 0 0 18px rgba(56,189,248,0.6);
+  font-weight: 600;
+  letter-spacing: 0.05em;
 }
 
 /* divider */
 .title-line {
-  margin: 16px auto 0;
-  width: 220px;
+  margin: 10px auto 15px;
+  width: 180px;
   height: 2px;
-
-  background: linear-gradient(to right, transparent, #38bdf8, transparent);
-  box-shadow: 0 0 10px rgba(56,189,248,0.7);
+  background: #38bdf8;
+  opacity: 0.6;
 }
 
 /* connector */
 .title-connector {
   width: 2px;
-  height: 50px;
-  margin: 10px auto 10px;
-
-  background: linear-gradient(
-    to bottom,
-    transparent,
-    rgba(56,189,248,.9),
-    transparent
-  );
-
-  box-shadow: 0 0 12px rgba(56,189,248,0.6);
+  height: 40px;
+  margin: 0 auto 10px;
+  background: rgba(56,189,248,.7);
+  box-shadow: 0 0 8px rgba(56,189,248,0.5);
 }
 
 
@@ -110,7 +69,7 @@ path {
   fill: none;
   stroke: #38bdf8;
   stroke-width: 4;
-  filter: drop-shadow(0 0 8px rgba(56,189,248,0.7));
+  filter: drop-shadow(0 0 6px rgba(56,189,248,0.6));
 }
 
 /* DOTS */
@@ -121,8 +80,7 @@ path {
   border-radius: 50%;
   background: #38bdf8;
   box-shadow:
-    0 0 10px rgba(56,189,248,0.9),
-    0 0 18px rgba(56,189,248,0.6);
+    0 0 8px rgba(56,189,248,0.8);
 }
 
 /* STEP BOX */
@@ -133,55 +91,60 @@ path {
 
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
+
+  text-align: center;
 
   background: rgba(10,15,30,0.75);
-  border: 1px solid rgba(56,189,248,0.6);
+  border: 1px solid rgba(56,189,248,0.5);
   border-radius: 12px;
 
-  backdrop-filter: blur(12px);
+  backdrop-filter: blur(10px);
 
   box-shadow:
-    0 8px 20px rgba(0,0,0,0.6),
-    0 0 10px rgba(56,189,248,0.25);
+    0 6px 15px rgba(0,0,0,0.6),
+    0 0 8px rgba(56,189,248,0.2);
 
   transform: translate(-50%, -50%);
-  transition: 0.25s;
+  transition: transform 0.2s ease;
 }
 
 .step:hover {
-  transform: translate(-50%, -60%);
-  box-shadow:
-    0 15px 30px rgba(0,0,0,0.8),
-    0 0 20px rgba(56,189,248,0.7);
+  transform: translate(-50%, -55%);
 }
 
-/* TEXT */
+/* TEXT INSIDE BOXES */
 .step a {
   color: #e2e8f0;
   text-decoration: none;
-  text-align: center;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  height: 100%;
+  width: 100%;
 }
 
 .step-number {
   font-size: 11px;
   letter-spacing: 0.1em;
   opacity: 0.7;
-  margin-bottom: 4px;
+  margin-bottom: 5px;
 }
 
 .step-title {
   font-size: 14px;
   font-weight: 600;
+  line-height: 1.3;
+  text-align: center;
 }
 
-/* FINAL */
+/* FINAL STEP */
 .final {
   border-color: #7dd3fc;
-  box-shadow:
-    0 0 18px rgba(125,211,252,0.7),
-    inset 0 0 10px rgba(125,211,252,0.25);
 }
 
 </style>
@@ -189,17 +152,13 @@ path {
 
 <body>
 
-<!-- ✅ TITLE -->
-<div class="hero-title">
-  <div class="title-text">
-    RESEARCH METHODS & STATISTICS I
-    <br>
-    <span>ANALYSIS PIPELINE OVERVIEW</span>
-  </div>
-  <div class="title-line"></div>
+<!-- ✅ SIMPLE TITLE -->
+<div class="title">
+  RESEARCH METHODS & STATISTICS I: ANALYSIS PIPELINE OVERVIEW
 </div>
 
-<!-- ✅ CONNECTOR -->
+<div class="title-line"></div>
+
 <div class="title-connector"></div>
 
 <!-- ✅ FLOW -->
@@ -218,28 +177,28 @@ path {
   <!-- steps -->
 
   <div class="step" style="left:40px; top:160px;">
-    #
+    <a href="#">
       <div class="step-number">STEP 1</div>
       <div class="step-title">Select Research Design</div>
     </a>
   </div>
 
   <div class="step" style="left:300px; top:60px;">
-    #
+    <a href="#">
       <div class="step-number">STEP 2</div>
       <div class="step-title">Select Inferential Test</div>
     </a>
   </div>
 
   <div class="step" style="left:600px; top:160px;">
-    #
+    <a href="#">
       <div class="step-number">STEP 3</div>
       <div class="step-title">Run Code in R</div>
     </a>
   </div>
 
   <div class="step final" style="left:960px; top:140px;">
-    #
+    <a href="#">
       <div class="step-number">STEP 4</div>
       <div class="step-title">Report Results (R Markdown)</div>
     </a>
