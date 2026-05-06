@@ -7,9 +7,7 @@
 <style>
 body {
   margin: 0;
-  background:
-    radial-gradient(circle at 50% 0%, #0a1022 0%, #020617 70%),
-    #020617;
+  background: radial-gradient(circle at top, #05070f, #020617 80%);
   font-family: "Segoe UI", sans-serif;
   color: #e2e8f0;
   display: flex;
@@ -22,89 +20,50 @@ body {
 .flow {
   display: flex;
   align-items: center;
-  gap: 30px;
+  gap: 25px;
 }
 
-/* STEP */
+/* STEP BOX */
 .step {
-  position: relative;
-  padding: 20px 24px;
-  border-radius: 18px;
-  min-width: 230px;
+  background: rgba(10,15,30,0.9);
+  border: 1px solid #3b82f6;
+  padding: 18px 22px;
+  border-radius: 16px;
+  min-width: 220px;
   text-align: center;
-
-  background: rgba(10,15,30,0.6);
-  border: 1px solid rgba(59,130,246,0.5);
-  backdrop-filter: blur(16px);
+  backdrop-filter: blur(12px);
 
   box-shadow:
-    0 10px 30px rgba(0,0,0,0.6),
-    0 0 15px rgba(59,130,246,0.25),
-    inset 0 0 15px rgba(59,130,246,0.15);
+    0 0 10px rgba(59,130,246,0.4),
+    inset 0 0 10px rgba(59,130,246,0.15);
 
-  transition: all 0.25s ease;
+  transition: all 0.2s ease;
 }
 
-/* subtle glow edge */
-.step::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: 18px;
-  background: linear-gradient(120deg, transparent, rgba(59,130,246,0.25), transparent);
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.step:hover::before {
-  opacity: 1;
-}
-
-/* hover activation */
+/* HOVER EFFECT */
 .step:hover {
-  transform: translateY(-6px) scale(1.02);
+  transform: translateY(-4px);
   box-shadow:
-    0 20px 40px rgba(0,0,0,0.8),
-    0 0 25px rgba(56,189,248,0.6);
+    0 0 18px rgba(56,189,248,0.6);
 }
 
-/* LINK */
+/* LINKS */
 .step a {
   color: #e2e8f0;
   text-decoration: none;
   display: block;
-  font-size: 15px;
-  line-height: 1.4;
 }
 
 .step a:hover {
   color: #7dd3fc;
 }
 
-/* ARROWS */
+/* ARROW */
 .arrow {
-  font-size: 30px;
+  font-size: 28px;
   color: #60a5fa;
-  text-shadow:
-    0 0 8px rgba(96,165,250,0.7),
-    0 0 18px rgba(96,165,250,0.4);
-  animation: pulse 2s infinite ease-in-out;
+  text-shadow: 0 0 10px rgba(96,165,250,0.6);
 }
-
-/* subtle arrow pulse */
-@keyframes pulse {
-  0%, 100% { opacity: 0.6; }
-  50% { opacity: 1; }
-}
-
-/* OPTIONAL: emphasize final step */
-.final {
-  border-color: #22c55e;
-  box-shadow:
-    0 0 18px rgba(34,197,94,0.6),
-    inset 0 0 10px rgba(34,197,94,0.2);
-}
-
 </style>
 </head>
 
@@ -114,7 +73,7 @@ body {
 
   <div class="step">
     <a href="#">
-      Select scenario’s<br><strong>research design</strong>
+      Select scenario’s research design
     </a>
   </div>
 
@@ -122,7 +81,7 @@ body {
 
   <div class="step">
     <a href="#">
-      Select the correct<br><strong>inferential test</strong>
+      Select the correct inferential test
     </a>
   </div>
 
@@ -130,15 +89,15 @@ body {
 
   <div class="step">
     <a href="#">
-      Run analysis in<br><strong>R</strong>
+      Run code in R
     </a>
   </div>
 
   <div class="arrow">→</div>
 
-  <div class="step final">
+  <div class="step">
     <a href="#">
-      Report results in<br><strong>R Markdown</strong>
+      Report results in replicable file (R Markdown)
     </a>
   </div>
 
