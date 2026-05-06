@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Analysis Flow</title>
+<title>Curved Flow</title>
 
 <style>
 body {
@@ -11,124 +11,84 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  background: radial-gradient(circle at 50% 0%, #0a1022 0%, #020617 70%);
   font-family: "Segoe UI", sans-serif;
   color: #e2e8f0;
-
-  background:
-    radial-gradient(circle at 50% 0%, #0a1022 0%, #020617 70%);
 }
 
 /* WRAPPER */
 .flow-wrapper {
   position: relative;
   width: 1000px;
+  height: 250px;
 }
 
-/* MAIN LINE */
-.flow-line {
+/* SVG CURVE */
+svg {
   position: absolute;
-  top: 70px;
-  width: 100%;
-  height: 4px;
-  background: linear-gradient(
-    to right,
-    rgba(56,189,248,0.3),
-    rgba(56,189,248,0.9),
-    rgba(56,189,248,0.3)
-  );
-
-  box-shadow:
-    0 0 15px rgba(56,189,248,0.7);
-
-  z-index: 0;
+  top: 0;
+  left: 0;
 }
 
-/* STEP ROW */
-.flow {
-  display: flex;
-  justify-content: space-between;
-  position: relative;
-  z-index: 2;
+path {
+  fill: none;
+  stroke: #38bdf8;
+  stroke-width: 4;
+  filter: drop-shadow(0 0 8px rgba(56,189,248,0.7));
 }
 
-/* EACH STEP */
+/* STEP */
 .step {
+  position: absolute;
+  width: 160px;
+  height: 90px;
+
   display: flex;
-  flex-direction: column;
   align-items: center;
-  width: 220px;
-}
-
-/* CONNECTOR */
-.connector {
-  width: 14px;
-  height: 14px;
-  border-radius: 50%;
-  background: #38bdf8;
-  box-shadow:
-    0 0 10px rgba(56,189,248,0.8),
-    0 0 20px rgba(56,189,248,0.5);
-  margin-bottom: 10px;
-}
-
-/* ✅ EQUAL-SIZED BOX */
-.box {
-  width: 220px;
-  height: 120px;   /* forces equal height */
-  padding: 16px;
-  border-radius: 16px;
-
-  display: flex;
-  flex-direction: column;
   justify-content: center;
-  align-items: center;
+  text-align: center;
 
-  background: rgba(10,15,30,0.7);
+  background: rgba(10,15,30,0.75);
   border: 1px solid rgba(56,189,248,0.6);
-  backdrop-filter: blur(14px);
+  border-radius: 12px;
+
+  backdrop-filter: blur(12px);
 
   box-shadow:
-    0 10px 25px rgba(0,0,0,0.6),
-    0 0 12px rgba(56,189,248,0.25),
-    inset 0 0 10px rgba(56,189,248,0.12);
+    0 8px 20px rgba(0,0,0,0.6),
+    0 0 10px rgba(56,189,248,0.25);
 
-  transition: 0.25s;
+  transition: 0.2s;
 }
 
-/* HOVER */
-.box:hover {
+.step:hover {
   transform: translateY(-6px);
   box-shadow:
-    0 15px 35px rgba(0,0,0,0.8),
-    0 0 25px rgba(56,189,248,0.7);
+    0 15px 30px rgba(0,0,0,0.8),
+    0 0 20px rgba(56,189,248,0.7);
 }
 
-/* LINKS */
-.box a {
+/* LINK */
+.step a {
   color: #e2e8f0;
   text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.3;
 }
 
-/* TEXT */
-.title {
-  font-size: 12px;
-  letter-spacing: 0.08em;
-  opacity: 0.7;
-  margin-bottom: 6px;
-}
+/* STEP POSITIONS ALONG CURVE */
+.step1 { top: 110px; left: 20px; }
+.step2 { top: 40px; left: 300px; }
+.step3 { top: 120px; left: 580px; }
+.step4 { top: 50px; left: 840px; }
 
-.main {
-  font-weight: 600;
-  font-size: 15px;
-  text-align: center;
-}
-
-/* FINAL */
-.final .box {
+/* FINAL HIGHLIGHT */
+.final {
   border-color: #7dd3fc;
   box-shadow:
-    0 0 18px rgba(125,211,252,0.7),
-    inset 0 0 10px rgba(125,211,252,0.2);
+    0 0 20px rgba(125,211,252,0.7),
+    inset 0 0 10px rgba(125,211,252,0.25);
 }
 
 </style>
@@ -138,54 +98,34 @@ body {
 
 <div class="flow-wrapper">
 
-  <div class="flow-line"></div>
+  <!-- CURVED LINE -->
+  <svg width="1000" height="250">
+    <path d="M 20 150 Q 250 20, 500 150 T 980 150" />
+  </svg>
 
-  <div class="flow">
+  <!-- STEPS -->
+  <div class="step step1">
+    #
+      Select Research Design
+    </a>
+  </div>
 
-    <!-- STEP 1 -->
-    <div class="step">
-      <div class="connector"></div>
-      <div class="box">
-        <a href="#">
-          <div class="title">STEP 1</div>
-          <div class="main">Select Research Design</div>
-        </a>
-      </div>
-    </div>
+  <div class="step step2">
+    #
+      Select Inferential Test
+    </a>
+  </div>
 
-    <!-- STEP 2 -->
-    <div class="step">
-      <div class="connector"></div>
-      <div class="box">
-        <a href="#">
-          <div class="title">STEP 2</div>
-          <div class="main">Select Inferential Test</div>
-        </a>
-      </div>
-    </div>
+  <div class="step step3">
+    #
+      Run Code in R
+    </a>
+  </div>
 
-    <!-- STEP 3 -->
-    <div class="step">
-      <div class="connector"></div>
-      <div class="box">
-        <a href="#">
-          <div class="title">STEP 3</div>
-          <div class="main">Run Code in R</div>
-        </a>
-      </div>
-    </div>
-
-    <!-- STEP 4 -->
-    <div class="step final">
-      <div class="connector"></div>
-      <div class="box">
-        <a href="#">
-          <div class="title">STEP 4</div>
-          <div class="main">Report Results (R Markdown)</div>
-        </a>
-      </div>
-    </div>
-
+  <div class="step step4 final">
+    #
+      Report Results (R Markdown)
+    </a>
   </div>
 
 </div>
