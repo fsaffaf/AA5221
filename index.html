@@ -5,221 +5,133 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>AA 5221 — Course Materials</title>
 
-  <!-- ✅ FIXED stylesheet link -->
+  <!-- Main stylesheet -->
   assets/style.css
 
+  <!-- Inline styles for Lectures dropdown -->
   <style>
-
-    /* ===============================
-       Starfield Fix
-    =============================== */
-
-    #starfield {
+    #top-lectures-nav {
       position: fixed;
-      inset: 0;
-      z-index: -1;
-      pointer-events: none;
-    }
-
-    /* ===============================
-       Glass Top Navigation
-    =============================== */
-
-    .glass-nav {
-      position: fixed;
-      top: 0;
-      width: 100%;
+      top: 24px;
+      right: 32px;
       z-index: 1000;
-      background: rgba(10, 15, 25, 0.55);
-      backdrop-filter: blur(16px);
-      border-bottom: 1px solid rgba(255,255,255,0.18);
     }
 
-    .nav-inner {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0.75rem 2rem;
-      display: flex;
-      justify-content: flex-end;
-      align-items: center;
-      gap: 1.8rem;
-    }
-
-    .nav-item {
-      position: relative;
-      font-size: 0.7rem;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.85);
-      cursor: pointer;
-    }
-
-    .nav-item:hover {
+    #lectures-toggle {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.25);
       color: white;
+      padding: 0.6rem 1rem;
+      border-radius: 14px;
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      cursor: pointer;
+      backdrop-filter: blur(12px);
     }
 
-    /* ✅ GAP FIX */
-    .dropdown-panel {
-      position: absolute;
-      top: 100%;
-      margin-top: 6px;
-      right: 0;
+    #lectures-toggle:hover {
+      background: rgba(255,255,255,0.15);
+    }
 
-      min-width: 300px;
-      background: rgba(15,15,30,0.95);
+    #lectures-dropdown {
+      display: none;
+      margin-top: 10px;
+      background: rgba(15,15,25,0.95);
       border: 1px solid rgba(255,255,255,0.2);
       border-radius: 16px;
-
-      backdrop-filter: blur(16px);
+      backdrop-filter: blur(14px);
       box-shadow: 0 30px 70px rgba(0,0,0,0.6);
-
-      display: none;
+      overflow: hidden;
     }
 
-    .dropdown:hover .dropdown-panel {
+    #lectures-dropdown a {
       display: block;
-    }
-
-    .dropdown-panel a {
-      display: block;
-      padding: 0.6rem 1rem;
+      padding: 0.7rem 1.2rem;
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
       text-decoration: none;
-      color: rgba(255,255,255,0.85);
-      font-size: 0.7rem;
-      letter-spacing: 0.12em;
-    }
-
-    .dropdown-panel a:hover {
-      background: rgba(255,255,255,0.1);
       color: white;
+      opacity: 0.85;
     }
 
-    .home-container {
-      padding-top: 6rem;
-      text-align: center;
+    #lectures-dropdown a:hover {
+      background: rgba(255,255,255,0.12);
+      opacity: 1;
     }
-
   </style>
 </head>
 
 <body>
 
-<!-- ✅ NAV (fully fixed) -->
-<nav class="glass-nav">
-  <div class="nav-inner">
-
-    <div class="nav-item dropdown">
-      <span>Class Overview</span>
-      <div class="dropdown-panel">
-        lectures/science.htmlWhat is Science?</a>
-        visual/decisiontree.htmlConceptual Overview</a>
-      </div>
+  <!-- Lectures dropdown -->
+  <div id="top-lectures-nav">
+    <button id="lectures-toggle">Lectures ▾</button>
+    <div id="lectures-dropdown">
+      lectures/lecture01.htmlLecture 01 · Computing with Data</a>
+      lectures/lecture02.htmlLecture 02 · Data Structures & Types</a>
+      lectures/lecture03.htmlLecture 03 · Importing & Cleaning Data</a>
+      lectures/lecture04.htmlLecture 04 · Exploring Data</a>
+      lectures/lecture05.htmlLecture 05 · Visualizing Patterns</a>
+      lectures/lecture06.htmlLecture 06 · Probability Foundations</a>
+      lectures/lecture07.htmlLecture 07 · Sampling & Distributions</a>
+      lectures/lecture08.htmlLecture 08 · Statistical Inference</a>
+      lectures/lecture09.htmlLecture 09 · Regression Models</a>
+      lectures/lecture10.htmlLecture 10 · From Data to Insight</a>
     </div>
-
-    <div class="nav-item dropdown">
-      <span>Research Methods</span>
-      <div class="dropdown-panel">
-        lectures/rdesigns.htmlResearch Designs</a>
-        interactive/researchdesign.htmlResearch Design Selector</a>
-      </div>
-    </div>
-
-    <div class="nav-item dropdown">
-      <span>Measurement Theory</span>
-      <div class="dropdown-panel">
-        lectures/data-types.htmlTypes of Data</a>
-      </div>
-    </div>
-
-    <div class="nav-item dropdown">
-      <span>Descriptive Statistics</span>
-      <div class="dropdown-panel">
-        lectures/lecture02.htmlDescriptive Statistics</a>
-        lectures/lecture02.htmlMeasures of Central Tendency</a>
-        lectures/lecture02.html
-      </div>
-    </div>
-
-    <div class="nav-item dropdown">
-      <span>Inferential Statistics</span>
-      <div class="dropdown-panel">
-        lectures/lecture02.htmlInferential Overview</a>
-        lectures/hypotheses.htmlHypothesis Testing</a>
-        lectures/lecture03.htmlP-Values & Effect Sizes</a>
-      </div>
-    </div>
-
-    <div class="nav-item dropdown">
-      <span>Visualizing Data</span>
-      <div class="dropdown-panel">
-        lectures/lecture01.html">Histograms</a>
-        lectures/lecture02.htmlBoxplots</a>
-        lectures/lecture03.html>
-        lectures/lecture03.htmlBar Graphs</a>
-        .html">Normality Interpreter</a>
-      </div>
-    </div>
-
-    <div class="nav-item dropdown">
-      <span>RStudio</span>
-      <div class="dropdown-panel">
-        01.html">Download RStudio</a>
-        ">R Basics</a>
-        lectures/lecture03.html">R for Data Science</a>
-        lectures/lecture04.html
-      </div>
-    </div>
-
-    <div class="nav-item dropdown">
-      <span>R Code</span>
-      <div class="dropdown-panel">
-        interactive/testselect.html>
-        code/correlations.htmlCorrelations</a>
-        code/chi_independence.htmlChi-Square Independence</a>
-        code/chi_gof.htmlChi-Square GOF</a>
-        code/ttest_ind.htmlIndependent t-test</a>
-        code/mann_whitney.html
-        code/ttest_dep.html
-        code/wilcoxon.html
-      </div>
-    </div>
-
-    #
-
   </div>
-</nav>
 
-<!-- ✅ Starfield -->
-<canvas id="starfield"></canvas>
+  <!-- Starfield -->
+  <canvas id="starfield"></canvas>
 
-<!-- ✅ Content -->
-<div class="home-container">
-  <h1 style="
+  <!-- Main content -->
+  <div class="home-container">
+
+    <h1 style="
       font-size: 4rem;
       font-weight: 900;
       letter-spacing: 0.25em;
+      margin-bottom: 0.5rem;
       text-transform: uppercase;
       background: linear-gradient(180deg, #ffffff, #7dd3fc);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       text-shadow:
-        0 0 20px rgba(56,189,248,.35),
-        0 0 40px rgba(56,189,248,.15);
+        0 0 20px rgba(56, 189, 248, 0.35),
+        0 0 40px rgba(56, 189, 248, 0.15);
     ">
-    AA <span style="font-weight:300;">5221</span>
-  </h1>
+      AA <span style="font-weight: 300;">5221</span>
+    </h1>
 
-  <p style="
-    letter-spacing: 0.35em;
-    text-transform: uppercase;
-    opacity: 0.85;
-  ">
-    Applied Analytics & Research Methods I
-  </p>
-</div>
+    <p class="subtitle" style="
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      opacity: 0.85;
+      margin-bottom: 3rem;
+    ">
+      Applied Analytics & Research Methods I
+    </p>
 
-<!-- ✅ FIXED JS LINK -->
-assets/stars.js
+  </div>
+
+  <!-- Starfield script -->
+  assets/stars.jsscript>
+
+  <!-- Dropdown logic -->
+  <script>
+    const toggle = document.getElementById("lectures-toggle");
+    const dropdown = document.getElementById("lectures-dropdown");
+
+    toggle.addEventListener("click", (e) => {
+      e.stopPropagation();
+      dropdown.style.display =
+        dropdown.style.display === "block" ? "none" : "block";
+    });
+
+    document.addEventListener("click", () => {
+      dropdown.style.display = "none";
+    });
+  </script>
 
 </body>
 </html>
