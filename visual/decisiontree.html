@@ -20,7 +20,6 @@
     text-align: center;
   }
 
-  /* Glass node */
   .node {
     padding: 14px 18px;
     border-radius: 14px;
@@ -31,7 +30,6 @@
     font-size: 14px;
   }
 
-  /* Vertical line */
   .line {
     width: 2px;
     height: 30px;
@@ -39,7 +37,6 @@
     margin: 0 auto;
   }
 
-  /* Horizontal connector */
   .horizontal {
     height: 2px;
     width: 100%;
@@ -47,55 +44,65 @@
     margin: 0 auto 15px auto;
   }
 
-  /* Row container */
   .row {
     display: grid;
     gap: 20px;
     margin-top: 15px;
   }
 
-  /* 4 equal columns */
   .row.four {
     grid-template-columns: repeat(4, 1fr);
   }
 
-  /* Center single nodes */
   .center {
     display: flex;
     justify-content: center;
   }
-
 </style>
 </head>
+
 <body>
 
 <div class="tree">
 
-  <!-- Top -->
+  <!-- Combined Top Node -->
   <div class="center">
-    <div class="node">Review the scenario</div>
-  </div>
-
-  <div class="line"></div>
-
-  <!-- Second -->
-  <div class="center">
-    <div class="node">Determine the research design</div>
+    <div class="node">
+      Review the scenario<br><br>
+      Determine the research design
+    </div>
   </div>
 
   <div class="line"></div>
   <div class="horizontal"></div>
 
-  <!-- Options -->
+  <!-- Research Design Options -->
   <div class="row four">
-    <div class="node">1) Observational</div>
-    <div class="node">2) Correlational</div>
-    <div class="node">3) Quasi-experimental</div>
-    <div class="node">4) True experiment</div>
+    <div class="node">Observational</div>
+    <div class="node">Correlational</div>
+    <div class="node">Quasi-experimental</div>
+    <div class="node">True experiment</div>
+  </div>
+
+  <div class="line"></div>
+
+  <!-- Inferential Test Hub -->
+  <div class="center">
+    <div class="node">Select the correct inferential test</div>
+  </div>
+
+  <div class="line"></div>
+  <div class="horizontal"></div>
+
+  <!-- Placeholder for test options -->
+  <div class="row four">
+    <div class="node">Test Option</div>
+    <div class="node">Test Option</div>
+    <div class="node">Test Option</div>
+    <div class="node">Test Option</div>
   </div>
 
 </div>
 
 </body>
 </html>
-``
