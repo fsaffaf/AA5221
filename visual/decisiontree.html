@@ -7,7 +7,7 @@
 <style>
   body {
     margin: 0;
-    background: linear-gradient(160deg, #0f172a, #1e293b);
+    background: radial-gradient(circle at top, #05070f, #020617 80%);
     font-family: "Segoe UI", sans-serif;
     color: #e2e8f0;
     display: flex;
@@ -20,19 +20,42 @@
     text-align: center;
   }
 
+  /* BASE NODE */
   .node {
     padding: 14px 18px;
     border-radius: 14px;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(96, 165, 250, 0.5);
-    backdrop-filter: blur(12px);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
     font-size: 14px;
+    transition: all 0.2s ease;
+  }
+
+  /* PROMPT (decision steps) */
+  .prompt {
+    background: rgba(10, 15, 30, 0.85);
+    border: 1px solid rgba(59,130,246,0.6);
+    box-shadow:
+      0 0 10px rgba(59,130,246,0.35),
+      inset 0 0 10px rgba(59,130,246,0.15);
+    font-weight: 500;
+    letter-spacing: 0.03em;
+  }
+
+  /* ANSWER (choices/results) */
+  .answer {
+    background: rgba(8, 12, 22, 0.9);
+    border: 1px solid rgba(56,189,248,0.4);
+    box-shadow:
+      0 0 6px rgba(56,189,248,0.15);
+  }
+
+  .answer:hover {
+    transform: translateY(-2px);
+    box-shadow:
+      0 0 12px rgba(56,189,248,0.4);
   }
 
   .node a {
     text-decoration: none;
-    color: #e2e8f0;
+    color: #cbd5f5;
     display: block;
   }
 
@@ -40,20 +63,22 @@
     color: #7dd3fc;
   }
 
+  /* CONNECTOR LINES */
   .line {
     width: 2px;
-    height: 30px;
-    background: rgba(96, 165, 250, 0.6);
+    height: 32px;
+    background: rgba(59,130,246,0.5);
     margin: 0 auto;
   }
 
   .horizontal {
     height: 2px;
     width: 100%;
-    background: rgba(96, 165, 250, 0.6);
+    background: rgba(59,130,246,0.5);
     margin: 0 auto 15px auto;
   }
 
+  /* GRID ROWS */
   .row {
     display: grid;
     gap: 18px;
@@ -61,92 +86,4 @@
   }
 
   .row.four {
-    grid-template-columns: repeat(4, 1fr);
-  }
-
-  /* NEW: 8-item layout */
-  .row.eight {
-    grid-template-columns: repeat(4, 1fr);
-  }
-
-  .center {
-    display: flex;
-    justify-content: center;
-  }
-</style>
-</head>
-
-<body>
-
-<div class="tree">
-
-  <!-- Combined Top Node -->
-  <div class="center">
-    <div class="node">
-      Review the scenario<br><br>
-      Determine the research design
-    </div>
-  </div>
-
-  <div class="line"></div>
-  <div class="horizontal"></div>
-
-  <!-- Research Design Options -->
-  <div class="row four">
-    <div class="node">Observational</div>
-    <div class="node">Correlational</div>
-    <div class="node">Quasi-experimental</div>
-    <div class="node">True experiment</div>
-  </div>
-
-  <div class="line"></div>
-
-  <!-- Inferential Test Hub -->
-  <div class="center">
-    <div class="node">Select the correct inferential test</div>
-  </div>
-
-  <div class="line"></div>
-  <div class="horizontal"></div>
-
-  <!-- Test Options -->
-  <div class="row eight">
-
-    <div class="node">
-      <a href="code/stselect.html">Pearson Correlation</a>
-    </div>
-
-    <div class="node">
-      <a href="code/correlations.html">Spearman Correlations</a>
-    </div>
-
-    <div class="node">
-      <a href="code/chi_independence.html">Chi‑Square Independence</a>
-    </div>
-
-    <div class="node">
-      <a href="code/chi_gof.html">Chi‑Square Goodness of Fit</a>
-    </div>
-
-    <div class="node">
-      <a href="code/ttest_ind.html">Independent t‑test</a>
-    </div>
-
-    <div class="node">
-      <a href="code/mann_whitney.html">Mann‑Whitney U</a>
-    </div>
-
-    <div class="node">
-      <a href="code/ttest_dep.html">Dependent t‑test</a>
-    </div>
-
-    <div class="node">
-      <a href="code/wilcoxon.html">Wilcoxon Signed Rank</a>
-    </div>
-
-  </div>
-
-</div>
-
-</body>
-</html>
+   
