@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Decision Tree</title>
+<title>Analysis Workflow</title>
 
 <style>
 body {
@@ -12,161 +12,93 @@ body {
   color: #e2e8f0;
   display: flex;
   justify-content: center;
-  padding: 50px;
+  align-items: center;
+  height: 100vh;
 }
 
-.tree {
-  width: 1000px;
-  text-align: center;
+/* CONTAINER */
+.flow {
+  display: flex;
+  align-items: center;
+  gap: 25px;
 }
 
-.node {
-  padding: 12px 16px;
-  border-radius: 14px;
-  min-width: 170px;
-  margin: 0 auto;
-}
-
-/* PROMPT */
-.prompt {
-  background: rgba(10,15,30,0.95);
+/* STEP BOX */
+.step {
+  background: rgba(10,15,30,0.9);
   border: 1px solid #3b82f6;
-  box-shadow: 0 0 8px rgba(59,130,246,0.5);
-  font-weight: 500;
+  padding: 18px 22px;
+  border-radius: 16px;
+  min-width: 220px;
+  text-align: center;
+  backdrop-filter: blur(12px);
+
+  box-shadow:
+    0 0 10px rgba(59,130,246,0.4),
+    inset 0 0 10px rgba(59,130,246,0.15);
+
+  transition: all 0.2s ease;
 }
 
-/* ANSWER */
-.answer {
-  background: rgba(6,10,20,0.95);
-  border: 1px solid #38bdf8;
-  box-shadow: 0 0 6px rgba(56,189,248,0.3);
+/* HOVER EFFECT */
+.step:hover {
+  transform: translateY(-4px);
+  box-shadow:
+    0 0 18px rgba(56,189,248,0.6);
 }
 
-/* LINKS (FIXED) */
-.node a {
-  display: block;
-  text-decoration: none;
+/* LINKS */
+.step a {
   color: #e2e8f0;
+  text-decoration: none;
+  display: block;
 }
-.node a:hover {
+
+.step a:hover {
   color: #7dd3fc;
 }
 
-/* LINES */
-.line {
-  width: 2px;
-  height: 25px;
-  background: rgba(59,130,246,0.7);
-  margin: 0 auto;
-}
-
-.horizontal {
-  height: 2px;
-  background: rgba(59,130,246,0.7);
-  width: 90%;
-  margin: 0 auto 20px;
-}
-
-/* LAYOUT */
-.row {
-  display: flex;
-  justify-content: space-between;
-  gap: 20px;
-}
-
-.branch {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-/* CORRELATION SPLIT */
-.split {
-  display: flex;
-  gap: 10px;
-}
-
-/* MERGE AREA */
-.merge {
-  width: 300px;
-  margin: 40px auto 0;
-  text-align: center;
+/* ARROW */
+.arrow {
+  font-size: 28px;
+  color: #60a5fa;
+  text-shadow: 0 0 10px rgba(96,165,250,0.6);
 }
 </style>
 </head>
 
 <body>
 
-<div class="tree">
+<div class="flow">
 
-  <!-- TOP -->
-  <div class="node prompt">
-    Review scenario and select research design
+  <div class="step">
+    <a href="#">
+      Select scenario’s research design
+    </a>
   </div>
 
-  <div class="line"></div>
-  <div class="horizontal"></div>
+  <div class="arrow">→</div>
 
-  <!-- FIRST ROW -->
-  <div class="row">
-
-    <!-- OBSERVATIONAL -->
-    <div class="branch">
-      <div class="node answer">Observational</div>
-      <div class="line"></div>
-      <div class="node prompt">Select inferential test</div>
-      <div class="line"></div>
-      <div class="node answer">
-        <a href="code/chi_gof.html">Chi‑Square Goodness of Fit</a>
-      </div>
-    </div>
-
-    <!-- CORRELATIONAL -->
-    <div class="branch">
-      <div class="node answer">Correlational</div>
-      <div class="line"></div>
-      <div class="node prompt">Select inferential test</div>
-      <div class="line"></div>
-
-      <div class="split">
-        <div class="node answer">
-          <a href="code/chi_independence.html">Chi‑Square Independence</a>
-        </div>
-        <div class="node answer">
-          <a href="code/correlations.html">Pearson / Spearman</a>
-        </div>
-      </div>
-    </div>
-
-    <!-- SPACERS (keep symmetry) -->
-    <div class="branch"></div>
-    <div class="branch"></div>
-
+  <div class="step">
+    <a href="#">
+      Select the correct inferential test
+    </a>
   </div>
 
-  <!-- EXPERIMENT ROW -->
-  <div class="row" style="margin-top:40px; width:500px; margin-left:auto; margin-right:auto;">
-    <div class="branch">
-      <div class="node answer">Quasi‑experiment</div>
-    </div>
+  <div class="arrow">→</div>
 
-    <div class="branch">
-      <div class="node answer">True experiment</div>
-    </div>
+  <div class="step">
+    <a href="#">
+      Run code in R
+    </a>
   </div>
 
-  <!-- MERGE (CENTERED CLEANLY) -->
-  <div class="line"></div>
+  <div class="arrow">→</div>
 
-  <div class="merge">
-    <div class="node prompt">Select inferential test</div>
-
-    <div class="line"></div>
-
-    <div class="node answer">
-      <a href="code/ttest_ind.html">t‑tests</a>
-    </div>
+  <div class="step">
+    <a href="#">
+      Report results in replicable file (R Markdown)
+    </a>
   </div>
 
 </div>
