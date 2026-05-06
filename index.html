@@ -6,10 +6,20 @@
   <title>AA 5221 — Course Materials</title>
 
   <!-- Main stylesheet -->
-  assets/style.css
+  <link rel="stylesheet" href="assets/style.css" />
 
-  <!-- Inline styles for Lectures dropdown -->
+  <!-- Inline styles for Lectures dropdown + starfield canvas placement -->
   <style>
+    /* Keep star canvas behind everything */
+    #starfield {
+      position: fixed;
+      inset: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: -1;
+      pointer-events: none;
+    }
+
     #top-lectures-nav {
       position: fixed;
       top: 24px;
@@ -43,6 +53,7 @@
       backdrop-filter: blur(14px);
       box-shadow: 0 30px 70px rgba(0,0,0,0.6);
       overflow: hidden;
+      min-width: 320px;
     }
 
     #lectures-dropdown a {
@@ -53,6 +64,7 @@
       text-decoration: none;
       color: white;
       opacity: 0.85;
+      white-space: nowrap;
     }
 
     #lectures-dropdown a:hover {
@@ -66,18 +78,21 @@
 
   <!-- Lectures dropdown -->
   <div id="top-lectures-nav">
-    <button id="lectures-toggle">Lectures ▾</button>
-    <div id="lectures-dropdown">
-      lectures/lecture01.htmlLecture 01 · Computing with Data</a>
-      lectures/lecture02.htmlLecture 02 · Data Structures & Types</a>
-      lectures/lecture03.htmlLecture 03 · Importing & Cleaning Data</a>
-      lectures/lecture04.htmlLecture 04 · Exploring Data</a>
-      lectures/lecture05.htmlLecture 05 · Visualizing Patterns</a>
-      lectures/lecture06.htmlLecture 06 · Probability Foundations</a>
-      lectures/lecture07.htmlLecture 07 · Sampling & Distributions</a>
-      lectures/lecture08.htmlLecture 08 · Statistical Inference</a>
-      lectures/lecture09.htmlLecture 09 · Regression Models</a>
-      lectures/lecture10.htmlLecture 10 · From Data to Insight</a>
+    <button id="lectures-toggle" aria-haspopup="true" aria-expanded="false">
+      Lectures ▾
+    </button>
+
+    <div id="lectures-dropdown" role="menu">
+      <a href="lectures/lecture01.html">Lecture 01 · Computing with Data</a>
+      <a href="lectures/lecture02.html">Lecture 02 · Data Structures &amp; Types</a>
+      <a href="lectures/lecture03.html">Lecture 03 · Importing &amp; Cleaning Data</a>
+      <a href="lectures/lecture04.html">Lecture 04 · Exploring Data</a>
+      <a href="lectures/lecture05.html">Lecture 05 · Visualizing Patterns</a>
+      <a href="lectures/lecture06.html">Lecture 06 · Probability Foundations</a>
+      <a href="lectures/lecture07.html">Lecture 07 · Sampling &amp; Distributions</a>
+      <a href="lectures/lecture08.html">Lecture 08 · Statistical Inference</a>
+      <a href="lectures/lecture09.html">Lecture 09 · Regression Models</a>
+      <a href="lectures/lecture10.html">Lecture 10 · From Data to Insight</a>
     </div>
   </div>
 
@@ -86,7 +101,6 @@
 
   <!-- Main content -->
   <div class="home-container">
-
     <h1 style="
       font-size: 4rem;
       font-weight: 900;
@@ -109,27 +123,39 @@
       opacity: 0.85;
       margin-bottom: 3rem;
     ">
-      Applied Analytics & Research Methods I
+      Applied Analytics &amp; Research Methods I
     </p>
-
   </div>
 
   <!-- Starfield script -->
-  assets/stars.jsscript>
+  <script src="assets/stars.js"></script>
 
   <!-- Dropdown logic -->
   <script>
     const toggle = document.getElementById("lectures-toggle");
     const dropdown = document.getElementById("lectures-dropdown");
 
+    function closeDropdown() {
+      dropdown.style.display = "none";
+      toggle.setAttribute("aria-expanded", "false");
+    }
+
+    function openDropdown() {
+      dropdown.style.display = "block";
+      toggle.setAttribute("aria-expanded", "true");
+    }
+
     toggle.addEventListener("click", (e) => {
       e.stopPropagation();
-      dropdown.style.display =
-        dropdown.style.display === "block" ? "none" : "block";
+      const isOpen = dropdown.style.display === "block";
+      isOpen ? closeDropdown() : openDropdown();
     });
 
-    document.addEventListener("click", () => {
-      dropdown.style.display = "none";
+    document.addEventListener("click", closeDropdown);
+
+    // Optional: close with Escape
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") closeDropdown();
     });
   </script>
 
