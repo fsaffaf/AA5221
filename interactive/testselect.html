@@ -6,59 +6,44 @@
 <title>Inferential Test Selector</title>
 
 <style>
-
-/* ✅ BACKGROUND (matches your lectures) */
 body {
   margin: 0;
-  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  font-family: system-ui, Arial;
   background: radial-gradient(circle at top, #0b1220, #020617 70%);
   color: rgba(255,255,255,0.92);
   padding: 40px 20px;
 }
 
-/* ✅ PAGE WIDTH */
 .container {
   max-width: 1100px;
   margin: auto;
 }
 
-/* ✅ HEADER */
 h1 {
   text-align: center;
-  font-size: 2.5rem;
-  letter-spacing: .25em;
+  letter-spacing: .2em;
   text-transform: uppercase;
-  margin-bottom: 30px;
   background: linear-gradient(180deg, #ffffff, #7dd3fc);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
-/* ✅ GRID */
 .flow {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 20px;
 }
 
-/* ✅ GLASS PANELS */
 .step {
   background: rgba(15,23,42,.65);
   border: 1px solid rgba(255,255,255,.15);
   border-radius: 18px;
   padding: 1.5rem;
-  min-height: 240px;
-  display: flex;
-  flex-direction: column;
   backdrop-filter: blur(18px);
-  box-shadow: 0 20px 50px rgba(0,0,0,.5);
-  transition: all .25s ease;
 }
 
 .step.active {
   border: 1px solid #38bdf8;
-  box-shadow: 0 0 25px rgba(56,189,248,.35);
-  transform: translateY(-3px);
 }
 
 .step.completed {
@@ -66,84 +51,43 @@ h1 {
 }
 
 .step h3 {
-  font-size: 16px;
-  margin-bottom: 10px;
   color: #93c5fd;
 }
 
-/* ✅ BUTTONS */
-.btn-group {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  margin-top: 10px;
-}
-
 button {
+  margin-top: 8px;
   padding: 10px;
   border-radius: 10px;
   border: none;
-  background: linear-gradient(135deg, #38bdf8, #0ea5e9);
-  color: #020617;
-  font-weight: 600;
+  background: #38bdf8;
+  color: black;
   cursor: pointer;
-  transition: all .2s ease;
 }
 
-button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 20px rgba(56,189,248,.35);
-}
-
-/* ✅ RESULT PANEL */
 .result {
-  margin-top: 30px;
-  padding: 25px;
+  margin-top: 20px;
+  padding: 20px;
   background: rgba(15,23,42,.65);
-  border: 1px solid rgba(255,255,255,.15);
   border-radius: 18px;
-  backdrop-filter: blur(18px);
-  box-shadow: 0 20px 50px rgba(0,0,0,.5);
   display: none;
 }
 
-.result-inner {
-  display: grid;
-  grid-template-columns: 3fr 1fr;
-  align-items: center;
-  gap: 15px;
-}
-
 .test {
-  font-size: 26px;
+  font-size: 24px;
   font-weight: bold;
 }
 
-/* ✅ COLORS MATCH YOUR THEME */
-.chi-square { color: #fca5a5; }
-.ttest { color: #93c5fd; }
-.correlation { color: #6ee7b7; }
-
-/* ✅ RESET BUTTON */
 .startover {
-  padding: 14px 18px;
-  border-radius: 12px;
-  background: rgba(255,255,255,.1);
+  margin-top: 10px;
+  padding: 10px;
+  background: gray;
   color: white;
-  border: 1px solid rgba(255,255,255,.2);
-  cursor: pointer;
+  border: none;
 }
 
-.startover:hover {
-  background: rgba(255,255,255,.2);
-}
-
-/* ✅ MOBILE */
-@media (max-width: 768px) {
+@media (max-width:768px) {
   .flow { grid-template-columns: 1fr; }
-  .result-inner { grid-template-columns: 1fr; }
 }
-
 </style>
 </head>
 
@@ -157,11 +101,11 @@ button:hover {
 
 <div class="step" id="step1">
 <h3>What level of measurement is the data?</h3>
-<div class="btn-group">
-<button onclick="choose('measurement','categorical')">Categorical only (Chi-square tests)</button>
-<button onclick="choose('measurement','cat_cont')">Categorical + Continuous (t-tests)</button>
-<button onclick="choose('measurement','continuous')">Continuous only (Correlation)</button>
-</div>
+
+<button onclick="choose('measurement','categorical')">Categorical only</button>
+<button onclick="choose('measurement','cat_cont')">Categorical + Continuous</button>
+<button onclick="choose('measurement','continuous')">Continuous only</button>
+
 </div>
 
 <div class="step" id="step2"></div>
@@ -171,26 +115,23 @@ button:hover {
 
 <div class="result" id="resultBox">
 <h3>Recommended Test</h3>
-<div class="result-inner">
 <div class="test" id="resultText"></div>
-<button class="startover" onclick="resetAll()">↻ Start Over</button>
-</div>
+<button class="startover" onclick="resetAll()">Start Over</button>
 </div>
 
 </div>
 
 <script>
 
-const state = {
+var state = {
 measurement: null,
 design: null,
 normality: null
 };
 
 function setStepState(id, stateClass) {
-const el = document.getElementById(id);
-el.classList.remove('active','completed');
-el.classList.add(stateClass);
+var el = document.getElementById(id);
+el.className = "step " + stateClass;
 }
 
 function choose(type, value) {
@@ -202,99 +143,86 @@ if (type === 'normality') showResult();
 }
 
 function renderStep2(value) {
-const step2 = document.getElementById('step2');
+var step2 = document.getElementById('step2');
 setStepState('step2','active');
 
 if (value === 'categorical') {
-step2.innerHTML = `
-<h3>What are the details of the research design?</h3>
-<div class="btn-group">
-<button onclick="choose('design','two_var')">Association between two variables</button>
-<button onclick="choose('design','one_var')">Expected vs observed for one variable</button>
-</div>`;
+step2.innerHTML =
+"<h3>Research design?</h3>" +
+"<button onclick=\"choose('design','two_var')\">Two variables</button>" +
+"<button onclick=\"choose('design','one_var')\">One variable</button>";
 }
 
 if (value === 'cat_cont') {
-step2.innerHTML = `
-<h3>What are the details of the research design?</h3>
-<div class="btn-group">
-<button onclick="choose('design','between')">Between-subjects</button>
-<button onclick="choose('design','within')">Within-subjects</button>
-</div>`;
+step2.innerHTML =
+"<h3>Research design?</h3>" +
+"<button onclick=\"choose('design','between')\">Between</button>" +
+"<button onclick=\"choose('design','within')\">Within</button>";
 }
 
 if (value === 'continuous') {
-step2.innerHTML = `
-<h3>What are the details of the research design?</h3>
-<div class="btn-group">
-<button onclick="choose('design','relationship')">Relationship</button>
-</div>`;
+step2.innerHTML =
+"<h3>Research design?</h3>" +
+"<button onclick=\"choose('design','relationship')\">Relationship</button>";
 }
 
-document.getElementById('step3').innerHTML = '';
+document.getElementById('step3').innerHTML = "";
 }
 
 function handleDesign(value) {
 
 if (state.measurement === 'categorical') {
-let test = '';
+var test = "";
 
-if (value === 'two_var') test = 'Chi-Square Test of Independence';
-if (value === 'one_var') test = 'Chi-Square Goodness of Fit';
+if (value === 'two_var') test = "Chi-Square Independence";
+if (value === 'one_var') test = "Chi-Square Goodness of Fit";
 
-setStepState('step1','completed');
-setStepState('step2','completed');
-
-showResult(test, 'chi-square');
+showResult(test);
 return;
 }
 
-const step3 = document.getElementById('step3');
+var step3 = document.getElementById('step3');
 setStepState('step3','active');
 
-step3.innerHTML = `
-<h3>Is the data normally distributed?</h3>
-<div class="btn-group">
-<button onclick="choose('normality','normal')">Normal</button>
-<button onclick="choose('normality','not_normal')">Not normal</button>
-</div>`;
+step3.innerHTML =
+"<h3>Normal distribution?</h3>" +
+"<button onclick=\"choose('normality','normal')\">Normal</button>" +
+"<button onclick=\"choose('normality','not')\">Not normal</button>";
 }
 
-function showResult(testOverride=null, typeOverride=null) {
+function showResult(testOverride) {
 
-let test = testOverride;
-let type = typeOverride;
+var test = testOverride;
 
 if (!test) {
+
 if (state.measurement === 'cat_cont' && state.design === 'between' && state.normality === 'normal') {
-test = 'Independent t-test'; type = 'ttest';
+test = "Independent t-test";
 }
-if (state.measurement === 'cat_cont' && state.design === 'between' && state.normality === 'not_normal') {
-test = 'Mann–Whitney U'; type = 'ttest';
+
+if (state.measurement === 'cat_cont' && state.design === 'between' && state.normality === 'not') {
+test = "Mann-Whitney U";
 }
+
 if (state.measurement === 'cat_cont' && state.design === 'within' && state.normality === 'normal') {
-test = 'Dependent t-test'; type = 'ttest';
+test = "Dependent t-test";
 }
-if (state.measurement === 'cat_cont' && state.design === 'within' && state.normality === 'not_normal') {
-test = 'Wilcoxon Signed-Rank'; type = 'ttest';
+
+if (state.measurement === 'cat_cont' && state.design === 'within' && state.normality === 'not') {
+test = "Wilcoxon Signed Rank";
 }
+
 if (state.measurement === 'continuous' && state.normality === 'normal') {
-test = 'Pearson Correlation'; type = 'correlation';
+test = "Pearson Correlation";
 }
-if (state.measurement === 'continuous' && state.normality === 'not_normal') {
-test = 'Spearman Correlation'; type = 'correlation';
+
+if (state.measurement === 'continuous' && state.normality === 'not') {
+test = "Spearman Correlation";
 }
 }
 
-setStepState('step1','completed');
-setStepState('step2','completed');
-setStepState('step3','completed');
-
-const el = document.getElementById('resultText');
-el.innerText = test;
-el.className = 'test ' + type;
-
-document.getElementById('resultBox').style.display = 'block';
+document.getElementById('resultText').innerText = test;
+document.getElementById('resultBox').style.display = "block";
 }
 
 function resetAll() {
@@ -302,17 +230,16 @@ state.measurement = null;
 state.design = null;
 state.normality = null;
 
-document.getElementById('step2').innerHTML = '';
-document.getElementById('step3').innerHTML = '';
-document.getElementById('resultBox').style.display = 'none';
+document.getElementById('step2').innerHTML = "";
+document.getElementById('step3').innerHTML = "";
+document.getElementById('resultBox').style.display = "none";
 
-document.querySelectorAll('.step').forEach(s => {
-s.classList.remove('active','completed');
-});
+document.getElementById('step1').className = "step";
+document.getElementById('step2').className = "step";
+document.getElementById('step3').className = "step";
 }
 
 </script>
 
 </body>
 </html>
-``
