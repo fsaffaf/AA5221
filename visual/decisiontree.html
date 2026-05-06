@@ -16,7 +16,7 @@
   }
 
   .tree {
-    width: 1000px;
+    width: 1100px;
     text-align: center;
   }
 
@@ -24,10 +24,12 @@
     padding: 14px 18px;
     border-radius: 14px;
     font-size: 14px;
-    transition: all 0.2s ease;
+    margin: 0 auto;
+    width: fit-content;
+    min-width: 170px;
   }
 
-  /* PROMPTS */
+  /* PROMPT */
   .prompt {
     background: rgba(8, 12, 25, 0.95);
     border: 1px solid rgba(59,130,246,0.9);
@@ -37,11 +39,12 @@
     font-weight: 500;
   }
 
-  /* ANSWERS */
+  /* ANSWER */
   .answer {
     background: rgba(5, 8, 18, 0.95);
     border: 1px solid rgba(56,189,248,0.45);
     box-shadow: 0 0 6px rgba(56,189,248,0.15);
+    transition: all 0.2s ease;
   }
 
   .answer:hover {
@@ -50,8 +53,8 @@
   }
 
   .node a {
-    text-decoration: none;
     color: #cbd5f5;
+    text-decoration: none;
     display: block;
   }
 
@@ -69,29 +72,23 @@
 
   .horizontal {
     height: 2px;
-    width: 100%;
+    width: 90%;
     background: rgba(59,130,246,0.6);
-    margin: 0 auto 15px;
+    margin: 0 auto 20px;
   }
 
-  /* GRID */
+  /* TOP ROW */
   .row {
     display: grid;
-    gap: 18px;
-    margin-top: 15px;
-  }
-
-  .row.four {
     grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
   }
 
-  .row.three {
-    grid-template-columns: repeat(3, 1fr);
-  }
-
-  .center {
+  /* EACH BRANCH COLUMN */
+  .branch {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
   }
 
 </style>
@@ -102,74 +99,80 @@
 <div class="tree">
 
   <!-- TOP -->
-  <div class="center">
-    <div class="node prompt">
-      Review the scenario<br><br>
-      Determine the research design
-    </div>
+  <div class="node prompt">
+    Review the scenario<br><br>
+    Determine the research design
   </div>
 
   <div class="line"></div>
   <div class="horizontal"></div>
 
-  <!-- RESEARCH DESIGNS -->
-  <div class="row four">
-    <div class="node answer">Observational</div>
-    <div class="node answer">Correlational</div>
-    <div class="node answer">Quasi-experimental</div>
-    <div class="node answer">True experiment</div>
-  </div>
+  <!-- DESIGN ROW -->
+  <div class="row">
 
-  <div class="line"></div>
+    <!-- OBSERVATIONAL -->
+    <div class="branch">
+      <div class="node answer">Observational</div>
+      <div class="line"></div>
+      <div class="node answer">
+        <a href="code/chi_gof.html">Chi‑Square Goodness of Fit</a>
+      </div>
+    </div>
 
-  <!-- TEST SELECTION PROMPT -->
-  <div class="center">
-    <div class="node prompt">Select the correct inferential test</div>
-  </div>
+    <!-- CORRELATIONAL -->
+    <div class="branch">
+      <div class="node answer">Correlational</div>
+      <div class="line"></div>
 
-  <div class="line"></div>
-  <div class="horizontal"></div>
+      <div class="node answer">
+        <a href="code/correlations.html">Pearson Correlation</a>
+      </div>
 
-  <!-- OBSERVATIONAL -->
-  <div class="center">
-    <div class="node answer">
-      <a href="code/chi_gof.html">Chi‑Square Goodness of Fit</a>
-    </div>
-  </div>
+      <div class="line"></div>
 
-  <div class="line"></div>
-  <div class="horizontal"></div>
+      <div class="node answer">
+        <a href="code/correlations.html">Spearman Correlation</a>
+      </div>
 
-  <!-- CORRELATIONAL -->
-  <div class="row three">
-    <div class="node answer">
-      <a href="code/correlations.html">Pearson Correlation</a>
-    </div>
-    <div class="node answer">
-      <a href="code/correlations.html">Spearman Correlation</a>
-    </div>
-    <div class="node answer">
-      <a href="code/chi_independence.html">Chi‑Square Test of Independence</a>
-    </div>
-  </div>
+      <div class="line"></div>
 
-  <div class="line"></div>
-  <div class="horizontal"></div>
+      <div class="node answer">
+        <a href="code/chi_independence.html">Chi‑Square Independence</a>
+      </div>
+    </div>
 
-  <!-- QUASI + TRUE EXPERIMENT -->
-  <div class="row four">
-    <div class="node answer">
-      <a href="code/ttest_ind.html">Independent t‑test</a>
+    <!-- QUASI-EXPERIMENT -->
+    <div class="branch">
+      <div class="node answer">Quasi-experimental</div>
+      <div class="line"></div>
+
+      <div class="node answer">
+        <a href="code/ttest_ind.html">Independent t‑test</a>
+      </div>
+
+      <div class="line"></div>
+
+      <div class="node answer">
+        <a href="code/mann_whitney.html">Mann‑Whitney U</a>
+      </div>
     </div>
-    <div class="node answer">
-      <a href="code/mann_whitney.html">Mann‑Whitney U</a>
+
+    <!-- TRUE EXPERIMENT -->
+    <div class="branch">
+      <div class="node answer">True experiment</div>
+      <div class="line"></div>
+
+      <div class="node answer">
+        <a href="code/ttest_dep.html">Dependent t‑test</a>
+      </div>
+
+      <div class="line"></div>
+
+      <div class="node answer">
+        <a href="code/wilcoxon.html">Wilcoxon Signed Rank</a>
+      </div>
     </div>
-    <div class="node answer">
-      <a href="code/ttest_dep.html">Dependent t‑test</a>
-    </div>
-    <div class="node answer">
-      <a href="code/wilcoxon.html">Wilcoxon Signed Rank</a>
-    </div>
+
   </div>
 
 </div>
