@@ -16,7 +16,7 @@
   }
 
   .tree {
-    width: 900px;
+    width: 950px;
     text-align: center;
   }
 
@@ -28,6 +28,16 @@
     backdrop-filter: blur(12px);
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
     font-size: 14px;
+  }
+
+  .node a {
+    text-decoration: none;
+    color: #e2e8f0;
+    display: block;
+  }
+
+  .node a:hover {
+    color: #7dd3fc;
   }
 
   .line {
@@ -46,11 +56,16 @@
 
   .row {
     display: grid;
-    gap: 20px;
+    gap: 18px;
     margin-top: 15px;
   }
 
   .row.four {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  /* NEW: 8-item layout */
+  .row.eight {
     grid-template-columns: repeat(4, 1fr);
   }
 
@@ -94,12 +109,41 @@
   <div class="line"></div>
   <div class="horizontal"></div>
 
-  <!-- Placeholder for test options -->
-  <div class="row four">
-    <div class="node">Test Option</div>
-    <div class="node">Test Option</div>
-    <div class="node">Test Option</div>
-    <div class="node">Test Option</div>
+  <!-- Test Options -->
+  <div class="row eight">
+
+    <div class="node">
+      <a href="code/stselect.html">Interactive Test Selector</a>
+    </div>
+
+    <div class="node">
+      <a href="code/correlations.html">Pearson and Spearman Correlations</a>
+    </div>
+
+    <div class="node">
+      <a href="code/chi_independence.html">Chi‑Square Independence</a>
+    </div>
+
+    <div class="node">
+      <a href="code/chi_gof.html">Chi‑Square Goodness of Fit</a>
+    </div>
+
+    <div class="node">
+      <a href="code/ttest_ind.html">Independent t‑test</a>
+    </div>
+
+    <div class="node">
+      <a href="code/mann_whitney.html">Mann‑Whitney U</a>
+    </div>
+
+    <div class="node">
+      <a href="code/ttest_dep.html">Dependent t‑test</a>
+    </div>
+
+    <div class="node">
+      <a href="code/wilcoxon.html">Wilcoxon Signed Rank</a>
+    </div>
+
   </div>
 
 </div>
