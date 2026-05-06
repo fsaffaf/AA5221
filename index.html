@@ -2,12 +2,30 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>AA 5221 — Course Materials</title>
 
-  assets/style.css
+  <!-- ✅ FIXED: load CSS -->
+  <link rel="stylesheet" href="assets/style.css">
 
   <style>
+    body {
+      margin: 0;
+      background: black;
+      color: white;
+      font-family: sans-serif;
+    }
+
+    /* ✅ STARFIELD CANVAS */
+    #starfield {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    }
+
     /* Glass Nav */
     .glass-nav {
       position: fixed;
@@ -25,7 +43,6 @@
       padding: 0.75rem 2rem;
       display: flex;
       justify-content: flex-end;
-      align-items: center;
       gap: 1.8rem;
     }
 
@@ -80,104 +97,90 @@
 
 <body>
 
-<!-- ✅ NAV FIXED -->
+<!-- ✅ NAV -->
 <nav class="glass-nav">
   <div class="nav-inner">
 
-    <!-- CLASS OVERVIEW -->
     <div class="nav-item dropdown">
       <span>Class Overview</span>
       <div class="dropdown-panel">
-        lectures/science.htmlWhat is Science?</a>
-        visual/decisiontree.html">Conceptual Overview</a>
+        <a href="lectures/science.html">What is Science?</a>
+        <a href="visual/decisiontree.html">Conceptual Overview</a>
       </div>
     </div>
 
-    <!-- RESEARCH METHODS -->
     <div class="nav-item dropdown">
       <span>Research Methods</span>
       <div class="dropdown-panel">
-        lectures/rdesigns.htmlResearch Designs</a>
-        interactive/researchdesign.htmlResearch Design Selector</a>
+        <a href="lectures/rdesigns.html">Research Designs</a>
+        <a href="interactive/researchdesign.html">Design Selector</a>
       </div>
     </div>
 
-    <!-- MEASUREMENT THEORY -->
     <div class="nav-item dropdown">
       <span>Measurement Theory</span>
       <div class="dropdown-panel">
-        lectures/data-types.htmlTypes of Data</a>
+        <a href="lectures/data-types.html">Types of Data</a>
       </div>
     </div>
 
-    <!-- DESCRIPTIVE -->
     <div class="nav-item dropdown">
-      <span>Descriptive Statistics</span>
+      <span>Descriptive Stats</span>
       <div class="dropdown-panel">
-        lectures/lecture02.htmlDescriptive Statistics</a>
-        lectures/lecture02.htmlMeasures of Central Tendency</a>
-        lectures/lecture02.htmlNormality</a>
+        <a href="lectures/lecture02.html">Overview</a>
+        <a href="lectures/lecture02.html">Central Tendency</a>
+        <a href="lectures/lecture02.html">Normality</a>
       </div>
     </div>
 
-    <!-- INFERENTIAL -->
     <div class="nav-item dropdown">
-      <span>Inferential Statistics</span>
+      <span>Inferential Stats</span>
       <div class="dropdown-panel">
-        lectures/lecture02.htmlInferential Overview</a>
-        lectures/hypotheses.htmlHypothesis Testing</a>
-        lectures/lecture03.htmlP‑Values & Effect Sizes</a>
+        <a href="lectures/lecture02.html">Overview</a>
+        <a href="lectures/hypotheses.html">Hypothesis Testing</a>
+        <a href="lectures/lecture03.html">P-Values</a>
       </div>
     </div>
 
-    <!-- VISUALIZING -->
     <div class="nav-item dropdown">
-      <span>Visualizing Data</span>
+      <span>Visualizing</span>
       <div class="dropdown-panel">
-        lectures/lecture01.htmlHistograms</a>
-        lectures/lecture02.htmlBoxplots</a>
-        lectures/lecture03.htmlScatterplots</a>
-        lectures/lecture03.htmlBar Graphs</a>
-        interactive/testselect.htmlNormality Interpreter</a>
+        <a href="lectures/lecture01.html">Histograms</a>
+        <a href="lectures/lecture02.html">Boxplots</a>
+        <a href="lectures/lecture03.html">Scatterplots</a>
+        <a href="interactive/testselect.html">Normality Tool</a>
       </div>
     </div>
 
-    <!-- RSTUDIO -->
     <div class="nav-item dropdown">
       <span>RStudio</span>
       <div class="dropdown-panel">
-        lectures/lecture01.htmlDownload RStudio</a>
-        lectures/intro-r.htmlR Basics</a>
-        lectures/lecture03.htmlR for Data Science</a>
-        lectures/lecture04.htmlR Markdown & RPubs</a>
+        <a href="lectures/lecture01.html">Download</a>
+        <a href="lectures/intro-r.html">R Basics</a>
+        <a href="lectures/lecture04.html">R Markdown</a>
       </div>
     </div>
 
-    <!-- R CODE -->
     <div class="nav-item dropdown">
       <span>R Code</span>
       <div class="dropdown-panel">
-        interactive/testselect.htmlInferential Test Selector</a>
-        code/correlations.htmlCorrelations</a>
-        code/chi_independence.htmlChi‑Square Independence</a>
-        code/chi_gof.htmlChi‑Square GOF</a>
-        code/ttest_ind.htmlIndependent t‑test</a>
-        code/mann_whitney.htmlMann‑Whitney U</a>
-        code/ttest_dep.htmlDependent t‑test</a>
-        code/wilcoxon.htmlWilcoxon Signed Rank</a>
+        <a href="interactive/testselect.html">Test Selector</a>
+        <a href="code/correlations.html">Correlations</a>
+        <a href="code/ttest_ind.html">t-test</a>
       </div>
     </div>
 
-    <!-- FAQ -->
-    #FAQ</a>
+    <div class="nav-item">
+      <a href="#faq" style="color:inherit; text-decoration:none;">FAQ</a>
+    </div>
 
   </div>
 </nav>
 
-<!-- Starfield -->
+<!-- ✅ STARFIELD -->
 <canvas id="starfield"></canvas>
 
-<!-- Main Content -->
+<!-- ✅ CONTENT -->
 <div class="home-container">
   <h1 style="
     font-size: 4rem;
@@ -187,25 +190,17 @@
     text-transform: uppercase;
     background: linear-gradient(180deg, #ffffff, #7dd3fc);
     -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    text-shadow:
-      0 0 20px rgba(56, 189, 248, 0.35),
-      0 0 40px rgba(56, 189, 248, 0.15);
-  ">
+    -webkit-text-fill-color: transparent;">
     AA <span style="font-weight:300;">5221</span>
   </h1>
 
-  <p style="
-    letter-spacing: 0.35em;
-    text-transform: uppercase;
-    opacity: 0.85;
-    margin-bottom: 3rem;
-  ">
+  <p style="letter-spacing: 0.35em; opacity: 0.85;">
     Applied Analytics & Research Methods I
   </p>
 </div>
 
-assets/stars.js
+<!-- ✅ FIXED: load JS AFTER DOM -->
+<script src="assets/stars.js"></script>
 
 </body>
 </html>
