@@ -16,47 +16,38 @@ body {
 }
 
 .tree {
-  width: 1100px;
+  width: 1000px;
   text-align: center;
 }
 
-/* BOXES */
 .node {
   padding: 12px 16px;
   border-radius: 14px;
   min-width: 170px;
   margin: 0 auto;
-  text-align: center;
 }
 
 /* PROMPT */
 .prompt {
   background: rgba(10,15,30,0.95);
   border: 1px solid #3b82f6;
-  box-shadow: 0 0 10px rgba(59,130,246,0.6);
+  box-shadow: 0 0 8px rgba(59,130,246,0.5);
   font-weight: 500;
 }
 
-/* ANSWERS */
+/* ANSWER */
 .answer {
   background: rgba(6,10,20,0.95);
   border: 1px solid #38bdf8;
-  box-shadow: 0 0 6px rgba(56,189,248,0.35);
-  transition: 0.2s;
+  box-shadow: 0 0 6px rgba(56,189,248,0.3);
 }
 
-.answer:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 0 12px rgba(56,189,248,0.6);
-}
-
-/* LINKS */
+/* LINKS (FIXED) */
 .node a {
   display: block;
   text-decoration: none;
   color: #e2e8f0;
 }
-
 .node a:hover {
   color: #7dd3fc;
 }
@@ -64,7 +55,7 @@ body {
 /* LINES */
 .line {
   width: 2px;
-  height: 26px;
+  height: 25px;
   background: rgba(59,130,246,0.7);
   margin: 0 auto;
 }
@@ -72,18 +63,17 @@ body {
 .horizontal {
   height: 2px;
   background: rgba(59,130,246,0.7);
-  margin: 0 auto 20px;
   width: 90%;
+  margin: 0 auto 20px;
 }
 
-/* ROWS */
+/* LAYOUT */
 .row {
   display: flex;
   justify-content: space-between;
   gap: 20px;
 }
 
-/* BRANCH */
 .branch {
   flex: 1;
   display: flex;
@@ -91,42 +81,18 @@ body {
   align-items: center;
 }
 
-/* SMALL ROW (correlations split) */
-.small-row {
+/* CORRELATION SPLIT */
+.split {
   display: flex;
-  gap: 12px;
-  margin-top: 5px;
+  gap: 10px;
 }
 
-/* MERGE SECTION */
-.merge-container {
-  position: relative;
-  width: 500px;
+/* MERGE AREA */
+.merge {
+  width: 300px;
   margin: 40px auto 0;
+  text-align: center;
 }
-
-/* ANGLED LINES */
-.merge-line-left,
-.merge-line-right {
-  position: absolute;
-  width: 2px;
-  height: 60px;
-  background: rgba(59,130,246,0.7);
-  top: -60px;
-}
-
-.merge-line-left {
-  left: 25%;
-  transform: rotate(40deg);
-  transform-origin: bottom center;
-}
-
-.merge-line-right {
-  right: 25%;
-  transform: rotate(-40deg);
-  transform-origin: bottom center;
-}
-
 </style>
 </head>
 
@@ -163,26 +129,24 @@ body {
       <div class="node prompt">Select inferential test</div>
       <div class="line"></div>
 
-      <div class="small-row">
+      <div class="split">
         <div class="node answer">
           <a href="code/chi_independence.html">Chi‑Square Independence</a>
         </div>
-
         <div class="node answer">
           <a href="code/correlations.html">Pearson / Spearman</a>
         </div>
       </div>
     </div>
 
-    <!-- SPACERS -->
+    <!-- SPACERS (keep symmetry) -->
     <div class="branch"></div>
     <div class="branch"></div>
 
   </div>
 
   <!-- EXPERIMENT ROW -->
-  <div class="row" style="margin-top:50px; width:600px; margin-left:auto; margin-right:auto;">
-
+  <div class="row" style="margin-top:40px; width:500px; margin-left:auto; margin-right:auto;">
     <div class="branch">
       <div class="node answer">Quasi‑experiment</div>
     </div>
@@ -190,16 +154,12 @@ body {
     <div class="branch">
       <div class="node answer">True experiment</div>
     </div>
-
   </div>
 
-  <!-- MERGE -->
-  <div class="merge-container">
+  <!-- MERGE (CENTERED CLEANLY) -->
+  <div class="line"></div>
 
-    <!-- angled lines -->
-    <div class="merge-line-left"></div>
-    <div class="merge-line-right"></div>
-
+  <div class="merge">
     <div class="node prompt">Select inferential test</div>
 
     <div class="line"></div>
@@ -207,7 +167,6 @@ body {
     <div class="node answer">
       <a href="code/ttest_ind.html">t‑tests</a>
     </div>
-
   </div>
 
 </div>
