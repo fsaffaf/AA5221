@@ -12,6 +12,7 @@
     color: #e2e8f0;
     display: flex;
     justify-content: center;
+    min-height: 100vh;
     padding: 50px;
   }
 
@@ -28,19 +29,21 @@
     min-width: 180px;
   }
 
-  /* PROMPT */
+  /* PROMPT BOX */
   .prompt {
     background: rgba(8,12,25,0.95);
-    border: 1px solid #3b82f6;
-    box-shadow: 0 0 12px rgba(59,130,246,0.5);
+    border: 1px solid rgba(59,130,246,0.9);
+    box-shadow:
+      0 0 14px rgba(59,130,246,0.6),
+      inset 0 0 8px rgba(59,130,246,0.3);
     font-weight: 500;
   }
 
-  /* ANSWER */
+  /* ANSWER BOX */
   .answer {
     background: rgba(5,8,18,0.95);
-    border: 1px solid #38bdf8;
-    box-shadow: 0 0 6px rgba(56,189,248,0.3);
+    border: 1px solid rgba(56,189,248,0.45);
+    box-shadow: 0 0 6px rgba(56,189,248,0.25);
     transition: 0.2s;
   }
 
@@ -58,7 +61,7 @@
   /* LINES */
   .line {
     width: 2px;
-    height: 28px;
+    height: 25px;
     background: rgba(59,130,246,0.7);
     margin: 0 auto;
   }
@@ -77,7 +80,7 @@
     gap: 20px;
   }
 
-  /* EACH BRANCH */
+  /* BRANCH */
   .branch {
     flex: 1;
     display: flex;
@@ -100,13 +103,19 @@
   <div class="line"></div>
   <div class="horizontal"></div>
 
-  <!-- FOUR BRANCHES -->
+  <!-- BRANCHES -->
   <div class="row">
 
     <!-- OBSERVATIONAL -->
     <div class="branch">
       <div class="node answer">Observational</div>
+
       <div class="line"></div>
+
+      <div class="node prompt">Select inferential test</div>
+
+      <div class="line"></div>
+
       <div class="node answer">
         <a href="code/chi_gof.html">Chi‑Square Goodness of Fit</a>
       </div>
@@ -115,6 +124,11 @@
     <!-- CORRELATIONAL -->
     <div class="branch">
       <div class="node answer">Correlational</div>
+
+      <div class="line"></div>
+
+      <div class="node prompt">Select inferential test</div>
+
       <div class="line"></div>
 
       <div class="node answer">
@@ -131,7 +145,13 @@
     <!-- QUASI -->
     <div class="branch">
       <div class="node answer">Quasi-experiment</div>
+
       <div class="line"></div>
+
+      <div class="node prompt">Select inferential test</div>
+
+      <div class="line"></div>
+
       <div class="node answer">
         <a href="code/ttest_ind.html">t‑Tests</a>
       </div>
@@ -140,7 +160,13 @@
     <!-- TRUE -->
     <div class="branch">
       <div class="node answer">True experiment</div>
+
       <div class="line"></div>
+
+      <div class="node prompt">Select inferential test</div>
+
+      <div class="line"></div>
+
       <div class="node answer">
         <a href="code/ttest_dep.html">t‑Tests</a>
       </div>
