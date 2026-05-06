@@ -1,3 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AA 5221 — Course Materials</title>
+
+  <link rel="stylesheet" href="assets/style.css" />
+
+  <style>
+    /* Glass Nav */
+    .glass-nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      background: rgba(10, 15, 25, 0.55);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(255,255,255,0.18);
+    }
+
+    .nav-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0.75rem 2rem;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 1.8rem;
+    }
+
+    .nav-item {
+      position: relative;
+      font-size: 0.7rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.85);
+      cursor: pointer;
+    }
+
+    .nav-item:hover { color: white; }
+
+    .dropdown-panel {
+      position: absolute;
+      top: 140%;
+      right: 0;
+      min-width: 300px;
+      background: rgba(15,15,30,0.95);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 16px;
+      backdrop-filter: blur(16px);
+      box-shadow: 0 30px 70px rgba(0,0,0,0.6);
+      display: none;
+    }
+
+    .dropdown:hover .dropdown-panel {
+      display: block;
+    }
+
+    .dropdown-panel a {
+      display: block;
+      padding: 0.6rem 1rem;
+      text-decoration: none;
+      color: rgba(255,255,255,0.85);
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+    }
+
+    .dropdown-panel a:hover {
+      background: rgba(255,255,255,0.1);
+      color: white;
+    }
+
+    .home-container {
+      padding-top: 6rem;
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- ✅ NAV FIXED -->
 <nav class="glass-nav">
   <div class="nav-inner">
 
@@ -27,7 +110,7 @@
       </div>
     </div>
 
-    <!-- DESCRIPTIVE STATS -->
+    <!-- DESCRIPTIVE -->
     <div class="nav-item dropdown">
       <span>Descriptive Statistics</span>
       <div class="dropdown-panel">
@@ -37,17 +120,17 @@
       </div>
     </div>
 
-    <!-- INFERENTIAL STATS -->
+    <!-- INFERENTIAL -->
     <div class="nav-item dropdown">
       <span>Inferential Statistics</span>
       <div class="dropdown-panel">
-        <a href="lectures/lecture02.html">Inferential Statistics</a>
+        <a href="lectures/lecture02.html">Inferential Overview</a>
         <a href="lectures/hypotheses.html">Hypothesis Testing</a>
-        <a href="lectures/lecture03.html">P-Values and Effect Sizes</a>
+        <a href="lectures/lecture03.html">P‑Values & Effect Sizes</a>
       </div>
     </div>
 
-    <!-- VISUALIZING DATA -->
+    <!-- VISUALIZING -->
     <div class="nav-item dropdown">
       <span>Visualizing Data</span>
       <div class="dropdown-panel">
@@ -55,7 +138,7 @@
         <a href="lectures/lecture02.html">Boxplots</a>
         <a href="lectures/lecture03.html">Scatterplots</a>
         <a href="lectures/lecture03.html">Bar Graphs</a>
-        <a href="interactive/testselect.html">Normality Result Interpreter</a>
+        <a href="interactive/testselect.html">Normality Interpreter</a>
       </div>
     </div>
 
@@ -63,10 +146,10 @@
     <div class="nav-item dropdown">
       <span>RStudio</span>
       <div class="dropdown-panel">
-        <a href="lectures/lecture01.html">Downloading RStudio</a>
+        <a href="lectures/lecture01.html">Download RStudio</a>
         <a href="lectures/intro-r.html">R Basics</a>
-        <a href="lectures/lecture03.html">R for Data Science Book</a>
-        <a href="lectures/lecture04.html">RMarkdown & RPubs</a>
+        <a href="lectures/lecture03.html">R for Data Science</a>
+        <a href="lectures/lecture04.html">R Markdown & RPubs</a>
       </div>
     </div>
 
@@ -75,12 +158,12 @@
       <span>R Code</span>
       <div class="dropdown-panel">
         <a href="interactive/testselect.html">Inferential Test Selector</a>
-        <a href="code/correlations.html">Pearson & Spearman</a>
-        <a href="code/chi_independence.html">Chi-Squared Independence</a>
-        <a href="code/chi_gof.html">Chi-Squared GOF</a>
-        <a href="code/ttest_ind.html">Independent t-test</a>
-        <a href="code/mann_whitney.html">Mann-Whitney U</a>
-        <a href="code/ttest_dep.html">Dependent t-test</a>
+        <a href="code/correlations.html">Correlations</a>
+        <a href="code/chi_independence.html">Chi‑Square Independence</a>
+        <a href="code/chi_gof.html">Chi‑Square GOF</a>
+        <a href="code/ttest_ind.html">Independent t‑test</a>
+        <a href="code/mann_whitney.html">Mann‑Whitney U</a>
+        <a href="code/ttest_dep.html">Dependent t‑test</a>
         <a href="code/wilcoxon.html">Wilcoxon Signed Rank</a>
       </div>
     </div>
@@ -90,3 +173,39 @@
 
   </div>
 </nav>
+
+<!-- Starfield -->
+<canvas id="starfield"></canvas>
+
+<!-- Main Content -->
+<div class="home-container">
+  <h1 style="
+    font-size: 4rem;
+    font-weight: 900;
+    letter-spacing: 0.25em;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    background: linear-gradient(180deg, #ffffff, #7dd3fc);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow:
+      0 0 20px rgba(56, 189, 248, 0.35),
+      0 0 40px rgba(56, 189, 248, 0.15);
+  ">
+    AA <span style="font-weight:300;">5221</span>
+  </h1>
+
+  <p style="
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    opacity: 0.85;
+    margin-bottom: 3rem;
+  ">
+    Applied Analytics & Research Methods I
+  </p>
+</div>
+
+<script src="assets/stars.js"></script>
+
+</body>
+</html>
