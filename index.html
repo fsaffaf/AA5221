@@ -5,10 +5,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>AA 5221 — Course Materials</title>
 
-  assets/style.css
+  <!-- ✅ FIXED stylesheet link -->
+  <link rel="stylesheet" href="assets/style.css" />
 
   <style>
-    /* Glass Nav */
+
+    /* ===============================
+       Starfield Fix
+    =============================== */
+
+    #starfield {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    /* ===============================
+       Glass Top Navigation
+    =============================== */
+
     .glass-nav {
       position: fixed;
       top: 0;
@@ -38,18 +54,25 @@
       cursor: pointer;
     }
 
-    .nav-item:hover { color: white; }
+    .nav-item:hover {
+      color: white;
+    }
 
+    /* ✅ GAP FIX */
     .dropdown-panel {
       position: absolute;
-      top: 140%;
+      top: 100%;
+      margin-top: 6px;
       right: 0;
+
       min-width: 300px;
       background: rgba(15,15,30,0.95);
       border: 1px solid rgba(255,255,255,0.2);
       border-radius: 16px;
+
       backdrop-filter: blur(16px);
       box-shadow: 0 30px 70px rgba(0,0,0,0.6);
+
       display: none;
     }
 
@@ -75,123 +98,114 @@
       padding-top: 6rem;
       text-align: center;
     }
+
   </style>
 </head>
 
 <body>
 
-<!-- ✅ NAV FIXED -->
+<!-- ✅ NAV (fully fixed) -->
 <nav class="glass-nav">
   <div class="nav-inner">
 
-    <!-- CLASS OVERVIEW -->
     <div class="nav-item dropdown">
       <span>Class Overview</span>
       <div class="dropdown-panel">
-        lectures/science.htmlWhat is Science?</a>
-        visual/decisiontree.html">Conceptual Overview</a>
+        <a href="lectures/science.html">What is Science?</a>
+        <a href="visual/decisiontree.html">Conceptual Overview</a>
       </div>
     </div>
 
-    <!-- RESEARCH METHODS -->
     <div class="nav-item dropdown">
       <span>Research Methods</span>
       <div class="dropdown-panel">
-        lectures/rdesigns.htmlResearch Designs</a>
-        interactive/researchdesign.htmlResearch Design Selector</a>
+        <a href="lectures/rdesigns.html">Research Designs</a>
+        <a href="interactive/researchdesign.html">Research Design Selector</a>
       </div>
     </div>
 
-    <!-- MEASUREMENT THEORY -->
     <div class="nav-item dropdown">
       <span>Measurement Theory</span>
       <div class="dropdown-panel">
-        lectures/data-types.htmlTypes of Data</a>
+        <a href="lectures/data-types.html">Types of Data</a>
       </div>
     </div>
 
-    <!-- DESCRIPTIVE -->
     <div class="nav-item dropdown">
       <span>Descriptive Statistics</span>
       <div class="dropdown-panel">
-        lectures/lecture02.htmlDescriptive Statistics</a>
-        lectures/lecture02.htmlMeasures of Central Tendency</a>
-        lectures/lecture02.htmlNormality</a>
+        <a href="lectures/lecture02.html">Descriptive Statistics</a>
+        <a href="lectures/lecture02.html">Measures of Central Tendency</a>
+        <a href="lectures/lecture02.html">Normality</a>
       </div>
     </div>
 
-    <!-- INFERENTIAL -->
     <div class="nav-item dropdown">
       <span>Inferential Statistics</span>
       <div class="dropdown-panel">
-        lectures/lecture02.htmlInferential Overview</a>
-        lectures/hypotheses.htmlHypothesis Testing</a>
-        lectures/lecture03.htmlP‑Values & Effect Sizes</a>
+        <a href="lectures/lecture02.html">Inferential Overview</a>
+        <a href="lectures/hypotheses.html">Hypothesis Testing</a>
+        <a href="lectures/lecture03.html">P-Values & Effect Sizes</a>
       </div>
     </div>
 
-    <!-- VISUALIZING -->
     <div class="nav-item dropdown">
       <span>Visualizing Data</span>
       <div class="dropdown-panel">
-        lectures/lecture01.htmlHistograms</a>
-        lectures/lecture02.htmlBoxplots</a>
-        lectures/lecture03.htmlScatterplots</a>
-        lectures/lecture03.htmlBar Graphs</a>
-        interactive/testselect.htmlNormality Interpreter</a>
+        <a href="lectures/lecture01.html">Histograms</a>
+        <a href="lectures/lecture02.html">Boxplots</a>
+        <a href="lectures/lecture03.html">Scatterplots</a>
+        <a href="lectures/lecture03.html">Bar Graphs</a>
+        <a href="interactive/testselect.html">Normality Interpreter</a>
       </div>
     </div>
 
-    <!-- RSTUDIO -->
     <div class="nav-item dropdown">
       <span>RStudio</span>
       <div class="dropdown-panel">
-        lectures/lecture01.htmlDownload RStudio</a>
-        lectures/intro-r.htmlR Basics</a>
-        lectures/lecture03.htmlR for Data Science</a>
-        lectures/lecture04.htmlR Markdown & RPubs</a>
+        <a href="lectures/lecture01.html">Download RStudio</a>
+        <a href="lectures/intro-r.html">R Basics</a>
+        <a href="lectures/lecture03.html">R for Data Science</a>
+        <a href="lectures/lecture04.html">RMarkdown & RPubs</a>
       </div>
     </div>
 
-    <!-- R CODE -->
     <div class="nav-item dropdown">
       <span>R Code</span>
       <div class="dropdown-panel">
-        interactive/testselect.htmlInferential Test Selector</a>
-        code/correlations.htmlCorrelations</a>
-        code/chi_independence.htmlChi‑Square Independence</a>
-        code/chi_gof.htmlChi‑Square GOF</a>
-        code/ttest_ind.htmlIndependent t‑test</a>
-        code/mann_whitney.htmlMann‑Whitney U</a>
-        code/ttest_dep.htmlDependent t‑test</a>
-        code/wilcoxon.htmlWilcoxon Signed Rank</a>
+        <a href="interactive/testselect.html">Inferential Test Selector</a>
+        <a href="code/correlations.html">Correlations</a>
+        <a href="code/chi_independence.html">Chi-Square Independence</a>
+        <a href="code/chi_gof.html">Chi-Square GOF</a>
+        <a href="code/ttest_ind.html">Independent t-test</a>
+        <a href="code/mann_whitney.html">Mann-Whitney U</a>
+        <a href="code/ttest_dep.html">Dependent t-test</a>
+        <a href="code/wilcoxon.html">Wilcoxon Signed Rank</a>
       </div>
     </div>
 
-    <!-- FAQ -->
-    #FAQ</a>
+    <a class="nav-item" href="#">FAQ</a>
 
   </div>
 </nav>
 
-<!-- Starfield -->
+<!-- ✅ Starfield -->
 <canvas id="starfield"></canvas>
 
-<!-- Main Content -->
+<!-- ✅ Content -->
 <div class="home-container">
   <h1 style="
-    font-size: 4rem;
-    font-weight: 900;
-    letter-spacing: 0.25em;
-    margin-bottom: 0.5rem;
-    text-transform: uppercase;
-    background: linear-gradient(180deg, #ffffff, #7dd3fc);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    text-shadow:
-      0 0 20px rgba(56, 189, 248, 0.35),
-      0 0 40px rgba(56, 189, 248, 0.15);
-  ">
+      font-size: 4rem;
+      font-weight: 900;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      background: linear-gradient(180deg, #ffffff, #7dd3fc);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow:
+        0 0 20px rgba(56,189,248,.35),
+        0 0 40px rgba(56,189,248,.15);
+    ">
     AA <span style="font-weight:300;">5221</span>
   </h1>
 
@@ -199,13 +213,13 @@
     letter-spacing: 0.35em;
     text-transform: uppercase;
     opacity: 0.85;
-    margin-bottom: 3rem;
   ">
     Applied Analytics & Research Methods I
   </p>
 </div>
 
-assets/stars.js
+<!-- ✅ FIXED JS LINK -->
+<script src="assets/stars.js"></script>
 
 </body>
 </html>
