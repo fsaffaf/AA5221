@@ -19,11 +19,11 @@ body {
   background: radial-gradient(circle at 50% 0%, #0a1022 0%, #020617 70%);
 }
 
-/* ✅ GLASS TITLE */
+/* ✅ TITLE (FORCED SINGLE LINE) */
 .title-box {
-  max-width: 950px;
+  max-width: 1100px;
   width: 90%;
-  padding: 2rem;
+  padding: 1.8rem;
   margin-bottom: 25px;
 
   background: rgba(15,23,42,.65);
@@ -38,15 +38,15 @@ body {
 
 .title-box h1 {
   margin: 0;
-  font-size: 2.4rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
+  font-size: 1.9rem; /* slightly reduced to keep one line */
+  letter-spacing: 0.08em;
+  white-space: nowrap; /* ✅ forces single line */
 
   background: linear-gradient(180deg, #ffffff, #7dd3fc);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 
-  text-shadow: 0 0 22px rgba(56,189,248,.35);
+  text-shadow: 0 0 18px rgba(56,189,248,.3);
 }
 
 
@@ -137,13 +137,6 @@ path {
   line-height: 1.4;
 }
 
-/* INSTRUCTION TEXT */
-.step-instruction {
-  margin-top: 6px;
-  font-size: 12px;
-  opacity: 0.7;
-}
-
 /* FINAL */
 .final a {
   border-color: #7dd3fc;
@@ -178,7 +171,6 @@ path {
     <a href="#">
       <div class="step-number">STEP 1</div>
       <div class="step-title">Select Research Design</div>
-      <div class="step-instruction">Click for more info</div>
     </a>
   </div>
 
@@ -186,7 +178,6 @@ path {
     <a href="#">
       <div class="step-number">STEP 2</div>
       <div class="step-title">Select Inferential Test</div>
-      <div class="step-instruction">Click for more info</div>
     </a>
   </div>
 
@@ -194,7 +185,6 @@ path {
     <a href="#">
       <div class="step-number">STEP 3</div>
       <div class="step-title">Run Analysis in R</div>
-      <div class="step-instruction">Click for more info</div>
     </a>
   </div>
 
@@ -202,7 +192,6 @@ path {
     <a href="#">
       <div class="step-number">STEP 4</div>
       <div class="step-title">Report Results (R Markdown)</div>
-      <div class="step-instruction">Click for more info</div>
     </a>
   </div>
 
@@ -210,4 +199,3 @@ path {
 
 </body>
 </html>
-``
