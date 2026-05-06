@@ -28,29 +28,28 @@
     transition: all 0.2s ease;
   }
 
-  /* PROMPT (decision steps) */
+  /* PROMPT NODES (decision steps) */
   .prompt {
-    background: rgba(10, 15, 30, 0.85);
-    border: 1px solid rgba(59,130,246,0.6);
+    background: rgba(8, 12, 25, 0.95);
+    border: 1px solid rgba(59,130,246,0.9);
     box-shadow:
-      0 0 10px rgba(59,130,246,0.35),
-      inset 0 0 10px rgba(59,130,246,0.15);
+      0 0 12px rgba(59,130,246,0.5),
+      inset 0 0 10px rgba(59,130,246,0.2);
     font-weight: 500;
     letter-spacing: 0.03em;
   }
 
-  /* ANSWER (choices/results) */
+  /* ANSWER NODES (choices) */
   .answer {
-    background: rgba(8, 12, 22, 0.9);
-    border: 1px solid rgba(56,189,248,0.4);
-    box-shadow:
-      0 0 6px rgba(56,189,248,0.15);
+    background: rgba(5, 8, 18, 0.95);
+    border: 1px solid rgba(56,189,248,0.45);
+    box-shadow: 0 0 6px rgba(56,189,248,0.15);
   }
 
   .answer:hover {
-    transform: translateY(-2px);
+    transform: translateY(-3px);
     box-shadow:
-      0 0 12px rgba(56,189,248,0.4);
+      0 0 14px rgba(56,189,248,0.4);
   }
 
   .node a {
@@ -67,18 +66,18 @@
   .line {
     width: 2px;
     height: 32px;
-    background: rgba(59,130,246,0.5);
+    background: rgba(59,130,246,0.6);
     margin: 0 auto;
   }
 
   .horizontal {
     height: 2px;
     width: 100%;
-    background: rgba(59,130,246,0.5);
+    background: rgba(59,130,246,0.6);
     margin: 0 auto 15px auto;
   }
 
-  /* GRID ROWS */
+  /* LAYOUT */
   .row {
     display: grid;
     gap: 18px;
@@ -86,4 +85,92 @@
   }
 
   .row.four {
-   
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .row.eight {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .center {
+    display: flex;
+    justify-content: center;
+  }
+
+</style>
+</head>
+
+<body>
+
+<div class="tree">
+
+  <!-- Top Prompt -->
+  <div class="center">
+    <div class="node prompt">
+      Review the scenario<br><br>
+      Determine the research design
+    </div>
+  </div>
+
+  <div class="line"></div>
+  <div class="horizontal"></div>
+
+  <!-- Research Design Options -->
+  <div class="row four">
+    <div class="node answer">Observational</div>
+    <div class="node answer">Correlational</div>
+    <div class="node answer">Quasi-experimental</div>
+    <div class="node answer">True experiment</div>
+  </div>
+
+  <div class="line"></div>
+
+  <!-- Middle Prompt -->
+  <div class="center">
+    <div class="node prompt">Select the correct inferential test</div>
+  </div>
+
+  <div class="line"></div>
+  <div class="horizontal"></div>
+
+  <!-- Test Options -->
+  <div class="row eight">
+
+    <div class="node answer">
+      <a href="code/stselect.html">Interactive Test Selector</a>
+    </div>
+
+    <div class="node answer">
+      <a href="code/correlations.html">Pearson / Spearman Correlations</a>
+    </div>
+
+    <div class="node answer">
+      <a href="code/chi_independence.html">Chi‑Square Independence</a>
+    </div>
+
+    <div class="node answer">
+      <a href="code/chi_gof.html">Chi‑Square Goodness of Fit</a>
+    </div>
+
+    <div class="node answer">
+      <a href="code/ttest_ind.html">Independent t‑test</a>
+    </div>
+
+    <div class="node answer">
+      <a href="code/mann_whitney.html">Mann‑Whitney U</a>
+    </div>
+
+    <div class="node answer">
+      <a href="code/ttest_dep.html">Dependent t‑test</a>
+    </div>
+
+    <div class="node answer">
+      <a href="code/wilcoxon.html">Wilcoxon Signed Rank</a>
+    </div>
+
+  </div>
+
+</div>
+
+</body>
+</html>
