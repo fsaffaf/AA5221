@@ -5,28 +5,39 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>AA 5221 — Course Materials</title>
 
-  <!-- ✅ Correct way to load your CSS -->
+  <!-- ✅ REAL stylesheet link (this is required) -->
   <link rel="stylesheet" href="assets/style.css" />
 
   <style>
-    /* Don't set a font here — your assets/style.css controls typography */
+    /* Let your external CSS control fonts */
     html, body {
       margin: 0;
       padding: 0;
       height: 100%;
-      background: #000; /* fallback */
+      background: transparent; /* don't cover the canvas */
     }
 
-    /* ✅ Make sure your canvas is full-screen behind everything */
+    body {
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ✅ Keep canvas visible: behind content, but NOT behind the body */
     #starfield {
       position: fixed;
-      top: 0;
-      left: 0;
+      inset: 0;
       width: 100vw;
       height: 100vh;
-      z-index: -1;
+      z-index: 0;              /* <-- not negative */
       pointer-events: none;
       display: block;
+    }
+
+    /* Put everything else above the canvas */
+    .glass-nav,
+    .home-container {
+      position: relative;
+      z-index: 1;
     }
 
     /* Glass Nav */
@@ -58,11 +69,11 @@
       text-transform: uppercase;
       color: rgba(255,255,255,0.85);
       cursor: pointer;
-      text-decoration: none; /* for <a> too */
+      text-decoration: none;
       user-select: none;
     }
 
-    .nav-item:hover { color: white; }
+    .nav-item:hover { color: #fff; }
 
     .dropdown-panel {
       position: absolute;
@@ -78,9 +89,7 @@
       overflow: hidden;
     }
 
-    .dropdown:hover .dropdown-panel {
-      display: block;
-    }
+    .dropdown:hover .dropdown-panel { display: block; }
 
     .dropdown-panel a {
       display: block;
@@ -94,28 +103,28 @@
 
     .dropdown-panel a:hover {
       background: rgba(255,255,255,0.1);
-      color: white;
+      color: #fff;
     }
 
     .home-container {
       padding-top: 6rem;
       text-align: center;
-      position: relative; /* keeps content above background effects */
-      z-index: 1;
     }
+
+    /* Spacer so your fixed nav doesn't overlap content */
+    .spacer { height: 4.5rem; }
   </style>
 </head>
 
 <body>
 
-  <!-- ✅ Starfield Canvas (must exist before stars.js runs) -->
+  <!-- ✅ Canvas must exist BEFORE stars.js runs -->
   <canvas id="starfield"></canvas>
 
-  <!-- ✅ NAV FIXED -->
+  <!-- ✅ NAV -->
   <nav class="glass-nav">
     <div class="nav-inner">
 
-      <!-- CLASS OVERVIEW -->
       <div class="nav-item dropdown">
         <span>Class Overview</span>
         <div class="dropdown-panel">
@@ -124,7 +133,6 @@
         </div>
       </div>
 
-      <!-- RESEARCH METHODS -->
       <div class="nav-item dropdown">
         <span>Research Methods</span>
         <div class="dropdown-panel">
@@ -133,7 +141,6 @@
         </div>
       </div>
 
-      <!-- MEASUREMENT THEORY -->
       <div class="nav-item dropdown">
         <span>Measurement Theory</span>
         <div class="dropdown-panel">
@@ -141,7 +148,6 @@
         </div>
       </div>
 
-      <!-- DESCRIPTIVE -->
       <div class="nav-item dropdown">
         <span>Descriptive Statistics</span>
         <div class="dropdown-panel">
@@ -151,7 +157,6 @@
         </div>
       </div>
 
-      <!-- INFERENTIAL -->
       <div class="nav-item dropdown">
         <span>Inferential Statistics</span>
         <div class="dropdown-panel">
@@ -161,7 +166,6 @@
         </div>
       </div>
 
-      <!-- VISUALIZING -->
       <div class="nav-item dropdown">
         <span>Visualizing Data</span>
         <div class="dropdown-panel">
@@ -173,7 +177,6 @@
         </div>
       </div>
 
-      <!-- RSTUDIO -->
       <div class="nav-item dropdown">
         <span>RStudio</span>
         <div class="dropdown-panel">
@@ -184,7 +187,6 @@
         </div>
       </div>
 
-      <!-- R CODE -->
       <div class="nav-item dropdown">
         <span>R Code</span>
         <div class="dropdown-panel">
@@ -199,13 +201,14 @@
         </div>
       </div>
 
-      <!-- FAQ -->
       <a class="nav-item" href="#faq">FAQ</a>
 
     </div>
   </nav>
 
-  <!-- ✅ Main Content -->
+  <div class="spacer"></div>
+
+  <!-- ✅ CONTENT (your title styling preserved exactly) -->
   <div class="home-container">
     <h1 style="
       font-size: 4rem;
@@ -233,10 +236,9 @@
     </p>
   </div>
 
-  <!-- Optional target so the FAQ link works -->
   <div id="faq" style="height: 1px;"></div>
 
-  <!-- ✅ Correct way to load your existing stars.js (keep it as-is) -->
+  <!-- ✅ REAL script tag (this is required) -->
   <script src="assets/stars.js"></script>
 
 </body>
