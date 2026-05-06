@@ -6,6 +6,7 @@
 <title>Inferential Test Selector</title>
 
 <style>
+
 body {
   margin: 0;
   font-family: system-ui, Arial;
@@ -28,18 +29,22 @@ h1 {
   -webkit-text-fill-color: transparent;
 }
 
+/* GRID */
 .flow {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 20px;
 }
 
+/* GLASS CARDS */
 .step {
   background: rgba(15,23,42,.65);
   border: 1px solid rgba(255,255,255,.15);
   border-radius: 18px;
   padding: 1.5rem;
   backdrop-filter: blur(18px);
+  display: flex;
+  flex-direction: column;
 }
 
 .step.active {
@@ -52,20 +57,40 @@ h1 {
 
 .step h3 {
   color: #93c5fd;
+  margin-bottom: 10px;
+}
+
+/* BUTTON GRID */
+.btn-wrap {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
 }
 
 button {
-  margin-top: 8px;
   padding: 10px;
   border-radius: 10px;
   border: none;
   background: #38bdf8;
   color: black;
   cursor: pointer;
+  font-weight: 600;
+  transition: 0.2s;
 }
 
+button:hover {
+  transform: translateY(-1px);
+}
+
+/* SELECTED BUTTON */
+button.selected {
+  background: linear-gradient(135deg, #22c55e, #4ade80);
+  box-shadow: 0 0 12px rgba(34,197,94,.6);
+}
+
+/* RESULT BOX */
 .result {
-  margin-top: 20px;
+  margin-top: 25px;
   padding: 20px;
   background: rgba(15,23,42,.65);
   border-radius: 18px;
@@ -78,16 +103,21 @@ button {
 }
 
 .startover {
-  margin-top: 10px;
+  margin-top: 12px;
   padding: 10px;
-  background: gray;
+  background: rgba(255,255,255,.15);
   color: white;
   border: none;
+  border-radius: 8px;
+  cursor: pointer;
 }
 
-@media (max-width:768px) {
+/* MOBILE */
+@media (max-width: 768px) {
   .flow { grid-template-columns: 1fr; }
+  .btn-wrap { grid-template-columns: 1fr; }
 }
+
 </style>
 </head>
 
@@ -101,11 +131,11 @@ button {
 
 <div class="step" id="step1">
 <h3>What level of measurement is the data?</h3>
-
-<button onclick="choose('measurement','categorical')">Categorical only</button>
-<button onclick="choose('measurement','cat_cont')">Categorical + Continuous</button>
-<button onclick="choose('measurement','continuous')">Continuous only</button>
-
+<div class="btn-wrap">
+<button onclick="choose('measurement','categorical', this)">Categorical only</button>
+<button onclick="choose('measurement','cat_cont', this)">Categorical + Continuous</button>
+<button onclick="choose('measurement','continuous', this)">Continuous only</button>
+</div>
 </div>
 
 <div class="step" id="step2"></div>
@@ -129,19 +159,30 @@ design: null,
 normality: null
 };
 
+/* BUTTON HIGHLIGHT */
+function highlight(btn) {
+  var group = btn.parentElement.querySelectorAll("button");
+  for (var i = 0; i < group.length; i++) {
+    group[i].classList.remove("selected");
+  }
+  btn.classList.add("selected");
+}
+
+function choose(type, value, btn) {
+  state[type] = value;
+  highlight(btn);
+
+  if (type === 'measurement') renderStep2(value);
+  if (type === 'design') handleDesign(value);
+  if (type === 'normality') showResult();
+}
+
 function setStepState(id, stateClass) {
-var el = document.getElementById(id);
-el.className = "step " + stateClass;
+  var el = document.getElementById(id);
+  el.className = "step " + stateClass;
 }
 
-function choose(type, value) {
-state[type] = value;
-
-if (type === 'measurement') renderStep2(value);
-if (type === 'design') handleDesign(value);
-if (type === 'normality') showResult();
-}
-
+/* STEP 2 */
 function renderStep2(value) {
 var step2 = document.getElementById('step2');
 setStepState('step2','active');
@@ -149,26 +190,33 @@ setStepState('step2','active');
 if (value === 'categorical') {
 step2.innerHTML =
 "<h3>Research design?</h3>" +
-"<button onclick=\"choose('design','two_var')\">Two variables</button>" +
-"<button onclick=\"choose('design','one_var')\">One variable</button>";
+"<div class='btn-wrap'>" +
+"<button onclick=\"choose('design','two_var', this)\">Two variables</button>" +
+"<button onclick=\"choose('design','one_var', this)\">One variable</button>" +
+"</div>";
 }
 
 if (value === 'cat_cont') {
 step2.innerHTML =
 "<h3>Research design?</h3>" +
-"<button onclick=\"choose('design','between')\">Between</button>" +
-"<button onclick=\"choose('design','within')\">Within</button>";
+"<div class='btn-wrap'>" +
+"<button onclick=\"choose('design','between', this)\">Between subjects</button>" +
+"<button onclick=\"choose('design','within', this)\">Within subjects</button>" +
+"</div>";
 }
 
 if (value === 'continuous') {
 step2.innerHTML =
 "<h3>Research design?</h3>" +
-"<button onclick=\"choose('design','relationship')\">Relationship</button>";
+"<div class='btn-wrap'>" +
+"<button onclick=\"choose('design','relationship', this)\">Relationship</button>" +
+"</div>";
 }
 
 document.getElementById('step3').innerHTML = "";
 }
 
+/* STEP 3 */
 function handleDesign(value) {
 
 if (state.measurement === 'categorical') {
@@ -186,10 +234,13 @@ setStepState('step3','active');
 
 step3.innerHTML =
 "<h3>Normal distribution?</h3>" +
-"<button onclick=\"choose('normality','normal')\">Normal</button>" +
-"<button onclick=\"choose('normality','not')\">Not normal</button>";
+"<div class='btn-wrap'>" +
+"<button onclick=\"choose('normality','normal', this)\">Normal</button>" +
+"<button onclick=\"choose('normality','not', this)\">Not normal</button>" +
+"</div>";
 }
 
+/* RESULT */
 function showResult(testOverride) {
 
 var test = testOverride;
@@ -223,8 +274,13 @@ test = "Spearman Correlation";
 
 document.getElementById('resultText').innerText = test;
 document.getElementById('resultBox').style.display = "block";
+
+setStepState('step1','completed');
+setStepState('step2','completed');
+setStepState('step3','completed');
 }
 
+/* RESET */
 function resetAll() {
 state.measurement = null;
 state.design = null;
