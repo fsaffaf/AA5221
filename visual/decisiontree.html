@@ -26,6 +26,7 @@ body {
   border-radius: 14px;
   min-width: 170px;
   margin: 0 auto;
+  text-align: center;
 }
 
 /* PROMPT */
@@ -90,11 +91,42 @@ body {
   align-items: center;
 }
 
+/* SMALL ROW (correlations split) */
 .small-row {
   display: flex;
   gap: 12px;
   margin-top: 5px;
 }
+
+/* MERGE SECTION */
+.merge-container {
+  position: relative;
+  width: 500px;
+  margin: 40px auto 0;
+}
+
+/* ANGLED LINES */
+.merge-line-left,
+.merge-line-right {
+  position: absolute;
+  width: 2px;
+  height: 60px;
+  background: rgba(59,130,246,0.7);
+  top: -60px;
+}
+
+.merge-line-left {
+  left: 25%;
+  transform: rotate(40deg);
+  transform-origin: bottom center;
+}
+
+.merge-line-right {
+  right: 25%;
+  transform: rotate(-40deg);
+  transform-origin: bottom center;
+}
+
 </style>
 </head>
 
@@ -110,19 +142,15 @@ body {
   <div class="line"></div>
   <div class="horizontal"></div>
 
-  <!-- MAIN BRANCHES -->
+  <!-- FIRST ROW -->
   <div class="row">
 
     <!-- OBSERVATIONAL -->
     <div class="branch">
       <div class="node answer">Observational</div>
-
       <div class="line"></div>
-
       <div class="node prompt">Select inferential test</div>
-
       <div class="line"></div>
-
       <div class="node answer">
         <a href="code/chi_gof.html">Chi‑Square Goodness of Fit</a>
       </div>
@@ -131,14 +159,10 @@ body {
     <!-- CORRELATIONAL -->
     <div class="branch">
       <div class="node answer">Correlational</div>
-
       <div class="line"></div>
-
       <div class="node prompt">Select inferential test</div>
-
       <div class="line"></div>
 
-      <!-- ✅ FIXED: parallel options -->
       <div class="small-row">
         <div class="node answer">
           <a href="code/chi_independence.html">Chi‑Square Independence</a>
@@ -150,48 +174,38 @@ body {
       </div>
     </div>
 
-    <!-- QUASI -->
+    <!-- SPACERS -->
+    <div class="branch"></div>
+    <div class="branch"></div>
+
+  </div>
+
+  <!-- EXPERIMENT ROW -->
+  <div class="row" style="margin-top:50px; width:600px; margin-left:auto; margin-right:auto;">
+
     <div class="branch">
       <div class="node answer">Quasi‑experiment</div>
-
-      <div class="line"></div>
-
-      <div class="node prompt">Select inferential test</div>
-
-      <div class="line"></div>
-
-      <!-- ✅ BOTH TEST TYPES -->
-      <div class="node answer">
-        <a href="code/ttest_ind.html">Independent t‑test / Mann‑Whitney</a>
-      </div>
-
-      <div class="line"></div>
-
-      <div class="node answer">
-        <a href="code/ttest_dep.html">Dependent t‑test / Wilcoxon</a>
-      </div>
     </div>
 
-    <!-- TRUE -->
     <div class="branch">
       <div class="node answer">True experiment</div>
+    </div>
 
-      <div class="line"></div>
+  </div>
 
-      <div class="node prompt">Select inferential test</div>
+  <!-- MERGE -->
+  <div class="merge-container">
 
-      <div class="line"></div>
+    <!-- angled lines -->
+    <div class="merge-line-left"></div>
+    <div class="merge-line-right"></div>
 
-      <!-- ✅ SAME OPTIONS (accurate logic) -->
-      <div class="node answer">
-        <a href="code/ttest_ind.html">Independent t‑test / Mann‑Whitney</a>
-      </div>
+    <div class="node prompt">Select inferential test</div>
 
-      <div class="line"></div>
+    <div class="line"></div>
 
-      <div class="node answer">
-        <a href="code/ttest_dep.html">Dependent t‑test / Wilcoxon</a>
-      </div>
+    <div class="node answer">
+      <a href="code/ttest_ind.html">t‑tests</a>
     </div>
 
   </div>
