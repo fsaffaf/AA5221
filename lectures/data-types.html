@@ -1,4 +1,69 @@
-<div style="font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif; line-height:1.6; padding:20px;">
+<div class="lecture-container">
+
+<style>
+  .lecture-container {
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    line-height: 1.7;
+    max-width: 900px;
+    margin: auto;
+    padding: 2rem;
+    color: rgba(255,255,255,0.92);
+  }
+
+  h2 {
+    color: #93c5fd;
+    margin-top: 2.5rem;
+  }
+
+  h3 {
+    color: #7dd3fc;
+    margin-top: 2rem;
+  }
+
+  p {
+    max-width: 70ch;
+  }
+
+  /* Glass callout */
+  .callout {
+    background: rgba(15,23,42,.65);
+    border: 1px solid rgba(125,211,252,0.25);
+    border-left: 4px solid #38bdf8;
+    padding: 12px 14px;
+    margin: 14px 0;
+    border-radius: 12px;
+    backdrop-filter: blur(10px);
+  }
+
+  /* Lists */
+  ul, ol {
+    padding-left: 1.5rem;
+  }
+
+  /* Table styling */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    overflow: hidden;
+    border-radius: 12px;
+  }
+
+  th {
+    background: rgba(14,104,179,0.8);
+    color: white;
+    padding: 10px;
+    text-align: left;
+  }
+
+  td {
+    padding: 12px;
+    border-top: 1px solid rgba(255,255,255,.1);
+    vertical-align: top;
+    background: rgba(255,255,255,0.03);
+  }
+
+</style>
 
 <p>🎧 Use the Immersive Reader feature (button in the top‑right corner) to have this page read aloud.</p>
 
@@ -6,11 +71,11 @@
 
 <p>There are two types of data: quantitative and qualitative.</p>
 
-<div style="background-color:#e6f7ff; border-left:4px solid #3b7ed1; padding:12px; margin:12px 0;">
+<div class="callout">
   <strong>Quantitative data</strong> is number‑based data that allows mathematical and statistical analysis (e.g., height in centimeters, weight in kilograms).
 </div>
 
-<div style="background-color:#e6f7ff; border-left:4px solid #3b7ed1; padding:12px; margin:12px 0;">
+<div class="callout">
   <strong>Qualitative data</strong> is word‑based data that provides meaning and context (e.g., interviews about opinions).
 </div>
 
@@ -20,11 +85,11 @@
 
 <p>Statistics fall into two main categories: descriptive and inferential.</p>
 
-<div style="background-color:#e6f7ff; border-left:4px solid #3b7ed1; padding:12px; margin:12px 0;">
+<div class="callout">
   <strong>Descriptive Statistics:</strong> Describe characteristics of a sample (mean, median, mode, range, standard deviation) and assess assumptions such as normality.
 </div>
 
-<div style="background-color:#e6f7ff; border-left:4px solid #3b7ed1; padding:12px; margin:12px 0;">
+<div class="callout">
   <strong>Inferential Statistics:</strong> Test hypotheses and allow conclusions about populations based on sample data (e.g., t‑tests).
 </div>
 
@@ -52,7 +117,7 @@ The middle value. Useful when data contain outliers.</p>
 <p><strong><em>Mode</em></strong><br>
 The most frequently occurring value. Best for categorical data.</p>
 
-<div style="background-color:#e6f7ff; border-left:4px solid #3b7ed1; padding:12px; margin:12px 0;">
+<div class="callout">
   <strong>Standard Deviation (SD):</strong> Measures how spread out values are around the mean.
 </div>
 
@@ -69,17 +134,17 @@ The most frequently occurring value. Best for categorical data.</p>
   <li><strong>Ratio</strong></li>
 </ol>
 
-<div style="background-color:#e6f7ff; border-left:4px solid #3b7ed1; padding:12px; margin:12px 0;">
+<div class="callout">
   <strong>Categorical Data:</strong> Nominal and ordinal
 </div>
 
-<div style="background-color:#e6f7ff; border-left:4px solid #3b7ed1; padding:12px; margin:12px 0;">
+<div class="callout">
   <strong>Continuous Data:</strong> Interval and ratio
 </div>
 
 <h3>Nominal Data</h3>
 
-<div style="background-color:#e6f7ff; border-left:4px solid #3b7ed1; padding:12px; margin:12px 0;">
+<div class="callout">
   <strong>Nominal:</strong> Categorical data with no rank order
 </div>
 
@@ -92,7 +157,7 @@ The most frequently occurring value. Best for categorical data.</p>
 
 <h3>Ordinal Data</h3>
 
-<div style="background-color:#e6f7ff; border-left:4px solid #3b7ed1; padding:12px; margin:12px 0;">
+<div class="callout">
   <strong>Ordinal:</strong> Categorical data with rank but unequal spacing
 </div>
 
@@ -104,7 +169,7 @@ The most frequently occurring value. Best for categorical data.</p>
 
 <h3>Interval Data</h3>
 
-<div style="background-color:#e6f7ff; border-left:4px solid #3b7ed1; padding:12px; margin:12px 0;">
+<div class="callout">
   <strong>Interval:</strong> Numeric data with equal spacing but no true zero
 </div>
 
@@ -115,7 +180,7 @@ The most frequently occurring value. Best for categorical data.</p>
 
 <h3>Ratio Data</h3>
 
-<div style="background-color:#e6f7ff; border-left:4px solid #3b7ed1; padding:12px; margin:12px 0;">
+<div class="callout">
   <strong>Ratio:</strong> Numeric data with a true zero
 </div>
 
@@ -130,8 +195,8 @@ The most frequently occurring value. Best for categorical data.</p>
 
 <p>Data type determines how it should be visualized.</p>
 
-<table border="1" style="border-collapse:collapse; width:100%;">
-<tr style="background:#0e68b3; color:white;">
+<table>
+<tr>
 <th>Histogram</th>
 <th>Bar Chart</th>
 </tr>
@@ -155,7 +220,7 @@ The most frequently occurring value. Best for categorical data.</p>
 
 <h3>Normal Distribution</h3>
 
-<div style="background-color:#e6f7ff; border-left:4px solid #3b7ed1; padding:12px; margin:12px 0;">
+<div class="callout">
   <strong>Normal Distribution:</strong> A bell‑shaped, symmetrical pattern common in many natural variables.
 </div>
 
