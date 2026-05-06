@@ -2,103 +2,165 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Analysis Workflow</title>
+<title>Analysis Flow</title>
 
 <style>
 body {
   margin: 0;
-  background: radial-gradient(circle at top, #05070f, #020617 80%);
-  font-family: "Segoe UI", sans-serif;
-  color: #e2e8f0;
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  font-family: "Segoe UI", sans-serif;
+  color: #e2e8f0;
+
+  background:
+    radial-gradient(circle at 50% 0%, #0a1022 0%, #020617 70%);
 }
 
-/* CONTAINER */
+/* FLOW CONTAINER */
+.flow-wrapper {
+  position: relative;
+  width: 1000px;
+}
+
+/* MAIN FLOW LINE */
+.flow-line {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(
+    to right,
+    rgba(56,189,248,0.2),
+    rgba(56,189,248,0.6),
+    rgba(56,189,248,0.2)
+  );
+  box-shadow:
+    0 0 10px rgba(56,189,248,0.5);
+  z-index: 0;
+}
+
+/* STEPS ROW */
 .flow {
   display: flex;
-  align-items: center;
-  gap: 25px;
+  justify-content: space-between;
+  position: relative;
+  z-index: 1;
 }
 
 /* STEP BOX */
 .step {
-  background: rgba(10,15,30,0.9);
-  border: 1px solid #3b82f6;
-  padding: 18px 22px;
+  width: 220px;
+  padding: 20px 18px;
   border-radius: 16px;
-  min-width: 220px;
   text-align: center;
-  backdrop-filter: blur(12px);
+
+  background: rgba(10,15,30,0.6);
+  border: 1px solid rgba(59,130,246,0.5);
+  backdrop-filter: blur(14px);
 
   box-shadow:
-    0 0 10px rgba(59,130,246,0.4),
-    inset 0 0 10px rgba(59,130,246,0.15);
+    0 10px 30px rgba(0,0,0,0.6),
+    0 0 12px rgba(59,130,246,0.2),
+    inset 0 0 12px rgba(59,130,246,0.1);
 
-  transition: all 0.2s ease;
+  transition: all 0.25s ease;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-/* HOVER EFFECT */
+/* HOVER */
 .step:hover {
-  transform: translateY(-4px);
+  transform: translateY(-6px) scale(1.03);
   box-shadow:
-    0 0 18px rgba(56,189,248,0.6);
+    0 20px 40px rgba(0,0,0,0.8),
+    0 0 25px rgba(56,189,248,0.6);
 }
 
-/* LINKS */
+/* LINK */
 .step a {
   color: #e2e8f0;
   text-decoration: none;
-  display: block;
 }
 
-.step a:hover {
-  color: #7dd3fc;
+/* ICON */
+.icon {
+  font-size: 20px;
+  margin-bottom: 8px;
 }
 
-/* ARROW */
-.arrow {
-  font-size: 28px;
-  color: #60a5fa;
-  text-shadow: 0 0 10px rgba(96,165,250,0.6);
+/* TEXT */
+.title {
+  font-size: 12px;
+  opacity: 0.7;
+  letter-spacing: 0.08em;
+}
+
+.main {
+  font-size: 15px;
+  font-weight: 600;
+  margin-top: 4px;
+}
+
+/* FINAL STEP GLOW */
+.final {
+  border: 1px solid rgba(56,189,248,0.9);
+  box-shadow:
+    0 0 20px rgba(56,189,248,0.8),
+    inset 0 0 10px rgba(56,189,248,0.25);
 }
 </style>
 </head>
 
 <body>
 
-<div class="flow">
+<div class="flow-wrapper">
 
-  <div class="step">
-    <a href="#">
-      Select scenario’s research design
-    </a>
-  </div>
+  <!-- CONTINUOUS FLOW LINE -->
+  <div class="flow-line"></div>
 
-  <div class="arrow">→</div>
+  <div class="flow">
 
-  <div class="step">
-    <a href="#">
-      Select the correct inferential test
-    </a>
-  </div>
+    <!-- STEP 1 -->
+    <div class="step">
+      <a href="#">
+        <div class="icon">🧠</div>
+        <div class="title">STEP 1</div>
+        <div class="main">Select Research Design</div>
+      </a>
+    </div>
 
-  <div class="arrow">→</div>
+    <!-- STEP 2 -->
+    <div class="step">
+      <a href="#">
+        <div class="icon">📊</div>
+        <div class="title">STEP 2</div>
+        <div class="main">Choose Inferential Test</div>
+      </a>
+    </div>
 
-  <div class="step">
-    <a href="#">
-      Run code in R
-    </a>
-  </div>
+    <!-- STEP 3 -->
+    <div class="step">
+      <a href="#">
+        <div class="icon">💻</div>
+        <div class="title">STEP 3</div>
+        <div class="main">Run Analysis in R</div>
+      </a>
+    </div>
 
-  <div class="arrow">→</div>
+    <!-- STEP 4 -->
+    <div class="step final">
+      <a href="#">
+        <div class="icon">📝</div>
+        <div class="title">STEP 4</div>
+        <div class="main">Report Results (R Markdown)</div>
+      </a>
+    </div>
 
-  <div class="step">
-    <a href="#">
-      Report results in replicable file (R Markdown)
-    </a>
   </div>
 
 </div>
