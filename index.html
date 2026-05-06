@@ -2,10 +2,31 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport */  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    .glass-nav, .home-container, #faq {
-      position: relative;
-      z-index: 2;
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AA 5221 — Course Materials</title>
+
+  <!-- ✅ Correct way to load your CSS -->
+  <link rel="stylesheet" href="assets/style.css" />
+
+  <style>
+    /* Don't set a font here — your assets/style.css controls typography */
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      background: #000; /* fallback */
+    }
+
+    /* ✅ Make sure your canvas is full-screen behind everything */
+    #starfield {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: -1;
+      pointer-events: none;
+      display: block;
     }
 
     /* Glass Nav */
@@ -37,11 +58,11 @@
       text-transform: uppercase;
       color: rgba(255,255,255,0.85);
       cursor: pointer;
+      text-decoration: none; /* for <a> too */
       user-select: none;
-      text-decoration: none;
     }
 
-    .nav-item:hover { color: #fff; }
+    .nav-item:hover { color: white; }
 
     .dropdown-panel {
       position: absolute;
@@ -57,7 +78,9 @@
       overflow: hidden;
     }
 
-    .dropdown:hover .dropdown-panel { display: block; }
+    .dropdown:hover .dropdown-panel {
+      display: block;
+    }
 
     .dropdown-panel a {
       display: block;
@@ -71,30 +94,24 @@
 
     .dropdown-panel a:hover {
       background: rgba(255,255,255,0.1);
-      color: #fff;
+      color: white;
     }
 
     .home-container {
       padding-top: 6rem;
       text-align: center;
-    }
-
-    /* Spacer so content doesn’t hide under fixed nav */
-    .spacer { height: 4.5rem; }
-
-    /* Optional FAQ area so the FAQ link has a target */
-    #faq {
-      max-width: 900px;
-      margin: 4rem auto 6rem;
-      padding: 0 1.25rem;
-      opacity: 0.92;
+      position: relative; /* keeps content above background effects */
+      z-index: 1;
     }
   </style>
 </head>
 
 <body>
 
-  <!-- ✅ NAV -->
+  <!-- ✅ Starfield Canvas (must exist before stars.js runs) -->
+  <canvas id="starfield"></canvas>
+
+  <!-- ✅ NAV FIXED -->
   <nav class="glass-nav">
     <div class="nav-inner">
 
@@ -129,8 +146,8 @@
         <span>Descriptive Statistics</span>
         <div class="dropdown-panel">
           <a href="lectures/lecture02.html">Descriptive Statistics</a>
-          <a href="lectures/lecture02.html#central-tendency">Measures of Central Tendency</a>
-          <a href="lectures/lecture02.html#normality">Normality</a>
+          <a href="lectures/lecture02.html">Measures of Central Tendency</a>
+          <a href="lectures/lecture02.html">Normality</a>
         </div>
       </div>
 
@@ -138,7 +155,7 @@
       <div class="nav-item dropdown">
         <span>Inferential Statistics</span>
         <div class="dropdown-panel">
-          <a href="lectures/lecture02.html#inferential">Inferential Overview</a>
+          <a href="lectures/lecture02.html">Inferential Overview</a>
           <a href="lectures/hypotheses.html">Hypothesis Testing</a>
           <a href="lectures/lecture03.html">P‑Values &amp; Effect Sizes</a>
         </div>
@@ -148,10 +165,10 @@
       <div class="nav-item dropdown">
         <span>Visualizing Data</span>
         <div class="dropdown-panel">
-          <a href="lectures/lecture01.html#histograms">Histograms</a>
-          <a href="lectures/lecture02.html#boxplots">Boxplots</a>
-          <a href="lectures/lecture03.html#scatterplots">Scatterplots</a>
-          <a href="lectures/lecture03.html#bar-graphs">Bar Graphs</a>
+          <a href="lectures/lecture01.html">Histograms</a>
+          <a href="lectures/lecture02.html">Boxplots</a>
+          <a href="lectures/lecture03.html">Scatterplots</a>
+          <a href="lectures/lecture03.html">Bar Graphs</a>
           <a href="interactive/testselect.html">Normality Interpreter</a>
         </div>
       </div>
@@ -160,9 +177,9 @@
       <div class="nav-item dropdown">
         <span>RStudio</span>
         <div class="dropdown-panel">
-          <a href="lectures/lecture01.html#rstudio">Download RStudio</a>
+          <a href="lectures/lecture01.html">Download RStudio</a>
           <a href="lectures/intro-r.html">R Basics</a>
-          <a href="lectures/lecture03.html#r4ds">R for Data Science</a>
+          <a href="lectures/lecture03.html">R for Data Science</a>
           <a href="lectures/lecture04.html">R Markdown &amp; RPubs</a>
         </div>
       </div>
@@ -171,7 +188,7 @@
       <div class="nav-item dropdown">
         <span>R Code</span>
         <div class="dropdown-panel">
-          <a href="interactive/testselect.html#inferential">Inferential Test Selector</a>
+          <a href="interactive/testselect.html">Inferential Test Selector</a>
           <a href="code/correlations.html">Correlations</a>
           <a href="code/chi_independence.html">Chi‑Square Independence</a>
           <a href="code/chi_gof.html">Chi‑Square GOF</a>
@@ -188,12 +205,7 @@
     </div>
   </nav>
 
-  <div class="spacer"></div>
-
-  <!-- ✅ STARFIELD -->
-  <canvas id="starfield" aria-hidden="true"></canvas>
-
-  <!-- ✅ MAIN CONTENT -->
+  <!-- ✅ Main Content -->
   <div class="home-container">
     <h1 style="
       font-size: 4rem;
@@ -221,111 +233,11 @@
     </p>
   </div>
 
-  <!-- Optional FAQ target -->
-  <section id="faq">
-    <h2 style="letter-spacing:0.18em; text-transform:uppercase;">FAQ</h2>
-    <p style="opacity:0.85; line-height:1.6;">
-      Add your FAQ content here.
-    </p>
-  </section>
+  <!-- Optional target so the FAQ link works -->
+  <div id="faq" style="height: 1px;"></div>
 
-  <!-- ✅ Inline Starfield Script -->
-  <script>
-    (() => {
-      const canvas = document.getElementById("starfield");
-      if (!canvas) return;
-
-      const ctx = canvas.getContext("2d", { alpha: true });
-
-      let w = 0, h = 0, dpr = 1;
-      let stars = [];
-      const STAR_COUNT = 260;
-
-      function resize() {
-        dpr = Math.max(1, window.devicePixelRatio || 1);
-        w = Math.floor(window.innerWidth);
-        h = Math.floor(window.innerHeight);
-
-        canvas.style.width = w + "px";
-        canvas.style.height = h + "px";
-        canvas.width = Math.floor(w * dpr);
-        canvas.height = Math.floor(h * dpr);
-
-        // Draw in CSS pixels (crisp on retina)
-        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-
-        stars = Array.from({ length: STAR_COUNT }, () => ({
-          x: Math.random() * w,
-          y: Math.random() * h,
-          r: Math.random() * 1.6 + 0.2,
-          s: Math.random() * 0.35 + 0.05,   // speed
-          a: Math.random() * 0.65 + 0.15,   // alpha
-          tw: Math.random() * 0.02 + 0.004  // twinkle
-        }));
-      }
-
-      function frame() {
-        ctx.clearRect(0, 0, w, h);
-
-        // subtle space gradient
-        const g = ctx.createRadialGradient(w * 0.5, h * 0.35, 0, w * 0.5, h * 0.5, Math.max(w, h));
-        g.addColorStop(0, "rgba(10, 15, 30, 0.35)");
-        g.addColorStop(1, "rgba(0, 0, 0, 1)");
-        ctx.fillStyle = g;
-        ctx.fillRect(0, 0, w, h);
-
-        for (const s of stars) {
-          s.y += s.s;
-          if (s.y > h + 5) {
-            s.y = -5;
-            s.x = Math.random() * w;
-          }
-
-          // twinkle
-          s.a += (Math.random() - 0.5) * s.tw;
-          s.a = Math.max(0.08, Math.min(0.95, s.a));
-
-          ctx.beginPath();
-          ctx.fillStyle = `rgba(255,255,255,${s.a})`;
-          ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
-          ctx.fill();
-        }
-
-        requestAnimationFrame(frame);
-      }
-
-      window.addEventListener("resize", resize, { passive: true });
-      resize();
-      frame();
-    })();
-  </script>
+  <!-- ✅ Correct way to load your existing stars.js (keep it as-is) -->
+  <script src="assets/stars.js"></script>
 
 </body>
 </html>
-  <title>AA 5221 — Course Materials</title>
-
-  <!-- ✅ Correct stylesheet link (this is what was broken before) -->
-  <link rel="stylesheet" href="assets/style.css" />
-
-  <style>
-    /* Do NOT set font-family here — let assets/style.css control typography */
-    html, body { height: 100%; }
-    body {
-      margin: 0;
-      background: #000; /* fallback behind stars */
-      color: #fff;
-      overflow-x: hidden;
-      position: relative;
-    }
-
-    /* ✅ Starfield sits behind content without negative z-index issues */
-    #starfield {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100vw;
-      height: 100vh;
-      z-index: 0;
-      pointer-events: none;
-      display: block;
-    }
-
