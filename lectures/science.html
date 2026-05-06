@@ -13,40 +13,43 @@
   }
 
   .lecture-container {
-    max-width: 1100px;
+    max-width: 900px;
     margin: auto;
     padding: 6rem 2rem 4rem;
   }
 
   h1 {
-    font-size: 3.4rem;
+    font-size: 3.2rem;
     letter-spacing: 0.25em;
     text-transform: uppercase;
     background: linear-gradient(180deg, #ffffff, #7dd3fc);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    text-shadow: 0 0 30px rgba(56,189,248,.35);
+    text-shadow: 0 0 25px rgba(56,189,248,.25);
+    margin-bottom: 0.5rem;
   }
 
   .subtitle {
-    letter-spacing: .35em;
+    letter-spacing: .3em;
     opacity: .85;
     margin-bottom: 3rem;
     text-transform: uppercase;
   }
 
-  h2 { color:#93c5fd; margin-top:0; }
+  h2 {
+    color:#93c5fd;
+    margin-bottom: 1rem;
+  }
 
   h3 {
     color:#7dd3fc;
-    margin-top:0;
-    font-size: 1.1rem;
+    margin-bottom: 0.4rem;
   }
 
   p {
-    line-height:1.7;
-    margin: .5rem 0 0;
-    max-width: 65ch; /* improves readability */
+    line-height:1.75;
+    max-width: 70ch;
+    margin: 0.5rem 0 0;
   }
 
   .glass {
@@ -59,38 +62,27 @@
     box-shadow:0 20px 50px rgba(0,0,0,.5);
   }
 
-  /* NEW: grid layout for sections */
-  .section-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1.75rem;
-    margin-top: 1.5rem;
+  /* Section blocks */
+  .section {
+    margin-bottom: 2.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
   }
 
-  /* Individual concept cards */
-  .concept {
-    padding: 1.25rem 1.25rem 1.4rem;
-    border-radius: 14px;
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(125,211,252,0.18);
+  /* Example callouts */
+  .example {
+    margin-top: 1rem;
+    padding: 1rem 1.2rem;
+    border-left: 3px solid #38bdf8;
+    background: rgba(56,189,248,0.08);
+    border-radius: 10px;
+    font-size: 0.95rem;
   }
 
-  /* Full-width section (for intro + conclusion blocks) */
-  .full {
-    grid-column: 1 / -1;
+  .example strong {
+    color: #7dd3fc;
   }
 
-  /* subtle divider look */
-  .concept:not(:last-child) {
-    position: relative;
-  }
-
-  /* Responsive */
-  @media (max-width: 800px) {
-    .section-grid {
-      grid-template-columns: 1fr;
-    }
-  }
 </style>
 </head>
 
@@ -107,35 +99,59 @@
 <div class="glass">
 <h2>Overview</h2>
 
-<div class="section-grid">
+<p>Before defining what science is, it is helpful to understand what science is not.</p>
 
-  <div class="full">
-    <p>Before defining what science is, it is helpful to understand what science is not.</p>
-  </div>
+<!-- SECTION 1 -->
+<div class="section">
+<h3>Science is Not Personal Feelings</h3>
 
-  <div class="concept">
-    <h3>Science is Not Personal Feelings</h3>
-    <p>Sometimes we believe something is true simply because it feels true, even when there is no evidence. Feelings are subjective and can be influenced by emotions, expectations, or personal biases. Because of this, personal feelings alone are not a reliable source of scientific knowledge. For example, you may meet a person for the first time and feel that they are untrustworthy, even though they have not done anything wrong.</p>
-  </div>
+<p>Sometimes we believe something is true simply because it feels true, even when there is no evidence. Feelings are subjective and can be influenced by emotions, expectations, or personal biases. Because of this, personal feelings alone are not a reliable source of scientific knowledge.</p>
 
-  <div class="concept">
-    <h3>Science is Not Personal Experience</h3>
-    <p>Personal experience is limited and can be misleading. We can only observe a small part of the world, and our past experiences often shape how we interpret new events. This influence is called bias. Observations are naturally influenced by prior experiences, which can create biases in how we interpret events. For example, you may wear your favorite football player’s jersey while watching a game, and your team wins. After this happens once or twice, you may believe that wearing the jersey causes the team to win. In reality, this conclusion is based on coincidence, not evidence.</p>
-  </div>
-
-  <div class="concept">
-    <h3>Science is Not Authority Figures</h3>
-    <p>Authority figures include people or institutions in positions of power, such as parents, teachers, religious leaders, the media, or the government. It is common to accept information because it comes from an authority figure. Authority figures can be caring, sincere, and confident, yet still incorrect. Because of this, science does not accept claims as true simply because an authority figure says they are true. Instead, scientific claims must be supported by evidence that can be tested and evaluated. For example, sometimes parents tell children that if they swallow chewing gum, it will stay in their stomach for several years. Parents usually say this to discourage children from swallowing gum, and their intentions are good. However, this claim is not scientifically accurate. Chewing gum is not digested, but it passes through the body in a few days.</p>
-  </div>
-
-  <div class="concept">
-    <h3>These Ways of Knowing Are Still Useful</h3>
-    <p>Personal feelings, personal experience, and authority figures are not science. However, this does not mean these ways of knowing are always wrong or useless. In everyday life, these ways of knowing often help us make decisions quickly and function effectively. For example, personal experience can help you learn which study habits work best for you. You may notice that you understand material better when you study in a quiet space rather than with music playing. It does not matter that this technique may not apply to everyone.</p>
-  </div>
-
+<div class="example">
+<strong>Example:</strong><br>
+you may meet a person for the first time and feel that they are untrustworthy, even though they have not done anything wrong.
 </div>
+</div>
+
+<!-- SECTION 2 -->
+<div class="section">
+<h3>Science is Not Personal Experience</h3>
+
+<p>Personal experience is limited and can be misleading. We can only observe a small part of the world, and our past experiences often shape how we interpret new events. This influence is called bias. Observations are naturally influenced by prior experiences, which can create biases in how we interpret events.</p>
+
+<div class="example">
+<strong>Example:</strong><br>
+you may wear your favorite football player’s jersey while watching a game, and your team wins. After this happens once or twice, you may believe that wearing the jersey causes the team to win. In reality, this conclusion is based on coincidence, not evidence.
+</div>
+</div>
+
+<!-- SECTION 3 -->
+<div class="section">
+<h3>Science is Not Authority Figures</h3>
+
+<p>Authority figures include people or institutions in positions of power, such as parents, teachers, religious leaders, the media, or the government. It is common to accept information because it comes from an authority figure. Authority figures can be caring, sincere, and confident, yet still incorrect. Because of this, science does not accept claims as true simply because an authority figure says they are true. Instead, scientific claims must be supported by evidence that can be tested and evaluated.</p>
+
+<div class="example">
+<strong>Example:</strong><br>
+sometimes parents tell children that if they swallow chewing gum, it will stay in their stomach for several years. Parents usually say this to discourage children from swallowing gum, and their intentions are good. However, this claim is not scientifically accurate. Chewing gum is not digested, but it passes through the body in a few days.
+</div>
+</div>
+
+<!-- SECTION 4 -->
+<div class="section" style="border-bottom:none;">
+<h3>These Ways of Knowing Are Still Useful</h3>
+
+<p>Personal feelings, personal experience, and authority figures are not science. However, this does not mean these ways of knowing are always wrong or useless. In everyday life, these ways of knowing often help us make decisions quickly and function effectively.</p>
+
+<div class="example">
+<strong>Example:</strong><br>
+personal experience can help you learn which study habits work best for you. You may notice that you understand material better when you study in a quiet space rather than with music playing. It does not matter that this technique may not apply to everyone.
+</div>
+</div>
+
 </div>
 
 </div>
 </body>
 </html>
+``
