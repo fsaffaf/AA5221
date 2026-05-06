@@ -2,21 +2,97 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Curved Flow</title>
+<title>Analysis Pipeline</title>
 
 <style>
 body {
   margin: 0;
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
-  background: radial-gradient(circle at 50% 0%, #0a1022 0%, #020617 70%);
+  justify-content: flex-start;
+  padding-top: 40px;
+
   font-family: "Segoe UI", sans-serif;
   color: #e2e8f0;
+
+  background:
+    radial-gradient(circle at 50% 0%, #0a1022 0%, #020617 70%);
 }
 
-/* WRAPPER */
+/* ================= TITLE ================= */
+
+.hero-title {
+  text-align: center;
+  margin-bottom: 20px;
+  padding: 20px 30px;
+
+  background: rgba(10,15,30,0.5);
+  border: 1px solid rgba(56,189,248,0.2);
+  border-radius: 18px;
+
+  backdrop-filter: blur(16px);
+
+  box-shadow:
+    0 15px 40px rgba(0,0,0,0.6),
+    inset 0 0 12px rgba(56,189,248,0.08);
+}
+
+.title-text {
+  letter-spacing: 0.25em;
+  font-size: 15px;
+  font-weight: 500;
+
+  background: linear-gradient(180deg, #ffffff, #7dd3fc);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  text-shadow: 0 0 12px rgba(56,189,248,0.35);
+}
+
+.title-text span {
+  display: block;
+  font-size: 20px;
+  margin-top: 8px;
+  letter-spacing: 0.15em;
+
+  background: linear-gradient(180deg, #ffffff, #38bdf8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  text-shadow: 0 0 18px rgba(56,189,248,0.6);
+}
+
+/* divider */
+.title-line {
+  margin: 16px auto 0;
+  width: 220px;
+  height: 2px;
+
+  background: linear-gradient(to right, transparent, #38bdf8, transparent);
+  box-shadow: 0 0 10px rgba(56,189,248,0.7);
+}
+
+/* connector */
+.title-connector {
+  width: 2px;
+  height: 50px;
+  margin: 10px auto 10px;
+
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    rgba(56,189,248,.9),
+    transparent
+  );
+
+  box-shadow: 0 0 12px rgba(56,189,248,0.6);
+}
+
+
+/* ================= FLOW ================= */
+
 .flow-wrapper {
   position: relative;
   width: 1000px;
@@ -37,7 +113,7 @@ path {
   filter: drop-shadow(0 0 8px rgba(56,189,248,0.7));
 }
 
-/* CONNECTOR DOT */
+/* DOTS */
 .dot {
   position: absolute;
   width: 12px;
@@ -70,7 +146,7 @@ path {
     0 8px 20px rgba(0,0,0,0.6),
     0 0 10px rgba(56,189,248,0.25);
 
-  transform: translate(-50%, -50%); /* ✅ true centering */
+  transform: translate(-50%, -50%);
   transition: 0.25s;
 }
 
@@ -113,44 +189,57 @@ path {
 
 <body>
 
+<!-- ✅ TITLE -->
+<div class="hero-title">
+  <div class="title-text">
+    RESEARCH METHODS & STATISTICS I
+    <br>
+    <span>ANALYSIS PIPELINE OVERVIEW</span>
+  </div>
+  <div class="title-line"></div>
+</div>
+
+<!-- ✅ CONNECTOR -->
+<div class="title-connector"></div>
+
+<!-- ✅ FLOW -->
 <div class="flow-wrapper">
 
-  <!-- CURVE -->
   <svg width="1000" height="260">
     <path d="M 40 160 Q 250 20, 500 160 T 960 140" />
   </svg>
 
-  <!-- DOTS (anchors on curve) -->
+  <!-- dots -->
   <div class="dot" style="left:40px; top:160px;"></div>
   <div class="dot" style="left:300px; top:60px;"></div>
   <div class="dot" style="left:600px; top:160px;"></div>
   <div class="dot" style="left:960px; top:140px;"></div>
 
-  <!-- STEPS (centered on dots) -->
+  <!-- steps -->
 
   <div class="step" style="left:40px; top:160px;">
-    <a href="#">
+    #
       <div class="step-number">STEP 1</div>
       <div class="step-title">Select Research Design</div>
     </a>
   </div>
 
   <div class="step" style="left:300px; top:60px;">
-    <a href="#">
+    #
       <div class="step-number">STEP 2</div>
       <div class="step-title">Select Inferential Test</div>
     </a>
   </div>
 
   <div class="step" style="left:600px; top:160px;">
-    <a href="#">
+    #
       <div class="step-number">STEP 3</div>
       <div class="step-title">Run Code in R</div>
     </a>
   </div>
 
   <div class="step final" style="left:960px; top:140px;">
-    <a href="#">
+    #
       <div class="step-number">STEP 4</div>
       <div class="step-title">Report Results (R Markdown)</div>
     </a>
