@@ -2,44 +2,41 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Data Analytics Process</title>
+<title>Slides</title>
 
 <style>
 body {
   margin: 0;
-  font-family: Arial, sans-serif;
-  background: #0f172a;
-  color: white;
   overflow: hidden;
+  font-family: Arial, sans-serif;
+  background: #111;
 }
 
 /* container */
-.container {
+#container {
   display: flex;
-  width: 100%;
   height: 100vh;
-  transition: transform 0.5s ease;
+  transition: 0.4s;
 }
 
-/* slides */
+/* each slide */
 .slide {
   width: 100vw;
   height: 100vh;
+  flex-shrink: 0;
 
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 30px;
 }
 
-/* box */
-.box {
-  background: #1e293b;
-  padding: 30px;
-  border-radius: 10px;
-  width: 400px;
-  text-align: center;
-}
+/* colors so you SEE movement */
+.slide:nth-child(1) { background: #1e293b; }
+.slide:nth-child(2) { background: #334155; }
+.slide:nth-child(3) { background: #475569; }
+.slide:nth-child(4) { background: #64748b; }
 
 /* arrows */
 .arrow {
@@ -49,92 +46,65 @@ body {
   width: 50px;
   height: 50px;
 
-  background: #334155;
-  border-radius: 50%;
+  background: white;
+  color: black;
+
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
 
   cursor: pointer;
+  font-size: 20px;
 }
 
-.prev { left: 20px; }
-.next { right: 20px; }
-
-.prev::after { content: "⬅"; }
-.next::after { content: "➡"; }
+#left { left: 20px; }
+#right { right: 20px; }
 </style>
 </head>
 
 <body>
 
-<div class="arrow prev" id="prev"></div>
-<div class="arrow next" id="next"></div>
+<div id="left" class="arrow">←</div>
+<div id="right" class="arrow">→</div>
 
-<div class="container" id="container">
+<div id="container">
 
-  <div class="slide">
-    <div class="box">
-      <h1>Purpose</h1>
-      <p>Understand the analytics process.</p>
-    </div>
-  </div>
-
-  <div class="slide">
-    <div class="box">
-      <h2>1. Define Problem</h2>
-      <p>Set research questions.</p>
-    </div>
-  </div>
-
-  <div class="slide">
-    <div class="box">
-      <h2>2. Planning</h2>
-      <p>Define scope and requirements.</p>
-    </div>
-  </div>
-
-  <div class="slide">
-    <div class="box">
-      <h2>3. Data Collection</h2>
-      <p>Gather data sources.</p>
-    </div>
-  </div>
+  <div class="slide">Purpose</div>
+  <div class="slide">Step 1</div>
+  <div class="slide">Step 2</div>
+  <div class="slide">Step 3</div>
 
 </div>
 
 <script>
-const container = document.getElementById("container");
-const next = document.getElementById("next");
-const prev = document.getElementById("prev");
-
 let index = 0;
-const total = document.querySelectorAll(".slide").length;
+const container = document.getElementById("container");
+const slides = document.querySelectorAll(".slide");
 
 function update() {
-  container.style.transform = "translateX(-" + (index * 100) + "vw)";
-
-  prev.style.display = index === 0 ? "none" : "flex";
-  next.style.display = index === total - 1 ? "none" : "flex";
+  container.style.transform = "translateX(-" + (index * window.innerWidth) + "px)";
 }
 
-next.onclick = () => {
-  if (index < total - 1) {
+document.getElementById("right").onclick = function() {
+  if (index < slides.length - 1) {
     index++;
     update();
   }
 };
 
-prev.onclick = () => {
+document.getElementById("left").onclick = function() {
   if (index > 0) {
     index--;
     update();
   }
 };
 
+/* important: update on resize */
+window.onresize = update;
+
+/* initialize */
 update();
 </script>
 
 </body>
 </html>
-``
