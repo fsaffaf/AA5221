@@ -6,46 +6,32 @@
 <title>Data Analytics Process</title>
 
 <style>
-html, body {
+body {
   margin: 0;
-  padding: 0;
-  overflow: hidden; /* important for horizontal */
-  font-family: "Segoe UI", system-ui;
+  font-family: "Segoe UI", sans-serif;
   background: radial-gradient(circle at top, #08131f, #000814);
   color: white;
+  overflow: hidden;
 }
 
-/* container holds all slides */
+/* container */
 .container {
   display: flex;
+  width: 400vw; /* number of slides × 100 */
+  height: 100vh;
+  transition: transform 0.5s ease;
+}
+
+/* slides */
+.section {
   width: 100vw;
   height: 100vh;
-  transition: transform 0.6s ease;
-}
-
-/* each slide */
-.section {
-  min-width: 100vw;
-  height: 100vh;
-
   display: flex;
-  align-items: center;
   justify-content: center;
-
-  position: relative;
+  align-items: center;
 }
 
-/* glow */
-.section::before {
-  content: "";
-  position: absolute;
-  width: 400px;
-  height: 400px;
-  background: radial-gradient(circle, rgba(0,200,255,0.25), transparent);
-  filter: blur(120px);
-}
-
-/* card */
+/* cards */
 .card {
   width: 600px;
   height: 320px;
@@ -84,7 +70,7 @@ p {
   color: #cbd5f5;
 }
 
-/* buttons */
+/* button */
 button {
   padding: 8px 14px;
   border-radius: 20px;
@@ -127,21 +113,17 @@ button:hover {
 
   cursor: pointer;
   backdrop-filter: blur(10px);
-
-  transition: 0.3s;
 }
 
 .arrow:hover {
   background: linear-gradient(90deg, #38bdf8, #818cf8);
-  box-shadow: 0 0 20px #38bdf8;
 }
 
-/* positions */
 .next { right: 20px; }
 .prev { left: 20px; }
 
-.next::after { content: "➜"; }
-.prev::after { content: "⬅"; }
+.next::after { content: "➜"; font-size: 22px; }
+.prev::after { content: "⬅"; font-size: 22px; }
 
 /* progress bar */
 .progress {
@@ -151,69 +133,60 @@ button:hover {
   height: 5px;
   width: 0%;
   background: linear-gradient(90deg, #38bdf8, #818cf8);
-  box-shadow: 0 0 15px #38bdf8;
 }
 </style>
 </head>
 
 <body>
 
-<div class="arrow prev" id="prevBtn"></div>
-<div class="arrow next" id="nextBtn"></div>
+<div class="arrow prev" id="prev"></div>
+<div class="arrow next" id="next"></div>
 <div class="progress" id="progress"></div>
 
 <div class="container" id="container">
 
-  <div class="section">
-    <div class="card">
-      <h1>Purpose</h1>
-      <p>Understand the analytics lifecycle.</p>
-      <button onclick="toggle(this)">Learn More</button>
-      <div class="panel">Overview of full process.</div>
-    </div>
-  </div>
+  <div class="section"><div class="card">
+    <h1>Purpose</h1>
+    <p>Understand the analytics lifecycle.</p>
+    <button onclick="toggle(this)">Learn More</button>
+    <div class="panel">Overview of process.</div>
+  </div></div>
 
-  <div class="section">
-    <div class="card">
-      <h2>1. Define Problem</h2>
-      <p>Set research questions.</p>
-      <button onclick="toggle(this)">Learn More</button>
-      <div class="panel">Define goals clearly.</div>
-    </div>
-  </div>
+  <div class="section"><div class="card">
+    <h2>1. Define Problem</h2>
+    <p>Set research questions.</p>
+    <button onclick="toggle(this)">Learn More</button>
+    <div class="panel">Define goals clearly.</div>
+  </div></div>
 
-  <div class="section">
-    <div class="card">
-      <h2>2. Planning</h2>
-      <p>Define requirements.</p>
-      <button onclick="toggle(this)">Learn More</button>
-      <div class="panel">Identify stakeholders.</div>
-    </div>
-  </div>
+  <div class="section"><div class="card">
+    <h2>2. Planning</h2>
+    <p>Define requirements.</p>
+    <button onclick="toggle(this)">Learn More</button>
+    <div class="panel">Identify stakeholders.</div>
+  </div></div>
 
-  <div class="section">
-    <div class="card">
-      <h2>3. Data Collection</h2>
-      <p>Gather data sources.</p>
-      <button onclick="toggle(this)">Learn More</button>
-      <div class="panel">Use surveys, APIs, databases.</div>
-    </div>
-  </div>
+  <div class="section"><div class="card">
+    <h2>3. Data Collection</h2>
+    <p>Gather data.</p>
+    <button onclick="toggle(this)">Learn More</button>
+    <div class="panel">Use APIs or datasets.</div>
+  </div></div>
 
 </div>
 
 <script>
-const container = document.getElementById('container');
-const sections = document.querySelectorAll('.section');
-const nextBtn = document.getElementById('nextBtn');
-const prevBtn = document.getElementById('prevBtn');
-const progress = document.getElementById('progress');
+const container = document.getElementById("container");
+const next = document.getElementById("next");
+const prev = document.getElementById("prev");
+const progress = document.getElementById("progress");
 
 let index = 0;
+const total = document.querySelectorAll(".section").length;
 
 /* expand panel */
 function toggle(btn) {
-  btn.nextElementSibling.classList.toggle('open');
+  btn.nextElementSibling.classList.toggle("open");
 }
 
 /* update UI */
@@ -221,33 +194,33 @@ function update() {
   container.style.transform = `translateX(-${index * 100}vw)`;
 
   /* progress */
-  progress.style.width = ((index) / (sections.length - 1)) * 100 + "%";
+  progress.style.width = (index / (total - 1)) * 100 + "%";
 
-  /* button visibility */
-  prevBtn.style.display = index === 0 ? "none" : "flex";
-  nextBtn.style.display = index === sections.length - 1 ? "none" : "flex";
+  /* arrows */
+  prev.style.display = index === 0 ? "none" : "flex";
+  next.style.display = index === total - 1 ? "none" : "flex";
 }
 
 /* next */
-nextBtn.onclick = () => {
-  if (index < sections.length - 1) {
+next.onclick = () => {
+  if (index < total - 1) {
     index++;
     update();
   }
 };
 
 /* prev */
-prevBtn.onclick = () => {
+prev.onclick = () => {
   if (index > 0) {
     index--;
     update();
   }
 };
 
-/* OPTIONAL keyboard support */
-document.addEventListener('keydown', (e) => {
-  if (e.key === "ArrowRight") nextBtn.onclick();
-  if (e.key === "ArrowLeft") prevBtn.onclick();
+/* keyboard support */
+document.addEventListener("keydown", e => {
+  if (e.key === "ArrowRight") next.onclick();
+  if (e.key === "ArrowLeft") prev.onclick();
 });
 
 update();
