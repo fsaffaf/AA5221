@@ -3,20 +3,21 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Icy Glass Slide Deck</title>
+<title>Neon Glass Slide Deck</title>
 
 <style>
-/* ===== Icy Glass Theme ===== */
+/* ===== Neon Glass Theme ===== */
 :root {
-  --bg: #050b18;
+  --bg: #050816;
   --card: rgba(255, 255, 255, 0.06);
-  --border: rgba(255, 255, 255, 0.16);
-  --text: #e6f6ff;
-  --muted: #93c5fd;
-  --accent: #67e8f9;
-  --accent-strong: #22d3ee;
-  --accent-soft: rgba(103, 232, 249, 0.12);
-  --glass-glow: rgba(103, 232, 249, 0.25);
+  --border: rgba(0, 255, 255, 0.18);
+  --text: #e6faff;
+  --muted: #7dd3fc;
+
+  --neon: #22d3ee;
+  --neon-strong: #00f6ff;
+  --neon-soft: rgba(34, 211, 238, 0.12);
+  --glow: rgba(0, 246, 255, 0.35);
 }
 
 /* ===== Base ===== */
@@ -25,8 +26,10 @@
 body {
   margin: 0;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
   background:
-    radial-gradient(circle at top, #071022, #050b18 50%, #02040a 100%);
+    radial-gradient(circle at top, #07142a, #050816 45%, #02040a 100%);
+
   color: var(--text);
   overflow: hidden;
 }
@@ -45,9 +48,11 @@ body {
 .progress-bar {
   height: 100%;
   width: 10%;
-  background: linear-gradient(90deg, var(--accent), var(--accent-strong));
+  background: linear-gradient(90deg, var(--neon), var(--neon-strong));
   transition: width 0.5s ease;
-  box-shadow: 0 0 18px var(--glass-glow);
+  box-shadow:
+    0 0 10px var(--glow),
+    0 0 25px var(--glow);
 }
 
 /* ===== Deck ===== */
@@ -62,7 +67,7 @@ body {
   display: flex;
   width: 1000vw;
   height: 100vh;
-  transition: transform 0.65s cubic-bezier(0.77, 0, 0.175, 1);
+  transition: transform 0.7s cubic-bezier(0.77, 0, 0.175, 1);
 }
 
 /* ===== Slide ===== */
@@ -76,46 +81,67 @@ body {
   padding-top: 7vh;
 }
 
-/* ===== Glass Card ===== */
+/* ===== Neon Glass Card ===== */
 .card {
-  width: min(800px, 90vw);
-  background: var(--card);
+  width: min(820px, 90vw);
+
+  background: linear-gradient(
+    135deg,
+    rgba(255,255,255,0.08),
+    rgba(255,255,255,0.03)
+  );
+
   border: 1px solid var(--border);
-  border-radius: 22px;
+  border-radius: 24px;
+
   padding: 2rem;
-  backdrop-filter: blur(18px);
+
+  backdrop-filter: blur(22px);
+
   box-shadow:
-    0 25px 70px rgba(0,0,0,0.45),
-    0 0 40px rgba(103, 232, 249, 0.08);
+    0 0 25px rgba(0, 246, 255, 0.08),
+    0 30px 80px rgba(0,0,0,0.55);
 }
 
-/* Headings */
+/* subtle neon edge glow */
+.card::before {
+  content: "";
+  position: absolute;
+}
+
+/* ===== Typography ===== */
 h1, h2 {
   margin-top: 0;
 }
 
 h2 {
-  color: var(--accent);
-  border-left: 4px solid var(--accent);
+  color: var(--neon);
+  border-left: 4px solid var(--neon);
   padding-left: 0.75rem;
+  text-shadow: 0 0 10px var(--glow);
 }
 
-/* ===== Navigation Buttons ===== */
+/* ===== Buttons ===== */
 .next-btn,
 .back-btn {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  width: 64px;
-  height: 64px;
+  width: 66px;
+  height: 66px;
+
   border-radius: 50%;
   border: 1px solid var(--border);
-  background: var(--card);
-  backdrop-filter: blur(14px);
+
+  background: rgba(255,255,255,0.04);
+  backdrop-filter: blur(18px);
+
   cursor: pointer;
+
   display: flex;
   align-items: center;
   justify-content: center;
+
   transition: 0.25s ease;
 }
 
@@ -129,9 +155,10 @@ h2 {
 
 .next-btn:hover,
 .back-btn:hover {
-  background: var(--accent-soft);
-  box-shadow: 0 0 25px var(--glass-glow);
-  transform: translateY(-50%) scale(1.08);
+  box-shadow:
+    0 0 18px var(--glow),
+    0 0 40px rgba(0,246,255,0.25);
+  transform: translateY(-50%) scale(1.1);
 }
 
 /* ===== Arrows ===== */
@@ -140,40 +167,45 @@ h2 {
   height: 0;
   border-top: 10px solid transparent;
   border-bottom: 10px solid transparent;
-  border-left: 14px solid var(--accent);
+  border-left: 14px solid var(--neon);
+  filter: drop-shadow(0 0 6px var(--glow));
 }
 
 .arrow.left {
   border-left: none;
-  border-right: 14px solid var(--accent);
+  border-right: 14px solid var(--neon);
 }
 
-/* ===== Restart Button (more visible) ===== */
+/* ===== Restart Button (NEON PILL) ===== */
 .restart-btn {
   position: absolute;
   bottom: 20px;
   left: 25px;
 
-  padding: 12px 18px;
+  padding: 12px 20px;
   border-radius: 999px;
 
-  border: 1px solid var(--accent);
-  background: linear-gradient(135deg, var(--accent-soft), rgba(255,255,255,0.04));
+  border: 1px solid var(--neon);
+  background: rgba(0, 246, 255, 0.08);
 
   color: var(--text);
   font-weight: 700;
-  letter-spacing: 0.3px;
 
-  backdrop-filter: blur(16px);
+  backdrop-filter: blur(18px);
   cursor: pointer;
 
-  box-shadow: 0 0 20px rgba(103, 232, 249, 0.25);
+  box-shadow:
+    0 0 15px rgba(0,246,255,0.25),
+    0 0 40px rgba(0,246,255,0.12);
+
   transition: 0.25s ease;
 }
 
 .restart-btn:hover {
-  transform: scale(1.08);
-  box-shadow: 0 0 35px rgba(103, 232, 249, 0.45);
+  transform: scale(1.1);
+  box-shadow:
+    0 0 25px var(--glow),
+    0 0 60px rgba(0,246,255,0.3);
 }
 
 /* ===== Counter ===== */
@@ -189,7 +221,7 @@ h2 {
 
 <body>
 
-<!-- Progress Bar -->
+<!-- Progress -->
 <div class="progress-container">
   <div class="progress-bar" id="progressBar"></div>
 </div>
@@ -198,33 +230,28 @@ h2 {
 
   <div class="slides" id="slides">
 
-    <div class="slide"><div class="card"><h1>Slide 1</h1><p>Welcome to the icy glass deck.</p></div></div>
-    <div class="slide"><div class="card"><h2>Slide 2</h2><p>Frosted UI with glow accents.</p></div></div>
-    <div class="slide"><div class="card"><h2>Slide 3</h2><p>Smooth horizontal transitions.</p></div></div>
-    <div class="slide"><div class="card"><h2>Slide 4</h2><p>Deep blue radial background.</p></div></div>
-    <div class="slide"><div class="card"><h2>Slide 5</h2><p>Glass layering + blur depth.</p></div></div>
-    <div class="slide"><div class="card"><h2>Slide 6</h2><p>Accent-driven hierarchy.</p></div></div>
-    <div class="slide"><div class="card"><h2>Slide 7</h2><p>Soft neon glow interactions.</p></div></div>
-    <div class="slide"><div class="card"><h2>Slide 8</h2><p>Responsive layout system.</p></div></div>
-    <div class="slide"><div class="card"><h2>Slide 9</h2><p>Clean presentation flow.</p></div></div>
-    <div class="slide"><div class="card"><h2>Slide 10</h2><p>End of deck.</p></div></div>
+    <div class="slide"><div class="card"><h1>Neon Deck</h1><p>Cyber glass UI presentation.</p></div></div>
+    <div class="slide"><div class="card"><h2>Slide 2</h2><p>High glow aesthetic design.</p></div></div>
+    <div class="slide"><div class="card"><h2>Slide 3</h2><p>Frosted neon surfaces.</p></div></div>
+    <div class="slide"><div class="card"><h2>Slide 4</h2><p>Deep space background feel.</p></div></div>
+    <div class="slide"><div class="card"><h2>Slide 5</h2><p>Light scattering glass blur.</p></div></div>
+    <div class="slide"><div class="card"><h2>Slide 6</h2><p>Neon hierarchy accents.</p></div></div>
+    <div class="slide"><div class="card"><h2>Slide 7</h2><p>Soft glow interactions.</p></div></div>
+    <div class="slide"><div class="card"><h2>Slide 8</h2><p>Responsive UI system.</p></div></div>
+    <div class="slide"><div class="card"><h2>Slide 9</h2><p>Clean futuristic layout.</p></div></div>
+    <div class="slide"><div class="card"><h2>Slide 10</h2><p>End of neon deck.</p></div></div>
 
   </div>
 
-  <!-- Back -->
   <button class="back-btn" onclick="prevSlide()">
     <div class="arrow left"></div>
   </button>
 
-  <!-- Next -->
   <button class="next-btn" onclick="nextSlide()">
     <div class="arrow"></div>
   </button>
 
-  <!-- Restart -->
-  <button class="restart-btn" onclick="restartDeck()">
-    ⟲ Restart
-  </button>
+  <button class="restart-btn" onclick="restartDeck()">⟲ Restart</button>
 
   <div class="counter" id="counter">1 / 10</div>
 
@@ -245,26 +272,20 @@ function update() {
   slides.style.transform = `translateX(-${current * 100}vw)`;
   counter.textContent = `${current + 1} / ${total}`;
 
-  // progress bar
   progressBar.style.width = `${((current + 1) / total) * 100}%`;
 
-  // hide/show arrows
   backBtn.style.display = current === 0 ? "none" : "flex";
   nextBtn.style.display = current === total - 1 ? "none" : "flex";
 }
 
 function nextSlide() {
-  if (current < total - 1) {
-    current++;
-    update();
-  }
+  if (current < total - 1) current++;
+  update();
 }
 
 function prevSlide() {
-  if (current > 0) {
-    current--;
-    update();
-  }
+  if (current > 0) current--;
+  update();
 }
 
 function restartDeck() {
@@ -272,13 +293,11 @@ function restartDeck() {
   update();
 }
 
-// keyboard support
 document.addEventListener("keydown", (e) => {
   if (e.key === "ArrowRight") nextSlide();
   if (e.key === "ArrowLeft") prevSlide();
 });
 
-// init
 update();
 </script>
 
