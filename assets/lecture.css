@@ -1,11 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Themed Slide Deck</title>
-
-<style>
 /* ===== Root Theme ===== */
 :root {
   --bg: #0f172a;
@@ -19,184 +11,181 @@
 }
 
 /* ===== Base ===== */
-* { box-sizing: border-box; }
+* {
+  box-sizing: border-box;
+}
 
 body {
   margin: 0;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  background: radial-gradient(circle at top, #020617, #0f172a 45%, #020617 100%);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont,
+               "Segoe UI", Roboto, sans-serif;
+  background: radial-gradient(
+    circle at top,
+    #020617,
+    #0f172a 45%,
+    #020617 100%
+  );
   color: var(--text);
-  overflow: hidden;
+  line-height: 1.7;
 }
 
-/* ===== Deck ===== */
-.deck {
-  position: relative;
-  width: 100vw;
-  height: 100vh;
-  overflow: hidden;
-}
-
-.slides {
-  display: flex;
-  width: 1000vw;
-  height: 100vh;
-  transition: transform 0.65s cubic-bezier(0.77, 0, 0.175, 1);
-}
-
-/* ===== Slide ===== */
-.slide {
-  width: 100vw;
-  height: 100vh;
-  flex-shrink: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+/* ===== Container ===== */
+.main-container {
+  max-width: 1100px;
+  margin: auto;
   padding: 3rem 2rem;
 }
 
-/* ===== Card (your system) ===== */
-.card {
-  width: min(900px, 92vw);
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 18px;
-  padding: 2rem;
-  backdrop-filter: blur(12px);
-  box-shadow: 0 20px 60px rgba(0,0,0,0.35);
-}
-
-/* ===== Typography ===== */
+/* ===== Headings ===== */
 h1 {
-  font-size: 2.5rem;
-  margin: 0 0 0.75rem;
+  font-size: 2.8rem;
+  font-weight: 800;
+  margin-bottom: 0.5rem;
   letter-spacing: -0.03em;
 }
 
 h2 {
-  color: var(--accent);
-  margin-top: 0;
+  margin-top: 3rem;
+  margin-bottom: 1rem;
+  font-weight: 700;
   border-left: 4px solid var(--accent);
   padding-left: 0.75rem;
 }
 
+/* ===== Text ===== */
 p {
+  max-width: 75ch;
   color: var(--text);
-  max-width: 70ch;
 }
 
 em {
   color: var(--muted);
 }
 
-/* ===== Button ===== */
-.next-btn {
-  position: absolute;
-  right: 25px;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 62px;
-  height: 62px;
-  border-radius: 50%;
-  border: 1px solid var(--border);
+hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 3rem 0;
+}
+
+/* ===== Cards ===== */
+table,
+ul {
   background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 1.25rem;
   backdrop-filter: blur(10px);
-  cursor: pointer;
+}
+
+/* ===== Tables ===== */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+thead th {
+  text-align: left;
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--accent);
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 0.5rem;
+}
+
+tbody td {
+  padding: 0.75rem 0;
+  vertical-align: top;
+}
+
+tbody tr:not(:last-child) td {
+  border-bottom: 1px solid var(--border);
+}
+
+/* ===== Lists ===== */
+ul {
+  list-style: none;
+}
+
+ul li {
+  margin: 0.5rem 0;
+}
+
+/* ===== Links ===== */
+a {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* ===== Inline Code ===== */
+code {
+  background: var(--code-bg);
+  padding: 0.2rem 0.4rem;
+  border-radius: 6px;
+  font-family: "JetBrains Mono", Menlo, Consolas, monospace;
+  font-size: 0.9em;
+}
+
+/* ===== Footer Nav ===== */
+.back-link {
+  display: inline-block;
+  margin-top: 1.5rem;
+  font-weight: 600;
+  color: var(--accent);
+}
+
+/* ===== Small screens ===== */
+@media (max-width: 720px) {
+  h1 {
+    font-size: 2.1rem;
+  }
+}
+
+/* ===== Icon Cards (Reusable Component) ===== */
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 1.75rem;
+  margin-top: 2.5rem;
+  backdrop-filter: blur(12px);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 22px 40px rgba(0, 0, 0, 0.35);
+}
+
+/* Card header layout */
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+/* Icon container */
+.card-icon {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 14px;
+  background: var(--accent-soft);
+  color: var(--accent);
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: 0.2s ease;
+  font-size: 1.6rem;
 }
 
-.next-btn:hover {
-  background: var(--accent-soft);
-  transform: translateY(-50%) scale(1.05);
+/* Remove global h2 decoration inside cards */
+.card h2 {
+  margin: 0;
+  padding: 0;
+  border: none;
 }
-
-.arrow {
-  width: 0;
-  height: 0;
-  border-top: 10px solid transparent;
-  border-bottom: 10px solid transparent;
-  border-left: 14px solid var(--accent);
-}
-
-/* ===== Counter ===== */
-.counter {
-  position: absolute;
-  bottom: 20px;
-  right: 25px;
-  color: var(--muted);
-  font-size: 14px;
-}
-</style>
-</head>
-
-<body>
-
-<div class="deck">
-
-  <div class="slides" id="slides">
-
-    <div class="slide">
-      <div class="card">
-        <h1>Slide Deck Title</h1>
-        <p><em>Built with your custom GitHub theme system</em></p>
-      </div>
-    </div>
-
-    <div class="slide">
-      <div class="card">
-        <h2>Slide 2</h2>
-        <p>Glassmorphism cards with accent borders and soft blur effects.</p>
-      </div>
-    </div>
-
-    <div class="slide">
-      <div class="card">
-        <h2>Slide 3</h2>
-        <p>Dark radial background matching your design system variables.</p>
-      </div>
-    </div>
-
-    <div class="slide"><div class="card"><h2>Slide 4</h2><p>Consistent typography scale and spacing rules.</p></div></div>
-    <div class="slide"><div class="card"><h2>Slide 5</h2><p>Reusable card component from your CSS system.</p></div></div>
-    <div class="slide"><div class="card"><h2>Slide 6</h2><p>Accent color used for focus and hierarchy.</p></div></div>
-    <div class="slide"><div class="card"><h2>Slide 7</h2><p>Subtle border + blur layering for depth.</p></div></div>
-    <div class="slide"><div class="card"><h2>Slide 8</h2><p>Responsive layout ready for GitHub Pages.</p></div></div>
-    <div class="slide"><div class="card"><h2>Slide 9</h2><p>Minimal UI — no distractions, content-first.</p></div></div>
-    <div class="slide"><div class="card"><h2>Slide 10</h2><p>End of deck. Looping navigation enabled.</p></div></div>
-
-  </div>
-
-  <button class="next-btn" onclick="nextSlide()">
-    <div class="arrow"></div>
-  </button>
-
-  <div class="counter" id="counter">1 / 10</div>
-
-</div>
-
-<script>
-let current = 0;
-const total = 10;
-const slides = document.getElementById("slides");
-const counter = document.getElementById("counter");
-
-function update() {
-  slides.style.transform = `translateX(-${current * 100}vw)`;
-  counter.textContent = `${current + 1} / ${total}`;
-}
-
-function nextSlide() {
-  current = (current + 1) % total;
-  update();
-}
-
-document.addEventListener("keydown", (e) => {
-  if (e.key === "ArrowRight") nextSlide();
-});
-</script>
-
-</body>
-</html>
