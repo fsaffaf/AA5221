@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,7 +24,6 @@ html, body {
   position: relative;
 }
 
-/* animated glass glow background */
 .section::before {
   content: "";
   position: absolute;
@@ -33,7 +34,6 @@ html, body {
   left: -150px;
   filter: blur(80px);
 }
-
 
 .section::after {
   content: "";
@@ -46,8 +46,6 @@ html, body {
   filter: blur(80px);
 }
 
-
-/* fixed step number */
 .step-number {
   position: fixed;
   top: 30px;
@@ -60,7 +58,6 @@ html, body {
   opacity: 0.2;
 }
 
-/* premium glass card */
 .card {
   width: 650px;
   height: 360px;
@@ -74,6 +71,8 @@ html, body {
   backdrop-filter: blur(25px);
   border: 1px solid rgba(255,255,255,0.15);
   box-shadow: 0 25px 70px rgba(0,0,0,0.7), inset 0 0 20px rgba(255,255,255,0.05);
+
+
   opacity: 0;
   transform: translateY(40px) scale(0.95);
   transition: all 0.7s ease;
@@ -84,7 +83,6 @@ html, body {
   transform: translateY(0) scale(1);
 }
 
-/* equal height text zone */
 .content {
   height: 140px;
 }
@@ -95,12 +93,12 @@ h1, h2 {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
+
 p {
   color: rgba(226,232,240,0.8);
-  line-height: 1.5;
 }
 
-/* Learn button */
 .learn button {
   background: rgba(255,255,255,0.08);
   border: 1px solid rgba(255,255,255,0.15);
@@ -108,16 +106,8 @@ p {
   padding: 8px 14px;
   border-radius: 20px;
   cursor: pointer;
-  transition: all 0.3s ease;
 }
 
-.learn button:hover {
-  background: linear-gradient(90deg, #7dd3fc, #a78bfa);
-  color: black;
-}
-
-
-/* expandable panel */
 .panel {
   max-height: 0;
   overflow: hidden;
@@ -130,7 +120,6 @@ p {
   max-height: 120px;
 }
 
-/* nav dots */
 .nav {
   position: fixed;
   right: 20px;
@@ -144,7 +133,6 @@ p {
   margin: 10px 0;
   border-radius: 50%;
   background: rgba(255,255,255,0.2);
-  transition: all 0.3s ease;
 }
 
 .nav .active {
@@ -157,7 +145,7 @@ p {
 
 <body>
 
-<div class="step-number" id="stepNumber">0</div>
+<div class="step-number" id="stepNumber"></div>
 <div class="nav" id="nav"></div>
 
 <div class="section"><div class="card"><div class="content"><h1>Purpose</h1><p>Understand the analytics lifecycle.</p></div><div class="learn"><button onclick="togglePanel(this)">Learn More</button><div class="panel">This overview helps connect all steps together.</div></div></div></div>
