@@ -6,76 +6,33 @@
 <title>Data Analytics Process</title>
 
 <style>
-html { scroll-behavior: smooth; }
-
-body {
+html, body {
   margin: 0;
+  padding: 0;
+  overflow: hidden; /* important for horizontal */
   font-family: "Segoe UI", system-ui;
   background: radial-gradient(circle at top, #08131f, #000814);
   color: white;
-
-  scroll-snap-type: y mandatory;
-  overflow-y: scroll;
 }
 
-/* progress bar */
-.progress {
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 5px;
-  width: 0%;
-  background: linear-gradient(90deg, #38bdf8, #818cf8);
-  box-shadow: 0 0 15px #38bdf8;
-  z-index: 999;
-}
-
-/* arrows */
-.arrow {
-  position: fixed;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-
+/* container holds all slides */
+.container {
   display: flex;
-  align-items: center;
-  justify-content: center;
-
-  background: rgba(255,255,255,0.1);
-  border: 1px solid rgba(255,255,255,0.2);
-
-  cursor: pointer;
-  backdrop-filter: blur(10px);
-  transition: 0.3s;
-}
-
-.arrow:hover {
-  background: linear-gradient(90deg, #38bdf8, #818cf8);
-  box-shadow: 0 0 20px #38bdf8;
-}
-
-/* positions */
-.next {
-  right: 20px;
-  top: 50%;
-  transform: translateY(-50%);
-}
-.next::after { content: "➜"; }
-
-.prev {
-  left: 20px;
-  top: 50%;
-  transform: translateY(-50%);
-}
-.prev::after { content: "⬅"; }
-
-/* sections */
-.section {
+  width: 100vw;
   height: 100vh;
+  transition: transform 0.6s ease;
+}
+
+/* each slide */
+.section {
+  min-width: 100vw;
+  height: 100vh;
+
   display: flex;
   align-items: center;
   justify-content: center;
-  scroll-snap-align: start;
+
+  position: relative;
 }
 
 /* glow */
@@ -88,14 +45,20 @@ body {
   filter: blur(120px);
 }
 
-/* cards */
+/* card */
 .card {
   width: 600px;
   height: 320px;
   padding: 30px;
+
   border-radius: 20px;
 
-  background: linear-gradient(135deg, rgba(255,255,255,0.12), rgba(255,255,255,0.04));
+  background: linear-gradient(
+    135deg,
+    rgba(255,255,255,0.12),
+    rgba(255,255,255,0.04)
+  );
+
   backdrop-filter: blur(20px);
 
   border: 1px solid rgba(120,200,255,0.3);
@@ -107,17 +70,9 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-
-  opacity: 0;
-  transform: translateY(30px);
-  transition: 0.6s;
 }
 
-.card.show {
-  opacity: 1;
-  transform: translateY(0);
-}
-
+/* text */
 h1, h2 {
   margin: 0 0 10px;
   background: linear-gradient(90deg, #7dd3fc, #38bdf8, #a78bfa);
@@ -125,9 +80,11 @@ h1, h2 {
   -webkit-text-fill-color: transparent;
 }
 
-p { color: #cbd5f5; }
+p {
+  color: #cbd5f5;
+}
 
-/* button */
+/* buttons */
 button {
   padding: 8px 14px;
   border-radius: 20px;
@@ -141,7 +98,7 @@ button:hover {
   background: linear-gradient(90deg, #38bdf8, #818cf8);
 }
 
-/* panels */
+/* panel */
 .panel {
   max-height: 0;
   overflow: hidden;
@@ -151,100 +108,148 @@ button:hover {
 .panel.open {
   max-height: 120px;
 }
+
+/* arrows */
+.arrow {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.2);
+
+  cursor: pointer;
+  backdrop-filter: blur(10px);
+
+  transition: 0.3s;
+}
+
+.arrow:hover {
+  background: linear-gradient(90deg, #38bdf8, #818cf8);
+  box-shadow: 0 0 20px #38bdf8;
+}
+
+/* positions */
+.next { right: 20px; }
+.prev { left: 20px; }
+
+.next::after { content: "➜"; }
+.prev::after { content: "⬅"; }
+
+/* progress bar */
+.progress {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  height: 5px;
+  width: 0%;
+  background: linear-gradient(90deg, #38bdf8, #818cf8);
+  box-shadow: 0 0 15px #38bdf8;
+}
 </style>
 </head>
 
 <body>
 
-<div class="progress" id="progress"></div>
 <div class="arrow prev" id="prevBtn"></div>
 <div class="arrow next" id="nextBtn"></div>
+<div class="progress" id="progress"></div>
 
-<!-- SECTIONS -->
+<div class="container" id="container">
 
-<div class="section"><div class="card">
-<h1>Purpose</h1>
-<p>Understand the analytics lifecycle.</p>
-<button onclick="toggle(this)">Learn More</button>
-<div class="panel">Full process overview.</div>
-</div></div>
+  <div class="section">
+    <div class="card">
+      <h1>Purpose</h1>
+      <p>Understand the analytics lifecycle.</p>
+      <button onclick="toggle(this)">Learn More</button>
+      <div class="panel">Overview of full process.</div>
+    </div>
+  </div>
 
-<div class="section"><div class="card">
-<h2>1. Define Problem</h2>
-<p>Set research questions.</p>
-<button onclick="toggle(this)">Learn More</button>
-<div class="panel">Define goals clearly.</div>
-</div></div>
+  <div class="section">
+    <div class="card">
+      <h2>1. Define Problem</h2>
+      <p>Set research questions.</p>
+      <button onclick="toggle(this)">Learn More</button>
+      <div class="panel">Define goals clearly.</div>
+    </div>
+  </div>
 
-<div class="section"><div class="card">
-<h2>2. Planning</h2>
-<p>Define requirements.</p>
-<button onclick="toggle(this)">Learn More</button>
-<div class="panel">Identify stakeholders.</div>
-</div></div>
+  <div class="section">
+    <div class="card">
+      <h2>2. Planning</h2>
+      <p>Define requirements.</p>
+      <button onclick="toggle(this)">Learn More</button>
+      <div class="panel">Identify stakeholders.</div>
+    </div>
+  </div>
 
-<div class="section"><div class="card">
-<h2>3. Data Collection</h2>
-<p>Gather data sources.</p>
-<button onclick="toggle(this)">Learn More</button>
-<div class="panel">Use surveys, APIs, databases.</div>
-</div></div>
+  <div class="section">
+    <div class="card">
+      <h2>3. Data Collection</h2>
+      <p>Gather data sources.</p>
+      <button onclick="toggle(this)">Learn More</button>
+      <div class="panel">Use surveys, APIs, databases.</div>
+    </div>
+  </div>
+
+</div>
 
 <script>
+const container = document.getElementById('container');
 const sections = document.querySelectorAll('.section');
-const progress = document.getElementById('progress');
 const nextBtn = document.getElementById('nextBtn');
 const prevBtn = document.getElementById('prevBtn');
+const progress = document.getElementById('progress');
 
-/* toggle learn more */
+let index = 0;
+
+/* expand panel */
 function toggle(btn) {
   btn.nextElementSibling.classList.toggle('open');
 }
 
-/* ✅ RELIABLE slide index */
-function getIndex() {
-  return Math.round(window.scrollY / window.innerHeight);
-}
-
 /* update UI */
 function update() {
-  const index = getIndex();
-
-  /* animate cards */
-  sections.forEach((sec, i) => {
-    const rect = sec.getBoundingClientRect();
-    if (rect.top < window.innerHeight * 0.7) {
-      sec.querySelector('.card').classList.add('show');
-    }
-  });
+  container.style.transform = `translateX(-${index * 100}vw)`;
 
   /* progress */
-  const scrollTop = document.documentElement.scrollTop;
-  const height = document.documentElement.scrollHeight - window.innerHeight;
-  progress.style.width = (scrollTop / height) * 100 + "%";
+  progress.style.width = ((index) / (sections.length - 1)) * 100 + "%";
 
-  /* arrow visibility */
+  /* button visibility */
   prevBtn.style.display = index === 0 ? "none" : "flex";
   nextBtn.style.display = index === sections.length - 1 ? "none" : "flex";
 }
 
 /* next */
-nextBtn.addEventListener('click', () => {
-  const i = getIndex();
-  if (i < sections.length - 1) {
-    window.scrollTo({ top: (i + 1) * window.innerHeight, behavior: "smooth" });
+nextBtn.onclick = () => {
+  if (index < sections.length - 1) {
+    index++;
+    update();
   }
-});
+};
 
 /* prev */
-prevBtn.addEventListener('click', () => {
-  const i = getIndex();
-  if (i > 0) {
-    window.scrollTo({ top: (i - 1) * window.innerHeight, behavior: "smooth" });
+prevBtn.onclick = () => {
+  if (index > 0) {
+    index--;
+    update();
   }
+};
+
+/* OPTIONAL keyboard support */
+document.addEventListener('keydown', (e) => {
+  if (e.key === "ArrowRight") nextBtn.onclick();
+  if (e.key === "ArrowLeft") prevBtn.onclick();
 });
 
-window.addEventListener('scroll', update);
 update();
 </script>
 
