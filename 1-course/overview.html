@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Fixed Title Glass Deck</title>
+<title>Slide Deck</title>
 
 <style>
 html, body {
@@ -14,7 +14,7 @@ html, body {
   overflow: hidden;
 }
 
-/* ===== Background glow ===== */
+/* subtle glow */
 body::before {
   content: "";
   position: fixed;
@@ -33,112 +33,85 @@ body::before {
   z-index: 0;
 }
 
-/* ===== Layout ===== */
+/* deck */
 .deck {
   position: relative;
   width: 100vw;
   height: 100vh;
-  display: flex;
   overflow: hidden;
 }
 
-/* ===== FIXED LEFT TITLE COLUMN ===== */
-.left-panel {
-  width: 320px;
-  min-width: 320px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  padding: 2rem;
-
-  border-right: 1px solid rgba(255,255,255,0.10);
-
-  background: rgba(255,255,255,0.03);
-  backdrop-filter: blur(18px);
-
-  z-index: 2;
-}
-
-/* title stays fixed in SAME position */
-.left-title {
-  font-size: 2rem;
-  font-weight: 600;
-  color: rgba(255,255,255,0.9);
-  letter-spacing: -0.02em;
-}
-
-/* ===== RIGHT SLIDES AREA ===== */
-.right-panel {
-  flex: 1;
-  position: relative;
-  overflow: hidden;
-}
-
-/* sliding track */
 .slides {
   display: flex;
-  width: 500vw; /* 5 slides */
-  height: 100%;
-  transition: transform 0.7s cubic-bezier(0.77, 0, 0.175, 1);
+  width: 500vw;
+  height: 100vh;
+  transition: transform 0.65s ease;
 }
 
-/* each slide */
+/* slide */
 .slide {
   width: 100vw;
   height: 100vh;
   flex-shrink: 0;
 
   display: flex;
-  align-items: flex-start;
   justify-content: flex-start;
+  align-items: flex-start;
 
-  padding: 7vh 6vw;
+  padding: 7vh 8vw;
+  position: relative;
 }
 
 /* content */
 .content {
-  max-width: 800px;
+  max-width: 900px;
+  text-align: left; /* FIX: ensures no centering */
 }
 
-/* text */
-h2 {
+/* titles always left aligned */
+h1, h2 {
   margin: 0;
+  text-align: left;
+  color: rgba(255,255,255,0.92);
+  letter-spacing: -0.02em;
+}
+
+h1 {
+  font-size: clamp(2.2rem, 4vw, 3.2rem);
+  font-weight: 600;
+}
+
+h2 {
   font-size: 1.7rem;
   font-weight: 500;
-  color: rgba(255,255,255,0.9);
-
   border-left: 3px solid rgba(147,197,253,0.8);
   padding-left: 0.75rem;
 }
 
+/* text */
 p {
-  margin-top: 0.8rem;
-  color: rgba(226,232,240,0.72);
+  margin-top: 0.75rem;
+  font-size: 1rem;
   line-height: 1.6;
+  color: rgba(226,232,240,0.72);
 }
 
-/* ===== UI Controls ===== */
+/* navigation */
 .nav-btn {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-
   width: 56px;
   height: 56px;
-
   border-radius: 999px;
   border: 1px solid rgba(255,255,255,0.15);
-
   background: rgba(10,15,25,0.35);
   backdrop-filter: blur(16px);
-
   cursor: pointer;
-  z-index: 5;
+  z-index: 10;
 }
 
-.left { left: 340px; } /* adjusted because of fixed panel */
+.left { left: 24px; }
 .right { right: 24px; }
 
 .arrow {
@@ -165,12 +138,11 @@ p {
 
   background: rgba(255,255,255,0.06);
   border: 1px solid rgba(255,255,255,0.12);
-
   color: rgba(255,255,255,0.85);
-  cursor: pointer;
 
   backdrop-filter: blur(16px);
-  z-index: 5;
+  cursor: pointer;
+  z-index: 10;
 }
 
 /* home */
@@ -184,12 +156,11 @@ p {
 
   background: rgba(255,255,255,0.06);
   border: 1px solid rgba(255,255,255,0.12);
-
   color: rgba(255,255,255,0.85);
   text-decoration: none;
 
   backdrop-filter: blur(16px);
-  z-index: 5;
+  z-index: 10;
 }
 
 /* counter */
@@ -197,9 +168,9 @@ p {
   position: absolute;
   bottom: 20px;
   right: 24px;
-  color: rgba(226,232,240,0.6);
   font-size: 0.8rem;
-  z-index: 5;
+  color: rgba(226,232,240,0.6);
+  z-index: 10;
 }
 </style>
 </head>
@@ -208,41 +179,41 @@ p {
 
 <div class="deck">
 
-  <!-- FIXED TITLE (does NOT move) -->
-  <div class="left-panel">
-    <div class="left-title" id="title">AA 5221</div>
-  </div>
+  <div class="slides" id="slides">
 
-  <!-- SLIDES -->
-  <div class="right-panel">
+    <div class="slide">
+      <div class="content">
+        <h1>AA 5221</h1>
+        <p>Applied Analytics & Research Methods I</p>
+      </div>
+    </div>
 
-    <div class="slides" id="slides">
-
-      <div class="slide"><div class="content">
+    <div class="slide">
+      <div class="content">
         <h2>Course Purpose</h2>
-        <p>Understanding analytics foundations and research structure.</p>
-      </div></div>
+        <p>Understanding data structures and inference foundations.</p>
+      </div>
+    </div>
 
-      <div class="slide"><div class="content">
+    <div class="slide">
+      <div class="content">
         <h2>Research Design</h2>
-        <p>Experimental and observational methods for data analysis.</p>
-      </div></div>
+        <p>Experimental and observational methods.</p>
+      </div>
+    </div>
 
-      <div class="slide"><div class="content">
+    <div class="slide">
+      <div class="content">
         <h2>Statistics</h2>
-        <p>Descriptive and inferential statistical reasoning.</p>
-      </div></div>
+        <p>Descriptive and inferential reasoning.</p>
+      </div>
+    </div>
 
-      <div class="slide"><div class="content">
-        <h2>Data Analysis</h2>
-        <p>Transforming raw data into structured insights.</p>
-      </div></div>
-
-      <div class="slide"><div class="content">
+    <div class="slide">
+      <div class="content">
         <h2>Conclusion</h2>
-        <p>Key ideas and course synthesis.</p>
-      </div></div>
-
+        <p>Key concepts and synthesis.</p>
+      </div>
     </div>
 
   </div>
