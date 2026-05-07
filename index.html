@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>AA 5221 — Course Materials</title>
 
 <style>
@@ -10,18 +10,17 @@ html, body {
   margin: 0;
   padding: 0;
   height: 100%;
-  background: black;
+  background: transparent;
   font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
 }
 
-/* Background */
 #starfield {
   position: fixed;
   inset: 0;
   width: 100vw;
   height: 100vh;
-  pointer-events: none;
   z-index: 0;
+  pointer-events: none;
 }
 
 /* NAV */
@@ -30,9 +29,12 @@ html, body {
   top: 0;
   width: 100%;
   z-index: 1000;
-  background: rgba(10,15,25,0.6);
+  background: rgba(10, 15, 25, 0.6);
   backdrop-filter: blur(20px);
   border-bottom: 1px solid rgba(255,255,255,0.12);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.06),
+    0 8px 30px rgba(0,0,0,0.35);
 }
 
 .nav-inner {
@@ -40,18 +42,21 @@ html, body {
   margin: 0 auto;
   padding: 0.7rem 1.5rem;
   display: flex;
-  justify-content: space-between;
 }
 
 .nav-item {
   flex: 1;
+  position: relative;
   display: flex;
   justify-content: center;
-  position: relative;
-  color: rgba(255,255,255,0.75);
+  align-items: center;
+
   font-size: 0.65rem;
   letter-spacing: 0.2em;
   text-transform: uppercase;
+  color: rgba(255,255,255,0.75);
+
+  padding: 0.6rem 0;
   cursor: pointer;
 }
 
@@ -63,7 +68,7 @@ html, body {
   top: 25%;
   height: 50%;
   width: 1px;
-  background: rgba(255,255,255,0.15);
+  background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.15), transparent);
 }
 
 /* Glow */
@@ -72,22 +77,30 @@ html, body {
   position: absolute;
   inset: 0;
   border-radius: 10px;
-  background: radial-gradient(circle, rgba(125,211,252,0.2), transparent);
+  background: radial-gradient(circle, rgba(125,211,252,0.18), transparent 70%);
   opacity: 0;
+  transform: scale(0.85);
   transition: 0.25s;
 }
 
-.nav-item:hover::before { opacity: 1; }
-.nav-item:hover { color: white; }
+.nav-item:hover::before {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.nav-item:hover {
+  color: white;
+}
 
 /* Label */
 .nav-label {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
-  position: relative;
 }
 
+/* Underline */
 .nav-label::after {
   content: "";
   position: absolute;
@@ -95,128 +108,51 @@ html, body {
   left: 50%;
   width: 0%;
   height: 1px;
-  background: #7dd3fc;
+  background: linear-gradient(90deg, transparent, #7dd3fc, transparent);
   transform: translateX(-50%);
   transition: 0.25s;
+  opacity: 0;
 }
 
 .nav-item:hover .nav-label::after {
   width: 60%;
+  opacity: 1;
 }
 
-/* MEGA MENU */
+/* Dropdown */
 .dropdown-panel {
   position: absolute;
   top: 100%;
-  left: 50%;
-  transform: translateX(-50%) translateY(10px);
-
-  width: 100vw;
-  max-width: 1200px;
-
+  min-width: 220px;
   background: rgba(15,15,30,0.95);
-  backdrop-filter: blur(16px);
-
-  padding: 2rem;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 2rem;
-
-  opacity: 0;
-  pointer-events: none;
-  transition: 0.25s;
-  overflow: hidden;
-  z-index: 2000;
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 14px;
+  display: none;
 }
 
 .dropdown:hover .dropdown-panel {
-  opacity: 1;
-  transform: translateX(-50%) translateY(0);
-  pointer-events: auto;
+  display: block;
 }
 
-/* Glow */
-.menu-glow {
-  position: absolute;
-  width: 300px;
-  height: 300px;
-  background: radial-gradient(circle, rgba(125,211,252,0.15), transparent);
-  filter: blur(40px);
-  transform: translate(-50%, -50%);
-  pointer-events: none;
-  opacity: 0;
-  transition: opacity 0.2s;
-}
-
-/* Shimmer */
-.menu-shimmer {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(120deg, transparent, rgba(255,255,255,0.12), transparent);
-  transform: translateX(-100%);
-}
-
-.dropdown:hover .menu-shimmer {
-  animation: shimmer 1.2s ease forwards;
-}
-
-@keyframes shimmer {
-  from { transform: translateX(-100%); }
-  to { transform: translateX(120%); }
-}
-
-/* Mega content */
-.mega-title {
-  grid-column: 1 / -1;
+.dropdown-panel a {
+  display: block;
+  padding: 0.7rem 1rem;
   font-size: 0.7rem;
-  letter-spacing: 0.2em;
-  color: rgba(255,255,255,0.5);
-}
-
-.mega-col {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
-.mega-heading {
-  font-size: 0.65rem;
-  color: rgba(255,255,255,0.4);
-}
-
-.mega-col a {
   text-decoration: none;
   color: rgba(255,255,255,0.85);
-  font-size: 0.75rem;
 }
 
-.mega-col a:hover {
-  color: #7dd3fc;
+.dropdown-panel a:hover {
+  background: rgba(255,255,255,0.08);
+  color: white;
 }
 
-/* HERO */
+/* Content */
 .home-container {
   position: relative;
   z-index: 1;
-  min-height: 100vh;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-h1 {
-  font-size: 4rem;
-  letter-spacing: 0.25em;
-  background: linear-gradient(white, #7dd3fc);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-p {
-  letter-spacing: 0.3em;
-  color: white;
+  padding-top: 7rem;
+  text-align: center;
 }
 </style>
 </head>
@@ -228,144 +164,74 @@ p {
 <nav class="glass-nav">
 <div class="nav-inner">
 
-<!-- CLASS -->
 <div class="nav-item dropdown">
-  <div class="nav-label">
-    <span>Class</span>
-    <span>Overview</span>
-  </div>
-
-  <div class="dropdown-panel">
-    <div class="menu-glow"></div>
-    <div class="menu-shimmer"></div>
-
-    <div class="mega-title">Class Overview</div>
-
-    <div class="mega-col">
-      <div class="mega-heading">Foundations</div>
-      <a href="lectures/science.html">What is Science?</a>
-    </div>
-
-    <div class="mega-col">
-      <div class="mega-heading">Visuals</div>
-      <a href="visual/decisiontree.html">Conceptual Overview</a>
-    </div>
-
-    <div class="mega-col">
-      <div class="mega-heading">Interactive</div>
-      <a href="interactive/researchdesign.html">Design Tool</a>
-    </div>
-
-  </div>
+<div class="nav-label"><span>Class</span><span>Overview</span></div>
+<div class="dropdown-panel">
+<a href="lectures/science.html">What is Science?</a>
+<a href="visual/decisiontree.html">Conceptual Overview</a>
 </div>
-<!-- RESEARCH -->
-<div class="nav-item dropdown">
-  <div class="nav-label">
-    <span>Research</span>
-    <span>Methods</span>
-  </div>
-
-  <div class="dropdown-panel">
-    <div class="menu-glow"></div>
-    <div class="menu-shimmer"></div>
-
-    <div class="mega-title">Research Methods</div>
-
-    <div class="mega-col">
-      <div class="mega-heading">Lectures</div>
-      <a href="lectures/rdesigns.html">Research Designs</a>
-    </div>
-
-    <div class="mega-col">
-      <div class="mega-heading">Tools</div>
-      <a href="interactive/researchdesign.html">Design Selector</a>
-    </div>
-
-  </div>
-</div>
-<!-- DESCRIPTIVE -->
-<div class="nav-item dropdown">
-  <div class="nav-label">
-    <span>Descriptive</span>
-    <span>Statistics</span>
-  </div>
-
-  <div class="dropdown-panel">
-    <div class="menu-glow"></div>
-    <div class="menu-shimmer"></div>
-
-    <div class="mega-title">Descriptive Statistics</div>
-
-    <div class="mega-col">
-      <div class="mega-heading">Core</div>
-      lectures/lecture02.htmlDescriptive Overview</a>
-    </div>
-
-    <div class="mega-col">
-      <div class="mega-heading">Concepts</div>
-      lectures/lecture02.html#central-tendencyCentral Tendency</a>
-      lectures/lecture02.html#normalityNormality</a>
-    </div>
-
-    <div class="mega-col">
-      <div class="mega-heading">Visuals</div>
-      lectures/lecture01.html#histogramsHistograms</a>
-      lectures/lecture02.html#boxplotsBoxplots</a>
-    </div>
-
-  </div>
 </div>
 
-<!-- R CODE -->
 <div class="nav-item dropdown">
-  <div class="nav-label">
-    <span>R</span>
-    <span>Code</span>
-  </div>
-
-  <div class="dropdown-panel">
-    <div class="menu-glow"></div>
-    <div class="menu-shimmer"></div>
-
-    <div class="mega-title">R Code Library</div>
-
-    <div class="mega-col">
-      <div class="mega-heading">Tests</div>
-      <a href="code/correlations.html">Correlations</a>
-      <a href="code/ttest_ind.html">Independent t-test</a>
-    </div>
-
-    <div class="mega-col">
-      <div class="mega-heading">Nonparametric</div>
-      <a href="code/mann_whitney.html">Mann-Whitney U</a>
-      <a href="code/wilcoxon.html">Wilcoxon Signed Rank</a>
-    </div>
-
-    <div class="mega-col">
-      <div class="mega-heading">Chi-Square</div>
-      <a href="code/chi_independence.html">Chi-Square Independence</a>
-      <a href="code/chi_gof.html">Chi-Square Goodness of Fit</a>
-    </div>
-
-  </div>
+<div class="nav-label"><span>Research</span><span>Methods</span></div>
+<div class="dropdown-panel">
+<a href="lectures/rdesigns.html">Research Designs</a>
+<a href="interactive/researchdesign.html">Design Selector</a>
+</div>
 </div>
 
-<!-- ✅ correct script -->
+<div class="nav-item dropdown">
+<div class="nav-label"><span>Measurement</span><span>Theory</span></div>
+<div class="dropdown-panel">
+<a href="lectures/data-types.html">Types of Data</a>
+</div>
+</div>
+
+<div class="nav-item dropdown">
+<div class="nav-label"><span>Descriptive</span><span>Statistics</span></div>
+<div class="dropdown-panel">
+<a href="lectures/lecture02.html">Descriptive Stats</a>
+</div>
+</div>
+
+<div class="nav-item dropdown">
+<div class="nav-label"><span>Inferential</span><span>Statistics</span></div>
+<div class="dropdown-panel">
+<a href="lectures/hypotheses.html">Hypothesis Testing</a>
+</div>
+</div>
+
+<div class="nav-item dropdown">
+<div class="nav-label"><span>Visualizing</span><span>Data</span></div>
+<div class="dropdown-panel">
+<a href="lectures/lecture01.html#histograms">Histograms</a>
+</div>
+</div>
+
+<div class="nav-item dropdown">
+<div class="nav-label"><span>R</span><span>Studio</span></div>
+<div class="dropdown-panel">
+<a href="lectures/intro-r.html">R Basics</a>
+</div>
+</div>
+
+<div class="nav-item dropdown">
+<div class="nav-label"><span>R</span><span>Code</span></div>
+<div class="dropdown-panel">
+<a href="code/correlations.html">Correlations</a>
+</div>
+</div>
+
+</div>
+</nav>
+
+<div class="home-container">
+<h1>AA 5221</h1>
+<p>Applied Analytics & Research Methods I</p>
+</div>
+
+<!-- ✅ Correct script -->
 <script src="assets/stars.js"></script>
-<script>
-document.querySelectorAll('.dropdown-panel').forEach(panel => {
-  const glow = panel.querySelector('.menu-glow');
-
-  panel.addEventListener('mouseenter', () => glow.style.opacity = '1');
-  panel.addEventListener('mouseleave', () => glow.style.opacity = '0');
-
-  panel.addEventListener('mousemove', (e) => {
-    const rect = panel.getBoundingClientRect();
-    glow.style.left = (e.clientX - rect.left) + 'px';
-    glow.style.top = (e.clientY - rect.top) + 'px';
-  });
-});
-</script>
 
 </body>
 </html>
