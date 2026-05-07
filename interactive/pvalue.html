@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Hypothesis Format Guide</title>
+<title>p-Value Decision Tool</title>
 
 <style>
 html, body {
@@ -22,7 +22,6 @@ body {
   align-items: center;
   justify-content: center;
   padding: 2rem;
-  overflow-x: hidden;
   position: relative;
 }
 
@@ -48,56 +47,50 @@ body::after {
   z-index: -1;
 }
 
-/* Main card */
-.tool-wrapper {
+/* Card */
+.wrapper {
   width: 100%;
   max-width: 780px;
 }
 
-.tool-card {
+.card {
   background: rgba(255,255,255,0.08);
   border: 1px solid rgba(255,255,255,0.15);
   backdrop-filter: blur(24px);
   border-radius: 24px;
   box-shadow: 0 25px 80px rgba(0,0,0,0.45);
-  overflow: hidden;
 }
 
-.tool-content {
+.content {
   padding: 2.5rem;
 }
 
 /* Header */
-.tool-header {
+.header {
   text-align: center;
   margin-bottom: 2rem;
 }
 
-.tool-pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
+.pill {
+  display: inline-block;
   padding: 0.45rem 1rem;
   border-radius: 999px;
   background: rgba(255,255,255,0.10);
   border: 1px solid rgba(255,255,255,0.15);
-  color: rgb(226,232,240);
   font-size: 0.9rem;
   margin-bottom: 1.25rem;
 }
 
-.tool-header h1 {
+.header h1 {
   margin: 0 0 0.75rem;
   font-size: clamp(2rem, 5vw, 3.5rem);
   font-weight: 650;
-  letter-spacing: -0.03em;
 }
 
-.tool-header p {
-  margin: 0 auto;
-  max-width: 620px;
+.header p {
   color: rgb(203,213,225);
-  font-size: 1.05rem;
+  max-width: 620px;
+  margin: 0 auto;
   line-height: 1.6;
 }
 
@@ -109,53 +102,45 @@ body::after {
   margin-bottom: 2rem;
 }
 
-.choice-button {
+.choice {
   border: 1px solid rgba(255,255,255,0.15);
   border-radius: 20px;
   padding: 1.5rem;
-  min-height: 110px;
-  text-align: left;
   cursor: pointer;
-  color: white;
   transition: 0.25s ease;
-  font-family: inherit;
 }
 
-.choice-button.relationships {
-  background: rgba(14,165,233,0.15);
-  border-color: rgba(125,211,252,0.22);
-}
-
-.choice-button.groups {
+.choice.nonsig {
   background: rgba(255,255,255,0.10);
 }
 
-.choice-button:hover {
+.choice.sig {
+  background: rgba(14,165,233,0.18);
+  border-color: rgba(125,211,252,0.25);
+}
+
+.choice:hover {
   transform: translateY(-2px);
-  background: rgba(255,255,255,0.16);
+  background: rgba(255,255,255,0.18);
 }
 
-.choice-button.active.relationships {
-  box-shadow: 0 0 0 2px rgba(125,211,252,0.75);
-}
-
-.choice-button.active.groups {
-  box-shadow: 0 0 0 2px rgba(203,213,225,0.55);
+.choice.active {
+  box-shadow: 0 0 0 2px rgba(125,211,252,0.6);
 }
 
 .choice-title {
   font-size: 1.25rem;
   font-weight: 650;
-  margin-bottom: 0.35rem;
 }
 
-.choice-subtitle {
+.choice-sub {
   font-size: 0.9rem;
   color: rgb(203,213,225);
+  margin-top: 0.3rem;
 }
 
-/* Result area */
-.result-empty {
+/* Result */
+.empty {
   border: 1px solid rgba(255,255,255,0.10);
   background: rgba(255,255,255,0.05);
   border-radius: 20px;
@@ -164,238 +149,153 @@ body::after {
   color: rgb(203,213,225);
 }
 
-.result-panel {
+.result {
   display: none;
   border-radius: 20px;
-  border: 1px solid rgba(125,211,252,0.30);
-  background: linear-gradient(135deg, rgba(3,105,161,0.70), rgba(49,46,129,0.80));
   padding: 1.75rem;
   box-shadow: 0 20px 50px rgba(0,0,0,0.35);
   animation: fadeIn 0.25s ease;
 }
 
-.result-panel.groups-style {
-  border-color: rgba(148,163,184,0.25);
-  background: linear-gradient(135deg, rgba(51,65,85,0.85), rgba(15,23,42,0.90));
+.result.sig {
+  background: linear-gradient(135deg, rgba(3,105,161,0.75), rgba(49,46,129,0.85));
+  border: 1px solid rgba(125,211,252,0.35);
 }
 
-.result-top {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  margin-bottom: 1.5rem;
+.result.nonsig {
+  background: linear-gradient(135deg, rgba(51,65,85,0.85), rgba(15,23,42,0.9));
+  border: 1px solid rgba(148,163,184,0.25);
 }
 
-.result-icon {
-  width: 56px;
-  height: 56px;
-  border-radius: 18px;
-  background: rgba(255,255,255,0.12);
-  border: 1px solid rgba(255,255,255,0.15);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.6rem;
-  flex-shrink: 0;
+.result h2 {
+  margin: 0 0 0.4rem;
+  font-size: 1.9rem;
 }
 
-.result-label {
-  font-size: 0.78rem;
-  text-transform: uppercase;
-  letter-spacing: 0.22em;
-  color: rgb(203,213,225);
-  margin-bottom: 0.35rem;
-}
-
-.result-title {
-  font-size: clamp(1.5rem, 4vw, 2rem);
-  font-weight: 650;
-  margin-bottom: 0.35rem;
-}
-
-.result-subtitle {
+.result p {
   color: rgb(226,232,240);
-  line-height: 1.5;
+  margin-bottom: 1.2rem;
 }
 
-.hypothesis-list {
+.list {
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
 }
 
-.hypothesis-item {
-  display: flex;
-  align-items: flex-start;
-  gap: 0.75rem;
+.item {
   background: rgba(255,255,255,0.10);
   border: 1px solid rgba(255,255,255,0.10);
   border-radius: 14px;
   padding: 1rem;
-  color: rgb(241,245,249);
-  line-height: 1.5;
-}
-
-.check {
-  color: #bae6fd;
-  font-weight: bold;
-  flex-shrink: 0;
 }
 
 @keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(8px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-/* Mobile */
 @media (max-width: 700px) {
-  body {
-    padding: 1rem;
-  }
-
-  .tool-content {
-    padding: 1.5rem;
-  }
-
-  .choice-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .result-top {
-    align-items: flex-start;
-  }
+  .choice-grid { grid-template-columns: 1fr; }
 }
 </style>
 </head>
 
 <body>
 
-<main class="tool-wrapper">
-  <section class="tool-card">
-    <div class="tool-content">
+<div class="wrapper">
+  <div class="card">
+    <div class="content">
 
-      <div class="tool-header">
-        <div class="tool-pill">
-          ? Hypothesis Format Guide
-        </div>
-
-        <h1>What is your research design?</h1>
-
+      <div class="header">
+        <div class="pill">Hypothesis Testing Decision Tool</div>
+        <h1>What is your p-value?</h1>
         <p>
-          Choose the option that matches your study to see the correct null and alternative hypothesis format.
+          Choose the option that matches your result to determine statistical significance and next steps.
         </p>
       </div>
 
       <div class="choice-grid">
-        <button class="choice-button relationships" onclick="showResult('correlation')" id="correlationBtn">
-          <div class="choice-title">Correlation</div>
-          <div class="choice-subtitle">Testing relationships</div>
-        </button>
-
-        <button class="choice-button groups" onclick="showResult('groups')" id="groupsBtn">
-          <div class="choice-title">Quasi / True</div>
-          <div class="choice-subtitle">Testing group differences</div>
-        </button>
-      </div>
-
-      <div id="emptyState" class="result-empty">
-        Select a research design above to see the hypothesis format.
-      </div>
-
-      <div id="resultPanel" class="result-panel">
-        <div class="result-top">
-          <div class="result-icon" id="resultIcon">↔</div>
-
-          <div>
-            <div class="result-label" id="resultLabel">Correlation Design</div>
-            <div class="result-title" id="resultTitle">Testing Relationships</div>
-            <div class="result-subtitle" id="resultSubtitle">
-              Use this format when your study examines whether two variables are related.
-            </div>
-          </div>
+        <div class="choice nonsig" onclick="showResult('nonsig')" id="btnNonsig">
+          <div class="choice-title">p ≥ .05</div>
+          <div class="choice-sub">Above or equal to .05</div>
         </div>
 
-        <div class="hypothesis-list">
-          <div class="hypothesis-item">
-            <span class="check">✓</span>
-            <span id="nullHypothesis">
-              1) Null hypothesis: There is no relationship between Variable 1 and Variable 2.
-            </span>
-          </div>
-
-          <div class="hypothesis-item">
-            <span class="check">✓</span>
-            <span id="altHypothesis">
-              2) Alternative hypothesis: There is a relationship between Variable 1 and Variable 2.
-            </span>
-          </div>
+        <div class="choice sig" onclick="showResult('sig')" id="btnSig">
+          <div class="choice-title">p &lt; .05</div>
+          <div class="choice-sub">Below .05</div>
         </div>
+      </div>
+
+      <div id="empty" class="empty">
+        Select a p-value category above to see the interpretation.
+      </div>
+
+      <div id="result" class="result">
+        <h2 id="resultTitle"></h2>
+        <p id="resultSubtitle"></p>
+
+        <div class="list" id="resultList"></div>
       </div>
 
     </div>
-  </section>
-</main>
+  </div>
+</div>
 
 <script>
 function showResult(type) {
-  const emptyState = document.getElementById("emptyState");
-  const resultPanel = document.getElementById("resultPanel");
+  document.getElementById("empty").style.display = "none";
+  const result = document.getElementById("result");
+  const list = document.getElementById("resultList");
 
-  const correlationBtn = document.getElementById("correlationBtn");
-  const groupsBtn = document.getElementById("groupsBtn");
+  document.getElementById("btnNonsig").classList.remove("active");
+  document.getElementById("btnSig").classList.remove("active");
 
-  const resultIcon = document.getElementById("resultIcon");
-  const resultLabel = document.getElementById("resultLabel");
-  const resultTitle = document.getElementById("resultTitle");
-  const resultSubtitle = document.getElementById("resultSubtitle");
-  const nullHypothesis = document.getElementById("nullHypothesis");
-  const altHypothesis = document.getElementById("altHypothesis");
+  list.innerHTML = "";
 
-  emptyState.style.display = "none";
-  resultPanel.style.display = "block";
+  if (type === "nonsig") {
+    document.getElementById("btnNonsig").classList.add("active");
+    result.className = "result nonsig";
 
-  correlationBtn.classList.remove("active");
-  groupsBtn.classList.remove("active");
-  resultPanel.classList.remove("groups-style");
+    document.getElementById("resultTitle").textContent =
+      "Null Hypothesis Supported";
+    document.getElementById("resultSubtitle").textContent =
+      "Results are not statistically significant.";
 
-  if (type === "correlation") {
-    correlationBtn.classList.add("active");
-
-    resultIcon.textContent = "↔";
-    resultLabel.textContent = "Correlation Design";
-    resultTitle.textContent = "Testing Relationships";
-    resultSubtitle.textContent =
-      "Use this format when your study examines whether two variables are related.";
-
-    nullHypothesis.textContent =
-      "1) Null hypothesis: There is no relationship between Variable 1 and Variable 2.";
-
-    altHypothesis.textContent =
-      "2) Alternative hypothesis: There is a relationship between Variable 1 and Variable 2.";
+    [
+      "Null hypothesis supported",
+      "Results not statistically significant",
+      "Do not calculate effect size"
+    ].forEach(text => {
+      const div = document.createElement("div");
+      div.className = "item";
+      div.textContent = text;
+      list.appendChild(div);
+    });
   }
 
-  if (type === "groups") {
-    groupsBtn.classList.add("active");
-    resultPanel.classList.add("groups-style");
+  if (type === "sig") {
+    document.getElementById("btnSig").classList.add("active");
+    result.className = "result sig";
 
-    resultIcon.textContent = "👥";
-    resultLabel.textContent = "Quasi or True Experimental Design";
-    resultTitle.textContent = "Testing Group Differences";
-    resultSubtitle.textContent =
-      "Use this format when your study compares two groups.";
+    document.getElementById("resultTitle").textContent =
+      "Alternative Hypothesis Supported";
+    document.getElementById("resultSubtitle").textContent =
+      "Results are statistically significant.";
 
-    nullHypothesis.textContent =
-      "1) Null hypothesis: There is no difference between Group 1 and Group 2.";
-
-    altHypothesis.textContent =
-      "2) Alternative hypothesis: There is a difference between Group 1 and Group 2.";
+    [
+      "Alternative hypothesis supported",
+      "Results statistically significant",
+      "Calculate effect size"
+    ].forEach(text => {
+      const div = document.createElement("div");
+      div.className = "item";
+      div.textContent = text;
+      list.appendChild(div);
+    });
   }
+
+  result.style.display = "block";
 }
 </script>
 
