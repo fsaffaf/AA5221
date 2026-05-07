@@ -6,78 +6,51 @@
 <title>Data Analytics Process</title>
 
 <style>
-/* ---------- BASE ---------- */
-html {
-  scroll-behavior: smooth;
-}
+html { scroll-behavior: smooth; }
 
 body {
   margin: 0;
-  font-family: "Segoe UI", "SF Pro Display", system-ui, sans-serif;
+  font-family: "Segoe UI", system-ui;
+  background: radial-gradient(circle at top, #08131f, #000814);
   color: white;
 
-  /* icy neon background */
-  background: radial-gradient(circle at top, #08131f, #000814);
-
-  /* SLIDE SNAP */
   scroll-snap-type: y mandatory;
   overflow-y: scroll;
 }
 
-/* ---------- SECTIONS ---------- */
+/* progress bar */
+.progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 5px;
+  width: 0%;
+  background: linear-gradient(90deg, #38bdf8, #818cf8);
+  box-shadow: 0 0 15px #38bdf8;
+  z-index: 999;
+}
+
 .section {
   height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-
   scroll-snap-align: start;
-  scroll-snap-stop: always;
-  position: relative;
 }
 
-/* glowing ambient lights */
-.section::before {
-  content: "";
-  position: absolute;
-  width: 400px;
-  height: 400px;
-  background: radial-gradient(circle, rgba(0,200,255,0.3), transparent);
-  filter: blur(120px);
-}
-
-.section::after {
-  content: "";
-  position: absolute;
-  width: 400px;
-  height: 400px;
-  background: radial-gradient(circle, rgba(120,0,255,0.2), transparent);
-  filter: blur(120px);
-}
-
-/* ---------- CARD ---------- */
 .card {
   width: 600px;
   height: 320px;
   padding: 30px;
 
-  border-radius: 22px;
-
-  /* neon glass */
-  background: linear-gradient(
-    145deg,
-    rgba(255,255,255,0.10),
-    rgba(255,255,255,0.02)
-  );
-
+  border-radius: 20px;
+  background: linear-gradient(135deg, rgba(255,255,255,0.12), rgba(255,255,255,0.04));
   backdrop-filter: blur(20px);
-
   border: 1px solid rgba(120,200,255,0.3);
 
   box-shadow:
-    0 0 40px rgba(0,200,255,0.2),
-    0 20px 60px rgba(0,0,0,0.8),
-    inset 0 0 15px rgba(255,255,255,0.05);
+    0 0 40px rgba(0,200,255,0.25),
+    0 20px 60px rgba(0,0,0,0.8);
 
   display: flex;
   flex-direction: column;
@@ -85,7 +58,7 @@ body {
 
   opacity: 0;
   transform: translateY(30px);
-  transition: all 0.6s ease;
+  transition: 0.6s;
 }
 
 .card.show {
@@ -93,44 +66,29 @@ body {
   transform: translateY(0);
 }
 
-/* ---------- TEXT ---------- */
 h1, h2 {
   margin: 0 0 10px;
-
-  /* icy gradient text */
   background: linear-gradient(90deg, #7dd3fc, #38bdf8, #a78bfa);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-
-  letter-spacing: 0.5px;
 }
 
-p {
-  color: #cbd5f5;
-  line-height: 1.4;
-}
+p { color: #cbd5f5; }
 
-/* ---------- BUTTON ---------- */
 button {
-  padding: 8px 16px;
-  border-radius: 999px;
-  border: 1px solid rgba(125,211,252,0.3);
-
-  background: rgba(255,255,255,0.05);
-  color: #7dd3fc;
-
+  padding: 8px 14px;
+  border-radius: 20px;
+  border: none;
+  background: rgba(255,255,255,0.1);
+  color: white;
   cursor: pointer;
-  transition: 0.3s;
 }
 
 button:hover {
   background: linear-gradient(90deg, #38bdf8, #818cf8);
   color: white;
-
-  box-shadow: 0 0 15px rgba(56,189,248,0.6);
 }
 
-/* ---------- PANEL ---------- */
 .panel {
   max-height: 0;
   overflow: hidden;
@@ -139,93 +97,70 @@ button:hover {
   color: #cbd5f5;
 }
 
-.panel.open {
-  max-height: 120px;
-}
+.panel.open { max-height: 120px; }
 
-/* ---------- STEP NUMBER ---------- */
+/* brighter glowing number */
 .step-number {
   position: fixed;
   top: 20px;
   left: 20px;
 
-  font-size: 60px;
-  font-weight: 700;
-  opacity: 0.2;
+  font-size: 70px;
+  font-weight: 800;
 
-  background: linear-gradient(180deg, #38bdf8, #818cf8);
+  background: linear-gradient(180deg, #38bdf8, #a78bfa);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 
-  text-shadow: 0 0 20px rgba(56,189,248,0.4);
+  text-shadow:
+    0 0 20px rgba(56,189,248,0.8),
+    0 0 40px rgba(56,189,248,0.5);
+
+  opacity: 0.9;
 }
 </style>
 </head>
 
 <body>
 
+<div class="progress" id="progress"></div>
 <div class="step-number" id="step"></div>
 
-<!-- PURPOSE -->
 <div class="section">
   <div class="card">
     <div>
       <h1>Purpose</h1>
-      <p>Understand the full lifecycle of data analytics.</p>
+      <p>Understand the analytics lifecycle.</p>
     </div>
     <div>
       <button onclick="toggle(this)">Learn More</button>
-      <div class="panel">
-        This overview connects all steps into one unified process.
-      </div>
+      <div class="panel">Overview of full process.</div>
     </div>
   </div>
 </div>
 
-<!-- STEP 1 -->
 <div class="section">
   <div class="card">
     <div>
       <h2>1. Define Problem</h2>
-      <p>Set research questions and goals.</p>
+      <p>Set research questions.</p>
     </div>
     <div>
       <button onclick="toggle(this)">Learn More</button>
-      <div class="panel">
-        Example: What factors influence outcomes?
-      </div>
+      <div class="panel">Define goals clearly.</div>
     </div>
   </div>
 </div>
 
-<!-- STEP 2 -->
 <div class="section">
   <div class="card">
     <div>
       <h2>2. Planning</h2>
-      <p>Define requirements and scope.</p>
+      <p>Define requirements.</p>
     </div>
     <div>
       <button onclick="toggle(this)">Learn More</button>
-      <div class="panel">
-        Identify stakeholders and goals.
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- STEP 3 -->
-<div class="section">
-  <div class="card">
-    <div>
-      <h2>3. Data Collection</h2>
-      <p>Gather relevant data.</p>
-    </div>
-    <div>
-      <button onclick="toggle(this)">Learn More</button>
-      <div class="panel">
-        Use surveys, APIs, or databases.
-      </div>
+      <div class="panel">Identify stakeholders.</div>
     </div>
   </div>
 </div>
@@ -233,6 +168,7 @@ button:hover {
 <script>
 const sections = document.querySelectorAll('.section');
 const step = document.getElementById('step');
+const progress = document.getElementById('progress');
 
 function toggle(btn) {
   const panel = btn.nextElementSibling;
@@ -249,12 +185,18 @@ function update() {
       sec.querySelector('.card').classList.add('show');
     }
 
-    if (rect.top < window.innerHeight/2 && rect.bottom > window.innerHeight/2) {
+    if (rect.top < window.innerHeight / 2 && rect.bottom > window.innerHeight / 2) {
       index = i;
     }
   });
 
   step.innerText = index === 0 ? '' : index;
+
+  /* progress bar */
+  const scrollTop = document.documentElement.scrollTop;
+  const height = document.documentElement.scrollHeight - window.innerHeight;
+  const percent = (scrollTop / height) * 100;
+  progress.style.width = percent + "%";
 }
 
 window.addEventListener('scroll', update);
