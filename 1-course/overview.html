@@ -1,97 +1,152 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>10 Slide Click Slider</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      background: #f3f4f6;
-    }
-    .slider {
-      position: relative;
-      width: 600px;
-      height: 300px;
-      background: white;
-      border-radius: 16px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-      overflow: hidden;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 20px;
-      text-align: center;
-    }
-    .slide {
-      position: absolute;
-      width: 100%;
-      transition: all 0.4s ease;
-      opacity: 0;
-      transform: translateX(50px);
-    }
-    .slide.active {
-      opacity: 1;
-      transform: translateX(0);
-    }
-    .arrow {
-      position: absolute;
-      right: 15px;
-      top: 50%;
-      transform: translateY(-50%);
-      background: #111;
-      color: white;
-      border: none;
-      border-radius: 50%;
-      width: 40px;
-      height: 40px;
-      cursor: pointer;
-      font-size: 20px;
-    }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Slide Deck</title>
 
-    h2 {
-      margin-bottom: 10px;
-    }
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
 
+  body {
+    font-family: Arial, sans-serif;
+    overflow: hidden;
+    background: #111;
+  }
 
-    p {
-      color: #555;
-    }
-  </style>
+  .deck {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  .slides {
+    display: flex;
+    width: 1000vw; /* 10 slides */
+    height: 100vh;
+    transition: transform 0.6s ease-in-out;
+  }
+
+  .slide {
+    width: 100vw;
+    height: 100vh;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    color: white;
+  }
+
+  /* Different background colors per slide */
+  .slide:nth-child(1) { background: #1abc9c; }
+  .slide:nth-child(2) { background: #3498db; }
+  .slide:nth-child(3) { background: #9b59b6; }
+  .slide:nth-child(4) { background: #e74c3c; }
+  .slide:nth-child(5) { background: #f39c12; }
+  .slide:nth-child(6) { background: #2ecc71; }
+  .slide:nth-child(7) { background: #34495e; }
+  .slide:nth-child(8) { background: #16a085; }
+  .slide:nth-child(9) { background: #8e44ad; }
+  .slide:nth-child(10){ background: #c0392b; }
+
+  /* Right arrow button */
+  .next-btn {
+    position: absolute;
+    right: 25px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    background: rgba(255,255,255,0.15);
+    backdrop-filter: blur(5px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.2s;
+  }
+
+  .next-btn:hover {
+    background: rgba(255,255,255,0.3);
+  }
+
+  .arrow {
+    width: 0;
+    height: 0;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-left: 15px solid white;
+    margin-left: 5px;
+  }
+
+  .counter {
+    position: absolute;
+    bottom: 20px;
+    right: 25px;
+    color: white;
+    font-size: 14px;
+    opacity: 0.7;
+  }
+</style>
 </head>
+
 <body>
 
-<div class="slider">
+<div class="deck">
+  <div class="slides" id="slides">
 
-  <div class="slide active"><h2>Slide 1</h2><p>Content for slide 1</p></div>
-  <div class="slide"><h2>Slide 2</h2><p>Content for slide 2</p></div>
-  <div class="slide"><h2>Slide 3</h2><p>Content for slide 3</p></div>
-  <div class="slide"><h2>Slide 4</h2><p>Content for slide 4</p></div>
-  <div class="slide"><h2>Slide 5</h2><p>Content for slide 5</p></div>
-  <div class="slide"><h2>Slide 6</h2><p>Content for slide 6</p></div>
-  <div class="slide"><h2>Slide 7</h2><p>Content for slide 7</p></div>
-  <div class="slide"><h2>Slide 8</h2><p>Content for slide 8</p></div>
-  <div class="slide"><h2>Slide 9</h2><p>Content for slide 9</p></div>
-  <div class="slide"><h2>Slide 10</h2><p>Content for slide 10</p></div>
+    <div class="slide">Slide 1</div>
+    <div class="slide">Slide 2</div>
+    <div class="slide">Slide 3</div>
+    <div class="slide">Slide 4</div>
+    <div class="slide">Slide 5</div>
+    <div class="slide">Slide 6</div>
+    <div class="slide">Slide 7</div>
+    <div class="slide">Slide 8</div>
+    <div class="slide">Slide 9</div>
+    <div class="slide">Slide 10</div>
 
-  <button class="arrow" onclick="nextSlide()">›</button>
+  </div>
 
+  <button class="next-btn" onclick="nextSlide()">
+    <div class="arrow"></div>
+  </button>
+
+  <div class="counter" id="counter">1 / 10</div>
 </div>
 
 <script>
-  let current = 0;
-  const slides = document.querySelectorAll('.slide');
+  let currentSlide = 0;
+  const totalSlides = 10;
+  const slides = document.getElementById("slides");
+  const counter = document.getElementById("counter");
 
-  function nextSlide() {
-    slides[current].classList.remove('active');
-    current = (current + 1) % slides.length;
-    slides[current].classList.add('active');
-  }
+  function updateSlide() {
+    slides.style.transform = `translateX(-${currentSlide * 100}vw)`;
+    counter.textContent = `${currentSlide + 1} / ${totalSlides}`;
+  }
+
+  function nextSlide() {
+    currentSlide++;
+    if (currentSlide >= totalSlides) {
+      currentSlide = 0; // loop back to start
+    }
+    updateSlide();
+  }
+
+  // Optional: arrow key support
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "ArrowRight") nextSlide();
+  });
 </script>
 
 </body>
+</html>
