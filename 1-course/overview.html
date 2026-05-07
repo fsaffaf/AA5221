@@ -13,11 +13,11 @@ html {
 
 body {
   margin: 0;
-  font-family: "Segoe UI", sans-serif;
+  font-family: "Segoe UI", "SF Pro Display", system-ui, sans-serif;
   color: white;
 
-  /* background */
-  background: radial-gradient(circle at top, #0f172a, #020617);
+  /* icy neon background */
+  background: radial-gradient(circle at top, #08131f, #000814);
 
   /* SLIDE SNAP */
   scroll-snap-type: y mandatory;
@@ -36,14 +36,23 @@ body {
   position: relative;
 }
 
-/* subtle glow */
+/* glowing ambient lights */
 .section::before {
   content: "";
   position: absolute;
-  width: 300px;
-  height: 300px;
-  background: radial-gradient(circle, rgba(125,211,252,0.2), transparent);
-  filter: blur(80px);
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(0,200,255,0.3), transparent);
+  filter: blur(120px);
+}
+
+.section::after {
+  content: "";
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(120,0,255,0.2), transparent);
+  filter: blur(120px);
 }
 
 /* ---------- CARD ---------- */
@@ -52,22 +61,23 @@ body {
   height: 320px;
   padding: 30px;
 
-  border-radius: 20px;
+  border-radius: 22px;
 
-  /* glass */
+  /* neon glass */
   background: linear-gradient(
-    135deg,
-    rgba(255,255,255,0.12),
-    rgba(255,255,255,0.04)
+    145deg,
+    rgba(255,255,255,0.10),
+    rgba(255,255,255,0.02)
   );
 
-  backdrop-filter: blur(18px);
+  backdrop-filter: blur(20px);
 
-  border: 1px solid rgba(255,255,255,0.2);
+  border: 1px solid rgba(120,200,255,0.3);
 
   box-shadow:
-    0 20px 50px rgba(0,0,0,0.7),
-    inset 0 0 10px rgba(255,255,255,0.05);
+    0 0 40px rgba(0,200,255,0.2),
+    0 20px 60px rgba(0,0,0,0.8),
+    inset 0 0 15px rgba(255,255,255,0.05);
 
   display: flex;
   flex-direction: column;
@@ -75,7 +85,7 @@ body {
 
   opacity: 0;
   transform: translateY(30px);
-  transition: 0.6s;
+  transition: all 0.6s ease;
 }
 
 .card.show {
@@ -86,28 +96,41 @@ body {
 /* ---------- TEXT ---------- */
 h1, h2 {
   margin: 0 0 10px;
+
+  /* icy gradient text */
+  background: linear-gradient(90deg, #7dd3fc, #38bdf8, #a78bfa);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  letter-spacing: 0.5px;
 }
 
 p {
   color: #cbd5f5;
+  line-height: 1.4;
 }
 
 /* ---------- BUTTON ---------- */
 button {
-  padding: 8px 14px;
-  border-radius: 20px;
-  border: none;
-  background: rgba(255,255,255,0.1);
-  color: white;
+  padding: 8px 16px;
+  border-radius: 999px;
+  border: 1px solid rgba(125,211,252,0.3);
+
+  background: rgba(255,255,255,0.05);
+  color: #7dd3fc;
+
   cursor: pointer;
+  transition: 0.3s;
 }
 
 button:hover {
-  background: linear-gradient(90deg, #7dd3fc, #a78bfa);
-  color: black;
+  background: linear-gradient(90deg, #38bdf8, #818cf8);
+  color: white;
+
+  box-shadow: 0 0 15px rgba(56,189,248,0.6);
 }
 
-/* ---------- EXPAND PANEL ---------- */
+/* ---------- PANEL ---------- */
 .panel {
   max-height: 0;
   overflow: hidden;
@@ -126,13 +149,15 @@ button:hover {
   top: 20px;
   left: 20px;
 
-  font-size: 50px;
+  font-size: 60px;
+  font-weight: 700;
   opacity: 0.2;
-  font-weight: bold;
 
-  background: linear-gradient(180deg, #7dd3fc, #a78bfa);
+  background: linear-gradient(180deg, #38bdf8, #818cf8);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+
+  text-shadow: 0 0 20px rgba(56,189,248,0.4);
 }
 </style>
 </head>
@@ -151,7 +176,7 @@ button:hover {
     <div>
       <button onclick="toggle(this)">Learn More</button>
       <div class="panel">
-        This overview shows how all steps connect into one process.
+        This overview connects all steps into one unified process.
       </div>
     </div>
   </div>
@@ -167,7 +192,7 @@ button:hover {
     <div>
       <button onclick="toggle(this)">Learn More</button>
       <div class="panel">
-        Example: What factors influence student performance?
+        Example: What factors influence outcomes?
       </div>
     </div>
   </div>
@@ -178,12 +203,12 @@ button:hover {
   <div class="card">
     <div>
       <h2>2. Planning</h2>
-      <p>Define scope and requirements.</p>
+      <p>Define requirements and scope.</p>
     </div>
     <div>
       <button onclick="toggle(this)">Learn More</button>
       <div class="panel">
-        Identify stakeholders, constraints, and needed data.
+        Identify stakeholders and goals.
       </div>
     </div>
   </div>
@@ -194,61 +219,26 @@ button:hover {
   <div class="card">
     <div>
       <h2>3. Data Collection</h2>
-      <p>Gather relevant data sources.</p>
+      <p>Gather relevant data.</p>
     </div>
     <div>
       <button onclick="toggle(this)">Learn More</button>
       <div class="panel">
-        Sources include surveys, APIs, databases, or experiments.
+        Use surveys, APIs, or databases.
       </div>
     </div>
   </div>
 </div>
 
-<!-- STEP 4 -->
-<div class="section">
-  <div class="card">
-    <div>
-      <h2>4. Data Cleaning</h2>
-      <p>Prepare and clean the dataset.</p>
-    </div>
-    <div>
-      <button onclick="toggle(this)">Learn More</button>
-      <div class="panel">
-        Remove missing data, fix errors, standardize formats.
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- STEP 5 -->
-<div class="section">
-  <div class="card">
-    <div>
-      <h2>5. Exploratory Analysis</h2>
-      <p>Identify patterns and trends.</p>
-    </div>
-    <div>
-      <button onclick="toggle(this)">Learn More</button>
-      <div class="panel">
-        Use charts, distributions, and summary statistics.
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- JS -->
 <script>
 const sections = document.querySelectorAll('.section');
 const step = document.getElementById('step');
 
-/* toggle learn more */
 function toggle(btn) {
   const panel = btn.nextElementSibling;
   panel.classList.toggle('open');
 }
 
-/* scroll logic */
 function update() {
   let index = 0;
 
@@ -264,7 +254,7 @@ function update() {
     }
   });
 
-  step.innerText = index === 0 ? "" : index;
+  step.innerText = index === 0 ? '' : index;
 }
 
 window.addEventListener('scroll', update);
