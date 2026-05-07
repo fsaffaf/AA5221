@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Slide Deck</title>
+<title>No Drift Slide Deck</title>
 
 <style>
 html, body {
@@ -14,7 +14,7 @@ html, body {
   overflow: hidden;
 }
 
-/* subtle glow */
+/* glow */
 body::before {
   content: "";
   position: fixed;
@@ -41,11 +41,12 @@ body::before {
   overflow: hidden;
 }
 
+/* slides track */
 .slides {
   display: flex;
   width: 500vw;
   height: 100vh;
-  transition: transform 0.65s ease;
+  transition: transform 0.65s cubic-bezier(0.77, 0, 0.175, 1);
 }
 
 /* slide */
@@ -54,41 +55,44 @@ body::before {
   height: 100vh;
   flex-shrink: 0;
 
+  position: relative;
+
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
-
-  padding: 7vh 8vw;
-  position: relative;
 }
 
-/* content */
+/* FIXED LEFT TEXT COLUMN (KEY FIX) */
 .content {
-  max-width: 900px;
-  text-align: left; /* FIX: ensures no centering */
+  position: absolute;
+  left: 96px;   /* 👈 locked anchor point */
+  top: 80px;
+
+  max-width: 800px;
+
+  text-align: left;
 }
 
-/* titles always left aligned */
+/* typography */
 h1, h2 {
   margin: 0;
   text-align: left;
   color: rgba(255,255,255,0.92);
-  letter-spacing: -0.02em;
 }
 
 h1 {
-  font-size: clamp(2.2rem, 4vw, 3.2rem);
+  font-size: 2.8rem;
   font-weight: 600;
 }
 
 h2 {
   font-size: 1.7rem;
   font-weight: 500;
+
   border-left: 3px solid rgba(147,197,253,0.8);
   padding-left: 0.75rem;
 }
 
-/* text */
 p {
   margin-top: 0.75rem;
   font-size: 1rem;
@@ -96,7 +100,7 @@ p {
   color: rgba(226,232,240,0.72);
 }
 
-/* navigation */
+/* nav */
 .nav-btn {
   position: absolute;
   top: 50%;
