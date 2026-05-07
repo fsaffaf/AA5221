@@ -20,31 +20,22 @@ html, body {
   align-items: center;
   justify-content: center;
   position: relative;
-  padding: 20px;
 }
 
-.section::before, .section::after {
-  content: "";
-  position: absolute;
-  width: 500px;
-  height: 500px;
-  filter: blur(70px);
+/* fixed step number */
+.step-number {
+  position: fixed;
+  top: 30px;
+  left: 30px;
+  font-size: 4rem;
+  opacity: 0.15;
+  font-weight: bold;
+  z-index: 10;
 }
 
-.section::before {
-  background: radial-gradient(circle, rgba(125,211,252,0.25), transparent 60%);
-  top: -150px; left: -150px;
-}
-
-.section::after {
-  background: radial-gradient(circle, rgba(167,139,250,0.25), transparent 60%);
-  bottom: -150px; right: -150px;
-}
-
-/* ✅ FIXED UNIFORM CARD SIZE */
 .card {
   width: 650px;
-  min-height: 320px;
+  height: 360px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -66,32 +57,41 @@ html, body {
   transform: translateY(0) scale(1);
 }
 
-/* content wrapper for alignment */
+/* equal height text zone */
 .content {
-  flex-grow: 1;
+  height: 140px;
 }
 
-h1 {
-  font-size: 2.8rem;
-  margin-bottom: 10px;
-  background: linear-gradient(90deg, #7dd3fc, #a78bfa);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-h2 {
-  font-size: 1.6rem;
-  margin-bottom: 10px;
-}
+h1,h2 { margin: 0 0 10px; }
 
 p {
-  font-size: 1rem;
   color: #cbd5f5;
 }
 
-/* links pinned to bottom */
-.links {
-  margin-top: 20px;
+/* expandable panels */
+.learn {
+  margin-top: 10px;
+}
+
+.learn button {
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.2);
+  color: white;
+  padding: 8px 14px;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.panel {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease;
+  font-size: 0.9rem;
+  color: #cbd5f5;
+}
+
+.panel.open {
+  max-height: 120px;
 }
 
 .links a {
@@ -101,19 +101,10 @@ p {
   border-radius: 999px;
   background: rgba(255,255,255,0.1);
   border: 1px solid rgba(255,255,255,0.2);
-  color: #e0f2fe;
   text-decoration: none;
-  font-size: 0.85rem;
-  transition: all 0.3s ease;
+  color: #e0f2fe;
 }
 
-.links a:hover {
-  background: linear-gradient(90deg, #7dd3fc, #a78bfa);
-  color: black;
-  transform: scale(1.05);
-}
-
-/* nav */
 .nav {
   position: fixed;
   right: 20px;
@@ -131,78 +122,37 @@ p {
 
 .nav .active {
   background: linear-gradient(90deg, #7dd3fc, #a78bfa);
-  transform: scale(1.5);
 }
 </style>
 </head>
 
 <body>
 
+<div class="step-number" id="stepNumber">0</div>
 <div class="nav" id="nav"></div>
 
-<!-- PURPOSE -->
-<div class="section">
-  <div class="card">
-    <div class="content">
-      <h1>Purpose</h1>
-      <p>Understand the full lifecycle of data analytics.</p>
-    </div>
-    <div class="links">
-      #Overview</a>
-      <a href="#">Learning Goals</a>
-    </div>
-  </div>
-</div>
+<div class="section"><div class="card"><div class="content"><h1>Purpose</h1><p>Understand the analytics lifecycle.</p></div><div class="learn"><button onclick="togglePanel(this)">Learn More</button><div class="panel">This overview helps connect all steps together.</div></div></div></div>
 
-<!-- STEPS -->
+<div class="section"><div class="card"><div class="content"><h2>1. Define Problem</h2><p>Clarify goals and questions.</p></div><div class="learn"><button onclick="togglePanel(this)">Learn More</button><div class="panel">Define hypothesis and objectives clearly.</div></div></div></div>
 
-<div class="section">
-  <div class="card">
-    <div class="content">
-      <h2>1. Define Problem</h2>
-      <p>Identify research questions and goals.</p>
-    </div>
-    <div class="links">
-      #Templates</a>
-      #Examples</a>
-    </div>
-  </div>
-</div>
+<div class="section"><div class="card"><div class="content"><h2>2. Planning</h2><p>Define scope and needs.</p></div><div class="learn"><button onclick="togglePanel(this)">Learn More</button><div class="panel">Identify stakeholders and data requirements.</div></div></div></div>
 
-<div class="section">
-  <div class="card">
-    <div class="content">
-      <h2>2. Planning</h2>
-      <p>Define scope and stakeholders.</p>
-    </div>
-    <div class="links">
-      #Stakeholders</a>
-      #Planning</a>
-    </div>
-  </div>
-</div>
-
-<div class="section">
-  <div class="card">
-    <div class="content">
-      <h2>3. Data Collection</h2>
-      <p>Gather relevant datasets.</p>
-    </div>
-    <div class="links">
-      #Sources</a>
-      #APIs</a>
-    </div>
-  </div>
-</div>
+<div class="section"><div class="card"><div class="content"><h2>3. Data Collection</h2><p>Gather data sources.</p></div><div class="learn"><button onclick="togglePanel(this)">Learn More</button><div class="panel">Collect from APIs, surveys, databases.</div></div></div></div>
 
 <script>
 const sections = document.querySelectorAll('.section');
 const nav = document.getElementById('nav');
+const stepNum = document.getElementById('stepNumber');
 
 sections.forEach(() => {
   const dot = document.createElement('div');
   nav.appendChild(dot);
 });
+
+function togglePanel(btn) {
+  const panel = btn.nextElementSibling;
+  panel.classList.toggle('open');
+}
 
 function update() {
   let activeIndex = 0;
@@ -214,13 +164,15 @@ function update() {
       section.querySelector('.card').classList.add('show');
     }
 
-    if (rect.top < window.innerHeight / 2 && rect.bottom > window.innerHeight / 2) {
+    if (rect.top < window.innerHeight/2 && rect.bottom > window.innerHeight/2) {
       activeIndex = i;
     }
   });
 
-  document.querySelectorAll('.nav div').forEach((dot, i) => {
-    dot.classList.toggle('active', i === activeIndex);
+  stepNum.innerText = activeIndex;
+
+  document.querySelectorAll('.nav div').forEach((dot,i) => {
+    dot.classList.toggle('active', i===activeIndex);
   });
 }
 
