@@ -1,4 +1,4 @@
-can you fix the centered title? it disappeared: <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
@@ -151,14 +151,72 @@ html, body {
 .home-container {
   position: relative;
   z-index: 1;
-  min-height: calc(100vh - 70px); /* account for nav */
+
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
   text-align: center;
   color: white;
+  padding: 0 1.5rem;
 }
+
+/* Optional soft background halo behind title */
+.home-container::before {
+  content: "";
+  position: absolute;
+  width: min(520px, 80vw);
+  height: min(520px, 80vw);
+  border-radius: 50%;
+
+  background:
+    radial-gradient(circle,
+      rgba(125, 211, 252, 0.14) 0%,
+      rgba(59, 130, 246, 0.07) 35%,
+      transparent 70%
+    );
+
+  filter: blur(18px);
+  z-index: -1;
+}
+
+.home-container h1 {
+  margin: 0;
+
+  font-family: "Avenir Next", "Inter", "Segoe UI", system-ui, sans-serif;
+  font-size: clamp(3.25rem, 8vw, 6.5rem);
+  font-weight: 650;
+  letter-spacing: 0.12em;
+  line-height: 1;
+
+  background: linear-gradient(
+    180deg,
+    #ffffff 0%,
+    #dbeafe 48%,
+    #93c5fd 100%
+  );
+
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+
+  text-shadow:
+    0 1px 12px rgba(255, 255, 255, 0.12);
+}
+
+.home-container p {
+  margin-top: 1.15rem;
+
+  font-family: "Avenir Next", "Inter", "Segoe UI", system-ui, sans-serif;
+  font-size: clamp(0.95rem, 1.8vw, 1.25rem);
+  font-weight: 300;
+  letter-spacing: 0.09em;
+
+  color: rgba(226, 232, 240, 0.82);
+}
+
 </style>
 </head>
 
