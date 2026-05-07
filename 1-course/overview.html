@@ -9,7 +9,7 @@
 body {
   margin: 0;
   font-family: "Segoe UI", sans-serif;
-  background: radial-gradient(circle at top, #08131f, #000814);
+  background: #020617;
   color: white;
   overflow: hidden;
 }
@@ -17,8 +17,8 @@ body {
 /* container */
 .container {
   display: flex;
-  width: 400vw; /* number of slides × 100 */
   height: 100vh;
+  width: 100%;
   transition: transform 0.5s ease;
 }
 
@@ -26,32 +26,22 @@ body {
 .section {
   width: 100vw;
   height: 100vh;
+
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
 }
 
-/* cards */
+/* card */
 .card {
-  width: 600px;
-  height: 320px;
-  padding: 30px;
+  width: 500px;
+  height: 260px;
+  padding: 25px;
 
-  border-radius: 20px;
-
-  background: linear-gradient(
-    135deg,
-    rgba(255,255,255,0.12),
-    rgba(255,255,255,0.04)
-  );
-
-  backdrop-filter: blur(20px);
-
-  border: 1px solid rgba(120,200,255,0.3);
-
-  box-shadow:
-    0 0 40px rgba(0,200,255,0.25),
-    0 20px 60px rgba(0,0,0,0.8);
+  border-radius: 15px;
+  background: rgba(255,255,255,0.08);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.2);
 
   display: flex;
   flex-direction: column;
@@ -59,80 +49,41 @@ body {
 }
 
 /* text */
-h1, h2 {
-  margin: 0 0 10px;
-  background: linear-gradient(90deg, #7dd3fc, #38bdf8, #a78bfa);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-p {
-  color: #cbd5f5;
-}
-
-/* button */
-button {
-  padding: 8px 14px;
-  border-radius: 20px;
-  border: none;
-  background: rgba(255,255,255,0.1);
-  color: white;
-  cursor: pointer;
-}
-
-button:hover {
-  background: linear-gradient(90deg, #38bdf8, #818cf8);
-}
-
-/* panel */
-.panel {
-  max-height: 0;
-  overflow: hidden;
-  transition: 0.3s;
-}
-
-.panel.open {
-  max-height: 120px;
-}
+h1, h2 { margin: 0 0 10px; }
+p { color: #cbd5f5; }
 
 /* arrows */
 .arrow {
   position: fixed;
   top: 50%;
   transform: translateY(-50%);
-  width: 55px;
-  height: 55px;
+  width: 50px;
+  height: 50px;
+
+  background: rgba(255,255,255,0.1);
   border-radius: 50%;
 
   display: flex;
   align-items: center;
   justify-content: center;
 
-  background: rgba(255,255,255,0.1);
-  border: 1px solid rgba(255,255,255,0.2);
-
   cursor: pointer;
-  backdrop-filter: blur(10px);
 }
 
-.arrow:hover {
-  background: linear-gradient(90deg, #38bdf8, #818cf8);
-}
-
-.next { right: 20px; }
 .prev { left: 20px; }
+.next { right: 20px; }
 
-.next::after { content: "➜"; font-size: 22px; }
-.prev::after { content: "⬅"; font-size: 22px; }
+.prev::after { content: "⬅"; }
+.next::after { content: "➜"; }
 
-/* progress bar */
+/* progress */
 .progress {
   position: fixed;
   bottom: 0;
   left: 0;
-  height: 5px;
+  height: 4px;
+  background: #38bdf8;
   width: 0%;
-  background: linear-gradient(90deg, #38bdf8, #818cf8);
 }
 </style>
 </head>
@@ -145,63 +96,54 @@ button:hover {
 
 <div class="container" id="container">
 
-  <div class="section"><div class="card">
-    <h1>Purpose</h1>
-    <p>Understand the analytics lifecycle.</p>
-    <button onclick="toggle(this)">Learn More</button>
-    <div class="panel">Overview of process.</div>
-  </div></div>
+  <div class="section">
+    <div class="card">
+      <h1>Purpose</h1>
+      <p>Understand the analytics lifecycle.</p>
+    </div>
+  </div>
 
-  <div class="section"><div class="card">
-    <h2>1. Define Problem</h2>
-    <p>Set research questions.</p>
-    <button onclick="toggle(this)">Learn More</button>
-    <div class="panel">Define goals clearly.</div>
-  </div></div>
+  <div class="section">
+    <div class="card">
+      <h2>1. Define Problem</h2>
+      <p>Set research questions.</p>
+    </div>
+  </div>
 
-  <div class="section"><div class="card">
-    <h2>2. Planning</h2>
-    <p>Define requirements.</p>
-    <button onclick="toggle(this)">Learn More</button>
-    <div class="panel">Identify stakeholders.</div>
-  </div></div>
+  <div class="section">
+    <div class="card">
+      <h2>2. Planning</h2>
+      <p>Define requirements.</p>
+    </div>
+  </div>
 
-  <div class="section"><div class="card">
-    <h2>3. Data Collection</h2>
-    <p>Gather data.</p>
-    <button onclick="toggle(this)">Learn More</button>
-    <div class="panel">Use APIs or datasets.</div>
-  </div></div>
+  <div class="section">
+    <div class="card">
+      <h2>3. Data Collection</h2>
+      <p>Gather data sources.</p>
+    </div>
+  </div>
 
 </div>
 
 <script>
 const container = document.getElementById("container");
+const slides = document.querySelectorAll(".section");
 const next = document.getElementById("next");
 const prev = document.getElementById("prev");
 const progress = document.getElementById("progress");
 
 let index = 0;
-const total = document.querySelectorAll(".section").length;
+const total = slides.length;
 
-/* expand panel */
-function toggle(btn) {
-  btn.nextElementSibling.classList.toggle("open");
-}
-
-/* update UI */
 function update() {
-  container.style.transform = `translateX(-${index * 100}vw)`;
-
-  /* progress */
+  container.style.transform = "translateX(-" + (index * 100) + "vw)";
   progress.style.width = (index / (total - 1)) * 100 + "%";
 
-  /* arrows */
   prev.style.display = index === 0 ? "none" : "flex";
   next.style.display = index === total - 1 ? "none" : "flex";
 }
 
-/* next */
 next.onclick = () => {
   if (index < total - 1) {
     index++;
@@ -209,7 +151,6 @@ next.onclick = () => {
   }
 };
 
-/* prev */
 prev.onclick = () => {
   if (index > 0) {
     index--;
