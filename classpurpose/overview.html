@@ -1,0 +1,40 @@
+import { motion } from "framer-motion";
+
+const steps = [
+  "Define the Research Problem",
+  "Understand Requirements & Plan",
+  "Data Collection",
+  "Data Preparation (Cleaning & Processing)",
+  "Exploratory Data Analysis (EDA)",
+  "Data Modeling / Analysis",
+  "Interpretation of Results",
+  "Reporting & Visualization",
+  "Decision-Making & Communication",
+  "Deployment & Monitoring"
+];
+
+export default function AnalyticsProcess() {
+  return (
+    <div className="bg-gradient-to-b from-slate-900 via-slate-800 to-slate-900 text-white min-h-screen">
+      <div className="max-w-3xl mx-auto px-6 py-20">
+        <h1 className="text-4xl font-bold text-center mb-16">Data Analytics Process</h1>
+
+        {steps.map((step, index) => (
+          <motion.div
+            key={index}
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: index * 0.1 }}
+            viewport={{ once: true }}
+            className="mb-12"
+          >
+            <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-6 shadow-xl border border-white/20">
+              <h2 className="text-xl font-semibold">Step {index + 1}</h2>
+              <p className="text-lg mt-2">{step}</p>
+            </div>
+          </motion.div>
+        ))}
+      </div>
+    </div>
+  );
+}
