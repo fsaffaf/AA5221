@@ -126,7 +126,7 @@ html, body {
   min-width: 220px;
   background: rgba(15,15,30,0.95);
   border: 1px solid rgba(255,255,255,0.2);
-  border-radius: 14px;
+  border-radius: 0px;
   display: none;
 }
 
@@ -217,6 +217,19 @@ html, body {
   color: rgba(226, 232, 240, 0.82);
 }
 
+.site-footer {
+  position: fixed;
+  bottom: 1rem;
+  left: 0;
+  width: 100%;
+  z-index: 2;
+
+  text-align: center;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  color: rgba(226, 232, 240, 0.6);
+}
+  
 </style>
 </head>
 
@@ -260,7 +273,7 @@ html, body {
 <div class="nav-item dropdown">
 <div class="nav-label"><span>Inferential</span><span>Statistics</span></div>
 <div class="dropdown-panel">
-<a href="lectures/hypotheses.html">Hypothesis Testing</a>
+<a href="interactive/pvalue.html">Hypothesis Testing</a>
 </div>
 </div>
 
@@ -271,9 +284,20 @@ html, body {
 <h1>AA 5221</h1>
 <p>Applied Analytics & Research Methods I</p>
 </div>
-
+  
 <!-- ✅ Correct script -->
 <script src="assets/stars.js"></script>
 
+
+<div id="footer-placeholder"></div>
+
+<script>
+  fetch("footer.html")
+    .then(res => res.text())
+    .then(html => {
+      document.getElementById("footer-placeholder").innerHTML = html;
+    });
+</script>
+  
 </body>
 </html>
