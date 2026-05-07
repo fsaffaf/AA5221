@@ -1,153 +1,403 @@
-import React, { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { CheckCircle2, HelpCircle, GitBranch, Users, FileText } from "lucide-react";
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Hypothesis Format Guide</title>
 
-export default function HypothesisFormatSelector() {
-  const [selection, setSelection] = useState(null);
-
-  const results = {
-    correlation: {
-      label: "Correlation Design",
-      title: "Testing Relationships",
-      subtitle: "Use this format when your study examines whether two variables are related.",
-      color: "from-sky-700/70 to-indigo-900/80",
-      border: "border-sky-300/30",
-      icon: GitBranch,
-      items: [
-        "Null hypothesis: There is no relationship between Variable 1 and Variable 2.",
-        "Alternative hypothesis: There is a relationship between Variable 1 and Variable 2."
-      ]
-    },
-    groupDifferences: {
-      label: "Quasi or True Experimental Design",
-      title: "Testing Group Differences",
-      subtitle: "Use this format when your study compares two groups.",
-      color: "from-slate-700/80 to-slate-900/80",
-      border: "border-slate-400/20",
-      icon: Users,
-      items: [
-        "Null hypothesis: There is no difference between Group 1 and Group 2.",
-        "Alternative hypothesis: There is a difference between Group 1 and Group 2."
-      ]
-    }
-  };
-
-  const current = selection ? results[selection] : null;
-  const Icon = current?.icon;
-
-  return (
-    <div className="min-h-screen w-full bg-slate-950 text-white flex items-center justify-center p-6 overflow-hidden relative">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(125,211,252,0.16),transparent_35%),radial-gradient(circle_at_bottom,rgba(99,102,241,0.14),transparent_40%)]" />
-      <div className="absolute inset-0 opacity-30 bg-[linear-gradient(rgba(255,255,255,0.04)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.04)_1px,transparent_1px)] bg-[size:42px_42px]" />
-
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-        className="relative z-10 w-full max-w-3xl"
-      >
-        <Card className="bg-white/8 border-white/15 backdrop-blur-2xl shadow-2xl rounded-2xl overflow-hidden">
-          <CardContent className="p-8 md:p-10">
-            <div className="text-center mb-8">
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 border border-white/15 text-slate-200 text-sm mb-5">
-                <HelpCircle className="w-4 h-4 text-sky-300" />
-                Hypothesis Format Guide
-              </div>
-
-              <h1 className="text-3xl md:text-5xl font-semibold tracking-tight text-white mb-3">
-                What is your research design?
-              </h1>
-
-              <p className="text-slate-300 text-base md:text-lg max-w-2xl mx-auto">
-                Choose the option that matches your study to see the correct null and alternative hypothesis format.
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
-              <Button
-                onClick={() => setSelection("correlation")}
-                className={`h-auto py-6 rounded-2xl border text-left justify-start transition-all bg-sky-500/15 hover:bg-sky-500/25 border-sky-300/20 ${selection === "correlation" ? "ring-2 ring-sky-300/70" : ""}`}
-              >
-                <div>
-                  <div className="text-xl font-semibold text-white">Correlation</div>
-                  <div className="text-sm text-sky-100/80 mt-1">Testing relationships</div>
-                </div>
-              </Button>
-
-              <Button
-                onClick={() => setSelection("groupDifferences")}
-                className={`h-auto py-6 rounded-2xl border text-left justify-start transition-all bg-white/10 hover:bg-white/15 border-white/15 ${selection === "groupDifferences" ? "ring-2 ring-slate-300/60" : ""}`}
-              >
-                <div>
-                  <div className="text-xl font-semibold text-white">Quasi / True</div>
-                  <div className="text-sm text-slate-300 mt-1">Testing group differences</div>
-                </div>
-              </Button>
-            </div>
-
-            <AnimatePresence mode="wait">
-              {!current && (
-                <motion.div
-                  key="empty"
-                  initial={{ opacity: 0, scale: 0.98 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.98 }}
-                  className="rounded-2xl border border-white/10 bg-white/5 p-6 text-center text-slate-300"
-                >
-                  Select a research design above to see the hypothesis format.
-                </motion.div>
-              )}
-
-              {current && (
-                <motion.div
-                  key={selection}
-                  initial={{ opacity: 0, y: 12 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -12 }}
-                  transition={{ duration: 0.25 }}
-                  className={`rounded-2xl border ${current.border} bg-gradient-to-br ${current.color} p-6 md:p-7 shadow-xl`}
-                >
-                  <div className="flex flex-col md:flex-row md:items-center gap-4 mb-6">
-                    <div className="w-14 h-14 rounded-2xl bg-white/12 border border-white/15 flex items-center justify-center shrink-0">
-                      <Icon className="w-8 h-8 text-sky-200" />
-                    </div>
-                    <div>
-                      <div className="text-sm uppercase tracking-[0.22em] text-slate-300 mb-1">
-                        {current.label}
-                      </div>
-                      <h2 className="text-2xl md:text-3xl font-semibold text-white">
-                        {current.title}
-                      </h2>
-                      <p className="text-slate-200 mt-1">{current.subtitle}</p>
-                    </div>
-                  </div>
-
-                  <div className="space-y-3">
-                    {current.items.map((item, index) => (
-                      <motion.div
-                        key={item}
-                        initial={{ opacity: 0, x: -8 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ delay: index * 0.08 }}
-                        className="flex items-start gap-3 rounded-xl bg-white/10 border border-white/10 px-4 py-3"
-                      >
-                        {index === 0 ? (
-                          <FileText className="w-5 h-5 text-slate-300 shrink-0 mt-0.5" />
-                        ) : (
-                          <CheckCircle2 className="w-5 h-5 text-sky-200 shrink-0 mt-0.5" />
-                        )}
-                        <span className="text-slate-100 leading-relaxed">{index + 1}) {item}</span>
-                      </motion.div>
-                    ))}
-                  </div>
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </CardContent>
-        </Card>
-      </motion.div>
-    </div>
-  );
+<style>
+html, body {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  background: #020617;
+  color: white;
 }
+
+/* Background */
+body {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  overflow-x: hidden;
+  position: relative;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(circle at top, rgba(125,211,252,0.16), transparent 35%),
+    radial-gradient(circle at bottom, rgba(99,102,241,0.14), transparent 40%);
+  z-index: -2;
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  opacity: 0.3;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+  background-size: 42px 42px;
+  z-index: -1;
+}
+
+/* Main card */
+.tool-wrapper {
+  width: 100%;
+  max-width: 780px;
+}
+
+.tool-card {
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.15);
+  backdrop-filter: blur(24px);
+  border-radius: 24px;
+  box-shadow: 0 25px 80px rgba(0,0,0,0.45);
+  overflow: hidden;
+}
+
+.tool-content {
+  padding: 2.5rem;
+}
+
+/* Header */
+.tool-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.tool-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.45rem 1rem;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.10);
+  border: 1px solid rgba(255,255,255,0.15);
+  color: rgb(226,232,240);
+  font-size: 0.9rem;
+  margin-bottom: 1.25rem;
+}
+
+.tool-header h1 {
+  margin: 0 0 0.75rem;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 650;
+  letter-spacing: -0.03em;
+}
+
+.tool-header p {
+  margin: 0 auto;
+  max-width: 620px;
+  color: rgb(203,213,225);
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+
+/* Buttons */
+.choice-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.choice-button {
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 20px;
+  padding: 1.5rem;
+  min-height: 110px;
+  text-align: left;
+  cursor: pointer;
+  color: white;
+  transition: 0.25s ease;
+  font-family: inherit;
+}
+
+.choice-button.relationships {
+  background: rgba(14,165,233,0.15);
+  border-color: rgba(125,211,252,0.22);
+}
+
+.choice-button.groups {
+  background: rgba(255,255,255,0.10);
+}
+
+.choice-button:hover {
+  transform: translateY(-2px);
+  background: rgba(255,255,255,0.16);
+}
+
+.choice-button.active.relationships {
+  box-shadow: 0 0 0 2px rgba(125,211,252,0.75);
+}
+
+.choice-button.active.groups {
+  box-shadow: 0 0 0 2px rgba(203,213,225,0.55);
+}
+
+.choice-title {
+  font-size: 1.25rem;
+  font-weight: 650;
+  margin-bottom: 0.35rem;
+}
+
+.choice-subtitle {
+  font-size: 0.9rem;
+  color: rgb(203,213,225);
+}
+
+/* Result area */
+.result-empty {
+  border: 1px solid rgba(255,255,255,0.10);
+  background: rgba(255,255,255,0.05);
+  border-radius: 20px;
+  padding: 1.5rem;
+  text-align: center;
+  color: rgb(203,213,225);
+}
+
+.result-panel {
+  display: none;
+  border-radius: 20px;
+  border: 1px solid rgba(125,211,252,0.30);
+  background: linear-gradient(135deg, rgba(3,105,161,0.70), rgba(49,46,129,0.80));
+  padding: 1.75rem;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.35);
+  animation: fadeIn 0.25s ease;
+}
+
+.result-panel.groups-style {
+  border-color: rgba(148,163,184,0.25);
+  background: linear-gradient(135deg, rgba(51,65,85,0.85), rgba(15,23,42,0.90));
+}
+
+.result-top {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.result-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 18px;
+  background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
+  flex-shrink: 0;
+}
+
+.result-label {
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  color: rgb(203,213,225);
+  margin-bottom: 0.35rem;
+}
+
+.result-title {
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  font-weight: 650;
+  margin-bottom: 0.35rem;
+}
+
+.result-subtitle {
+  color: rgb(226,232,240);
+  line-height: 1.5;
+}
+
+.hypothesis-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.hypothesis-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  background: rgba(255,255,255,0.10);
+  border: 1px solid rgba(255,255,255,0.10);
+  border-radius: 14px;
+  padding: 1rem;
+  color: rgb(241,245,249);
+  line-height: 1.5;
+}
+
+.check {
+  color: #bae6fd;
+  font-weight: bold;
+  flex-shrink: 0;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Mobile */
+@media (max-width: 700px) {
+  body {
+    padding: 1rem;
+  }
+
+  .tool-content {
+    padding: 1.5rem;
+  }
+
+  .choice-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .result-top {
+    align-items: flex-start;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<main class="tool-wrapper">
+  <section class="tool-card">
+    <div class="tool-content">
+
+      <div class="tool-header">
+        <div class="tool-pill">
+          ? Hypothesis Format Guide
+        </div>
+
+        <h1>What is your research design?</h1>
+
+        <p>
+          Choose the option that matches your study to see the correct null and alternative hypothesis format.
+        </p>
+      </div>
+
+      <div class="choice-grid">
+        <button class="choice-button relationships" onclick="showResult('correlation')" id="correlationBtn">
+          <div class="choice-title">Correlation</div>
+          <div class="choice-subtitle">Testing relationships</div>
+        </button>
+
+        <button class="choice-button groups" onclick="showResult('groups')" id="groupsBtn">
+          <div class="choice-title">Quasi / True</div>
+          <div class="choice-subtitle">Testing group differences</div>
+        </button>
+      </div>
+
+      <div id="emptyState" class="result-empty">
+        Select a research design above to see the hypothesis format.
+      </div>
+
+      <div id="resultPanel" class="result-panel">
+        <div class="result-top">
+          <div class="result-icon" id="resultIcon">↔</div>
+
+          <div>
+            <div class="result-label" id="resultLabel">Correlation Design</div>
+            <div class="result-title" id="resultTitle">Testing Relationships</div>
+            <div class="result-subtitle" id="resultSubtitle">
+              Use this format when your study examines whether two variables are related.
+            </div>
+          </div>
+        </div>
+
+        <div class="hypothesis-list">
+          <div class="hypothesis-item">
+            <span class="check">✓</span>
+            <span id="nullHypothesis">
+              1) Null hypothesis: There is no relationship between Variable 1 and Variable 2.
+            </span>
+          </div>
+
+          <div class="hypothesis-item">
+            <span class="check">✓</span>
+            <span id="altHypothesis">
+              2) Alternative hypothesis: There is a relationship between Variable 1 and Variable 2.
+            </span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+</main>
+
+<script>
+function showResult(type) {
+  const emptyState = document.getElementById("emptyState");
+  const resultPanel = document.getElementById("resultPanel");
+
+  const correlationBtn = document.getElementById("correlationBtn");
+  const groupsBtn = document.getElementById("groupsBtn");
+
+  const resultIcon = document.getElementById("resultIcon");
+  const resultLabel = document.getElementById("resultLabel");
+  const resultTitle = document.getElementById("resultTitle");
+  const resultSubtitle = document.getElementById("resultSubtitle");
+  const nullHypothesis = document.getElementById("nullHypothesis");
+  const altHypothesis = document.getElementById("altHypothesis");
+
+  emptyState.style.display = "none";
+  resultPanel.style.display = "block";
+
+  correlationBtn.classList.remove("active");
+  groupsBtn.classList.remove("active");
+  resultPanel.classList.remove("groups-style");
+
+  if (type === "correlation") {
+    correlationBtn.classList.add("active");
+
+    resultIcon.textContent = "↔";
+    resultLabel.textContent = "Correlation Design";
+    resultTitle.textContent = "Testing Relationships";
+    resultSubtitle.textContent =
+      "Use this format when your study examines whether two variables are related.";
+
+    nullHypothesis.textContent =
+      "1) Null hypothesis: There is no relationship between Variable 1 and Variable 2.";
+
+    altHypothesis.textContent =
+      "2) Alternative hypothesis: There is a relationship between Variable 1 and Variable 2.";
+  }
+
+  if (type === "groups") {
+    groupsBtn.classList.add("active");
+    resultPanel.classList.add("groups-style");
+
+    resultIcon.textContent = "👥";
+    resultLabel.textContent = "Quasi or True Experimental Design";
+    resultTitle.textContent = "Testing Group Differences";
+    resultSubtitle.textContent =
+      "Use this format when your study compares two groups.";
+
+    nullHypothesis.textContent =
+      "1) Null hypothesis: There is no difference between Group 1 and Group 2.";
+
+    altHypothesis.textContent =
+      "2) Alternative hypothesis: There is a difference between Group 1 and Group 2.";
+  }
+}
+</script>
+
+</body>
+</html>
