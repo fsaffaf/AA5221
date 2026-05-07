@@ -3,14 +3,14 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Glass Slide Deck</title>
+<title>Glass Slide Deck (5 Slides)</title>
 
 <style>
 html, body {
   margin: 0;
   padding: 0;
   height: 100%;
-  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Inter, sans-serif;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   background: #0b1220;
   overflow: hidden;
 }
@@ -34,24 +34,6 @@ body::before {
   z-index: 0;
 }
 
-/* ===== Progress ===== */
-.progress {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 3px;
-  width: 100%;
-  background: rgba(255,255,255,0.05);
-  z-index: 10;
-}
-
-.progress-fill {
-  height: 100%;
-  width: 10%;
-  background: rgba(255,255,255,0.35);
-  transition: width 0.4s ease;
-}
-
 /* ===== Deck ===== */
 .deck {
   position: relative;
@@ -62,12 +44,12 @@ body::before {
 
 .slides {
   display: flex;
-  width: 1000vw;
+  width: 500vw; /* 5 slides */
   height: 100vh;
   transition: transform 0.65s cubic-bezier(0.77, 0, 0.175, 1);
 }
 
-/* ===== Slide (TOP LEFT LAYOUT FIX) ===== */
+/* ===== Slide (LEFT ALIGNED HEADER STYLE) ===== */
 .slide {
   width: 100vw;
   height: 100vh;
@@ -86,7 +68,7 @@ body::before {
   max-width: 900px;
 }
 
-/* ===== Typography (glass UI font feel) ===== */
+/* ===== Typography ===== */
 h1 {
   margin: 0;
 
@@ -117,6 +99,18 @@ p {
 
   color: rgba(226, 232, 240, 0.72);
   font-weight: 300;
+}
+
+/* ===== Slide number (NEW) ===== */
+.slide-number {
+  position: absolute;
+  top: 18px;
+  right: 24px;
+
+  font-size: 0.85rem;
+  letter-spacing: 0.15em;
+
+  color: rgba(226, 232, 240, 0.45);
 }
 
 /* ===== Navigation buttons ===== */
@@ -182,13 +176,7 @@ p {
   backdrop-filter: blur(16px);
 
   cursor: pointer;
-
-  transition: 0.2s ease;
   z-index: 10;
-}
-
-.restart:hover {
-  background: rgba(255,255,255,0.08);
 }
 
 /* ===== Home ===== */
@@ -209,12 +197,7 @@ p {
 
   backdrop-filter: blur(16px);
 
-  transition: 0.2s ease;
   z-index: 10;
-}
-
-.home-btn:hover {
-  background: rgba(255,255,255,0.08);
 }
 
 /* ===== Counter ===== */
@@ -232,67 +215,53 @@ p {
 
 <body>
 
-<div class="progress">
-  <div class="progress-fill" id="progress"></div>
-</div>
-
 <div class="deck">
 
   <div class="slides" id="slides">
 
-    <div class="slide"><div class="content">
-      <h1>AA 5221</h1>
-      <p>Applied Analytics & Research Methods I</p>
-    </div></div>
+    <div class="slide">
+      <div class="slide-number">01</div>
+      <div class="content">
+        <h1>AA 5221</h1>
+        <p>Applied Analytics & Research Methods I</p>
+      </div>
+    </div>
 
-    <div class="slide"><div class="content">
-      <h2>Course Purpose</h2>
-      <p>Understanding data structures, inference, and modeling foundations.</p>
-    </div></div>
+    <div class="slide">
+      <div class="slide-number">02</div>
+      <div class="content">
+        <h2>Course Purpose</h2>
+        <p>Understanding data structures and inference foundations.</p>
+      </div>
+    </div>
 
-    <div class="slide"><div class="content">
-      <h2>Research Design</h2>
-      <p>Experimental, observational, and quasi-experimental systems.</p>
-    </div></div>
+    <div class="slide">
+      <div class="slide-number">03</div>
+      <div class="content">
+        <h2>Research Design</h2>
+        <p>Experimental and observational methods for analysis.</p>
+      </div>
+    </div>
 
-    <div class="slide"><div class="content">
-      <h2>Statistics</h2>
-      <p>Descriptive and inferential statistical reasoning.</p>
-    </div></div>
+    <div class="slide">
+      <div class="slide-number">04</div>
+      <div class="content">
+        <h2>Statistics</h2>
+        <p>Descriptive and inferential statistical reasoning.</p>
+      </div>
+    </div>
 
-    <div class="slide"><div class="content">
-      <h2>Data Analysis</h2>
-      <p>Transforming raw data into structured insights.</p>
-    </div></div>
-
-    <div class="slide"><div class="content">
-      <h2>Inference</h2>
-      <p>Hypothesis testing and probabilistic decision-making.</p>
-    </div></div>
-
-    <div class="slide"><div class="content">
-      <h2>Models</h2>
-      <p>Regression and predictive frameworks for analysis.</p>
-    </div></div>
-
-    <div class="slide"><div class="content">
-      <h2>Applications</h2>
-      <p>Real-world analytical systems and case studies.</p>
-    </div></div>
-
-    <div class="slide"><div class="content">
-      <h2>Review</h2>
-      <p>Key concepts synthesis and integration.</p>
-    </div></div>
-
-    <div class="slide"><div class="content">
-      <h2>End</h2>
-      <p>Thank you.</p>
-    </div></div>
+    <div class="slide">
+      <div class="slide-number">05</div>
+      <div class="content">
+        <h2>Conclusion</h2>
+        <p>Key ideas and course synthesis.</p>
+      </div>
+    </div>
 
   </div>
 
-  <!-- controls -->
+  <!-- Controls -->
   <button class="nav-btn left" onclick="prevSlide()">
     <div class="arrow left"></div>
   </button>
@@ -305,17 +274,16 @@ p {
 
   <a class="home-btn" href="index.html">Home</a>
 
-  <div class="counter" id="counter">1 / 10</div>
+  <div class="counter" id="counter">1 / 5</div>
 
 </div>
 
 <script>
 let current = 0;
-const total = 10;
+const total = 5;
 
 const slides = document.getElementById("slides");
 const counter = document.getElementById("counter");
-const progress = document.getElementById("progress");
 
 const leftBtn = document.querySelector(".left");
 const rightBtn = document.querySelector(".right");
@@ -323,7 +291,6 @@ const rightBtn = document.querySelector(".right");
 function update() {
   slides.style.transform = `translateX(-${current * 100}vw)`;
   counter.textContent = `${current + 1} / ${total}`;
-  progress.style.width = `${((current + 1) / total) * 100}%`;
 
   leftBtn.style.display = current === 0 ? "none" : "flex";
   rightBtn.style.display = current === total - 1 ? "none" : "flex";
