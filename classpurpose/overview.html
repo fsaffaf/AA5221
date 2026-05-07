@@ -1,40 +1,210 @@
-import { motion } from "framer-motion";
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Data Analytics Process</title>
 
-const steps = [
-  "Define the Research Problem",
-  "Understand Requirements & Plan",
-  "Data Collection",
-  "Data Preparation (Cleaning & Processing)",
-  "Exploratory Data Analysis (EDA)",
-  "Data Modeling / Analysis",
-  "Interpretation of Results",
-  "Reporting & Visualization",
-  "Decision-Making & Communication",
-  "Deployment & Monitoring"
-];
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to bottom, #0f172a, #1e293b, #0f172a);
+      color: white;
+    }
 
-export default function AnalyticsProcess() {
-  return (
-    <div className="bg-gradient-to-b from-slate-900 via-slate-800 to-slate-900 text-white min-h-screen">
-      <div className="max-w-3xl mx-auto px-6 py-20">
-        <h1 className="text-4xl font-bold text-center mb-16">Data Analytics Process</h1>
+    h1 {
+      text-align: center;
+      padding: 60px 20px;
+      font-size: 2.5rem;
+    }
 
-        {steps.map((step, index) => (
-          <motion.div
-            key={index}
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: index * 0.1 }}
-            viewport={{ once: true }}
-            className="mb-12"
-          >
-            <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-6 shadow-xl border border-white/20">
-              <h2 className="text-xl font-semibold">Step {index + 1}</h2>
-              <p className="text-lg mt-2">{step}</p>
-            </div>
-          </motion.div>
-        ))}
-      </div>
+    .container {
+      max-width: 800px;
+      margin: auto;
+      position: relative;
+      padding: 20px;
+    }
+
+    .timeline {
+      position: absolute;
+      left: 50%;
+      width: 4px;
+      background: rgba(255, 255, 255, 0.2);
+      top: 0;
+      bottom: 0;
+      transform: translateX(-50%);
+    }
+
+    .step {
+      width: 50%;
+      padding: 20px;
+      position: relative;
+      opacity: 0;
+      transform: translateY(50px);
+      transition: all 0.6s ease;
+    }
+
+    .step.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .left {
+      left: 0;
+      text-align: right;
+    }
+
+    .right {
+      left: 50%;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 16px;
+      padding: 20px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+    }
+
+    .circle {
+      width: 16px;
+      height: 16px;
+      background: white;
+      border-radius: 50%;
+      position: absolute;
+      top: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    @media (max-width: 768px) {
+      .step {
+        width: 100%;
+        left: 0 !important;
+        text-align: left;
+      }
+
+      .timeline {
+        left: 10px;
+      }
+
+      .circle {
+        left: 10px;
+        transform: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<h1>Data Analytics Process</h1>
+
+<div class="container">
+  <div class="timeline"></div>
+
+  <div class="step left">
+    <div class="circle"></div>
+    <div class="card">
+      <h3>1. Define the Research Problem</h3>
+      <p>Clearly define objectives, questions, and expected outcomes.</p>
     </div>
-  );
-}
+  </div>
+
+  <div class="step right">
+    <div class="circle"></div>
+    <div class="card">
+      <h3>2. Understand Requirements & Plan</h3>
+      <p>Determine scope, data needs, stakeholders, and success criteria.</p>
+    </div>
+  </div>
+
+  <div class="step left">
+    <div class="circle"></div>
+    <div class="card">
+      <h3>3. Data Collection</h3>
+      <p>Gather relevant data from surveys, databases, or external sources.</p>
+    </div>
+  </div>
+
+  <div class="step right">
+    <div class="circle"></div>
+    <div class="card">
+      <h3>4. Data Preparation</h3>
+      <p>Clean, transform, and organize the dataset for analysis.</p>
+    </div>
+  </div>
+
+  <div class="step left">
+    <div class="circle"></div>
+    <div class="card">
+      <h3>5. Exploratory Data Analysis</h3>
+      <p>Identify patterns, trends, and anomalies using statistics and visuals.</p>
+    </div>
+  </div>
+
+  <div class="step right">
+    <div class="circle"></div>
+    <div class="card">
+      <h3>6. Modeling / Analysis</h3>
+      <p>Apply statistical or machine learning methods to extract insights.</p>
+    </div>
+  </div>
+
+  <div class="step left">
+    <div class="circle"></div>
+    <div class="card">
+      <h3>7. Interpretation</h3>
+      <p>Translate results into meaningful conclusions and implications.</p>
+    </div>
+  </div>
+
+  <div class="step right">
+    <div class="circle"></div>
+    <div class="card">
+      <h3>8. Reporting & Visualization</h3>
+      <p>Communicate findings through reports, dashboards, and visuals.</p>
+    </div>
+  </div>
+
+  <div class="step left">
+    <div class="circle"></div>
+    <div class="card">
+      <h3>9. Decision-Making</h3>
+      <p>Use insights to support actions and recommendations.</p>
+    </div>
+  </div>
+
+  <div class="step right">
+    <div class="circle"></div>
+    <div class="card">
+      <h3>10. Deployment & Monitoring</h3>
+      <p>Implement solutions and monitor performance over time.</p>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  const steps = document.querySelectorAll('.step');
+
+  function revealSteps() {
+    const triggerBottom = window.innerHeight * 0.85;
+
+    steps.forEach(step => {
+      const top = step.getBoundingClientRect().top;
+
+      if (top < triggerBottom) {
+        step.classList.add('visible');
+      }
+    });
+  }
+
+  window.addEventListener('scroll', revealSteps);
+  revealSteps();
+</script>
+
+</body>
+</html>
