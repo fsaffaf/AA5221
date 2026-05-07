@@ -2,39 +2,39 @@ import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { CheckCircle2, FileText, HelpCircle, GitBranch, Users } from "lucide-react";
+import { CheckCircle2, HelpCircle, GitBranch, Users, FileText } from "lucide-react";
 
 export default function HypothesisFormatSelector() {
   const [selection, setSelection] = useState(null);
 
-  const formats = {
+  const results = {
     correlation: {
       label: "Correlation Design",
       title: "Testing Relationships",
-      subtitle: "Use this format when examining associations between variables.",
-      color: "from-sky-700/60 to-indigo-900/80",
+      subtitle: "Use this format when your study examines whether two variables are related.",
+      color: "from-sky-700/70 to-indigo-900/80",
       border: "border-sky-300/30",
       icon: GitBranch,
       items: [
-        "Null: There is no relationship between Variable 1 and Variable 2.",
-        "Alternative: There is a relationship between Variable 1 and Variable 2."
+        "Null hypothesis: There is no relationship between Variable 1 and Variable 2.",
+        "Alternative hypothesis: There is a relationship between Variable 1 and Variable 2."
       ]
     },
-    groups: {
-      label: "Quasi or True Experimental",
+    groupDifferences: {
+      label: "Quasi or True Experimental Design",
       title: "Testing Group Differences",
-      subtitle: "Use this format when comparing two groups.",
+      subtitle: "Use this format when your study compares two groups.",
       color: "from-slate-700/80 to-slate-900/80",
       border: "border-slate-400/20",
       icon: Users,
       items: [
-        "Null: There is no difference between Group 1 and Group 2.",
-        "Alternative: There is a difference between Group 1 and Group 2."
+        "Null hypothesis: There is no difference between Group 1 and Group 2.",
+        "Alternative hypothesis: There is a difference between Group 1 and Group 2."
       ]
     }
   };
 
-  const current = selection ? formats[selection] : null;
+  const current = selection ? results[selection] : null;
   const Icon = current?.icon;
 
   return (
@@ -61,7 +61,7 @@ export default function HypothesisFormatSelector() {
               </h1>
 
               <p className="text-slate-300 text-base md:text-lg max-w-2xl mx-auto">
-                Select the design to see the correct hypothesis format.
+                Choose the option that matches your study to see the correct null and alternative hypothesis format.
               </p>
             </div>
 
@@ -77,11 +77,11 @@ export default function HypothesisFormatSelector() {
               </Button>
 
               <Button
-                onClick={() => setSelection("groups")}
-                className={`h-auto py-6 rounded-2xl border text-left justify-start transition-all bg-white/10 hover:bg-white/15 border-white/15 ${selection === "groups" ? "ring-2 ring-slate-300/60" : ""}`}
+                onClick={() => setSelection("groupDifferences")}
+                className={`h-auto py-6 rounded-2xl border text-left justify-start transition-all bg-white/10 hover:bg-white/15 border-white/15 ${selection === "groupDifferences" ? "ring-2 ring-slate-300/60" : ""}`}
               >
                 <div>
-                  <div className="text-xl font-semibold text-white">Quasi / True Experimental</div>
+                  <div className="text-xl font-semibold text-white">Quasi / True</div>
                   <div className="text-sm text-slate-300 mt-1">Testing group differences</div>
                 </div>
               </Button>
@@ -131,10 +131,14 @@ export default function HypothesisFormatSelector() {
                         initial={{ opacity: 0, x: -8 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ delay: index * 0.08 }}
-                        className="flex items-center gap-3 rounded-xl bg-white/10 border border-white/10 px-4 py-3"
+                        className="flex items-start gap-3 rounded-xl bg-white/10 border border-white/10 px-4 py-3"
                       >
-                        <CheckCircle2 className="w-5 h-5 text-sky-200 shrink-0" />
-                        <span className="text-slate-100">{index + 1}) {item}</span>
+                        {index === 0 ? (
+                          <FileText className="w-5 h-5 text-slate-300 shrink-0 mt-0.5" />
+                        ) : (
+                          <CheckCircle2 className="w-5 h-5 text-sky-200 shrink-0 mt-0.5" />
+                        )}
+                        <span className="text-slate-100 leading-relaxed">{index + 1}) {item}</span>
                       </motion.div>
                     ))}
                   </div>
