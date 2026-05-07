@@ -6,143 +6,186 @@
 <title>Data Analytics Process</title>
 
 <style>
-/* RESET */
 body {
   margin: 0;
-  font-family: Arial, sans-serif;
-  background: linear-gradient(180deg, #0f172a, #020617);
+  font-family: "Segoe UI", sans-serif;
+  background: radial-gradient(circle at top, #0f172a, #020617);
   color: white;
 }
 
-
+/* smooth scroll */
 html {
   scroll-behavior: smooth;
 }
 
-/* SECTION */
+/* sections */
 .section {
   height: 100vh;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: center;
 }
 
-/* CARD */
+/* glass card */
 .card {
-  width: 600px;
-  height: 300px;
-  padding: 30px;
-  border-radius: 20px;
-  background: rgba(255,255,255,0.08);
-  backdrop-filter: blur(15px);
-  border: 1px solid rgba(255,255,255,0.2);
+  width: 600px;
+  height: 320px;
+  padding: 30px;
+
+  border-radius: 20px;
+
+  background: linear-gradient(
+    135deg,
+    rgba(255,255,255,0.12),
+    rgba(255,255,255,0.04)
+  );
+
+  backdrop-filter: blur(18px);
+
+  border: 1px solid rgba(255,255,255,0.2);
+
+  box-shadow:
+    0 20px 50px rgba(0,0,0,0.7),
+    inset 0 0 10px rgba(255,255,255,0.05);
+
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 
   opacity: 0;
-  transform: translateY(30px);
-  transition: 0.6s;
+  transform: translateY(30px);
+  transition: 0.6s;
 }
 
 .card.show {
   opacity: 1;
-  transform: translateY(0);
+  transform: translateY(0);
 }
 
-/* TEXT */
+/* text */
 h1, h2 {
-  margin: 0 0 10px;
+  margin: 0 0 10px;
 }
 
 p {
-  color: #cbd5f5;
+  color: #cbd5f5;
 }
 
-/* BUTTON */
+/* button */
 button {
   padding: 8px 14px;
-  border: none;
   border-radius: 20px;
-  background: rgba(255,255,255,0.1);
-  color: white;
+  border: none;
+  background: rgba(255,255,255,0.1);
+  color: white;
   cursor: pointer;
 }
 
 button:hover {
-  background: #7dd3fc;
-  color: black;
+  background: linear-gradient(90deg, #7dd3fc, #a78bfa);
+  color: black;
 }
 
-
-/* PANEL */
+/* expandable panel */
 .panel {
   max-height: 0;
   overflow: hidden;
-  transition: 0.3s;
+  transition: 0.3s;
   font-size: 0.9rem;
+  color: #cbd5f5;
 }
 
 .panel.open {
-  max-height: 100px;
+  max-height: 120px;
 }
 
-/* STEP NUMBER */
+/* step number */
 .step-number {
   position: fixed;
-  top: 20px;
-  left: 20px;
-  font-size: 40px;
-  opacity: 0.2;
+  top: 20px;
+  left: 20px;
+  font-size: 50px;
+  opacity: 0.2;
+  font-weight: bold;
+
+  background: linear-gradient(180deg, #7dd3fc, #a78bfa);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
+/* subtle glow background */
+.section::before {
+  content: "";
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(125,211,252,0.2), transparent);
+  filter: blur(80px);
+}
 </style>
 </head>
 
 <body>
 
-<div class="step-number" id="step"> </div>
+<div class="step-number" id="step"></div>
+
 <!-- PURPOSE -->
 <div class="section">
-  <div class="card">
-    <div>
-      <h1>Purpose</h1>
-      <p>Understand the full analytics process.</p>
-    </div>
-    <div>
-      <button onclick="toggle(this)">Learn More</button>
-      <div class="panel">This shows how each step connects.</div>
-    </div>
-  </div>
+  <div class="card">
+    <div>
+      <h1>Purpose</h1>
+      <p>Understand the full lifecycle of data analytics.</p>
+    </div>
+    <div>
+      <button onclick="toggle(this)">Learn More</button>
+      <div class="panel">This overview connects all steps into a complete workflow.</div>
+    </div>
+  </div>
 </div>
+
 <!-- STEP 1 -->
 <div class="section">
-  <div class="card">
-    <div>
-      <h2>1. Define Problem</h2>
-      <p>Set goals and research questions.</p>
-    </div>
-    <div>
-      <button onclick="toggle(this)">Learn More</button>
-      <div class="panel">Example: What factors affect student performance?</div>
-    </div>
-  </div>
+  <div class="card">
+    <div>
+      <h2>1. Define Problem</h2>
+      <p>Set research questions and goals.</p>
+    </div>
+    <div>
+      <button onclick="toggle(this)">Learn More</button>
+      <div class="panel">Example: What factors affect student performance?</div>
+    </div>
+  </div>
 </div>
+
 <!-- STEP 2 -->
 <div class="section">
-  <div class="card">
-    <div>
-      <h2>2. Planning</h2>
-      <p>Define scope and requirements.</p>
-    </div>
-    <div>
-      <button onclick="toggle(this)">Learn More</button>
-      <div class="panel">Identify needed data and stakeholders.</div>
-    </div>
-  </div>
+  <div class="card">
+    <div>
+      <h2>2. Planning</h2>
+      <p>Define scope and requirements.</p>
+    </div>
+    <div>
+      <button onclick="toggle(this)">Learn More</button>
+      <div class="panel">Identify stakeholders, data needs, and success criteria.</div>
+    </div>
+  </div>
 </div>
+
+<!-- STEP 3 -->
+<div class="section">
+  <div class="card">
+    <div>
+      <h2>3. Data Collection</h2>
+      <p>Gather data from relevant sources.</p>
+    </div>
+    <div>
+      <button onclick="toggle(this)">Learn More</button>
+      <div class="panel">Sources: surveys, APIs, databases, experiments.</div>
+    </div>
+  </div>
+</div>
+
 <script>
-const cards = document.querySelectorAll('.card');
 const sections = document.querySelectorAll('.section');
 const step = document.getElementById('step');
 
@@ -161,7 +204,7 @@ function update() {
       sec.querySelector('.card').classList.add('show');
     }
 
-    if (rect.top < window.innerHeight / 2 && rect.bottom > window.innerHeight / 2) {
+    if (rect.top < window.innerHeight/2 && rect.bottom > window.innerHeight/2) {
       index = i;
     }
   });
@@ -174,3 +217,4 @@ update();
 </script>
 
 </body>
+</html>
