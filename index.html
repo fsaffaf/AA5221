@@ -151,8 +151,13 @@ html, body {
 .home-container {
   position: relative;
   z-index: 1;
-  padding-top: 7rem;
+  min-height: calc(100vh - 70px); /* account for nav */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   text-align: center;
+  color: white;
 }
 </style>
 </head>
