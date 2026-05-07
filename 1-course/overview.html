@@ -6,189 +6,167 @@
 <title>Data Analytics Process</title>
 
 <style>
-html, body {
+/* RESET */
+body {
   margin: 0;
-  font-family: "Segoe UI", sans-serif;
-  background: radial-gradient(circle at 20% 20%, #0f172a, #020617);
+  font-family: Arial, sans-serif;
+  background: linear-gradient(180deg, #0f172a, #020617);
   color: white;
+}
+
+
+html {
   scroll-behavior: smooth;
 }
 
+/* SECTION */
 .section {
   height: 100vh;
   display: flex;
-  align-items: center;
   justify-content: center;
-  position: relative;
+  align-items: center;
 }
 
-.section::before {
-  content: "";
-  position: absolute;
-  width: 500px;
-  height: 500px;
-  background: radial-gradient(circle, rgba(99,102,241,0.25), transparent 60%);
-  top: -150px;
-  left: -150px;
-  filter: blur(80px);
-}
-
-.section::after {
-  content: "";
-  position: absolute;
-  width: 500px;
-  height: 500px;
-  background: radial-gradient(circle, rgba(56,189,248,0.25), transparent 60%);
-  bottom: -150px;
-  right: -150px;
-  filter: blur(80px);
-}
-
-.step-number {
-  position: fixed;
-  top: 30px;
-  left: 30px;
-  font-size: 4.5rem;
-  font-weight: 700;
-  background: linear-gradient(180deg, #7dd3fc, #a78bfa);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  opacity: 0.2;
-}
-
+/* CARD */
 .card {
-  width: 650px;
-  height: 360px;
+  width: 600px;
+  height: 300px;
+  padding: 30px;
+  border-radius: 20px;
+  background: rgba(255,255,255,0.08);
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(255,255,255,0.2);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 
-  padding: 40px;
-  border-radius: 24px;
-  background: linear-gradient(135deg, rgba(255,255,255,0.08), rgba(255,255,255,0.02));
-  backdrop-filter: blur(25px);
-  border: 1px solid rgba(255,255,255,0.15);
-  box-shadow: 0 25px 70px rgba(0,0,0,0.7), inset 0 0 20px rgba(255,255,255,0.05);
-
-
   opacity: 0;
-  transform: translateY(40px) scale(0.95);
-  transition: all 0.7s ease;
+  transform: translateY(30px);
+  transition: 0.6s;
 }
 
 .card.show {
   opacity: 1;
-  transform: translateY(0) scale(1);
+  transform: translateY(0);
 }
 
-.content {
-  height: 140px;
-}
-
+/* TEXT */
 h1, h2 {
-  margin-bottom: 10px;
-  background: linear-gradient(90deg, #e0f2fe, #c7d2fe);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  margin: 0 0 10px;
 }
-
 
 p {
-  color: rgba(226,232,240,0.8);
+  color: #cbd5f5;
 }
 
-.learn button {
-  background: rgba(255,255,255,0.08);
-  border: 1px solid rgba(255,255,255,0.15);
-  color: #e0f2fe;
+/* BUTTON */
+button {
   padding: 8px 14px;
+  border: none;
   border-radius: 20px;
+  background: rgba(255,255,255,0.1);
+  color: white;
   cursor: pointer;
 }
 
+button:hover {
+  background: #7dd3fc;
+  color: black;
+}
+
+
+/* PANEL */
 .panel {
   max-height: 0;
   overflow: hidden;
-  transition: max-height 0.4s ease;
+  transition: 0.3s;
   font-size: 0.9rem;
-  color: #cbd5f5;
 }
 
 .panel.open {
-  max-height: 120px;
+  max-height: 100px;
 }
 
-.nav {
+/* STEP NUMBER */
+.step-number {
   position: fixed;
-  right: 20px;
-  top: 50%;
-  transform: translateY(-50%);
+  top: 20px;
+  left: 20px;
+  font-size: 40px;
+  opacity: 0.2;
 }
 
-.nav div {
-  width: 10px;
-  height: 10px;
-  margin: 10px 0;
-  border-radius: 50%;
-  background: rgba(255,255,255,0.2);
-}
-
-.nav .active {
-  background: linear-gradient(90deg, #7dd3fc, #a78bfa);
-  box-shadow: 0 0 10px #7dd3fc;
-  transform: scale(1.4);
-}
 </style>
 </head>
 
 <body>
 
-<div class="step-number" id="stepNumber"></div>
-<div class="nav" id="nav"></div>
-
-<div class="section"><div class="card"><div class="content"><h1>Purpose</h1><p>Understand the analytics lifecycle.</p></div><div class="learn"><button onclick="togglePanel(this)">Learn More</button><div class="panel">This overview helps connect all steps together.</div></div></div></div>
-
-<div class="section"><div class="card"><div class="content"><h2>1. Define Problem</h2><p>Clarify goals and questions.</p></div><div class="learn"><button onclick="togglePanel(this)">Learn More</button><div class="panel">Define hypothesis and objectives clearly.</div></div></div></div>
-
-<div class="section"><div class="card"><div class="content"><h2>2. Planning</h2><p>Define scope and needs.</p></div><div class="learn"><button onclick="togglePanel(this)">Learn More</button><div class="panel">Identify stakeholders and data requirements.</div></div></div></div>
-
-<div class="section"><div class="card"><div class="content"><h2>3. Data Collection</h2><p>Gather data sources.</p></div><div class="learn"><button onclick="togglePanel(this)">Learn More</button><div class="panel">Collect from APIs, surveys, databases.</div></div></div></div>
-
+<div class="step-number" id="step"> </div>
+<!-- PURPOSE -->
+<div class="section">
+  <div class="card">
+    <div>
+      <h1>Purpose</h1>
+      <p>Understand the full analytics process.</p>
+    </div>
+    <div>
+      <button onclick="toggle(this)">Learn More</button>
+      <div class="panel">This shows how each step connects.</div>
+    </div>
+  </div>
+</div>
+<!-- STEP 1 -->
+<div class="section">
+  <div class="card">
+    <div>
+      <h2>1. Define Problem</h2>
+      <p>Set goals and research questions.</p>
+    </div>
+    <div>
+      <button onclick="toggle(this)">Learn More</button>
+      <div class="panel">Example: What factors affect student performance?</div>
+    </div>
+  </div>
+</div>
+<!-- STEP 2 -->
+<div class="section">
+  <div class="card">
+    <div>
+      <h2>2. Planning</h2>
+      <p>Define scope and requirements.</p>
+    </div>
+    <div>
+      <button onclick="toggle(this)">Learn More</button>
+      <div class="panel">Identify needed data and stakeholders.</div>
+    </div>
+  </div>
+</div>
 <script>
+const cards = document.querySelectorAll('.card');
 const sections = document.querySelectorAll('.section');
-const nav = document.getElementById('nav');
-const stepNum = document.getElementById('stepNumber');
+const step = document.getElementById('step');
 
-sections.forEach(() => {
-  const dot = document.createElement('div');
-  nav.appendChild(dot);
-});
-
-function togglePanel(btn) {
+function toggle(btn) {
   const panel = btn.nextElementSibling;
   panel.classList.toggle('open');
 }
 
 function update() {
-  let activeIndex = 0;
+  let index = 0;
 
-  sections.forEach((section, i) => {
-    const rect = section.getBoundingClientRect();
+  sections.forEach((sec, i) => {
+    const rect = sec.getBoundingClientRect();
 
-    if (rect.top < window.innerHeight * 0.6) {
-      section.querySelector('.card').classList.add('show');
+    if (rect.top < window.innerHeight * 0.7) {
+      sec.querySelector('.card').classList.add('show');
     }
 
-    if (rect.top < window.innerHeight/2 && rect.bottom > window.innerHeight/2) {
-      activeIndex = i;
+    if (rect.top < window.innerHeight / 2 && rect.bottom > window.innerHeight / 2) {
+      index = i;
     }
   });
 
-  stepNum.innerText = activeIndex === 0 ? "" : activeIndex;
-
-  document.querySelectorAll('.nav div').forEach((dot,i) => {
-    dot.classList.toggle('active', i===activeIndex);
-  });
+  step.innerText = index === 0 ? '' : index;
 }
 
 window.addEventListener('scroll', update);
