@@ -9,7 +9,7 @@
 html, body {
   margin: 0;
   font-family: "Segoe UI", sans-serif;
-  background: #020617;
+  background: radial-gradient(circle at 20% 20%, #0f172a, #020617);
   color: white;
   scroll-behavior: smooth;
 }
@@ -22,17 +22,45 @@ html, body {
   position: relative;
 }
 
+/* animated glass glow background */
+.section::before {
+  content: "";
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(99,102,241,0.25), transparent 60%);
+  top: -150px;
+  left: -150px;
+  filter: blur(80px);
+}
+
+
+.section::after {
+  content: "";
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(56,189,248,0.25), transparent 60%);
+  bottom: -150px;
+  right: -150px;
+  filter: blur(80px);
+}
+
+
 /* fixed step number */
 .step-number {
   position: fixed;
   top: 30px;
   left: 30px;
-  font-size: 4rem;
-  opacity: 0.15;
-  font-weight: bold;
-  z-index: 10;
+  font-size: 4.5rem;
+  font-weight: 700;
+  background: linear-gradient(180deg, #7dd3fc, #a78bfa);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  opacity: 0.2;
 }
 
+/* premium glass card */
 .card {
   width: 650px;
   height: 360px;
@@ -42,11 +70,10 @@ html, body {
 
   padding: 40px;
   border-radius: 24px;
-  background: rgba(255,255,255,0.08);
-  backdrop-filter: blur(20px);
-  border: 1px solid rgba(255,255,255,0.2);
-  box-shadow: 0 20px 60px rgba(0,0,0,0.8);
-
+  background: linear-gradient(135deg, rgba(255,255,255,0.08), rgba(255,255,255,0.02));
+  backdrop-filter: blur(25px);
+  border: 1px solid rgba(255,255,255,0.15);
+  box-shadow: 0 25px 70px rgba(0,0,0,0.7), inset 0 0 20px rgba(255,255,255,0.05);
   opacity: 0;
   transform: translateY(40px) scale(0.95);
   transition: all 0.7s ease;
@@ -62,26 +89,35 @@ html, body {
   height: 140px;
 }
 
-h1,h2 { margin: 0 0 10px; }
-
+h1, h2 {
+  margin-bottom: 10px;
+  background: linear-gradient(90deg, #e0f2fe, #c7d2fe);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
 p {
-  color: #cbd5f5;
+  color: rgba(226,232,240,0.8);
+  line-height: 1.5;
 }
 
-/* expandable panels */
-.learn {
-  margin-top: 10px;
-}
-
+/* Learn button */
 .learn button {
-  background: rgba(255,255,255,0.1);
-  border: 1px solid rgba(255,255,255,0.2);
-  color: white;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.15);
+  color: #e0f2fe;
   padding: 8px 14px;
   border-radius: 20px;
   cursor: pointer;
+  transition: all 0.3s ease;
 }
 
+.learn button:hover {
+  background: linear-gradient(90deg, #7dd3fc, #a78bfa);
+  color: black;
+}
+
+
+/* expandable panel */
 .panel {
   max-height: 0;
   overflow: hidden;
@@ -94,17 +130,7 @@ p {
   max-height: 120px;
 }
 
-.links a {
-  display: inline-block;
-  padding: 8px 14px;
-  margin: 5px;
-  border-radius: 999px;
-  background: rgba(255,255,255,0.1);
-  border: 1px solid rgba(255,255,255,0.2);
-  text-decoration: none;
-  color: #e0f2fe;
-}
-
+/* nav dots */
 .nav {
   position: fixed;
   right: 20px;
@@ -117,11 +143,14 @@ p {
   height: 10px;
   margin: 10px 0;
   border-radius: 50%;
-  background: rgba(255,255,255,0.3);
+  background: rgba(255,255,255,0.2);
+  transition: all 0.3s ease;
 }
 
 .nav .active {
   background: linear-gradient(90deg, #7dd3fc, #a78bfa);
+  box-shadow: 0 0 10px #7dd3fc;
+  transform: scale(1.4);
 }
 </style>
 </head>
@@ -169,7 +198,7 @@ function update() {
     }
   });
 
-  stepNum.innerText = activeIndex;
+  stepNum.innerText = activeIndex === 0 ? "" : activeIndex;
 
   document.querySelectorAll('.nav div').forEach((dot,i) => {
     dot.classList.toggle('active', i===activeIndex);
@@ -181,4 +210,3 @@ update();
 </script>
 
 </body>
-</html>
