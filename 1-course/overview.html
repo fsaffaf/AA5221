@@ -1,110 +1,97 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Slides</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>10 Slide Click Slider</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: #f3f4f6;
+    }
+    .slider {
+      position: relative;
+      width: 600px;
+      height: 300px;
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      text-align: center;
+    }
+    .slide {
+      position: absolute;
+      width: 100%;
+      transition: all 0.4s ease;
+      opacity: 0;
+      transform: translateX(50px);
+    }
+    .slide.active {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    .arrow {
+      position: absolute;
+      right: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: #111;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      cursor: pointer;
+      font-size: 20px;
+    }
 
-<style>
-body {
-  margin: 0;
-  overflow: hidden;
-  font-family: Arial, sans-serif;
-  background: #111;
-}
+    h2 {
+      margin-bottom: 10px;
+    }
 
-/* container */
-#container {
-  display: flex;
-  height: 100vh;
-  transition: 0.4s;
-}
 
-/* each slide */
-.slide {
-  width: 100vw;
-  height: 100vh;
-  flex-shrink: 0;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: white;
-  font-size: 30px;
-}
-
-/* colors so you SEE movement */
-.slide:nth-child(1) { background: #1e293b; }
-.slide:nth-child(2) { background: #334155; }
-.slide:nth-child(3) { background: #475569; }
-.slide:nth-child(4) { background: #64748b; }
-
-/* arrows */
-.arrow {
-  position: fixed;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 50px;
-  height: 50px;
-
-  background: white;
-  color: black;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  cursor: pointer;
-  font-size: 20px;
-}
-
-#left { left: 20px; }
-#right { right: 20px; }
-</style>
+    p {
+      color: #555;
+    }
+  </style>
 </head>
-
 <body>
 
-<div id="left" class="arrow">←</div>
-<div id="right" class="arrow">→</div>
+<div class="slider">
 
-<div id="container">
+  <div class="slide active"><h2>Slide 1</h2><p>Content for slide 1</p></div>
+  <div class="slide"><h2>Slide 2</h2><p>Content for slide 2</p></div>
+  <div class="slide"><h2>Slide 3</h2><p>Content for slide 3</p></div>
+  <div class="slide"><h2>Slide 4</h2><p>Content for slide 4</p></div>
+  <div class="slide"><h2>Slide 5</h2><p>Content for slide 5</p></div>
+  <div class="slide"><h2>Slide 6</h2><p>Content for slide 6</p></div>
+  <div class="slide"><h2>Slide 7</h2><p>Content for slide 7</p></div>
+  <div class="slide"><h2>Slide 8</h2><p>Content for slide 8</p></div>
+  <div class="slide"><h2>Slide 9</h2><p>Content for slide 9</p></div>
+  <div class="slide"><h2>Slide 10</h2><p>Content for slide 10</p></div>
 
-  <div class="slide">Purpose</div>
-  <div class="slide">Step 1</div>
-  <div class="slide">Step 2</div>
-  <div class="slide">Step 3</div>
+  <button class="arrow" onclick="nextSlide()">›</button>
 
 </div>
 
 <script>
-let index = 0;
-const container = document.getElementById("container");
-const slides = document.querySelectorAll(".slide");
+  let current = 0;
+  const slides = document.querySelectorAll('.slide');
 
-function update() {
-  container.style.transform = "translateX(-" + (index * window.innerWidth) + "px)";
-}
-
-document.getElementById("right").onclick = function() {
-  if (index < slides.length - 1) {
-    index++;
-    update();
-  }
-};
-
-document.getElementById("left").onclick = function() {
-  if (index > 0) {
-    index--;
-    update();
-  }
-};
-
-/* important: update on resize */
-window.onresize = update;
-
-/* initialize */
-update();
+  function nextSlide() {
+    slides[current].classList.remove('active');
+    current = (current + 1) % slides.length;
+    slides[current].classList.add('active');
+  }
 </script>
 
 </body>
-</html>
