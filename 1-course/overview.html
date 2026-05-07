@@ -6,27 +6,47 @@
 <title>Data Analytics Process</title>
 
 <style>
-body {
-  margin: 0;
-  font-family: "Segoe UI", sans-serif;
-  background: radial-gradient(circle at top, #0f172a, #020617);
-  color: white;
-}
-
-/* smooth scroll */
+/* ---------- BASE ---------- */
 html {
   scroll-behavior: smooth;
 }
 
-/* sections */
+body {
+  margin: 0;
+  font-family: "Segoe UI", sans-serif;
+  color: white;
+
+  /* background */
+  background: radial-gradient(circle at top, #0f172a, #020617);
+
+  /* SLIDE SNAP */
+  scroll-snap-type: y mandatory;
+  overflow-y: scroll;
+}
+
+/* ---------- SECTIONS ---------- */
 .section {
   height: 100vh;
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
+
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  position: relative;
 }
 
-/* glass card */
+/* subtle glow */
+.section::before {
+  content: "";
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(125,211,252,0.2), transparent);
+  filter: blur(80px);
+}
+
+/* ---------- CARD ---------- */
 .card {
   width: 600px;
   height: 320px;
@@ -34,6 +54,7 @@ html {
 
   border-radius: 20px;
 
+  /* glass */
   background: linear-gradient(
     135deg,
     rgba(255,255,255,0.12),
@@ -62,7 +83,7 @@ html {
   transform: translateY(0);
 }
 
-/* text */
+/* ---------- TEXT ---------- */
 h1, h2 {
   margin: 0 0 10px;
 }
@@ -71,7 +92,7 @@ p {
   color: #cbd5f5;
 }
 
-/* button */
+/* ---------- BUTTON ---------- */
 button {
   padding: 8px 14px;
   border-radius: 20px;
@@ -86,11 +107,11 @@ button:hover {
   color: black;
 }
 
-/* expandable panel */
+/* ---------- EXPAND PANEL ---------- */
 .panel {
   max-height: 0;
   overflow: hidden;
-  transition: 0.3s;
+  transition: max-height 0.3s ease;
   font-size: 0.9rem;
   color: #cbd5f5;
 }
@@ -99,11 +120,12 @@ button:hover {
   max-height: 120px;
 }
 
-/* step number */
+/* ---------- STEP NUMBER ---------- */
 .step-number {
   position: fixed;
   top: 20px;
   left: 20px;
+
   font-size: 50px;
   opacity: 0.2;
   font-weight: bold;
@@ -111,16 +133,6 @@ button:hover {
   background: linear-gradient(180deg, #7dd3fc, #a78bfa);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-}
-
-/* subtle glow background */
-.section::before {
-  content: "";
-  position: absolute;
-  width: 300px;
-  height: 300px;
-  background: radial-gradient(circle, rgba(125,211,252,0.2), transparent);
-  filter: blur(80px);
 }
 </style>
 </head>
@@ -138,7 +150,9 @@ button:hover {
     </div>
     <div>
       <button onclick="toggle(this)">Learn More</button>
-      <div class="panel">This overview connects all steps into a complete workflow.</div>
+      <div class="panel">
+        This overview shows how all steps connect into one process.
+      </div>
     </div>
   </div>
 </div>
@@ -152,7 +166,9 @@ button:hover {
     </div>
     <div>
       <button onclick="toggle(this)">Learn More</button>
-      <div class="panel">Example: What factors affect student performance?</div>
+      <div class="panel">
+        Example: What factors influence student performance?
+      </div>
     </div>
   </div>
 </div>
@@ -166,7 +182,9 @@ button:hover {
     </div>
     <div>
       <button onclick="toggle(this)">Learn More</button>
-      <div class="panel">Identify stakeholders, data needs, and success criteria.</div>
+      <div class="panel">
+        Identify stakeholders, constraints, and needed data.
+      </div>
     </div>
   </div>
 </div>
@@ -176,24 +194,61 @@ button:hover {
   <div class="card">
     <div>
       <h2>3. Data Collection</h2>
-      <p>Gather data from relevant sources.</p>
+      <p>Gather relevant data sources.</p>
     </div>
     <div>
       <button onclick="toggle(this)">Learn More</button>
-      <div class="panel">Sources: surveys, APIs, databases, experiments.</div>
+      <div class="panel">
+        Sources include surveys, APIs, databases, or experiments.
+      </div>
     </div>
   </div>
 </div>
 
+<!-- STEP 4 -->
+<div class="section">
+  <div class="card">
+    <div>
+      <h2>4. Data Cleaning</h2>
+      <p>Prepare and clean the dataset.</p>
+    </div>
+    <div>
+      <button onclick="toggle(this)">Learn More</button>
+      <div class="panel">
+        Remove missing data, fix errors, standardize formats.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- STEP 5 -->
+<div class="section">
+  <div class="card">
+    <div>
+      <h2>5. Exploratory Analysis</h2>
+      <p>Identify patterns and trends.</p>
+    </div>
+    <div>
+      <button onclick="toggle(this)">Learn More</button>
+      <div class="panel">
+        Use charts, distributions, and summary statistics.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- JS -->
 <script>
 const sections = document.querySelectorAll('.section');
 const step = document.getElementById('step');
 
+/* toggle learn more */
 function toggle(btn) {
   const panel = btn.nextElementSibling;
   panel.classList.toggle('open');
 }
 
+/* scroll logic */
 function update() {
   let index = 0;
 
@@ -209,7 +264,7 @@ function update() {
     }
   });
 
-  step.innerText = index === 0 ? '' : index;
+  step.innerText = index === 0 ? "" : index;
 }
 
 window.addEventListener('scroll', update);
