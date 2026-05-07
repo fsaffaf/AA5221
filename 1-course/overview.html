@@ -30,22 +30,89 @@ body {
   z-index: 999;
 }
 
+/* arrows */
+.arrow {
+  position: fixed;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.2);
+
+  cursor: pointer;
+  backdrop-filter: blur(10px);
+
+  transition: all 0.3s ease;
+}
+
+/* right arrow */
+.arrow.next {
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.arrow.next::after {
+  content: "➜";
+}
+
+/* left arrow */
+.arrow.prev {
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.arrow.prev::after {
+  content: "⬅";
+}
+
+.arrow:hover {
+  background: linear-gradient(90deg, #38bdf8, #818cf8);
+  box-shadow: 0 0 20px #38bdf8;
+}
+
+/* sections */
 .section {
   height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
   scroll-snap-align: start;
+  position: relative;
 }
 
+/* glow */
+.section::before {
+  content: "";
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(0,200,255,0.25), transparent);
+  filter: blur(120px);
+}
+
+/* cards */
 .card {
   width: 600px;
   height: 320px;
   padding: 30px;
 
   border-radius: 20px;
-  background: linear-gradient(135deg, rgba(255,255,255,0.12), rgba(255,255,255,0.04));
+
+  background: linear-gradient(
+    135deg,
+    rgba(255,255,255,0.12),
+    rgba(255,255,255,0.04)
+  );
+
   backdrop-filter: blur(20px);
+
   border: 1px solid rgba(120,200,255,0.3);
 
   box-shadow:
@@ -75,6 +142,7 @@ h1, h2 {
 
 p { color: #cbd5f5; }
 
+/* button */
 button {
   padding: 8px 14px;
   border-radius: 20px;
@@ -86,37 +154,18 @@ button {
 
 button:hover {
   background: linear-gradient(90deg, #38bdf8, #818cf8);
-  color: white;
 }
 
+/* panel */
 .panel {
   max-height: 0;
   overflow: hidden;
   transition: max-height 0.3s ease;
   font-size: 0.9rem;
-  color: #cbd5f5;
 }
 
-.panel.open { max-height: 120px; }
-
-/* brighter glowing number */
-.step-number {
-  position: fixed;
-  top: 20px;
-  left: 20px;
-
-  font-size: 70px;
-  font-weight: 800;
-
-  background: linear-gradient(180deg, #38bdf8, #a78bfa);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-
-  text-shadow:
-    0 0 20px rgba(56,189,248,0.8),
-    0 0 40px rgba(56,189,248,0.5);
-
-  opacity: 0.9;
+.panel.open {
+  max-height: 120px;
 }
 </style>
 </head>
@@ -124,8 +173,10 @@ button:hover {
 <body>
 
 <div class="progress" id="progress"></div>
-<div class="step-number" id="step"></div>
+<div class="arrow prev" id="prevBtn"></div>
+<div class="arrow next" id="nextBtn"></div>
 
+<!-- PURPOSE -->
 <div class="section">
   <div class="card">
     <div>
@@ -134,11 +185,12 @@ button:hover {
     </div>
     <div>
       <button onclick="toggle(this)">Learn More</button>
-      <div class="panel">Overview of full process.</div>
+      <div class="panel">Overview of the full process.</div>
     </div>
   </div>
 </div>
 
+<!-- STEP 1 -->
 <div class="section">
   <div class="card">
     <div>
@@ -152,6 +204,7 @@ button:hover {
   </div>
 </div>
 
+<!-- STEP 2 -->
 <div class="section">
   <div class="card">
     <div>
@@ -165,39 +218,71 @@ button:hover {
   </div>
 </div>
 
+<!-- STEP 3 -->
+<div class="section">
+  <div class="card">
+    <div>
+      <h2>3. Data Collection</h2>
+      <p>Gather data sources.</p>
+    </div>
+    <div>
+      <button onclick="toggle(this)">Learn More</button>
+      <div class="panel">Use surveys, APIs, or databases.</div>
+    </div>
+  </div>
+</div>
+
 <script>
 const sections = document.querySelectorAll('.section');
-const step = document.getElementById('step');
 const progress = document.getElementById('progress');
+const nextBtn = document.getElementById('nextBtn');
+const prevBtn = document.getElementById('prevBtn');
 
+let currentIndex = 0;
+
+/* toggle panels */
 function toggle(btn) {
   const panel = btn.nextElementSibling;
   panel.classList.toggle('open');
 }
 
+/* update active section */
 function update() {
-  let index = 0;
-
   sections.forEach((sec, i) => {
     const rect = sec.getBoundingClientRect();
+
+    if (rect.top <= window.innerHeight * 0.5 && rect.bottom > window.innerHeight * 0.5) {
+      currentIndex = i;
+    }
 
     if (rect.top < window.innerHeight * 0.7) {
       sec.querySelector('.card').classList.add('show');
     }
-
-    if (rect.top < window.innerHeight / 2 && rect.bottom > window.innerHeight / 2) {
-      index = i;
-    }
   });
-
-  step.innerText = index === 0 ? '' : index;
 
   /* progress bar */
   const scrollTop = document.documentElement.scrollTop;
   const height = document.documentElement.scrollHeight - window.innerHeight;
-  const percent = (scrollTop / height) * 100;
-  progress.style.width = percent + "%";
+  progress.style.width = (scrollTop / height) * 100 + "%";
+
+  /* hide/show arrows */
+  prevBtn.style.display = currentIndex === 0 ? "none" : "flex";
+  nextBtn.style.display = currentIndex === sections.length - 1 ? "none" : "flex";
 }
+
+/* next */
+nextBtn.addEventListener('click', () => {
+  if (currentIndex < sections.length - 1) {
+    sections[currentIndex + 1].scrollIntoView({ behavior: "smooth" });
+  }
+});
+
+/* previous */
+prevBtn.addEventListener('click', () => {
+  if (currentIndex > 0) {
+    sections[currentIndex - 1].scrollIntoView({ behavior: "smooth" });
+  }
+});
 
 window.addEventListener('scroll', update);
 update();
