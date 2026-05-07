@@ -1,277 +1,237 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AA 5221 — Course Materials</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>AA 5221 — Course Materials</title>
 
-  <!-- ✅ Correct way to load your CSS -->
-  <link rel="stylesheet" href="assets/style.css" />
+<style>
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background: transparent;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+}
 
-  <style>
-    /* Do NOT set font-family here — let assets/style.css control typography */
-    html, body {
-      margin: 0;
-      padding: 0;
-      height: 100%;
-      background: transparent; /* important so canvas shows */
-    }
+#starfield {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+  pointer-events: none;
+}
 
-    body {
-      min-height: 100vh;
-      overflow-x: hidden;
-    }
+/* NAV */
+.glass-nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  background: rgba(10, 15, 25, 0.6);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(255,255,255,0.12);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.06),
+    0 8px 30px rgba(0,0,0,0.35);
+}
 
-    /* ✅ Starfield canvas behind content (NOT negative z-index) */
-    #starfield {
-      position: fixed;
-      inset: 0;
-      width: 100vw;
-      height: 100vh;
-      z-index: 0;
-      pointer-events: none;
-      display: block;
-    }
+.nav-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0.7rem 1.5rem;
+  display: flex;
+}
 
-    /* Ensure content is above canvas */
-    .glass-nav,
-    .home-container {
-      position: relative;
-      z-index: 1;
-    }
+.nav-item {
+  flex: 1;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-    /* Glass Nav */
-    .glass-nav {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      z-index: 1000;
-      background: rgba(10, 15, 25, 0.55);
-      backdrop-filter: blur(16px);
-      border-bottom: 1px solid rgba(255,255,255,0.18);
-    }
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.75);
 
-    /* ✅ tighter spacing + wrap support */
-    .nav-inner {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0.6rem 1.25rem;     /* tighter */
-      display: flex;
-      justify-content: flex-end;   /* keep on the right (as before) */
-      align-items: center;
-      gap: 1.05rem;                /* tighter */
-      flex-wrap: wrap;
-    }
+  padding: 0.6rem 0;
+  cursor: pointer;
+}
 
-    .nav-item {
-      position: relative;
-      font-size: 0.65rem;          /* slightly smaller */
-      letter-spacing: 0.18em;      /* slightly less tracking */
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.85);
-      cursor: pointer;
-      user-select: none;
-      text-decoration: none;
-      padding: 0.25rem 0.15rem;    /* improves click target without widening too much */
-      line-height: 1;
-    }
+/* Divider */
+.nav-item:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 25%;
+  height: 50%;
+  width: 1px;
+  background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.15), transparent);
+}
 
-    .nav-item:hover { color: #fff; }
+/* Glow */
+.nav-item::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 10px;
+  background: radial-gradient(circle, rgba(125,211,252,0.18), transparent 70%);
+  opacity: 0;
+  transform: scale(0.85);
+  transition: 0.25s;
+}
 
-    /* ✅ two-line stacked label, LEFT ALIGNED */
-    .nav-label {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;  /* left align */
-      line-height: 1.05;
-      text-align: left;
-      white-space: nowrap;
-      min-width: 5.5rem;        /* consistent width; reduce if you want tighter */
-    }
+.nav-item:hover::before {
+  opacity: 1;
+  transform: scale(1);
+}
 
-    .nav-label span { display: block; }
+.nav-item:hover {
+  color: white;
+}
 
-    .dropdown-panel {
-      position: absolute;
-      top: 100%;
-      right: 0;                 /* keep dropdown aligned nicely for right-justified nav */
-      min-width: 240px;         /* narrower than before */
-      background: rgba(15,15,30,0.95);
-      border: 1px solid rgba(255,255,255,0.2);
-      border-radius: 16px;
-      backdrop-filter: blur(16px);
-      box-shadow: 0 30px 70px rgba(0,0,0,0.6);
-      display: none;
-      overflow: hidden;
-    }
+/* Label */
+.nav-label {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
-    .dropdown:hover .dropdown-panel { display: block; }
+/* Underline */
+.nav-label::after {
+  content: "";
+  position: absolute;
+  bottom: -6px;
+  left: 50%;
+  width: 0%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #7dd3fc, transparent);
+  transform: translateX(-50%);
+  transition: 0.25s;
+  opacity: 0;
+}
 
-    .dropdown-panel a {
-      display: block;
-      padding: 0.6rem 1rem;
-      text-decoration: none;
-      color: rgba(255,255,255,0.85);
-      font-size: 0.7rem;
-      letter-spacing: 0.12em;
-      white-space: nowrap;
-    }
+.nav-item:hover .nav-label::after {
+  width: 60%;
+  opacity: 1;
+}
 
-    .dropdown-panel a:hover {
-      background: rgba(255,255,255,0.1);
-      color: #fff;
-    }
+/* Dropdown */
+.dropdown-panel {
+  position: absolute;
+  top: 100%;
+  min-width: 220px;
+  background: rgba(15,15,30,0.95);
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 14px;
+  display: none;
+}
 
-    .home-container {
-      padding-top: 6rem; /* matches your original spacing */
-      text-align: center;
-    }
+.dropdown:hover .dropdown-panel {
+  display: block;
+}
 
-    /* Spacer so the fixed nav doesn't overlap the top content */
-    .spacer {
-      height: 4.5rem;
-    }
+.dropdown-panel a {
+  display: block;
+  padding: 0.7rem 1rem;
+  font-size: 0.7rem;
+  text-decoration: none;
+  color: rgba(255,255,255,0.85);
+}
 
-    /* Optional: slightly tighter on very small screens */
-    @media (max-width: 520px) {
-      .nav-inner { gap: 0.75rem; padding: 0.55rem 1rem; }
-      .nav-item { font-size: 0.6rem; letter-spacing: 0.15em; }
-      .nav-label { min-width: 5rem; }
-      .dropdown-panel { min-width: 210px; }
-    }
-  </style>
+.dropdown-panel a:hover {
+  background: rgba(255,255,255,0.08);
+  color: white;
+}
+
+/* Content */
+.home-container {
+  position: relative;
+  z-index: 1;
+  padding-top: 7rem;
+  text-align: center;
+}
+</style>
 </head>
 
 <body>
 
-  <!-- ✅ Canvas must exist BEFORE stars.js runs -->
-  <canvas id="starfield"></canvas>
+<canvas id="starfield"></canvas>
 
-  <!-- ✅ NAV -->
-  <nav class="glass-nav">
-    <div class="nav-inner">
+<nav class="glass-nav">
+<div class="nav-inner">
 
-      <!-- CLASS OVERVIEW -->
-      <div class="nav-item dropdown">
-        <span class="nav-label"><span>Class</span><span>Overview</span></span>
-        <div class="dropdown-panel">
-          <a href="lectures/science.html">What is Science?</a>
-          <a href="visual/decisiontree.html">Conceptual Overview</a>
-        </div>
-      </div>
+<div class="nav-item dropdown">
+<div class="nav-label"><span>Class</span><span>Overview</span></div>
+<div class="dropdown-panel">
+<a href="lectures/science.html">What is Science?</a>
+<a href="visual/decisiontree.html">Conceptual Overview</a>
+</div>
+</div>
 
-      <!-- RESEARCH METHODS -->
-      <div class="nav-item dropdown">
-        <span class="nav-label"><span>Research</span><span>Methods</span></span>
-        <div class="dropdown-panel">
-          <a href="lectures/rdesigns.html">Research Designs</a>
-          <a href="interactive/researchdesign.html">Research Design Selector</a>
-        </div>
-      </div>
+<div class="nav-item dropdown">
+<div class="nav-label"><span>Research</span><span>Methods</span></div>
+<div class="dropdown-panel">
+<a href="lectures/rdesigns.html">Research Designs</a>
+<a href="interactive/researchdesign.html">Design Selector</a>
+</div>
+</div>
 
-      <!-- MEASUREMENT THEORY -->
-      <div class="nav-item dropdown">
-        <span class="nav-label"><span>Measurement</span><span>Theory</span></span>
-        <div class="dropdown-panel">
-          <a href="lectures/data-types.html">Types of Data</a>
-        </div>
-      </div>
+<div class="nav-item dropdown">
+<div class="nav-label"><span>Measurement</span><span>Theory</span></div>
+<div class="dropdown-panel">
+<a href="lectures/data-types.html">Types of Data</a>
+</div>
+</div>
 
-      <!-- DESCRIPTIVE -->
-      <div class="nav-item dropdown">
-        <span class="nav-label"><span>Descriptive</span><span>Statistics</span></span>
-        <div class="dropdown-panel">
-          <a href="lectures/lecture02.html">Descriptive Statistics</a>
-          <a href="lectures/lecture02.html#central-tendency">Measures of Central Tendency</a>
-          <a href="lectures/lecture02.html#normality">Normality</a>
-        </div>
-      </div>
+<div class="nav-item dropdown">
+<div class="nav-label"><span>Descriptive</span><span>Statistics</span></div>
+<div class="dropdown-panel">
+<a href="lectures/lecture02.html">Descriptive Stats</a>
+</div>
+</div>
 
-      <!-- INFERENTIAL -->
-      <div class="nav-item dropdown">
-        <span class="nav-label"><span>Inferential</span><span>Statistics</span></span>
-        <div class="dropdown-panel">
-          <a href="lectures/lecture02.html#inferential">Inferential Overview</a>
-          <a href="lectures/hypotheses.html">Hypothesis Testing</a>
-          <a href="lectures/lecture03.html">P‑Values &amp; Effect Sizes</a>
-        </div>
-      </div>
+<div class="nav-item dropdown">
+<div class="nav-label"><span>Inferential</span><span>Statistics</span></div>
+<div class="dropdown-panel">
+<a href="lectures/hypotheses.html">Hypothesis Testing</a>
+</div>
+</div>
 
-      <!-- VISUALIZING -->
-      <div class="nav-item dropdown">
-        <span class="nav-label"><span>Visualizing</span><span>Data</span></span>
-        <div class="dropdown-panel">
-          <a href="lectures/lecture01.html#histograms">Histograms</a>
-          <a href="lectures/lecture02.html#boxplots">Boxplots</a>
-          <a href="lectures/lecture03.html#scatterplots">Scatterplots</a>
-          <a href="lectures/lecture03.html#bar-graphs">Bar Graphs</a>
-          <a href="interactive/testselect.html">Normality Interpreter</a>
-        </div>
-      </div>
+<div class="nav-item dropdown">
+<div class="nav-label"><span>Visualizing</span><span>Data</span></div>
+<div class="dropdown-panel">
+<a href="lectures/lecture01.html#histograms">Histograms</a>
+</div>
+</div>
 
-      <!-- RSTUDIO -->
-      <div class="nav-item dropdown">
-        <span class="nav-label"><span>R</span><span>Studio</span></span>
-        <div class="dropdown-panel">
-          <a href="lectures/lecture01.html#rstudio">Download RStudio</a>
-          <a href="lectures/intro-r.html">R Basics</a>
-          <a href="lectures/lecture03.html#r4ds">R for Data Science</a>
-          <a href="lectures/lecture04.html">R Markdown &amp; RPubs</a>
-        </div>
-      </div>
+<div class="nav-item dropdown">
+<div class="nav-label"><span>R</span><span>Studio</span></div>
+<div class="dropdown-panel">
+<a href="lectures/intro-r.html">R Basics</a>
+</div>
+</div>
 
-      <!-- R CODE -->
-      <div class="nav-item dropdown">
-        <span class="nav-label"><span>R</span><span>Code</span></span>
-        <div class="dropdown-panel">
-          <a href="interactive/testselect.html#inferential">Inferential Test Selector</a>
-          <a href="code/correlations.html">Correlations</a>
-          <a href="code/chi_independence.html">Chi‑Square Independence</a>
-          <a href="code/chi_gof.html">Chi‑Square GOF</a>
-          <a href="code/ttest_ind.html">Independent t‑test</a>
-          <a href="code/mann_whitney.html">Mann‑Whitney U</a>
-          <a href="code/ttest_dep.html">Dependent t‑test</a>
-          <a href="code/wilcoxon.html">Wilcoxon Signed Rank</a>
-        </div>
-      </div>
+<div class="nav-item dropdown">
+<div class="nav-label"><span>R</span><span>Code</span></div>
+<div class="dropdown-panel">
+<a href="code/correlations.html">Correlations</a>
+</div>
+</div>
 
-      <!-- ✅ FAQ removed to make space -->
+</div>
+</nav>
 
-    </div>
-  </nav>
+<div class="home-container">
+<h1>AA 5221</h1>
+<p>Applied Analytics & Research Methods I</p>
+</div>
 
-  <div class="spacer"></div>
-
-  <!-- ✅ Main Content (your title styling preserved) -->
-  <div class="home-container">
-    <h1 style="
-      font-size: 4rem;
-      font-weight: 900;
-      letter-spacing: 0.25em;
-      margin-bottom: 0.5rem;
-      text-transform: uppercase;
-      background: linear-gradient(180deg, #ffffff, #7dd3fc);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      text-shadow:
-        0 0 20px rgba(56, 189, 248, 0.35),
-        0 0 40px rgba(56, 189, 248, 0.15);
-    ">
-      AA <span style="font-weight:300;">5221</span>
-    </h1>
-
-    <p style="
-      letter-spacing: 0.35em;
-      text-transform: uppercase;
-      opacity: 0.85;
-      margin-bottom: 3rem;
-    ">
-      Applied Analytics &amp; Research Methods I
-    </p>
-  </div>
-
-  <!-- ✅ Load your existing stars.js exactly as-is -->
-  <script src="assets/stars.js"></script>
+<!-- ✅ Correct script -->
+<script src="assets/stars.js"></script>
 
 </body>
 </html>
