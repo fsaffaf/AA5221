@@ -14,7 +14,7 @@ html, body {
   scroll-behavior: smooth;
 }
 
-/* full screen sections */
+/* sections */
 .section {
   height: 100vh;
   display: flex;
@@ -22,33 +22,33 @@ html, body {
   justify-content: center;
   text-align: center;
   position: relative;
-  overflow: hidden;
+  padding: 20px;
 }
 
-/* smooth gradient background */
+/* glow background */
 .section::before {
   content: "";
   position: absolute;
-  width: 600px;
-  height: 600px;
+  width: 500px;
+  height: 500px;
   background: radial-gradient(circle, rgba(125,211,252,0.25), transparent 60%);
-  top: -200px;
-  left: -200px;
-  filter: blur(80px);
+  top: -150px;
+  left: -150px;
+  filter: blur(70px);
 }
 
 .section::after {
   content: "";
   position: absolute;
-  width: 600px;
-  height: 600px;
+  width: 500px;
+  height: 500px;
   background: radial-gradient(circle, rgba(167,139,250,0.25), transparent 60%);
-  bottom: -200px;
-  right: -200px;
-  filter: blur(80px);
+  bottom: -150px;
+  right: -150px;
+  filter: blur(70px);
 }
 
-/* glass card */
+/* card */
 .card {
   max-width: 700px;
   padding: 40px;
@@ -63,7 +63,6 @@ html, body {
   transition: all 0.7s ease;
 }
 
-/* visible animation */
 .card.show {
   opacity: 1;
   transform: translateY(0) scale(1);
@@ -77,19 +76,41 @@ h1 {
   -webkit-text-fill-color: transparent;
 }
 
-/* step title */
 h2 {
   font-size: 1.8rem;
   margin-bottom: 10px;
 }
 
-/* text */
 p {
-  font-size: 1.1rem;
+  font-size: 1.05rem;
   color: #cbd5f5;
 }
 
-/* navigation dots */
+/* link pills */
+.links {
+  margin-top: 20px;
+}
+
+.links a {
+  display: inline-block;
+  padding: 10px 16px;
+  margin: 6px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.2);
+  color: #e0f2fe;
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+}
+
+.links a:hover {
+  background: linear-gradient(90deg, #7dd3fc, #a78bfa);
+  color: black;
+  transform: scale(1.05);
+}
+
+/* nav dots */
 .nav {
   position: fixed;
   right: 20px;
@@ -103,7 +124,6 @@ p {
   margin: 10px 0;
   border-radius: 50%;
   background: rgba(255,255,255,0.3);
-  transition: 0.3s;
 }
 
 .nav .active {
@@ -117,37 +137,50 @@ p {
 
 <div class="nav" id="nav"></div>
 
-<!-- sections -->
+<!-- PURPOSE -->
 <div class="section">
   <div class="card">
-    <h1>Data Analytics Process</h1>
-    <p>Scroll to explore</p>
+    <h1>Purpose</h1>
+    <p>Understand the full lifecycle of data analytics from problem definition to deployment.</p>
+    <div class="links">
+      <a href="#">Overview</a>
+      <a href="#">Learning Goals</a>
+    </div>
   </div>
 </div>
 
-<div class="section"><div class="card"><h2>1. Define Problem</h2><p>Identify objectives and research questions.</p></div></div>
-<div class="section"><div class="card"><h2>2. Plan</h2><p>Define requirements and scope.</p></div></div>
-<div class="section"><div class="card"><h2>3. Collect Data</h2><p>Gather relevant data sources.</p></div></div>
-<div class="section"><div class="card"><h2>4. Clean Data</h2><p>Prepare dataset for analysis.</p></div></div>
-<div class="section"><div class="card"><h2>5. Explore</h2><p>Find trends and patterns.</p></div></div>
-<div class="section"><div class="card"><h2>6. Model</h2><p>Apply analytics techniques.</p></div></div>
-<div class="section"><div class="card"><h2>7. Interpret</h2><p>Derive insights from results.</p></div></div>
-<div class="section"><div class="card"><h2>8. Report</h2><p>Communicate findings.</p></div></div>
-<div class="section"><div class="card"><h2>9. Decide</h2><p>Support decisions with data.</p></div></div>
-<div class="section"><div class="card"><h2>10. Deploy</h2><p>Implement and monitor.</p></div></div>
+<!-- STEPS -->
+<div class="section"><div class="card"><h2>1. Define Problem</h2><p>Identify research questions and goals.</p><div class="links"><a href="#">Examples</a><a href="#">Templates</a></div></div></div>
+
+<div class="section"><div class="card"><h2>2. Planning</h2><p>Define scope, stakeholders, and approach.</p><div class="links"><a href="#">Stakeholder Guide</a><a href="#">Project Planning</a></div></div></div>
+
+<div class="section"><div class="card"><h2>3. Data Collection</h2><p>Gather relevant datasets.</p><div class="links"><a href="#">Sources</a><a href="#">APIs</a></div></div></div>
+
+<div class="section"><div class="card"><h2>4. Data Cleaning</h2><p>Fix errors and prepare data.</p><div class="links"><a href="#">Cleaning Tips</a><a href="#">Tools</a></div></div></div>
+
+<div class="section"><div class="card"><h2>5. EDA</h2><p>Explore trends and patterns.</p><div class="links"><a href="#">Charts</a><a href="#">EDA Guide</a></div></div></div>
+
+<div class="section"><div class="card"><h2>6. Modeling</h2><p>Apply analytical techniques.</p><div class="links"><a href="#">Regression</a><a href="#">ML Models</a></div></div></div>
+
+<div class="section"><div class="card"><h2>7. Interpretation</h2><p>Draw insights from results.</p><div class="links"><a href="#">Interpretation Guide</a></div></div></div>
+
+<div class="section"><div class="card"><h2>8. Reporting</h2><p>Communicate insights.</p><div class="links"><a href="#">Dashboards</a><a href="#">Reports</a></div></div></div>
+
+<div class="section"><div class="card"><h2>9. Decision-Making</h2><p>Use results to guide actions.</p><div class="links"><a href="#">Case Studies</a></div></div></div>
+
+<div class="section"><div class="card"><h2>10. Deployment</h2><p>Implement and monitor solutions.</p><div class="links"><a href="#">Deployment Tools</a></div></div></div>
 
 <script>
-const cards = document.querySelectorAll(".card");
-const sections = document.querySelectorAll(".section");
-const nav = document.getElementById("nav");
+const sections = document.querySelectorAll('.section');
+const nav = document.getElementById('nav');
 
 /* create nav dots */
-sections.forEach((_, i) => {
-  const dot = document.createElement("div");
+sections.forEach(() => {
+  const dot = document.createElement('div');
   nav.appendChild(dot);
 });
 
-/* scroll effect */
+/* scroll behavior */
 function update() {
   let activeIndex = 0;
 
@@ -155,7 +188,7 @@ function update() {
     const rect = section.getBoundingClientRect();
 
     if (rect.top < window.innerHeight * 0.6) {
-      section.querySelector(".card").classList.add("show");
+      section.querySelector('.card').classList.add('show');
     }
 
     if (rect.top < window.innerHeight / 2 && rect.bottom > window.innerHeight / 2) {
@@ -163,14 +196,15 @@ function update() {
     }
   });
 
-  document.querySelectorAll(".nav div").forEach((dot, i) => {
-    dot.classList.toggle("active", i === activeIndex);
+  document.querySelectorAll('.nav div').forEach((dot, i) => {
+    dot.classList.toggle('active', i === activeIndex);
   });
 }
 
-window.addEventListener("scroll", update);
+window.addEventListener('scroll', update);
 update();
 </script>
 
 </body>
 </html>
+``
