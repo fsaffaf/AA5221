@@ -46,36 +46,28 @@ body {
 
   cursor: pointer;
   backdrop-filter: blur(10px);
-
-  transition: all 0.3s ease;
-}
-
-/* right arrow */
-.arrow.next {
-  right: 20px;
-  top: 50%;
-  transform: translateY(-50%);
-}
-
-.arrow.next::after {
-  content: "➜";
-}
-
-/* left arrow */
-.arrow.prev {
-  left: 20px;
-  top: 50%;
-  transform: translateY(-50%);
-}
-
-.arrow.prev::after {
-  content: "⬅";
+  transition: 0.3s;
 }
 
 .arrow:hover {
   background: linear-gradient(90deg, #38bdf8, #818cf8);
   box-shadow: 0 0 20px #38bdf8;
 }
+
+/* positions */
+.next {
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.next::after { content: "➜"; }
+
+.prev {
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.prev::after { content: "⬅"; }
 
 /* sections */
 .section {
@@ -84,7 +76,6 @@ body {
   align-items: center;
   justify-content: center;
   scroll-snap-align: start;
-  position: relative;
 }
 
 /* glow */
@@ -102,15 +93,9 @@ body {
   width: 600px;
   height: 320px;
   padding: 30px;
-
   border-radius: 20px;
 
-  background: linear-gradient(
-    135deg,
-    rgba(255,255,255,0.12),
-    rgba(255,255,255,0.04)
-  );
-
+  background: linear-gradient(135deg, rgba(255,255,255,0.12), rgba(255,255,255,0.04));
   backdrop-filter: blur(20px);
 
   border: 1px solid rgba(120,200,255,0.3);
@@ -156,12 +141,11 @@ button:hover {
   background: linear-gradient(90deg, #38bdf8, #818cf8);
 }
 
-/* panel */
+/* panels */
 .panel {
   max-height: 0;
   overflow: hidden;
-  transition: max-height 0.3s ease;
-  font-size: 0.9rem;
+  transition: 0.3s;
 }
 
 .panel.open {
@@ -176,61 +160,35 @@ button:hover {
 <div class="arrow prev" id="prevBtn"></div>
 <div class="arrow next" id="nextBtn"></div>
 
-<!-- PURPOSE -->
-<div class="section">
-  <div class="card">
-    <div>
-      <h1>Purpose</h1>
-      <p>Understand the analytics lifecycle.</p>
-    </div>
-    <div>
-      <button onclick="toggle(this)">Learn More</button>
-      <div class="panel">Overview of the full process.</div>
-    </div>
-  </div>
-</div>
+<!-- SECTIONS -->
 
-<!-- STEP 1 -->
-<div class="section">
-  <div class="card">
-    <div>
-      <h2>1. Define Problem</h2>
-      <p>Set research questions.</p>
-    </div>
-    <div>
-      <button onclick="toggle(this)">Learn More</button>
-      <div class="panel">Define goals clearly.</div>
-    </div>
-  </div>
-</div>
+<div class="section"><div class="card">
+<h1>Purpose</h1>
+<p>Understand the analytics lifecycle.</p>
+<button onclick="toggle(this)">Learn More</button>
+<div class="panel">Full process overview.</div>
+</div></div>
 
-<!-- STEP 2 -->
-<div class="section">
-  <div class="card">
-    <div>
-      <h2>2. Planning</h2>
-      <p>Define requirements.</p>
-    </div>
-    <div>
-      <button onclick="toggle(this)">Learn More</button>
-      <div class="panel">Identify stakeholders.</div>
-    </div>
-  </div>
-</div>
+<div class="section"><div class="card">
+<h2>1. Define Problem</h2>
+<p>Set research questions.</p>
+<button onclick="toggle(this)">Learn More</button>
+<div class="panel">Define goals clearly.</div>
+</div></div>
 
-<!-- STEP 3 -->
-<div class="section">
-  <div class="card">
-    <div>
-      <h2>3. Data Collection</h2>
-      <p>Gather data sources.</p>
-    </div>
-    <div>
-      <button onclick="toggle(this)">Learn More</button>
-      <div class="panel">Use surveys, APIs, or databases.</div>
-    </div>
-  </div>
-</div>
+<div class="section"><div class="card">
+<h2>2. Planning</h2>
+<p>Define requirements.</p>
+<button onclick="toggle(this)">Learn More</button>
+<div class="panel">Identify stakeholders.</div>
+</div></div>
+
+<div class="section"><div class="card">
+<h2>3. Data Collection</h2>
+<p>Gather data sources.</p>
+<button onclick="toggle(this)">Learn More</button>
+<div class="panel">Use surveys, APIs, databases.</div>
+</div></div>
 
 <script>
 const sections = document.querySelectorAll('.section');
@@ -238,49 +196,51 @@ const progress = document.getElementById('progress');
 const nextBtn = document.getElementById('nextBtn');
 const prevBtn = document.getElementById('prevBtn');
 
-let currentIndex = 0;
-
-/* toggle panels */
+/* toggle learn more */
 function toggle(btn) {
-  const panel = btn.nextElementSibling;
-  panel.classList.toggle('open');
+  btn.nextElementSibling.classList.toggle('open');
 }
 
-/* update active section */
+/* ✅ RELIABLE slide index */
+function getIndex() {
+  return Math.round(window.scrollY / window.innerHeight);
+}
+
+/* update UI */
 function update() {
+  const index = getIndex();
+
+  /* animate cards */
   sections.forEach((sec, i) => {
     const rect = sec.getBoundingClientRect();
-
-    if (rect.top <= window.innerHeight * 0.5 && rect.bottom > window.innerHeight * 0.5) {
-      currentIndex = i;
-    }
-
     if (rect.top < window.innerHeight * 0.7) {
       sec.querySelector('.card').classList.add('show');
     }
   });
 
-  /* progress bar */
+  /* progress */
   const scrollTop = document.documentElement.scrollTop;
   const height = document.documentElement.scrollHeight - window.innerHeight;
   progress.style.width = (scrollTop / height) * 100 + "%";
 
-  /* hide/show arrows */
-  prevBtn.style.display = currentIndex === 0 ? "none" : "flex";
-  nextBtn.style.display = currentIndex === sections.length - 1 ? "none" : "flex";
+  /* arrow visibility */
+  prevBtn.style.display = index === 0 ? "none" : "flex";
+  nextBtn.style.display = index === sections.length - 1 ? "none" : "flex";
 }
 
 /* next */
 nextBtn.addEventListener('click', () => {
-  if (currentIndex < sections.length - 1) {
-    sections[currentIndex + 1].scrollIntoView({ behavior: "smooth" });
+  const i = getIndex();
+  if (i < sections.length - 1) {
+    window.scrollTo({ top: (i + 1) * window.innerHeight, behavior: "smooth" });
   }
 });
 
-/* previous */
+/* prev */
 prevBtn.addEventListener('click', () => {
-  if (currentIndex > 0) {
-    sections[currentIndex - 1].scrollIntoView({ behavior: "smooth" });
+  const i = getIndex();
+  if (i > 0) {
+    window.scrollTo({ top: (i - 1) * window.innerHeight, behavior: "smooth" });
   }
 });
 
