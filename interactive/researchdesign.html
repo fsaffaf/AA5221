@@ -1,15 +1,300 @@
-<div class="glass">
-  <h2>Research Design Selector</h2>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Research Design Selector</title>
 
-  <p>Select which features your study has:</p>
+<style>
+html, body {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  background: #020617;
+  color: white;
+}
 
-  <label><input type="checkbox" id="manip"> Manipulation</label><br>
-  <label><input type="checkbox" id="random"> Random Assignment</label><br>
-  <label><input type="checkbox" id="control"> High Control</label><br><br>
+/* Page background */
+body {
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+}
 
-  <button onclick="getDesign()">Determine Design</button>
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(circle at top, rgba(125,211,252,0.16), transparent 35%),
+    radial-gradient(circle at bottom, rgba(99,102,241,0.14), transparent 40%);
+  z-index: -2;
+}
 
-  <h3 id="result" style="margin-top:1rem;"></h3>
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  opacity: 0.3;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+  background-size: 42px 42px;
+  z-index: -1;
+}
+
+/* Centers the selector */
+.design-wrapper {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+/* Main glass card */
+.glass {
+  width: 100%;
+  max-width: 720px;
+  padding: 2.5rem;
+
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.15);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+
+  border-radius: 24px;
+  box-shadow: 0 25px 80px rgba(0,0,0,0.45);
+}
+
+/* Header */
+.glass h2 {
+  margin: 0 0 0.75rem;
+  text-align: center;
+  font-size: clamp(2rem, 5vw, 3.25rem);
+  font-weight: 650;
+  letter-spacing: -0.03em;
+  color: white;
+}
+
+.glass p {
+  margin: 0 0 2rem;
+  text-align: center;
+  color: rgb(203,213,225);
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+
+/* Checkbox area */
+.feature-list {
+  display: grid;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.feature-option {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+
+  padding: 1rem 1.15rem;
+  border-radius: 16px;
+
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.12);
+
+  color: rgb(241,245,249);
+  cursor: pointer;
+  transition: 0.25s ease;
+}
+
+.feature-option:hover {
+  background: rgba(255,255,255,0.13);
+  transform: translateY(-1px);
+}
+
+.feature-option input {
+  width: 1.1rem;
+  height: 1.1rem;
+  accent-color: #38bdf8;
+  cursor: pointer;
+}
+
+.feature-title {
+  font-weight: 600;
+  color: white;
+}
+
+.feature-subtitle {
+  font-size: 0.85rem;
+  color: rgb(203,213,225);
+  margin-top: 0.15rem;
+}
+
+/* Button */
+.design-button {
+  width: 100%;
+  border: 1px solid rgba(125,211,252,0.28);
+  border-radius: 18px;
+  padding: 1rem 1.25rem;
+
+  background: rgba(14,165,233,0.18);
+  color: white;
+
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 650;
+
+  cursor: pointer;
+  transition: 0.25s ease;
+}
+
+.design-button:hover {
+  background: rgba(14,165,233,0.28);
+  transform: translateY(-2px);
+  box-shadow: 0 0 0 2px rgba(125,211,252,0.35);
+}
+
+/* Result panel */
+.result-panel {
+  display: none;
+  margin-top: 1.5rem;
+  padding: 1.5rem;
+
+  border-radius: 20px;
+  border: 1px solid rgba(125,211,252,0.30);
+  background: linear-gradient(
+    135deg,
+    rgba(3,105,161,0.70),
+    rgba(49,46,129,0.80)
+  );
+
+  box-shadow: 0 20px 50px rgba(0,0,0,0.35);
+  animation: fadeIn 0.25s ease;
+}
+
+.result-panel.correlation {
+  border-color: rgba(148,163,184,0.25);
+  background: linear-gradient(
+    135deg,
+    rgba(51,65,85,0.85),
+    rgba(15,23,42,0.90)
+  );
+}
+
+.result-panel.quasi {
+  border-color: rgba(251,191,36,0.35);
+  background: linear-gradient(
+    135deg,
+    rgba(146,64,14,0.55),
+    rgba(15,23,42,0.90)
+  );
+}
+
+.result-panel.true {
+  border-color: rgba(125,211,252,0.35);
+  background: linear-gradient(
+    135deg,
+    rgba(3,105,161,0.75),
+    rgba(49,46,129,0.85)
+  );
+}
+
+.result-label {
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  color: rgb(203,213,225);
+  margin-bottom: 0.4rem;
+}
+
+.result-title {
+  margin: 0;
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  font-weight: 650;
+  color: white;
+}
+
+.result-description {
+  margin-top: 0.75rem;
+  color: rgb(226,232,240);
+  line-height: 1.6;
+}
+
+/* Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Mobile */
+@media (max-width: 700px) {
+  .design-wrapper {
+    padding: 1rem;
+  }
+
+  .glass {
+    padding: 1.5rem;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="design-wrapper">
+  <div class="glass">
+    <h2>Research Design Selector</h2>
+
+    <p>Select which features your study has:</p>
+
+    <div class="feature-list">
+      <label class="feature-option">
+        <input type="checkbox" id="manip">
+        <span>
+          <span class="feature-title">Manipulation</span>
+          <br>
+          <span class="feature-subtitle">The researcher actively changes or introduces something.</span>
+        </span>
+      </label>
+
+      <label class="feature-option">
+        <input type="checkbox" id="random">
+        <span>
+          <span class="feature-title">Random Assignment</span>
+          <br>
+          <span class="feature-subtitle">Participants are randomly assigned to groups or conditions.</span>
+        </span>
+      </label>
+
+      <label class="feature-option">
+        <input type="checkbox" id="control">
+        <span>
+          <span class="feature-title">High Control</span>
+          <br>
+          <span class="feature-subtitle">The study controls outside influences as much as possible.</span>
+        </span>
+      </label>
+    </div>
+
+    <button class="design-button" onclick="getDesign()">
+      Determine Design
+    </button>
+
+    <div id="resultPanel" class="result-panel">
+      <div class="result-label">Recommended Design</div>
+      <h3 id="result" class="result-title"></h3>
+      <div id="resultDescription" class="result-description"></div>
+    </div>
+  </div>
 </div>
 
 <script>
@@ -18,18 +303,34 @@ function getDesign() {
   const random = document.getElementById("random").checked;
   const control = document.getElementById("control").checked;
 
-  let result = "";
+  const resultPanel = document.getElementById("resultPanel");
+  const result = document.getElementById("result");
+  const description = document.getElementById("resultDescription");
+
+  resultPanel.classList.remove("correlation", "quasi", "true");
 
   if (manip && random && control) {
-    result = "✅ True Experiment";
+    result.textContent = "True Experiment";
+    description.textContent =
+      "This design includes manipulation, random assignment, and high control. It is best suited for testing cause-and-effect relationships.";
+    resultPanel.classList.add("true");
   } 
   else if (!manip && !random && !control) {
-    result = "📊 Correlational Study";
+    result.textContent = "Correlational Study";
+    description.textContent =
+      "This design does not include manipulation, random assignment, or high control. It is best suited for testing relationships between variables.";
+    resultPanel.classList.add("correlation");
   } 
   else {
-    result = "⚠️ Quasi-Experiment";
+    result.textContent = "Quasi-Experiment";
+    description.textContent =
+      "This design has some experimental features, but not all three. It is often used to compare groups when full experimental control is not possible.";
+    resultPanel.classList.add("quasi");
   }
 
-  document.getElementById("result").textContent = result;
+  resultPanel.style.display = "block";
 }
 </script>
+
+</body>
+</html>
