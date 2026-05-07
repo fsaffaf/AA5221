@@ -3,56 +3,50 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Neon Glass Slide Deck</title>
+<title>Glass Slide Deck</title>
 
 <style>
-/* ===== Neon Glass Theme ===== */
+/* ===== Modern Glass Theme ===== */
 :root {
-  --bg: #050816;
+  --bg: #0b1220;
   --card: rgba(255, 255, 255, 0.06);
-  --border: rgba(0, 255, 255, 0.18);
-  --text: #e6faff;
-  --muted: #7dd3fc;
-
-  --neon: #22d3ee;
-  --neon-strong: #00f6ff;
-  --neon-soft: rgba(34, 211, 238, 0.12);
-  --glow: rgba(0, 246, 255, 0.35);
+  --border: rgba(255, 255, 255, 0.10);
+  --text: #e5e7eb;
+  --muted: #9aa4b2;
+  --accent: #93c5fd;
 }
 
 /* ===== Base ===== */
-* { box-sizing: border-box; }
+* {
+  box-sizing: border-box;
+}
 
 body {
   margin: 0;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 
   background:
-    radial-gradient(circle at top, #07142a, #050816 45%, #02040a 100%);
+    radial-gradient(circle at top, #111827, #0b1220 60%, #060a12);
 
   color: var(--text);
   overflow: hidden;
 }
 
-/* ===== Progress Bar ===== */
+/* ===== Progress Bar (subtle) ===== */
 .progress-container {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
-  height: 6px;
+  height: 4px;
   background: rgba(255,255,255,0.05);
-  z-index: 10;
 }
 
 .progress-bar {
   height: 100%;
   width: 10%;
-  background: linear-gradient(90deg, var(--neon), var(--neon-strong));
-  transition: width 0.5s ease;
-  box-shadow:
-    0 0 10px var(--glow),
-    0 0 25px var(--glow);
+  background: rgba(255,255,255,0.35);
+  transition: width 0.4s ease;
 }
 
 /* ===== Deck ===== */
@@ -67,7 +61,7 @@ body {
   display: flex;
   width: 1000vw;
   height: 100vh;
-  transition: transform 0.7s cubic-bezier(0.77, 0, 0.175, 1);
+  transition: transform 0.6s ease;
 }
 
 /* ===== Slide ===== */
@@ -75,66 +69,62 @@ body {
   width: 100vw;
   height: 100vh;
   flex-shrink: 0;
+
   display: flex;
   align-items: flex-start;
   justify-content: center;
-  padding-top: 7vh;
+
+  padding-top: 8vh;
 }
 
-/* ===== Neon Glass Card ===== */
+/* ===== Card (clean glass) ===== */
 .card {
   width: min(820px, 90vw);
 
-  background: linear-gradient(
-    135deg,
-    rgba(255,255,255,0.08),
-    rgba(255,255,255,0.03)
-  );
-
+  background: var(--card);
   border: 1px solid var(--border);
-  border-radius: 24px;
+  border-radius: 20px;
 
   padding: 2rem;
 
-  backdrop-filter: blur(22px);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
 
-  box-shadow:
-    0 0 25px rgba(0, 246, 255, 0.08),
-    0 30px 80px rgba(0,0,0,0.55);
-}
-
-/* subtle neon edge glow */
-.card::before {
-  content: "";
-  position: absolute;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.35);
 }
 
 /* ===== Typography ===== */
 h1, h2 {
   margin-top: 0;
+  letter-spacing: -0.02em;
 }
 
 h2 {
-  color: var(--neon);
-  border-left: 4px solid var(--neon);
+  color: var(--text);
+  border-left: 3px solid var(--accent);
   padding-left: 0.75rem;
-  text-shadow: 0 0 10px var(--glow);
 }
 
-/* ===== Buttons ===== */
+p {
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+/* ===== Buttons (minimal glass) ===== */
 .next-btn,
 .back-btn {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  width: 66px;
-  height: 66px;
+
+  width: 56px;
+  height: 56px;
 
   border-radius: 50%;
   border: 1px solid var(--border);
+  background: var(--card);
 
-  background: rgba(255,255,255,0.04);
-  backdrop-filter: blur(18px);
+  backdrop-filter: blur(14px);
 
   cursor: pointer;
 
@@ -142,70 +132,57 @@ h2 {
   align-items: center;
   justify-content: center;
 
-  transition: 0.25s ease;
+  transition: 0.2s ease;
 }
 
-.next-btn {
-  right: 25px;
-}
-
-.back-btn {
-  left: 25px;
-}
+.next-btn { right: 25px; }
+.back-btn { left: 25px; }
 
 .next-btn:hover,
 .back-btn:hover {
-  box-shadow:
-    0 0 18px var(--glow),
-    0 0 40px rgba(0,246,255,0.25);
-  transform: translateY(-50%) scale(1.1);
+  background: rgba(255,255,255,0.10);
 }
 
 /* ===== Arrows ===== */
 .arrow {
   width: 0;
   height: 0;
-  border-top: 10px solid transparent;
-  border-bottom: 10px solid transparent;
-  border-left: 14px solid var(--neon);
-  filter: drop-shadow(0 0 6px var(--glow));
+  border-top: 9px solid transparent;
+  border-bottom: 9px solid transparent;
+  border-left: 12px solid var(--text);
+  opacity: 0.8;
 }
 
 .arrow.left {
   border-left: none;
-  border-right: 14px solid var(--neon);
+  border-right: 12px solid var(--text);
 }
 
-/* ===== Restart Button (NEON PILL) ===== */
+/* ===== Restart Button (clean glass pill) ===== */
 .restart-btn {
   position: absolute;
   bottom: 20px;
   left: 25px;
 
-  padding: 12px 20px;
+  padding: 10px 16px;
   border-radius: 999px;
 
-  border: 1px solid var(--neon);
-  background: rgba(0, 246, 255, 0.08);
+  border: 1px solid var(--border);
+  background: var(--card);
 
   color: var(--text);
-  font-weight: 700;
+  font-weight: 500;
 
-  backdrop-filter: blur(18px);
+  backdrop-filter: blur(14px);
+
   cursor: pointer;
 
-  box-shadow:
-    0 0 15px rgba(0,246,255,0.25),
-    0 0 40px rgba(0,246,255,0.12);
-
-  transition: 0.25s ease;
+  transition: 0.2s ease;
 }
 
 .restart-btn:hover {
-  transform: scale(1.1);
-  box-shadow:
-    0 0 25px var(--glow),
-    0 0 60px rgba(0,246,255,0.3);
+  background: rgba(255,255,255,0.10);
+  transform: translateY(-1px);
 }
 
 /* ===== Counter ===== */
@@ -214,7 +191,7 @@ h2 {
   bottom: 20px;
   right: 25px;
   color: var(--muted);
-  font-size: 14px;
+  font-size: 13px;
 }
 </style>
 </head>
@@ -230,16 +207,16 @@ h2 {
 
   <div class="slides" id="slides">
 
-    <div class="slide"><div class="card"><h1>Neon Deck</h1><p>Cyber glass UI presentation.</p></div></div>
-    <div class="slide"><div class="card"><h2>Slide 2</h2><p>High glow aesthetic design.</p></div></div>
-    <div class="slide"><div class="card"><h2>Slide 3</h2><p>Frosted neon surfaces.</p></div></div>
-    <div class="slide"><div class="card"><h2>Slide 4</h2><p>Deep space background feel.</p></div></div>
-    <div class="slide"><div class="card"><h2>Slide 5</h2><p>Light scattering glass blur.</p></div></div>
-    <div class="slide"><div class="card"><h2>Slide 6</h2><p>Neon hierarchy accents.</p></div></div>
-    <div class="slide"><div class="card"><h2>Slide 7</h2><p>Soft glow interactions.</p></div></div>
-    <div class="slide"><div class="card"><h2>Slide 8</h2><p>Responsive UI system.</p></div></div>
-    <div class="slide"><div class="card"><h2>Slide 9</h2><p>Clean futuristic layout.</p></div></div>
-    <div class="slide"><div class="card"><h2>Slide 10</h2><p>End of neon deck.</p></div></div>
+    <div class="slide"><div class="card"><h1>Slide 1</h1><p>Clean glass presentation deck.</p></div></div>
+    <div class="slide"><div class="card"><h2>Slide 2</h2><p>Minimal, modern UI design.</p></div></div>
+    <div class="slide"><div class="card"><h2>Slide 3</h2><p>Soft depth, no neon clutter.</p></div></div>
+    <div class="slide"><div class="card"><h2>Slide 4</h2><p>Readable hierarchy system.</p></div></div>
+    <div class="slide"><div class="card"><h2>Slide 5</h2><p>Glass blur + subtle shadows.</p></div></div>
+    <div class="slide"><div class="card"><h2>Slide 6</h2><p>Neutral accent styling.</p></div></div>
+    <div class="slide"><div class="card"><h2>Slide 7</h2><p>Calm interface motion.</p></div></div>
+    <div class="slide"><div class="card"><h2>Slide 8</h2><p>Responsive layout system.</p></div></div>
+    <div class="slide"><div class="card"><h2>Slide 9</h2><p>Professional presentation feel.</p></div></div>
+    <div class="slide"><div class="card"><h2>Slide 10</h2><p>End of deck.</p></div></div>
 
   </div>
 
@@ -251,7 +228,7 @@ h2 {
     <div class="arrow"></div>
   </button>
 
-  <button class="restart-btn" onclick="restartDeck()">⟲ Restart</button>
+  <button class="restart-btn" onclick="restartDeck()">Restart</button>
 
   <div class="counter" id="counter">1 / 10</div>
 
