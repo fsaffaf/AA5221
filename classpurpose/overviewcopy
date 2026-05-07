@@ -1,186 +1,210 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Data Analytics Process</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Data Analytics Process</title>
 
-<style>
-body {
-  margin: 0;
-  font-family: "Segoe UI", sans-serif;
-  background: radial-gradient(circle at top, #1e293b, #020617);
-  color: white;
-  overflow-x: hidden;
-}
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to bottom, #0f172a, #1e293b, #0f172a);
+      color: white;
+    }
 
-h1 {
-  text-align: center;
-  padding: 80px 20px 40px;
-  font-size: 2.8rem;
-  background: linear-gradient(90deg, #7dd3fc, #a78bfa);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
+    h1 {
+      text-align: center;
+      padding: 60px 20px;
+      font-size: 2.5rem;
+    }
 
-.container {
-  max-width: 900px;
-  margin: auto;
-  position: relative;
-  padding: 40px 20px;
-}
+    .container {
+      max-width: 800px;
+      margin: auto;
+      position: relative;
+      padding: 20px;
+    }
 
-.timeline {
-  position: absolute;
-  left: 50%;
-  width: 3px;
-  background: linear-gradient(to bottom, transparent, #7dd3fc, #a78bfa, transparent);
-  top: 0;
-  bottom: 0;
-  transform: translateX(-50%);
-  box-shadow: 0 0 20px rgba(125,211,252,0.6);
-}
+    .timeline {
+      position: absolute;
+      left: 50%;
+      width: 4px;
+      background: rgba(255, 255, 255, 0.2);
+      top: 0;
+      bottom: 0;
+      transform: translateX(-50%);
+    }
 
-.step {
-  width: 50%;
-  padding: 25px;
-  position: relative;
-  opacity: 0;
-  transform: translateY(60px);
-  transition: all 0.7s ease;
-}
+    .step {
+      width: 50%;
+      padding: 20px;
+      position: relative;
+      opacity: 0;
+      transform: translateY(50px);
+      transition: all 0.6s ease;
+    }
 
-.step.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
+    .step.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
 
-.left { left: 0; text-align: right; }
-.right { left: 50%; }
+    .left {
+      left: 0;
+      text-align: right;
+    }
 
-.card {
-  background: rgba(255,255,255,0.08);
-  backdrop-filter: blur(16px);
-  border: 1px solid rgba(255,255,255,0.15);
-  border-radius: 20px;
-  padding: 22px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.6);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
+    .right {
+      left: 50%;
+    }
 
-.card:hover {
-  transform: translateY(-6px) scale(1.02);
-  box-shadow: 0 20px 40px rgba(125,211,252,0.3);
-}
+    .card {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 16px;
+      padding: 20px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+    }
 
-.circle {
-  width: 18px;
-  height: 18px;
-  background: radial-gradient(circle, #7dd3fc, #0ea5e9);
-  border-radius: 50%;
-  position: absolute;
-  top: 40px;
-  left: 50%;
-  transform: translateX(-50%);
-  box-shadow: 0 0 15px #7dd3fc, 0 0 30px #a78bfa;
-  animation: pulse 2s infinite;
-}
+    .circle {
+      width: 16px;
+      height: 16px;
+      background: white;
+      border-radius: 50%;
+      position: absolute;
+      top: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
 
-@keyframes pulse {
-  0% { transform: translateX(-50%) scale(1); }
-  50% { transform: translateX(-50%) scale(1.3); }
-  100% { transform: translateX(-50%) scale(1); }
-}
+    @media (max-width: 768px) {
+      .step {
+        width: 100%;
+        left: 0 !important;
+        text-align: left;
+      }
 
-h3 {
-  margin: 0;
-  font-size: 1.2rem;
-  color: #e0f2fe;
-}
+      .timeline {
+        left: 10px;
+      }
 
-p {
-  margin-top: 8px;
-  color: #cbd5f5;
-}
-
-.progress {
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 4px;
-  background: linear-gradient(90deg, #7dd3fc, #a78bfa);
-  width: 0%;
-  z-index: 999;
-}
-
-/* mobile */
-@media (max-width: 768px) {
-  .step {
-    width: 100%;
-    left: 0 !important;
-    text-align: left;
-  }
-  .timeline {
-    left: 12px;
-  }
-  .circle {
-    left: 12px;
-    transform: none;
-  }
-}
-</style>
+      .circle {
+        left: 10px;
+        transform: none;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-<div class="progress" id="progressBar"></div>
-
 <h1>Data Analytics Process</h1>
 
 <div class="container">
-<div class="timeline"></div>
+  <div class="timeline"></div>
 
-<div class="step left"><div class="circle"></div><div class="card"><h3>1. Define the Research Problem</h3><p>Clearly define objectives, questions, and expected outcomes.</p></div></div>
-<div class="step right"><div class="circle"></div><div class="card"><h3>2. Understand Requirements & Plan</h3><p>Determine scope, data needs, stakeholders, and success criteria.</p></div></div>
-<div class="step left"><div class="circle"></div><div class="card"><h3>3. Data Collection</h3><p>Gather relevant data from surveys, databases, or external sources.</p></div></div>
-<div class="step right"><div class="circle"></div><div class="card"><h3>4. Data Preparation</h3><p>Clean, transform, and organize the dataset for analysis.</p></div></div>
-<div class="step left"><div class="circle"></div><div class="card"><h3>5. Exploratory Data Analysis</h3><p>Identify patterns, trends, and anomalies using statistics and visuals.</p></div></div>
-<div class="step right"><div class="circle"></div><div class="card"><h3>6. Modeling / Analysis</h3><p>Apply statistical or machine learning methods to extract insights.</p></div></div>
-<div class="step left"><div class="circle"></div><div class="card"><h3>7. Interpretation</h3><p>Translate results into meaningful conclusions and implications.</p></div></div>
-<div class="step right"><div class="circle"></div><div class="card"><h3>8. Reporting & Visualization</h3><p>Communicate findings through reports, dashboards, and visuals.</p></div></div>
-<div class="step left"><div class="circle"></div><div class="card"><h3>9. Decision-Making</h3><p>Use insights to support actions and recommendations.</p></div></div>
-<div class="step right"><div class="circle"></div><div class="card"><h3>10. Deployment & Monitoring</h3><p>Implement solutions and monitor performance over time.</p></div></div>
+  <div class="step left">
+    <div class="circle"></div>
+    <div class="card">
+      <h3>1. Define the Research Problem</h3>
+      <p>Clearly define objectives, questions, and expected outcomes.</p>
+    </div>
+  </div>
+
+  <div class="step right">
+    <div class="circle"></div>
+    <div class="card">
+      <h3>2. Understand Requirements & Plan</h3>
+      <p>Determine scope, data needs, stakeholders, and success criteria.</p>
+    </div>
+  </div>
+
+  <div class="step left">
+    <div class="circle"></div>
+    <div class="card">
+      <h3>3. Data Collection</h3>
+      <p>Gather relevant data from surveys, databases, or external sources.</p>
+    </div>
+  </div>
+
+  <div class="step right">
+    <div class="circle"></div>
+    <div class="card">
+      <h3>4. Data Preparation</h3>
+      <p>Clean, transform, and organize the dataset for analysis.</p>
+    </div>
+  </div>
+
+  <div class="step left">
+    <div class="circle"></div>
+    <div class="card">
+      <h3>5. Exploratory Data Analysis</h3>
+      <p>Identify patterns, trends, and anomalies using statistics and visuals.</p>
+    </div>
+  </div>
+
+  <div class="step right">
+    <div class="circle"></div>
+    <div class="card">
+      <h3>6. Modeling / Analysis</h3>
+      <p>Apply statistical or machine learning methods to extract insights.</p>
+    </div>
+  </div>
+
+  <div class="step left">
+    <div class="circle"></div>
+    <div class="card">
+      <h3>7. Interpretation</h3>
+      <p>Translate results into meaningful conclusions and implications.</p>
+    </div>
+  </div>
+
+  <div class="step right">
+    <div class="circle"></div>
+    <div class="card">
+      <h3>8. Reporting & Visualization</h3>
+      <p>Communicate findings through reports, dashboards, and visuals.</p>
+    </div>
+  </div>
+
+  <div class="step left">
+    <div class="circle"></div>
+    <div class="card">
+      <h3>9. Decision-Making</h3>
+      <p>Use insights to support actions and recommendations.</p>
+    </div>
+  </div>
+
+  <div class="step right">
+    <div class="circle"></div>
+    <div class="card">
+      <h3>10. Deployment & Monitoring</h3>
+      <p>Implement solutions and monitor performance over time.</p>
+    </div>
+  </div>
 
 </div>
 
 <script>
-const steps = document.querySelectorAll('.step');
-const progressBar = document.getElementById('progressBar');
+  const steps = document.querySelectorAll('.step');
 
-function revealSteps() {
-  const triggerBottom = window.innerHeight * 0.85;
-  steps.forEach(step => {
-    const top = step.getBoundingClientRect().top;
-    if (top < triggerBottom) step.classList.add('visible');
-  });
-}
+  function revealSteps() {
+    const triggerBottom = window.innerHeight * 0.85;
 
-function updateProgress() {
-  const scrollTop = document.documentElement.scrollTop;
-  const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-  const scrolled = (scrollTop / height) * 100;
-  progressBar.style.width = scrolled + "%";
-}
+    steps.forEach(step => {
+      const top = step.getBoundingClientRect().top;
 
-window.addEventListener('scroll', () => {
+      if (top < triggerBottom) {
+        step.classList.add('visible');
+      }
+    });
+  }
+
+  window.addEventListener('scroll', revealSteps);
   revealSteps();
-  updateProgress();
-});
-
-revealSteps();
-updateProgress();
 </script>
 
 </body>
 </html>
-``
