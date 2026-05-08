@@ -1,3 +1,4 @@
+```html id="n8q4zp"
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,24 +30,34 @@ html, body {
   top: 0;
   width: 100%;
   z-index: 1000;
+
   background: rgba(10, 15, 25, 0.6);
+
   backdrop-filter: blur(20px);
+
   border-bottom: 1px solid rgba(255,255,255,0.12);
+
   box-shadow:
     inset 0 1px 0 rgba(255,255,255,0.06),
     0 8px 30px rgba(0,0,0,0.35);
+
+  overflow: visible;
 }
 
 .nav-inner {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0.7rem 1.5rem;
+
   display: flex;
 }
 
+/* NAV ITEM */
 .nav-item {
   flex: 1;
+
   position: relative;
+
   display: flex;
   justify-content: center;
   align-items: center;
@@ -54,47 +65,86 @@ html, body {
   font-size: 0.8rem;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: rgba(255,255,255,0.75);
 
-  padding: 0.6rem 0;
-  cursor: pointer;
+  color: rgba(255,255,255,0.75);
 }
 
 /* Divider */
 .nav-item:not(:last-child)::after {
   content: "";
+
   position: absolute;
+
   right: 0;
   top: 25%;
+
   height: 50%;
   width: 1px;
-  background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.15), transparent);
+
+  background:
+    linear-gradient(
+      to bottom,
+      transparent,
+      rgba(255,255,255,0.15),
+      transparent
+    );
+}
+
+/* Main nav link */
+.nav-link {
+  position: relative;
+
+  width: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 0.6rem 0;
+
+  text-decoration: none;
+
+  color: inherit;
+
+  transition: 0.25s ease;
 }
 
 /* Glow */
-.nav-item::before {
+.nav-link::before {
   content: "";
+
   position: absolute;
   inset: 0;
+
   border-radius: 10px;
-  background: radial-gradient(circle, rgba(125,211,252,0.18), transparent 70%);
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(125,211,252,0.18),
+      transparent 70%
+    );
+
   opacity: 0;
+
   transform: scale(0.85);
+
   transition: 0.25s;
 }
 
-.nav-item:hover::before {
+.nav-link:hover::before {
   opacity: 1;
   transform: scale(1);
 }
 
-.nav-item:hover {
+.nav-link:hover {
   color: white;
 }
 
 /* Label */
 .nav-label {
   position: relative;
+
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -103,18 +153,31 @@ html, body {
 /* Underline */
 .nav-label::after {
   content: "";
+
   position: absolute;
+
   bottom: -6px;
   left: 50%;
+
   width: 0%;
   height: 1px;
-  background: linear-gradient(90deg, transparent, #7dd3fc, transparent);
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      #7dd3fc,
+      transparent
+    );
+
   transform: translateX(-50%);
+
   transition: 0.25s;
+
   opacity: 0;
 }
 
-.nav-item:hover .nav-label::after {
+.nav-link:hover .nav-label::after {
   width: 60%;
   opacity: 1;
 }
@@ -122,24 +185,40 @@ html, body {
 /* Dropdown */
 .dropdown-panel {
   position: absolute;
+
   top: 100%;
+  left: 50%;
+
+  transform: translateX(-50%);
+
   min-width: 220px;
+
   background: rgba(15,15,30,0.95);
+
   border: 1px solid rgba(255,255,255,0.2);
-  border-radius: 0px;
+
   display: none;
+
+  backdrop-filter: blur(16px);
 }
 
-.dropdown:hover .dropdown-panel {
+.dropdown:hover .dropdown-panel,
+.dropdown:focus-within .dropdown-panel {
   display: block;
 }
 
 .dropdown-panel a {
   display: block;
+
   padding: 0.7rem 1rem;
+
   font-size: 0.7rem;
+
   text-decoration: none;
+
   color: rgba(255,255,255,0.85);
+
+  transition: 0.2s ease;
 }
 
 .dropdown-panel a:hover {
@@ -153,83 +232,130 @@ html, body {
   z-index: 1;
 
   min-height: 100vh;
+
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 
   text-align: center;
+
   color: white;
+
   padding: 0 1.5rem;
 }
 
-/* Optional soft background halo behind title */
+/* Halo */
 .home-container::before {
   content: "";
+
   position: absolute;
+
   width: min(520px, 80vw);
   height: min(520px, 80vw);
+
   border-radius: 50%;
 
   background:
-    radial-gradient(circle,
+    radial-gradient(
+      circle,
       rgba(125, 211, 252, 0.14) 0%,
       rgba(59, 130, 246, 0.07) 35%,
       transparent 70%
     );
 
   filter: blur(18px);
+
   z-index: -1;
 }
 
 .home-container h1 {
   margin: 0;
 
-  font-family: "Avenir Next", "Inter", "Segoe UI", system-ui, sans-serif;
+  font-family:
+    "Avenir Next",
+    "Inter",
+    "Segoe UI",
+    system-ui,
+    sans-serif;
+
   font-size: clamp(3.25rem, 8vw, 6.5rem);
+
   font-weight: 650;
+
   letter-spacing: 0.12em;
+
   line-height: 1;
 
-  background: linear-gradient(
-    180deg,
-    #ffffff 0%,
-    #dbeafe 48%,
-    #93c5fd 100%
-  );
+  background:
+    linear-gradient(
+      180deg,
+      #ffffff 0%,
+      #dbeafe 48%,
+      #93c5fd 100%
+    );
 
   -webkit-background-clip: text;
   background-clip: text;
+
   color: transparent;
 
   text-shadow:
-    0 1px 12px rgba(255, 255, 255, 0.12);
+    0 1px 12px rgba(255,255,255,0.12);
 }
 
 .home-container p {
   margin-top: 1.15rem;
 
-  font-family: "Avenir Next", "Inter", "Segoe UI", system-ui, sans-serif;
+  font-family:
+    "Avenir Next",
+    "Inter",
+    "Segoe UI",
+    system-ui,
+    sans-serif;
+
   font-size: clamp(0.95rem, 1.8vw, 1.25rem);
+
   font-weight: 300;
+
   letter-spacing: 0.09em;
 
-  color: rgba(226, 232, 240, 0.82);
+  color: rgba(226,232,240,0.82);
 }
 
+/* Footer */
 .site-footer {
   position: fixed;
+
   bottom: 1rem;
   left: 0;
+
   width: 100%;
+
   z-index: 2;
 
   text-align: center;
+
   font-size: 0.72rem;
+
   letter-spacing: 0.08em;
-  color: rgba(226, 232, 240, 0.6);
+
+  color: rgba(226,232,240,0.6);
 }
-  
+
+/* Mobile */
+@media (max-width: 900px) {
+
+  .nav-inner {
+    flex-wrap: wrap;
+  }
+
+  .nav-item {
+    min-width: 50%;
+  }
+
+}
+
 </style>
 </head>
 
@@ -237,80 +363,205 @@ html, body {
 
 <canvas id="starfield"></canvas>
 
+<!-- NAV -->
 <nav class="glass-nav">
-<div class="nav-inner">
 
-<div class="nav-item dropdown">
-<div class="nav-label"><span>Course</span><span>Purpose</span></div>
-<div class="dropdown-panel">
-<a href="1-course/overview.html">Overview</a>
-</div>
-</div>
+  <div class="nav-inner">
 
-<div class="nav-item dropdown">
-<div class="nav-label"><span>Research</span><span>Methods</span></div>
-<div class="dropdown-panel">
-<a href="researchmethods/rdesigns.html">Research Designs</a>
-<a href="researchmethods/type.html">Design Checker</a>
-</div>
-</div>
+    <!-- COURSE -->
+    <div class="nav-item dropdown">
 
-<div class="nav-item dropdown">
-<div class="nav-label"><span>Applied</span><span>Statistics</span></div>
-<div class="dropdown-panel">
-<a href="3-stats/data-types.html">Data Types</a>
-<a href="3-stats/data-types.html">Data Type Checker</a>
-<a href="3-stats/hypotheses.html">Writing Hypotheses</a>
-<a href="3-stats/hypo-checker.html">Hypothesis Writer</a>
-<a href="3-stats/stats-checker.html">Inferential Test Selector</a>
-<a href="3-stats/p-value-checker.html">P-Value Interpreter</a>
-</div>
-</div>
+      <a href="#" class="nav-link">
 
-<div class="nav-item dropdown">
-<div class="nav-label"><span>Data</span><span>Analysis</span></div>
-<div class="dropdown-panel">
-<a href="4-rstudio/intro-r.html">Introduction to RStudio</a>
-<a href="4-rstudio/RmarkdownRPubs.html">RMarkdown & RPubs</a>
-</div>
-</div>
+        <div class="nav-label">
+          <span>Course</span>
+          <span>Purpose</span>
+        </div>
 
-<div class="nav-item dropdown">
-<div class="nav-label"><span>Code</span><span>Templates</span></div>
-<div class="dropdown-panel">
-<a href="5-code/1-correlations.html">Correlations</a>
-<a href="5-code/2-chi-good.html">Chi-Squared Goodness of Fit</a>
-<a href="5-code/3-chi-indep.html">Chi-Squared Test of Independence</a>
-<a href="5-code/4-indep-t.html">Independent t-Test</a>
-<a href="5-code/5-mann-u.html">Mann-Whitney U</a>
-<a href="5-code/6-depend-t.html">Dependent t-Test</a>
-<a href="5-code/7-wilcox.html">Wilcoxon Signed-Rank Test</a>
+      </a>
 
+      <div class="dropdown-panel">
 
-</div>
-</div>
+        <a href="1-course/overview.html">
+          Overview
+        </a>
 
-</div>
+      </div>
+
+    </div>
+
+    <!-- RESEARCH -->
+    <div class="nav-item dropdown">
+
+      <a href="#" class="nav-link">
+
+        <div class="nav-label">
+          <span>Research</span>
+          <span>Methods</span>
+        </div>
+
+      </a>
+
+      <div class="dropdown-panel">
+
+        <a href="[insert link here]">
+          Research Designs
+        </a>
+
+        <a href="[insert link here]">
+          Design Checker
+        </a>
+
+      </div>
+
+    </div>
+
+    <!-- STATS -->
+    <div class="nav-item dropdown">
+
+      <a href="#" class="nav-link">
+
+        <div class="nav-label">
+          <span>Applied</span>
+          <span>Statistics</span>
+        </div>
+
+      </a>
+
+      <div class="dropdown-panel">
+
+        <a href="3-stats/data-types.html">
+          Data Types
+        </a>
+
+        <a href="[insert link here]">
+          Data Type Checker
+        </a>
+
+        <a href="3-stats/hypotheses.html">
+          Writing Hypotheses
+        </a>
+
+        <a href="3-stats/hypo-checker.html">
+          Hypothesis Writer
+        </a>
+
+        <a href="3-stats/stats-checker.html">
+          Inferential Test Selector
+        </a>
+
+        <a href="3-stats/p-value-checker.html">
+          P-Value Interpreter
+        </a>
+
+      </div>
+
+    </div>
+
+    <!-- R STUDIO -->
+    <div class="nav-item dropdown">
+
+      <a href="#" class="nav-link">
+
+        <div class="nav-label">
+          <span>R</span>
+          <span>Studio</span>
+        </div>
+
+      </a>
+
+      <div class="dropdown-panel">
+
+        <a href="4-rstudio/intro-r.html">
+          Introduction to RStudio
+        </a>
+
+        <a href="4-rstudio/RmarkdownRPubs.html">
+          RMarkdown & RPubs
+        </a>
+
+      </div>
+
+    </div>
+
+    <!-- CODE -->
+    <div class="nav-item dropdown">
+
+      <a href="#" class="nav-link">
+
+        <div class="nav-label">
+          <span>Code</span>
+          <span>Templates</span>
+        </div>
+
+      </a>
+
+      <div class="dropdown-panel">
+
+        <a href="5-code/1-correlations.html">
+          Correlations
+        </a>
+
+        <a href="5-code/2-chi-good.html">
+          Chi-Squared Goodness of Fit
+        </a>
+
+        <a href="5-code/3-chi-indep.html">
+          Chi-Squared Test of Independence
+        </a>
+
+        <a href="5-code/4-indep-t.html">
+          Independent t-Test
+        </a>
+
+        <a href="5-code/5-mann-u.html">
+          Mann-Whitney U
+        </a>
+
+        <a href="5-code/6-depend-t.html">
+          Dependent t-Test
+        </a>
+
+        <a href="5-code/7-wilcox.html">
+          Wilcoxon Signed-Rank Test
+        </a>
+
+      </div>
+
+    </div>
+
+  </div>
+
 </nav>
 
+<!-- HERO -->
 <div class="home-container">
-<h1>AA 5221</h1>
-<p>Applied Analytics & Research Methods I</p>
+
+  <h1>AA 5221</h1>
+
+  <p>
+    Applied Analytics & Research Methods I
+  </p>
+
 </div>
-  
-<!-- ✅ Correct script -->
+
+<!-- Stars -->
 <script src="assets/stars.js"></script>
 
-
+<!-- Footer -->
 <div id="footer-placeholder"></div>
 
 <script>
-  fetch("footer.html")
-    .then(res => res.text())
-    .then(html => {
-      document.getElementById("footer-placeholder").innerHTML = html;
-    });
+fetch("footer.html")
+  .then(res => res.text())
+  .then(html => {
+    document.getElementById("footer-placeholder").innerHTML = html;
+  })
+  .catch(err => {
+    console.log("Footer failed to load:", err);
+  });
 </script>
-  
+
 </body>
 </html>
+```
