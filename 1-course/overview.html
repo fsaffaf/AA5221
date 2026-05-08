@@ -1,298 +1,72 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>AA 5221 Overview</title>
-
-<style>
-html, body {
-  margin: 0;
-  height: 100%;
-  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-  background: #0b1220;
-  overflow: hidden;
-}
-
-/* glow */
-body::before {
-  content: "";
-  position: fixed;
-  width: 700px;
-  height: 700px;
-  left: 50%;
-  top: 40%;
-  transform: translate(-50%, -50%);
-  background: radial-gradient(
-    circle,
-    rgba(147,197,253,0.14),
-    rgba(59,130,246,0.06),
-    transparent 70%
-  );
-  filter: blur(30px);
-  z-index: 0;
-}
-
-/* deck */
-.deck {
-  position: relative;
-  width: 100vw;
-  height: 100vh;
-  overflow: hidden;
-}
-
-/* slides track */
-.slides {
-  display: flex;
-  width: 500vw;
-  height: 100vh;
-  transition: transform 0.65s cubic-bezier(0.77, 0, 0.175, 1);
-}
-
-/* slide */
-.slide {
-  width: 100vw;
-  height: 100vh;
-  flex-shrink: 0;
-
-  position: relative;
-
-  display: flex;
-  justify-content: flex-start;
-  align-items: flex-start;
-}
-
-/* FIXED LEFT TEXT COLUMN (KEY FIX) */
-.content {
-  position: absolute;
-  left: 96px;   /* 👈 locked anchor point */
-  top: 80px;
-
-  max-width: 800px;
-
-  text-align: left;
-}
-
-/* typography */
-h1, h2 {
-  margin: 0;
-  text-align: left;
-  color: rgba(255,255,255,0.92);
-}
-
-h1 {
-  font-size: 2.8rem;
-  font-weight: 600;
-}
-
-h2 {
-  font-size: 1.7rem;
-  font-weight: 500;
-
-  border-left: 3px solid rgba(147,197,253,0.8);
-  padding-left: 0.75rem;
-}
-
-p {
-  margin-top: 0.75rem;
-  font-size: 1rem;
-  line-height: 1.6;
-  color: rgba(226,232,240,0.72);
-}
-
 /* nav */
 .nav-btn {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  width: 56px;
-  height: 56px;
+
+  width: 64px;
+  height: 64px;
   border-radius: 999px;
-  border: 1px solid rgba(255,255,255,0.15);
-  background: rgba(10,15,25,0.35);
-  backdrop-filter: blur(16px);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border: 1px solid rgba(147,197,253,0.35);
+
+  background: rgba(30,41,59,0.72);
+
+  backdrop-filter: blur(18px);
+
+  box-shadow:
+    0 0 24px rgba(59,130,246,0.22),
+    inset 0 1px 0 rgba(255,255,255,0.08);
+
   cursor: pointer;
   z-index: 10;
+
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.nav-btn:hover {
+  transform: translateY(-50%) scale(1.08);
+
+  background: rgba(51,65,85,0.88);
+
+  border-color: rgba(147,197,253,0.7);
+
+  box-shadow:
+    0 0 32px rgba(96,165,250,0.4),
+    inset 0 1px 0 rgba(255,255,255,0.12);
+}
+
+.nav-btn:active {
+  transform: translateY(-50%) scale(0.96);
 }
 
 .left { left: 24px; }
 .right { right: 24px; }
 
+/* arrows */
 .arrow {
   width: 0;
   height: 0;
-  border-top: 9px solid transparent;
-  border-bottom: 9px solid transparent;
-  border-left: 12px solid rgba(255,255,255,0.8);
+
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  border-left: 14px solid rgba(255,255,255,0.95);
+
+  margin-left: 3px; /* optical centering */
 }
 
 .arrow.left {
   border-left: none;
-  border-right: 12px solid rgba(255,255,255,0.8);
+  border-right: 14px solid rgba(255,255,255,0.95);
+
+  margin-left: 0;
+  margin-right: 3px; /* optical centering */
 }
-
-/* restart */
-.restart {
-  position: absolute;
-  bottom: 20px;
-  left: 24px;
-
-  padding: 10px 16px;
-  border-radius: 999px;
-
-  background: rgba(255,255,255,0.06);
-  border: 1px solid rgba(255,255,255,0.12);
-  color: rgba(255,255,255,0.85);
-
-  backdrop-filter: blur(16px);
-  cursor: pointer;
-  z-index: 10;
-}
-
-/* home */
-.home-btn {
-  position: absolute;
-  bottom: 20px;
-  left: 120px;
-
-  padding: 10px 16px;
-  border-radius: 999px;
-
-  background: rgba(255,255,255,0.06);
-  border: 1px solid rgba(255,255,255,0.12);
-  color: rgba(255,255,255,0.85);
-  text-decoration: none;
-
-  backdrop-filter: blur(16px);
-  z-index: 10;
-}
-
-/* counter */
-.counter {
-  position: absolute;
-  bottom: 20px;
-  right: 24px;
-  font-size: 0.8rem;
-  color: rgba(226,232,240,0.6);
-  z-index: 10;
-}
-</style>
-</head>
-
-<body>
-
-<div class="deck">
-
-  <div class="slides" id="slides">
-
-    <div class="slide">
-      <div class="content">
-        <h1>Purpose of AA 5221</h1>
-        <p>Lorem ipsum dixit</p>
-        <p>Lorem ipsum dixit</p>
-        <p>Lorem ipsum dixit</p>
-      </div>
-    </div>
-
-    <div class="slide">
-      <div class="content">
-        <h2>Research Design</h2>
-        <p>Lorem ipsum dixit</p>
-        <p>Lorem ipsum dixit</p>
-        <p>Lorem ipsum dixit</p>
-        <p>Lorem ipsum dixit</p>
-      </div>
-    </div>
-
-    <div class="slide">
-      <div class="content">
-        <h2>Applied Statistics</h2>
-        <p>Lorem ipsum dixit</p>
-        <p>Lorem ipsum dixit</p>
-        <p>Lorem ipsum dixit</p>
-        <p>Lorem ipsum dixit</p>
-      </div>
-    </div>
-
-    <div class="slide">
-      <div class="content">
-        <h2>RStudio</h2>
-        <p>Lorem ipsum dixit</p>
-        <p>Lorem ipsum dixit</p>
-        <p>Lorem ipsum dixit</p>
-        <p>Lorem ipsum dixit</p>
-      </div>
-    </div>
-
-    <div class="slide">
-      <div class="content">
-        <h2>Data Analysis</h2>
-        <p>Lorem ipsum dixit</p>
-        <p>Lorem ipsum dixit</p>
-        <p>Lorem ipsum dixit</p>
-        <p>Lorem ipsum dixit</p>
-      </div>
-    </div>
-
-  </div>
-
-  <!-- controls -->
-  <button class="nav-btn left" onclick="prevSlide()">
-    <div class="arrow left"></div>
-  </button>
-
-  <button class="nav-btn right" onclick="nextSlide()">
-    <div class="arrow"></div>
-  </button>
-
-  <button class="restart" onclick="restart()">Restart</button>
-
-  <a class="home-btn" href="index.html">Home</a>
-
-  <div class="counter" id="counter">1 / 5</div>
-
-</div>
-
-<script>
-let current = 0;
-const total = 5;
-
-const slides = document.getElementById("slides");
-const counter = document.getElementById("counter");
-
-const leftBtn = document.querySelector(".left");
-const rightBtn = document.querySelector(".right");
-
-function update() {
-  slides.style.transform = `translateX(-${current * 100}vw)`;
-  counter.textContent = `${current + 1} / ${total}`;
-
-  leftBtn.style.display = current === 0 ? "none" : "flex";
-  rightBtn.style.display = current === total - 1 ? "none" : "flex";
-}
-
-function nextSlide() {
-  if (current < total - 1) current++;
-  update();
-}
-
-function prevSlide() {
-  if (current > 0) current--;
-  update();
-}
-
-function restart() {
-  current = 0;
-  update();
-}
-
-document.addEventListener("keydown", (e) => {
-  if (e.key === "ArrowRight") nextSlide();
-  if (e.key === "ArrowLeft") prevSlide();
-});
-
-update();
-</script>
-
-</body>
-</html>
