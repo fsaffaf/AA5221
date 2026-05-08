@@ -15,7 +15,6 @@ html, body {
   color: white;
 }
 
-/* Background */
 body {
   min-height: 100vh;
   display: flex;
@@ -48,7 +47,6 @@ body::after {
   z-index: -1;
 }
 
-/* Main card */
 .tool-wrapper {
   width: 100%;
   max-width: 780px;
@@ -67,7 +65,6 @@ body::after {
   padding: 2.5rem;
 }
 
-/* Header */
 .tool-header {
   text-align: center;
   margin-bottom: 2rem;
@@ -76,7 +73,6 @@ body::after {
 .tool-pill {
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
   padding: 0.45rem 1rem;
   border-radius: 999px;
   background: rgba(255,255,255,0.10);
@@ -90,7 +86,6 @@ body::after {
   margin: 0 0 0.75rem;
   font-size: clamp(2rem, 5vw, 3.5rem);
   font-weight: 650;
-  letter-spacing: -0.03em;
 }
 
 .tool-header p {
@@ -101,7 +96,6 @@ body::after {
   line-height: 1.6;
 }
 
-/* Buttons */
 .choice-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -154,7 +148,59 @@ body::after {
   color: rgb(203,213,225);
 }
 
-/* Result area */
+/* Inputs */
+.input-panel {
+  display: none;
+  margin-bottom: 2rem;
+}
+
+.input-grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.input-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: rgb(226,232,240);
+  font-size: 0.95rem;
+}
+
+.input-group input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 1rem;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(255,255,255,0.08);
+  color: white;
+  font-size: 1rem;
+  outline: none;
+}
+
+.input-group input:focus {
+  border-color: rgba(125,211,252,0.65);
+}
+
+.generate-btn {
+  margin-top: 1.25rem;
+  width: 100%;
+  padding: 1rem;
+  border: none;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #0ea5e9, #6366f1);
+  color: white;
+  font-size: 1rem;
+  font-weight: 650;
+  cursor: pointer;
+  transition: 0.25s ease;
+}
+
+.generate-btn:hover {
+  transform: translateY(-2px);
+}
+
+/* Results */
 .result-panel {
   display: none;
   border-radius: 20px;
@@ -162,7 +208,6 @@ body::after {
   background: linear-gradient(135deg, rgba(3,105,161,0.70), rgba(49,46,129,0.80));
   padding: 1.75rem;
   box-shadow: 0 20px 50px rgba(0,0,0,0.35);
-  animation: fadeIn 0.25s ease;
 }
 
 .result-panel.groups-style {
@@ -187,7 +232,6 @@ body::after {
   align-items: center;
   justify-content: center;
   font-size: 1.6rem;
-  flex-shrink: 0;
 }
 
 .result-title {
@@ -203,7 +247,6 @@ body::after {
 
 .hypothesis-item {
   display: flex;
-  align-items: flex-start;
   gap: 0.75rem;
   background: rgba(255,255,255,0.10);
   border: 1px solid rgba(255,255,255,0.10);
@@ -216,21 +259,8 @@ body::after {
 .check {
   color: #bae6fd;
   font-weight: bold;
-  flex-shrink: 0;
 }
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(8px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Mobile */
 @media (max-width: 700px) {
   body {
     padding: 1rem;
@@ -243,10 +273,6 @@ body::after {
   .choice-grid {
     grid-template-columns: 1fr;
   }
-
-  .result-top {
-    align-items: flex-start;
-  }
 }
 </style>
 </head>
@@ -255,157 +281,227 @@ body::after {
 
 <main class="tool-wrapper">
 
-  <section class="tool-card">
+<section class="tool-card">
 
-    <div class="tool-content">
+<div class="tool-content">
 
-      <div class="tool-header">
+<div class="tool-header">
 
-        <h1>
-          Hypothesis Writer
-        </h1>
+<div class="tool-pill">
+Hypothesis Builder
+</div>
 
-        <p>
-          Select your research design.
-        </p>
+<h1>
+What is your research design?
+</h1>
 
-      </div>
+<p>
+Select a research design and generate customized hypotheses.
+</p>
 
-      <div class="choice-grid">
+</div>
 
-        <button
-          class="choice-button relationships"
-          onclick="showResult('correlation')"
-          id="correlationBtn"
-        >
-          <div class="choice-title">
-            Correlation
-          </div>
+<div class="choice-grid">
 
-          <div class="choice-subtitle">
-            Testing relationships.
-          </div>
-        </button>
+<button
+class="choice-button relationships"
+onclick="selectDesign('correlation')"
+id="correlationBtn"
+>
+<div class="choice-title">
+Correlation
+</div>
 
-        <button
-          class="choice-button groups"
-          onclick="showResult('groups')"
-          id="groupsBtn"
-        >
-          <div class="choice-title">
-            Quasi-Experiment or True Experiment
-          </div>
+<div class="choice-subtitle">
+Testing relationships.
+</div>
+</button>
 
-          <div class="choice-subtitle">
-            Testing group differences.
-          </div>
-        </button>
+<button
+class="choice-button groups"
+onclick="selectDesign('groups')"
+id="groupsBtn"
+>
+<div class="choice-title">
+Quasi-Experiment or True Experiment
+</div>
 
-      </div>
+<div class="choice-subtitle">
+Testing group differences.
+</div>
+</button>
 
-      <div id="resultPanel" class="result-panel">
+</div>
 
-        <div class="result-top">
+<!-- STEP 2 -->
+<div id="inputPanel" class="input-panel">
 
-          <div class="result-icon" id="resultIcon">
-            ↔
-          </div>
+<div class="input-grid">
 
-          <div>
+<div class="input-group">
+<label id="label1">Variable 1</label>
+<input type="text" id="input1" placeholder="Enter variable name">
+</div>
 
-            <div class="result-title" id="resultTitle">
-              Results
-            </div>
+<div class="input-group">
+<label id="label2">Variable 2</label>
+<input type="text" id="input2" placeholder="Enter variable name">
+</div>
 
-          </div>
+</div>
 
-        </div>
+<button class="generate-btn" onclick="generateHypotheses()">
+Generate Hypotheses
+</button>
 
-        <div class="hypothesis-list">
+</div>
 
-          <div class="hypothesis-item">
+<!-- RESULTS -->
+<div id="resultPanel" class="result-panel">
 
-            <span class="check">✓</span>
+<div class="result-top">
 
-            <span id="nullHypothesis">
-              Null hypothesis: There is no relationship between Variable 1 and Variable 2.
-            </span>
+<div class="result-icon" id="resultIcon">
+↔
+</div>
 
-          </div>
+<div>
 
-          <div class="hypothesis-item">
+<div class="result-title" id="resultTitle">
+Results
+</div>
 
-            <span class="check">✓</span>
+</div>
 
-            <span id="altHypothesis">
-              Alternative hypothesis: There is a relationship between Variable 1 and Variable 2.
-            </span>
+</div>
 
-          </div>
+<div class="hypothesis-list">
 
-        </div>
+<div class="hypothesis-item">
+<span class="check">✓</span>
 
-      </div>
+<span id="nullHypothesis">
+Null hypothesis
+</span>
+</div>
 
-    </div>
+<div class="hypothesis-item">
+<span class="check">✓</span>
 
-  </section>
+<span id="altHypothesis">
+Alternative hypothesis
+</span>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
 
 </main>
 
 <script>
-function showResult(type) {
 
-  const resultPanel = document.getElementById("resultPanel");
+let selectedDesign = "";
 
-  const correlationBtn = document.getElementById("correlationBtn");
-  const groupsBtn = document.getElementById("groupsBtn");
+function selectDesign(type) {
 
-  const resultIcon = document.getElementById("resultIcon");
-  const resultTitle = document.getElementById("resultTitle");
+selectedDesign = type;
 
-  const nullHypothesis = document.getElementById("nullHypothesis");
-  const altHypothesis = document.getElementById("altHypothesis");
+const inputPanel = document.getElementById("inputPanel");
 
-  resultPanel.style.display = "block";
+const correlationBtn = document.getElementById("correlationBtn");
+const groupsBtn = document.getElementById("groupsBtn");
 
-  correlationBtn.classList.remove("active");
-  groupsBtn.classList.remove("active");
+const label1 = document.getElementById("label1");
+const label2 = document.getElementById("label2");
 
-  resultPanel.classList.remove("groups-style");
+const input1 = document.getElementById("input1");
+const input2 = document.getElementById("input2");
 
-  if (type === "correlation") {
+correlationBtn.classList.remove("active");
+groupsBtn.classList.remove("active");
 
-    correlationBtn.classList.add("active");
+if (type === "correlation") {
 
-    resultIcon.textContent = "↔";
+correlationBtn.classList.add("active");
 
-    resultTitle.textContent = "Testing Relationships";
+label1.textContent = "Variable 1";
+label2.textContent = "Variable 2";
 
-    nullHypothesis.textContent =
-      "1) Null hypothesis: There is no relationship between Variable 1 and Variable 2.";
-
-    altHypothesis.textContent =
-      "2) Alternative hypothesis: There is a relationship between Variable 1 and Variable 2.";
-  }
-
-  if (type === "groups") {
-
-    groupsBtn.classList.add("active");
-
-    resultPanel.classList.add("groups-style");
-
-    resultIcon.textContent = "👥";
-
-    resultTitle.textContent = "Testing Group Differences";
-
-    nullHypothesis.textContent =
-      "1) Null hypothesis: There is no difference between Group 1 and Group 2.";
-
-    altHypothesis.textContent =
-      "2) Alternative hypothesis: There is a difference between Group 1 and Group 2.";
-  }
+input1.placeholder = "Enter Variable 1";
+input2.placeholder = "Enter Variable 2";
 }
+
+if (type === "groups") {
+
+groupsBtn.classList.add("active");
+
+label1.textContent = "Independent Variable (IV)";
+label2.textContent = "Dependent Variable (DV)";
+
+input1.placeholder = "Enter IV";
+input2.placeholder = "Enter DV";
+}
+
+inputPanel.style.display = "block";
+}
+
+function generateHypotheses() {
+
+const var1 = document.getElementById("input1").value.trim();
+const var2 = document.getElementById("input2").value.trim();
+
+if (!var1 || !var2) {
+alert("Please complete both fields.");
+return;
+}
+
+const resultPanel = document.getElementById("resultPanel");
+
+const resultIcon = document.getElementById("resultIcon");
+const resultTitle = document.getElementById("resultTitle");
+
+const nullHypothesis = document.getElementById("nullHypothesis");
+const altHypothesis = document.getElementById("altHypothesis");
+
+resultPanel.style.display = "block";
+
+resultPanel.classList.remove("groups-style");
+
+if (selectedDesign === "correlation") {
+
+resultIcon.textContent = "↔";
+
+resultTitle.textContent = "Testing Relationships";
+
+nullHypothesis.textContent =
+`1) Null hypothesis: There is no relationship between ${var1} and ${var2}.`;
+
+altHypothesis.textContent =
+`2) Alternative hypothesis: There is a relationship between ${var1} and ${var2}.`;
+}
+
+if (selectedDesign === "groups") {
+
+resultIcon.textContent = "👥";
+
+resultTitle.textContent = "Testing Group Differences";
+
+resultPanel.classList.add("groups-style");
+
+nullHypothesis.textContent =
+`1) Null hypothesis: There is no statistically significant difference in ${var2} based on ${var1}.`;
+
+altHypothesis.textContent =
+`2) Alternative hypothesis: There is a statistically significant difference in ${var2} based on ${var1}.`;
+}
+
+}
+
 </script>
 
 </body>
