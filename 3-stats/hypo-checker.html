@@ -466,10 +466,10 @@ if (selectedDesign === "correlation") {
 resultTitle.textContent = "Testing Relationships";
 
 nullHypothesis.textContent =
-`1) Null hypothesis: There is no relationship between ${var1} and ${var2}.`;
+`Null hypothesis: There is no relationship between ${var1} and ${var2}.`;
 
 altHypothesis.textContent =
-`2) Alternative hypothesis: There is a relationship between ${var1} and ${var2}.`;
+`Alternative hypothesis: There is a relationship between ${var1} and ${var2}.`;
 }
 
 if (selectedDesign === "groups") {
@@ -479,10 +479,10 @@ resultTitle.textContent = "Testing Group Differences";
 resultPanel.classList.add("groups-style");
 
 nullHypothesis.textContent =
-`1) Null hypothesis: There is no statistically significant difference in ${var2} based on ${var1}.`;
+`Null hypothesis: There is no statistically significant difference in ${var2} based on ${var1}.`;
 
 altHypothesis.textContent =
-`2) Alternative hypothesis: There is a statistically significant difference in ${var2} based on ${var1}.`;
+`Alternative hypothesis: There is a statistically significant difference in ${var2} based on ${var1}.`;
 }
 
 }
