@@ -287,16 +287,12 @@ body::after {
 
 <div class="tool-header">
 
-<div class="tool-pill">
-Hypothesis Builder
-</div>
-
 <h1>
-What is your research design?
+Hypothesis Writer
 </h1>
 
 <p>
-Select a research design and generate customized hypotheses.
+What is your research design?
 </p>
 
 </div>
@@ -337,6 +333,7 @@ Testing group differences.
 <div id="inputPanel" class="input-panel">
 
 <div class="input-grid">
+<label id="label1">Provide the variables from your research scenario below:</label>
 
 <div class="input-group">
 <label id="label1">Variable 1</label>
@@ -351,7 +348,7 @@ Testing group differences.
 </div>
 
 <button class="generate-btn" onclick="generateHypotheses()">
-Generate Hypotheses
+Write My Hypotheses
 </button>
 
 </div>
@@ -378,15 +375,13 @@ Results
 <div class="hypothesis-list">
 
 <div class="hypothesis-item">
-<span class="check">✓</span>
-
+  
 <span id="nullHypothesis">
 Null hypothesis
 </span>
 </div>
 
 <div class="hypothesis-item">
-<span class="check">✓</span>
 
 <span id="altHypothesis">
 Alternative hypothesis
@@ -474,8 +469,6 @@ resultPanel.classList.remove("groups-style");
 
 if (selectedDesign === "correlation") {
 
-resultIcon.textContent = "↔";
-
 resultTitle.textContent = "Testing Relationships";
 
 nullHypothesis.textContent =
@@ -486,8 +479,6 @@ altHypothesis.textContent =
 }
 
 if (selectedDesign === "groups") {
-
-resultIcon.textContent = "👥";
 
 resultTitle.textContent = "Testing Group Differences";
 
