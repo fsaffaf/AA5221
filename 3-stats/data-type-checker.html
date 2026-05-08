@@ -179,22 +179,22 @@ body::after {
       <div class="grid">
         <div class="choice" onclick="showType('nominal')">
           <div class="choice-title">Named categories only</div>
-          <div class="choice-sub">No order, no numbers.</div>
+          <div class="choice-sub">No order, no numbers (e.g., favorite color, yes/no question)</div>
         </div>
 
         <div class="choice" onclick="showType('ordinal')">
           <div class="choice-title">Ordered categories</div>
-          <div class="choice-sub">Ranked in order, unequal intervals.</div>
+          <div class="choice-sub">Ranked in order, unequal intervals (e.g., single-item Likert question)</div>
         </div>
 
         <div class="choice" onclick="showType('interval')">
           <div class="choice-title">Numbers, no true zero</div>
-          <div class="choice-sub">Value of variable can go below zero.</div>
+          <div class="choice-sub">Value of variable can go below zero (e.g., Multiple-item Scale, celcius, farenheit)</div>
         </div>
 
         <div class="choice" onclick="showType('ratio')">
           <div class="choice-title">Numbers with a true zero.</div>
-          <div class="choice-sub">Zero means none.</div>
+          <div class="choice-sub">Zero means none (e.g., kilograms, pounds, centimeters, inches)</div>
         </div>
       </div>
 
@@ -220,31 +220,15 @@ function showType(type) {
   const data = {
     nominal: {
       title: "Nominal Data",
-      examples: [
-        "Countries (Afghanistan, Brazil, China)",
-        "Yes / No responses (dichotomous variables)"
-      ]
     },
     ordinal: {
       title: "Ordinal Data",
-      examples: [
-        "Single-Item Likert Scale: Agreement (Strongly Disagree to Strongly Agree)",
-        "Single-Item Likert Scale: Agreement (Very Disatisfied to Very Satisfied)"
-      ]
     },
     interval: {
       title: "Interval Data",
-      examples: [
-        "Temperature in Celsius",
-        "Multiple-Item Scale",
-      ]
     },
     ratio: {
       title: "Ratio Data",
-      examples: [
-        "Height or length (cm)",
-        "Weight (kg)"
-      ]
     }
   };
 
