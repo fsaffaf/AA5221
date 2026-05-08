@@ -119,26 +119,18 @@ body::after {
 .result {
   display: none;
   border-radius: 20px;
-  padding: 1.75rem;
+  padding: 2rem;
+  text-align: center;
   background: linear-gradient(135deg, rgba(3,105,161,0.75), rgba(49,46,129,0.85));
   border: 1px solid rgba(125,211,252,0.35);
   box-shadow: 0 20px 50px rgba(0,0,0,0.35);
 }
 
 .result h2 {
-  margin: 0 0 0.5rem;
-  font-size: 2rem;
-}
-
-.result p {
-  color: rgb(226,232,240);
-  line-height: 1.6;
-}
-
-.examples {
-  margin-top: 1rem;
-  padding-left: 1.2rem;
-  color: rgb(241,245,249);
+  margin: 0;
+  font-size: 2.5rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
 }
 
 @media (max-width: 700px) {
@@ -163,29 +155,27 @@ body::after {
       <div class="grid">
         <div class="choice" onclick="showType('nominal', event)">
           <div class="choice-title">Named categories only</div>
-          <div class="choice-sub">No order, no numbers (e.g., favorite color, yes/no question)</div>
+          <div class="choice-sub">No order, no numbers</div>
         </div>
 
         <div class="choice" onclick="showType('ordinal', event)">
           <div class="choice-title">Ordered categories</div>
-          <div class="choice-sub">Ranked in order, unequal intervals (e.g., Likert scale)</div>
+          <div class="choice-sub">Ranked values</div>
         </div>
 
         <div class="choice" onclick="showType('interval', event)">
           <div class="choice-title">Numbers, no true zero</div>
-          <div class="choice-sub">Can go below zero (e.g., °C, °F)</div>
+          <div class="choice-sub">Can go below zero</div>
         </div>
 
         <div class="choice" onclick="showType('ratio', event)">
           <div class="choice-title">Numbers with a true zero</div>
-          <div class="choice-sub">Zero means none (e.g., weight, height, distance)</div>
+          <div class="choice-sub">Zero means none</div>
         </div>
       </div>
 
       <div id="result" class="result">
         <h2 id="typeTitle"></h2>
-        <p id="typeDescription"></p>
-        <ul id="typeExamples" class="examples"></ul>
       </div>
 
     </div>
@@ -195,45 +185,16 @@ body::after {
 <script>
 function showType(type, event) {
   const title = document.getElementById("typeTitle");
-  const desc = document.getElementById("typeDescription");
-  const list = document.getElementById("typeExamples");
   const result = document.getElementById("result");
 
   const data = {
-    nominal: {
-      title: "Nominal Data",
-      desc: "Categorical data with no inherent order or ranking.",
-      examples: ["Gender", "Eye color", "Yes/No responses"]
-    },
-    ordinal: {
-      title: "Ordinal Data",
-      desc: "Categorical data with a meaningful order but unequal spacing between values.",
-      examples: ["Rankings", "Survey ratings", "Education level"]
-    },
-    interval: {
-      title: "Interval Data",
-      desc: "Numerical data with equal intervals but no true zero point.",
-      examples: ["Temperature (°C / °F)", "Calendar years", "IQ scores"]
-    },
-    ratio: {
-      title: "Ratio Data",
-      desc: "Numerical data with a true zero, allowing meaningful ratios.",
-      examples: ["Height", "Weight", "Distance", "Age"]
-    }
+    nominal: "Nominal",
+    ordinal: "Ordinal",
+    interval: "Interval",
+    ratio: "Ratio"
   };
 
-  const selected = data[type];
-
-  title.textContent = selected.title;
-  desc.textContent = selected.desc;
-
-  list.innerHTML = "";
-  selected.examples.forEach(item => {
-    const li = document.createElement("li");
-    li.textContent = item;
-    list.appendChild(li);
-  });
-
+  title.textContent = data[type];
   result.style.display = "block";
 
   document.querySelectorAll(".choice").forEach(el => {
