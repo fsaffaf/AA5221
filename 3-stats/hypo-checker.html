@@ -155,15 +155,6 @@ body::after {
 }
 
 /* Result area */
-.result-empty {
-  border: 1px solid rgba(255,255,255,0.10);
-  background: rgba(255,255,255,0.05);
-  border-radius: 20px;
-  padding: 1.5rem;
-  text-align: center;
-  color: rgb(203,213,225);
-}
-
 .result-panel {
   display: none;
   border-radius: 20px;
@@ -199,23 +190,9 @@ body::after {
   flex-shrink: 0;
 }
 
-.result-label {
-  font-size: 0.78rem;
-  text-transform: uppercase;
-  letter-spacing: 0.22em;
-  color: rgb(203,213,225);
-  margin-bottom: 0.35rem;
-}
-
 .result-title {
   font-size: clamp(1.5rem, 4vw, 2rem);
   font-weight: 650;
-  margin-bottom: 0.35rem;
-}
-
-.result-subtitle {
-  color: rgb(226,232,240);
-  line-height: 1.5;
 }
 
 .hypothesis-list {
@@ -277,90 +254,137 @@ body::after {
 <body>
 
 <main class="tool-wrapper">
+
   <section class="tool-card">
+
     <div class="tool-content">
 
       <div class="tool-header">
+
+        <div class="tool-pill">
+          Hypothesis Builder
         </div>
 
-        <h1>What is your research design?</h1>
+        <h1>
+          What is your research design?
+        </h1>
 
+        <p>
+          Select the type of research design to generate sample null and alternative hypotheses.
         </p>
+
       </div>
 
       <div class="choice-grid">
-        <button class="choice-button relationships" onclick="showResult('correlation')" id="correlationBtn">
-          <div class="choice-title">Correlation</div>
-          <div class="choice-subtitle">Testing relationships.</div>
+
+        <button
+          class="choice-button relationships"
+          onclick="showResult('correlation')"
+          id="correlationBtn"
+        >
+          <div class="choice-title">
+            Correlation
+          </div>
+
+          <div class="choice-subtitle">
+            Testing relationships.
+          </div>
         </button>
 
-        <button class="choice-button groups" onclick="showResult('groups')" id="groupsBtn">
-          <div class="choice-title">Quasi-Experiment or True Experiment</div>
-          <div class="choice-subtitle">Testing group differences.</div>
+        <button
+          class="choice-button groups"
+          onclick="showResult('groups')"
+          id="groupsBtn"
+        >
+          <div class="choice-title">
+            Quasi-Experiment or True Experiment
+          </div>
+
+          <div class="choice-subtitle">
+            Testing group differences.
+          </div>
         </button>
+
       </div>
 
       <div id="resultPanel" class="result-panel">
+
         <div class="result-top">
-          <div class="result-icon" id="resultIcon">↔</div>
+
+          <div class="result-icon" id="resultIcon">
+            ↔
+          </div>
 
           <div>
-            <div class="result-title" id="resultTitle">Results</div>
+
+            <div class="result-title" id="resultTitle">
+              Results
             </div>
+
           </div>
+
         </div>
 
         <div class="hypothesis-list">
+
           <div class="hypothesis-item">
+
             <span class="check">✓</span>
+
             <span id="nullHypothesis">
               Null hypothesis: There is no relationship between Variable 1 and Variable 2.
             </span>
+
           </div>
 
           <div class="hypothesis-item">
+
             <span class="check">✓</span>
+
             <span id="altHypothesis">
               Alternative hypothesis: There is a relationship between Variable 1 and Variable 2.
             </span>
+
           </div>
+
         </div>
+
       </div>
 
     </div>
+
   </section>
+
 </main>
 
 <script>
 function showResult(type) {
-  const emptyState = document.getElementById("emptyState");
+
   const resultPanel = document.getElementById("resultPanel");
 
   const correlationBtn = document.getElementById("correlationBtn");
   const groupsBtn = document.getElementById("groupsBtn");
 
   const resultIcon = document.getElementById("resultIcon");
-  const resultLabel = document.getElementById("resultLabel");
   const resultTitle = document.getElementById("resultTitle");
-  const resultSubtitle = document.getElementById("resultSubtitle");
+
   const nullHypothesis = document.getElementById("nullHypothesis");
   const altHypothesis = document.getElementById("altHypothesis");
 
-  emptyState.style.display = "none";
   resultPanel.style.display = "block";
 
   correlationBtn.classList.remove("active");
   groupsBtn.classList.remove("active");
+
   resultPanel.classList.remove("groups-style");
 
   if (type === "correlation") {
+
     correlationBtn.classList.add("active");
 
     resultIcon.textContent = "↔";
-    resultLabel.textContent = "Correlation Design";
+
     resultTitle.textContent = "Testing Relationships";
-    resultSubtitle.textContent =
-      "Use this format when your study examines whether two variables are related.";
 
     nullHypothesis.textContent =
       "1) Null hypothesis: There is no relationship between Variable 1 and Variable 2.";
@@ -370,14 +394,14 @@ function showResult(type) {
   }
 
   if (type === "groups") {
+
     groupsBtn.classList.add("active");
+
     resultPanel.classList.add("groups-style");
 
     resultIcon.textContent = "👥";
-    resultLabel.textContent = "Quasi or True Experimental Design";
+
     resultTitle.textContent = "Testing Group Differences";
-    resultSubtitle.textContent =
-      "Use this format when your study compares two groups.";
 
     nullHypothesis.textContent =
       "1) Null hypothesis: There is no difference between Group 1 and Group 2.";
