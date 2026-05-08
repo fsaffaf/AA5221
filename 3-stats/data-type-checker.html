@@ -211,25 +211,20 @@ body::after {
 <script>
 function showType(type) {
   const title = document.getElementById("typeTitle");
-  const desc = document.getElementById("typeDescription");
   const result = document.getElementById("result");
 
   const data = {
     nominal: {
       title: "Nominal Data",
-      desc: "Data made up of categories with no order (e.g., colors, gender, yes/no)."
     },
     ordinal: {
       title: "Ordinal Data",
-      desc: "Ordered categories where spacing is not equal (e.g., Likert scales)."
     },
     interval: {
       title: "Interval Data",
-      desc: "Numerical data with equal spacing but no true zero (e.g., temperature in Celsius)."
     },
     ratio: {
       title: "Ratio Data",
-      desc: "Numerical data with a true zero (e.g., height, weight, time)."
     }
   };
 
