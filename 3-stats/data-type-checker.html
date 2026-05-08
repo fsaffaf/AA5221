@@ -220,7 +220,6 @@ function showType(type) {
   const data = {
     nominal: {
       title: "Nominal Data",
-      desc: "Named categories that are unordered and mutually exclusive.",
       examples: [
         "Countries (Afghanistan, Brazil, China)",
         "Yes / No responses (dichotomous variables)"
@@ -228,22 +227,20 @@ function showType(type) {
     },
     ordinal: {
       title: "Ordinal Data",
-      desc: "Categorical data with a meaningful order, but unequal intervals.",
       examples: [
-        "BMI categories (Underweight → Obese)",
-        "Likert scale responses (Strongly Disagree → Strongly Agree)"
+        "Single-Item Likert Scale: Agreement (Strongly Disagree to Strongly Agree)"
+        "Single-Item Likert Scale: Agreement (Very Disatisfied to Very Satisfied)"
       ]
     },
     interval: {
       title: "Interval Data",
-      desc: "Numeric data with equal intervals, but no true zero.",
       examples: [
         "Temperature in Celsius",
+        "Multiple-Item Scale",
       ]
     },
     ratio: {
       title: "Ratio Data",
-      desc: "Numeric data with equal intervals and a true zero.",
       examples: [
         "Height or length (cm)",
         "Weight (kg)"
