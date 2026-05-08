@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Data Type Identifierr</title>
 
 <style>
 html, body {
@@ -169,33 +170,31 @@ body::after {
     <div class="content">
 
       <div class="header">
-        <div class="pill">Type of Data Selector</div>
-        <h1>What type of data is this?</h1>
+        <h1>Data Type Identifier</h1>
         <p>
-          Answer the questions below to determine whether your variable is
-          nominal, ordinal, interval, or ratio.
+          Answer the questions below to determine whether your variable's level of measurement.
         </p>
       </div>
 
       <div class="grid">
         <div class="choice" onclick="showType('nominal')">
           <div class="choice-title">Named categories only</div>
-          <div class="choice-sub">No order, no numbers</div>
+          <div class="choice-sub">No order, no numbers.</div>
         </div>
 
         <div class="choice" onclick="showType('ordinal')">
           <div class="choice-title">Ordered categories</div>
-          <div class="choice-sub">Ranked, but not true numbers</div>
+          <div class="choice-sub">Ranked in order, unequal intervals.</div>
         </div>
 
         <div class="choice" onclick="showType('interval')">
           <div class="choice-title">Numbers, no true zero</div>
-          <div class="choice-sub">Equal intervals, zero ≠ none</div>
+          <div class="choice-sub">Value of variable can go below zero.</div>
         </div>
 
         <div class="choice" onclick="showType('ratio')">
-          <div class="choice-title">Numbers with a true zero</div>
-          <div class="choice-sub">Zero means none</div>
+          <div class="choice-title">Numbers with a true zero.</div>
+          <div class="choice-sub">Zero means none.</div>
         </div>
       </div>
 
