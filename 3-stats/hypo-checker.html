@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Hypothesis Format Guide</title>
+<title>Hypothesis Writer</title>
 
 <style>
 html, body {
@@ -281,31 +281,23 @@ body::after {
     <div class="tool-content">
 
       <div class="tool-header">
-        <div class="tool-pill">
-          ? Hypothesis Format Guide
         </div>
 
         <h1>What is your research design?</h1>
 
-        <p>
-          Choose the option that matches your study to see the correct null and alternative hypothesis format.
         </p>
       </div>
 
       <div class="choice-grid">
         <button class="choice-button relationships" onclick="showResult('correlation')" id="correlationBtn">
           <div class="choice-title">Correlation</div>
-          <div class="choice-subtitle">Testing relationships</div>
+          <div class="choice-subtitle">Testing relationships.</div>
         </button>
 
         <button class="choice-button groups" onclick="showResult('groups')" id="groupsBtn">
-          <div class="choice-title">Quasi / True</div>
-          <div class="choice-subtitle">Testing group differences</div>
+          <div class="choice-title">Quasi-Experiment or True Experiment</div>
+          <div class="choice-subtitle">Testing group differences.</div>
         </button>
-      </div>
-
-      <div id="emptyState" class="result-empty">
-        Select a research design above to see the hypothesis format.
       </div>
 
       <div id="resultPanel" class="result-panel">
@@ -313,10 +305,7 @@ body::after {
           <div class="result-icon" id="resultIcon">↔</div>
 
           <div>
-            <div class="result-label" id="resultLabel">Correlation Design</div>
-            <div class="result-title" id="resultTitle">Testing Relationships</div>
-            <div class="result-subtitle" id="resultSubtitle">
-              Use this format when your study examines whether two variables are related.
+            <div class="result-title" id="resultTitle">Results</div>
             </div>
           </div>
         </div>
@@ -325,14 +314,14 @@ body::after {
           <div class="hypothesis-item">
             <span class="check">✓</span>
             <span id="nullHypothesis">
-              1) Null hypothesis: There is no relationship between Variable 1 and Variable 2.
+              Null hypothesis: There is no relationship between Variable 1 and Variable 2.
             </span>
           </div>
 
           <div class="hypothesis-item">
             <span class="check">✓</span>
             <span id="altHypothesis">
-              2) Alternative hypothesis: There is a relationship between Variable 1 and Variable 2.
+              Alternative hypothesis: There is a relationship between Variable 1 and Variable 2.
             </span>
           </div>
         </div>
