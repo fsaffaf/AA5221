@@ -155,22 +155,22 @@ body::after {
       <div class="grid">
         <div class="choice" onclick="showType('nominal', event)">
           <div class="choice-title">Named categories only</div>
-          <div class="choice-sub">No order, no numbers</div>
+          <div class="choice-sub">Groups with no order (e.g., gender, yes/no answers)</div>
         </div>
 
         <div class="choice" onclick="showType('ordinal', event)">
           <div class="choice-title">Ordered categories</div>
-          <div class="choice-sub">Ranked values</div>
+          <div class="choice-sub">Ranked groups (e.g., single-item Likert scale)</div>
         </div>
 
         <div class="choice" onclick="showType('interval', event)">
           <div class="choice-title">Numbers, no true zero</div>
-          <div class="choice-sub">Can go below zero</div>
+          <div class="choice-sub">Numbers that can go below zero (e.g., celcius, farenheit, multiple-item scale)</div>
         </div>
 
         <div class="choice" onclick="showType('ratio', event)">
           <div class="choice-title">Numbers with a true zero</div>
-          <div class="choice-sub">Zero means none</div>
+          <div class="choice-sub">Numbers where zero means none (e.g., kilograms, centimeters, miles, years)</div>
         </div>
       </div>
 
