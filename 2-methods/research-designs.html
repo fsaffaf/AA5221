@@ -58,7 +58,10 @@ h2:hover::after, h3:hover::after {
 h2 { color:#93c5fd; }
 h3 { color:#7dd3fc; }
 
-p { line-height: 1.75; margin-bottom: 1rem; }
+p {
+  line-height: 1.8;
+  margin-bottom: 1.2rem;
+}
 
 .card {
   background: rgba(15,23,42,.6);
@@ -84,8 +87,8 @@ p { line-height: 1.75; margin-bottom: 1rem; }
 .highlight {
   background: rgba(56,189,248,.12);
   border-left: 4px solid #38bdf8;
-  padding: .9rem 1rem;
-  margin: 1rem 0;
+  padding: 1rem;
+  margin: 1.2rem 0;
   border-radius: 6px;
 }
 
@@ -93,14 +96,11 @@ p { line-height: 1.75; margin-bottom: 1rem; }
   display: inline-block;
   background: #38bdf8;
   color: #020617;
-  padding: .25rem .6rem;
+  padding: .3rem .6rem;
   border-radius: 6px;
   font-size: 0.75rem;
   margin-right: .4rem;
 }
-
-ul { padding-left: 1.2rem; }
-li { margin-bottom: .4rem; }
 
 hr {
   border: none;
@@ -145,64 +145,62 @@ tr:hover {
 <h1>Lecture 1</h1>
 <div class="subtitle">Scientific Research</div>
 
-<!-- Research Designs -->
 <div class="card">
 <h2>Research Designs</h2>
 
 <p>
-In research, the goal is often to understand whether one variable affects another. 
-However, not all study designs allow us to draw the same level of conclusion. 
-Some designs allow us to say <b>"this causes that"</b>, while others can only show 
-that variables are related.
+In scientific research, one of the primary goals is to understand whether one variable influences another. 
+However, not all research designs allow us to make the same level of conclusion. Some designs allow us to 
+make strong claims about cause and effect, while others are limited to identifying relationships between variables.
 </p>
 
 <div class="highlight">
-<strong>Think of this as a strength scale:</strong><br>
-True Experiment → Quasi-Experiment → Correlational Study
+You can think of research designs as existing on a spectrum from strongest to weakest: 
+<strong>true experiments</strong>, followed by <strong>quasi-experiments</strong>, and finally 
+<strong>correlational studies</strong>.
 </div>
 
 <h3><span class="badge">STRONGEST</span> True Experiment</h3>
 
 <p>
-A true experiment is the <b>gold standard</b> in research because it allows us to 
-make a strong claim about <b>causality</b>. This means we can say that changes in 
-the independent variable directly caused changes in the dependent variable.
+A true experiment is considered the strongest type of research design because it allows researchers to 
+make a claim about <strong>causality</strong>. In other words, a researcher can confidently argue that changes 
+in the independent variable caused changes in the dependent variable.
 </p>
 
-<p><b>To do this, three conditions must be met:</b></p>
+<p>
+In order to make this claim, a true experiment must include three essential features. First, the researcher 
+must manipulate the independent variable by creating different conditions or groups. Second, participants 
+must be randomly assigned to these groups so that each person has an equal chance of being placed in any condition. 
+Finally, the researcher must maintain a high level of experimental control, meaning that all other factors are 
+kept as similar as possible between the groups.
+</p>
 
-<ul>
-<li><b>Manipulation:</b> The researcher actively creates different conditions (e.g., high dose vs low dose).</li>
-<li><b>Random assignment:</b> Participants are randomly placed into groups, which helps eliminate bias.</li>
-<li><b>Control:</b> Everything else is kept as similar as possible between groups.</li>
-</ul>
-
-<div class="highlight">
-Example: A researcher gives one group 100 mg of medication and another 50 mg, 
-randomly assigns participants, and ensures all other conditions are identical.
-</div>
+<p>
+For example, a researcher studying headache medication might assign one group to receive a high dose and 
+another group to receive a low dose. Participants would be randomly assigned to each group, and the researcher 
+would ensure that all other conditions—such as environment, timing, and method of administration—remain consistent.
+</p>
 
 <hr>
 
 <h3><span class="badge" style="background:#fbbf24">MEDIUM</span> Quasi-Experiment</h3>
 
 <p>
-A quasi-experiment is an <b>"almost" experiment</b>. It includes some, but not all, 
-of the features required for a true experiment.
+A quasi-experiment is similar to a true experiment but does not include all three required elements. 
+In most cases, quasi-experiments are missing random assignment. Because of this limitation, researchers 
+cannot confidently claim that one variable caused changes in another.
 </p>
 
 <p>
-Most commonly, quasi-experiments are missing <b>random assignment</b>. Because of this, 
-we cannot confidently say that one variable caused another—we can only suggest it.
+Quasi-experiments are often used when true experiments are not possible due to ethical or practical reasons. 
+For example, it would be unethical to randomly assign individuals to harmful conditions, such as exposure to 
+dangerous substances. Instead, researchers must study groups that already exist.
 </p>
 
-<div class="highlight">
-These are often used when true experiments would be <b>unethical or impractical</b>.
-</div>
-
 <p>
-For example, researchers cannot randomly assign people to harmful conditions 
-(like drug use), so they study groups that already exist.
+Although quasi-experiments are weaker than true experiments, they still provide valuable information and are 
+often the best option in real-world research settings.
 </p>
 
 <hr>
@@ -210,56 +208,47 @@ For example, researchers cannot randomly assign people to harmful conditions
 <h3><span class="badge" style="background:#f87171">LOW</span> Correlational Study</h3>
 
 <p>
-Correlational studies examine whether two variables are <b>related</b>, but they do 
-not involve manipulation or control.
+Correlational studies are used to examine whether two variables are related to one another. However, unlike 
+experiments, these studies do not involve manipulating variables or controlling conditions.
 </p>
 
 <div class="highlight">
-Important: Correlation ≠ Causation
+It is important to remember that correlation does not imply causation.
 </div>
 
 <p>
-Even if two variables are strongly related, we cannot assume that one causes the other. 
-There may be a third variable, or the relationship could be coincidental.
-</p>
-
-<p>
-Despite being the weakest design, correlational studies are useful because they are 
-<b>fast, inexpensive, and great for early exploration</b>.
+Even if two variables are strongly related, we cannot conclude that one causes the other. There may be other 
+factors involved, or the relationship may be coincidental. Despite this limitation, correlational studies are 
+useful because they are often quick, inexpensive, and helpful for identifying patterns that can be explored 
+further in more rigorous research designs.
 </p>
 
 </div>
 
-<!-- Between vs Within -->
 <div class="card">
-<h2>Between vs Within Designs</h2>
+<h2>Between-Subjects and Within-Subjects Designs</h2>
 
 <p>
-When researchers compare conditions, they must decide how participants experience those conditions. 
-There are two main approaches, and each has important trade-offs.
+When researchers conduct experiments, they must decide how participants will experience the different conditions 
+of the study. This decision leads to two common designs: between-subjects designs and within-subjects designs.
 </p>
 
 <h3>Between-Subjects Design</h3>
 
 <div class="highlight">
-Each participant is exposed to <b>only one condition</b>.
+In a between-subjects design, each participant experiences only one condition.
 </div>
 
 <p>
-In this design, different groups of participants are used for each condition. 
-For example, one group might receive Medication A, while another group receives Medication B.
+This means that different groups of participants are assigned to each condition. For example, one group might 
+receive Medication A, while a separate group receives Medication B. Each participant contributes data for only 
+one condition.
 </p>
 
-<ul>
-<li>✅ Faster overall study completion</li>
-<li>✅ No carryover effects between conditions</li>
-<li>❌ Requires more participants</li>
-<li>❌ Groups may differ in unintended ways</li>
-</ul>
-
 <p>
-Because each group is different, researchers must work harder to ensure the groups 
-are comparable.
+This design allows researchers to complete studies more quickly and avoids carryover effects, since participants 
+are not exposed to multiple conditions. However, it also requires more participants, and researchers must ensure 
+that the groups are comparable to one another.
 </p>
 
 <hr>
@@ -267,24 +256,23 @@ are comparable.
 <h3>Within-Subjects Design</h3>
 
 <div class="highlight">
-Each participant experiences <b>all conditions</b>.
+In a within-subjects design, each participant experiences all conditions.
 </div>
 
 <p>
-In this design, the same participants go through every condition. 
-For example, each participant might take Medication A first, and then Medication B.
+In this approach, the same participants go through every condition in the study. For example, participants might 
+first take Medication A and later take Medication B. This allows researchers to directly compare how the same 
+individual responds to each condition.
 </p>
 
-<ul>
-<li>✅ Requires fewer participants</li>
-<li>✅ Reduces variability between people</li>
-<li>❌ Takes longer to complete</li>
-<li>❌ Risk of carryover effects</li>
-</ul>
+<p>
+One advantage of this design is that it requires fewer participants and reduces differences between individuals. 
+However, it often takes more time to complete and introduces the possibility of carryover effects, where earlier 
+conditions influence later results.
+</p>
 
 <p>
-A key challenge is that earlier conditions may influence later ones. 
-Researchers often use techniques like counterbalancing to reduce this issue.
+Researchers must carefully consider these trade-offs when choosing between these two designs.
 </p>
 
 <hr>
@@ -297,20 +285,20 @@ Researchers often use techniques like counterbalancing to reduce this issue.
 <th>Within</th>
 </tr>
 <tr>
-<td>Different people per condition</td>
-<td>Same people in all conditions</td>
+<td>Different participants in each condition</td>
+<td>The same participants in all conditions</td>
 </tr>
 <tr>
-<td>Faster</td>
-<td>Slower</td>
+<td>Faster to complete</td>
+<td>Takes more time</td>
 </tr>
 <tr>
 <td>No carryover effects</td>
-<td>Carryover possible</td>
+<td>Carryover effects are possible</td>
 </tr>
 <tr>
-<td>More participants needed</td>
-<td>Fewer participants needed</td>
+<td>Requires more participants</td>
+<td>Requires fewer participants</td>
 </tr>
 </table>
 
