@@ -10,17 +10,14 @@ body {
   font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
   background: radial-gradient(circle at top, #0b1220, #020617 70%);
   color: rgba(255,255,255,0.92);
-  scroll-behavior: smooth;
 }
 
-/* Layout */
 .container {
   max-width: 1000px;
   margin: auto;
   padding: 5rem 1.5rem;
 }
 
-/* Headings */
 h1 {
   font-size: 3rem;
   letter-spacing: .2em;
@@ -61,18 +58,8 @@ h2:hover::after, h3:hover::after {
 h2 { color:#93c5fd; }
 h3 { color:#7dd3fc; }
 
-/* Text */
-p {
-  line-height: 1.75;
-  margin-bottom: 1rem;
-  max-width: 75ch;
-}
+p { line-height: 1.75; margin-bottom: 1rem; }
 
-b {
-  color: #e0f2fe;
-}
-
-/* Cards */
 .card {
   background: rgba(15,23,42,.6);
   border-radius: 16px;
@@ -86,39 +73,22 @@ b {
   animation: fadeInUp 0.8s ease forwards;
 }
 
-.card:nth-of-type(1){ animation-delay: .15s; }
-.card:nth-of-type(2){ animation-delay: .35s; }
+.card:nth-child(1){ animation-delay: .1s; }
+.card:nth-child(2){ animation-delay: .3s; }
 
 .card:hover {
   transform: translateY(-6px) scale(1.01);
   box-shadow: 0 20px 50px rgba(56,189,248,.25);
 }
 
-/* Highlight */
 .highlight {
   background: rgba(56,189,248,.12);
   border-left: 4px solid #38bdf8;
   padding: .9rem 1rem;
   margin: 1rem 0;
   border-radius: 6px;
-  transition: all 0.25s ease;
 }
 
-.highlight:hover {
-  transform: translateX(4px);
-  background: rgba(56,189,248,.18);
-}
-
-/* Takeaways */
-.takeaway {
-  background: rgba(34,197,94,.12);
-  border-left: 4px solid #22c55e;
-  padding: 1rem;
-  border-radius: 6px;
-  margin: 1.5rem 0;
-}
-
-/* Badge */
 .badge {
   display: inline-block;
   background: #38bdf8;
@@ -129,11 +99,9 @@ b {
   margin-right: .4rem;
 }
 
-/* Lists */
 ul { padding-left: 1.2rem; }
 li { margin-bottom: .4rem; }
 
-/* Divider */
 hr {
   border: none;
   height: 1px;
@@ -142,7 +110,6 @@ hr {
   opacity: .4;
 }
 
-/* Table */
 table {
   width: 100%;
   border-collapse: collapse;
@@ -162,7 +129,6 @@ tr:hover {
   background: rgba(56,189,248,.08);
 }
 
-/* Animation */
 @keyframes fadeInUp {
   to {
     opacity: 1;
@@ -181,7 +147,7 @@ tr:hover {
 
 <!-- Research Designs -->
 <div class="card">
-<h2>🧪 Research Designs</h2>
+<h2>Research Designs</h2>
 
 <p>
 In research, the goal is often to understand whether one variable affects another. 
@@ -195,7 +161,7 @@ that variables are related.
 True Experiment → Quasi-Experiment → Correlational Study
 </div>
 
-<h3><span class="badge">STRONGEST</span> 🧠 True Experiment</h3>
+<h3><span class="badge">STRONGEST</span> True Experiment</h3>
 
 <p>
 A true experiment is the <b>gold standard</b> in research because it allows us to 
@@ -216,13 +182,9 @@ Example: A researcher gives one group 100 mg of medication and another 50 mg,
 randomly assigns participants, and ensures all other conditions are identical.
 </div>
 
-<div class="takeaway">
-<strong>Key takeaway:</strong> Only true experiments allow researchers to confidently claim causation.
-</div>
-
 <hr>
 
-<h3><span class="badge" style="background:#fbbf24">MEDIUM</span> ⚖️ Quasi-Experiment</h3>
+<h3><span class="badge" style="background:#fbbf24">MEDIUM</span> Quasi-Experiment</h3>
 
 <p>
 A quasi-experiment is an <b>"almost" experiment</b>. It includes some, but not all, 
@@ -243,13 +205,9 @@ For example, researchers cannot randomly assign people to harmful conditions
 (like drug use), so they study groups that already exist.
 </p>
 
-<div class="takeaway">
-<strong>Key takeaway:</strong> Quasi-experiments suggest relationships but cannot prove causation.
-</div>
-
 <hr>
 
-<h3><span class="badge" style="background:#f87171">LOW</span> 🔗 Correlational Study</h3>
+<h3><span class="badge" style="background:#f87171">LOW</span> Correlational Study</h3>
 
 <p>
 Correlational studies examine whether two variables are <b>related</b>, but they do 
@@ -270,15 +228,11 @@ Despite being the weakest design, correlational studies are useful because they 
 <b>fast, inexpensive, and great for early exploration</b>.
 </p>
 
-<div class="takeaway">
-<strong>Key takeaway:</strong> Correlation tells us variables are related, not that one causes the other.
-</div>
-
 </div>
 
 <!-- Between vs Within -->
 <div class="card">
-<h2>📊 Between vs Within Designs</h2>
+<h2>Between vs Within Designs</h2>
 
 <p>
 When researchers compare conditions, they must decide how participants experience those conditions. 
@@ -308,10 +262,6 @@ Because each group is different, researchers must work harder to ensure the grou
 are comparable.
 </p>
 
-<div class="takeaway">
-<strong>Key takeaway:</strong> Between-subjects designs are faster but require more participants.
-</div>
-
 <hr>
 
 <h3>Within-Subjects Design</h3>
@@ -336,10 +286,6 @@ For example, each participant might take Medication A first, and then Medication
 A key challenge is that earlier conditions may influence later ones. 
 Researchers often use techniques like counterbalancing to reduce this issue.
 </p>
-
-<div class="takeaway">
-<strong>Key takeaway:</strong> Within-subjects designs are efficient but risk carryover effects.
-</div>
 
 <hr>
 
