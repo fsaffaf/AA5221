@@ -1,157 +1,232 @@
-<div class="lecture-container">
+<div class="container">
 
 <style>
-  /* Background wrapper (important for LMS embedding) */
-  .lecture-container {
-    font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-    line-height: 1.7;
-    max-width: 900px;
-    margin: auto;
-    padding: 2.5rem;
-    color: rgba(255,255,255,0.92);
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  background: radial-gradient(circle at top, #0b1220, #020617 70%);
+  color: rgba(255,255,255,0.92);
+}
 
-    /* DARK GLASS BACKGROUND */
-    background: radial-gradient(circle at top, #05070f, #020617 80%);
-    border-radius: 20px;
-  }
+/* Layout */
+.container {
+  max-width: 1000px;
+  margin: auto;
+  padding: 5rem 1.5rem;
+}
 
-  h2 {
-    color: #93c5fd;
-    margin-top: 2.5rem;
-  }
+/* Headings */
+h2, h3 {
+  position: relative;
+  display: inline-block;
+}
 
-  h3 {
-    color: #7dd3fc;
-    margin-top: 2rem;
-  }
+h2::after, h3::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -5px;
+  width: 0%;
+  height: 2px;
+  background: #38bdf8;
+  transition: width 0.3s ease;
+}
 
-  p {
-    max-width: 70ch;
-  }
+h2:hover::after, h3:hover::after {
+  width: 100%;
+}
 
-  /* ✅ GLASS CALLOUT (UPGRADED) */
-  .callout {
-    background: rgba(15,23,42,0.55);
-    border: 1px solid rgba(125,211,252,0.25);
-    border-left: 3px solid #38bdf8;
-    padding: 12px 14px;
-    margin: 16px 0;
-    border-radius: 12px;
+h2 { color:#93c5fd; margin-top: 0; }
+h3 { color:#7dd3fc; }
 
-    backdrop-filter: blur(14px);
-    box-shadow:
-      0 10px 25px rgba(0,0,0,0.4),
-      inset 0 0 8px rgba(56,189,248,0.08);
-  }
+/* Cards */
+.card {
+  background: rgba(15,23,42,.6);
+  border-radius: 16px;
+  padding: 1.75rem;
+  margin-bottom: 2rem;
+  border: 1px solid rgba(255,255,255,.08);
+  box-shadow: 0 10px 30px rgba(0,0,0,.4);
+}
 
-  /* Lists */
-  ul, ol {
-    padding-left: 1.5rem;
-  }
+/* Text */
+p {
+  line-height: 1.75;
+  margin-bottom: 1rem;
+  max-width: 75ch;
+}
 
-  /* TABLE (GLASS STYLE) */
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 1.5rem 0;
-    overflow: hidden;
-    border-radius: 12px;
-    backdrop-filter: blur(10px);
-  }
+/* Highlight */
+.highlight {
+  background: rgba(56,189,248,.12);
+  border-left: 4px solid #38bdf8;
+  padding: 1rem;
+  margin: 1rem 0;
+  border-radius: 6px;
+}
 
-  th {
-    background: rgba(59,130,246,0.75);
-    color: white;
-    padding: 10px;
-    text-align: left;
-  }
+/* Takeaways */
+.takeaway {
+  background: rgba(34,197,94,.12);
+  border-left: 4px solid #22c55e;
+  padding: 1rem;
+  border-radius: 6px;
+  margin: 1.5rem 0;
+}
 
-  td {
-    padding: 12px;
-    border-top: 1px solid rgba(255,255,255,.1);
-    background: rgba(255,255,255,0.03);
-    vertical-align: top;
-  }
+/* Lists */
+ul, ol {
+  padding-left: 1.5rem;
+}
 
+/* Table */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+th, td {
+  padding: .75rem;
+  border-bottom: 1px solid rgba(255,255,255,.12);
+}
+
+th { color: #7dd3fc; }
+
+tr:hover {
+  background: rgba(56,189,248,.08);
+}
 </style>
 
-<p>🎧 Use the Immersive Reader feature (button in the top‑right corner) to have this page read aloud.</p>
+<p>🎧 Use the Immersive Reader feature to have this page read aloud.</p>
 
-<h2>Overview</h2>
+<!-- DATA TYPES -->
+<div class="card">
+<h2>📊 Types of Data</h2>
 
-<p>There are two types of data: quantitative and qualitative.</p>
+<p>
+There are two main types of data used in research: <strong>quantitative</strong> and <strong>qualitative</strong>. 
+Each type serves a different purpose and is used to answer different kinds of questions.
+</p>
 
-<div class="callout">
-  <strong>Quantitative data</strong> is number‑based data that allows mathematical and statistical analysis (e.g., height in centimeters, weight in kilograms).
+<div class="highlight">
+<strong>Quantitative data</strong> is numerical and can be analyzed using mathematical or statistical techniques 
+(e.g., height, weight, test scores).
 </div>
 
-<div class="callout">
-  <strong>Qualitative data</strong> is word‑based data that provides meaning and context (e.g., interviews about opinions).
+<div class="highlight">
+<strong>Qualitative data</strong> is descriptive and focuses on meaning, experience, or perspective 
+(e.g., interview responses, opinions).
 </div>
 
-<p>While qualitative analysis focuses on meaning and experience, quantitative analysis allows precise measurement and hypothesis testing. This course focuses on quantitative data.</p>
+<p>
+While qualitative data helps us understand meaning and context, quantitative data allows researchers 
+to test hypotheses and measure relationships precisely. This course primarily focuses on quantitative data.
+</p>
 
-<h2>Descriptive vs. Inferential Statistics</h2>
-
-<p>Statistics fall into two main categories: descriptive and inferential.</p>
-
-<div class="callout">
-  <strong>Descriptive Statistics:</strong> Describe characteristics of a sample (mean, median, mode, range, standard deviation) and assess assumptions such as normality.
+<div class="takeaway">
+<strong>Key takeaway:</strong> Quantitative = numbers; Qualitative = meaning.
 </div>
 
-<div class="callout">
-  <strong>Inferential Statistics:</strong> Test hypotheses and allow conclusions about populations based on sample data (e.g., t‑tests).
 </div>
 
-<h3>Sample vs. Population</h3>
+<!-- DESCRIPTIVE VS INFERENTIAL -->
+<div class="card">
+<h2>📈 Descriptive vs. Inferential Statistics</h2>
 
-<p><strong>Population</strong> is the entire group of interest; a <strong>sample</strong> is a smaller subset that can realistically be studied.</p>
+<p>
+Statistics can be divided into two major categories depending on what they are used for.
+</p>
 
-<p>Descriptive statistics describe the sample, while inferential statistics generalize findings to the population. Unrepresentative samples lead to biased conclusions.</p>
+<div class="highlight">
+<strong>Descriptive statistics</strong> summarize and describe the characteristics of a sample.
+</div>
 
-<h3>Descriptive Statistics</h3>
+<div class="highlight">
+<strong>Inferential statistics</strong> allow researchers to make conclusions about a population based on sample data.
+</div>
 
-<p>Descriptive statistics are essential for understanding your data and choosing appropriate inferential tests.</p>
+<h3>🧍 Sample vs. Population</h3>
+
+<p>
+A <strong>population</strong> includes the entire group of interest, while a <strong>sample</strong> is a smaller group 
+taken from that population.
+</p>
+
+<p>
+Descriptive statistics describe what is happening in the sample, while inferential statistics 
+allow us to generalize those findings to a larger population.
+</p>
+
+<div class="takeaway">
+<strong>Key takeaway:</strong> We study samples, but we want to understand populations.
+</div>
+
+</div>
+
+<!-- DESCRIPTIVE DETAILS -->
+<div class="card">
+<h2>📐 Descriptive Statistics</h2>
+
+<p>
+Descriptive statistics help researchers understand the overall structure of their data and 
+make informed decisions about further analysis.
+</p>
 
 <ol>
-  <li>Understand the structure of the sample</li>
-  <li>Guide inferential test selection</li>
+<li>They summarize the data</li>
+<li>They help determine which statistical tests are appropriate</li>
 </ol>
 
-<p><strong><em>Mean</em></strong><br>
-The mathematical average. Sensitive to extreme values.</p>
+<h3>Common Measures</h3>
 
-<p><strong><em>Median</em></strong><br>
-The middle value. Useful when data contain outliers.</p>
+<p><strong>Mean:</strong> The mathematical average. It is sensitive to extreme values.</p>
 
-<p><strong><em>Mode</em></strong><br>
-The most frequently occurring value. Best for categorical data.</p>
+<p><strong>Median:</strong> The middle value. It is useful when data contain outliers.</p>
 
-<div class="callout">
-  <strong>Standard Deviation (SD):</strong> Measures how spread out values are around the mean.
+<p><strong>Mode:</strong> The most frequently occurring value.</p>
+
+<div class="highlight">
+<strong>Standard Deviation (SD):</strong> Measures how spread out the values are around the mean.
 </div>
 
-<p>SD is interpreted relative to the mean (e.g., M = 10, SD = 2 → range ≈ 8–12).</p>
+<p>
+Standard deviation helps determine how much variability exists in the data.
+</p>
 
-<h2>Levels of Measurement</h2>
+<div class="takeaway">
+<strong>Key takeaway:</strong> Descriptive statistics tell you what your data looks like.
+</div>
 
-<p>The level of measurement determines which statistics and graphs are appropriate.</p>
+</div>
+
+<!-- LEVELS OF MEASUREMENT -->
+<div class="card">
+<h2>📏 Levels of Measurement</h2>
+
+<p>
+The level of measurement determines which statistical analyses are appropriate to use.
+</p>
 
 <ol>
-  <li><strong>Nominal</strong></li>
-  <li><strong>Ordinal</strong></li>
-  <li><strong>Interval</strong></li>
-  <li><strong>Ratio</strong></li>
+<li><strong>Nominal:</strong> Categories with no order</li>
+<li><strong>Ordinal:</strong> Categories with a rank or order</li>
+<li><strong>Interval:</strong> Ordered values with equal spacing (no true zero)</li>
+<li><strong>Ratio:</strong> Interval data with a true zero</li>
 </ol>
 
-<div class="callout">
-  <strong>Categorical Data:</strong> Nominal and ordinal
+<div class="highlight">
+<strong>Categorical data:</strong> Nominal and ordinal
 </div>
 
-<div class="callout">
-  <strong>Continuous Data:</strong> Interval and ratio
+<div class="highlight">
+<strong>Continuous data:</strong> Interval and ratio
 </div>
 
-<!-- (rest of your content unchanged) -->
+<div class="takeaway">
+<strong>Key takeaway:</strong> The type of data determines the type of analysis.
+</div>
+
+</div>
 
 </div>
