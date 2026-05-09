@@ -1,4 +1,7 @@
-<div class="container">
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Lecture 1 — Types of Data</title>
 
 <style>
 body {
@@ -8,14 +11,29 @@ body {
   color: rgba(255,255,255,0.92);
 }
 
-/* Layout */
 .container {
   max-width: 1000px;
   margin: auto;
   padding: 5rem 1.5rem;
 }
 
-/* Headings */
+h1 {
+  font-size: 3rem;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  text-align: center;
+  background: linear-gradient(180deg, #fff, #7dd3fc);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.subtitle {
+  text-align: center;
+  letter-spacing: .3em;
+  margin-bottom: 3rem;
+  opacity: 0.8;
+}
+
 h2, h3 {
   position: relative;
   display: inline-block;
@@ -36,10 +54,15 @@ h2:hover::after, h3:hover::after {
   width: 100%;
 }
 
-h2 { color:#93c5fd; margin-top: 0; }
+h2 { color:#93c5fd; }
 h3 { color:#7dd3fc; }
 
-/* Cards */
+p {
+  line-height: 1.75;
+  margin-bottom: 1rem;
+  max-width: 75ch;
+}
+
 .card {
   background: rgba(15,23,42,.6);
   border-radius: 16px;
@@ -47,16 +70,20 @@ h3 { color:#7dd3fc; }
   margin-bottom: 2rem;
   border: 1px solid rgba(255,255,255,.08);
   box-shadow: 0 10px 30px rgba(0,0,0,.4);
+
+  transform: translateY(20px);
+  opacity: 0;
+  animation: fadeInUp 0.8s ease forwards;
 }
 
-/* Text */
-p {
-  line-height: 1.75;
-  margin-bottom: 1rem;
-  max-width: 75ch;
+.card:nth-child(1){ animation-delay: .1s; }
+.card:nth-child(2){ animation-delay: .3s; }
+
+.card:hover {
+  transform: translateY(-6px) scale(1.01);
+  box-shadow: 0 20px 50px rgba(56,189,248,.25);
 }
 
-/* Highlight */
 .highlight {
   background: rgba(56,189,248,.12);
   border-left: 4px solid #38bdf8;
@@ -65,7 +92,6 @@ p {
   border-radius: 6px;
 }
 
-/* Takeaways */
 .takeaway {
   background: rgba(34,197,94,.12);
   border-left: 4px solid #22c55e;
@@ -74,159 +100,149 @@ p {
   margin: 1.5rem 0;
 }
 
-/* Lists */
-ul, ol {
-  padding-left: 1.5rem;
-}
+ul { padding-left: 1.2rem; }
 
-/* Table */
-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 1rem;
-}
-
-th, td {
-  padding: .75rem;
-  border-bottom: 1px solid rgba(255,255,255,.12);
-}
-
-th { color: #7dd3fc; }
-
-tr:hover {
-  background: rgba(56,189,248,.08);
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 </style>
+</head>
 
-<p>🎧 Use the Immersive Reader feature to have this page read aloud.</p>
+<body>
 
-<!-- DATA TYPES -->
+<div class="container">
+
+<h1>Lecture 1</h1>
+<div class="subtitle">Types of Data</div>
+
+<!-- INTRO -->
 <div class="card">
-<h2>📊 Types of Data</h2>
+<h2>📊 What is Data?</h2>
 
 <p>
-There are two main types of data used in research: <strong>quantitative</strong> and <strong>qualitative</strong>. 
-Each type serves a different purpose and is used to answer different kinds of questions.
+In research, <b>data</b> refers to the information that researchers collect in order to answer questions. 
+The type of data you collect determines how you analyze it and what conclusions you can draw.
 </p>
 
-<div class="highlight">
-<strong>Quantitative data</strong> is numerical and can be analyzed using mathematical or statistical techniques 
-(e.g., height, weight, test scores).
-</div>
-
-<div class="highlight">
-<strong>Qualitative data</strong> is descriptive and focuses on meaning, experience, or perspective 
-(e.g., interview responses, opinions).
-</div>
-
 <p>
-While qualitative data helps us understand meaning and context, quantitative data allows researchers 
-to test hypotheses and measure relationships precisely. This course primarily focuses on quantitative data.
+There are two primary types of data: <b>quantitative</b> and <b>qualitative</b>. 
+Understanding the difference between these is essential for choosing the correct research methods.
 </p>
 
 <div class="takeaway">
-<strong>Key takeaway:</strong> Quantitative = numbers; Qualitative = meaning.
+<strong>Key idea:</strong> The type of data determines how it can be analyzed.
 </div>
 
 </div>
 
-<!-- DESCRIPTIVE VS INFERENTIAL -->
+<!-- QUANTITATIVE -->
 <div class="card">
-<h2>📈 Descriptive vs. Inferential Statistics</h2>
+<h2>🔢 Quantitative Data</h2>
 
 <p>
-Statistics can be divided into two major categories depending on what they are used for.
+<b>Quantitative data</b> is numerical data. It involves measurements or quantities that can be 
+analyzed mathematically using statistics.
 </p>
 
 <div class="highlight">
-<strong>Descriptive statistics</strong> summarize and describe the characteristics of a sample.
+Quantitative data answers questions like: <i>How much? How many? How often?</i>
 </div>
-
-<div class="highlight">
-<strong>Inferential statistics</strong> allow researchers to make conclusions about a population based on sample data.
-</div>
-
-<h3>🧍 Sample vs. Population</h3>
 
 <p>
-A <strong>population</strong> includes the entire group of interest, while a <strong>sample</strong> is a smaller group 
-taken from that population.
+Because this type of data is expressed in numbers, researchers can calculate averages, 
+compare groups, and run statistical tests to draw conclusions.
 </p>
 
+<h3>Examples</h3>
+
+<ul>
+<li>Height (e.g., 170 cm)</li>
+<li>Weight (e.g., 150 lbs)</li>
+<li>Test scores (e.g., 85%)</li>
+<li>Number of hours studied</li>
+</ul>
+
 <p>
-Descriptive statistics describe what is happening in the sample, while inferential statistics 
-allow us to generalize those findings to a larger population.
+Quantitative data is especially useful for testing hypotheses and identifying patterns 
+or relationships between variables.
 </p>
 
 <div class="takeaway">
-<strong>Key takeaway:</strong> We study samples, but we want to understand populations.
+<strong>Key takeaway:</strong> Quantitative data = numbers that can be analyzed statistically.
 </div>
 
 </div>
 
-<!-- DESCRIPTIVE DETAILS -->
+<!-- QUALITATIVE -->
 <div class="card">
-<h2>📐 Descriptive Statistics</h2>
+<h2>💬 Qualitative Data</h2>
 
 <p>
-Descriptive statistics help researchers understand the overall structure of their data and 
-make informed decisions about further analysis.
+<b>Qualitative data</b> is descriptive, non-numerical data. It focuses on understanding 
+meaning, experience, or perspective rather than measuring quantities.
 </p>
 
-<ol>
-<li>They summarize the data</li>
-<li>They help determine which statistical tests are appropriate</li>
-</ol>
-
-<h3>Common Measures</h3>
-
-<p><strong>Mean:</strong> The mathematical average. It is sensitive to extreme values.</p>
-
-<p><strong>Median:</strong> The middle value. It is useful when data contain outliers.</p>
-
-<p><strong>Mode:</strong> The most frequently occurring value.</p>
-
 <div class="highlight">
-<strong>Standard Deviation (SD):</strong> Measures how spread out the values are around the mean.
+Qualitative data answers questions like: <i>Why? How? What does it mean?</i>
 </div>
 
 <p>
-Standard deviation helps determine how much variability exists in the data.
+This type of data is often collected through interviews, open-ended survey responses, 
+or observations.
+</p>
+
+<h3>Examples</h3>
+
+<ul>
+<li>Interview responses about opinions</li>
+<li>Descriptions of experiences</li>
+<li>Observations of behavior</li>
+<li>Written feedback</li>
+</ul>
+
+<p>
+Instead of statistical analysis, qualitative data is analyzed by identifying patterns, 
+themes, or meanings within the responses.
 </p>
 
 <div class="takeaway">
-<strong>Key takeaway:</strong> Descriptive statistics tell you what your data looks like.
+<strong>Key takeaway:</strong> Qualitative data = words, meanings, and experiences.
 </div>
 
 </div>
 
-<!-- LEVELS OF MEASUREMENT -->
+<!-- COMPARISON -->
 <div class="card">
-<h2>📏 Levels of Measurement</h2>
+<h2>⚖️ Comparing Quantitative and Qualitative Data</h2>
 
 <p>
-The level of measurement determines which statistical analyses are appropriate to use.
+Both types of data are useful, but they serve different purposes in research.
 </p>
 
-<ol>
-<li><strong>Nominal:</strong> Categories with no order</li>
-<li><strong>Ordinal:</strong> Categories with a rank or order</li>
-<li><strong>Interval:</strong> Ordered values with equal spacing (no true zero)</li>
-<li><strong>Ratio:</strong> Interval data with a true zero</li>
-</ol>
-
 <div class="highlight">
-<strong>Categorical data:</strong> Nominal and ordinal
+Quantitative data provides <b>precision and measurement</b>, while qualitative data provides 
+<b>depth and understanding</b>.
 </div>
 
-<div class="highlight">
-<strong>Continuous data:</strong> Interval and ratio
-</div>
+<ul>
+<li><b>Quantitative:</b> Numbers, measurements, statistical analysis</li>
+<li><b>Qualitative:</b> Words, meaning, interpretation</li>
+</ul>
+
+<p>
+Many studies use both types together to get a more complete understanding of a research question.
+</p>
 
 <div class="takeaway">
-<strong>Key takeaway:</strong> The type of data determines the type of analysis.
+<strong>Final takeaway:</strong> Quantitative explains <i>what</i> and <i>how much</i>, while qualitative explains <i>why</i> and <i>how</i>.
 </div>
 
 </div>
 
 </div>
+
+</body>
+</html>
