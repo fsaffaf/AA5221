@@ -12,14 +12,12 @@ body {
   color: rgba(255,255,255,0.92);
 }
 
-/* Layout */
 .container {
   max-width: 1000px;
   margin: auto;
   padding: 5rem 1.5rem;
 }
 
-/* Headings */
 h1 {
   font-size: 3rem;
   letter-spacing: .2em;
@@ -37,7 +35,6 @@ h1 {
   opacity: 0.8;
 }
 
-/* Animated underline */
 h2, h3 {
   position: relative;
   display: inline-block;
@@ -61,9 +58,8 @@ h2:hover::after, h3:hover::after {
 h2 { color:#93c5fd; }
 h3 { color:#7dd3fc; }
 
-p { line-height: 1.7; }
+p { line-height: 1.75; margin-bottom: 1rem; }
 
-/* Cards */
 .card {
   background: rgba(15,23,42,.6);
   border-radius: 16px;
@@ -77,31 +73,22 @@ p { line-height: 1.7; }
   animation: fadeInUp 0.8s ease forwards;
 }
 
-/* Stagger effect */
-.card:nth-child(1){ animation-delay: 0.1s; }
-.card:nth-child(2){ animation-delay: 0.3s; }
+.card:nth-child(1){ animation-delay: .1s; }
+.card:nth-child(2){ animation-delay: .3s; }
 
-/* Hover animation */
 .card:hover {
   transform: translateY(-6px) scale(1.01);
   box-shadow: 0 20px 50px rgba(56,189,248,.25);
 }
 
-/* Highlight blocks */
 .highlight {
   background: rgba(56,189,248,.12);
   border-left: 4px solid #38bdf8;
-  padding: .75rem 1rem;
+  padding: .9rem 1rem;
   margin: 1rem 0;
   border-radius: 6px;
-  transition: background 0.3s ease;
 }
 
-.highlight:hover {
-  background: rgba(56,189,248,.2);
-}
-
-/* Badges */
 .badge {
   display: inline-block;
   background: #38bdf8;
@@ -110,20 +97,11 @@ p { line-height: 1.7; }
   border-radius: 6px;
   font-size: 0.75rem;
   margin-right: .4rem;
-
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.badge:hover {
-  transform: scale(1.1);
-  box-shadow: 0 0 12px rgba(56,189,248,.7);
-}
-
-/* Lists */
 ul { padding-left: 1.2rem; }
 li { margin-bottom: .4rem; }
 
-/* Divider */
 hr {
   border: none;
   height: 1px;
@@ -132,7 +110,6 @@ hr {
   opacity: .4;
 }
 
-/* Table */
 table {
   width: 100%;
   border-collapse: collapse;
@@ -146,22 +123,18 @@ th, td {
 
 th {
   color: #7dd3fc;
-  text-align: left;
 }
 
-/* Row hover effect */
 tr:hover {
   background: rgba(56,189,248,.08);
 }
 
-/* Animation keyframes */
 @keyframes fadeInUp {
   to {
     opacity: 1;
     transform: translateY(0);
   }
 }
-
 </style>
 </head>
 
@@ -176,68 +149,147 @@ tr:hover {
 <div class="card">
 <h2>Research Designs</h2>
 
-<p>Think of these as a spectrum of <b>how strong your conclusions are</b>.</p>
+<p>
+In research, the goal is often to understand whether one variable affects another. 
+However, not all study designs allow us to draw the same level of conclusion. 
+Some designs allow us to say <b>"this causes that"</b>, while others can only show 
+that variables are related.
+</p>
 
 <div class="highlight">
-<strong>Strongest → Weakest:</strong> True Experiment → Quasi → Correlational
+<strong>Think of this as a strength scale:</strong><br>
+True Experiment → Quasi-Experiment → Correlational Study
 </div>
 
 <h3><span class="badge">STRONGEST</span> True Experiment</h3>
-<p>Allows you to claim <b>causation</b>.</p>
 
-<div class="highlight">
-<b>Must have:</b>
+<p>
+A true experiment is the <b>gold standard</b> in research because it allows us to 
+make a strong claim about <b>causality</b>. This means we can say that changes in 
+the independent variable directly caused changes in the dependent variable.
+</p>
+
+<p><b>To do this, three conditions must be met:</b></p>
+
 <ul>
-<li>Manipulation</li>
-<li>Random Assignment</li>
-<li>Control</li>
+<li><b>Manipulation:</b> The researcher actively creates different conditions (e.g., high dose vs low dose).</li>
+<li><b>Random assignment:</b> Participants are randomly placed into groups, which helps eliminate bias.</li>
+<li><b>Control:</b> Everything else is kept as similar as possible between groups.</li>
 </ul>
+
+<div class="highlight">
+Example: A researcher gives one group 100 mg of medication and another 50 mg, 
+randomly assigns participants, and ensures all other conditions are identical.
 </div>
 
 <hr>
 
-<h3><span class="badge" style="background:#fbbf24">MEDIUM</span> Quasi</h3>
-<p>“Almost” an experiment.</p>
+<h3><span class="badge" style="background:#fbbf24">MEDIUM</span> Quasi-Experiment</h3>
+
+<p>
+A quasi-experiment is an <b>"almost" experiment</b>. It includes some, but not all, 
+of the features required for a true experiment.
+</p>
+
+<p>
+Most commonly, quasi-experiments are missing <b>random assignment</b>. Because of this, 
+we cannot confidently say that one variable caused another—we can only suggest it.
+</p>
 
 <div class="highlight">
-Missing at least one key requirement → <b>no causation</b>
+These are often used when true experiments would be <b>unethical or impractical</b>.
 </div>
+
+<p>
+For example, researchers cannot randomly assign people to harmful conditions 
+(like drug use), so they study groups that already exist.
+</p>
 
 <hr>
 
-<h3><span class="badge" style="background:#f87171">LOW</span> Correlational</h3>
+<h3><span class="badge" style="background:#f87171">LOW</span> Correlational Study</h3>
+
+<p>
+Correlational studies examine whether two variables are <b>related</b>, but they do 
+not involve manipulation or control.
+</p>
 
 <div class="highlight">
-No manipulation, no random assignment, no control → <b>relationship only</b>
+Important: Correlation ≠ Causation
 </div>
+
+<p>
+Even if two variables are strongly related, we cannot assume that one causes the other. 
+There may be a third variable, or the relationship could be coincidental.
+</p>
+
+<p>
+Despite being the weakest design, correlational studies are useful because they are 
+<b>fast, inexpensive, and great for early exploration</b>.
+</p>
 
 </div>
 
 <!-- Between vs Within -->
 <div class="card">
-<h2>Between vs Within</h2>
+<h2>Between vs Within Designs</h2>
 
-<h3>Between-Subjects</h3>
-<div class="highlight">One condition per participant</div>
+<p>
+When researchers compare conditions, they must decide how participants experience those conditions. 
+There are two main approaches, and each has important trade-offs.
+</p>
+
+<h3>Between-Subjects Design</h3>
+
+<div class="highlight">
+Each participant is exposed to <b>only one condition</b>.
+</div>
+
+<p>
+In this design, different groups of participants are used for each condition. 
+For example, one group might receive Medication A, while another group receives Medication B.
+</p>
 
 <ul>
-<li> Faster</li>
-<li> No carryover</li>
-<li> Needs more participants</li>
+<li>✅ Faster overall study completion</li>
+<li>✅ No carryover effects between conditions</li>
+<li>❌ Requires more participants</li>
+<li>❌ Groups may differ in unintended ways</li>
 </ul>
+
+<p>
+Because each group is different, researchers must work harder to ensure the groups 
+are comparable.
+</p>
 
 <hr>
 
-<h3>Within-Subjects</h3>
-<div class="highlight">Participants experience all conditions</div>
+<h3>Within-Subjects Design</h3>
+
+<div class="highlight">
+Each participant experiences <b>all conditions</b>.
+</div>
+
+<p>
+In this design, the same participants go through every condition. 
+For example, each participant might take Medication A first, and then Medication B.
+</p>
 
 <ul>
-<li> Fewer participants</li>
-<li> More data efficient</li>
-<li> Carryover risk</li>
+<li>✅ Requires fewer participants</li>
+<li>✅ Reduces variability between people</li>
+<li>❌ Takes longer to complete</li>
+<li>❌ Risk of carryover effects</li>
 </ul>
 
+<p>
+A key challenge is that earlier conditions may influence later ones. 
+Researchers often use techniques like counterbalancing to reduce this issue.
+</p>
+
 <hr>
+
+<h3>Quick Comparison</h3>
 
 <table>
 <tr>
@@ -245,16 +297,20 @@ No manipulation, no random assignment, no control → <b>relationship only</b>
 <th>Within</th>
 </tr>
 <tr>
-<td>One condition</td>
-<td>All conditions</td>
+<td>Different people per condition</td>
+<td>Same people in all conditions</td>
 </tr>
 <tr>
-<td>More participants</td>
-<td>Fewer participants</td>
+<td>Faster</td>
+<td>Slower</td>
 </tr>
 <tr>
-<td>No carryover</td>
+<td>No carryover effects</td>
 <td>Carryover possible</td>
+</tr>
+<tr>
+<td>More participants needed</td>
+<td>Fewer participants needed</td>
 </tr>
 </table>
 
