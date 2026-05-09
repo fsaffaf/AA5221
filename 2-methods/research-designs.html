@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+PLEASE FIX my formatting errors: for quasi and correlation, can you create a similar list of the three requirements for a true experiment but show they lack only some or none (a visual aid to help show the difference) similar to how you have done for the true experiment. add check marks and x's to add visual aid: <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
@@ -110,6 +110,25 @@ hr {
   opacity: .4;
 }
 
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+th, td {
+  padding: .75rem;
+  border-bottom: 1px solid rgba(255,255,255,.12);
+}
+
+th {
+  color: #7dd3fc;
+}
+
+tr:hover {
+  background: rgba(56,189,248,.08);
+}
+
 @keyframes fadeInUp {
   to {
     opacity: 1;
@@ -126,102 +145,104 @@ hr {
 <h1>Lecture 1</h1>
 <div class="subtitle">Scientific Research</div>
 
+<!-- Research Designs -->
 <div class="card">
 <h2>Research Designs</h2>
 
 <p>
 In research, the goal is often to understand whether one variable affects another. 
-Some designs allow us to say <b>"this causes that"</b>, while others only show relationships.
+However, not all study designs allow us to draw the same level of conclusion. 
+Some designs allow us to say <b>"this causes that"</b>, while others can only show 
+that variables are related.
 </p>
 
 <div class="highlight">
-<strong>Strength scale:</strong><br>
+<strong>Think of this as a strength scale:</strong><br>
 True Experiment → Quasi-Experiment → Correlational Study
 </div>
 
-<!-- TRUE -->
 <h3><span class="badge">STRONGEST</span> True Experiment</h3>
 
 <p>
-A true experiment is the gold standard because it allows us to claim causation.
+A true experiment is the <b>gold standard</b> in research because it allows us to 
+make a strong claim about <b>causality</b>. This means we can say that changes in 
+the independent variable directly caused changes in the dependent variable.
 </p>
 
-<p><b>All three requirements are present:</b></p>
+<p><b>To do this, three conditions must be met:</b></p>
 
 <ul>
-<li>✅ <b>Manipulation:</b> The researcher creates conditions.</li>
-<li>✅ <b>Random assignment:</b> Participants are randomly placed into groups.</li>
-<li>✅ <b>Control:</b> Everything else is kept as equal as possible.</li>
+<li><b>❌<b> Manipulation:</b> The researcher actively creates different conditions (e.g., high dose vs low dose).</li>
+<li><b>❌<b> Random assignment:</b> Participants are randomly placed into groups, which helps eliminate bias.</li>
+<li><b>❌<b> Control:</b> Everything else is kept as similar as possible between groups.</li>
 </ul>
 
 <div class="highlight">
-All three are required to establish causation.
+Example: A researcher gives one group 100 mg of medication and another 50 mg, 
+randomly assigns participants, and ensures all other conditions are identical.
 </div>
 
 <hr>
 
-<!-- QUASI -->
 <h3><span class="badge" style="background:#fbbf24">MODERATE STRENGTH</span> Quasi-Experiment</h3>
 
 <p>
-A quasi-experiment is an "almost" experiment because it includes only one or two of 
-the required features. Most commonly, it is missing random assignment.
-</p>
-
-<p><b>Example 1 (common case):</b></p>
-
+A quasi-experiment is an <b>"almost" experiment</b>. It includes only one or two of the features required for a true experiment.
+Most commonly, quasi-experiments are missing <b>random assignment</b>. 
+  
 <ul>
-<li>✅ <b>Manipulation</b></li>
-<li>❌ <b>Random assignment</b></li>
-<li>✅ <b>Control</b></li>
+<li>✅<b> Manipulation:</b> The researcher actively creates different conditions (e.g., high dose vs low dose).</li>
+<li>❌<b> Random assignment:</b> Participants are randomly placed into groups, which helps eliminate bias.</li>
+<li>✅<b> Control:</b> Everything else is kept as similar as possible between groups.</li>
 </ul>
 
-<p><b>Example 2 (another pattern):</b></p>
-
+<p> Here is another common example</b>. 
+  
 <ul>
-<li>❌ <b>Manipulation</b></li>
-<li>❌ <b>Random assignment</b></li>
-<li>✅ <b>Control</b></li>
+<li>❌<b> Manipulation:</b> The researcher actively creates different conditions (e.g., high dose vs low dose).</li>
+<li>❌<b> Random assignment:</b> Participants are randomly placed into groups, which helps eliminate bias.</li>
+<li>✅<b> Control:</b> Everything else is kept as similar as possible between groups.</li>
 </ul>
 
-<p>
-Because at least one requirement is missing, causation cannot be fully established.
+</p>Because of this, we cannot confidently say that one variable caused another—we can only suggest it.
 </p>
 
 <div class="highlight">
-Quasi-experiments contain <b>some but not all</b> of the requirements.
+These are often used when true experiments would be <b>unethical or impractical</b>.
 </div>
 
 <p>
-These are often used when true experiments are unethical or impractical.
+For example, researchers cannot randomly assign people to harmful conditions 
+(like drug use), so they study groups that already exist.
 </p>
 
 <hr>
 
-<!-- CORRELATIONAL -->
 <h3><span class="badge" style="background:#f87171">WEAKEST</span> Correlational Study</h3>
 
 <p>
-Correlational studies examine relationships but do not involve manipulation or control.
+Correlational studies examine whether two variables are <b>related</b>, but they do 
+not involve manipulation or control.
 </p>
 
 <ul>
-<li>❌ <b>Manipulation</b></li>
-<li>❌ <b>Random assignment</b></li>
-<li>❌ <b>Control</b></li>
+<li>❌<b> Manipulation:</b> The researcher actively creates different conditions (e.g., high dose vs low dose).</li>
+<li>❌<b> Random assignment:</b> Participants are randomly placed into groups, which helps eliminate bias.</li>
+<li>❌<b> Control:</b> Everything else is kept as similar as possible between groups.</li>
 </ul>
-
+  
 <div class="highlight">
-Correlation does NOT equal causation.
+Important: Correlation ≠ Causation
 </div>
 
 <p>
-Because none of the requirements are met, researchers cannot determine cause and effect.
+Even if two variables are strongly related, we cannot assume that one causes the other. 
+There may be a third variable, or the relationship could be coincidental.
+</p>
+
+<p>
+Despite being the weakest design, correlational studies are useful because they are 
+<b>fast, inexpensive, and great for early exploration</b>.
 </p>
 
 </div>
-
-</div>
-
-</body>
-</html>
