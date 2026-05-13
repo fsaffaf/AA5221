@@ -18,6 +18,8 @@
     </p>
   </div>
 
+  <h2>Hypothesis Structure</h2>
+
   <table>
     <thead>
       <tr>
@@ -46,40 +48,24 @@
   </table>
 
   <div class="card">
-    <div class="card-header">
-      <div class="card-icon">📦</div>
-      <h2>Step 1: Install Required Packages</h2>
-    </div>
-
+    <h2>Step 1: Install Required Packages</h2>
     <pre><code>install.packages("readxl")
 install.packages("ggpubr")</code></pre>
   </div>
 
   <div class="card">
-    <div class="card-header">
-      <div class="card-icon">📚</div>
-      <h2>Step 2: Load Packages</h2>
-    </div>
-
+    <h2>Step 2: Load Packages</h2>
     <pre><code>library(readxl)
 library(ggpubr)</code></pre>
   </div>
 
   <div class="card">
-    <div class="card-header">
-      <div class="card-icon">📁</div>
-      <h2>Step 3: Import Dataset</h2>
-    </div>
-
+    <h2>Step 3: Import Dataset</h2>
     <pre><code>DatasetZ &lt;- read_excel("C:/Users/Username/Desktop/dataset.xlsx")</code></pre>
   </div>
 
   <div class="card">
-    <div class="card-header">
-      <div class="card-icon">📈</div>
-      <h2>Step 4: Create Scatterplot</h2>
-    </div>
-
+    <h2>Step 4: Create Scatterplot</h2>
     <pre><code>ggscatter(
   DatasetZ,
   x = "Age",
@@ -91,20 +77,12 @@ library(ggpubr)</code></pre>
   </div>
 
   <div class="card">
-    <div class="card-header">
-      <div class="card-icon">✅</div>
-      <h2>Step 5: Pearson Correlation</h2>
-    </div>
-
+    <h2>Step 5: Pearson Correlation</h2>
     <pre><code>cor.test(DatasetZ$Age, DatasetZ$USD, method = "pearson")</code></pre>
   </div>
 
   <div class="card">
-    <div class="card-header">
-      <div class="card-icon">🔁</div>
-      <h2>Step 6: Spearman Correlation (Backup)</h2>
-    </div>
-
+    <h2>Step 6: Spearman Correlation (Backup)</h2>
     <pre><code>cor.test(DatasetZ$Age, DatasetZ$USD, method = "spearman")</code></pre>
   </div>
 
