@@ -1,102 +1,248 @@
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Lecture 1 — Types of Data</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  background: radial-gradient(circle at top, #0b1220, #020617 70%);
+  color: rgba(255,255,255,0.92);
+}
+
+.container {
+  max-width: 1000px;
+  margin: auto;
+  padding: 5rem 1.5rem;
+}
+
+h1 {
+  font-size: 3rem;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  text-align: center;
+  background: linear-gradient(180deg, #fff, #7dd3fc);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.subtitle {
+  text-align: center;
+  letter-spacing: .3em;
+  margin-bottom: 3rem;
+  opacity: 0.8;
+}
+
+h2, h3 {
+  position: relative;
+  display: inline-block;
+}
+
+h2::after, h3::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -5px;
+  width: 0%;
+  height: 2px;
+  background: #38bdf8;
+  transition: width 0.3s ease;
+}
+
+h2:hover::after, h3:hover::after {
+  width: 100%;
+}
+
+h2 { color:#93c5fd; }
+h3 { color:#7dd3fc; }
+
+p {
+  line-height: 1.75;
+  margin-bottom: 1rem;
+  max-width: 75ch;
+}
+
+.card {
+  background: rgba(15,23,42,.6);
+  border-radius: 16px;
+  padding: 1.75rem;
+  margin-bottom: 2rem;
+  border: 1px solid rgba(255,255,255,.08);
+  box-shadow: 0 10px 30px rgba(0,0,0,.4);
+
+  transform: translateY(20px);
+  opacity: 0;
+  animation: fadeInUp 0.8s ease forwards;
+}
+
+.card:nth-child(1){ animation-delay: .1s; }
+.card:nth-child(2){ animation-delay: .3s; }
+
+.card:hover {
+  transform: translateY(-6px) scale(1.01);
+  box-shadow: 0 20px 50px rgba(56,189,248,.25);
+}
+
+.highlight {
+  background: rgba(56,189,248,.12);
+  border-left: 4px solid #38bdf8;
+  padding: 1rem;
+  margin: 1rem 0;
+  border-radius: 6px;
+}
+
+.takeaway {
+  background: rgba(34,197,94,.12);
+  border-left: 4px solid #22c55e;
+  padding: 1rem;
+  border-radius: 6px;
+  margin: 1.5rem 0;
+}
+
+ul { padding-left: 1.2rem; }
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+</style>
+</head>
+
+<body>
+
 <div class="container">
 
-<h1>Correlation</h1>
-<div class="subtitle">Step-by-Step Guide</div>
+<h1>Lecture 1</h1>
+<div class="subtitle">Types of Data</div>
 
-<!-- OVERVIEW -->
+<!-- INTRO -->
 <div class="card">
-<h2>📊 Overview</h2>
+<h2>📊 What is Data?</h2>
 
 <p>
-Correlation allows you to determine the relationship between two continuous variables.
+In research, <b>data</b> refers to the information that researchers collect in order to answer questions. 
+The type of data you collect determines how you analyze it and what conclusions you can draw.
 </p>
 
 <p>
-If the data for both variables is normally distributed, use a <b>Pearson correlation</b>. 
-This is the preferred test because it is more accurate when conditions are met.
+There are two primary types of data: <b>quantitative</b> and <b>qualitative</b>. 
+Understanding the difference between these is essential for choosing the correct research methods.
 </p>
+
+<div class="takeaway">
+<strong>Key idea:</strong> The type of data determines how it can be analyzed.
+</div>
+
+</div>
+
+<!-- QUANTITATIVE -->
+<div class="card">
+<h2>🔢 Quantitative Data</h2>
 
 <p>
-If one or both variables are not normally distributed, use a <b>Spearman correlation</b>, 
-which serves as a strong backup test.
+<b>Quantitative data</b> is numerical data. It involves measurements or quantities that can be 
+analyzed mathematically using statistics.
 </p>
 
-<h3>Hypothesis Structure</h3>
+<div class="highlight">
+Quantitative data answers questions like: <i>How much? How many? How often?</i>
+</div>
+
+<p>
+Because this type of data is expressed in numbers, researchers can calculate averages, 
+compare groups, and run statistical tests to draw conclusions.
+</p>
+
+<h3>Examples</h3>
 
 <ul>
-<li><b>Research Question:</b> Is there a relationship between Variable A and Variable B?</li>
-<li><b>Null Hypothesis:</b> There is no relationship between the variables.</li>
-<li><b>Alternate Hypothesis:</b> There is a relationship between the variables.</li>
+<li>Height (e.g., 170 cm)</li>
+<li>Weight (e.g., 150 lbs)</li>
+<li>Test scores (e.g., 85%)</li>
+<li>Number of hours studied</li>
 </ul>
 
+<p>
+Quantitative data is especially useful for testing hypotheses and identifying patterns 
+or relationships between variables.
+</p>
+
 <div class="takeaway">
-<strong>Key takeaway:</strong> The type of data distribution determines which correlation test you use.
+<strong>Key takeaway:</strong> Quantitative data = numbers that can be analyzed statistically.
 </div>
 
 </div>
 
-<!-- STEP 1 -->
+<!-- QUALITATIVE -->
 <div class="card">
-<h2>Step 1: Install Required Packages</h2>
+<h2>💬 Qualitative Data</h2>
 
 <p>
-Install the packages needed to run correlation analyses. Packages only need to be installed once.
-Running install code repeatedly can cause errors.
+<b>Qualitative data</b> is descriptive, non-numerical data. It focuses on understanding 
+meaning, experience, or perspective rather than measuring quantities.
 </p>
 
 <div class="highlight">
-The package <b>readxl</b> allows you to import Excel datasets.  
-The package <b>ggpubr</b> allows you to create graphs such as scatterplots.
+Qualitative data answers questions like: <i>Why? How? What does it mean?</i>
 </div>
-
-<pre><code>install.packages("readxl")
-install.packages("ggpubr")</code></pre>
-
-<div class="takeaway">
-<strong>Key takeaway:</strong> Install packages once, then load them each session.
-</div>
-
-</div>
-
-<!-- STEP 2 -->
-<div class="card">
-<h2>Step 2: Load Packages</h2>
 
 <p>
-After installing, load your packages into R. This must be done every time you start a new session.
+This type of data is often collected through interviews, open-ended survey responses, 
+or observations.
 </p>
 
-<pre><code>library(readxl)
-library(ggpubr)</code></pre>
+<h3>Examples</h3>
 
-<div class="takeaway">
-<strong>Key takeaway:</strong> Installing = one time. Loading = every session.
-</div>
-
-</div>
-
-<!-- STEP 3 -->
-<div class="card">
-<h2>Step 3: Import Dataset</h2>
+<ul>
+<li>Interview responses about opinions</li>
+<li>Descriptions of experiences</li>
+<li>Observations of behavior</li>
+<li>Written feedback</li>
+</ul>
 
 <p>
-Import your dataset into RStudio so you can begin analysis.
+Instead of statistical analysis, qualitative data is analyzed by identifying patterns, 
+themes, or meanings within the responses.
+</p>
+
+<div class="takeaway">
+<strong>Key takeaway:</strong> Qualitative data = words, meanings, and experiences.
+</div>
+
+</div>
+
+<!-- COMPARISON -->
+<div class="card">
+<h2>⚖️ Comparing Quantitative and Qualitative Data</h2>
+
+<p>
+Both types of data are useful, but they serve different purposes in research.
 </p>
 
 <div class="highlight">
-Make sure your file path correctly points to where your dataset is saved.
+Quantitative data provides <b>precision and measurement</b>, while qualitative data provides 
+<b>depth and understanding</b>.
 </div>
 
-<pre><code>DatasetZ &lt;- read_excel("C:/Users/Username/Desktop/dataset.xlsx")</code></pre>
+<ul>
+<li><b>Quantitative:</b> Numbers, measurements, statistical analysis</li>
+<li><b>Qualitative:</b> Words, meaning, interpretation</li>
+</ul>
 
 <p>
-Once imported, your dataset will appear in the Environment tab and be ready to use.
+Many studies use both types together to get a more complete understanding of a research question.
 </p>
 
 <div class="takeaway">
-<strong>Key takeaway:</strong> Your dataset must be successfully loaded before you can run any analysis.
+<strong>Final takeaway:</strong> Quantitative explains <i>what</i> and <i>how much</i>, while qualitative explains <i>why</i> and <i>how</i>.
 </div>
 
 </div>
 
 </div>
+
+</body>
+</html>
