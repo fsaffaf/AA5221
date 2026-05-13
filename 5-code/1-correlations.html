@@ -1,121 +1,111 @@
-<style>
-  .section-header {
-    background: #3b7ed1;
-    padding: 12px 16px;
-    border-radius: 6px;
-    color: #ffffff;
-    font-size: 14pt;
-    font-family: system-ui, Arial, sans-serif;
-    font-weight: bold;
-    margin-top: 24px;
-  }
+<div class="main-container">
 
-  .body-text {
-    font-size: 14pt;
-    font-family: Arial, sans-serif;
-    margin: 12px 0;
-  }
+  <h1>Correlation Analysis</h1>
 
-  .styled-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-    font-family: Arial, sans-serif;
-  }
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">📊</div>
+      <h2>Overview</h2>
+    </div>
 
-  .styled-table th {
-    background: #2b6cb0;
-    color: #ffffff;
-    padding: 10px;
-    text-align: left;
-  }
+    <p>
+      Correlation allows you to determine the relationship between two continuous variables.
+    </p>
 
-  .styled-table td {
-    padding: 10px;
-  }
+    <p>
+      If both variables are normally distributed, use a <strong>Pearson correlation</strong>.
+      If one or both are not normally distributed, use a <strong>Spearman correlation</strong>.
+    </p>
+  </div>
 
-  .styled-table tr:nth-child(even) {
-    background: #f5f8fc;
-  }
+  <table>
+    <thead>
+      <tr>
+        <th>Component</th>
+        <th>Structure</th>
+        <th>Example</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Research Question</strong></td>
+        <td>Is there a relationship between Variable A and Variable B?</td>
+        <td>Is there a relationship between Age and Income (USD)?</td>
+      </tr>
+      <tr>
+        <td><strong>Null Hypothesis</strong></td>
+        <td>There is no relationship between Variable A and Variable B.</td>
+        <td>There is no relationship between Age and Income.</td>
+      </tr>
+      <tr>
+        <td><strong>Alternate Hypothesis</strong></td>
+        <td>There is a relationship between Variable A and Variable B.</td>
+        <td>There is a relationship between Age and Income.</td>
+      </tr>
+    </tbody>
+  </table>
 
-  .code-block {
-    background: #f6f6f6;
-    padding: 12px;
-    font-family: "Courier New", monospace;
-    border-radius: 6px;
-    overflow-x: auto;
-  }
-</style>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">📦</div>
+      <h2>Step 1: Install Required Packages</h2>
+    </div>
 
-<div class="section-header">Overview</div>
+    <pre><code>install.packages("readxl")
+install.packages("ggpubr")</code></pre>
+  </div>
 
-<p class="body-text">
-  Correlation allows you to determine the relationship between two continuous variables.
-</p>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">📚</div>
+      <h2>Step 2: Load Packages</h2>
+    </div>
 
-<p class="body-text">
-  If both variables are normally distributed, use a <strong>Pearson correlation</strong>.
-  If one or both are not normally distributed, use a <strong>Spearman correlation</strong>.
-</p>
+    <pre><code>library(readxl)
+library(ggpubr)</code></pre>
+  </div>
 
-<table class="styled-table">
-  <tr>
-    <th>Component</th>
-    <th>Structure</th>
-    <th>Example</th>
-  </tr>
-  <tr>
-    <td><strong>Research Question</strong></td>
-    <td>Is there a relationship between Variable A and Variable B?</td>
-    <td>Is there a relationship between Age and Income (USD)?</td>
-  </tr>
-  <tr>
-    <td><strong>Null Hypothesis</strong></td>
-    <td>There is no relationship between Variable A and Variable B.</td>
-    <td>There is no relationship between Age and Income.</td>
-  </tr>
-  <tr>
-    <td><strong>Alternate Hypothesis</strong></td>
-    <td>There is a relationship between Variable A and Variable B.</td>
-    <td>There is a relationship between Age and Income.</td>
-  </tr>
-</table>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">📁</div>
+      <h2>Step 3: Import Dataset</h2>
+    </div>
 
-<div class="section-header">Step 1: Install Required Packages</div>
-<pre class="code-block">
-install.packages("readxl")
-install.packages("ggpubr")
-</pre>
+    <pre><code>DatasetZ &lt;- read_excel("C:/Users/Username/Desktop/dataset.xlsx")</code></pre>
+  </div>
 
-<div class="section-header">Step 2: Load Packages</div>
-<pre class="code-block">
-library(readxl)
-library(ggpubr)
-</pre>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">📈</div>
+      <h2>Step 4: Create Scatterplot</h2>
+    </div>
 
-<div class="section-header">Step 3: Import Dataset</div>
-<pre class="code-block">
-DatasetZ <- read_excel("C:/Users/Username/Desktop/dataset.xlsx")
-</pre>
-
-<div class="section-header">Step 4: Create Scatterplot</div>
-<pre class="code-block">
-ggscatter(
+    <pre><code>ggscatter(
   DatasetZ,
   x = "Age",
   y = "USD",
   add = "reg.line",
   xlab = "Age",
   ylab = "Income (USD)"
-)
-</pre>
+)</code></pre>
+  </div>
 
-<div class="section-header">Step 5: Pearson Correlation</div>
-<pre class="code-block">
-cor.test(DatasetZ$Age, DatasetZ$USD, method = "pearson")
-</pre>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">✅</div>
+      <h2>Step 5: Pearson Correlation</h2>
+    </div>
 
-<div class="section-header">Step 6: Spearman Correlation (Backup)</div>
-<pre class="code-block">
-cor.test(DatasetZ$Age, DatasetZ$USD, method = "spearman")
-</pre>
+    <pre><code>cor.test(DatasetZ$Age, DatasetZ$USD, method = "pearson")</code></pre>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">🔁</div>
+      <h2>Step 6: Spearman Correlation (Backup)</h2>
+    </div>
+
+    <pre><code>cor.test(DatasetZ$Age, DatasetZ$USD, method = "spearman")</code></pre>
+  </div>
+
+</div>
