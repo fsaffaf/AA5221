@@ -1,70 +1,105 @@
-<div style="background:#3b7ed1;padding:12px 16px;border-radius:6px;">
-  <span style="color:#fff;font-size:14pt;font-family:system-ui,Arial;"><strong>Overview</strong></span>
-</div>
+<style>
+  .section-header {
+    background: #3b7ed1;
+    padding: 12px 16px;
+    border-radius: 6px;
+    color: #ffffff;
+    font-size: 14pt;
+    font-family: system-ui, Arial, sans-serif;
+    font-weight: bold;
+    margin-top: 24px;
+  }
 
-<p style="font-size:14pt;font-family:Arial;">
+  .body-text {
+    font-size: 14pt;
+    font-family: Arial, sans-serif;
+    margin: 12px 0;
+  }
+
+  .styled-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    font-family: Arial, sans-serif;
+  }
+
+  .styled-table th {
+    background: #2b6cb0;
+    color: #ffffff;
+    padding: 10px;
+    text-align: left;
+  }
+
+  .styled-table td {
+    padding: 10px;
+  }
+
+  .styled-table tr:nth-child(even) {
+    background: #f5f8fc;
+  }
+
+  .code-block {
+    background: #f6f6f6;
+    padding: 12px;
+    font-family: "Courier New", monospace;
+    border-radius: 6px;
+    overflow-x: auto;
+  }
+</style>
+
+<div class="section-header">Overview</div>
+
+<p class="body-text">
   Correlation allows you to determine the relationship between two continuous variables.
 </p>
 
-<p style="font-size:14pt;font-family:Arial;">
-  If both variables are normally distributed, use a <strong>Pearson correlation</strong>.  
+<p class="body-text">
+  If both variables are normally distributed, use a <strong>Pearson correlation</strong>.
   If one or both are not normally distributed, use a <strong>Spearman correlation</strong>.
 </p>
 
-<table style="width:100%;border-collapse:collapse;margin-top:20px;">
-  <tr style="background:#2b6cb0;color:#fff;">
-    <th style="padding:10px;text-align:left;">Component</th>
-    <th style="padding:10px;text-align:left;">Structure</th>
-    <th style="padding:10px;text-align:left;">Example</th>
+<table class="styled-table">
+  <tr>
+    <th>Component</th>
+    <th>Structure</th>
+    <th>Example</th>
   </tr>
   <tr>
-    <td style="padding:10px;"><strong>Research Question</strong></td>
-    <td style="padding:10px;">Is there a relationship between Variable A and Variable B?</td>
-    <td style="padding:10px;">Is there a relationship between Age and Income (USD)?</td>
-  </tr>
-  <tr style="background:#f5f8fc;">
-    <td style="padding:10px;"><strong>Null Hypothesis</strong></td>
-    <td style="padding:10px;">There is no relationship between Variable A and Variable B.</td>
-    <td style="padding:10px;">There is no relationship between Age and Income.</td>
+    <td><strong>Research Question</strong></td>
+    <td>Is there a relationship between Variable A and Variable B?</td>
+    <td>Is there a relationship between Age and Income (USD)?</td>
   </tr>
   <tr>
-    <td style="padding:10px;"><strong>Alternate Hypothesis</strong></td>
-    <td style="padding:10px;">There is a relationship between Variable A and Variable B.</td>
-    <td style="padding:10px;">There is a relationship between Age and Income.</td>
+    <td><strong>Null Hypothesis</strong></td>
+    <td>There is no relationship between Variable A and Variable B.</td>
+    <td>There is no relationship between Age and Income.</td>
+  </tr>
+  <tr>
+    <td><strong>Alternate Hypothesis</strong></td>
+    <td>There is a relationship between Variable A and Variable B.</td>
+    <td>There is a relationship between Age and Income.</td>
   </tr>
 </table>
 
-<div style="background:#3b7ed1;padding:12px 16px;border-radius:6px;margin-top:24px;">
-  <span style="color:#fff;font-size:14pt;"><strong>Step 1: Install Required Packages</strong></span>
-</div>
-
-<pre style="background:#f6f6f6;padding:12px;font-family:Courier New;">
+<div class="section-header">Step 1: Install Required Packages</div>
+<pre class="code-block">
 install.packages("readxl")
 install.packages("ggpubr")
 </pre>
 
-<div style="background:#3b7ed1;padding:12px 16px;border-radius:6px;margin-top:24px;">
-  <span style="color:#fff;font-size:14pt;"><strong>Step 2: Load Packages</strong></span>
-</div>
-
-<pre style="background:#f6f6f6;padding:12px;font-family:Courier New;">
+<div class="section-header">Step 2: Load Packages</div>
+<pre class="code-block">
 library(readxl)
 library(ggpubr)
 </pre>
 
-<div style="background:#3b7ed1;padding:12px 16px;border-radius:6px;margin-top:24px;">
-  <span style="color:#fff;font-size:14pt;"><strong>Step 3: Import Dataset</strong></span>
-</div>
-
-<pre style="background:#f6f6f6;padding:12px;font-family:Courier New;">
+<div class="section-header">Step 3: Import Dataset</div>
+<pre class="code-block">
 DatasetZ <- read_excel("C:/Users/Username/Desktop/dataset.xlsx")
 </pre>
 
-<div style="background:#3b7ed1;padding:12px 16px;border-radius:6px;margin-top:24px;">
-  <span style="color:#fff;font-size:14pt;"><strong>Step 4: Create Scatterplot</strong></span>
-</div>
-
-<pre style="background:#f6f6f6;padding:12px;font-family:Courier New;">
+<div class="section-header">Step 4: Create Scatterplot</div>
+<pre class="code-block">
 ggscatter(
   DatasetZ,
   x = "Age",
@@ -75,19 +110,12 @@ ggscatter(
 )
 </pre>
 
-<div style="background:#3b7ed1;padding:12px 16px;border-radius:6px;margin-top:24px;">
-  <span style="color:#fff;font-size:14pt;"><strong>Step 10: Pearson Correlation</strong></span>
-</div>
-
-<pre style="background:#f6f6f6;padding:12px;font-family:Courier New;">
+<div class="section-header">Step 5: Pearson Correlation</div>
+<pre class="code-block">
 cor.test(DatasetZ$Age, DatasetZ$USD, method = "pearson")
 </pre>
 
-<div style="background:#3b7ed1;padding:12px 16px;border-radius:6px;margin-top:24px;">
-  <span style="color:#fff;font-size:14pt;"><strong>Step 10 (Backup): Spearman Correlation</strong></span>
-</div>
-
-<pre style="background:#f6f6f6;padding:12px;font-family:Courier New;">
+<div class="section-header">Step 6: Spearman Correlation (Backup)</div>
+<pre class="code-block">
 cor.test(DatasetZ$Age, DatasetZ$USD, method = "spearman")
 </pre>
-``
