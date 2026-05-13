@@ -1,89 +1,102 @@
-<div class="main-container">
+<div class="container">
 
-  <h1>Correlation Analysis</h1>
+<h1>Correlation</h1>
+<div class="subtitle">Step-by-Step Guide</div>
 
-  <div class="card">
-    <div class="card-header">
-      <div class="card-icon">📊</div>
-      <h2>Overview</h2>
-    </div>
+<!-- OVERVIEW -->
+<div class="card">
+<h2>📊 Overview</h2>
 
-    <p>
-      Correlation allows you to determine the relationship between two continuous variables.
-    </p>
+<p>
+Correlation allows you to determine the relationship between two continuous variables.
+</p>
 
-    <p>
-      If both variables are normally distributed, use a <strong>Pearson correlation</strong>.
-      If one or both are not normally distributed, use a <strong>Spearman correlation</strong>.
-    </p>
-  </div>
+<p>
+If the data for both variables is normally distributed, use a <b>Pearson correlation</b>. 
+This is the preferred test because it is more accurate when conditions are met.
+</p>
 
-  <h2>Hypothesis Structure</h2>
+<p>
+If one or both variables are not normally distributed, use a <b>Spearman correlation</b>, 
+which serves as a strong backup test.
+</p>
 
-  <table>
-    <thead>
-      <tr>
-        <th>Component</th>
-        <th>Structure</th>
-        <th>Example</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><strong>Research Question</strong></td>
-        <td>Is there a relationship between Variable A and Variable B?</td>
-        <td>Is there a relationship between Age and Income (USD)?</td>
-      </tr>
-      <tr>
-        <td><strong>Null Hypothesis</strong></td>
-        <td>There is no relationship between Variable A and Variable B.</td>
-        <td>There is no relationship between Age and Income.</td>
-      </tr>
-      <tr>
-        <td><strong>Alternate Hypothesis</strong></td>
-        <td>There is a relationship between Variable A and Variable B.</td>
-        <td>There is a relationship between Age and Income.</td>
-      </tr>
-    </tbody>
-  </table>
+<h3>Hypothesis Structure</h3>
 
-  <div class="card">
-    <h2>Step 1: Install Required Packages</h2>
-    <pre><code>install.packages("readxl")
+<ul>
+<li><b>Research Question:</b> Is there a relationship between Variable A and Variable B?</li>
+<li><b>Null Hypothesis:</b> There is no relationship between the variables.</li>
+<li><b>Alternate Hypothesis:</b> There is a relationship between the variables.</li>
+</ul>
+
+<div class="takeaway">
+<strong>Key takeaway:</strong> The type of data distribution determines which correlation test you use.
+</div>
+
+</div>
+
+<!-- STEP 1 -->
+<div class="card">
+<h2>Step 1: Install Required Packages</h2>
+
+<p>
+Install the packages needed to run correlation analyses. Packages only need to be installed once.
+Running install code repeatedly can cause errors.
+</p>
+
+<div class="highlight">
+The package <b>readxl</b> allows you to import Excel datasets.  
+The package <b>ggpubr</b> allows you to create graphs such as scatterplots.
+</div>
+
+<pre><code>install.packages("readxl")
 install.packages("ggpubr")</code></pre>
-  </div>
 
-  <div class="card">
-    <h2>Step 2: Load Packages</h2>
-    <pre><code>library(readxl)
+<div class="takeaway">
+<strong>Key takeaway:</strong> Install packages once, then load them each session.
+</div>
+
+</div>
+
+<!-- STEP 2 -->
+<div class="card">
+<h2>Step 2: Load Packages</h2>
+
+<p>
+After installing, load your packages into R. This must be done every time you start a new session.
+</p>
+
+<pre><code>library(readxl)
 library(ggpubr)</code></pre>
-  </div>
 
-  <div class="card">
-    <h2>Step 3: Import Dataset</h2>
-    <pre><code>DatasetZ &lt;- read_excel("C:/Users/Username/Desktop/dataset.xlsx")</code></pre>
-  </div>
+<div class="takeaway">
+<strong>Key takeaway:</strong> Installing = one time. Loading = every session.
+</div>
 
-  <div class="card">
-    <h2>Step 4: Create Scatterplot</h2>
-    <pre><code>ggscatter(
-  DatasetZ,
-  x = "Age",
-  y = "USD",
-  add = "reg.line",
-  xlab = "Age",
-  ylab = "Income (USD)"
-)</code></pre>
-  </div>
+</div>
 
-  <div class="card">
-    <h2>Step 5: Pearson Correlation</h2>
-    <pre><code>cor.test(DatasetZ$Age, DatasetZ$USD, method = "pearson")</code></pre>
-  </div>
+<!-- STEP 3 -->
+<div class="card">
+<h2>Step 3: Import Dataset</h2>
 
-  <div class="card">
-    <h2>Step 6: Spearman Correlation (Backup)</h2>
-    <pre><code>cor.test(DatasetZ$Age, DatasetZ$USD, method = "spearman")</code></pre>
-  </div>
+<p>
+Import your dataset into RStudio so you can begin analysis.
+</p>
+
+<div class="highlight">
+Make sure your file path correctly points to where your dataset is saved.
+</div>
+
+<pre><code>DatasetZ &lt;- read_excel("C:/Users/Username/Desktop/dataset.xlsx")</code></pre>
+
+<p>
+Once imported, your dataset will appear in the Environment tab and be ready to use.
+</p>
+
+<div class="takeaway">
+<strong>Key takeaway:</strong> Your dataset must be successfully loaded before you can run any analysis.
+</div>
+
+</div>
 
 </div>
