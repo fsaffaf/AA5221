@@ -120,7 +120,7 @@ ul { padding-left: 1.2rem; }
 
 <!-- INTRO -->
 <div class="card">
-<h2>📊 Correlation Overview</h2>
+<h2> Correlation Overview</h2>
 
 <p>Correlation allows you to determine the relationship between two <b>continuous variables</b>.
 Use a Pearson Correlation when both continious variable are <b>normally</b> distributed.
@@ -132,31 +132,6 @@ The Pearson Correlation is a more accurate test than Spearman, so it is the defa
 However, the Spearman is stil a high-quality backup test when data is not normal.
 </p>
 
-
-<div class="takeaway">
-<strong>Key idea:</strong> The type of data determines how it can be analyzed.
-</div>
-
-</div>
-
-<!-- QUANTITATIVE -->
-<div class="card">
-<h2>🔢 Quantitative Data</h2>
-
-<p>
-<b>Quantitative data</b> is numerical data. It involves measurements or quantities that can be 
-analyzed mathematically using statistics.
-</p>
-
-<div class="highlight">
-Quantitative data answers questions like: <i>How much? How many? How often?</i>
-</div>
-
-<p>
-Because this type of data is expressed in numbers, researchers can calculate averages, 
-compare groups, and run statistical tests to draw conclusions.
-</p>
-
 <h3>Examples</h3>
 
 <ul>
@@ -166,10 +141,29 @@ compare groups, and run statistical tests to draw conclusions.
 <li>Number of hours studied</li>
 </ul>
 
+</div>
+
+<!-- QUANTITATIVE -->
+<div class="card">
+<h2>Step 1: Install the Required Packages</h2>
+
 <p>
-Quantitative data is especially useful for testing hypotheses and identifying patterns 
-or relationships between variables.
+Install the packages you need to conduct a Pearson (or Spearman) Correlation.
+Please note that R Packages only need to be installed once. Do NOT run the install code more than once after successful installation as this can lead to erors. 
 </p>
+
+<p>
+What is a package?
+</p>
+
+<p>
+The package readxl allows you to import Excel datasets
+The package ggpubr allows you to create histograms and bar charts.
+</p>
+
+<div class="highlight">
+<strong>Key takeaway:</strong> Code Template	install.packages("PackageName")
+</div>
 
 <div class="takeaway">
 <strong>Key takeaway:</strong> Quantitative data = numbers that can be analyzed statistically.
