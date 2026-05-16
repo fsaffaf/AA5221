@@ -348,6 +348,13 @@ Negative Relationship    → The line points downward
 No Relationship          → The line appears horizontal
 </div>
 
+  <div class="image-container">
+  <img 
+    src="https://www.scribbr.com/wp-content/uploads/2021/08/01-correlation-types.png" 
+    alt="Types of Correlation"
+  >
+</div>
+
 <h3>Relationship Strength</h3>
 
 <div class="highlight">
@@ -405,6 +412,37 @@ This code calculates the mean, standard deviation, and median for both variables
 <p>
 These functions come from Base R, so no additional package installation is required.
 </p>
+
+<!-- DESCRIPTIVE STATISTICS TABLE -->
+<h3>Function Breakdown</h3>
+
+<table>
+<tr>
+<th>Code</th>
+<th>Purpose</th>
+</tr>
+
+<tr>
+<td><code>mean()</code></td>
+<td>Calculates the average value.</td>
+</tr>
+
+<tr>
+<td><code>sd()</code></td>
+<td>Calculates the standard deviation.</td>
+</tr>
+
+<tr>
+<td><code>median()</code></td>
+<td>Calculates the middle value.</td>
+</tr>
+
+<tr>
+<td><code>DatasetName$Variable</code></td>
+<td>Accesses a specific variable from a dataset.</td>
+</tr>
+
+</table>
 
 <div class="highlight">
 DatasetName$Variable
@@ -689,6 +727,38 @@ NA
 The Shapiro-Wilk test provides a statistical method for objectively testing normality.
 </p>
 
+  <!-- SHAPIRO-WILK TABLE -->
+<h3>Function Breakdown</h3>
+
+<table>
+<tr>
+<th>Code</th>
+<th>Purpose</th>
+</tr>
+
+<tr>
+<td><code>shapiro.test()</code></td>
+<td>Runs the Shapiro-Wilk normality test.</td>
+</tr>
+
+<tr>
+<td><code>W =</code></td>
+<td>The test statistic used to evaluate normality.</td>
+</tr>
+
+<tr>
+<td><code>p-value =</code></td>
+<td>Determines whether the data is normally distributed.</td>
+</tr>
+
+</table>
+
+<div class="highlight">
+p-value ≥ .05 → Data is normally distributed
+
+p-value &lt; .05 → Data is NOT normally distributed
+</div>
+  
 <h3>Code Template</h3>
 
 <div class="highlight">
