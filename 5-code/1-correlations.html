@@ -207,116 +207,43 @@ None
 
 </div>
 
-<!-- STEP 2 -->
-<div class="card">
-<h2>Step 2: Open the Installed Packages</h2>
-
-<p>
-<h3>Directions</h3>
-</p>
-
-<p>
-Open the packages you have installed into R.
-You must re-open your desired packages every time you start a new RStudio session. 
-This is because loading everything by default would slow startup and waste memory.
-</p>
-
-<h3>Code Template</h3>
-<div class="highlight">
-library(PackageName)
-</div>
-
-<h3>Example Code</h3>
-<div class="takeaway">
-library(readxl)
-library(ggpubr)
-</div>
-
-<h3>Example Output</h3>
-<div class="takeaway">
-None
-</div>
-
-</div>
-
-
-<!-- STEP 3 -->
-<div class="card">
-<h2>Step 3: Import and Name Dataset</h2>
-
-<p>
-<h3>Directions</h3>
-</p>
-
-<p>
-Download the R dataset from Canvas and save it to your desktop.
-This can be done as a line of code (see below). However, MAC users have found 
-consistent issues locating their file path, so the point-and-click directions are provided below:
-</p>
-
-<div class="highlight">
-Open RStudio > File > Import Dataset > From Excel > Browse > Locate where you saved the dataset > Import
-</div>
-
-<p>
-Once you click Import, your dataset will appear in the Environment tab, and you can start using it in R.
-</p>
-
-<p>
-After import, RStudio also generates the code it used for you, visible at the bottom of the import dialog.
-Keep this line of code in your R Script file so it automatically imports the file whenever you want to work on analyzing the data after closing and re-opening RStudio.
-</p>
-
-<h3>Code Template</h3>
-<div class="highlight">
-DatasetName &lt;- read_excel("filepath")
-</div>
-
-<h3>Example Code</h3>
-<div class="takeaway">
-DatasetZ &lt;- read_excel("C:/Users/Joseph/Desktop/dataset.xlsx")
-</div>
-
-<h3>Example Output</h3>
-<div class="takeaway">
-NA
-</div>
-
-</div>
-
-
 <!-- STEP 4 -->
 <div class="card">
 <h2>Step 4: Create a Scatterplot to Visualize the Relationship</h2>
 
-<p>
 <h3>Directions</h3>
+
+<p>
+Scatterplots are always required when conducting a correlation because they allow you to visually inspect the relationship between two variables.
 </p>
 
 <p>
-Scatterplots are always required when conducting a correlation in order to visually see the relationship between the two variables.
+Each dot represents one observation (one participant).
+The x-axis contains the independent (predictor) variable, while the y-axis contains the dependent (outcome) variable.
 </p>
 
 <p>
-In a scatterplot, each dot represents one observation (one person).
-The x-axis is the independent (predictor) variable.
-The y-axis is the dependent (outcome) variable.
+Replace the dataset and variable names with your actual column names from the dataset.
 </p>
 
-<p>
-Replace the dataset and variable names with your column names.
-</p>
+<h3>Function Breakdown</h3>
 
 <div class="highlight">
-ggscatter → Creates a scatterplot<br>
-x → Specifies the x-axis variable<br>
-y → Specifies the y-axis variable<br>
-add = "reg.line" → Adds a line of best fit<br>
-xlab → Labels the x-axis<br>
-ylab → Labels the y-axis
+ggscatter            → Creates a scatterplot
+
+x                    → Specifies the x-axis variable
+
+y                    → Specifies the y-axis variable
+
+add = "reg.line"     → Adds a line of best fit
+
+xlab                 → Labels the x-axis
+
+ylab                 → Labels the y-axis
 </div>
 
 <h3>Code Template</h3>
+
 <div class="highlight">
 ggscatter(
   DatasetName,
@@ -329,18 +256,20 @@ ggscatter(
 </div>
 
 <h3>Example Code</h3>
+
 <div class="takeaway">
 ggscatter(
-DatasetZ,
-x = "Age",
-y = "USD",
-add = "reg.line",
-xlab = "Age",
-ylab = "USD"
+  DatasetZ,
+  x = "Age",
+  y = "USD",
+  add = "reg.line",
+  xlab = "Age",
+  ylab = "USD"
 )
 </div>
 
 <h3>Example Output</h3>
+
 <div class="takeaway">
 image.png
 </div>
@@ -352,45 +281,51 @@ image.png
 <div class="card">
 <h2>Step 5: Interpret the Scatterplot</h2>
 
-<p>
 <h3>Directions</h3>
-</p>
 
 <p>
-Report what you see in the scatterplot as a comment in your R Script.
+Report your observations as comments directly in your R Script.
 </p>
 
 <h3>Relationship Type</h3>
 
 <div class="highlight">
-If the dots form a straight-line pattern, the relationship is linear.<br>
-If the dots form a curved pattern, the relationship is non-linear and Spearman Correlation should be used.
+Linear Relationship      → Dots form a straight-line pattern
+
+Non-Linear Relationship  → Dots form a curved pattern
+
+If the relationship is curved, use Spearman Correlation instead of Pearson Correlation.
 </div>
 
 <h3>Relationship Direction</h3>
 
 <div class="highlight">
-Positive Relationship → The line points upward.<br>
-Negative Relationship → The line points downward.<br>
-No Relationship → The line is generally horizontal.
+Positive Relationship    → The line points upward
+
+Negative Relationship    → The line points downward
+
+No Relationship          → The line appears horizontal
 </div>
 
 <h3>Relationship Strength</h3>
 
 <div class="highlight">
-Strong Relationship → Dots tightly follow the line.<br>
-Weak Relationship → Dots loosely follow the line.<br>
-No Relationship → Dots appear random.
+Strong Relationship      → Dots tightly follow the line
+
+Weak Relationship        → Dots loosely follow the line
+
+No Relationship          → Dots appear random
 </div>
 
 <h3>Outliers</h3>
 
 <p>
-Check for dots far away from the main cluster.
-If removing them changes the line noticeably, they may be meaningful outliers.
+Inspect the plot for dots far away from the main cluster.
+If removing the dots noticeably changes the line of best fit, they may be meaningful outliers.
 </p>
 
 <h3>Report Template</h3>
+
 <div class="highlight">
 # The relationship is [linear / curved].
 
@@ -402,6 +337,7 @@ If removing them changes the line noticeably, they may be meaningful outliers.
 </div>
 
 <h3>Example Report</h3>
+
 <div class="takeaway">
 # The relationship is linear.
 
@@ -419,27 +355,28 @@ If removing them changes the line noticeably, they may be meaningful outliers.
 <div class="card">
 <h2>Step 6: Calculate the Descriptive Statistics</h2>
 
-<p>
 <h3>Directions</h3>
+
+<p>
+This code calculates the mean, standard deviation, and median for both variables.
 </p>
 
 <p>
-This code calculates the mean, standard deviation, and median of your variables.
-</p>
-
-<p>
-No special package is required because these functions come from Base R.
+These functions come from Base R, so no additional package installation is required.
 </p>
 
 <div class="highlight">
-DatasetName$Variable means “look at this variable from this dataset.”
+DatasetName$Variable
+
+→ Accesses a specific variable from a specific dataset
 </div>
 
 <p>
-Replace Dataset Name with your dataset name and replace the variable names with your column names.
+Replace the dataset and variable names with your actual column names.
 </p>
 
 <h3>Code Template</h3>
+
 <div class="highlight">
 mean(DatasetName$IndependentVariable)
 sd(DatasetName$IndependentVariable)
@@ -451,6 +388,7 @@ median(DatasetName$DependentVariable)
 </div>
 
 <h3>Example Code</h3>
+
 <div class="takeaway">
 mean(DatasetZ$Age)
 sd(DatasetZ$Age)
@@ -462,6 +400,7 @@ median(DatasetZ$USD)
 </div>
 
 <h3>Example Output</h3>
+
 <div class="takeaway">
 > mean(DatasetZ$Age)
 [1] 40.12
@@ -489,69 +428,87 @@ median(DatasetZ$USD)
 <div class="card">
 <h2>Step 7: Check Normality Visually (Histograms)</h2>
 
-<p>
 <h3>Directions</h3>
-</p>
 
 <p>
-Checking normality is extremely important.
-Create a histogram for each variable to visually inspect the distribution.
+Checking normality is extremely important before conducting Pearson Correlation.
+Create a histogram for each variable to visually inspect the data distribution.
 </p>
+
+<h3>Function Breakdown</h3>
 
 <div class="highlight">
-hist → Creates a histogram<br>
-main → Histogram title<br>
-breaks → Number of bins<br>
-col → Bar color<br>
-border → Border color<br>
-cex.main → Title font size<br>
-cex.axis → Axis number font size<br>
-cex.lab → Axis label font size
+hist                 → Creates a histogram
+
+main                 → Histogram title
+
+breaks               → Number of bins
+
+col                  → Bar color
+
+border               → Border color
+
+cex.main             → Title font size
+
+cex.axis             → Axis number font size
+
+cex.lab              → Axis label font size
 </div>
 
 <h3>Code Template</h3>
-<div class="highlight">
-hist(DatasetName$IndependentVariable,
-     main = "Independent Variable",
-     breaks = 20,
-     col = "lightblue",
-     border = "white",
-     cex.main = 1,
-     cex.axis = 1,
-     cex.lab = 1)
 
-hist(DatasetName$DependentVariable,
-     main = "Dependent Variable",
-     breaks = 20,
-     col = "lightcoral",
-     border = "white",
-     cex.main = 1,
-     cex.axis = 1,
-     cex.lab = 1)
+<div class="highlight">
+hist(
+  DatasetName$IndependentVariable,
+  main = "Independent Variable",
+  breaks = 20,
+  col = "lightblue",
+  border = "white",
+  cex.main = 1,
+  cex.axis = 1,
+  cex.lab = 1
+)
+
+hist(
+  DatasetName$DependentVariable,
+  main = "Dependent Variable",
+  breaks = 20,
+  col = "lightcoral",
+  border = "white",
+  cex.main = 1,
+  cex.axis = 1,
+  cex.lab = 1
+)
 </div>
 
 <h3>Example Code</h3>
-<div class="takeaway">
-hist(DatasetZ$Age,
-     main = "Age",
-     breaks = 20,
-     col = "lightblue",
-     border = "white",
-     cex.main = 1,
-     cex.axis = 1,
-     cex.lab = 1)
 
-hist(DatasetZ$USD,
-     main = "USD",
-     breaks = 20,
-     col = "lightcoral",
-     border = "white",
-     cex.main = 1,
-     cex.axis = 1,
-     cex.lab = 1)
+<div class="takeaway">
+hist(
+  DatasetZ$Age,
+  main = "Age",
+  breaks = 20,
+  col = "lightblue",
+  border = "white",
+  cex.main = 1,
+  cex.axis = 1,
+  cex.lab = 1
+)
+
+hist(
+  DatasetZ$USD,
+  main = "USD",
+  breaks = 20,
+  col = "lightcoral",
+  border = "white",
+  cex.main = 1,
+  cex.axis = 1,
+  cex.lab = 1
+)
 </div>
 
 <h3>Example Output</h3>
+
 <div class="takeaway">
 image.png
 
@@ -565,30 +522,36 @@ image.png
 <div class="card">
 <h2>Step 8: Interpret the Histograms</h2>
 
-<p>
 <h3>Directions</h3>
+
+<p>
+Write your interpretations directly below the histogram code in your R Script.
 </p>
 
 <p>
-Write your comments directly below the histogram code in your R Script.
+Determine the skewness, kurtosis, and overall normality of each variable.
 </p>
 
-<p>
-Determine the skewness and kurtosis for each variable and report whether the variable appears normally distributed.
-</p>
+<h3>Skewness Guide</h3>
 
 <div class="highlight">
-Symmetrical → Most data is centered<br>
-Positive Skew → Most data is on the left<br>
-Negative Skew → Most data is on the right
+Symmetrical Distribution     → Most data is centered
+
+Positive Skew                → Most data is on the left
+
+Negative Skew                → Most data is on the right
 </div>
 
+<h3>Kurtosis Guide</h3>
+
 <div class="highlight">
-Proper Bell Curve → Normal kurtosis<br>
-Too Tall or Too Flat → Abnormal kurtosis
+Proper Bell Curve            → Normal kurtosis
+
+Too Tall or Too Flat         → Abnormal kurtosis
 </div>
 
 <h3>Code Template</h3>
+
 <div class="highlight">
 # Variable 1: Name of Variable
 # The first variable looks [abnormally / normally] distributed.
@@ -602,6 +565,7 @@ Too Tall or Too Flat → Abnormal kurtosis
 </div>
 
 <h3>Example Code</h3>
+
 <div class="takeaway">
 # Variable 1: Age
 # The first variable looks normally distributed.
@@ -615,6 +579,7 @@ Too Tall or Too Flat → Abnormal kurtosis
 </div>
 
 <h3>Example Output</h3>
+
 <div class="takeaway">
 NA
 </div>
@@ -626,15 +591,14 @@ NA
 <div class="card">
 <h2>Step 9: Check Normality Statistically (Shapiro-Wilk Test)</h2>
 
-<p>
 <h3>Directions</h3>
-</p>
 
 <p>
-The Shapiro-Wilk test is a statistical method used to objectively test normality.
+The Shapiro-Wilk test provides a statistical method for objectively testing normality.
 </p>
 
 <h3>Code Template</h3>
+
 <div class="highlight">
 shapiro.test(DatasetName$IndependentVariable)
 
@@ -642,6 +606,7 @@ shapiro.test(DatasetName$DependentVariable)
 </div>
 
 <h3>Example Code</h3>
+
 <div class="takeaway">
 shapiro.test(DatasetZ$Age)
 
@@ -649,6 +614,7 @@ shapiro.test(DatasetZ$USD)
 </div>
 
 <h3>Example Output</h3>
+
 <div class="takeaway">
 > shapiro.test(DatasetZ$Age)
 
@@ -669,8 +635,5 @@ W = 0.970, p-value = 0.865
 </div>
 
 </div>
-
-</div>
-
 </body>
 </html>
