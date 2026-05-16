@@ -185,80 +185,475 @@ install.packages("PackageName")
 <h3>Example Code</h3>
 <div class="takeaway">
 install.packages("readxl")
-<p>
 install.packages("ggpubr")
-</p>
 </div>
 
 <h3>Output</h3>
-<p>
+<div class="takeaway">
 None
-</p>
+</div>
 
 </div>
 
-<!-- QUALITATIVE -->
+<!-- STEP 2 -->
 <div class="card">
-<h2>💬 Qualitative Data</h2>
+<h2>Step 2: Open the Installed Packages</h2>
 
 <p>
-<b>Qualitative data</b> is descriptive, non-numerical data. It focuses on understanding 
-meaning, experience, or perspective rather than measuring quantities.
+<h3>Directions</h3>
+</p>
+
+<p>
+Open the packages you have installed into R.
+You must re-open your desired packages every time you start a new RStudio session. 
+This is because loading everything by default would slow startup and waste memory.
+</p>
+
+<h3>Code Template</h3>
+<div class="highlight">
+library(PackageName)
+</div>
+
+<h3>Example Code</h3>
+<div class="takeaway">
+library(readxl)
+library(ggpubr)
+</div>
+
+<h3>Example Output</h3>
+<div class="takeaway">
+None
+</div>
+
+</div>
+
+
+<!-- STEP 3 -->
+<div class="card">
+<h2>Step 3: Import and Name Dataset</h2>
+
+<p>
+<h3>Directions</h3>
+</p>
+
+<p>
+Download the R dataset from Canvas and save it to your desktop.
+This can be done as a line of code (see below). However, MAC users have found 
+consistent issues locating their file path, so the point-and-click directions are provided below:
 </p>
 
 <div class="highlight">
-Qualitative data answers questions like: <i>Why? How? What does it mean?</i>
+Open RStudio > File > Import Dataset > From Excel > Browse > Locate where you saved the dataset > Import
 </div>
 
 <p>
-This type of data is often collected through interviews, open-ended survey responses, 
-or observations.
+Once you click Import, your dataset will appear in the Environment tab, and you can start using it in R.
 </p>
-
-<h3>Examples</h3>
-
-<ul>
-<li>Interview responses about opinions</li>
-<li>Descriptions of experiences</li>
-<li>Observations of behavior</li>
-<li>Written feedback</li>
-</ul>
 
 <p>
-Instead of statistical analysis, qualitative data is analyzed by identifying patterns, 
-themes, or meanings within the responses.
+After import, RStudio also generates the code it used for you, visible at the bottom of the import dialog.
+Keep this line of code in your R Script file so it automatically imports the file whenever you want to work on analyzing the data after closing and re-opening RStudio.
 </p>
 
+<h3>Code Template</h3>
+<div class="highlight">
+DatasetName &lt;- read_excel("filepath")
+</div>
+
+<h3>Example Code</h3>
 <div class="takeaway">
-<strong>Key takeaway:</strong> Qualitative data = words, meanings, and experiences.
+DatasetZ &lt;- read_excel("C:/Users/Joseph/Desktop/dataset.xlsx")
+</div>
+
+<h3>Example Output</h3>
+<div class="takeaway">
+NA
 </div>
 
 </div>
 
-<!-- COMPARISON -->
+
+<!-- STEP 4 -->
 <div class="card">
-<h2>⚖️ Comparing Quantitative and Qualitative Data</h2>
+<h2>Step 4: Create a Scatterplot to Visualize the Relationship</h2>
 
 <p>
-Both types of data are useful, but they serve different purposes in research.
+<h3>Directions</h3>
+</p>
+
+<p>
+Scatterplots are always required when conducting a correlation in order to visually see the relationship between the two variables.
+</p>
+
+<p>
+In a scatterplot, each dot represents one observation (one person).
+The x-axis is the independent (predictor) variable.
+The y-axis is the dependent (outcome) variable.
+</p>
+
+<p>
+Replace the dataset and variable names with your column names.
 </p>
 
 <div class="highlight">
-Quantitative data provides <b>precision and measurement</b>, while qualitative data provides 
-<b>depth and understanding</b>.
+ggscatter → Creates a scatterplot<br>
+x → Specifies the x-axis variable<br>
+y → Specifies the y-axis variable<br>
+add = "reg.line" → Adds a line of best fit<br>
+xlab → Labels the x-axis<br>
+ylab → Labels the y-axis
 </div>
 
-<ul>
-<li><b>Quantitative:</b> Numbers, measurements, statistical analysis</li>
-<li><b>Qualitative:</b> Words, meaning, interpretation</li>
-</ul>
+<h3>Code Template</h3>
+<div class="highlight">
+ggscatter(
+  DatasetName,
+  x = "IndependentVariable",
+  y = "DependentVariable",
+  add = "reg.line",
+  xlab = "Independent Variable",
+  ylab = "Dependent Variable"
+)
+</div>
+
+<h3>Example Code</h3>
+<div class="takeaway">
+ggscatter(
+DatasetZ,
+x = "Age",
+y = "USD",
+add = "reg.line",
+xlab = "Age",
+ylab = "USD"
+)
+</div>
+
+<h3>Example Output</h3>
+<div class="takeaway">
+image.png
+</div>
+
+</div>
+
+
+<!-- STEP 5 -->
+<div class="card">
+<h2>Step 5: Interpret the Scatterplot</h2>
 
 <p>
-Many studies use both types together to get a more complete understanding of a research question.
+<h3>Directions</h3>
 </p>
 
+<p>
+Report what you see in the scatterplot as a comment in your R Script.
+</p>
+
+<h3>Relationship Type</h3>
+
+<div class="highlight">
+If the dots form a straight-line pattern, the relationship is linear.<br>
+If the dots form a curved pattern, the relationship is non-linear and Spearman Correlation should be used.
+</div>
+
+<h3>Relationship Direction</h3>
+
+<div class="highlight">
+Positive Relationship → The line points upward.<br>
+Negative Relationship → The line points downward.<br>
+No Relationship → The line is generally horizontal.
+</div>
+
+<h3>Relationship Strength</h3>
+
+<div class="highlight">
+Strong Relationship → Dots tightly follow the line.<br>
+Weak Relationship → Dots loosely follow the line.<br>
+No Relationship → Dots appear random.
+</div>
+
+<h3>Outliers</h3>
+
+<p>
+Check for dots far away from the main cluster.
+If removing them changes the line noticeably, they may be meaningful outliers.
+</p>
+
+<h3>Report Template</h3>
+<div class="highlight">
+# The relationship is [linear / curved].
+
+# The relationship is [positive / negative / does not exist].
+
+# The relationship is [strong / moderate / weak / does not exist].
+
+# There [are / are no] outliers.
+</div>
+
+<h3>Example Report</h3>
 <div class="takeaway">
-<strong>Final takeaway:</strong> Quantitative explains <i>what</i> and <i>how much</i>, while qualitative explains <i>why</i> and <i>how</i>.
+# The relationship is linear.
+
+# The relationship is positive.
+
+# The relationship is moderate or strong.
+
+# There are no outliers.
+</div>
+
+</div>
+
+
+<!-- STEP 6 -->
+<div class="card">
+<h2>Step 6: Calculate the Descriptive Statistics</h2>
+
+<p>
+<h3>Directions</h3>
+</p>
+
+<p>
+This code calculates the mean, standard deviation, and median of your variables.
+</p>
+
+<p>
+No special package is required because these functions come from Base R.
+</p>
+
+<div class="highlight">
+DatasetName$Variable means “look at this variable from this dataset.”
+</div>
+
+<p>
+Replace Dataset Name with your dataset name and replace the variable names with your column names.
+</p>
+
+<h3>Code Template</h3>
+<div class="highlight">
+mean(DatasetName$IndependentVariable)
+sd(DatasetName$IndependentVariable)
+median(DatasetName$IndependentVariable)
+
+mean(DatasetName$DependentVariable)
+sd(DatasetName$DependentVariable)
+median(DatasetName$DependentVariable)
+</div>
+
+<h3>Example Code</h3>
+<div class="takeaway">
+mean(DatasetZ$Age)
+sd(DatasetZ$Age)
+median(DatasetZ$Age)
+
+mean(DatasetZ$USD)
+sd(DatasetZ$USD)
+median(DatasetZ$USD)
+</div>
+
+<h3>Example Output</h3>
+<div class="takeaway">
+> mean(DatasetZ$Age)
+[1] 40.12
+
+> sd(DatasetZ$Age)
+[1] 2.19
+
+> median(DatasetZ$Age)
+[1] 40
+
+> mean(DatasetZ$USD)
+[1] 41000.11
+
+> sd(DatasetZ$USD)
+[1] 1002.09
+
+> median(DatasetZ$USD)
+[1] 41000
+</div>
+
+</div>
+
+
+<!-- STEP 7 -->
+<div class="card">
+<h2>Step 7: Check Normality Visually (Histograms)</h2>
+
+<p>
+<h3>Directions</h3>
+</p>
+
+<p>
+Checking normality is extremely important.
+Create a histogram for each variable to visually inspect the distribution.
+</p>
+
+<div class="highlight">
+hist → Creates a histogram<br>
+main → Histogram title<br>
+breaks → Number of bins<br>
+col → Bar color<br>
+border → Border color<br>
+cex.main → Title font size<br>
+cex.axis → Axis number font size<br>
+cex.lab → Axis label font size
+</div>
+
+<h3>Code Template</h3>
+<div class="highlight">
+hist(DatasetName$IndependentVariable,
+     main = "Independent Variable",
+     breaks = 20,
+     col = "lightblue",
+     border = "white",
+     cex.main = 1,
+     cex.axis = 1,
+     cex.lab = 1)
+
+hist(DatasetName$DependentVariable,
+     main = "Dependent Variable",
+     breaks = 20,
+     col = "lightcoral",
+     border = "white",
+     cex.main = 1,
+     cex.axis = 1,
+     cex.lab = 1)
+</div>
+
+<h3>Example Code</h3>
+<div class="takeaway">
+hist(DatasetZ$Age,
+     main = "Age",
+     breaks = 20,
+     col = "lightblue",
+     border = "white",
+     cex.main = 1,
+     cex.axis = 1,
+     cex.lab = 1)
+
+hist(DatasetZ$USD,
+     main = "USD",
+     breaks = 20,
+     col = "lightcoral",
+     border = "white",
+     cex.main = 1,
+     cex.axis = 1,
+     cex.lab = 1)
+</div>
+
+<h3>Example Output</h3>
+<div class="takeaway">
+image.png
+
+image.png
+</div>
+
+</div>
+
+
+<!-- STEP 8 -->
+<div class="card">
+<h2>Step 8: Interpret the Histograms</h2>
+
+<p>
+<h3>Directions</h3>
+</p>
+
+<p>
+Write your comments directly below the histogram code in your R Script.
+</p>
+
+<p>
+Determine the skewness and kurtosis for each variable and report whether the variable appears normally distributed.
+</p>
+
+<div class="highlight">
+Symmetrical → Most data is centered<br>
+Positive Skew → Most data is on the left<br>
+Negative Skew → Most data is on the right
+</div>
+
+<div class="highlight">
+Proper Bell Curve → Normal kurtosis<br>
+Too Tall or Too Flat → Abnormal kurtosis
+</div>
+
+<h3>Code Template</h3>
+<div class="highlight">
+# Variable 1: Name of Variable
+# The first variable looks [abnormally / normally] distributed.
+# The data is [symmetrical / negatively skewed / positively skewed].
+# The data [has / does not have] a proper bell curve.
+
+# Variable 2: Name of Variable
+# The second variable looks [abnormally / normally] distributed.
+# The data is [symmetrical / negatively skewed / positively skewed].
+# The data [has / does not have] a proper bell curve.
+</div>
+
+<h3>Example Code</h3>
+<div class="takeaway">
+# Variable 1: Age
+# The first variable looks normally distributed.
+# The data is symmetrical.
+# The data has a proper bell curve.
+
+# Variable 2: USD
+# The second variable looks normally distributed.
+# The data is symmetrical.
+# The data has a proper bell curve.
+</div>
+
+<h3>Example Output</h3>
+<div class="takeaway">
+NA
+</div>
+
+</div>
+
+
+<!-- STEP 9 -->
+<div class="card">
+<h2>Step 9: Check Normality Statistically (Shapiro-Wilk Test)</h2>
+
+<p>
+<h3>Directions</h3>
+</p>
+
+<p>
+The Shapiro-Wilk test is a statistical method used to objectively test normality.
+</p>
+
+<h3>Code Template</h3>
+<div class="highlight">
+shapiro.test(DatasetName$IndependentVariable)
+
+shapiro.test(DatasetName$DependentVariable)
+</div>
+
+<h3>Example Code</h3>
+<div class="takeaway">
+shapiro.test(DatasetZ$Age)
+
+shapiro.test(DatasetZ$USD)
+</div>
+
+<h3>Example Output</h3>
+<div class="takeaway">
+> shapiro.test(DatasetZ$Age)
+
+Shapiro-Wilk normality test
+
+data: DatasetZ$Age
+
+W = 0.959, p-value = 0.754
+
+
+> shapiro.test(DatasetZ$USD)
+
+Shapiro-Wilk normality test
+
+data: DatasetZ$USD
+
+W = 0.970, p-value = 0.865
 </div>
 
 </div>
