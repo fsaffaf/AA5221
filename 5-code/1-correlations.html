@@ -98,12 +98,21 @@ p {
 
   font-family: 'Fira Code', monospace;
   font-size: 0.95rem;
-  line-height: 1.9;
+  line-height: 1.6; /* slightly tighter = less “floating” top gap */
   letter-spacing: -0.02em;
 
   white-space: pre-wrap;
   word-break: break-word;
   tab-size: 2;
+}
+
+/* 👇 removes unwanted top spacing from first element inside */
+.highlight > *:first-child {
+  margin-top: 0;
+}
+
+.highlight > *:last-child {
+  margin-bottom: 0;
 }
 
 .takeaway {
@@ -116,12 +125,21 @@ p {
 
   font-family: 'Fira Code', monospace;
   font-size: 0.95rem;
-  line-height: 1.9;
+  line-height: 1.6;
   letter-spacing: -0.02em;
 
   white-space: pre-wrap;
   word-break: break-word;
   tab-size: 2;
+}
+
+/* same fix for takeaway */
+.takeaway > *:first-child {
+  margin-top: 0;
+}
+
+.takeaway > *:last-child {
+  margin-bottom: 0;
 }
 
 ul { padding-left: 1.2rem; }
