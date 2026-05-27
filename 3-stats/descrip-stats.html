@@ -1,1 +1,418 @@
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Lecture 2 — Descriptive Statistics</title>
 
+<style>
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  background: radial-gradient(circle at top, #0b1220, #020617 70%);
+  color: rgba(255,255,255,0.92);
+}
+
+.container {
+  max-width: 1000px;
+  margin: auto;
+  padding: 5rem 1.5rem;
+}
+
+h1 {
+  font-size: 3rem;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  text-align: center;
+  background: linear-gradient(180deg, #fff, #7dd3fc);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.subtitle {
+  text-align: center;
+  letter-spacing: .3em;
+  margin-bottom: 3rem;
+  opacity: 0.8;
+}
+
+h2, h3 {
+  position: relative;
+  display: inline-block;
+}
+
+h2::after, h3::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -5px;
+  width: 0%;
+  height: 2px;
+  background: #38bdf8;
+  transition: width 0.3s ease;
+}
+
+h2:hover::after, h3:hover::after {
+  width: 100%;
+}
+
+h2 { color:#93c5fd; }
+h3 { color:#7dd3fc; }
+
+p {
+  line-height: 1.75;
+  margin-bottom: 1rem;
+  max-width: 75ch;
+}
+
+.card {
+  background: rgba(15,23,42,.6);
+  border-radius: 16px;
+  padding: 1.75rem;
+  margin-bottom: 2rem;
+  border: 1px solid rgba(255,255,255,.08);
+  box-shadow: 0 10px 30px rgba(0,0,0,.4);
+
+  transform: translateY(20px);
+  opacity: 0;
+  animation: fadeInUp 0.8s ease forwards;
+}
+
+.card:nth-child(1){ animation-delay: .1s; }
+.card:nth-child(2){ animation-delay: .3s; }
+
+.card:hover {
+  transform: translateY(-6px) scale(1.01);
+  box-shadow: 0 20px 50px rgba(56,189,248,.25);
+}
+
+.highlight {
+  background: rgba(56,189,248,.12);
+  border-left: 4px solid #38bdf8;
+  padding: 1rem;
+  margin: 1rem 0;
+  border-radius: 6px;
+}
+
+.takeaway {
+  background: rgba(34,197,94,.12);
+  border-left: 4px solid #22c55e;
+  padding: 1rem;
+  border-radius: 6px;
+  margin: 1.5rem 0;
+}
+
+ul { padding-left: 1.2rem; }
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Lecture 2</h1>
+<div class="subtitle">Descriptive Statistics</div>
+
+<!-- OVERVIEW -->
+<div class="card">
+<h2>📊 Overview</h2>
+
+<p>
+There are two types of data: <b>quantitative</b> and <b>qualitative</b>. While both are important, this course focuses on quantitative data because it allows for statistical testing and hypothesis evaluation.
+</p>
+
+<div class="highlight">
+Quantitative = numbers for analysis | Qualitative = words for meaning
+</div>
+
+<p>
+Quantitative data allows researchers to measure, calculate, and predict patterns. Qualitative data, on the other hand, provides deeper insight into experiences and perceptions.
+</p>
+
+<div class="takeaway">
+<strong>Key idea:</strong> Statistics primarily relies on quantitative data.
+</div>
+
+</div>
+
+<!-- DESCRIPTIVE VS INFERENTIAL -->
+<div class="card">
+<h2>📉 Descriptive vs Inferential Statistics</h2>
+
+<p>
+Statistics can be divided into two major categories, each serving a different purpose in research.
+</p>
+
+<ul>
+<li><b>Descriptive statistics:</b> Summarize and describe sample data (mean, median, mode, SD)</li>
+<li><b>Inferential statistics:</b> Test hypotheses and make conclusions about populations</li>
+</ul>
+
+<div class="highlight">
+Descriptive = describe the data | Inferential = test and generalize
+</div>
+
+<p>
+Descriptive statistics also help determine whether assumptions (such as normality) are met before running inferential tests.
+</p>
+
+<div class="takeaway">
+<strong>Key takeaway:</strong> You must understand your data before testing hypotheses.
+</div>
+
+</div>
+
+<!-- SAMPLE VS POPULATION -->
+<div class="card">
+<h2>👥 Sample vs Population</h2>
+
+<p>
+The <b>population</b> is the entire group of interest, while a <b>sample</b> is a smaller subset that researchers can realistically study.
+</p>
+
+<p>
+Inferential statistics use sample data to make predictions about the population. However, these predictions are only valid if the sample accurately represents the population.
+</p>
+
+<div class="highlight">
+A biased sample leads to biased conclusions.
+</div>
+
+<p>
+Sampling theory examines how samples are drawn and how representative they are, ensuring valid and reliable results.
+</p>
+
+<div class="takeaway">
+<strong>Key takeaway:</strong> A good sample is essential for valid conclusions.
+</div>
+
+</div>
+
+<!-- DESCRIPTIVE STATS IMPORTANCE -->
+<div class="card">
+<h2>📌 Importance of Descriptive Statistics</h2>
+
+<p>
+Students often rush into inferential testing, but skipping descriptive statistics can lead to flawed conclusions.
+</p>
+
+<ul>
+<li>Understand structure of data</li>
+<li>Identify patterns and variability</li>
+<li>Determine appropriate statistical tests</li>
+</ul>
+
+<div class="takeaway">
+<strong>Always start with descriptives.</strong>
+</div>
+
+</div>
+
+<!-- MEAN MEDIAN MODE -->
+<div class="card">
+<h2>📊 Measures of Central Tendency</h2>
+
+<h3>Mean</h3>
+<p>
+The average value. Calculated by adding all values and dividing by the total number.
+</p>
+
+<h3>Median</h3>
+<p>
+The midpoint of ordered data. Less affected by outliers.
+</p>
+
+<h3>Mode</h3>
+<p>
+The most frequently occurring value. Useful for categorical data.
+</p>
+
+<div class="highlight">
+Mean is sensitive to outliers; median is more robust.
+</div>
+
+<div class="takeaway">
+<strong>Key takeaway:</strong> Different measures summarize data in different ways.
+</div>
+
+</div>
+
+<!-- STANDARD DEVIATION -->
+<div class="card">
+<h2>📏 Standard Deviation (SD)</h2>
+
+<p>
+Standard deviation measures how spread out data are around the mean.
+</p>
+
+<ul>
+<li><b>Low SD:</b> Data clustered near mean</li>
+<li><b>High SD:</b> Data widely spread</li>
+</ul>
+
+<div class="highlight">
+Example: (M = 10, SD = 2) → Most values fall between 8 and 12
+</div>
+
+<p>
+SD provides more meaningful insight than the mean alone by describing variability in scores.
+</p>
+
+<div class="takeaway">
+<strong>Key takeaway:</strong> SD shows how consistent or variable your data are.
+</div>
+
+</div>
+
+<!-- LEVELS OF MEASUREMENT -->
+<div class="card">
+<h2>📚 Levels of Measurement</h2>
+
+<p>
+Identifying the level of measurement determines which statistics, graphs, and tests are appropriate.
+</p>
+
+<ul>
+<li>Nominal</li>
+<li>Ordinal</li>
+<li>Interval</li>
+<li>Ratio</li>
+</ul>
+
+<div class="highlight">
+Categorical = Nominal + Ordinal | Continuous = Interval + Ratio
+</div>
+
+</div>
+
+<!-- NOMINAL & ORDINAL -->
+<div class="card">
+<h2>🏷️ Categorical Data</h2>
+
+<h3>Nominal</h3>
+<p>
+Categories with no order (e.g., race, gender, nationality).
+</p>
+
+<h3>Ordinal</h3>
+<p>
+Categories with rank order but unequal spacing (e.g., Likert scales, rankings).
+</p>
+
+<div class="takeaway">
+<strong>Key takeaway:</strong> Order may exist, but differences between levels are not equal.
+</div>
+
+</div>
+
+<!-- INTERVAL & RATIO -->
+<div class="card">
+<h2>📐 Continuous Data</h2>
+
+<h3>Interval</h3>
+<p>
+Numerical data with no true zero (e.g., temperature in Celsius).
+</p>
+
+<h3>Ratio</h3>
+<p>
+Numerical data with a true zero (e.g., height, weight, distance).
+</p>
+
+<div class="takeaway">
+<strong>Key takeaway:</strong> Ratio data allows full mathematical comparisons.
+</div>
+
+</div>
+
+<!-- GRAPHS -->
+<div class="card">
+<h2>📊 Histograms vs Bar Charts</h2>
+
+<ul>
+<li><b>Histograms:</b> Used for continuous data; bars touch; show distribution</li>
+<li><b>Bar charts:</b> Used for categorical data; bars separated; compare groups</li>
+</ul>
+
+<div class="highlight">
+Histograms check distribution, bar charts compare groups.
+</div>
+
+</div>
+
+<!-- NORMALITY -->
+<div class="card">
+<h2>🔔 Normal Distribution</h2>
+
+<p>
+A normal distribution is symmetrical and bell-shaped.
+</p>
+
+<ul>
+<li>Mean ≈ Median ≈ Mode</li>
+<li>Symmetrical shape</li>
+<li>Most values near center</li>
+</ul>
+
+<div class="takeaway">
+<strong>Key idea:</strong> Many statistical tests assume normality.
+</div>
+
+</div>
+
+<!-- SKEWNESS & KURTOSIS -->
+<div class="card">
+<h2>📉 Skewness & Kurtosis</h2>
+
+<h3>Skewness</h3>
+<ul>
+<li>Positive skew → tail right</li>
+<li>Negative skew → tail left</li>
+</ul>
+
+<h3>Kurtosis</h3>
+<ul>
+<li>Leptokurtic → peaked</li>
+<li>Mesokurtic → normal</li>
+<li>Platykurtic → flat</li>
+</ul>
+
+</div>
+
+<!-- EMPIRICAL RULE -->
+<div class="card">
+<h2>📏 Empirical Rule</h2>
+
+<p>
+In a normal distribution:
+</p>
+
+<ul>
+<li>68% within ±1 SD</li>
+<li>95% within ±2 SD</li>
+<li>99.7% within ±3 SD</li>
+</ul>
+
+<div class="highlight">
+This rule helps estimate where most data points fall.
+</div>
+
+<p>
+Even if data are not perfectly normal, this rule provides a useful approximation.
+</p>
+
+<div class="takeaway">
+<strong>Final takeaway:</strong> SD and normality together help interpret data meaningfully.
+</div>
+
+</div>
+
+</div>
+
+</body>
+</html>
