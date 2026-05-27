@@ -1,7 +1,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
-<title>Lecture 2 — Descriptive Statistics</title>
+<title>Lecture 2</title>
 
 <style>
 body {
@@ -57,11 +57,7 @@ h2:hover::after, h3:hover::after {
 h2 { color:#93c5fd; }
 h3 { color:#7dd3fc; }
 
-p {
-  line-height: 1.75;
-  margin-bottom: 1rem;
-  max-width: 75ch;
-}
+p { line-height: 1.75; margin-bottom: 1rem; }
 
 .card {
   background: rgba(15,23,42,.6);
@@ -87,20 +83,31 @@ p {
 .highlight {
   background: rgba(56,189,248,.12);
   border-left: 4px solid #38bdf8;
-  padding: 1rem;
+  padding: .9rem 1rem;
   margin: 1rem 0;
   border-radius: 6px;
 }
 
-.takeaway {
-  background: rgba(34,197,94,.12);
-  border-left: 4px solid #22c55e;
-  padding: 1rem;
+.badge {
+  display: inline-block;
+  background: #38bdf8;
+  color: #020617;
+  padding: .25rem .6rem;
   border-radius: 6px;
-  margin: 1.5rem 0;
+  font-size: 0.75rem;
+  margin-right: .4rem;
 }
 
 ul { padding-left: 1.2rem; }
+li { margin-bottom: .4rem; }
+
+hr {
+  border: none;
+  height: 1px;
+  background: linear-gradient(to right, transparent, #38bdf8, transparent);
+  margin: 2rem 0;
+  opacity: .4;
+}
 
 @keyframes fadeInUp {
   to {
@@ -116,298 +123,143 @@ ul { padding-left: 1.2rem; }
 <div class="container">
 
 <h1>Lecture 2</h1>
-<div class="subtitle">Descriptive Statistics</div>
+<div class="subtitle">Types of Data</div>
 
 <!-- OVERVIEW -->
 <div class="card">
-<h2>📊 Overview</h2>
+<h2>📊 What is Data?</h2>
 
 <p>
-There are two types of data: <b>quantitative</b> and <b>qualitative</b>. While both are important, this course focuses on quantitative data because it allows for statistical testing and hypothesis evaluation.
+In research, <b>data</b> refers to the information that researchers collect in order to answer questions. 
+The type of data you collect determines how you analyze it and what conclusions you can draw.
+</p>
+
+<p>
+There are two primary types of data: <b>quantitative</b> and <b>qualitative</b>.
+Understanding the difference between these is essential for choosing the correct research methods.
 </p>
 
 <div class="highlight">
-Quantitative = numbers for analysis | Qualitative = words for meaning
+<strong>Key idea:</strong> The type of data determines how it can be analyzed.
+</div>
 </div>
 
-<p>
-Quantitative data allows researchers to measure, calculate, and predict patterns. Qualitative data, on the other hand, provides deeper insight into experiences and perceptions.
-</p>
-
-<div class="takeaway">
-<strong>Key idea:</strong> Statistics primarily relies on quantitative data.
-</div>
-
-</div>
-
-<!-- DESCRIPTIVE VS INFERENTIAL -->
+<!-- QUANTITATIVE -->
 <div class="card">
-<h2>📉 Descriptive vs Inferential Statistics</h2>
+<h2>🔢 Quantitative Data</h2>
+
+<span class="badge">Numbers</span>
+<span class="badge">Measurement</span>
+<span class="badge">Statistics</span>
 
 <p>
-Statistics can be divided into two major categories, each serving a different purpose in research.
-</p>
-
-<ul>
-<li><b>Descriptive statistics:</b> Summarize and describe sample data (mean, median, mode, SD)</li>
-<li><b>Inferential statistics:</b> Test hypotheses and make conclusions about populations</li>
-</ul>
-
-<div class="highlight">
-Descriptive = describe the data | Inferential = test and generalize
-</div>
-
-<p>
-Descriptive statistics also help determine whether assumptions (such as normality) are met before running inferential tests.
-</p>
-
-<div class="takeaway">
-<strong>Key takeaway:</strong> You must understand your data before testing hypotheses.
-</div>
-
-</div>
-
-<!-- SAMPLE VS POPULATION -->
-<div class="card">
-<h2>👥 Sample vs Population</h2>
-
-<p>
-The <b>population</b> is the entire group of interest, while a <b>sample</b> is a smaller subset that researchers can realistically study.
-</p>
-
-<p>
-Inferential statistics use sample data to make predictions about the population. However, these predictions are only valid if the sample accurately represents the population.
+<b>Quantitative data</b> is numerical data that can be analyzed mathematically. 
+It allows researchers to calculate averages, compare groups, and perform statistical tests.
 </p>
 
 <div class="highlight">
-A biased sample leads to biased conclusions.
+Answers: <i>How much? How many? How often?</i>
 </div>
 
-<p>
-Sampling theory examines how samples are drawn and how representative they are, ensuring valid and reliable results.
-</p>
-
-<div class="takeaway">
-<strong>Key takeaway:</strong> A good sample is essential for valid conclusions.
-</div>
-
-</div>
-
-<!-- DESCRIPTIVE STATS IMPORTANCE -->
-<div class="card">
-<h2>📌 Importance of Descriptive Statistics</h2>
-
-<p>
-Students often rush into inferential testing, but skipping descriptive statistics can lead to flawed conclusions.
-</p>
-
+<h3>Examples</h3>
 <ul>
-<li>Understand structure of data</li>
-<li>Identify patterns and variability</li>
-<li>Determine appropriate statistical tests</li>
+<li>Height (170 cm)</li>
+<li>Weight (150 lbs)</li>
+<li>Test scores (85%)</li>
+<li>Hours studied</li>
 </ul>
 
-<div class="takeaway">
-<strong>Always start with descriptives.</strong>
-</div>
-
-</div>
-
-<!-- MEAN MEDIAN MODE -->
-<div class="card">
-<h2>📊 Measures of Central Tendency</h2>
-
-<h3>Mean</h3>
 <p>
-The average value. Calculated by adding all values and dividing by the total number.
-</p>
-
-<h3>Median</h3>
-<p>
-The midpoint of ordered data. Less affected by outliers.
-</p>
-
-<h3>Mode</h3>
-<p>
-The most frequently occurring value. Useful for categorical data.
+This type of data is essential for testing hypotheses and identifying patterns or relationships between variables.
 </p>
 
 <div class="highlight">
-Mean is sensitive to outliers; median is more robust.
-</div>
-
-<div class="takeaway">
-<strong>Key takeaway:</strong> Different measures summarize data in different ways.
+<strong>Key takeaway:</strong> Quantitative data = numbers used for statistical analysis.
 </div>
 
 </div>
 
-<!-- STANDARD DEVIATION -->
+<!-- QUALITATIVE -->
 <div class="card">
-<h2>📏 Standard Deviation (SD)</h2>
+<h2>💬 Qualitative Data</h2>
+
+<span class="badge">Words</span>
+<span class="badge">Meaning</span>
+<span class="badge">Experience</span>
 
 <p>
-Standard deviation measures how spread out data are around the mean.
+<b>Qualitative data</b> is descriptive, non-numerical data that focuses on understanding 
+meaning, experiences, and perspectives.
 </p>
-
-<ul>
-<li><b>Low SD:</b> Data clustered near mean</li>
-<li><b>High SD:</b> Data widely spread</li>
-</ul>
 
 <div class="highlight">
-Example: (M = 10, SD = 2) → Most values fall between 8 and 12
+Answers: <i>Why? How? What does it mean?</i>
 </div>
 
-<p>
-SD provides more meaningful insight than the mean alone by describing variability in scores.
-</p>
-
-<div class="takeaway">
-<strong>Key takeaway:</strong> SD shows how consistent or variable your data are.
-</div>
-
-</div>
-
-<!-- LEVELS OF MEASUREMENT -->
-<div class="card">
-<h2>📚 Levels of Measurement</h2>
-
-<p>
-Identifying the level of measurement determines which statistics, graphs, and tests are appropriate.
-</p>
-
+<h3>Examples</h3>
 <ul>
-<li>Nominal</li>
-<li>Ordinal</li>
-<li>Interval</li>
-<li>Ratio</li>
+<li>Interview responses</li>
+<li>Personal experiences</li>
+<li>Behavior observations</li>
+<li>Written feedback</li>
 </ul>
+
+<p>
+Instead of statistical analysis, qualitative data is analyzed by identifying patterns, themes, and meanings.
+</p>
 
 <div class="highlight">
-Categorical = Nominal + Ordinal | Continuous = Interval + Ratio
+<strong>Key takeaway:</strong> Qualitative data = words that explain meaning and experience.
 </div>
 
 </div>
 
-<!-- NOMINAL & ORDINAL -->
+<!-- COMPARISON -->
 <div class="card">
-<h2>🏷️ Categorical Data</h2>
+<h2>⚖️ Comparing Data Types</h2>
 
-<h3>Nominal</h3>
 <p>
-Categories with no order (e.g., race, gender, nationality).
+Both quantitative and qualitative data are valuable, but they serve different purposes in research.
 </p>
 
-<h3>Ordinal</h3>
+<hr>
+
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Focus</th>
+<th>Use</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><b>Quantitative</b></td>
+<td>Numbers & measurement</td>
+<td>Statistical testing, patterns</td>
+</tr>
+
+<tr>
+<td><b>Qualitative</b></td>
+<td>Meaning & experience</td>
+<td>Understanding perspectives</td>
+</tr>
+</tbody>
+</table>
+
+<hr>
+
 <p>
-Categories with rank order but unequal spacing (e.g., Likert scales, rankings).
+Many studies combine both types of data to gain a more complete understanding of a research question.
 </p>
-
-<div class="takeaway">
-<strong>Key takeaway:</strong> Order may exist, but differences between levels are not equal.
-</div>
-
-</div>
-
-<!-- INTERVAL & RATIO -->
-<div class="card">
-<h2>📐 Continuous Data</h2>
-
-<h3>Interval</h3>
-<p>
-Numerical data with no true zero (e.g., temperature in Celsius).
-</p>
-
-<h3>Ratio</h3>
-<p>
-Numerical data with a true zero (e.g., height, weight, distance).
-</p>
-
-<div class="takeaway">
-<strong>Key takeaway:</strong> Ratio data allows full mathematical comparisons.
-</div>
-
-</div>
-
-<!-- GRAPHS -->
-<div class="card">
-<h2>📊 Histograms vs Bar Charts</h2>
-
-<ul>
-<li><b>Histograms:</b> Used for continuous data; bars touch; show distribution</li>
-<li><b>Bar charts:</b> Used for categorical data; bars separated; compare groups</li>
-</ul>
 
 <div class="highlight">
-Histograms check distribution, bar charts compare groups.
+Quantitative = precision | Qualitative = depth
 </div>
-
-</div>
-
-<!-- NORMALITY -->
-<div class="card">
-<h2>🔔 Normal Distribution</h2>
-
-<p>
-A normal distribution is symmetrical and bell-shaped.
-</p>
-
-<ul>
-<li>Mean ≈ Median ≈ Mode</li>
-<li>Symmetrical shape</li>
-<li>Most values near center</li>
-</ul>
-
-<div class="takeaway">
-<strong>Key idea:</strong> Many statistical tests assume normality.
-</div>
-
-</div>
-
-<!-- SKEWNESS & KURTOSIS -->
-<div class="card">
-<h2>📉 Skewness & Kurtosis</h2>
-
-<h3>Skewness</h3>
-<ul>
-<li>Positive skew → tail right</li>
-<li>Negative skew → tail left</li>
-</ul>
-
-<h3>Kurtosis</h3>
-<ul>
-<li>Leptokurtic → peaked</li>
-<li>Mesokurtic → normal</li>
-<li>Platykurtic → flat</li>
-</ul>
-
-</div>
-
-<!-- EMPIRICAL RULE -->
-<div class="card">
-<h2>📏 Empirical Rule</h2>
-
-<p>
-In a normal distribution:
-</p>
-
-<ul>
-<li>68% within ±1 SD</li>
-<li>95% within ±2 SD</li>
-<li>99.7% within ±3 SD</li>
-</ul>
 
 <div class="highlight">
-This rule helps estimate where most data points fall.
-</div>
-
-<p>
-Even if data are not perfectly normal, this rule provides a useful approximation.
-</p>
-
-<div class="takeaway">
-<strong>Final takeaway:</strong> SD and normality together help interpret data meaningfully.
+<strong>Final takeaway:</strong> Quantitative explains <i>what & how much</i>, while qualitative explains <i>why & how</i>.
 </div>
 
 </div>
