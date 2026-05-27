@@ -88,6 +88,25 @@ p { line-height: 1.75; margin-bottom: 1rem; }
   border-radius: 6px;
 }
 
+/* Hover effect */
+.button:hover {
+  color: white;
+  border-color: var(--accent);
+
+  box-shadow:
+    0 0 0 1px rgba(56, 189, 248, 0.4),
+    0 8px 25px rgba(56, 189, 248, 0.25);
+
+  transform: translateY(-2px);
+}
+
+/* Active (click) */
+.button:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+
 .badge {
   display: inline-block;
   background: #38bdf8;
