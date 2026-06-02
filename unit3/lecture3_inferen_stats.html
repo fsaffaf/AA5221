@@ -1,0 +1,251 @@
+
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Lecture: Statistics & Hypothesis Testing</title>
+
+<style>
+/* (same exact CSS you provided — unchanged) */
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  background: radial-gradient(circle at top, #0b1220, #020617 70%);
+  color: rgba(255,255,255,0.92);
+}
+.container { max-width: 1000px; margin: auto; padding: 5rem 1.5rem; }
+h1 {
+  font-size: 3rem;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  text-align: center;
+  background: linear-gradient(180deg, #fff, #7dd3fc);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.subtitle { text-align: center; letter-spacing: .3em; margin-bottom: 3rem; opacity: 0.8; }
+h2, h3 { position: relative; display: inline-block; }
+h2::after, h3::after {
+  content:""; position:absolute; left:0; bottom:-5px; width:0%; height:2px;
+  background:#38bdf8; transition:width .3s ease;
+}
+h2:hover::after, h3:hover::after { width:100%; }
+h2{ color:#93c5fd; } h3{ color:#7dd3fc; }
+p { line-height:1.75; margin-bottom:1rem; }
+
+.card {
+  background: rgba(15,23,42,.6);
+  border-radius: 16px;
+  padding:1.75rem;
+  margin-bottom:2rem;
+  border:1px solid rgba(255,255,255,.08);
+  box-shadow:0 10px 30px rgba(0,0,0,.4);
+}
+.highlight {
+  background: rgba(56,189,248,.12);
+  border-left: 4px solid #38bdf8;
+  padding: .9rem 1rem;
+  margin: 1rem 0;
+  border-radius: 6px;
+}
+table { width:100%; border-collapse:collapse; margin-top:1rem; }
+th, td { padding:.75rem; border-bottom:1px solid rgba(255,255,255,.12); }
+th { color:#7dd3fc; }
+tr:hover { background: rgba(56,189,248,.08); }
+hr {
+  border:none; height:1px;
+  background: linear-gradient(to right, transparent,#38bdf8,transparent);
+  margin:2rem 0; opacity:.4;
+}
+</style>
+</head>
+
+<body>
+<div class="container">
+
+<div class="subtitle">Lecture</div>
+<h1>Statistics & Hypothesis Testing</h1>
+
+<!-- OVERVIEW -->
+<div class="card">
+<h2>OVERVIEW</h2>
+
+<p>
+There are two types of statistics: <strong>Descriptive Statistics</strong> and <strong>Inferential Statistics</strong>. 
+Each plays a critical role in analyzing and interpreting data.
+</p>
+
+<div class="highlight">
+<strong>Descriptive Statistics:</strong>  
+Summarize and organize a dataset using measures such as means, standard deviations, frequencies, and percentages.  
+They also help determine whether data are normally distributed using tools like histograms, skewness, and kurtosis.
+</div>
+
+<div class="highlight">
+<strong>Inferential Statistics:</strong>  
+Used to test hypotheses and determine whether results support the null or alternate hypothesis.  
+The test you choose depends on research design, variables, and data distribution.
+</div>
+
+</div>
+
+<!-- HYPOTHESES -->
+<div class="card">
+<h2>SCIENTIFIC HYPOTHESES</h2>
+
+<p>
+Researchers test two competing hypotheses. The structure depends on the research design being used.
+</p>
+
+<div class="highlight">
+<strong>Null Hypothesis:</strong>  
+Nothing happens → No relationship OR no group difference.
+</div>
+
+<div class="highlight">
+<strong>Alternate Hypothesis:</strong>  
+Something happens → A relationship OR a group difference exists.
+</div>
+
+<hr>
+
+<h3>Examples by Research Design</h3>
+
+<table>
+<tr>
+<th>Design</th>
+<th>Null</th>
+<th>Alternate</th>
+</tr>
+
+<tr>
+<td>Correlational</td>
+<td>No relationship between variables</td>
+<td>There IS a relationship</td>
+</tr>
+
+<tr>
+<td>Experiment / Quasi</td>
+<td>No difference between groups</td>
+<td>There IS a difference</td>
+</tr>
+</table>
+
+</div>
+
+<!-- TESTING -->
+<div class="card">
+<h2>HOW HYPOTHESIS TESTING WORKS</h2>
+
+<p>You must understand the following concepts:</p>
+
+<ul>
+<li>p-value</li>
+<li>alpha (α)</li>
+<li>statistical significance</li>
+<li>effect size</li>
+</ul>
+
+<div class="highlight">
+<strong>P-Value:</strong>  
+Represents probability (0 to 1).  
+Smaller p-values support the alternate hypothesis, larger values support the null.
+</div>
+
+<div class="highlight">
+<strong>Alpha Level (α):</strong>  
+Benchmark for comparison.  
+Common values: 0.05, 0.01, 0.001.  
+In this course, we use α = 0.05.
+</div>
+
+<div class="highlight">
+<strong>Statistical Significance:</strong>  
+If p &lt; 0.05 → results are significant → alternate hypothesis supported.
+</div>
+
+</div>
+
+<!-- RESULTS TABLE -->
+<div class="card">
+<h2>INTERPRETING RESULTS</h2>
+
+<table>
+<tr>
+<th>Result</th>
+<th>Hypothesis</th>
+<th>Conclusion</th>
+</tr>
+
+<tr>
+<td>p ≥ .05</td>
+<td>Null supported</td>
+<td>NOT statistically significant</td>
+</tr>
+
+<tr>
+<td>p &lt; .05</td>
+<td>Alternate supported</td>
+<td>Statistically significant</td>
+</tr>
+</table>
+
+</div>
+
+<!-- EFFECT SIZE -->
+<div class="card">
+<h2>EFFECT SIZE</h2>
+
+<p>
+Effect size tells us how strong a relationship is or how large a group difference is.
+</p>
+
+<div class="highlight">
+<strong>Key Rule:</strong>  
+Only calculate and report effect size when results are statistically significant.
+</div>
+
+<ul>
+<li><strong>Correlational:</strong> strength of relationship</li>
+<li><strong>Experimental:</strong> size of group difference</li>
+</ul>
+
+<p>
+Statistical significance tells us <em>if</em> something happened,  
+effect size tells us <em>how important it is</em>.
+</p>
+
+</div>
+
+<!-- SUMMARY -->
+<div class="card">
+<h2>PUTTING IT ALL TOGETHER</h2>
+
+<table>
+<tr>
+<th>p-value</th>
+<th>Hypothesis</th>
+<th>Report</th>
+<th>Effect Size?</th>
+</tr>
+
+<tr>
+<td>p ≥ .05</td>
+<td>Null</td>
+<td>Not significant</td>
+<td>No</td>
+</tr>
+
+<tr>
+<td>p &lt; .05</td>
+<td>Alternate</td>
+<td>Significant</td>
+<td>Yes (small/medium/large)</td>
+</tr>
+</table>
+
+</div>
+
+</div>
+</body>
+</html>
+``
