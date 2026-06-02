@@ -76,14 +76,14 @@ Each plays a critical role in analyzing and interpreting data.
 
 <div class="highlight">
 <strong>Descriptive Statistics:</strong>  
-Summarize and organize a dataset using measures such as means, standard deviations, frequencies, and percentages.  
-They also help determine whether data are normally distributed using tools like histograms, skewness, and kurtosis.
+Descriptive statistics have two purposes. First, they summarize and organize a dataset using measures such as means, standard deviations, frequencies, and percentages.  
+Second, they help determine whether data are normally distributed using tools like histograms, skewness, and kurtosis.
 </div>
 
 <div class="highlight">
 <strong>Inferential Statistics:</strong>  
-Used to test hypotheses and determine whether results support the null or alternate hypothesis.  
-The test you choose depends on research design, variables, and data distribution.
+Inferential tests have one purpose; to test hypotheses. "Testing a hypothesis" means you are determining whether results support the null or alternate hypothesis.  
+The test you choose depends on research design, variables, and data distribution (determined by your descriptive statistics).
 </div>
 
 </div>
@@ -98,39 +98,17 @@ Researchers test two competing hypotheses. The structure depends on the research
 
 <div class="highlight">
 <strong>Null Hypothesis:</strong>  
-Nothing happens → No relationship OR no group difference.
+Nothing happens → There is NO relationship between the variables (correlational study) or there are NO group differences (true experiment or quasi-experiment).
 </div>
 
 <div class="highlight">
 <strong>Alternate Hypothesis:</strong>  
-Something happens → A relationship OR a group difference exists.
+Something happens →  There IS a relationship between the variables (correlational study) or there ARE group differences (true experiment or quasi-experiment).
+
 </div>
 
 <hr>
 
-<h3>Examples by Research Design</h3>
-
-<table>
-<tr>
-<th>Design</th>
-<th>Null</th>
-<th>Alternate</th>
-</tr>
-
-<tr>
-<td>Correlational</td>
-<td>No relationship between variables</td>
-<td>There IS a relationship</td>
-</tr>
-
-<tr>
-<td>Experiment / Quasi</td>
-<td>No difference between groups</td>
-<td>There IS a difference</td>
-</tr>
-</table>
-
-</div>
 
 <!-- TESTING -->
 <div class="card">
@@ -145,23 +123,39 @@ Something happens → A relationship OR a group difference exists.
 <li>effect size</li>
 </ul>
 
+<h3>P-Value</h3>
 <div class="highlight">
 <strong>P-Value:</strong>  
-Represents probability (0 to 1).  
-Smaller p-values support the alternate hypothesis, larger values support the null.
+The p-value (or probability value) is the likelihood that your null versus hypothesis is true.
 </div>
 
+The p-value ranges from 0 to 1, which represents a likelihood from 0 to 100%.
+The closer the value is to 0, the more support there is for the alternate hypothesis.
+The closer the value is to 1, the more support there is for the null hypothesis.
+
+<h3>Alpha Value</h3>
 <div class="highlight">
 <strong>Alpha Level (α):</strong>  
-Benchmark for comparison.  
-Common values: 0.05, 0.01, 0.001.  
-In this course, we use α = 0.05.
+Benchmark for interpreting the p-value. The most common alpha value is .05 (or 5%).
 </div>
 
+P-values are interpreted by comparing them to benchmarks called alpha levels (α). 
+In scientific research, there are three standard alpha levels: 0.05, 0.01, and 0.001. 
+The most common alpha level (and the one we will use in our class) is 0.05.
+
+  
+<h3>Statistical Significance</h3>
 <div class="highlight">
 <strong>Statistical Significance:</strong>  
-If p &lt; 0.05 → results are significant → alternate hypothesis supported.
+Statistical significance occurs when your obtained p-value is less than your set alpha value.
+Achieving statistical significance means that your alternate hypothesis is supported.
 </div>
+
+If p ≥ .05 (if the obtained p-value is greater than or equal to our set alpha value of .05), then this means there is a 5% (or greater) chance your null hypothesis is true. 
+This is too high according to scientific standards. Therefore, your results are NOT statistically significant. The null hypothesis is supported.
+
+If p < .05 (if the obtained p-value is less than our set alpha value of .05), then this means there isless than a 5% chance your null hypothesis is true. 
+This is low enough according to scientific standards. Therefore, your results ARE statistically significant. The alternate hypothesis is supported.
 
 </div>
 
