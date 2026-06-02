@@ -1,0 +1,217 @@
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Lecture 1</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  background: radial-gradient(circle at top, #0b1220, #020617 70%);
+  color: rgba(255,255,255,0.92);
+}
+
+.container {
+  max-width: 1000px;
+  margin: auto;
+  padding: 5rem 1.5rem;
+}
+
+h1 {
+  font-size: 3rem;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  text-align: center;
+  background: linear-gradient(180deg, #fff, #7dd3fc);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.subtitle {
+  text-align: center;
+  letter-spacing: .3em;
+  margin-bottom: 3rem;
+  opacity: 0.8;
+}
+
+h2, h3 {
+  position: relative;
+  display: inline-block;
+}
+
+h2::after, h3::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -5px;
+  width: 0%;
+  height: 2px;
+  background: #38bdf8;
+  transition: width 0.3s ease;
+}
+
+h2:hover::after, h3:hover::after {
+  width: 100%;
+}
+
+h2 { color:#93c5fd; }
+h3 { color:#7dd3fc; }
+
+p { line-height: 1.75; margin-bottom: 1rem; }
+
+.card {
+  background: rgba(15,23,42,.6);
+  border-radius: 16px;
+  padding: 1.75rem;
+  margin-bottom: 2rem;
+  border: 1px solid rgba(255,255,255,.08);
+  box-shadow: 0 10px 30px rgba(0,0,0,.4);
+
+  transform: translateY(20px);
+  opacity: 0;
+  animation: fadeInUp 0.8s ease forwards;
+}
+
+.card:nth-child(1){ animation-delay: .1s; }
+.card:nth-child(2){ animation-delay: .3s; }
+
+.card:hover {
+  transform: translateY(-6px) scale(1.01);
+  box-shadow: 0 20px 50px rgba(56,189,248,.25);
+}
+
+.highlight {
+  background: rgba(56,189,248,.12);
+  border-left: 4px solid #38bdf8;
+  padding: .9rem 1rem;
+  margin: 1rem 0;
+  border-radius: 6px;
+}
+
+/* Hover effect */
+.button:hover {
+  color: white;
+  border-color: var(--accent);
+
+  box-shadow:
+    0 0 0 1px rgba(56, 189, 248, 0.4),
+    0 8px 25px rgba(56, 189, 248, 0.25);
+
+  transform: translateY(-2px);
+}
+
+/* Active (click) */
+.button:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+
+.badge {
+  display: inline-block;
+  background: #38bdf8;
+  color: #020617;
+  padding: .25rem .6rem;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  margin-right: .4rem;
+}
+
+ul { padding-left: 1.2rem; }
+li { margin-bottom: .4rem; }
+
+hr {
+  border: none;
+  height: 1px;
+  background: linear-gradient(to right, transparent, #38bdf8, transparent);
+  margin: 2rem 0;
+  opacity: .4;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+th, td {
+  padding: .75rem;
+  border-bottom: 1px solid rgba(255,255,255,.12);
+}
+
+th {
+  color: #7dd3fc;
+}
+
+tr:hover {
+  background: rgba(56,189,248,.08);
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>COURSE OVERVIEW</h1>
+<div class="subtitle">Purpose & Use of Artificial Intelligence</div>
+
+
+<div class="card">      
+<h2>AI Should Support Your Thinking - Not Replace It</h2>
+
+    <p>
+      You may be able to use AI to get through an assignment, pass a class,
+      or even graduate. But if you have not developed the actual
+      knowledge and skills behind the work, you will have difficulty getting hired or keeping a job. In
+      professional settings, employees are expected to discuss, defend, and apply their work. 
+      If AI is doing the thinking for you, the fact that you are unable to answer basic questions either in an interview or on the job will make it very clear you are not competent.
+      You then face the risk of unemployment, firing, and blacklisting. Blacklisting is the practice of compiling a list of individuals are denied access to certain industries because they are deemed untrustworthy, unacceptable, or harmful).
+    </p>
+
+  <p>
+      Employers do not need people who can copy-and-paste from an AI tool. The people most "at risk" in the workplace are people who <strong>use AI to avoid learning, reasoning, or developing their own
+      expertise </strong>. 
+  </p>
+
+      <p>
+      Even if you are confident that you can use AI to pretend you are competent at your job, there are many legal, ethical, and privacy limits on AI use. 
+      </p>
+        
+      <p>
+        In many organizations, employees <strong>cannot enter private, confidential, or protected
+      information into AI systems </strong>. This includes intellectual property, business strategy, client data, student records, health information, and other
+      sensitive materials. In fields connected to healthcare, education, government, research, and business, improper AI use can create major
+      privacy and compliance problems. You may lose your job, professional license, security clearance, or future opportunities in industries that require trust and confidentiality.
+    </p>
+
+
+  <p> So what are employers looking for?</p>
+  
+    <p>
+    <strong>Put simply, they need people who can work with AI, not depend on AI.</strong>
+    
+    </p>
+  The people who will be most valuable are those who use AI to automate low-value tasks, so they can focus on they (the human) can focus on the important ones. 
+  Specifically, let AI handle repetitive or time-consuming tasks such as writing first drafts, summarizing meetings, organizing information, answering routine emails, creating presentations, or helping with research. 
+  This saves time and helps them finish work faster and with fewer mistakes. 
+  The most successful employees use the extra time to think more clearly, solve important problems, communicate better with coworkers, and help their team succeed. 
+  Managers often notice employees who can produce strong results consistently and adapt to new technology. 
+  In simple terms, AI helps people become more productive.
+</p>
+  
+  <p>
+    <strong>Job offers and promotions usually go to people who combine AI tools with good judgment, reliability, communication skills, and the ability to work well with others. </strong>
+    </p>
+
+
+
+</div>
+  </div>
