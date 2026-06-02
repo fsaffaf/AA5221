@@ -226,4 +226,33 @@ code {
   transform: translateY(0);
   box-shadow: none;
 }
+
+
+hr {
+  border: none;
+  height: 2px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(56,189,248,0.6),
+    #38bdf8,
+    rgba(56,189,248,0.6),
+    transparent
+  );
+  margin: 2.5rem 0;
+  position: relative;
+}
+
+hr::after {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: 50%;
+  width: 120px;
+  height: 6px;
+  transform: translateX(-50%);
+  background: radial-gradient(circle, #38bdf8, transparent 70%);
+  filter: blur(6px);
+  opacity: 0.7;
+}
 ``
