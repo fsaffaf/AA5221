@@ -181,12 +181,10 @@ ul { padding-left: 1.2rem; }
 <div class="card">
 <h2>Step 1: Install the Required Packages</h2>
 
-<h3>Examples</h3>
-
 <ul>
-<li>Install the packages you need to conduct either a Pearson or Spearman Correlation.)</li>
-<li>Please note that R Packages only need to be installed once.</li>
-<li>Installing code more than once can lead to code errors.</li>
+<li>Install the packages you need to conduct either a Pearson or Spearman Correlation.</li>
+<li>R Packages only need to be installed once.</li>
+<li>Installing a package more than once can lead to errors.</li>
 </ul>
 
 <table>
@@ -227,14 +225,17 @@ None
 
 </div>
 
-<!-- STEP 4 -->
+<!-- STEP 2 -->
 <div class="card">
-<h2>Step 4: Create a Scatterplot to Visualize the Relationship</h2>
+<h2>Step 2: Create a Scatterplot to Visualize the Relationship</h2>
 
+<p>
 <h3>Scatterplot Information</h3>
+</p>
 
 <ul>
 <li>Scatterplots are required when conducting a correlation.</li>
+<li> You must determine if the relationship between the two variables is linear or non-linear, because this determines which correlation test you should use.</li>
 <li>Scatterplots allow you to visually see the relationship between the two continuous variables.</li>
 <li>Each dot represents one observation (one person).</li>
 <li>The x-axis (horizontal axis) represents the independent variable.</li>
@@ -379,11 +380,8 @@ If removing the dots noticeably changes the line of best fit, they may be meanin
 
 <div class="highlight">
 # The relationship is [linear / curved].
-
 # The relationship is [positive / negative / does not exist].
-
 # The relationship is [strong / moderate / weak / does not exist].
-
 # There [are / are no] outliers.
 </div>
 
@@ -391,18 +389,15 @@ If removing the dots noticeably changes the line of best fit, they may be meanin
 
 <div class="takeaway">
 # The relationship is linear.
-
 # The relationship is positive.
-
 # The relationship is moderate or strong.
-
 # There are no outliers.
 </div>
 
 </div>
 
 
-<!-- STEP 6 -->
+<!-- STEP 4 -->
 <div class="card">
 <h2>Step 6: Calculate the Descriptive Statistics</h2>
 
@@ -506,35 +501,30 @@ median(DatasetZ$USD)
 </div>
 
 
-<!-- STEP 7 -->
+<!-- STEP 6 -->
 <div class="card">
-<h2>Step 7: Check Normality Visually (Histograms)</h2>
+<h2>Step 6: Check Normality Visually (Histograms)</h2>
 
 <h3>Directions</h3>
 
 <p>
-Checking normality is extremely important before conducting Pearson Correlation.
-Create a histogram for each variable to visually inspect the data distribution.
+Checking normality is extremely important before conducting Pearson Correlation. The first way we check normality is by visually inspecting the histograms. 
+Create a histogram for each continuous variable to visually inspect the data distribution.
 </p>
 
 <h3>Function Breakdown</h3>
 
 <div class="highlight">
-hist                 → Creates a histogram
+hist     → Creates a histogram
+main     → Histogram title
+breaks   → Number of bins
 
-main                 → Histogram title
+         → Bar color
 
-breaks               → Number of bins
-
-col                  → Bar color
-
-border               → Border color
-
-cex.main             → Title font size
-
-cex.axis             → Axis number font size
-
-cex.lab              → Axis label font size
+border   → Border color
+cex.main → Title font size
+cex.axis → Axis number font size
+cex.lab  → Axis label font size
 </div>
 
 <!-- HISTOGRAM TABLE -->
@@ -653,7 +643,7 @@ image.png
 
 <!-- STEP 8 -->
 <div class="card">
-<h2>Step 8: Interpret the Histograms</h2>
+<h2>Step 7: Interpret the Histograms</h2>
 
 <h3>Directions</h3>
 
@@ -668,19 +658,18 @@ Determine the skewness, kurtosis, and overall normality of each variable.
 <h3>Skewness Guide</h3>
 
 <div class="highlight">
-Symmetrical Distribution     → Most data is centered
+Symmetrical Distribution → Most data is centered
 
-Positive Skew                → Most data is on the left
+Positive Skew            → Most data is on the left
 
-Negative Skew                → Most data is on the right
+Negative Skew            → Most data is on the right
 </div>
 
 <h3>Kurtosis Guide</h3>
 
 <div class="highlight">
-Proper Bell Curve            → Normal kurtosis
-
-Too Tall or Too Flat         → Abnormal kurtosis
+Proper Bell Curve    → Normal kurtosis
+Too Tall or Too Flat → Abnormal kurtosis
 </div>
 
 <h3>Code Template</h3>
@@ -722,7 +711,7 @@ NA
 
 <!-- STEP 9 -->
 <div class="card">
-<h2>Step 9: Check Normality Statistically (Shapiro-Wilk Test)</h2>
+<h2>Step 7: Check Normality Statistically (Shapiro-Wilk Test)</h2>
 
 <h3>Directions</h3>
 
