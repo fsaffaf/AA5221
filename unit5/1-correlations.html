@@ -405,13 +405,17 @@ If removing the dots noticeably changes the line of best fit, they may be meanin
 <h3>Directions</h3>
 </p>
 
-<p>
+<ul>
+<il>
 This code calculates the mean, standard deviation, and median for both variables.
-</p>
-
-<p>
+</il>
+<il>
 These functions come from Base R, so no additional package installation is required.
-</p>
+</il>
+<il>
+Replace the dataset and variable names with your actual column names.
+</il>
+</ul>
 
 <!-- DESCRIPTIVE STATISTICS TABLE -->
 <h3>Function Breakdown</h3>
@@ -443,10 +447,6 @@ These functions come from Base R, so no additional package installation is requi
 </tr>
 
 </table>
-
-<p>
-Replace the dataset and variable names with your actual column names.
-</p>
 
 <h3>Code Template</h3>
 
@@ -509,21 +509,6 @@ Checking normality is extremely important before conducting Pearson Correlation.
 Create a histogram for each continuous variable to visually inspect the data distribution.
 </p>
 
-<h3>Function Breakdown</h3>
-
-<div class="highlight">
-hist     → Creates a histogram
-main     → Histogram title
-breaks   → Number of bins
-
-         → Bar color
-
-border   → Border color
-cex.main → Title font size
-cex.axis → Axis number font size
-cex.lab  → Axis label font size
-</div>
-
 <!-- HISTOGRAM TABLE -->
 <h3>Function Breakdown</h3>
 
@@ -539,37 +524,37 @@ cex.lab  → Axis label font size
 </tr>
 
 <tr>
-<td><code>main =</code></td>
+<td><code>main</code></td>
 <td>Sets the title of the histogram.</td>
 </tr>
 
 <tr>
-<td><code>breaks =</code></td>
+<td><code>breaks</code></td>
 <td>Controls the number of bins in the histogram.</td>
 </tr>
 
 <tr>
-<td><code>col =</code></td>
+<td><code>col</code></td>
 <td>Changes the bar color.</td>
 </tr>
 
 <tr>
-<td><code>border =</code></td>
+<td><code>border</code></td>
 <td>Changes the border color of the bars.</td>
 </tr>
 
 <tr>
-<td><code>cex.main =</code></td>
+<td><code>cex.main</code></td>
 <td>Controls the title font size.</td>
 </tr>
 
 <tr>
-<td><code>cex.axis =</code></td>
+<td><code>cex.axis</code></td>
 <td>Controls the axis number font size.</td>
 </tr>
 
 <tr>
-<td><code>cex.lab =</code></td>
+<td><code>cex.lab</code></td>
 <td>Controls the axis label font size.</td>
 </tr>
 
