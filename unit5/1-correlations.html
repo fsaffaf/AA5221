@@ -184,7 +184,7 @@ ul { padding-left: 1.2rem; }
 </ul>
 
 <ul>
-<il> Practice Example: Is there a relationship between age (years) and income (USD)?</il>
+<il>Practice Example: Is there a relationship between age (years) and income (USD)?</il>
 <il>Null hypothesis: There is no relationship between age and income.</il>
 <il>Alternate hypothesis: There is a relationship between age and income.</il>
 </ul>
@@ -232,7 +232,7 @@ ul { padding-left: 1.2rem; }
 
   <div class="code-column">
     <h3>Example Code</h3>
-    <div class="takeaway">
+    <div class="highlight">
       install.packages("readxl")
       <br>
       install.packages("ggpubr")
@@ -310,9 +310,11 @@ None
 
 </table>
   
-<h3>Code Template</h3>
+<div class="code-columns">
 
-<div class="highlight">
+  <div class="code-column">
+  <h3>Code Template</h3>
+  <div class="highlight">
 ggscatter(
   DatasetName,
   x = "IndependentVariable",
@@ -323,9 +325,9 @@ ggscatter(
 )
 </div>
 
-<h3>Example Code</h3>
-
-<div class="takeaway">
+  <div class="code-column">
+  <h3>Example Code</h3>
+  <div class="highlight">
 ggscatter(
   DatasetZ,
   x = "Age",
@@ -334,6 +336,7 @@ ggscatter(
   xlab = "Age",
   ylab = "USD"
 )
+</div>
 </div>
 
 <h3>Example Output</h3>
