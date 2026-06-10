@@ -116,6 +116,43 @@ h3 { color:#7dd3fc; }
   overflow-wrap: anywhere;
 }
 
+
+details.card {
+  background: rgba(15,23,42,.6);
+  border-radius: 16px;
+  margin-bottom: 2rem;
+  border: 1px solid rgba(255,255,255,.08);
+  box-shadow: 0 10px 30px rgba(0,0,0,.4);
+  overflow: hidden;
+}
+
+details.card summary {
+  cursor: pointer;
+  padding: 1.75rem;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #93c5fd;
+  list-style: none;
+}
+
+details.card summary::-webkit-details-marker {
+  display: none;
+}
+
+details.card summary::before {
+  content: "▶ ";
+  color: #38bdf8;
+  margin-right: 8px;
+}
+
+details.card[open] summary::before {
+  content: "▼ ";
+}
+
+.card-content {
+  padding: 0 1.75rem 1.75rem 1.75rem;
+}
+  
 /* 👇 removes unwanted top spacing from first element inside */
 .highlight > *:first-child {
   margin-top: 0;
@@ -192,9 +229,10 @@ ul { padding-left: 1.2rem; }
 </div>
   
 <!-- STEP 1 -->
-<div class="card">
-  <h2>Step 1: Install the Required Packages</h2>
+<details class="card">
+  <summary>Step 1: Install the Required Packages</summary>
 
+  <div class="card-content">
   <h3>Directions</h3>
 
   <ul>
@@ -247,6 +285,7 @@ install.packages("ggpubr")
 
 </div>
 
+</details>
   
 <!-- STEP 2 -->
 <div class="card">
