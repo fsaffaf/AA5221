@@ -153,7 +153,6 @@ details.card[open] summary::before {
   padding: 0 1.75rem 1.75rem 1.75rem;
 }
   
-/* 👇 removes unwanted top spacing from first element inside */
 .highlight > *:first-child {
   margin-top: 0;
 }
@@ -213,35 +212,34 @@ ul { padding-left: 1.2rem; }
 <div class="card">
 <h2>Correlation Overview</h2>
 
-<ul>
-  <li>Correlation allows you to determine the relationship between two <b>continuous variables</b>.</li>
-  <li>Example: Is there a relationship between age (years) and income (USD)?</li>
-  <li>Null hypothesis: There is no relationship between age and income.</li>
-  <li>Alternative Hypothesis: There is a relationship between age and income.</li>
-</ul>
+<h3>Purpose</h3>
+Correlation allows you to determine the relationship between two continuous variables.
 
-<div class="code-column">
+<h3>Example</h3>
+
+<table>
+    <tr>
+      <th>Research Question</th>
+      <th>Null Hypothesis</th>
+      <th>Alternate Hypothesis</th>
+    </tr>
+
+    <tr>
+      <td>Is there a relationship between age (years) and income (USD)?</td>
+      <td>There is NO relationship between age (years) and income (USD).</td>
+      <td>There IS a relationship between age (years) and income (USD).</td>
+    </tr>
+  </table>
+
   <h3>Pearson Correlation</h3>
-
-  <div class="highlight">
     <p>Used when both variables are continuous.</p>
     <p>Both variables are normally distributed.</p>
     <p>Relationship between two variables is linear.</p>
-  </div>
-</div>
+    <p>Because the Pearson Correlation is generally more statistically powerful than the Spearman Correlation, it is the default test. </p>
 
-<div class="code-column">
   <h3>Spearman Correlation</h3>
-
-  <div class="highlight">
     <p>Used when any of the requirements of the Pearson correlation are not met.</p>
-  </div>
-</div>
-  
-<p>
-Because the Pearson Correlation is generally more statistically powerful than the Spearman Correlation, it is the default test. However, the Spearman Correlation is still a high-quality alternative when the assumptions of Pearson Correlation are not met.</li>
-</p>
-
+    <p>This test is still a high-quality alternative when the assumptions of Pearson Correlation are not met.</p>
 </div>
 </div>
 
