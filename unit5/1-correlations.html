@@ -202,26 +202,39 @@ ul { padding-left: 1.2rem; }
 </head>
 
 <body>
-
+<!---TITLE--->
+  
 <div class="container">
 
 <h1>Pearson & Spearman Correlations</h1>
 <div class="subtitle">RSTUDIO CODE</div>
 
-<!-- INTRO -->
-<div class="card">
-<h2>Correlation Overview</h2>
 
-<h3>Purpose</h3>
-Correlation allows you to determine the relationship between two continuous variables.
+<!---NEW---->
 
-<h3>Example</h3>
+<details class="card">
+  <summary>Overview: Correlations</summary>
 
-<table>
+  <div class="card-content">
+  <h3>Pearson Correlation</h3>
+  <ul>
+    <li>Used when both variables are continuous.</li>
+    <li>Relationship between two variables is linear</li>
+    <li>Both variables are normally distributed..</li>
+    <il>Because the Pearson Correlation is generally more statistically powerful than the Spearman Correlation, it is the default test.</il>
+  </ul>
+
+  <h3>Spearman Correlation</h3>
+  <ul>
+    <li>Used when any requirements for Pearson Correlation are not met.</li>
+    <li>This test is still a high-quality alternative when the assumptions of Pearson Correlation are not met..</li>
+  </ul>
+
+  <table>
     <tr>
-      <th>Research Question</th>
-      <th>Null Hypothesis</th>
-      <th>Alternate Hypothesis</th>
+      <td>Research Question</td>
+      <td>Null Hypothesis</td>
+      <td>Alternate Hypothesis</td>
     </tr>
 
     <tr>
@@ -230,19 +243,6 @@ Correlation allows you to determine the relationship between two continuous vari
       <td>There IS a relationship between age (years) and income (USD).</td>
     </tr>
   </table>
-
-<h3>Pearson Correlation</h3>
-    <p>Used when both variables are continuous.</p>
-    <p>Both variables are normally distributed.</p>
-    <p>Relationship between two variables is linear.</p>
-    <p>Because the Pearson Correlation is generally more statistically powerful than the Spearman Correlation, it is the default test. </p>
-
-<h3>Spearman Correlation</h3>
-    <p>Used when any of the requirements of the Pearson correlation are not met.</p>
-    <p>This test is still a high-quality alternative when the assumptions of Pearson Correlation are not met.</p>
-</div>
-</div>
-
 
   
 <!-- STEP 1 -->
