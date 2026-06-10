@@ -61,7 +61,15 @@ h2:hover::after, h3:hover::after {
 h2 { color:#93c5fd; }
 h3 { color:#7dd3fc; }
 
-p {
+.code-columns {
+  display: flex;
+  gap: 20px;
+}
+
+.code-column {
+  flex: 1;
+}
+  p {
   line-height: 1.75;
   margin-bottom: 1rem;
   max-width: none;
@@ -171,8 +179,14 @@ ul { padding-left: 1.2rem; }
 <ul>
 <li>Correlation allows you to determine the relationship between two <b>continuous variables</b>.</li>
 <li><strong>Pearson Correlation</strong> is used when both continious variable are <b>normally</b> distributed.</li>
-<li><strong>Spearman Correlation</strong> is used when one or both continious variable are <bNOT></b> normally distributed.</li>
+<li><strong>Spearman Correlation</strong> is used when one or both continious variable are <b></b>NOT></b> normally distributed.</li>
 <li>Because the Pearson Correlation is a more accurate than the Spearman, it is the default test. However, the Spearman is stil a high-quality backup test.</li>
+</ul>
+
+<ul>
+<il> Practice Example: Is there a relationship between age (years) and income (USD)?</il>
+<il>Null hypothesis: There is no relationship between age and income.</il>
+<il>Alternate hypothesis: There is a relationship between age and income.</il>
 </ul>
 
 </div>
@@ -207,19 +221,25 @@ ul { padding-left: 1.2rem; }
 </table>
   
 
-</p>
+<div class="code-columns">
 
-<h3>Code Template</h3>
-<div class="highlight">
-install.packages("PackageName")
+  <div class="code-column">
+    <h3>Code Template</h3>
+    <div class="highlight">
+      install.packages("PackageName")
+    </div>
+  </div>
+
+  <div class="code-column">
+    <h3>Example Code</h3>
+    <div class="takeaway">
+      install.packages("readxl")
+      <br>
+      install.packages("ggpubr")
+    </div>
+  </div>
+
 </div>
-
-<h3>Example Code</h3>
-<div class="takeaway">
-install.packages("readxl")
-install.packages("ggpubr")
-</div>
-
 <h3>Output</h3>
 <div class="takeaway">
 None
