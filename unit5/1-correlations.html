@@ -234,7 +234,6 @@ ul { padding-left: 1.2rem; }
     <h3>Example Code</h3>
     <div class="highlight">
       install.packages("readxl")
-      <br>
       install.packages("ggpubr")
     </div>
   </div>
@@ -399,9 +398,9 @@ Report your observations as comments directly in your R Script.
 <h3>Relationship Strength</h3>
 
 <div class="highlight">
-Strong Relationship      → Dots tightly follow the line
-Weak Relationship        → Dots loosely follow the line
-No Relationship          → Dots appear random
+Strong Relationship      → the line is very steep (close to 45 degree angle)
+Weak Relationship        → line is not steep, but not flat
+No Relationship          → line is almost flat
 </div>
 
 <h3>Outliers</h3>
@@ -413,23 +412,29 @@ If removing the dots noticeably changes the line of best fit, they may be meanin
 
 <h3>Report Template</h3>
 
-<div class="highlight">
-# The relationship is [linear / curved].
-# The relationship is [positive / negative / does not exist].
-# The relationship is [strong / moderate / weak / does not exist].
-# There [are / are no] outliers.
-</div>
+<div class="code-columns">
 
-<h3>Example Report</h3>
+  <div class="code-column">
+    <h3>Report Template</h3>
+    <div class="highlight">
+    # The relationship is ... linear / curved
+# The relationship is ... positive / negative / does not exist
+# The relationship is ... strong / moderate / weak / does not exist
+# There ... are / are no outliers.
+    </div>
+  </div>
 
-<div class="takeaway">
-# The relationship is linear.
+  <div class="code-column">
+    <h3>Example Report</h3>
+    <div class="highlight">
+     # The relationship is linear.
 # The relationship is positive.
 # The relationship is moderate or strong.
 # There are no outliers.
-</div>
+    </div>
+  </div>
 
-</div>
+
 
 
 <!-- STEP 4 -->
@@ -483,29 +488,34 @@ Replace the dataset and variable names with your actual column names.
 
 </table>
 
-<h3>Code Template</h3>
+<div class="code-columns">
 
-<div class="highlight">
-mean(DatasetName$IndependentVariable)
+  <div class="code-column">
+    <h3>Code Template</h3>
+    <div class="highlight">
+    mean(DatasetName$IndependentVariable)
 sd(DatasetName$IndependentVariable)
 median(DatasetName$IndependentVariable)
 
 mean(DatasetName$DependentVariable)
 sd(DatasetName$DependentVariable)
 median(DatasetName$DependentVariable)
-</div>
+    </div>
+  </div>
 
-<h3>Example Code</h3>
-
-<div class="takeaway">
-mean(DatasetZ$Age)
+  <div class="code-column">
+    <h3>Example Code</h3>
+    <div class="highlight">
+     mean(DatasetZ$Age)
 sd(DatasetZ$Age)
 median(DatasetZ$Age)
 
 mean(DatasetZ$USD)
 sd(DatasetZ$USD)
 median(DatasetZ$USD)
-</div>
+    </div>
+  </div>
+
 
 <h3>Example Output</h3>
 
