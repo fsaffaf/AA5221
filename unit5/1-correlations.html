@@ -293,69 +293,55 @@ install.packages("ggpubr")
   
 <!-- STEP 2 -->
 <details class="card">
-  <summary>Step 2: Create a Scatterplot</summary>
+  <summary>Step 2: Create a Scatterplot to Visualize the Relationship</summary>
 
-    <div class="card-content">
-  <h3>Directions</h3>
+  <div class="card-content">
 
-  <ul>
-    <li>Scatterplots are required when conducting a correlation.</li>
-    <li>Scatterplots allow you to visually see the relationship between the two continuous variables.</li>
-    <li>Each dot represents one observation (one person).</li>
-    <li>The x-axis (horizontal axis) represents the independent variable.</li>
-    <li>The y-axis (vertical axis) represents the dependent variable.</li>
-  </ul>
+    <h3>Function Breakdown</h3>
 
-  <!-- ggscatter Function Table -->
-  <h3>Function Breakdown</h3>
+    <table>
+      <tr>
+        <th>Code</th>
+        <th>Purpose</th>
+      </tr>
 
-  <ul>
-    <li>The function (R code) used to create a scatterplot is provided below.</li>
-    <li>Replace the example dataset and variable names with your own.</li>
-  </ul>
+      <tr>
+        <td><code>ggscatter()</code></td>
+        <td>Creates a scatterplot.</td>
+      </tr>
 
-  <table>
-    <tr>
-      <th>Code</th>
-      <th>Purpose</th>
-    </tr>
+      <tr>
+        <td><code>x =</code></td>
+        <td>Specifies the variable placed on the x-axis.</td>
+      </tr>
 
-    <tr>
-      <td><code>ggscatter()</code></td>
-      <td>Creates a scatterplot.</td>
-    </tr>
+      <tr>
+        <td><code>y =</code></td>
+        <td>Specifies the variable placed on the y-axis.</td>
+      </tr>
 
-    <tr>
-      <td><code>x =</code></td>
-      <td>Specifies the variable placed on the x-axis.</td>
-    </tr>
+      <tr>
+        <td><code>add = "reg.line"</code></td>
+        <td>Adds a line of best fit to visualize the relationship.</td>
+      </tr>
 
-    <tr>
-      <td><code>y =</code></td>
-      <td>Specifies the variable placed on the y-axis.</td>
-    </tr>
+      <tr>
+        <td><code>xlab =</code></td>
+        <td>Labels the x-axis.</td>
+      </tr>
 
-    <tr>
-      <td><code>add = "reg.line"</code></td>
-      <td>Adds a line of best fit to visualize the relationship.</td>
-    </tr>
+      <tr>
+        <td><code>ylab =</code></td>
+        <td>Labels the y-axis.</td>
+      </tr>
+    </table>
 
-    <tr>
-      <td><code>xlab =</code></td>
-      <td>Labels the x-axis.</td>
-    </tr>
+    <div class="code-columns">
 
-    <tr>
-      <td><code>ylab =</code></td>
-      <td>Labels the y-axis.</td>
-    </tr>
-  </table>
+      <div class="code-column">
+        <h3>Code Template</h3>
 
-  <div class="code-columns">
-
-    <div class="code-column">
-      <h3>Code Template</h3>
-      <div class="highlight">
+        <div class="highlight">
 ggscatter(
   DatasetName,
   x = "IndependentVariable",
@@ -364,12 +350,13 @@ ggscatter(
   xlab = "Independent Variable",
   ylab = "Dependent Variable"
 )
+        </div>
       </div>
-    </div>
 
-    <div class="code-column">
-      <h3>Example Code</h3>
-      <div class="highlight">
+      <div class="code-column">
+        <h3>Example Code</h3>
+
+        <div class="highlight">
 ggscatter(
   DatasetZ,
   x = "Age",
@@ -378,18 +365,12 @@ ggscatter(
   xlab = "Age",
   ylab = "USD"
 )
+        </div>
       </div>
+
     </div>
 
   </div>
-
-  <h3>Example Output</h3>
-
-  <div class="takeaway">
-    image.png
-  </div>
-
-</div>
 </details>
 
 
