@@ -215,16 +215,32 @@ ul { padding-left: 1.2rem; }
 
 <ul>
   <li>Correlation allows you to determine the relationship between two <b>continuous variables</b>.</li>
-  <li><strong>Pearson Correlation</strong> is used when both continuous variables are <b>normally</b> distributed.</li>
-  <li><strong>Spearman Correlation</strong> is used when one or both continuous variables are <b>not</b> normally distributed.</li>
-  <li>Because the Pearson Correlation is generally more statistically powerful than the Spearman Correlation, it is the default test. However, the Spearman Correlation is still a high-quality alternative when the assumptions of Pearson Correlation are not met.</li>
+  <li>Example: Is there a relationship between age (years) and income (USD)?</li>
+  <li>Null hypothesis: There is no relationship between age and income.</li>
+  <li>Alternative Hypothesis: There is a relationship between age and income.</li>
 </ul>
 
-<ul>
-  <li><strong>Practice Example:</strong> Is there a relationship between age (years) and income (USD)?</li>
-  <li><strong>Null Hypothesis (H₀):</strong> There is no relationship between age and income.</li>
-  <li><strong>Alternative Hypothesis (H₁):</strong> There is a relationship between age and income.</li>
-</ul>
+  <div class="code-columns">
+
+      <div class="code-column">
+        <h3>Pearson Correlation</h3>
+        <div class="highlight">
+# Used when both variables are continuous.
+# Both variables are normally distributed.
+# Relationship between two variables is linear.
+        </div>
+      </div>
+
+      <div class="code-column">
+        <h3>Spearman Correlation</h3>
+        <div class="highlight">
+# Used when any of the requirements of the Pearson correlation are not met.
+        </div>
+      </div>
+
+<p>
+Because the Pearson Correlation is generally more statistically powerful than the Spearman Correlation, it is the default test. However, the Spearman Correlation is still a high-quality alternative when the assumptions of Pearson Correlation are not met.</li>
+</p>
 
 </div>
   
