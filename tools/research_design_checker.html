@@ -645,6 +645,10 @@ function handleControl() {
    DETERMINE DESIGN
    ========================================= */
 
+/* =========================================
+   DETERMINE DESIGN
+   ========================================= */
+
 function determineDesign(
   groups,
   random,
@@ -670,6 +674,10 @@ function determineDesign(
 
   /* =========================================
      TRUE EXPERIMENT
+     
+     Groups = YES
+     Random assignment = YES
+     Strong control = YES
      ========================================= */
 
   if (groups && random && control) {
@@ -685,32 +693,57 @@ function determineDesign(
 
   /* =========================================
      QUASI-EXPERIMENT
+     
+     Any study with distinct groups that does
+     not meet ALL three requirements for a
+     true experiment is classified as quasi.
+     
+     This includes:
+     YES + YES + NO
+     YES + NO + YES
+     YES + NO + NO
      ========================================= */
 
-  if (groups && noRandom && control) {
+  else if (groups) {
 
     result.textContent = "Quasi-Experiment";
 
     description.textContent =
-      "This design has distinct groups and strong research control, but participants were not randomly assigned to groups. Because random assignment is missing, the design is classified as a quasi-experiment.";
+      "This design includes distinct groups but does not have all of the features required for a true experiment. Because at least one important feature—random assignment or strong research control—is missing, the design is classified as a quasi-experiment.";
 
     resultPanel.classList.add("quasi");
   }
 
- 
-  if (groups && noRandom && nocontrol) {
 
-    result.textContent = "Quasi-Experiment";
+  /* =========================================
+     CORRELATIONAL — HIGH CONTROL
+     
+     Groups = NO
+     Random assignment = NO
+     Strong control = YES
+     
+     Strong control does NOT make this
+     experimental because there are no
+     distinct groups or random assignment.
+     ========================================= */
+
+  else if (noGroups && noRandom && control) {
+
+    result.textContent = "Correlational Study";
 
     description.textContent =
-      "This design has distinct groups. but participants were not randomly assigned to groups. Because random assignment is missing, the design is classified as a quasi-experiment. Additionally, other external factors have not been controlled, so it makes it even more difficult to determine what is causing the DV.";
+      "This is still a correlational study because the researcher is measuring naturally occurring variables rather than randomly assigning participants to groups. However, the study has strong research control, meaning the researcher has taken steps to control important outside influences.";
 
-    resultPanel.classList.add("quasi");
-  } 
+    resultPanel.classList.add("correlation");
+  }
 
 
   /* =========================================
-     CORRELATIONAL
+     CORRELATIONAL — LOW CONTROL
+     
+     Groups = NO
+     Random assignment = NO
+     Strong control = NO
      ========================================= */
 
   else if (noGroups && noRandom && noControl) {
@@ -718,43 +751,29 @@ function determineDesign(
     result.textContent = "Correlational Study";
 
     description.textContent =
-      "This design does not involve distinct groups, random assignment, or strong research control. It is used to examine relationships between variables rather than determine cause and effect.";
+      "This design does not involve distinct groups or random assignment and does not have strong research control. It is used to examine relationships between naturally occurring variables rather than determine cause and effect.";
 
     resultPanel.classList.add("correlation");
   }
 
 
   /* =========================================
-     CORRELATION
+     SHOW RESULT
      ========================================= */
-
-
-  else if (noGroups && noRandom && noControl) {
-
-    result.textContent = "Correlational Study";
-
-    description.textContent =
-      "This design does not involve distinct groups or random assignment, but it does have strong research control. However, it is still correlational because the researcher is simply measuring naturally occurring variables and examining their relationship.";
-
-    resultPanel.classList.add("correlation");
-  }
-
-
-  /*
-    Show the result.
-  */
 
   resultPanel.style.display = "block";
 
-  /*
-    Show reset button.
-  */
+
+  /* =========================================
+     SHOW RESET BUTTON
+     ========================================= */
 
   document.getElementById("resetButton").style.display = "block";
 
-  /*
-    Scroll smoothly to the result.
-  */
+
+  /* =========================================
+     SCROLL TO RESULT
+     ========================================= */
 
   setTimeout(function() {
 
@@ -765,7 +784,6 @@ function determineDesign(
 
   }, 100);
 }
-
 
 /* =========================================
    RESET
