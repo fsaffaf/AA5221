@@ -687,7 +687,7 @@ function determineDesign(
      QUASI-EXPERIMENT
      ========================================= */
 
-  else if (groups && noRandom && control) {
+  if (groups && noRandom && control) {
 
     result.textContent = "Quasi-Experiment";
 
@@ -696,6 +696,17 @@ function determineDesign(
 
     resultPanel.classList.add("quasi");
   }
+
+ 
+  if (groups && noRandom && nocontrol) {
+
+    result.textContent = "Quasi-Experiment";
+
+    description.textContent =
+      "This design has distinct groups. but participants were not randomly assigned to groups. Because random assignment is missing, the design is classified as a quasi-experiment. Additionally, other external factors have not been controlled, so it makes it even more difficult to determine what is causing the DV.";
+
+    resultPanel.classList.add("quasi");
+  } 
 
 
   /* =========================================
@@ -720,7 +731,7 @@ function determineDesign(
 
   else if (noGroups && noRandom && noControl) {
 
-    result.textContent = "A (High Quality) Correlational Study";
+    result.textContent = "Correlational Study";
 
     description.textContent =
       "This design does not involve distinct groups or random assignment, but it does have strong research control. However, it is still correlational because the researcher is simply measuring naturally occurring variables and examining their relationship.";
