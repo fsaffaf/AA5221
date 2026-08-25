@@ -78,7 +78,7 @@ body::after {
   color: white;
 }
 
-.intro {
+.glass p {
   margin: 0 0 2rem;
   text-align: center;
   color: rgb(203,213,225);
@@ -86,61 +86,75 @@ body::after {
   line-height: 1.6;
 }
 
-/* Question screens */
-.question {
-  display: none;
-  animation: fadeIn 0.3s ease;
-}
-
-.question.active {
-  display: block;
-}
-
-.level-label {
-  display: block;
-  margin-bottom: 0.75rem;
-  text-align: center;
-  font-size: 0.8rem;
-  text-transform: uppercase;
-  letter-spacing: 0.18em;
-  color: #7dd3fc;
-}
-
-.question h3 {
-  margin: 0 0 1.5rem;
-  text-align: center;
-  font-size: clamp(1.4rem, 4vw, 2rem);
-  font-weight: 650;
-  line-height: 1.3;
-}
-
-/* Answer buttons */
-.answer-list {
+/* Checkbox area */
+.feature-list {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1rem;
+  margin-bottom: 2rem;
 }
 
-.answer-button {
-  padding: 1.25rem;
+.feature-option {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+
+  padding: 1rem 1.15rem;
   border-radius: 16px;
-  border: 1px solid rgba(255,255,255,0.15);
 
   background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.12);
+
+  color: rgb(241,245,249);
+  cursor: pointer;
+  transition: 0.25s ease;
+}
+
+.feature-option:hover {
+  background: rgba(255,255,255,0.13);
+  transform: translateY(-1px);
+}
+
+.feature-option input {
+  width: 1.1rem;
+  height: 1.1rem;
+  accent-color: #38bdf8;
+  cursor: pointer;
+}
+
+.feature-title {
+  font-weight: 600;
+  color: white;
+}
+
+.feature-subtitle {
+  font-size: 0.85rem;
+  color: rgb(203,213,225);
+  margin-top: 0.15rem;
+}
+
+/* Button */
+.design-button {
+  width: 100%;
+  border: 1px solid rgba(125,211,252,0.28);
+  border-radius: 18px;
+  padding: 1rem 1.25rem;
+
+  background: rgba(14,165,233,0.18);
   color: white;
 
   font-family: inherit;
   font-size: 1rem;
-  font-weight: 600;
+  font-weight: 650;
 
   cursor: pointer;
   transition: 0.25s ease;
 }
 
-.answer-button:hover {
-  background: rgba(14,165,233,0.22);
-  border-color: rgba(125,211,252,0.45);
+.design-button:hover {
+  background: rgba(14,165,233,0.28);
   transform: translateY(-2px);
+  box-shadow: 0 0 0 2px rgba(125,211,252,0.35);
 }
 
 /* Result panel */
@@ -151,7 +165,6 @@ body::after {
 
   border-radius: 20px;
   border: 1px solid rgba(125,211,252,0.30);
-
   background: linear-gradient(
     135deg,
     rgba(3,105,161,0.70),
@@ -159,7 +172,7 @@ body::after {
   );
 
   box-shadow: 0 20px 50px rgba(0,0,0,0.35);
-  animation: fadeIn 0.3s ease;
+  animation: fadeIn 0.25s ease;
 }
 
 .result-panel.correlation {
@@ -210,30 +223,6 @@ body::after {
   line-height: 1.6;
 }
 
-/* Start over button */
-.restart-button {
-  width: 100%;
-  margin-top: 1.25rem;
-  padding: 0.9rem 1.25rem;
-
-  border: 1px solid rgba(255,255,255,0.18);
-  border-radius: 14px;
-
-  background: rgba(255,255,255,0.08);
-  color: white;
-
-  font-family: inherit;
-  font-size: 0.95rem;
-  font-weight: 600;
-
-  cursor: pointer;
-  transition: 0.25s ease;
-}
-
-.restart-button:hover {
-  background: rgba(255,255,255,0.14);
-}
-
 /* Animation */
 @keyframes fadeIn {
   from {
@@ -256,10 +245,6 @@ body::after {
   .glass {
     padding: 1.5rem;
   }
-
-  .answer-list {
-    grid-template-columns: 1fr;
-  }
 }
 </style>
 </head>
@@ -268,202 +253,186 @@ body::after {
 
 <div class="design-wrapper">
   <div class="glass">
-
     <h2>Research Design Selector</h2>
 
-    <p class="intro">
-      Answer each question to identify the research design.
-    </p>
+    <p>Select which features your study has:</p>
 
-    <!-- LEVEL 1 -->
-    <div id="question1" class="question active">
+    <div class="feature-list">
 
-      <span class="level-label">Level 1 of 3</span>
+  <!-- GROUPS -->
+  <label class="feature-option">
+    <input type="radio" name="groups" id="groups">
+    <span>
+      <span class="feature-title">Groups</span>
+      <br>
+      <span class="feature-subtitle">
+        There are two distinct groups identified in the research.
+      </span>
+    </span>
+  </label>
 
-      <h3>
-        Are there two or more distinct groups in the research?
-      </h3>
+  <label class="feature-option">
+    <input type="radio" name="groups" id="noGroups">
+    <span>
+      <span class="feature-title">No Groups</span>
+      <br>
+      <span class="feature-subtitle">
+        There are no separate groups in the research.
+      </span>
+    </span>
+  </label>
 
-      <div class="answer-list">
+  <!-- RANDOM ASSIGNMENT -->
+  <label class="feature-option">
+    <input type="radio" name="assignment" id="random">
+    <span>
+      <span class="feature-title">Random Assignment</span>
+      <br>
+      <span class="feature-subtitle">
+        The researcher has randomly assigned participants to each group.
+      </span>
+    </span>
+  </label>
 
-        <button class="answer-button" onclick="groupsYes()">
-          Yes
-        </button>
+  <label class="feature-option">
+    <input type="radio" name="assignment" id="noRandom">
+    <span>
+      <span class="feature-title">No Random Assignment</span>
+      <br>
+      <span class="feature-subtitle">
+        Participants were not randomly assigned to groups.
+      </span>
+    </span>
+  </label>
 
-        <button class="answer-button" onclick="showResult('correlation')">
-          No
-        </button>
+  <!-- RESEARCH CONTROL -->
+  <label class="feature-option">
+    <input type="radio" name="control" id="control">
+    <span>
+      <span class="feature-title">Research Control</span>
+      <br>
+      <span class="feature-subtitle">
+        The study controls outside influences on the research.
+      </span>
+    </span>
+  </label>
 
-      </div>
-    </div>
+  <label class="feature-option">
+    <input type="radio" name="control" id="noControl">
+    <span>
+      <span class="feature-title">No Research Control</span>
+      <br>
+      <span class="feature-subtitle">
+        The study does not control outside influences on the research.
+      </span>
+    </span>
+  </label>
 
+</div>
 
-    <!-- LEVEL 2 -->
-    <div id="question2" class="question">
+    <button class="design-button" onclick="getDesign()">
+      Determine Design
+    </button>
 
-      <span class="level-label">Level 2 of 3</span>
-
-      <h3>
-        Were participants randomly assigned to the groups?
-      </h3>
-
-      <div class="answer-list">
-
-        <button class="answer-button" onclick="showResult('quasi')">
-          Yes
-        </button>
-
-        <button class="answer-button" onclick="showQuestion(3)">
-          No
-        </button>
-
-      </div>
-    </div>
-
-
-    <!-- LEVEL 3 -->
-    <div id="question3" class="question">
-
-      <span class="level-label">Level 3 of 3</span>
-
-      <h3>
-        Does the study have a high level of research control?
-      </h3>
-
-      <div class="answer-list">
-
-        <button class="answer-button" onclick="showResult('true')">
-          Yes
-        </button>
-
-        <button class="answer-button" onclick="showResult('quasi')">
-          No
-        </button>
-
-      </div>
-    </div>
-
-
-    <!-- RESULT -->
     <div id="resultPanel" class="result-panel">
-
-      <div class="result-label">
-        Research Design
-      </div>
-
+      <div class="result-label">Research Design</div>
       <h3 id="result" class="result-title"></h3>
-
       <div id="resultDescription" class="result-description"></div>
-
-      <button class="restart-button" onclick="restartSelector()">
-        Start Over
-      </button>
-
     </div>
-
   </div>
 </div>
 
-
 <script>
+function getDesign() {
 
-/* Move from Question 1 to Question 2 */
-function groupsYes() {
-  showQuestion(2);
-}
+  // Get the student's selections
+  const groups = document.getElementById("groups").checked;
+  const noGroups = document.getElementById("noGroups").checked;
 
+  const random = document.getElementById("random").checked;
+  const noRandom = document.getElementById("noRandom").checked;
 
-/* Show a specific question */
-function showQuestion(number) {
-
-  // Hide all questions
-  document.querySelectorAll(".question").forEach(question => {
-    question.classList.remove("active");
-  });
-
-  // Show the requested question
-  document
-    .getElementById("question" + number)
-    .classList.add("active");
-}
-
-
-/* Show the final result */
-function showResult(design) {
-
-  // Hide all questions
-  document.querySelectorAll(".question").forEach(question => {
-    question.classList.remove("active");
-  });
+  const control = document.getElementById("control").checked;
+  const noControl = document.getElementById("noControl").checked;
 
   const resultPanel = document.getElementById("resultPanel");
   const result = document.getElementById("result");
   const description = document.getElementById("resultDescription");
 
-  // Remove previous styling
-  resultPanel.classList.remove(
-    "correlation",
-    "quasi",
-    "true"
-  );
+  // Remove previous result styling
+  resultPanel.classList.remove("correlation", "quasi", "true");
 
-
-  /* CORRELATIONAL STUDY */
-  if (design === "correlation") {
-
-    result.textContent = "Correlational Study";
-
+  // Make sure the student answered all three questions
+  if (
+    (!groups && !noGroups) ||
+    (!random && !noRandom) ||
+    (!control && !noControl)
+  ) {
+    result.textContent = "Please Make a Selection";
     description.textContent =
-      "Because the research does not compare distinct groups, it is classified as a correlational study. Correlational research examines whether variables are related but cannot establish cause and effect.";
-
+      "Please select one option from each pair before determining the research design.";
     resultPanel.classList.add("correlation");
+    resultPanel.style.display = "block";
+    return;
   }
 
-
-  /* QUASI-EXPERIMENT */
-  else if (design === "quasi") {
-
-    result.textContent = "Quasi-Experiment";
-
-    description.textContent =
-      "This research compares distinct groups but does not include all of the features required for a true experiment. Quasi-experiments are commonly used when researchers cannot randomly assign participants or fully control outside influences.";
-
-    resultPanel.classList.add("quasi");
-  }
-
-
-  /* TRUE EXPERIMENT */
-  else if (design === "true") {
+  /*
+    TRUE EXPERIMENT:
+    Groups + Random Assignment + Research Control
+  */
+  if (groups && random && control) {
 
     result.textContent = "True Experiment";
 
     description.textContent =
-      "This research includes distinct groups, random assignment, and a high level of research control. These features allow the researcher to make the strongest conclusions about cause-and-effect relationships.";
+      "This design has distinct groups, random assignment, and strong research control. These features allow the researcher to make stronger conclusions about cause and effect.";
 
     resultPanel.classList.add("true");
   }
 
+  /*
+    QUASI-EXPERIMENT:
+    Groups + No Random Assignment + Research Control
+  */
+  else if (groups && noRandom && control) {
 
-  // Display result
+    result.textContent = "Quasi-Experiment";
+
+    description.textContent =
+      "This design has distinct groups and research control, but participants were not randomly assigned to groups. Because random assignment is missing, it is classified as a quasi-experiment.";
+
+    resultPanel.classList.add("quasi");
+  }
+
+  /*
+    CORRELATIONAL:
+    No Groups + No Random Assignment + No Research Control
+  */
+  else if (noGroups && noRandom && noControl) {
+
+    result.textContent = "Correlational Study";
+
+    description.textContent =
+      "This design does not involve distinct groups, random assignment, or strong research control. It is used to examine relationships between variables rather than determine cause and effect.";
+
+    resultPanel.classList.add("correlation");
+  }
+
+  /*
+    OTHER COMBINATIONS
+  */
+  else {
+
+    result.textContent = "Nonexperimental or Other Design";
+
+    description.textContent =
+      "This combination of features does not fit neatly into the three primary research designs in this selector. Review the study characteristics to determine the most appropriate design.";
+
+    resultPanel.classList.add("correlation");
+  }
+
   resultPanel.style.display = "block";
 }
-
-
-/* Restart the selector */
-function restartSelector() {
-
-  // Hide result
-  document.getElementById("resultPanel").style.display = "none";
-
-  // Hide all questions
-  document.querySelectorAll(".question").forEach(question => {
-    question.classList.remove("active");
-  });
-
-  // Return to Level 1
-  document.getElementById("question1").classList.add("active");
-}
-
 </script>
 
 </body>
