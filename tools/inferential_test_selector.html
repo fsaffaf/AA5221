@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Inferential Test Selector</title>
+
+<style>
+
+body {
+  margin: 0;
+  font-family: system-ui, Arial;
+  background: radial-gradient(circle at top, #0b1220, #020617 70%);
+  color: rgba(255,255,255,0.92);
+  padding: 40px 20px;
+}
+
+.container {
+  max-width: 1100px;
+  margin: auto;
+}
+
+h1 {
+  text-align: center;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  background: linear-gradient(180deg, #ffffff, #7dd3fc);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* GRID */
+.flow {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+/* GLASS CARDS */
+.step {
+  background: rgba(15,23,42,.65);
+  border: 1px solid rgba(255,255,255,.15);
+  border-radius: 18px;
+  padding: 1.5rem;
+  backdrop-filter: blur(18px);
+  display: flex;
+  flex-direction: column;
+}
+
+.step.active {
+  border: 1px solid #38bdf8;
+}
+
+.step.completed {
+  opacity: 0.5;
+}
+
+.step h3 {
+  color: #93c5fd;
+  margin-bottom: 10px;
+}
+
+/* ✅ STACKED BUTTONS */
+.btn-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* BUTTON STYLE */
+button {
+  padding: 12px;
+  border-radius: 12px;
+  border: none;
+
+  background: rgba(56,189,248,0.15);
+  color: #e0f2fe;
+
+  border: 1px solid rgba(56,189,248,0.4);
+
+  backdrop-filter: blur(8px);
+  cursor: pointer;
+  font-weight: 600;
+  transition: all .25s ease;
+}
+
+/* HOVER */
+button:hover {
+  background: rgba(56,189,248,0.25);
+  transform: translateY(-1px);
+}
+
+/* ✅ SELECTED STYLE (BLUE, NOT GREEN) */
+button.selected {
+  background: rgba(125,211,252,0.25);
+  border: 1px solid #7dd3fc;
+  box-shadow: 0 0 12px rgba(125,211,252,0.6);
+  color: white;
+}
+
+/* RESULT */
+.result {
+  margin-top: 25px;
+  padding: 20px;
+  background: rgba(15,23,42,.65);
+  border-radius: 18px;
+  display: none;
+}
+
+.test {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.startover {
+  margin-top: 12px;
+  padding: 10px;
+  background: rgba(255,255,255,.15);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .flow { grid-template-columns: 1fr; }
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Inferential Test Selector</h1>
+
+<div class="flow">
+
+<div class="step" id="step1">
+<h3>What level of measurement is the data?</h3>
+
+<div class="btn-wrap">
+<button onclick="choose('measurement','categorical', this)">Categorical only</button>
+<button onclick="choose('measurement','cat_cont', this)">Categorical + Continuous</button>
+<button onclick="choose('measurement','continuous', this)">Continuous only</button>
+</div>
+
+</div>
+
+<div class="step" id="step2"></div>
+<div class="step" id="step3"></div>
+
+</div>
+
+<div class="result" id="resultBox">
+<h3>Recommended Test</h3>
+<div class="test" id="resultText"></div>
+<button class="startover" onclick="resetAll()">Start Over</button>
+</div>
+
+</div>
+
+<script>
+
+var state = {
+measurement: null,
+design: null,
+normality: null
+};
+
+/* ✅ HIGHLIGHT SELECTION */
+function highlight(btn) {
+  var group = btn.parentElement.querySelectorAll("button");
+  for (var i = 0; i < group.length; i++) {
+    group[i].classList.remove("selected");
+  }
+  btn.classList.add("selected");
+}
+
+function choose(type, value, btn) {
+  state[type] = value;
+  highlight(btn);
+
+  if (type === 'measurement') renderStep2(value);
+  if (type === 'design') handleDesign(value);
+  if (type === 'normality') showResult();
+}
+
+function setStepState(id, stateClass) {
+  var el = document.getElementById(id);
+  el.className = "step " + stateClass;
+}
+
+/* STEP 2 */
+function renderStep2(value) {
+var step2 = document.getElementById('step2');
+setStepState('step2','active');
+
+if (value === 'categorical') {
+step2.innerHTML =
+"<h3>Research design?</h3>" +
+"<div class='btn-wrap'>" +
+"<button onclick=\"choose('design','two_var', this)\">Two variables</button>" +
+"<button onclick=\"choose('design','one_var', this)\">One variable</button>" +
+"</div>";
+}
+
+if (value === 'cat_cont') {
+step2.innerHTML =
+"<h3>Research design?</h3>" +
+"<div class='btn-wrap'>" +
+"<button onclick=\"choose('design','between', this)\">Between subjects</button>" +
+"<button onclick=\"choose('design','within', this)\">Within subjects</button>" +
+"</div>";
+}
+
+if (value === 'continuous') {
+step2.innerHTML =
+"<h3>Research design?</h3>" +
+"<div class='btn-wrap'>" +
+"<button onclick=\"choose('design','relationship', this)\">Relationship</button>" +
+"</div>";
+}
+
+document.getElementById('step3').innerHTML = "";
+}
+
+/* STEP 3 */
+function handleDesign(value) {
+
+if (state.measurement === 'categorical') {
+var test = "";
+
+if (value === 'two_var') test = "Chi-Square Independence";
+if (value === 'one_var') test = "Chi-Square Goodness of Fit";
+
+showResult(test);
+return;
+}
+
+var step3 = document.getElementById('step3');
+setStepState('step3','active');
+
+step3.innerHTML =
+"<h3>Normal distribution?</h3>" +
+"<div class='btn-wrap'>" +
+"<button onclick=\"choose('normality','normal', this)\">Normal</button>" +
+"<button onclick=\"choose('normality','not', this)\">Not normal</button>" +
+"</div>";
+}
+
+/* RESULT */
+function showResult(testOverride) {
+
+var test = testOverride;
+
+if (!test) {
+
+if (state.measurement === 'cat_cont' && state.design === 'between' && state.normality === 'normal') {
+test = "Independent t-test";
+}
+
+if (state.measurement === 'cat_cont' && state.design === 'between' && state.normality === 'not') {
+test = "Mann-Whitney U";
+}
+
+if (state.measurement === 'cat_cont' && state.design === 'within' && state.normality === 'normal') {
+test = "Dependent t-test";
+}
+
+if (state.measurement === 'cat_cont' && state.design === 'within' && state.normality === 'not') {
+test = "Wilcoxon Signed Rank";
+}
+
+if (state.measurement === 'continuous' && state.normality === 'normal') {
+test = "Pearson Correlation";
+}
+
+if (state.measurement === 'continuous' && state.normality === 'not') {
+test = "Spearman Correlation";
+}
+}
+
+document.getElementById('resultText').innerText = test;
+document.getElementById('resultBox').style.display = "block";
+
+setStepState('step1','completed');
+setStepState('step2','completed');
+setStepState('step3','completed');
+}
+
+/* RESET */
+function resetAll() {
+state.measurement = null;
+state.design = null;
+state.normality = null;
+
+document.getElementById('step2').innerHTML = "";
+document.getElementById('step3').innerHTML = "";
+document.getElementById('resultBox').style.display = "none";
+
+document.getElementById('step1').className = "step";
+document.getElementById('step2').className = "step";
+document.getElementById('step3').className = "step";
+}
+
+</script>
+
+</body>
+</html>
