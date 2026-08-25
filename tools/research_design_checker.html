@@ -15,7 +15,6 @@ html, body {
   color: white;
 }
 
-/* Page background */
 body {
   min-height: 100vh;
   position: relative;
@@ -44,7 +43,6 @@ body::after {
   z-index: -1;
 }
 
-/* Centers the selector */
 .design-wrapper {
   min-height: 100vh;
   display: flex;
@@ -53,7 +51,6 @@ body::after {
   padding: 2rem;
 }
 
-/* Main glass card */
 .glass {
   width: 100%;
   max-width: 720px;
@@ -68,7 +65,6 @@ body::after {
   box-shadow: 0 25px 80px rgba(0,0,0,0.45);
 }
 
-/* Header */
 .glass h2 {
   margin: 0 0 0.75rem;
   text-align: center;
@@ -86,12 +82,35 @@ body::after {
   line-height: 1.6;
 }
 
-/* Checkbox area */
+/* QUESTION ROWS */
+
+.question-row {
+  margin-bottom: 1.5rem;
+  animation: fadeIn 0.3s ease;
+}
+
+.question-row.hidden {
+  display: none;
+}
+
+.question-title {
+  margin-bottom: 0.75rem;
+  font-size: 1.05rem;
+  font-weight: 650;
+  color: white;
+}
+
+.question-number {
+  color: rgb(125,211,252);
+  margin-right: 0.4rem;
+}
+
+/* OPTIONS */
+
 .feature-list {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1rem;
-  margin-bottom: 2rem;
 }
 
 .feature-option {
@@ -133,31 +152,29 @@ body::after {
   margin-top: 0.15rem;
 }
 
-/* Button */
-.design-button {
-  width: 100%;
-  border: 1px solid rgba(125,211,252,0.28);
-  border-radius: 18px;
-  padding: 1rem 1.25rem;
+/* ERROR MESSAGE */
 
-  background: rgba(14,165,233,0.18);
-  color: white;
+.error-message {
+  display: none;
+  margin-top: 1rem;
+  padding: 1rem 1.15rem;
 
-  font-family: inherit;
-  font-size: 1rem;
-  font-weight: 650;
+  border-radius: 14px;
+  border: 1px solid rgba(248,113,113,0.4);
+  background: rgba(127,29,29,0.35);
 
-  cursor: pointer;
-  transition: 0.25s ease;
+  color: rgb(254,226,226);
+  line-height: 1.5;
+
+  animation: fadeIn 0.2s ease;
 }
 
-.design-button:hover {
-  background: rgba(14,165,233,0.28);
-  transform: translateY(-2px);
-  box-shadow: 0 0 0 2px rgba(125,211,252,0.35);
+.error-message.show {
+  display: block;
 }
 
-/* Result panel */
+/* RESULT PANEL */
+
 .result-panel {
   display: none;
   margin-top: 1.5rem;
@@ -172,7 +189,7 @@ body::after {
   );
 
   box-shadow: 0 20px 50px rgba(0,0,0,0.35);
-  animation: fadeIn 0.25s ease;
+  animation: fadeIn 0.3s ease;
 }
 
 .result-panel.correlation {
@@ -223,7 +240,34 @@ body::after {
   line-height: 1.6;
 }
 
-/* Animation */
+/* RESET BUTTON */
+
+.reset-button {
+  display: none;
+  width: 100%;
+  margin-top: 1rem;
+
+  border: 1px solid rgba(255,255,255,0.18);
+  border-radius: 18px;
+  padding: 0.9rem 1.25rem;
+
+  background: rgba(255,255,255,0.08);
+  color: white;
+
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 600;
+
+  cursor: pointer;
+  transition: 0.25s ease;
+}
+
+.reset-button:hover {
+  background: rgba(255,255,255,0.14);
+}
+
+/* ANIMATION */
+
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -236,7 +280,8 @@ body::after {
   }
 }
 
-/* Mobile */
+/* MOBILE */
+
 @media (max-width: 700px) {
   .design-wrapper {
     padding: 1rem;
@@ -245,6 +290,10 @@ body::after {
   .glass {
     padding: 1.5rem;
   }
+
+  .feature-list {
+    grid-template-columns: 1fr;
+  }
 }
 </style>
 </head>
@@ -252,134 +301,377 @@ body::after {
 <body>
 
 <div class="design-wrapper">
+
   <div class="glass">
+
     <h2>Research Design Selector</h2>
 
-    <p>Select which features your study has:</p>
+    <p>
+      Answer each question to determine the research design.
+    </p>
 
-    <div class="feature-list">
 
-  <!-- GROUPS -->
-  <label class="feature-option">
-    <input type="radio" name="groups" id="groups">
-    <span>
-      <span class="feature-title">Groups</span>
-      <br>
-      <span class="feature-subtitle">
-        There are two distinct groups identified in the research.
-      </span>
-    </span>
-  </label>
+    <!-- ========================================= -->
+    <!-- QUESTION 1 -->
+    <!-- ========================================= -->
 
-  <label class="feature-option">
-    <input type="radio" name="groups" id="noGroups">
-    <span>
-      <span class="feature-title">No Groups</span>
-      <br>
-      <span class="feature-subtitle">
-        There are no separate groups in the research.
-      </span>
-    </span>
-  </label>
+    <div class="question-row" id="question1">
 
-  <!-- RANDOM ASSIGNMENT -->
-  <label class="feature-option">
-    <input type="radio" name="assignment" id="random">
-    <span>
-      <span class="feature-title">Random Assignment</span>
-      <br>
-      <span class="feature-subtitle">
-        The researcher has randomly assigned participants to each group.
-      </span>
-    </span>
-  </label>
+      <div class="question-title">
+        <span class="question-number">1.</span>
+        Does the study have distinct groups?
+      </div>
 
-  <label class="feature-option">
-    <input type="radio" name="assignment" id="noRandom">
-    <span>
-      <span class="feature-title">No Random Assignment</span>
-      <br>
-      <span class="feature-subtitle">
-        Participants were not randomly assigned to groups.
-      </span>
-    </span>
-  </label>
+      <div class="feature-list">
 
-  <!-- RESEARCH CONTROL -->
-  <label class="feature-option">
-    <input type="radio" name="control" id="control">
-    <span>
-      <span class="feature-title">Research Control</span>
-      <br>
-      <span class="feature-subtitle">
-        The study controls outside influences on the research.
-      </span>
-    </span>
-  </label>
+        <label class="feature-option">
+          <input
+            type="radio"
+            name="groups"
+            id="groups"
+            onchange="handleGroups()"
+          >
 
-  <label class="feature-option">
-    <input type="radio" name="control" id="noControl">
-    <span>
-      <span class="feature-title">No Research Control</span>
-      <br>
-      <span class="feature-subtitle">
-        The study does not control outside influences on the research.
-      </span>
-    </span>
-  </label>
+          <span>
+            <span class="feature-title">Yes</span>
+            <br>
+            <span class="feature-subtitle">
+              The research includes two or more distinct groups.
+            </span>
+          </span>
+        </label>
 
-</div>
 
-    <button class="design-button" onclick="getDesign()">
-      Determine Design
-    </button>
+        <label class="feature-option">
+          <input
+            type="radio"
+            name="groups"
+            id="noGroups"
+            onchange="handleGroups()"
+          >
+
+          <span>
+            <span class="feature-title">No</span>
+            <br>
+            <span class="feature-subtitle">
+              The research does not include distinct groups.
+            </span>
+          </span>
+        </label>
+
+      </div>
+    </div>
+
+
+    <!-- ========================================= -->
+    <!-- QUESTION 2 -->
+    <!-- ========================================= -->
+
+    <div class="question-row hidden" id="question2">
+
+      <div class="question-title">
+        <span class="question-number">2.</span>
+        Were participants randomly assigned to groups?
+      </div>
+
+      <div class="feature-list">
+
+        <label class="feature-option">
+          <input
+            type="radio"
+            name="assignment"
+            id="random"
+            onchange="handleAssignment()"
+          >
+
+          <span>
+            <span class="feature-title">Yes</span>
+            <br>
+            <span class="feature-subtitle">
+              The researcher randomly assigned participants to groups.
+            </span>
+          </span>
+        </label>
+
+
+        <label class="feature-option">
+          <input
+            type="radio"
+            name="assignment"
+            id="noRandom"
+            onchange="handleAssignment()"
+          >
+
+          <span>
+            <span class="feature-title">No</span>
+            <br>
+            <span class="feature-subtitle">
+              Participants were not randomly assigned to groups.
+            </span>
+          </span>
+        </label>
+
+      </div>
+
+      <div id="assignmentError" class="error-message">
+        <strong>This combination is not possible.</strong><br>
+        Random assignment requires participants to be assigned to
+        distinct groups. Because you selected <strong>No Groups</strong>
+        in Question 1, select <strong>No</strong> for random assignment.
+      </div>
+
+    </div>
+
+
+    <!-- ========================================= -->
+    <!-- QUESTION 3 -->
+    <!-- ========================================= -->
+
+    <div class="question-row hidden" id="question3">
+
+      <div class="question-title">
+        <span class="question-number">3.</span>
+        Does the study have strong research control?
+      </div>
+
+      <div class="feature-list">
+
+        <label class="feature-option">
+          <input
+            type="radio"
+            name="control"
+            id="control"
+            onchange="handleControl()"
+          >
+
+          <span>
+            <span class="feature-title">Yes</span>
+            <br>
+            <span class="feature-subtitle">
+              The researcher controls important outside influences.
+            </span>
+          </span>
+        </label>
+
+
+        <label class="feature-option">
+          <input
+            type="radio"
+            name="control"
+            id="noControl"
+            onchange="handleControl()"
+          >
+
+          <span>
+            <span class="feature-title">No</span>
+            <br>
+            <span class="feature-subtitle">
+              The researcher does not have strong control over
+              outside influences.
+            </span>
+          </span>
+        </label>
+
+      </div>
+
+    </div>
+
+
+    <!-- ========================================= -->
+    <!-- RESULT -->
+    <!-- ========================================= -->
 
     <div id="resultPanel" class="result-panel">
-      <div class="result-label">Research Design</div>
+
+      <div class="result-label">
+        Research Design
+      </div>
+
       <h3 id="result" class="result-title"></h3>
+
       <div id="resultDescription" class="result-description"></div>
+
     </div>
+
+
+    <!-- RESET -->
+
+    <button
+      id="resetButton"
+      class="reset-button"
+      onclick="resetSelector()"
+    >
+      Start Over
+    </button>
+
   </div>
 </div>
 
-<script>
-function getDesign() {
 
-  // Get the student's selections
+<script>
+
+/* =========================================
+   QUESTION 1
+   ========================================= */
+
+function handleGroups() {
+
   const groups = document.getElementById("groups").checked;
   const noGroups = document.getElementById("noGroups").checked;
 
+  const question2 = document.getElementById("question2");
+  const question3 = document.getElementById("question3");
+  const resultPanel = document.getElementById("resultPanel");
+
+  /*
+    Once Question 1 is answered,
+    Question 2 becomes visible.
+  */
+
+  if (groups || noGroups) {
+
+    question2.classList.remove("hidden");
+
+    /*
+      Reset Questions 2 and 3 if the student
+      changes their Question 1 answer.
+    */
+
+    document.getElementById("random").checked = false;
+    document.getElementById("noRandom").checked = false;
+
+    document.getElementById("control").checked = false;
+    document.getElementById("noControl").checked = false;
+
+    question3.classList.add("hidden");
+    resultPanel.style.display = "none";
+
+    document
+      .getElementById("assignmentError")
+      .classList.remove("show");
+  }
+}
+
+
+/* =========================================
+   QUESTION 2
+   ========================================= */
+
+function handleAssignment() {
+
+  const groups = document.getElementById("groups").checked;
+  const random = document.getElementById("random").checked;
+  const noRandom = document.getElementById("noRandom").checked;
+
+  const question3 = document.getElementById("question3");
+  const error = document.getElementById("assignmentError");
+
+  /*
+    IMPOSSIBLE COMBINATION:
+
+    No Groups + Random Assignment
+
+    Random assignment requires groups.
+  */
+
+  if (!groups && random) {
+
+    /*
+      Remove the invalid selection.
+    */
+
+    document.getElementById("random").checked = false;
+
+    /*
+      Show error message.
+    */
+
+    error.classList.add("show");
+
+    /*
+      Question 3 stays hidden.
+    */
+
+    question3.classList.add("hidden");
+
+    return;
+  }
+
+  /*
+    Valid Question 2 selection.
+  */
+
+  if (random || noRandom) {
+
+    error.classList.remove("show");
+
+    question3.classList.remove("hidden");
+  }
+}
+
+
+/* =========================================
+   QUESTION 3
+   ========================================= */
+
+function handleControl() {
+
+  const groups = document.getElementById("groups").checked;
   const random = document.getElementById("random").checked;
   const noRandom = document.getElementById("noRandom").checked;
 
   const control = document.getElementById("control").checked;
   const noControl = document.getElementById("noControl").checked;
 
+  /*
+    Only determine the design after
+    Question 3 has been answered.
+  */
+
+  if (control || noControl) {
+
+    determineDesign(
+      groups,
+      random,
+      noRandom,
+      control,
+      noControl
+    );
+  }
+}
+
+
+/* =========================================
+   DETERMINE DESIGN
+   ========================================= */
+
+function determineDesign(
+  groups,
+  random,
+  noRandom,
+  control,
+  noControl
+) {
+
   const resultPanel = document.getElementById("resultPanel");
   const result = document.getElementById("result");
   const description = document.getElementById("resultDescription");
 
-  // Remove previous result styling
-  resultPanel.classList.remove("correlation", "quasi", "true");
-
-  // Make sure the student answered all three questions
-  if (
-    (!groups && !noGroups) ||
-    (!random && !noRandom) ||
-    (!control && !noControl)
-  ) {
-    result.textContent = "Please Make a Selection";
-    description.textContent =
-      "Please select one option from each pair before determining the research design.";
-    resultPanel.classList.add("correlation");
-    resultPanel.style.display = "block";
-    return;
-  }
-
   /*
-    TRUE EXPERIMENT:
-    Groups + Random Assignment + Research Control
+    Remove previous result styling.
   */
+
+  resultPanel.classList.remove(
+    "correlation",
+    "quasi",
+    "true"
+  );
+
+
+  /* =========================================
+     TRUE EXPERIMENT
+     ========================================= */
+
   if (groups && random && control) {
 
     result.textContent = "True Experiment";
@@ -390,24 +682,26 @@ function getDesign() {
     resultPanel.classList.add("true");
   }
 
-  /*
-    QUASI-EXPERIMENT:
-    Groups + No Random Assignment + Research Control
-  */
+
+  /* =========================================
+     QUASI-EXPERIMENT
+     ========================================= */
+
   else if (groups && noRandom && control) {
 
     result.textContent = "Quasi-Experiment";
 
     description.textContent =
-      "This design has distinct groups and research control, but participants were not randomly assigned to groups. Because random assignment is missing, it is classified as a quasi-experiment.";
+      "This design has distinct groups and strong research control, but participants were not randomly assigned to groups. Because random assignment is missing, the design is classified as a quasi-experiment.";
 
     resultPanel.classList.add("quasi");
   }
 
-  /*
-    CORRELATIONAL:
-    No Groups + No Random Assignment + No Research Control
-  */
+
+  /* =========================================
+     CORRELATIONAL
+     ========================================= */
+
   else if (noGroups && noRandom && noControl) {
 
     result.textContent = "Correlational Study";
@@ -418,9 +712,11 @@ function getDesign() {
     resultPanel.classList.add("correlation");
   }
 
-  /*
-    OTHER COMBINATIONS
-  */
+
+  /* =========================================
+     OTHER DESIGN
+     ========================================= */
+
   else {
 
     result.textContent = "Nonexperimental or Other Design";
@@ -431,8 +727,101 @@ function getDesign() {
     resultPanel.classList.add("correlation");
   }
 
+
+  /*
+    Show the result.
+  */
+
   resultPanel.style.display = "block";
+
+  /*
+    Show reset button.
+  */
+
+  document.getElementById("resetButton").style.display = "block";
+
+  /*
+    Scroll smoothly to the result.
+  */
+
+  setTimeout(function() {
+
+    resultPanel.scrollIntoView({
+      behavior: "smooth",
+      block: "nearest"
+    });
+
+  }, 100);
 }
+
+
+/* =========================================
+   RESET
+   ========================================= */
+
+function resetSelector() {
+
+  /*
+    Clear all selections.
+  */
+
+  document
+    .querySelectorAll('input[type="radio"]')
+    .forEach(function(input) {
+      input.checked = false;
+    });
+
+
+  /*
+    Hide Questions 2 and 3.
+  */
+
+  document
+    .getElementById("question2")
+    .classList.add("hidden");
+
+  document
+    .getElementById("question3")
+    .classList.add("hidden");
+
+
+  /*
+    Hide error.
+  */
+
+  document
+    .getElementById("assignmentError")
+    .classList.remove("show");
+
+
+  /*
+    Hide result.
+  */
+
+  document
+    .getElementById("resultPanel")
+    .style.display = "none";
+
+
+  /*
+    Hide reset button.
+  */
+
+  document
+    .getElementById("resetButton")
+    .style.display = "none";
+
+
+  /*
+    Return to top.
+  */
+
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+}
+
 </script>
 
 </body>
