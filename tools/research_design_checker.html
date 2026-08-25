@@ -259,9 +259,9 @@ body::after {
 
     <div class="feature-list">
 
-  <!-- OPTION 1 -->
+  <!-- GROUPS -->
   <label class="feature-option">
-    <input type="checkbox" id="manip">
+    <input type="radio" name="groups" id="groups">
     <span>
       <span class="feature-title">Groups</span>
       <br>
@@ -271,21 +271,20 @@ body::after {
     </span>
   </label>
 
-  <!-- OPTION 2 -->
   <label class="feature-option">
-    <input type="checkbox" id="random">
+    <input type="radio" name="groups" id="noGroups">
     <span>
       <span class="feature-title">No Groups</span>
       <br>
       <span class="feature-subtitle">
-        There are no seperate groups in the research.
+        There are no separate groups in the research.
       </span>
     </span>
   </label>
 
-  <!-- OPTION 3 -->
+  <!-- RANDOM ASSIGNMENT -->
   <label class="feature-option">
-    <input type="checkbox" id="control">
+    <input type="radio" name="assignment" id="random">
     <span>
       <span class="feature-title">Random Assignment</span>
       <br>
@@ -295,23 +294,22 @@ body::after {
     </span>
   </label>
 
-  <!-- OPTION 4 -->
   <label class="feature-option">
-    <input type="checkbox" id="option4">
+    <input type="radio" name="assignment" id="noRandom">
     <span>
       <span class="feature-title">No Random Assignment</span>
       <br>
       <span class="feature-subtitle">
-        Paricipiants were not randomly assigned to groups.
+        Participants were not randomly assigned to groups.
       </span>
     </span>
   </label>
 
-  <!-- OPTION 5 -->
+  <!-- RESEARCH CONTROL -->
   <label class="feature-option">
-    <input type="checkbox" id="option5">
+    <input type="radio" name="control" id="control">
     <span>
-      <span class="feature-title">Research Control/span>
+      <span class="feature-title">Research Control</span>
       <br>
       <span class="feature-subtitle">
         The study controls outside influences on the research.
@@ -319,9 +317,8 @@ body::after {
     </span>
   </label>
 
-  <!-- OPTION 6 -->
   <label class="feature-option">
-    <input type="checkbox" id="option6">
+    <input type="radio" name="control" id="noControl">
     <span>
       <span class="feature-title">No Research Control</span>
       <br>
@@ -347,33 +344,91 @@ body::after {
 
 <script>
 function getDesign() {
-  const manip = document.getElementById("manip").checked;
+
+  // Get the student's selections
+  const groups = document.getElementById("groups").checked;
+  const noGroups = document.getElementById("noGroups").checked;
+
   const random = document.getElementById("random").checked;
+  const noRandom = document.getElementById("noRandom").checked;
+
   const control = document.getElementById("control").checked;
+  const noControl = document.getElementById("noControl").checked;
 
   const resultPanel = document.getElementById("resultPanel");
   const result = document.getElementById("result");
   const description = document.getElementById("resultDescription");
 
+  // Remove previous result styling
   resultPanel.classList.remove("correlation", "quasi", "true");
 
-  if (manip && random && control) {
-    result.textContent = "True Experiment";
+  // Make sure the student answered all three questions
+  if (
+    (!groups && !noGroups) ||
+    (!random && !noRandom) ||
+    (!control && !noControl)
+  ) {
+    result.textContent = "Please Make a Selection";
     description.textContent =
-      "This design includes manipulation, random assignment, and high control. It is best suited for testing cause-and-effect relationships.";
-    resultPanel.classList.add("true");
-  } 
-  else if (!manip && !random && !control) {
-    result.textContent = "Correlational Study";
-    description.textContent =
-      "This design does not include manipulation, random assignment, or high control. It is best suited for testing relationships between variables.";
+      "Please select one option from each pair before determining the research design.";
     resultPanel.classList.add("correlation");
-  } 
-  else {
-    result.textContent = "Quasi-Experiment";
+    resultPanel.style.display = "block";
+    return;
+  }
+
+  /*
+    TRUE EXPERIMENT:
+    Groups + Random Assignment + Research Control
+  */
+  if (groups && random && control) {
+
+    result.textContent = "True Experiment";
+
     description.textContent =
-      "This design has some experimental features, but not all three. It is often used to compare groups when full experimental control is not possible.";
+      "This design has distinct groups, random assignment, and strong research control. These features allow the researcher to make stronger conclusions about cause and effect.";
+
+    resultPanel.classList.add("true");
+  }
+
+  /*
+    QUASI-EXPERIMENT:
+    Groups + No Random Assignment + Research Control
+  */
+  else if (groups && noRandom && control) {
+
+    result.textContent = "Quasi-Experiment";
+
+    description.textContent =
+      "This design has distinct groups and research control, but participants were not randomly assigned to groups. Because random assignment is missing, it is classified as a quasi-experiment.";
+
     resultPanel.classList.add("quasi");
+  }
+
+  /*
+    CORRELATIONAL:
+    No Groups + No Random Assignment + No Research Control
+  */
+  else if (noGroups && noRandom && noControl) {
+
+    result.textContent = "Correlational Study";
+
+    description.textContent =
+      "This design does not involve distinct groups, random assignment, or strong research control. It is used to examine relationships between variables rather than determine cause and effect.";
+
+    resultPanel.classList.add("correlation");
+  }
+
+  /*
+    OTHER COMBINATIONS
+  */
+  else {
+
+    result.textContent = "Nonexperimental or Other Design";
+
+    description.textContent =
+      "This combination of features does not fit neatly into the three primary research designs in this selector. Review the study characteristics to determine the most appropriate design.";
+
+    resultPanel.classList.add("correlation");
   }
 
   resultPanel.style.display = "block";
