@@ -719,12 +719,12 @@ function determineDesign(
 
   else {
 
-    result.textContent = "Nonexperimental or Other Design";
+    result.textContent = "Quasi-Experiment";
 
     description.textContent =
-      "This combination of features does not fit neatly into the three primary research designs in this selector. Review the study characteristics to determine the most appropriate design.";
+      "This design has distinct groups and strong research control, but participants were not randomly assigned to groups. Because random assignment is missing, the design is classified as a quasi-experiment.";
 
-    resultPanel.classList.add("correlation");
+    resultPanel.classList.add("quasi");
   }
 
 
