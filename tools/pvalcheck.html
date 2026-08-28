@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>P-Value Visualizer</title>
+
+https://cdn.plot.ly/plotly-2.35.2.min.jsscript>
+https://cdnjs.cloudflare.com/ajax/libs/jstat/1.9.6/jstat.min.jsscript>
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+    max-width: 1000px;
+    margin: 40px auto;
+}
+</style>
+</head>
+
+<body>
+
+<h2>P-Value on a Normal Distribution</h2>
+
+<label>Enter p-value:</label>
+<input type="number" id="pvalue" value="0.05"
+       min="0.0001" max="0.9999" step="0.001">
+
+<button onclick="updatePlot()">Update</button>
+
+<p id="result"></p>
+
+<div id="plot"></div>
+
+<script>
+
+function updatePlot() {
+
+    let p = parseFloat(document.getElementById("pvalue").value);
+
+    let alpha = 0.05;
+
+    let zAlpha = jStat.normal.inv(1 - alpha/2, 0, 1);
+    let zUser = jStat.normal.inv(1 - p/2, 0, 1);
+
+    let x = [];
+    let y = [];
+
+    for(let i=-4; i<=4; i+=0.01){
+        x.push(i);
+        y.push(jStat.normal.pdf(i,0,1));
+    }
+
+    let curve = {
+        x: x,
+        y: y,
+        mode: "lines",
+        name: "Normal Distribution",
+        line: {color: "black"}
+    };
+
+    let layout = {
+        title: "Standard Normal Distribution",
+        shapes: [
+            {
+                type:'line',
+                x0:zAlpha,
+                x1:zAlpha,
+                y0:0,
+                y1:0.45,
+                line:{color:'red',dash:'dash'}
+            },
+            {
+                type:'line',
+                x0:-zAlpha,
+                x1:-zAlpha,
+                y0:0,
+                y1:0.45,
+                line:{color:'red',dash:'dash'}
+            },
+            {
+                type:'line',
+                x0:zUser,
+                x1:zUser,
+                y0:0,
+                y1:0.45,
+                line:{color:'blue',width:3}
+            },
+            {
+                type:'line',
+                x0:-zUser,
+                x1:-zUser,
+                y0:0,
+                y1:0.45,
+                line:{color:'blue',width:3}
+            }
+        ],
+        xaxis:{title:"Z-score"},
+        yaxis:{title:"Density"}
+    };
+
+    Plotly.newPlot('plot',[curve],layout);
+
+    let sig = p < alpha
+        ? "Statistically Significant"
+        : "Not Significant";
+
+    document.getElementById("result").innerHTML =
+        `<b>p-value:</b> ${p}<br>
+         <b>|z|:</b> ${zUser.toFixed(3)}<br>
+         <b>Result:</b> ${sig} at α = 0.05`;
+}
+
+updatePlot();
+
+</script>
+
+</body>
+</html>
