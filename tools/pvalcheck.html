@@ -43,7 +43,7 @@ input{
     padding:.6rem;
     border:none;
     border-radius:8px;
-    width:120px;
+    width:140px;
     text-align:center;
 }
 
@@ -57,9 +57,14 @@ button{
     cursor:pointer;
 }
 
+button:hover{
+    background:#5ac8f5;
+}
+
 #result{
     text-align:center;
     margin:20px 0;
+    min-height:50px;
 }
 
 svg{
@@ -77,20 +82,24 @@ svg{
 <h1>P-Value Checker</h1>
 
 <div class="controls">
+
 <label>Enter P-Value:</label>
 
 <input
 type="number"
 id="pvalue"
-value="0.05"
+placeholder="Enter p-value"
 min="0.0001"
 max="0.9999"
 step="0.001">
 
 <button onclick="updatePlot()">Check</button>
+
 </div>
 
-<div id="result"></div>
+<div id="result">
+Enter a p-value and click Check.
+</div>
 
 <svg id="chart" viewBox="0 0 900 500"></svg>
 
@@ -153,16 +162,24 @@ function pdf(z){
 return Math.exp(-0.5*z*z)/Math.sqrt(2*Math.PI);
 }
 
-function updatePlot(){
+function text(svg,msg,x,y,size=22){
 
-const p=parseFloat(document.getElementById("pvalue").value);
+const t=document.createElementNS(
+"http://www.w3.org/2000/svg","text");
 
-if(isNaN(p)||p<=0||p>=1)return;
+t.setAttribute("x",x);
+t.setAttribute("y",y);
+t.setAttribute("fill","white");
+t.setAttribute("font-size",size);
+t.setAttribute("font-weight","bold");
+t.setAttribute("text-anchor","middle");
 
-const alpha=.05;
+t.textContent=msg;
 
-const zAlpha=Math.abs(inverseNormal(alpha/2));
-const zUser=Math.abs(inverseNormal(p/2));
+svg.appendChild(t);
+}
+
+function drawBase(){
 
 const svg=document.getElementById("chart");
 svg.innerHTML="";
@@ -172,6 +189,9 @@ const width=900;
 function zToX(z){
 return ((z+4)/8)*width;
 }
+
+const alpha=.05;
+const zAlpha=Math.abs(inverseNormal(alpha/2));
 
 const leftAlpha=zToX(-zAlpha);
 const rightAlpha=zToX(zAlpha);
@@ -183,28 +203,31 @@ center.setAttribute("x",leftAlpha);
 center.setAttribute("y",50);
 center.setAttribute("width",rightAlpha-leftAlpha);
 center.setAttribute("height",380);
-center.setAttribute("fill","rgba(239,68,68,0.35)");
+center.setAttribute("fill","rgba(239,68,68,.35)");
+
 svg.appendChild(center);
 
-const leftTail=document.createElementNS(
+const left=document.createElementNS(
 "http://www.w3.org/2000/svg","rect");
 
-leftTail.setAttribute("x",0);
-leftTail.setAttribute("y",50);
-leftTail.setAttribute("width",leftAlpha);
-leftTail.setAttribute("height",380);
-leftTail.setAttribute("fill","rgba(34,197,94,0.35)");
-svg.appendChild(leftTail);
+left.setAttribute("x",0);
+left.setAttribute("y",50);
+left.setAttribute("width",leftAlpha);
+left.setAttribute("height",380);
+left.setAttribute("fill","rgba(34,197,94,.35)");
 
-const rightTail=document.createElementNS(
+svg.appendChild(left);
+
+const right=document.createElementNS(
 "http://www.w3.org/2000/svg","rect");
 
-rightTail.setAttribute("x",rightAlpha);
-rightTail.setAttribute("y",50);
-rightTail.setAttribute("width",width-rightAlpha);
-rightTail.setAttribute("height",380);
-rightTail.setAttribute("fill","rgba(34,197,94,0.35)");
-svg.appendChild(rightTail);
+right.setAttribute("x",rightAlpha);
+right.setAttribute("y",50);
+right.setAttribute("width",width-rightAlpha);
+right.setAttribute("height",380);
+right.setAttribute("fill","rgba(34,197,94,.35)");
+
+svg.appendChild(right);
 
 let path="";
 
@@ -223,47 +246,56 @@ curve.setAttribute("d",path);
 curve.setAttribute("stroke","white");
 curve.setAttribute("stroke-width","4");
 curve.setAttribute("fill","none");
+
 svg.appendChild(curve);
 
-function drawLine(z){
+text(svg,"SIGNIFICANT",leftAlpha/2,90,20);
+text(svg,"SIGNIFICANT",(rightAlpha+width)/2,90,20);
+text(svg,"NOT SIGNIFICANT",width/2,90,28);
 
-const x=zToX(z);
+for(let i=0;i<=10;i++){
 
-const line=document.createElementNS(
-"http://www.w3.org/2000/svg","line");
+const x=i*(width/10);
 
-line.setAttribute("x1",x);
-line.setAttribute("x2",x);
-line.setAttribute("y1",60);
-line.setAttribute("y2",430);
-line.setAttribute("stroke","rgba(255,255,255,0.5)");
-line.setAttribute("stroke-width","2");
-
-svg.appendChild(line);
-}
-
-drawLine(-zAlpha);
-drawLine(zAlpha);
-
-function text(msg,x,y,size=22){
-
-const t=document.createElementNS(
+const label=document.createElementNS(
 "http://www.w3.org/2000/svg","text");
 
-t.setAttribute("x",x);
-t.setAttribute("y",y);
-t.setAttribute("fill","white");
-t.setAttribute("font-size",size);
-t.setAttribute("font-weight","bold");
-t.setAttribute("text-anchor","middle");
+label.setAttribute("x",x);
+label.setAttribute("y",475);
+label.setAttribute("fill","white");
+label.setAttribute("font-size","14");
+label.setAttribute("text-anchor","middle");
 
-t.textContent=msg;
-svg.appendChild(t);
+label.textContent=`${i*10}%`;
+
+svg.appendChild(label);
+}
 }
 
-text("SIGNIFICANT",leftAlpha/2,90,20);
-text("SIGNIFICANT",(rightAlpha+width)/2,90,20);
-text("NOT SIGNIFICANT",width/2,90,28);
+function updatePlot(){
+
+drawBase();
+
+const p=parseFloat(
+document.getElementById("pvalue").value
+);
+
+if(isNaN(p) || p<=0 || p>=1){
+
+document.getElementById("result").innerHTML=
+"Please enter a p-value between 0 and 1.";
+
+return;
+}
+
+const svg=document.getElementById("chart");
+const width=900;
+
+function zToX(z){
+return ((z+4)/8)*width;
+}
+
+const zUser=Math.abs(inverseNormal(p/2));
 
 const leftUser=zToX(-zUser);
 const rightUser=zToX(zUser);
@@ -276,7 +308,7 @@ const shaft=document.createElementNS(
 shaft.setAttribute("x1",x);
 shaft.setAttribute("y1",130);
 shaft.setAttribute("x2",x);
-shaft.setAttribute("y2",235);
+shaft.setAttribute("y2",240);
 shaft.setAttribute("stroke","white");
 shaft.setAttribute("stroke-width","4");
 
@@ -287,7 +319,7 @@ const head=document.createElementNS(
 
 head.setAttribute(
 "points",
-`${x-12},225 ${x+12},225 ${x},245`
+`${x-12},230 ${x+12},230 ${x},250`
 );
 
 head.setAttribute("fill","white");
@@ -298,22 +330,16 @@ svg.appendChild(head);
 downArrow(leftUser);
 downArrow(rightUser);
 
-text("P VALUE",leftUser,120,18);
-text("P VALUE",rightUser,120,18);
+text(svg,"P VALUE",leftUser,120,16);
+text(svg,"P VALUE",rightUser,120,16);
 
 document.getElementById("result").innerHTML=`
 <strong>P-Value:</strong> ${p.toFixed(4)}<br>
-<strong>Equivalent |Z|:</strong> ${zUser.toFixed(3)}<br><br>
-
-${
-p < alpha
-? '<span style="color:#22c55e;font-size:1.1rem;">✓ Significant at α = .05</span>'
-: '<span style="color:#ef4444;font-size:1.1rem;">✗ Not Significant at α = .05</span>'
-}
+<strong>Equivalent |Z|:</strong> ${zUser.toFixed(3)}
 `;
 }
 
-updatePlot();
+drawBase();
 
 </script>
 
