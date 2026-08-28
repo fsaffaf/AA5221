@@ -1,112 +1,225 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta charset="utf-8">
-<title>P-Value Visualizer</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>P-Value Checker</title>
 
 https://cdn.plot.ly/plotly-2.35.2.min.jsscript>
 https://cdnjs.cloudflare.com/ajax/libs/jstat/1.9.6/jstat.min.jsscript>
 
 <style>
-body {
-    font-family: Arial, sans-serif;
-    max-width: 1000px;
-    margin: 40px auto;
+body{
+    margin:0;
+    min-height:100vh;
+    background:#090b13;
+    color:white;
+    font-family:system-ui, sans-serif;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.card{
+    width:min(900px,90%);
+    background:rgba(255,255,255,.05);
+    backdrop-filter:blur(20px);
+    border:1px solid rgba(255,255,255,.12);
+    border-radius:20px;
+    padding:2rem;
+}
+
+h1{
+    text-align:center;
+    margin-top:0;
+    color:#7dd3fc;
+}
+
+.controls{
+    display:flex;
+    gap:1rem;
+    justify-content:center;
+    align-items:center;
+    flex-wrap:wrap;
+    margin-bottom:1rem;
+}
+
+input{
+    padding:.5rem;
+    border-radius:8px;
+    border:none;
+    width:120px;
+    text-align:center;
+}
+
+button{
+    padding:.6rem 1rem;
+    border:none;
+    border-radius:8px;
+    background:#38bdf8;
+    color:#001018;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#7dd3fc;
+}
+
+#result{
+    text-align:center;
+    margin-bottom:1rem;
+    font-size:1.1rem;
+}
+
+#plot{
+    width:100%;
+    height:500px;
 }
 </style>
 </head>
 
 <body>
 
-<h2>P-Value on a Normal Distribution</h2>
+<div class="card">
 
-<label>Enter p-value:</label>
-<input type="number" id="pvalue" value="0.05"
-       min="0.0001" max="0.9999" step="0.001">
+    <h1>P-Value Checker</h1>
 
-<button onclick="updatePlot()">Update</button>
+    <div class="controls">
+        <label>P-Value:</label>
+        <input type="number"
+               id="pvalue"
+               value="0.05"
+               min="0.0001"
+               max="0.9999"
+               step="0.001">
 
-<p id="result"></p>
+        <button onclick="updatePlot()">Check</button>
+    </div>
 
-<div id="plot"></div>
+    <div id="result"></div>
+
+    <div id="plot"></div>
+
+</div>
 
 <script>
 
-function updatePlot() {
+function updatePlot(){
 
-    let p = parseFloat(document.getElementById("pvalue").value);
+    const p = parseFloat(
+        document.getElementById("pvalue").value
+    );
 
-    let alpha = 0.05;
+    if(p <= 0 || p >= 1){
+        document.getElementById("result").innerHTML =
+        "Enter a p-value between 0 and 1.";
+        return;
+    }
 
-    let zAlpha = jStat.normal.inv(1 - alpha/2, 0, 1);
-    let zUser = jStat.normal.inv(1 - p/2, 0, 1);
+    const alpha = 0.05;
 
-    let x = [];
-    let y = [];
+    const zAlpha =
+        jStat.normal.inv(1 - alpha/2,0,1);
 
-    for(let i=-4; i<=4; i+=0.01){
+    const zUser =
+        jStat.normal.inv(1 - p/2,0,1);
+
+    const x = [];
+    const y = [];
+
+    for(let i=-4;i<=4;i+=0.01){
         x.push(i);
         y.push(jStat.normal.pdf(i,0,1));
     }
 
-    let curve = {
-        x: x,
-        y: y,
-        mode: "lines",
-        name: "Normal Distribution",
-        line: {color: "black"}
+    const curve = {
+        x:x,
+        y:y,
+        mode:"lines",
+        line:{
+            color:"white",
+            width:3
+        },
+        name:"Normal Distribution"
     };
 
-    let layout = {
-        title: "Standard Normal Distribution",
-        shapes: [
+    const layout = {
+        paper_bgcolor:"rgba(0,0,0,0)",
+        plot_bgcolor:"rgba(0,0,0,0)",
+        font:{color:"white"},
+        title:"α = .05 Two-Tailed Test",
+        xaxis:{title:"Z Score"},
+        yaxis:{title:"Density"},
+        shapes:[
+
             {
-                type:'line',
-                x0:zAlpha,
-                x1:zAlpha,
-                y0:0,
-                y1:0.45,
-                line:{color:'red',dash:'dash'}
-            },
-            {
-                type:'line',
+                type:"line",
                 x0:-zAlpha,
                 x1:-zAlpha,
                 y0:0,
                 y1:0.45,
-                line:{color:'red',dash:'dash'}
+                line:{
+                    color:"red",
+                    dash:"dash"
+                }
             },
+
             {
-                type:'line',
-                x0:zUser,
-                x1:zUser,
+                type:"line",
+                x0:zAlpha,
+                x1:zAlpha,
                 y0:0,
                 y1:0.45,
-                line:{color:'blue',width:3}
+                line:{
+                    color:"red",
+                    dash:"dash"
+                }
             },
+
             {
-                type:'line',
+                type:"line",
                 x0:-zUser,
                 x1:-zUser,
                 y0:0,
                 y1:0.45,
-                line:{color:'blue',width:3}
+                line:{
+                    color:"#38bdf8",
+                    width:4
+                }
+            },
+
+            {
+                type:"line",
+                x0:zUser,
+                x1:zUser,
+                y0:0,
+                y1:0.45,
+                line:{
+                    color:"#38bdf8",
+                    width:4
+                }
             }
-        ],
-        xaxis:{title:"Z-score"},
-        yaxis:{title:"Density"}
+        ]
     };
 
-    Plotly.newPlot('plot',[curve],layout);
-
-    let sig = p < alpha
-        ? "Statistically Significant"
-        : "Not Significant";
+    Plotly.newPlot(
+        "plot",
+        [curve],
+        layout,
+        {responsive:true}
+    );
 
     document.getElementById("result").innerHTML =
-        `<b>p-value:</b> ${p}<br>
-         <b>|z|:</b> ${zUser.toFixed(3)}<br>
-         <b>Result:</b> ${sig} at α = 0.05`;
+    `
+    <strong>p = ${p.toFixed(4)}</strong><br>
+    Equivalent |z| = ${zUser.toFixed(3)}<br><br>
+    ${
+      p < 0.05
+      ? '<span style="color:#22c55e">✓ Significant at α = .05</span>'
+      : '<span style="color:#ef4444">✗ Not Significant at α = .05</span>'
+    }
+    `;
 }
 
 updatePlot();
