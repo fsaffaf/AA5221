@@ -5,15 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>P-Value Checker</title>
 
-<!-- Plotly -->
-https://cdn.plot.ly/plotly-2.35.2.min.jsscript>
-
-<!-- jStat -->
-https://cdnjs.cloudflare.com/ajax/libs/jstat/1.9.6/jstat.min.jsscript>
-
 <style>
 body{
     margin:0;
+    padding:20px;
     min-height:100vh;
     background:#090b13;
     color:white;
@@ -21,22 +16,19 @@ body{
     display:flex;
     justify-content:center;
     align-items:center;
-    padding:20px;
 }
 
 .card{
     width:min(1000px,95%);
-    padding:2rem;
     background:rgba(255,255,255,.05);
-    backdrop-filter:blur(16px);
     border:1px solid rgba(255,255,255,.1);
     border-radius:16px;
+    padding:2rem;
 }
 
 h1{
     text-align:center;
     color:#7dd3fc;
-    margin-top:0;
 }
 
 .controls{
@@ -45,14 +37,13 @@ h1{
     justify-content:center;
     align-items:center;
     flex-wrap:wrap;
-    margin-bottom:1rem;
 }
 
 input{
     padding:.6rem;
-    border-radius:8px;
     border:none;
-    width:140px;
+    border-radius:8px;
+    width:120px;
     text-align:center;
 }
 
@@ -61,27 +52,24 @@ button{
     border:none;
     border-radius:8px;
     background:#38bdf8;
-    cursor:pointer;
+    color:white;
     font-weight:bold;
-}
-
-button:hover{
-    background:#7dd3fc;
+    cursor:pointer;
 }
 
 #result{
     text-align:center;
-    margin:1rem 0;
-    line-height:1.8;
+    margin:20px 0;
 }
 
-#plot{
+svg{
     width:100%;
-    height:550px;
+    height:500px;
+    background:#111827;
+    border-radius:12px;
 }
 </style>
 </head>
-
 <body>
 
 <div class="card">
@@ -89,218 +77,163 @@ button:hover{
 <h1>P-Value Checker</h1>
 
 <div class="controls">
-    <label for="pvalue">Enter P-Value:</label>
-
-    <input
-        type="number"
-        id="pvalue"
-        value="0.05"
-        min="0.0001"
-        max="0.9999"
-        step="0.001">
-
+    <label>Enter P-Value:</label>
+    <input type="number" id="pvalue"
+           value="0.05"
+           min="0.0001"
+           max="0.9999"
+           step="0.001">
     <button onclick="updatePlot()">Check</button>
 </div>
 
 <div id="result"></div>
-<div id="plot"></div>
+
+<svg id="chart" viewBox="0 0 900 500"></svg>
 
 </div>
 
 <script>
 
-function updatePlot() {
+// Approx inverse normal approximation
+function inverseNormal(p) {
 
-    const p = parseFloat(document.getElementById("pvalue").value);
+    const a1=-39.6968302866538;
+    const a2=220.946098424521;
+    const a3=-275.928510446969;
+    const a4=138.357751867269;
+    const a5=-30.6647980661472;
+    const a6=2.50662827745924;
 
-    if (isNaN(p) || p <= 0 || p >= 1) {
-        document.getElementById("result").innerHTML =
-            "Please enter a p-value between 0 and 1.";
+    const b1=-54.4760987982241;
+    const b2=161.585836858041;
+    const b3=-155.698979859887;
+    const b4=66.8013118877197;
+    const b5=-13.2806815528857;
+
+    const c1=-0.00778489400243029;
+    const c2=-0.322396458041136;
+    const c3=-2.40075827716184;
+    const c4=-2.54973253934373;
+    const c5=4.37466414146497;
+    const c6=2.93816398269878;
+
+    const d1=0.00778469570904146;
+    const d2=0.32246712907004;
+    const d3=2.445134137143;
+    const d4=3.75440866190742;
+
+    const plow=0.02425;
+    const phigh=1-plow;
+
+    let q,r;
+
+    if(p<plow){
+        q=Math.sqrt(-2*Math.log(p));
+        return (((((c1*q+c2)*q+c3)*q+c4)*q+c5)*q+c6)/
+               ((((d1*q+d2)*q+d3)*q+d4)*q+1);
+    }
+
+    if(phigh<p){
+        q=Math.sqrt(-2*Math.log(1-p));
+        return -(((((c1*q+c2)*q+c3)*q+c4)*q+c5)*q+c6)/
+                ((((d1*q+d2)*q+d3)*q+d4)*q+1);
+    }
+
+    q=p-0.5;
+    r=q*q;
+
+    return (((((a1*r+a2)*r+a3)*r+a4)*r+a5)*r+a6)*q/
+           (((((b1*r+b2)*r+b3)*r+b4)*r+b5)*r+1);
+}
+
+function pdf(z){
+    return Math.exp(-0.5*z*z)/Math.sqrt(2*Math.PI);
+}
+
+function updatePlot(){
+
+    const p=parseFloat(document.getElementById("pvalue").value);
+
+    if(isNaN(p)||p<=0||p>=1){
         return;
     }
 
-    const alpha = 0.05;
+    const alpha=0.05;
+    const zAlpha=Math.abs(inverseNormal(alpha/2));
+    const zUser=Math.abs(inverseNormal(p/2));
 
-    const zAlpha = jStat.normal.inv(1 - alpha / 2, 0, 1);
-    const zUser = jStat.normal.inv(1 - p / 2, 0, 1);
+    const svg=document.getElementById("chart");
+    svg.innerHTML="";
 
-    const x = [];
-    const y = [];
+    const width=900;
+    const height=500;
 
-    for (let i = -4; i <= 4; i += 0.01) {
-        x.push(i);
-        y.push(jStat.normal.pdf(i, 0, 1));
+    let path="";
+
+    for(let z=-4;z<=4;z+=0.02){
+
+        const x=((z+4)/8)*width;
+        const y=430-pdf(z)*950;
+
+        path+=(path==="" ? "M" : "L")+x+","+y;
     }
 
-    const alphaLeftX = [];
-    const alphaLeftY = [];
-
-    const alphaRightX = [];
-    const alphaRightY = [];
-
-    const pAreaX = [];
-    const pAreaY = [];
-
-    for (let i = -4; i <= 4; i += 0.01) {
-
-        const density = jStat.normal.pdf(i, 0, 1);
-
-        if (i <= -zAlpha) {
-            alphaLeftX.push(i);
-            alphaLeftY.push(density);
-        }
-
-        if (i >= zAlpha) {
-            alphaRightX.push(i);
-            alphaRightY.push(density);
-        }
-
-        if (i <= -zUser || i >= zUser) {
-            pAreaX.push(i);
-            pAreaY.push(density);
-        }
-    }
-
-    const alphaLeft = {
-        x: alphaLeftX,
-        y: alphaLeftY,
-        fill: "tozeroy",
-        type: "scatter",
-        mode: "none",
-        fillcolor: "rgba(255,0,0,0.25)",
-        name: "α = .05 Region"
-    };
-
-    const alphaRight = {
-        x: alphaRightX,
-        y: alphaRightY,
-        fill: "tozeroy",
-        type: "scatter",
-        mode: "none",
-        fillcolor: "rgba(255,0,0,0.25)",
-        showlegend: false
-    };
-
-    const pRegion = {
-        x: pAreaX,
-        y: pAreaY,
-        fill: "tozeroy",
-        type: "scatter",
-        mode: "none",
-        fillcolor: "rgba(56,189,248,0.55)",
-        name: "P-Value Area"
-    };
-
-    const curve = {
-        x: x,
-        y: y,
-        type: "scatter",
-        mode: "lines",
-        line: {
-            color: "white",
-            width: 3
-        },
-        name: "Normal Curve"
-    };
-
-    const layout = {
-        title: "Standard Normal Distribution",
-
-        paper_bgcolor: "rgba(0,0,0,0)",
-        plot_bgcolor: "rgba(0,0,0,0)",
-
-        font: {
-            color: "white"
-        },
-
-        xaxis: {
-            title: "Z Score",
-            gridcolor: "rgba(255,255,255,0.1)"
-        },
-
-        yaxis: {
-            title: "Density",
-            gridcolor: "rgba(255,255,255,0.1)"
-        },
-
-        shapes: [
-            {
-                type: "line",
-                x0: -zAlpha,
-                x1: -zAlpha,
-                y0: 0,
-                y1: 0.42,
-                line: {
-                    color: "red",
-                    dash: "dash",
-                    width: 3
-                }
-            },
-            {
-                type: "line",
-                x0: zAlpha,
-                x1: zAlpha,
-                y0: 0,
-                y1: 0.42,
-                line: {
-                    color: "red",
-                    dash: "dash",
-                    width: 3
-                }
-            },
-            {
-                type: "line",
-                x0: -zUser,
-                x1: -zUser,
-                y0: 0,
-                y1: 0.42,
-                line: {
-                    color: "#38bdf8",
-                    width: 4
-                }
-            },
-            {
-                type: "line",
-                x0: zUser,
-                x1: zUser,
-                y0: 0,
-                y1: 0.42,
-                line: {
-                    color: "#38bdf8",
-                    width: 4
-                }
-            }
-        ]
-    };
-
-    Plotly.newPlot(
-        "plot",
-        [alphaLeft, alphaRight, pRegion, curve],
-        layout,
-        { responsive: true }
+    const curve=document.createElementNS(
+        "http://www.w3.org/2000/svg","path"
     );
 
-    document.getElementById("result").innerHTML = `
-        <strong>P-Value:</strong> ${p.toFixed(4)}<br>
-        <strong>Equivalent |Z|:</strong> ${zUser.toFixed(3)}<br><br>
+    curve.setAttribute("d",path);
+    curve.setAttribute("stroke","white");
+    curve.setAttribute("stroke-width","3");
+    curve.setAttribute("fill","none");
 
-        ${
-            p < alpha
-            ? '<span style="color:#22c55e;font-size:1.15rem;">✓ Significant at α = .05</span>'
-            : '<span style="color:#ef4444;font-size:1.15rem;">✗ Not Significant at α = .05</span>'
-        }
+    svg.appendChild(curve);
 
-        <br><br>
+    function drawLine(z,color){
 
-        <span style="color:#cbd5e1;">
-            Red = α=.05 rejection region<br>
-            Blue = p-value probability area
-        </span>
+        const x=((z+4)/8)*width;
+
+        const line=document.createElementNS(
+            "http://www.w3.org/2000/svg","line"
+        );
+
+        line.setAttribute("x1",x);
+        line.setAttribute("x2",x);
+        line.setAttribute("y1",60);
+        line.setAttribute("y2",430);
+        line.setAttribute("stroke",color);
+        line.setAttribute("stroke-width","3");
+
+        svg.appendChild(line);
+    }
+
+    drawLine(-zAlpha,"red");
+    drawLine(zAlpha,"red");
+
+    drawLine(-zUser,"#38bdf8");
+    drawLine(zUser,"#38bdf8");
+
+    document.getElementById("result").innerHTML=
+    `
+    <strong>P-Value:</strong> ${p.toFixed(4)}<br>
+    <strong>Equivalent |Z|:</strong> ${zUser.toFixed(3)}<br><br>
+
+    ${
+        p < alpha
+        ? '<span style="color:#22c55e;font-size:1.2rem;">✓ Significant at α=.05</span>'
+        : '<span style="color:#ef4444;font-size:1.2rem;">✗ Not Significant at α=.05</span>'
+    }
+
+    <br><br>
+
+    <span style="color:#cbd5e1">
+    Red lines = α=.05 cutoffs<br>
+    Blue lines = observed p-value Z score
+    </span>
     `;
 }
 
-window.addEventListener("load", updatePlot);
-
+updatePlot();
 </script>
 
 </body>
