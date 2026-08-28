@@ -5,8 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>P-Value Checker</title>
 
-<!-- Libraries -->
-https://cdn.plot.ly/plotly-2.35.2.min.js</script>
+<!-- Plotly -->
+https://cdn.plot.ly/plotly-2.35.2.min.jsscript>
+
+<!-- jStat -->
 https://cdnjs.cloudflare.com/ajax/libs/jstat/1.9.6/jstat.min.jsscript>
 
 <style>
@@ -108,11 +110,23 @@ button:hover{
 
 <script>
 
-function updatePlot() {
+function updatePlot(){
+
+    if(typeof Plotly === "undefined"){
+        document.getElementById("result").innerHTML =
+            "Error: Plotly failed to load.";
+        return;
+    }
+
+    if(typeof jStat === "undefined"){
+        document.getElementById("result").innerHTML =
+            "Error: jStat failed to load.";
+        return;
+    }
 
     const p = parseFloat(document.getElementById("pvalue").value);
 
-    if (isNaN(p) || p <= 0 || p >= 1) {
+    if(isNaN(p) || p <= 0 || p >= 1){
         document.getElementById("result").innerHTML =
             "Please enter a p-value between 0 and 1.";
         return;
@@ -120,13 +134,13 @@ function updatePlot() {
 
     const alpha = 0.05;
 
-    const zAlpha = jStat.normal.inv(1 - alpha / 2, 0, 1);
-    const zUser  = jStat.normal.inv(1 - p / 2, 0, 1);
+    const zAlpha = jStat.normal.inv(1 - alpha/2, 0, 1);
+    const zUser = jStat.normal.inv(1 - p/2, 0, 1);
 
     const x = [];
     const y = [];
 
-    for (let i = -4; i <= 4; i += 0.01) {
+    for(let i=-4;i<=4;i+=0.01){
         x.push(i);
         y.push(jStat.normal.pdf(i,0,1));
     }
@@ -140,21 +154,21 @@ function updatePlot() {
     const pAreaX = [];
     const pAreaY = [];
 
-    for (let i = -4; i <= 4; i += 0.01) {
+    for(let i=-4;i<=4;i+=0.01){
 
         const density = jStat.normal.pdf(i,0,1);
 
-        if (i <= -zAlpha) {
+        if(i <= -zAlpha){
             alphaLeftX.push(i);
             alphaLeftY.push(density);
         }
 
-        if (i >= zAlpha) {
+        if(i >= zAlpha){
             alphaRightX.push(i);
             alphaRightY.push(density);
         }
 
-        if (i <= -zUser || i >= zUser) {
+        if(i <= -zUser || i >= zUser){
             pAreaX.push(i);
             pAreaY.push(density);
         }
@@ -167,7 +181,7 @@ function updatePlot() {
         type: "scatter",
         mode: "none",
         fillcolor: "rgba(255,0,0,0.25)",
-        name: "α = .05 Rejection Region"
+        name: "α = .05 Region"
     };
 
     const alphaRight = {
@@ -187,7 +201,7 @@ function updatePlot() {
         type: "scatter",
         mode: "none",
         fillcolor: "rgba(56,189,248,0.55)",
-        name: "Observed P-Value Area"
+        name: "P-Value Area"
     };
 
     const curve = {
@@ -195,78 +209,79 @@ function updatePlot() {
         y: y,
         type: "scatter",
         mode: "lines",
-        line: {
-            color: "white",
-            width: 3
+        line:{
+            color:"white",
+            width:3
         },
-        name: "Normal Curve"
+        name:"Normal Curve"
     };
 
     const layout = {
-        paper_bgcolor: "rgba(0,0,0,0)",
-        plot_bgcolor: "rgba(0,0,0,0)",
 
-        font: {
-            color: "white"
+        title:"Standard Normal Distribution",
+
+        paper_bgcolor:"rgba(0,0,0,0)",
+        plot_bgcolor:"rgba(0,0,0,0)",
+
+        font:{
+            color:"white"
         },
 
-        title: "Standard Normal Distribution",
-
-        xaxis: {
-            title: "Z Score",
-            gridcolor: "rgba(255,255,255,0.1)"
+        xaxis:{
+            title:"Z Score",
+            gridcolor:"rgba(255,255,255,0.1)"
         },
 
-        yaxis: {
-            title: "Density",
-            gridcolor: "rgba(255,255,255,0.1)"
+        yaxis:{
+            title:"Density",
+            gridcolor:"rgba(255,255,255,0.1)"
         },
 
-        shapes: [
+        shapes:[
             {
-                type: "line",
-                x0: -zAlpha,
-                x1: -zAlpha,
-                y0: 0,
-                y1: 0.42,
-                line: {
-                    color: "red",
-                    dash: "dash",
-                    width: 3
+                type:"line",
+                x0:-zAlpha,
+                x1:-zAlpha,
+                y0:0,
+                y1:0.42,
+                line:{
+                    color:"red",
+                    dash:"dash",
+                    width:3
                 }
             },
             {
-                type: "line",
-                x0: zAlpha,
-                x1: zAlpha,
-                y0: 0,
-                y1: 0.42,
-                line: {
-                    color: "red",
-                    dash: "dash",
-                    width: 3
+                type:"line",
+                x0:zAlpha,
+                x1:zAlpha,
+                y0:0,
+                y1:0.42,
+                line:{
+                    color:"red",
+                    dash:"dash",
+                    width:3
                 }
             },
             {
-                type: "line",
-                x0: -zUser,
-                x1: -zUser,
-                y0: 0,
-                y1: 0.42,
-                line: {
-                    color: "#38bdf8",
-                    width: 4
+                type:"line",
+                x0:-zUser,
+                x1:-zUser,
+                y0:0,
+                y1:0.42,
+                line:{
+                    color:"#38bdf8",
+                    width:4
                 }
             },
             {
-                type: "line",
-                x0: zUser,
-                x1: zUser,
-                y0: 0,
-                y1: 0.42,
-                line: {
-                    color: "#38bdf8",
-                    width: 4
+                type:"line",
+                x0:zUser,
+                x1:zUser,
+                y0:0,
+                y1:0.42,
+                line:{
+                    color:"#38bdf8",
+                    width:4
                 }
             }
         ]
@@ -276,7 +291,7 @@ function updatePlot() {
         "plot",
         [alphaLeft, alphaRight, pRegion, curve],
         layout,
-        { responsive: true }
+        {responsive:true}
     );
 
     document.getElementById("result").innerHTML = `
@@ -292,13 +307,13 @@ function updatePlot() {
         <br><br>
 
         <span style="color:#cbd5e1;">
-        Red = α=.05 rejection region<br>
-        Blue = probability area represented by the entered p-value
+            Red = α=.05 rejection region<br>
+            Blue = p-value probability area
         </span>
     `;
 }
 
-window.onload = updatePlot;
+window.addEventListener("load", updatePlot);
 
 </script>
 
