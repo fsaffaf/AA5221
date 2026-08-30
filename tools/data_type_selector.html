@@ -1,10 +1,10 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Hypothesis Writer</title>
+
+<title>Level of Measurement Identifier</title>
 
 <style>
 
@@ -27,9 +27,11 @@ body::before {
   content: "";
   position: fixed;
   inset: 0;
+
   background:
     radial-gradient(circle at top, rgba(125,211,252,0.16), transparent 35%),
     radial-gradient(circle at bottom, rgba(99,102,241,0.14), transparent 40%);
+
   z-index: -2;
 }
 
@@ -38,13 +40,14 @@ body::after {
   position: fixed;
   inset: 0;
   opacity: 0.3;
+
   background-image:
     linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
     linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+
   background-size: 42px 42px;
   z-index: -1;
 }
-
 
 /* =========================================
    MAIN LAYOUT
@@ -52,9 +55,11 @@ body::after {
 
 .measurement-wrapper {
   min-height: 100vh;
+
   display: flex;
   align-items: center;
   justify-content: center;
+
   padding: 2rem;
 }
 
@@ -62,10 +67,13 @@ body::after {
   width: 100%;
   max-width: 720px;
   padding: 2.5rem;
+
   background: rgba(255,255,255,0.08);
   border: 1px solid rgba(255,255,255,0.15);
+
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
+
   border-radius: 24px;
   box-shadow: 0 25px 80px rgba(0,0,0,0.45);
 }
@@ -73,20 +81,22 @@ body::after {
 .glass h2 {
   margin: 0 0 0.75rem;
   text-align: center;
+
   font-size: clamp(2rem, 5vw, 3.25rem);
   font-weight: 650;
   letter-spacing: -0.03em;
+
   color: white;
 }
 
 .glass p {
   margin: 0 0 2rem;
   text-align: center;
+
   color: rgb(203,213,225);
   font-size: 1.05rem;
   line-height: 1.6;
 }
-
 
 /* =========================================
    QUESTION ROWS
@@ -103,8 +113,10 @@ body::after {
 
 .question-title {
   margin-bottom: 0.75rem;
+
   font-size: 1.05rem;
   font-weight: 650;
+
   color: white;
 }
 
@@ -112,7 +124,6 @@ body::after {
   color: rgb(125,211,252);
   margin-right: 0.4rem;
 }
-
 
 /* =========================================
    OPTIONS
@@ -128,11 +139,15 @@ body::after {
   display: flex;
   align-items: center;
   gap: 0.85rem;
+
   padding: 1rem 1.15rem;
   border-radius: 16px;
+
   background: rgba(255,255,255,0.08);
   border: 1px solid rgba(255,255,255,0.12);
+
   color: rgb(241,245,249);
+
   cursor: pointer;
   transition: 0.25s ease;
 }
@@ -145,6 +160,7 @@ body::after {
 .feature-option input {
   width: 1.1rem;
   height: 1.1rem;
+
   accent-color: #38bdf8;
   cursor: pointer;
 }
@@ -157,139 +173,106 @@ body::after {
 .feature-subtitle {
   font-size: 0.85rem;
   color: rgb(203,213,225);
+  margin-top: 0.15rem;
+  display: block;
   margin-top: 6px;
-  display: block;
 }
-
 
 /* =========================================
-   INPUT PANEL
-   ========================================= */
-
-.input-panel {
-  display: none;
-  margin-bottom: 2rem;
-}
-
-.input-grid {
-  display: grid;
-  gap: 1rem;
-}
-
-.input-group label {
-  display: block;
-  margin-bottom: 0.5rem;
-  color: rgb(226,232,240);
-  font-size: 0.95rem;
-}
-
-.input-group input {
-  width: 100%;
-  box-sizing: border-box;
-  padding: 1rem;
-  border-radius: 14px;
-  border: 1px solid rgba(255,255,255,0.12);
-  background: rgba(255,255,255,0.08);
-  color: white;
-  font-size: 1rem;
-  outline: none;
-}
-
-.input-group input:focus {
-  border-color: rgba(125,211,252,0.65);
-}
-
-.generate-btn {
-  margin-top: 1.25rem;
-  width: 100%;
-  padding: 1rem;
-  border: none;
-  border-radius: 16px;
-  background: linear-gradient(135deg, #0ea5e9, #6366f1);
-  color: white;
-  font-size: 1rem;
-  font-weight: 650;
-  cursor: pointer;
-  transition: 0.25s ease;
-}
-
-.generate-btn:hover {
-  transform: translateY(-2px);
-}
-
-
-/* =========================================
-   RESULTS
+   RESULT PANEL
    ========================================= */
 
 .result-panel {
   display: none;
+
+  margin-top: 1.5rem;
+  padding: 1.5rem;
+
   border-radius: 20px;
   border: 1px solid rgba(125,211,252,0.30);
+
   background: linear-gradient(
     135deg,
     rgba(3,105,161,0.70),
     rgba(49,46,129,0.80)
   );
-  padding: 1.75rem;
+
   box-shadow: 0 20px 50px rgba(0,0,0,0.35);
+  animation: fadeIn 0.3s ease;
 }
 
-.result-panel.groups-style {
-  border-color: rgba(148,163,184,0.25);
-  background: linear-gradient(
-    135deg,
-    rgba(51,65,85,0.85),
-    rgba(15,23,42,0.90)
-  );
-}
+.result-label {
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
 
-.result-top {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  margin-bottom: 1.5rem;
-}
-
-.result-icon {
-  width: 56px;
-  height: 56px;
-  border-radius: 18px;
-  background: rgba(255,255,255,0.12);
-  border: 1px solid rgba(255,255,255,0.15);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.6rem;
+  color: rgb(203,213,225);
+  margin-bottom: 0.4rem;
 }
 
 .result-title {
+  margin: 0;
+
   font-size: clamp(1.5rem, 4vw, 2rem);
   font-weight: 650;
+
+  color: white;
 }
 
-.hypothesis-list {
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
+.result-description {
+  margin-top: 0.75rem;
+
+  color: rgb(226,232,240);
+  line-height: 1.6;
 }
 
-.hypothesis-item {
-  display: flex;
-  gap: 0.75rem;
-  background: rgba(255,255,255,0.10);
-  border: 1px solid rgba(255,255,255,0.10);
-  border-radius: 14px;
-  padding: 1rem;
-  color: rgb(241,245,249);
-  line-height: 1.5;
+/* =========================================
+   RESET BUTTON
+   ========================================= */
+
+.reset-button {
+  display: none;
+
+  width: 100%;
+  margin-top: 1rem;
+
+  border: 1px solid rgba(255,255,255,0.18);
+  border-radius: 18px;
+
+  padding: 0.9rem 1.25rem;
+
+  background: #1e90ff;
+  color: white;
+
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 600;
+
+  cursor: pointer;
+  transition: 0.25s ease;
 }
 
-.check {
-  color: #bae6fd;
-  font-weight: bold;
+.reset-button:hover {
+  background: rgba(255,255,255,0.14);
 }
 
+/* =========================================
+   ANIMATION
+   ========================================= */
+
+@keyframes fadeIn {
+
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+}
 
 /* =========================================
    MOBILE
@@ -309,30 +292,16 @@ body::after {
     grid-template-columns: 1fr;
   }
 
-}
-
-
-/* =========================================
-   ANIMATION
-   ========================================= */
-
-@keyframes fadeIn {
-
-  from {
-    opacity: 0;
-    transform: translateY(5px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  .examples {
+  display: block;
+  margin-top: 6px;
 
 }
+}
+  
 
 </style>
 </head>
-
 
 <body>
 
@@ -340,10 +309,10 @@ body::after {
 
   <div class="glass">
 
-    <h2>Hypothesis Writer</h2>
+    <h2>Level of Measurement Identifier</h2>
 
     <p>
-      Answer each question to turn a research question into hypotheses.
+      Answer each question to identify the level of measurement.
     </p>
 
 
@@ -355,78 +324,55 @@ body::after {
 
       <div class="question-title">
         <span class="question-number">1.</span>
-        What is your research design?
+        Do you have categories?
       </div>
-
 
       <div class="feature-list">
 
-
-        <!-- ========================================= -->
-        <!-- CORRELATION -->
-        <!-- ========================================= -->
-
         <label class="feature-option">
 
           <input
             type="radio"
-            name="design"
-            id="correlationBtn"
-            onchange="selectDesign('correlation')"
+            name="categories"
+            id="categoriesYes"
+            onchange="handleCategories()"
           >
 
           <span>
-
-            <span class="feature-title">
-              Correlation
-            </span>
-
+            <span class="feature-title">Yes</span>
             <br>
 
             <span class="feature-subtitle">
-              Testing if there is a relationship between two variables.
-              <br>
-              <br>
-              Is there a relationship between Variable 1 and Variable 2?
+              The variable places observations into distinct categories or groups.<br>
+<br>
+Examples: Red or blue, Group 1 or Group 2.
             </span>
-
           </span>
 
         </label>
 
 
-        <!-- ========================================= -->
-        <!-- QUASI / TRUE EXPERIMENT -->
-        <!-- ========================================= -->
-
         <label class="feature-option">
 
           <input
             type="radio"
-            name="design"
-            id="groupsBtn"
-            onchange="selectDesign('groups')"
+            name="categories"
+            id="categoriesNo"
+            onchange="handleCategories()"
           >
 
           <span>
-
-            <span class="feature-title">
-              Quasi-Experiment or True Experiment
-            </span>
-
+            <span class="feature-title">No</span>
             <br>
 
             <span class="feature-subtitle">
-              Testing if there is a difference between groups.
-              <br>
-              <br>
-              Example: Is there a difference between Group A and Group B?
+              The variable is measured using numerical values rather than categories.<br>
+<br>
+Example: Hours, inches, stress levels, temperature.
             </span>
-
           </span>
 
         </label>
-
 
       </div>
 
@@ -434,108 +380,160 @@ body::after {
 
 
     <!-- ========================================= -->
-    <!-- STEP 2: VARIABLE INPUTS -->
+    <!-- QUESTION 2A: CATEGORICAL -->
     <!-- ========================================= -->
 
-    <div id="inputPanel" class="input-panel">
+    <div class="question-row hidden" id="question2Categories">
 
-      <div class="input-grid">
-
-
-        <div class="input-group">
-
-          <label id="label1">
-            Variable 1
-          </label>
-
-          <input
-            type="text"
-            id="input1"
-            placeholder="Enter variable name"
-          >
-
-        </div>
-
-
-        <div class="input-group">
-
-          <label id="label2">
-            Variable 2
-          </label>
-
-          <input
-            type="text"
-            id="input2"
-            placeholder="Enter variable name"
-          >
-
-        </div>
-
-
+      <div class="question-title">
+        <span class="question-number">2.</span>
+        Do the categories have a meaningful order or ranking?
       </div>
 
+      <div class="feature-list">
 
-      <button
-        class="generate-btn"
-        onclick="generateHypotheses()"
-      >
-        Write My Hypotheses
-      </button>
+        <label class="feature-option">
+
+          <input
+            type="radio"
+            name="ranking"
+            id="rankingYes"
+            onchange="handleRanking()"
+          >
+
+          <span>
+            <span class="feature-title">Yes</span>
+            <br>
+
+<span class="feature-subtitle">
+  The categories can be meaningfully ranked, such as low, medium, and high.<br>
+    Examples: Single-item Likert scale, degree (High School, Bachelor's, Master's, Doctorate), letter grades (A, B, C, D, F), class rank (1st, 2nd, 3rd)
+  </span>
+</span>
+        </label>
+
+
+        <label class="feature-option">
+
+          <input
+            type="radio"
+            name="ranking"
+            id="rankingNo"
+            onchange="handleRanking()"
+          >
+
+          <span>
+            <span class="feature-title">No</span>
+            <br>
+
+            <span class="feature-subtitle">
+              The categories are labels only and cannot be meaningfully ranked.<br>
+<br>
+              Examples: Gender, nationality, eye color.
+            </span>
+          </span>
+
+        </label>
+
+      </div>
 
     </div>
 
 
     <!-- ========================================= -->
-    <!-- RESULTS -->
+    <!-- QUESTION 2B: NUMERICAL -->
+    <!-- ========================================= -->
+
+    <div class="question-row hidden" id="question2Numbers">
+
+      <div class="question-title">
+        <span class="question-number">2.</span>
+        Does the scale have a meaningful zero point?
+      </div>
+
+      <div class="feature-list">
+
+        <label class="feature-option">
+
+          <input
+            type="radio"
+            name="zero"
+            id="zeroYes"
+            onchange="handleZero()"
+          >
+
+          <span>
+            <span class="feature-title">Yes</span>
+            <br>
+
+            <span class="feature-subtitle">
+              A value of zero represents the complete absence of the quantity being measured. Zero is the lowest you can go on the scale. <br>
+<br>
+Examples: Kilograms, pounds, centimeters, inches, kilometers, miles, years, hours.
+            </span>
+          </span>
+
+        </label>
+
+
+        <label class="feature-option">
+
+          <input
+            type="radio"
+            name="zero"
+            id="zeroNo"
+            onchange="handleZero()"
+          >
+
+          <span>
+            <span class="feature-title">No</span>
+            <br>
+
+            <span class="feature-subtitle">
+              Zero does not represent the complete absence of the quantity being measured. You can go below zero. <br>
+<br>
+              Examples: multiple-item Likert scale, Celsius, or Fahrenheit.
+            </span>
+          </span>
+
+        </label>
+
+      </div>
+
+    </div>
+
+
+    <!-- ========================================= -->
+    <!-- RESULT -->
     <!-- ========================================= -->
 
     <div id="resultPanel" class="result-panel">
 
-      <div class="result-top">
-
-        <div>
-
-          <div
-            class="result-title"
-            id="resultTitle"
-          >
-            Results
-          </div>
-
-        </div>
-
+      <div class="result-label">
+        Level of Measurement
       </div>
 
+      <h3 id="result" class="result-title"></h3>
 
-      <div class="hypothesis-list">
-
-
-        <!-- NULL HYPOTHESIS -->
-
-        <div class="hypothesis-item">
-
-          <span id="nullHypothesis">
-            Null hypothesis
-          </span>
-
-        </div>
-
-
-        <!-- ALTERNATIVE HYPOTHESIS -->
-
-        <div class="hypothesis-item">
-
-          <span id="altHypothesis">
-            Alternative hypothesis
-          </span>
-
-        </div>
-
-
-      </div>
+      <div
+        id="resultDescription"
+        class="result-description"
+      ></div>
 
     </div>
 
+
+    <!-- ========================================= -->
+    <!-- RESET -->
+    <!-- ========================================= -->
+
+    <button
+      id="resetButton"
+      class="reset-button"
+      onclick="resetSelector()"
+    >
+      Start Over
+    </button>
 
   </div>
 
@@ -545,212 +543,286 @@ body::after {
 <script>
 
 /* =========================================
-   TRACK SELECTED DESIGN
+   QUESTION 1
+   CATEGORIES?
    ========================================= */
 
-let selectedDesign = "";
+function handleCategories() {
+
+  const categoriesYes =
+    document.getElementById("categoriesYes").checked;
+
+  const categoriesNo =
+    document.getElementById("categoriesNo").checked;
 
 
-/* =========================================
-   SELECT RESEARCH DESIGN
-   ========================================= */
+  const question2Categories =
+    document.getElementById("question2Categories");
 
-function selectDesign(type) {
-
-  selectedDesign = type;
-
-  const inputPanel =
-    document.getElementById("inputPanel");
-
-  const correlationBtn =
-    document.getElementById("correlationBtn");
-
-  const groupsBtn =
-    document.getElementById("groupsBtn");
-
-  const label1 =
-    document.getElementById("label1");
-
-  const label2 =
-    document.getElementById("label2");
-
-  const input1 =
-    document.getElementById("input1");
-
-  const input2 =
-    document.getElementById("input2");
+  const question2Numbers =
+    document.getElementById("question2Numbers");
 
   const resultPanel =
     document.getElementById("resultPanel");
 
 
-  /* Reset result panel */
+  /*
+    Reset all later answers whenever
+    Question 1 changes.
+  */
+
+  document.getElementById("rankingYes").checked = false;
+  document.getElementById("rankingNo").checked = false;
+
+  document.getElementById("zeroYes").checked = false;
+  document.getElementById("zeroNo").checked = false;
+
+
+  /*
+    Hide previous results.
+  */
 
   resultPanel.style.display = "none";
 
-  resultPanel.classList.remove("groups-style");
+  document.getElementById("resetButton").style.display = "none";
 
 
-  /* =========================================
-     CORRELATION
-     ========================================= */
+  /*
+    YES = Categorical pathway
+  */
 
-  if (type === "correlation") {
+  if (categoriesYes) {
 
-    correlationBtn.classList.add("active");
+    question2Categories.classList.remove("hidden");
 
-    groupsBtn.classList.remove("active");
-
-
-    label1.textContent =
-      "Variable 1";
-
-    label2.textContent =
-      "Variable 2";
-
-
-    input1.placeholder =
-      "Enter your first variable";
-
-    input2.placeholder =
-      "Enter your second variable";
+    question2Numbers.classList.add("hidden");
 
   }
 
 
-  /* =========================================
-     GROUP DIFFERENCE
-     ========================================= */
+  /*
+    NO = Numerical pathway
+  */
 
-  if (type === "groups") {
+  if (categoriesNo) {
 
-    groupsBtn.classList.add("active");
+    question2Numbers.classList.remove("hidden");
 
-    correlationBtn.classList.remove("active");
-
-
-    label1.textContent =
-      "Independent Variable (Grouping Variable)";
-
-    label2.textContent =
-      "Dependent Variable";
-
-
-    input1.placeholder =
-      "Enter your grouping variable";
-
-    input2.placeholder =
-      "Enter your outcome variable";
+    question2Categories.classList.add("hidden");
 
   }
-
-
-  /* Show input panel */
-
-  inputPanel.style.display = "block";
 
 }
 
 
 /* =========================================
-   GENERATE HYPOTHESES
+   QUESTION 2A
+   CATEGORIES HAVE ORDER?
    ========================================= */
 
-function generateHypotheses() {
+function handleRanking() {
 
-  const var1 =
-    document.getElementById("input1").value.trim();
+  const rankingYes =
+    document.getElementById("rankingYes").checked;
 
-  const var2 =
-    document.getElementById("input2").value.trim();
-
-
-  /* Make sure both variables are entered */
-
-  if (!var1 || !var2) {
-
-    alert("Please complete both fields.");
-
-    return;
-
-  }
+  const rankingNo =
+    document.getElementById("rankingNo").checked;
 
 
-  /* Make sure a design was selected */
+  /*
+    Categories with meaningful order
+    = ORDINAL
+  */
 
-  if (!selectedDesign) {
+  if (rankingYes) {
 
-    alert("Please select a research design.");
-
-    return;
+    showResult(
+      "Ordinal",
+      "This variable is measured at the ordinal level. The values represent distinct categories that have a meaningful order or ranking, but the exact distance between categories is not necessarily equal."
+    );
 
   }
 
 
-  /* Get result elements */
+  /*
+    Categories without meaningful order
+    = NOMINAL
+  */
+
+  if (rankingNo) {
+
+    showResult(
+      "Nominal",
+      "This variable is measured at the nominal level. The values represent distinct categories or labels, but the categories do not have a meaningful order or ranking."
+    );
+
+  }
+
+}
+
+
+/* =========================================
+   QUESTION 2B
+   MEANINGFUL ZERO?
+   ========================================= */
+
+function handleZero() {
+
+  const zeroYes =
+    document.getElementById("zeroYes").checked;
+
+  const zeroNo =
+    document.getElementById("zeroNo").checked;
+
+
+  /*
+    Meaningful zero
+    = RATIO
+  */
+
+  if (zeroYes) {
+
+    showResult(
+      "Ratio",
+      "This variable is measured at the ratio level. The values have equal intervals, and zero represents the complete absence of the quantity being measured. This allows meaningful ratio comparisons."
+    );
+
+  }
+
+
+  /*
+    No meaningful zero
+    = INTERVAL
+  */
+
+  if (zeroNo) {
+
+    showResult(
+      "Interval",
+      "This variable is measured at the interval level. The values have meaningful and equal intervals, but zero does not represent the complete absence of the quantity being measured."
+    );
+
+  }
+
+}
+
+
+/* =========================================
+   SHOW RESULT
+   ========================================= */
+
+function showResult(title, descriptionText) {
 
   const resultPanel =
     document.getElementById("resultPanel");
 
-  const resultTitle =
-    document.getElementById("resultTitle");
+  const result =
+    document.getElementById("result");
 
-  const nullHypothesis =
-    document.getElementById("nullHypothesis");
-
-  const altHypothesis =
-    document.getElementById("altHypothesis");
+  const description =
+    document.getElementById("resultDescription");
 
 
-  /* Show result panel */
+  /*
+    Insert result.
+  */
+
+  result.textContent = title;
+
+  description.textContent = descriptionText;
+
+
+  /*
+    Show result panel.
+  */
 
   resultPanel.style.display = "block";
 
 
-  /* =========================================
-     CORRELATION RESULTS
-     ========================================= */
+  /*
+    Show reset button.
+  */
 
-  if (selectedDesign === "correlation") {
-
-    resultPanel.classList.remove("groups-style");
-
-
-    resultTitle.textContent =
-      "Testing Relationships";
+  document
+    .getElementById("resetButton")
+    .style.display = "block";
 
 
-    nullHypothesis.textContent =
-      `Null hypothesis: There is no relationship between ${var1} and ${var2}.`;
+  /*
+    Scroll to result.
+  */
+
+  setTimeout(function() {
+
+    resultPanel.scrollIntoView({
+      behavior: "smooth",
+      block: "nearest"
+    });
+
+  }, 100);
+
+}
 
 
-    altHypothesis.textContent =
-      `Alternative hypothesis: There is a relationship between ${var1} and ${var2}.`;
+/* =========================================
+   RESET SELECTOR
+   ========================================= */
 
-  }
-
-
-  /* =========================================
-     GROUP DIFFERENCE RESULTS
-     ========================================= */
-
-  if (selectedDesign === "groups") {
-
-    resultPanel.classList.add("groups-style");
+function resetSelector() {
 
 
-    resultTitle.textContent =
-      "Testing Group Differences";
+  /*
+    Clear all selections.
+  */
+
+  document
+    .querySelectorAll('input[type="radio"]')
+    .forEach(function(input) {
+
+      input.checked = false;
+
+    });
 
 
-    nullHypothesis.textContent =
-      `Null hypothesis: There is no statistically significant difference in ${var2} between the two ${var1} groups.`;
+  /*
+    Hide both Question 2 pathways.
+  */
+
+  document
+    .getElementById("question2Categories")
+    .classList.add("hidden");
+
+  document
+    .getElementById("question2Numbers")
+    .classList.add("hidden");
 
 
-    altHypothesis.textContent =
-      `Alternative hypothesis: There is a statistically significant difference in ${var2} between the two ${var1} groups.`;
+  /*
+    Hide result.
+  */
 
-  }
+  document
+    .getElementById("resultPanel")
+    .style.display = "none";
+
+
+  /*
+    Hide reset button.
+  */
+
+  document
+    .getElementById("resetButton")
+    .style.display = "none";
+
+
+  /*
+    Return to top.
+  */
+
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
 
 }
 
@@ -758,4 +830,3 @@ function generateHypotheses() {
 
 </body>
 </html>
-```
