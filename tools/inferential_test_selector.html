@@ -8,6 +8,10 @@
 
 <style>
 
+/* =========================================
+   GENERAL
+   ========================================= */
+
 html, body {
   margin: 0;
   padding: 0;
@@ -155,10 +159,7 @@ body::after {
 }
 
 
-/* =========================================
-   QUESTION 1
-   THREE OPTIONS SIDE-BY-SIDE
-   ========================================= */
+/* Question 1: three options side-by-side */
 
 #question1 .feature-list {
   grid-template-columns: repeat(3, 1fr);
@@ -355,10 +356,7 @@ body::after {
     padding: 1.5rem;
   }
 
-  .feature-list {
-    grid-template-columns: 1fr;
-  }
-
+  .feature-list,
   #question1 .feature-list {
     grid-template-columns: 1fr;
   }
@@ -418,8 +416,12 @@ body::after {
             </span>
 
             <span class="feature-subtitle">
-              Example 1: Is there an association between the type of drink purchased (coffee or tea) and season (winter or summer)? <br>
-              Example 2: Were the distribution of last year's number of sales for each book genre (true crime, romance, non-fiction, other) the same as this year's sales?
+              Example 1: Is there an association between type of drink
+              purchased (coffee or tea) and season (winter or summer)?
+              <br><br>
+              Example 2: Were the distributions of book genres
+              (true crime, romance, non-fiction, other) the same
+              as last year?
             </span>
 
           </span>
@@ -445,7 +447,8 @@ body::after {
             </span>
 
             <span class="feature-subtitle">
-              Example: Is there a difference in weight (kilograms) based on type of diet (Diet A vs Diet B)?
+              Example: Is there a difference in weight (kilograms)
+              based on type of diet (Diet A vs Diet B)?
             </span>
 
           </span>
@@ -471,7 +474,8 @@ body::after {
             </span>
 
             <span class="feature-subtitle">
-              Example: Is there a relationship between phone use (hours) and sleep (hours)?
+              Example: Is there a relationship between phone use
+              (hours) and sleep (hours)?
             </span>
 
           </span>
@@ -497,7 +501,9 @@ body::after {
 
         <span class="question-number">2.</span>
 
-        What is your research design?
+        <span id="question2Text">
+          Question 2
+        </span>
 
       </div>
 
@@ -506,7 +512,6 @@ body::after {
         class="feature-list"
         id="question2Options"
       >
-
       </div>
 
     </div>
@@ -525,7 +530,7 @@ body::after {
 
         <span class="question-number">3.</span>
 
-        Is the continuous data normally distributed?
+        Is the research between or within subjects?
 
       </div>
 
@@ -533,24 +538,27 @@ body::after {
       <div class="feature-list">
 
 
-        <!-- NORMAL -->
+        <!-- BETWEEN -->
 
         <label class="feature-option">
 
           <input
             type="radio"
-            name="normality"
-            onchange="selectNormality('normal')"
+            name="design"
+            onchange="selectDesign('between')"
           >
 
           <span>
 
             <span class="feature-title">
-              Yes, it is normal.
+              Between subjects
             </span>
 
             <span class="feature-subtitle">
-              The continuous outcome is approximately normally distributed.
+              Different participants are in each group.
+              <br><br>
+              Example: Compare stress scores between a
+              treatment group and a control group.
             </span>
 
           </span>
@@ -558,24 +566,28 @@ body::after {
         </label>
 
 
-        <!-- NOT NORMAL -->
+        <!-- WITHIN -->
 
         <label class="feature-option">
 
           <input
             type="radio"
-            name="normality"
-            onchange="selectNormality('not_normal')"
+            name="design"
+            onchange="selectDesign('within')"
           >
 
           <span>
 
             <span class="feature-title">
-              No, it is not normal.
+              Within subjects
             </span>
 
             <span class="feature-subtitle">
-              The continuous data is not normally distributed.
+              The same participants are measured in multiple
+              conditions or at multiple time points.
+              <br><br>
+              Example: Compare stress scores before and after
+              an intervention.
             </span>
 
           </span>
@@ -601,10 +613,12 @@ body::after {
         Inferential Test
       </div>
 
+
       <h3
         id="result"
         class="result-title"
       ></h3>
+
 
       <div
         id="resultDescription"
@@ -642,9 +656,11 @@ let state = {
 
   measurement: null,
 
-  design: null,
+  variableCount: null,
 
-  normality: null
+  normality: null,
+
+  design: null
 
 };
 
@@ -658,19 +674,20 @@ function selectMeasurement(value) {
 
   state.measurement = value;
 
-  state.design = null;
+  state.variableCount = null;
 
   state.normality = null;
 
+  state.design = null;
+
 
   /*
-    Hide previous result.
+    Hide result.
   */
 
   document
     .getElementById("resultPanel")
     .style.display = "none";
-
 
   document
     .getElementById("resetButton")
@@ -693,6 +710,9 @@ function selectMeasurement(value) {
   const question2 =
     document.getElementById("question2");
 
+  const question2Text =
+    document.getElementById("question2Text");
+
   const question2Options =
     document.getElementById("question2Options");
 
@@ -700,32 +720,40 @@ function selectMeasurement(value) {
   question2.classList.remove("hidden");
 
 
-  /*
-    CATEGORICAL ONLY
-  */
+  /* =========================================
+     CATEGORICAL ONLY
+     ========================================= */
 
   if (value === "categorical") {
 
+    question2Text.textContent =
+      "How many categorical variables are there?";
+
+
     question2Options.innerHTML = `
+
+      <!-- ONE VARIABLE -->
 
       <label class="feature-option">
 
         <input
           type="radio"
-          name="design"
-          onchange="selectDesign('two_var')"
+          name="variableCount"
+          onchange="selectVariableCount('one')"
         >
 
         <span>
 
           <span class="feature-title">
-            Two variables
+            One
           </span>
 
           <span class="feature-subtitle">
-            You are examining whether two categorical variables are associated.
+            You have one categorical variable and are comparing
+            observed frequencies to expected frequencies.
             <br><br>
-            Example: Is treatment group related to diagnosis?
+            Example: Are the observed frequencies of book genres
+            different from what would be expected?
           </span>
 
         </span>
@@ -733,24 +761,27 @@ function selectMeasurement(value) {
       </label>
 
 
+      <!-- TWO VARIABLES -->
+
       <label class="feature-option">
 
         <input
           type="radio"
-          name="design"
-          onchange="selectDesign('one_var')"
+          name="variableCount"
+          onchange="selectVariableCount('two')"
         >
 
         <span>
 
           <span class="feature-title">
-            One variable
+            Two
           </span>
 
           <span class="feature-subtitle">
-            You are comparing the observed frequencies of one categorical variable to expected frequencies.
+            You have two categorical variables and are examining
+            whether they are associated.
             <br><br>
-            Example: Are the observed frequencies different from what would be expected?
+            Example: Is type of drink associated with season?
           </span>
 
         </span>
@@ -762,32 +793,37 @@ function selectMeasurement(value) {
   }
 
 
-  /*
-    CATEGORICAL + CONTINUOUS
-  */
+  /* =========================================
+     CATEGORICAL + CONTINUOUS
+     ========================================= */
 
   if (value === "cat_cont") {
 
+    question2Text.textContent =
+      "How is the continuous data distributed?";
+
+
     question2Options.innerHTML = `
+
+      <!-- NORMAL -->
 
       <label class="feature-option">
 
         <input
           type="radio"
-          name="design"
-          onchange="selectDesign('between')"
+          name="normality"
+          onchange="selectNormality('normal')"
         >
 
         <span>
 
           <span class="feature-title">
-            Between subjects
+            Normal
           </span>
 
           <span class="feature-subtitle">
-            Different participants are in each group.
-            <br><br>
-            Example: Compare depression scores between a treatment group and a control group.
+            The continuous outcome is approximately normally
+            distributed.
           </span>
 
         </span>
@@ -795,24 +831,25 @@ function selectMeasurement(value) {
       </label>
 
 
+      <!-- NOT NORMAL -->
+
       <label class="feature-option">
 
         <input
           type="radio"
-          name="design"
-          onchange="selectDesign('within')"
+          name="normality"
+          onchange="selectNormality('not_normal')"
         >
 
         <span>
 
           <span class="feature-title">
-            Within subjects
+            Not normal
           </span>
 
           <span class="feature-subtitle">
-            The same participants are measured in multiple conditions or at multiple time points.
-            <br><br>
-            Example: Compare stress scores before and after an intervention.
+            The continuous outcome is not approximately
+            normally distributed.
           </span>
 
         </span>
@@ -824,32 +861,63 @@ function selectMeasurement(value) {
   }
 
 
-  /*
-    CONTINUOUS ONLY
-  */
+  /* =========================================
+     CONTINUOUS ONLY
+     ========================================= */
 
   if (value === "continuous") {
 
+    question2Text.textContent =
+      "How is the data distributed?";
+
+
     question2Options.innerHTML = `
+
+      <!-- NORMAL -->
 
       <label class="feature-option">
 
         <input
           type="radio"
-          name="design"
-          onchange="selectDesign('relationship')"
+          name="normality"
+          onchange="selectNormality('normal')"
         >
 
         <span>
 
           <span class="feature-title">
-            Relationship
+            Normal
           </span>
 
           <span class="feature-subtitle">
-            You are examining whether two continuous variables are related.
-            <br><br>
-            Example: Is study time related to exam score?
+            The continuous data are approximately normally
+            distributed.
+          </span>
+
+        </span>
+
+      </label>
+
+
+      <!-- NOT NORMAL -->
+
+      <label class="feature-option">
+
+        <input
+          type="radio"
+          name="normality"
+          onchange="selectNormality('not_normal')"
+        >
+
+        <span>
+
+          <span class="feature-title">
+            Not normal
+          </span>
+
+          <span class="feature-subtitle">
+            The continuous data are not approximately
+            normally distributed.
           </span>
 
         </span>
@@ -881,25 +949,21 @@ function selectMeasurement(value) {
 
 
 /* =========================================
-   QUESTION 2
-   RESEARCH DESIGN
+   CATEGORICAL VARIABLE COUNT
    ========================================= */
 
-function selectDesign(value) {
+function selectVariableCount(value) {
 
-  state.design = value;
-
-  state.normality = null;
+  state.variableCount = value;
 
 
   /*
-    Hide previous result.
+    Hide any previous result.
   */
 
   document
     .getElementById("resultPanel")
     .style.display = "none";
-
 
   document
     .getElementById("resetButton")
@@ -907,29 +971,16 @@ function selectDesign(value) {
 
 
   /*
-    CATEGORICAL DATA
+    ONE CATEGORICAL VARIABLE
+    = CHI-SQUARE GOODNESS OF FIT
   */
 
-  if (state.measurement === "categorical") {
+  if (value === "one") {
 
-    if (value === "two_var") {
-
-      showResult(
-        "Chi-Square Test of Independence",
-        "Use this test when you have two categorical variables and want to determine whether they are statistically associated."
-      );
-
-    }
-
-
-    if (value === "one_var") {
-
-      showResult(
-        "Chi-Square Goodness-of-Fit Test",
-        "Use this test when you have one categorical variable and want to compare observed frequencies with expected frequencies."
-      );
-
-    }
+    showResult(
+      "Chi-Square Goodness-of-Fit Test",
+      "Use this test when you have one categorical variable and want to compare the observed frequencies with expected frequencies."
+    );
 
     return;
 
@@ -937,38 +988,26 @@ function selectDesign(value) {
 
 
   /*
-    CONTINUOUS OUTCOME
-    Requires Question 3.
+    TWO CATEGORICAL VARIABLES
+    = CHI-SQUARE TEST OF INDEPENDENCE
   */
 
-  const question3 =
-    document.getElementById("question3");
+  if (value === "two") {
 
+    showResult(
+      "Chi-Square Test of Independence",
+      "Use this test when you have two categorical variables and want to determine whether they are statistically associated."
+    );
 
-  question3.classList.remove("hidden");
+    return;
 
-
-  /*
-    Scroll to Question 3.
-  */
-
-  setTimeout(function() {
-
-    question3.scrollIntoView({
-
-      behavior: "smooth",
-
-      block: "nearest"
-
-    });
-
-  }, 100);
+  }
 
 }
 
 
 /* =========================================
-   QUESTION 3
+   QUESTION 2
    NORMALITY
    ========================================= */
 
@@ -976,50 +1015,143 @@ function selectNormality(value) {
 
   state.normality = value;
 
-  showTestBasedOnState();
+
+  /*
+    CONTINUOUS ONLY
+    Goes directly to result.
+  */
+
+  if (state.measurement === "continuous") {
+
+    showContinuousResult();
+
+    return;
+
+  }
+
+
+  /*
+    CATEGORICAL + CONTINUOUS
+    Goes to Question 3.
+  */
+
+  if (state.measurement === "cat_cont") {
+
+    const question3 =
+      document.getElementById("question3");
+
+
+    question3.classList.remove("hidden");
+
+
+    /*
+      Hide any previous result.
+    */
+
+    document
+      .getElementById("resultPanel")
+      .style.display = "none";
+
+    document
+      .getElementById("resetButton")
+      .style.display = "none";
+
+
+    /*
+      Scroll to Question 3.
+    */
+
+    setTimeout(function() {
+
+      question3.scrollIntoView({
+
+        behavior: "smooth",
+
+        block: "nearest"
+
+      });
+
+    }, 100);
+
+  }
 
 }
 
 
 /* =========================================
-   DETERMINE TEST
+   QUESTION 3
+   BETWEEN OR WITHIN
    ========================================= */
 
-function showTestBasedOnState() {
+function selectDesign(value) {
 
-  let test = "";
+  state.design = value;
 
-  let description = "";
+  showCatContResult();
 
+}
+
+
+/* =========================================
+   CONTINUOUS-ONLY RESULT
+   ========================================= */
+
+function showContinuousResult() {
+
+  if (state.normality === "normal") {
+
+    showResult(
+      "Pearson Correlation",
+      "Use Pearson correlation to examine the strength and direction of the linear relationship between two continuous variables when the relevant assumptions are met."
+    );
+
+  }
+
+
+  if (state.normality === "not_normal") {
+
+    showResult(
+      "Spearman Correlation",
+      "Use Spearman correlation to examine the strength and direction of an association between two variables when the assumptions for Pearson correlation are not met."
+    );
+
+  }
+
+}
+
+
+/* =========================================
+   CATEGORICAL + CONTINUOUS RESULT
+   ========================================= */
+
+function showCatContResult() {
 
   /*
     BETWEEN SUBJECTS
   */
 
   if (
-    state.measurement === "cat_cont" &&
     state.design === "between" &&
     state.normality === "normal"
   ) {
 
-    test = "Independent Samples t-test";
-
-    description =
-      "Use this test to compare the means of a continuous outcome between two independent groups when the outcome is approximately normally distributed.";
+    showResult(
+      "Independent Samples t-test",
+      "Use this test to compare the means of a continuous outcome between two independent groups when the outcome is approximately normally distributed."
+    );
 
   }
 
 
   if (
-    state.measurement === "cat_cont" &&
     state.design === "between" &&
     state.normality === "not_normal"
   ) {
 
-    test = "Mann-Whitney U Test";
-
-    description =
-      "Use this nonparametric test to compare two independent groups when the continuous outcome does not meet the normality assumption.";
+    showResult(
+      "Mann-Whitney U Test",
+      "Use this nonparametric test to compare two independent groups when the continuous outcome does not meet the normality assumption."
+    );
 
   }
 
@@ -1029,72 +1161,27 @@ function showTestBasedOnState() {
   */
 
   if (
-    state.measurement === "cat_cont" &&
     state.design === "within" &&
     state.normality === "normal"
   ) {
 
-    test = "Dependent Samples t-test";
-
-    description =
-      "Use this test to compare the means of a continuous outcome measured in the same participants under two conditions or at two time points when the outcome is approximately normally distributed.";
+    showResult(
+      "Dependent Samples t-test",
+      "Use this test to compare the means of a continuous outcome measured in the same participants under two conditions or at two time points when the outcome is approximately normally distributed."
+    );
 
   }
 
 
   if (
-    state.measurement === "cat_cont" &&
     state.design === "within" &&
     state.normality === "not_normal"
   ) {
 
-    test = "Wilcoxon Signed-Rank Test";
-
-    description =
-      "Use this nonparametric test to compare two related or paired measurements when the continuous outcome does not meet the normality assumption.";
-
-  }
-
-
-  /*
-    CONTINUOUS VARIABLES
-  */
-
-  if (
-    state.measurement === "continuous" &&
-    state.design === "relationship" &&
-    state.normality === "normal"
-  ) {
-
-    test = "Pearson Correlation";
-
-    description =
-      "Use Pearson correlation to examine the strength and direction of the linear relationship between two continuous variables when the relevant assumptions are met.";
-
-  }
-
-
-  if (
-    state.measurement === "continuous" &&
-    state.design === "relationship" &&
-    state.normality === "not_normal"
-  ) {
-
-    test = "Spearman Correlation";
-
-    description =
-      "Use Spearman correlation to examine the strength and direction of an association between two variables when the assumptions for Pearson correlation are not met.";
-
-  }
-
-
-  /*
-    Show result.
-  */
-
-  if (test) {
-
-    showResult(test, description);
+    showResult(
+      "Wilcoxon Signed-Rank Test",
+      "Use this nonparametric test to compare two related or paired measurements when the continuous outcome does not meet the normality assumption."
+    );
 
   }
 
@@ -1161,9 +1248,11 @@ function resetSelector() {
 
   state.measurement = null;
 
-  state.design = null;
+  state.variableCount = null;
 
   state.normality = null;
+
+  state.design = null;
 
 
   /*
@@ -1242,4 +1331,3 @@ function resetSelector() {
 
 </body>
 </html>
-```
