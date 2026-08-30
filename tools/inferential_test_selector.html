@@ -1,15 +1,13 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
 <title>Inferential Test Selector</title>
 
 <style>
-
-/* =========================================
-   GLOBAL
-   ========================================= */
 
 html, body {
   margin: 0;
@@ -26,27 +24,14 @@ body {
   overflow-x: hidden;
 }
 
-
-/* =========================================
-   BACKGROUND
-   ========================================= */
-
 body::before {
   content: "";
   position: fixed;
   inset: 0;
 
   background:
-    radial-gradient(
-      circle at top,
-      rgba(125,211,252,0.16),
-      transparent 35%
-    ),
-    radial-gradient(
-      circle at bottom,
-      rgba(99,102,241,0.14),
-      transparent 40%
-    );
+    radial-gradient(circle at top, rgba(125,211,252,0.16), transparent 35%),
+    radial-gradient(circle at bottom, rgba(99,102,241,0.14), transparent 40%);
 
   z-index: -2;
 }
@@ -59,15 +44,8 @@ body::after {
   opacity: 0.3;
 
   background-image:
-    linear-gradient(
-      rgba(255,255,255,0.04) 1px,
-      transparent 1px
-    ),
-    linear-gradient(
-      90deg,
-      rgba(255,255,255,0.04) 1px,
-      transparent 1px
-    );
+    linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
 
   background-size: 42px 42px;
 
@@ -91,7 +69,7 @@ body::after {
 
 .glass {
   width: 100%;
-  max-width: 720px;
+  max-width: 1000px;
 
   padding: 2.5rem;
 
@@ -104,14 +82,8 @@ body::after {
 
   border-radius: 24px;
 
-  box-shadow:
-    0 25px 80px rgba(0,0,0,0.45);
+  box-shadow: 0 25px 80px rgba(0,0,0,0.45);
 }
-
-
-/* =========================================
-   HEADER
-   ========================================= */
 
 .glass h2 {
   margin: 0 0 0.75rem;
@@ -145,7 +117,7 @@ body::after {
    ========================================= */
 
 .question-row {
-  margin-bottom: 1.75rem;
+  margin-bottom: 1.5rem;
 
   animation: fadeIn 0.3s ease;
 }
@@ -178,10 +150,21 @@ body::after {
 .feature-list {
   display: grid;
 
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(2, 1fr);
 
   gap: 1rem;
 }
+
+
+/* =========================================
+   QUESTION 1
+   THREE OPTIONS SIDE-BY-SIDE
+   ========================================= */
+
+#question1 .feature-list {
+  grid-template-columns: repeat(3, 1fr);
+}
+
 
 .feature-option {
   display: flex;
@@ -213,9 +196,10 @@ body::after {
 
 .feature-option input {
   width: 1.1rem;
+
   height: 1.1rem;
 
-  margin-top: 0.15rem;
+  margin-top: 0.2rem;
 
   flex-shrink: 0;
 
@@ -231,13 +215,13 @@ body::after {
 }
 
 .feature-subtitle {
-  display: block;
-
-  margin-top: 6px;
-
   font-size: 0.85rem;
 
   color: rgb(203,213,225);
+
+  margin-top: 6px;
+
+  display: block;
 
   line-height: 1.5;
 }
@@ -250,7 +234,7 @@ body::after {
 .result-panel {
   display: none;
 
-  margin-top: 1.5rem;
+  margin-top: 2rem;
 
   padding: 1.75rem;
 
@@ -258,22 +242,18 @@ body::after {
 
   border: 1px solid rgba(125,211,252,0.30);
 
-  background:
-    linear-gradient(
-      135deg,
-      rgba(3,105,161,0.70),
-      rgba(49,46,129,0.80)
-    );
+  background: linear-gradient(
+    135deg,
+    rgba(3,105,161,0.70),
+    rgba(49,46,129,0.80)
+  );
 
-  box-shadow:
-    0 20px 50px rgba(0,0,0,0.35);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.35);
 
   animation: fadeIn 0.3s ease;
 }
 
 .result-label {
-  margin-bottom: 0.4rem;
-
   font-size: 0.78rem;
 
   text-transform: uppercase;
@@ -281,6 +261,8 @@ body::after {
   letter-spacing: 0.22em;
 
   color: rgb(203,213,225);
+
+  margin-bottom: 0.4rem;
 }
 
 .result-title {
@@ -313,11 +295,11 @@ body::after {
 
   margin-top: 1rem;
 
-  padding: 0.9rem 1.25rem;
+  border: 1px solid rgba(255,255,255,0.18);
 
   border-radius: 16px;
 
-  border: 1px solid rgba(255,255,255,0.18);
+  padding: 0.9rem 1.25rem;
 
   background: rgba(255,255,255,0.10);
 
@@ -335,7 +317,7 @@ body::after {
 }
 
 .reset-button:hover {
-  background: rgba(255,255,255,0.16);
+  background: rgba(255,255,255,0.18);
 
   transform: translateY(-1px);
 }
@@ -378,6 +360,10 @@ body::after {
     grid-template-columns: 1fr;
   }
 
+  #question1 .feature-list {
+    grid-template-columns: 1fr;
+  }
+
 }
 
 </style>
@@ -390,20 +376,16 @@ body::after {
 
   <div class="glass">
 
-    <!-- =========================================
-         HEADER
-         ========================================= -->
-
     <h2>Inferential Test Selector</h2>
 
     <p>
-      Answer each question to identify the appropriate inferential statistical test.
+      Answer each question to identify the most appropriate inferential statistical test.
     </p>
 
 
-    <!-- =========================================
-         QUESTION 1
-         ========================================= -->
+    <!-- ========================================= -->
+    <!-- QUESTION 1 -->
+    <!-- ========================================= -->
 
     <div class="question-row" id="question1">
 
@@ -419,7 +401,7 @@ body::after {
       <div class="feature-list">
 
 
-        <!-- CATEGORICAL -->
+        <!-- CATEGORICAL ONLY -->
 
         <label class="feature-option">
 
@@ -427,7 +409,7 @@ body::after {
             type="radio"
             name="measurement"
             id="categorical"
-            onchange="chooseMeasurement('categorical')"
+            onchange="selectMeasurement('categorical')"
           >
 
           <span>
@@ -438,9 +420,8 @@ body::after {
 
             <span class="feature-subtitle">
               The variable consists of categories or groups rather than numerical measurements.
-              <br>
-              <br>
-              Examples: Gender, treatment group, diagnosis, nationality.
+              <br><br>
+              Examples: Gender, eye color, treatment group, diagnosis.
             </span>
 
           </span>
@@ -456,7 +437,7 @@ body::after {
             type="radio"
             name="measurement"
             id="catCont"
-            onchange="chooseMeasurement('cat_cont')"
+            onchange="selectMeasurement('cat_cont')"
           >
 
           <span>
@@ -466,9 +447,8 @@ body::after {
             </span>
 
             <span class="feature-subtitle">
-              You have a categorical grouping variable and a continuous outcome variable.
-              <br>
-              <br>
+              One variable identifies groups and another variable is a continuous numerical outcome.
+              <br><br>
               Example: Treatment group + depression score.
             </span>
 
@@ -477,7 +457,7 @@ body::after {
         </label>
 
 
-        <!-- CONTINUOUS -->
+        <!-- CONTINUOUS ONLY -->
 
         <label class="feature-option">
 
@@ -485,7 +465,7 @@ body::after {
             type="radio"
             name="measurement"
             id="continuous"
-            onchange="chooseMeasurement('continuous')"
+            onchange="selectMeasurement('continuous')"
           >
 
           <span>
@@ -496,9 +476,8 @@ body::after {
 
             <span class="feature-subtitle">
               Both variables are measured using continuous numerical values.
-              <br>
-              <br>
-              Example: Hours worked + job performance score.
+              <br><br>
+              Examples: Height, weight, age, income, test score.
             </span>
 
           </span>
@@ -511,21 +490,21 @@ body::after {
     </div>
 
 
-    <!-- =========================================
-         QUESTION 2
-         ========================================= -->
+    <!-- ========================================= -->
+    <!-- QUESTION 2 -->
+    <!-- ========================================= -->
 
     <div
       class="question-row hidden"
       id="question2"
     >
 
-      <div
-        class="question-title"
-        id="question2Title"
-      >
+      <div class="question-title">
+
         <span class="question-number">2.</span>
-        Research design?
+
+        What is your research design?
+
       </div>
 
 
@@ -539,9 +518,9 @@ body::after {
     </div>
 
 
-    <!-- =========================================
-         QUESTION 3
-         ========================================= -->
+    <!-- ========================================= -->
+    <!-- QUESTION 3 -->
+    <!-- ========================================= -->
 
     <div
       class="question-row hidden"
@@ -552,7 +531,7 @@ body::after {
 
         <span class="question-number">3.</span>
 
-        Are the data normally distributed?
+        Is the continuous outcome normally distributed?
 
       </div>
 
@@ -567,13 +546,13 @@ body::after {
           <input
             type="radio"
             name="normality"
-            onchange="chooseNormality('normal')"
+            onchange="selectNormality('normal')"
           >
 
           <span>
 
             <span class="feature-title">
-              Yes
+              Yes — Normal
             </span>
 
             <span class="feature-subtitle">
@@ -592,13 +571,13 @@ body::after {
           <input
             type="radio"
             name="normality"
-            onchange="chooseNormality('not')"
+            onchange="selectNormality('not_normal')"
           >
 
           <span>
 
             <span class="feature-title">
-              No
+              No — Not normal
             </span>
 
             <span class="feature-subtitle">
@@ -615,9 +594,9 @@ body::after {
     </div>
 
 
-    <!-- =========================================
-         RESULT
-         ========================================= -->
+    <!-- ========================================= -->
+    <!-- RESULT -->
+    <!-- ========================================= -->
 
     <div
       id="resultPanel"
@@ -641,9 +620,9 @@ body::after {
     </div>
 
 
-    <!-- =========================================
-         RESET
-         ========================================= -->
+    <!-- ========================================= -->
+    <!-- RESET -->
+    <!-- ========================================= -->
 
     <button
       id="resetButton"
@@ -666,59 +645,72 @@ body::after {
    ========================================= */
 
 let state = {
+
   measurement: null,
+
   design: null,
+
   normality: null
+
 };
 
 
 /* =========================================
    QUESTION 1
+   MEASUREMENT LEVEL
    ========================================= */
 
-function chooseMeasurement(value) {
+function selectMeasurement(value) {
 
   state.measurement = value;
 
   state.design = null;
+
   state.normality = null;
 
 
-  /* Hide old results */
+  /*
+    Hide previous result.
+  */
 
-  document.getElementById("resultPanel").style.display = "none";
+  document
+    .getElementById("resultPanel")
+    .style.display = "none";
 
-  document.getElementById("resetButton").style.display = "none";
+
+  document
+    .getElementById("resetButton")
+    .style.display = "none";
 
 
-  /* Hide Question 3 */
+  /*
+    Hide Question 3.
+  */
 
   document
     .getElementById("question3")
     .classList.add("hidden");
 
 
-  /* Get Question 2 elements */
+  /*
+    Show Question 2.
+  */
 
   const question2 =
     document.getElementById("question2");
-
-  const question2Title =
-    document.getElementById("question2Title");
 
   const question2Options =
     document.getElementById("question2Options");
 
 
-  /* =========================================
-     CATEGORICAL ONLY
-     ========================================= */
+  question2.classList.remove("hidden");
+
+
+  /*
+    CATEGORICAL ONLY
+  */
 
   if (value === "categorical") {
-
-    question2Title.innerHTML =
-      '<span class="question-number">2.</span> How many categorical variables are you analyzing?';
-
 
     question2Options.innerHTML = `
 
@@ -727,7 +719,7 @@ function chooseMeasurement(value) {
         <input
           type="radio"
           name="design"
-          onchange="chooseDesign('two_var')"
+          onchange="selectDesign('two_var')"
         >
 
         <span>
@@ -737,9 +729,8 @@ function chooseMeasurement(value) {
           </span>
 
           <span class="feature-subtitle">
-            You are examining whether two categorical variables are related.
-            <br>
-            <br>
+            You are examining whether two categorical variables are associated.
+            <br><br>
             Example: Is treatment group related to diagnosis?
           </span>
 
@@ -753,7 +744,7 @@ function chooseMeasurement(value) {
         <input
           type="radio"
           name="design"
-          onchange="chooseDesign('one_var')"
+          onchange="selectDesign('one_var')"
         >
 
         <span>
@@ -764,6 +755,8 @@ function chooseMeasurement(value) {
 
           <span class="feature-subtitle">
             You are comparing the observed frequencies of one categorical variable to expected frequencies.
+            <br><br>
+            Example: Are the observed frequencies different from what would be expected?
           </span>
 
         </span>
@@ -772,20 +765,14 @@ function chooseMeasurement(value) {
 
     `;
 
-    question2.classList.remove("hidden");
-
   }
 
 
-  /* =========================================
-     CATEGORICAL + CONTINUOUS
-     ========================================= */
+  /*
+    CATEGORICAL + CONTINUOUS
+  */
 
   if (value === "cat_cont") {
-
-    question2Title.innerHTML =
-      '<span class="question-number">2.</span> How are the groups related?';
-
 
     question2Options.innerHTML = `
 
@@ -794,7 +781,7 @@ function chooseMeasurement(value) {
         <input
           type="radio"
           name="design"
-          onchange="chooseDesign('between')"
+          onchange="selectDesign('between')"
         >
 
         <span>
@@ -804,10 +791,9 @@ function chooseMeasurement(value) {
           </span>
 
           <span class="feature-subtitle">
-            Different people are in each group.
-            <br>
-            <br>
-            Example: Group A and Group B contain different participants.
+            Different participants are in each group.
+            <br><br>
+            Example: Compare depression scores between a treatment group and a control group.
           </span>
 
         </span>
@@ -820,7 +806,7 @@ function chooseMeasurement(value) {
         <input
           type="radio"
           name="design"
-          onchange="chooseDesign('within')"
+          onchange="selectDesign('within')"
         >
 
         <span>
@@ -830,7 +816,9 @@ function chooseMeasurement(value) {
           </span>
 
           <span class="feature-subtitle">
-            The same people are measured in two conditions or at two time points.
+            The same participants are measured in multiple conditions or at multiple time points.
+            <br><br>
+            Example: Compare stress scores before and after an intervention.
           </span>
 
         </span>
@@ -839,20 +827,14 @@ function chooseMeasurement(value) {
 
     `;
 
-    question2.classList.remove("hidden");
-
   }
 
 
-  /* =========================================
-     CONTINUOUS ONLY
-     ========================================= */
+  /*
+    CONTINUOUS ONLY
+  */
 
   if (value === "continuous") {
-
-    question2Title.innerHTML =
-      '<span class="question-number">2.</span> What are you testing?';
-
 
     question2Options.innerHTML = `
 
@@ -861,7 +843,7 @@ function chooseMeasurement(value) {
         <input
           type="radio"
           name="design"
-          onchange="chooseDesign('relationship')"
+          onchange="selectDesign('relationship')"
         >
 
         <span>
@@ -871,10 +853,9 @@ function chooseMeasurement(value) {
           </span>
 
           <span class="feature-subtitle">
-            You are testing whether two continuous variables are related.
-            <br>
-            <br>
-            Example: Is there a relationship between hours worked and job performance?
+            You are examining whether two continuous variables are related.
+            <br><br>
+            Example: Is study time related to exam score?
           </span>
 
         </span>
@@ -883,18 +864,21 @@ function chooseMeasurement(value) {
 
     `;
 
-    question2.classList.remove("hidden");
-
   }
 
 
-  /* Scroll to Question 2 */
+  /*
+    Scroll to Question 2.
+  */
 
   setTimeout(function() {
 
     question2.scrollIntoView({
+
       behavior: "smooth",
+
       block: "nearest"
+
     });
 
   }, 100);
@@ -904,26 +888,33 @@ function chooseMeasurement(value) {
 
 /* =========================================
    QUESTION 2
+   RESEARCH DESIGN
    ========================================= */
 
-function chooseDesign(value) {
+function selectDesign(value) {
 
   state.design = value;
 
   state.normality = null;
 
 
-  /* Hide previous result */
+  /*
+    Hide previous result.
+  */
 
-  document.getElementById("resultPanel").style.display = "none";
+  document
+    .getElementById("resultPanel")
+    .style.display = "none";
 
-  document.getElementById("resetButton").style.display = "none";
+
+  document
+    .getElementById("resetButton")
+    .style.display = "none";
 
 
-  /* =========================================
-     CATEGORICAL DATA
-     No normality question needed.
-     ========================================= */
+  /*
+    CATEGORICAL DATA
+  */
 
   if (state.measurement === "categorical") {
 
@@ -931,7 +922,7 @@ function chooseDesign(value) {
 
       showResult(
         "Chi-Square Test of Independence",
-        "Use this test to determine whether two categorical variables are statistically associated."
+        "Use this test when you have two categorical variables and want to determine whether they are statistically associated."
       );
 
     }
@@ -941,33 +932,41 @@ function chooseDesign(value) {
 
       showResult(
         "Chi-Square Goodness-of-Fit Test",
-        "Use this test to determine whether the observed frequencies of one categorical variable differ from expected frequencies."
+        "Use this test when you have one categorical variable and want to compare observed frequencies with expected frequencies."
       );
 
     }
 
     return;
+
   }
 
 
-  /* =========================================
-     CONTINUOUS DATA
-     Show Question 3.
-     ========================================= */
+  /*
+    CONTINUOUS OUTCOME
+    Requires Question 3.
+  */
 
-  document
-    .getElementById("question3")
-    .classList.remove("hidden");
+  const question3 =
+    document.getElementById("question3");
 
+
+  question3.classList.remove("hidden");
+
+
+  /*
+    Scroll to Question 3.
+  */
 
   setTimeout(function() {
 
-    document
-      .getElementById("question3")
-      .scrollIntoView({
-        behavior: "smooth",
-        block: "nearest"
-      });
+    question3.scrollIntoView({
+
+      behavior: "smooth",
+
+      block: "nearest"
+
+    });
 
   }, 100);
 
@@ -976,13 +975,14 @@ function chooseDesign(value) {
 
 /* =========================================
    QUESTION 3
+   NORMALITY
    ========================================= */
 
-function chooseNormality(value) {
+function selectNormality(value) {
 
   state.normality = value;
 
-  showResult();
+  showTestBasedOnState();
 
 }
 
@@ -991,11 +991,16 @@ function chooseNormality(value) {
    DETERMINE TEST
    ========================================= */
 
-function determineTest() {
+function showTestBasedOnState() {
 
-  /* =========================================
-     CATEGORICAL + CONTINUOUS
-     ========================================= */
+  let test = "";
+
+  let description = "";
+
+
+  /*
+    BETWEEN SUBJECTS
+  */
 
   if (
     state.measurement === "cat_cont" &&
@@ -1003,11 +1008,10 @@ function determineTest() {
     state.normality === "normal"
   ) {
 
-    return {
-      test: "Independent t-test",
-      description:
-        "Use this test to compare the mean of a continuous outcome between two independent groups."
-    };
+    test = "Independent Samples t-test";
+
+    description =
+      "Use this test to compare the means of a continuous outcome between two independent groups when the outcome is approximately normally distributed.";
 
   }
 
@@ -1015,17 +1019,20 @@ function determineTest() {
   if (
     state.measurement === "cat_cont" &&
     state.design === "between" &&
-    state.normality === "not"
+    state.normality === "not_normal"
   ) {
 
-    return {
-      test: "Mann-Whitney U Test",
-      description:
-        "Use this nonparametric test to compare two independent groups when the continuous outcome is not normally distributed."
-    };
+    test = "Mann-Whitney U Test";
+
+    description =
+      "Use this nonparametric test to compare two independent groups when the continuous outcome does not meet the normality assumption.";
 
   }
 
+
+  /*
+    WITHIN SUBJECTS
+  */
 
   if (
     state.measurement === "cat_cont" &&
@@ -1033,11 +1040,10 @@ function determineTest() {
     state.normality === "normal"
   ) {
 
-    return {
-      test: "Dependent t-test",
-      description:
-        "Use this test to compare the means of two related measurements, such as the same participants measured at two time points."
-    };
+    test = "Dependent Samples t-test";
+
+    description =
+      "Use this test to compare the means of a continuous outcome measured in the same participants under two conditions or at two time points when the outcome is approximately normally distributed.";
 
   }
 
@@ -1045,51 +1051,58 @@ function determineTest() {
   if (
     state.measurement === "cat_cont" &&
     state.design === "within" &&
-    state.normality === "not"
+    state.normality === "not_normal"
   ) {
 
-    return {
-      test: "Wilcoxon Signed-Rank Test",
-      description:
-        "Use this nonparametric test to compare two related measurements when the outcome is not normally distributed."
-    };
+    test = "Wilcoxon Signed-Rank Test";
+
+    description =
+      "Use this nonparametric test to compare two related or paired measurements when the continuous outcome does not meet the normality assumption.";
 
   }
 
 
-  /* =========================================
-     CONTINUOUS VARIABLES
-     ========================================= */
+  /*
+    CONTINUOUS VARIABLES
+  */
 
   if (
     state.measurement === "continuous" &&
+    state.design === "relationship" &&
     state.normality === "normal"
   ) {
 
-    return {
-      test: "Pearson Correlation",
-      description:
-        "Use this test to examine the strength and direction of the linear relationship between two continuous variables."
-    };
+    test = "Pearson Correlation";
+
+    description =
+      "Use Pearson correlation to examine the strength and direction of the linear relationship between two continuous variables when the relevant assumptions are met.";
 
   }
 
 
   if (
     state.measurement === "continuous" &&
-    state.normality === "not"
+    state.design === "relationship" &&
+    state.normality === "not_normal"
   ) {
 
-    return {
-      test: "Spearman Correlation",
-      description:
-        "Use this nonparametric correlation to examine the strength and direction of the relationship between two variables when the assumptions for Pearson correlation are not met."
-    };
+    test = "Spearman Correlation";
+
+    description =
+      "Use Spearman correlation to examine the strength and direction of an association between two variables when the assumptions for Pearson correlation are not met.";
 
   }
 
 
-  return null;
+  /*
+    Show result.
+  */
+
+  if (test) {
+
+    showResult(test, description);
+
+  }
 
 }
 
@@ -1098,37 +1111,7 @@ function determineTest() {
    SHOW RESULT
    ========================================= */
 
-function showResult(testOverride = null, descriptionOverride = null) {
-
-  let resultData;
-
-
-  /* Direct result */
-
-  if (testOverride) {
-
-    resultData = {
-      test: testOverride,
-      description: descriptionOverride
-    };
-
-  }
-
-  /* Determine result from state */
-
-  else {
-
-    resultData = determineTest();
-
-  }
-
-
-  if (!resultData) {
-    return;
-  }
-
-
-  /* Get elements */
+function showResult(title, descriptionText) {
 
   const resultPanel =
     document.getElementById("resultPanel");
@@ -1139,36 +1122,32 @@ function showResult(testOverride = null, descriptionOverride = null) {
   const description =
     document.getElementById("resultDescription");
 
-  const resetButton =
-    document.getElementById("resetButton");
+
+  result.textContent = title;
+
+  description.textContent = descriptionText;
 
 
-  /* Insert result */
-
-  result.textContent =
-    resultData.test;
-
-  description.textContent =
-    resultData.description;
+  resultPanel.style.display = "block";
 
 
-  /* Show result */
-
-  resultPanel.style.display =
-    "block";
-
-
-  resetButton.style.display =
-    "block";
+  document
+    .getElementById("resetButton")
+    .style.display = "block";
 
 
-  /* Scroll to result */
+  /*
+    Scroll to result.
+  */
 
   setTimeout(function() {
 
     resultPanel.scrollIntoView({
+
       behavior: "smooth",
+
       block: "nearest"
+
     });
 
   }, 100);
@@ -1182,14 +1161,20 @@ function showResult(testOverride = null, descriptionOverride = null) {
 
 function resetSelector() {
 
-  /* Reset state */
+  /*
+    Reset state.
+  */
 
   state.measurement = null;
+
   state.design = null;
+
   state.normality = null;
 
 
-  /* Clear all radio buttons */
+  /*
+    Uncheck all radio buttons.
+  */
 
   document
     .querySelectorAll('input[type="radio"]')
@@ -1200,46 +1185,61 @@ function resetSelector() {
     });
 
 
-  /* Hide Question 2 */
+  /*
+    Hide Question 2.
+  */
 
   document
     .getElementById("question2")
     .classList.add("hidden");
 
 
-  /* Clear Question 2 */
+  /*
+    Clear Question 2 options.
+  */
 
   document
     .getElementById("question2Options")
     .innerHTML = "";
 
 
-  /* Hide Question 3 */
+  /*
+    Hide Question 3.
+  */
 
   document
     .getElementById("question3")
     .classList.add("hidden");
 
 
-  /* Hide result */
+  /*
+    Hide result.
+  */
 
   document
     .getElementById("resultPanel")
     .style.display = "none";
 
 
-  /* Hide reset */
+  /*
+    Hide reset button.
+  */
 
   document
     .getElementById("resetButton")
     .style.display = "none";
 
 
-  /* Return to top */
+  /*
+    Return to top.
+  */
 
   window.scrollTo({
+
     top: 0,
+
     behavior: "smooth"
+
   });
 
 }
