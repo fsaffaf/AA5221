@@ -255,9 +255,9 @@ function showResult(type) {
     document.getElementById("resultTitle").textContent =
       "Results";
     [
-      "Null hypothesis supported.",
-      "Results are NOT statistically significant.",
-      "Do not calculate effect size."
+      "The null hypothesis is supported.",
+      "The results are NOT statistically significant.",
+      "Do not calculate the effect size."
     ].forEach(text => {
       const div = document.createElement("div");
       div.className = "item";
@@ -273,9 +273,9 @@ function showResult(type) {
     document.getElementById("resultTitle").textContent =
       "Results";
     [
-      "Alternative hypothesis supported.",
-      "Results ARE statistically significant.",
-      "Calculate effect size."
+      "The alternative hypothesis is supported.",
+      "The results ARE statistically significant.",
+      "Proceed with calculating the effect size."
     ].forEach(text => {
       const div = document.createElement("div");
       div.className = "item";
