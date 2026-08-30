@@ -163,12 +163,13 @@ body::after {
 
 
 /* =========================================
-   INPUT PANEL
+   QUESTION 2 INPUT PANEL
    ========================================= */
 
 .input-panel {
   display: none;
   margin-bottom: 2rem;
+  animation: fadeIn 0.3s ease;
 }
 
 .input-grid {
@@ -233,6 +234,7 @@ body::after {
   );
   padding: 1.75rem;
   box-shadow: 0 20px 50px rgba(0,0,0,0.35);
+  animation: fadeIn 0.3s ease;
 }
 
 .result-panel.groups-style {
@@ -249,18 +251,6 @@ body::after {
   align-items: center;
   gap: 1rem;
   margin-bottom: 1.5rem;
-}
-
-.result-icon {
-  width: 56px;
-  height: 56px;
-  border-radius: 18px;
-  background: rgba(255,255,255,0.12);
-  border: 1px solid rgba(255,255,255,0.15);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.6rem;
 }
 
 .result-title {
@@ -283,11 +273,6 @@ body::after {
   padding: 1rem;
   color: rgb(241,245,249);
   line-height: 1.5;
-}
-
-.check {
-  color: #bae6fd;
-  font-weight: bold;
 }
 
 
@@ -387,7 +372,7 @@ body::after {
               Testing if there is a relationship between two variables.
               <br>
               <br>
-              Is there a relationship between Variable 1 and Variable 2?
+              Example: Is there a relationship between Variable 1 and Variable 2?
             </span>
 
           </span>
@@ -434,13 +419,21 @@ body::after {
 
 
     <!-- ========================================= -->
-    <!-- STEP 2: VARIABLE INPUTS -->
+    <!-- QUESTION 2: VARIABLE NAMES -->
     <!-- ========================================= -->
 
     <div id="inputPanel" class="input-panel">
 
+      <div class="question-title">
+        <span class="question-number">2.</span>
+        What are your variable names?
+      </div>
+
+
       <div class="input-grid">
 
+
+        <!-- VARIABLE 1 -->
 
         <div class="input-group">
 
@@ -456,6 +449,8 @@ body::after {
 
         </div>
 
+
+        <!-- VARIABLE 2 -->
 
         <div class="input-group">
 
@@ -489,7 +484,10 @@ body::after {
     <!-- RESULTS -->
     <!-- ========================================= -->
 
-    <div id="resultPanel" class="result-panel">
+    <div
+      id="resultPanel"
+      class="result-panel"
+    >
 
       <div class="result-top">
 
@@ -536,13 +534,13 @@ body::after {
 
     </div>
 
-
   </div>
 
 </div>
 
 
 <script>
+
 
 /* =========================================
    TRACK SELECTED DESIGN
@@ -558,6 +556,7 @@ let selectedDesign = "";
 function selectDesign(type) {
 
   selectedDesign = type;
+
 
   const inputPanel =
     document.getElementById("inputPanel");
@@ -584,11 +583,19 @@ function selectDesign(type) {
     document.getElementById("resultPanel");
 
 
-  /* Reset result panel */
+  /* =========================================
+     RESET RESULTS
+     ========================================= */
 
   resultPanel.style.display = "none";
 
   resultPanel.classList.remove("groups-style");
+
+
+  /* Clear previous variable names */
+
+  input1.value = "";
+  input2.value = "";
 
 
   /* =========================================
@@ -645,9 +652,23 @@ function selectDesign(type) {
   }
 
 
-  /* Show input panel */
+  /* =========================================
+     SHOW QUESTION 2
+     ========================================= */
 
   inputPanel.style.display = "block";
+
+
+  /* Scroll Question 2 into view */
+
+  setTimeout(function() {
+
+    inputPanel.scrollIntoView({
+      behavior: "smooth",
+      block: "nearest"
+    });
+
+  }, 100);
 
 }
 
@@ -665,18 +686,9 @@ function generateHypotheses() {
     document.getElementById("input2").value.trim();
 
 
-  /* Make sure both variables are entered */
-
-  if (!var1 || !var2) {
-
-    alert("Please complete both fields.");
-
-    return;
-
-  }
-
-
-  /* Make sure a design was selected */
+  /* =========================================
+     VALIDATE INPUTS
+     ========================================= */
 
   if (!selectedDesign) {
 
@@ -687,7 +699,18 @@ function generateHypotheses() {
   }
 
 
-  /* Get result elements */
+  if (!var1 || !var2) {
+
+    alert("Please enter both variable names.");
+
+    return;
+
+  }
+
+
+  /* =========================================
+     GET RESULT ELEMENTS
+     ========================================= */
 
   const resultPanel =
     document.getElementById("resultPanel");
@@ -751,6 +774,18 @@ function generateHypotheses() {
       `Alternative hypothesis: There is a statistically significant difference in ${var2} between the two ${var1} groups.`;
 
   }
+
+
+  /* Scroll to results */
+
+  setTimeout(function() {
+
+    resultPanel.scrollIntoView({
+      behavior: "smooth",
+      block: "nearest"
+    });
+
+  }, 100);
 
 }
 
