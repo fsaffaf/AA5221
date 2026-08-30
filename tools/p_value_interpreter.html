@@ -140,15 +140,6 @@ body::after {
 }
 
 /* Result */
-.empty {
-  border: 1px solid rgba(255,255,255,0.10);
-  background: rgba(255,255,255,0.05);
-  border-radius: 20px;
-  padding: 1.5rem;
-  text-align: center;
-  color: rgb(203,213,225);
-}
-
 .result {
   display: none;
   border-radius: 20px;
@@ -158,12 +149,20 @@ body::after {
 }
 
 .result.sig {
-  background: linear-gradient(135deg, rgba(3,105,161,0.75), rgba(49,46,129,0.85));
+  background: linear-gradient(
+    135deg,
+    rgba(3,105,161,0.75),
+    rgba(49,46,129,0.85)
+  );
   border: 1px solid rgba(125,211,252,0.35);
 }
 
 .result.nonsig {
-  background: linear-gradient(135deg, rgba(51,65,85,0.85), rgba(15,23,42,0.9));
+  background: linear-gradient(
+    135deg,
+    rgba(51,65,85,0.85),
+    rgba(15,23,42,0.9)
+  );
   border: 1px solid rgba(148,163,184,0.25);
 }
 
@@ -191,12 +190,21 @@ body::after {
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(8px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @media (max-width: 700px) {
-  .choice-grid { grid-template-columns: 1fr; }
+  .choice-grid {
+    grid-template-columns: 1fr;
+  }
 }
 </style>
 </head>
@@ -215,22 +223,39 @@ body::after {
       </div>
 
       <div class="choice-grid">
-        <div class="choice nonsig" onclick="showResult('nonsig')" id="btnNonsig">
+
+        <div
+          class="choice nonsig"
+          onclick="showResult('nonsig')"
+          id="btnNonsig"
+        >
           <div class="choice-title">p ≥ .05</div>
-          <div class="choice-sub">GREATER THAN or equal to .05</div>
+          <div class="choice-sub">
+            GREATER THAN or equal to .05
+          </div>
         </div>
 
-        <div class="choice sig" onclick="showResult('sig')" id="btnSig">
+        <div
+          class="choice sig"
+          onclick="showResult('sig')"
+          id="btnSig"
+        >
           <div class="choice-title">p &lt; .05</div>
-          <div class="choice-sub">LESS THAN .05</div>
+          <div class="choice-sub">
+            LESS THAN .05
+          </div>
         </div>
+
       </div>
 
       <div id="result" class="result">
+
         <h2 id="resultTitle"></h2>
+
         <p id="resultSubtitle"></p>
 
         <div class="list" id="resultList"></div>
+
       </div>
 
     </div>
@@ -238,54 +263,86 @@ body::after {
 </div>
 
 <script>
+
 function showResult(type) {
-  document.getElementById("empty").style.display = "none";
+
   const result = document.getElementById("result");
   const list = document.getElementById("resultList");
 
-  document.getElementById("btnNonsig").classList.remove("active");
-  document.getElementById("btnSig").classList.remove("active");
+  const btnNonsig = document.getElementById("btnNonsig");
+  const btnSig = document.getElementById("btnSig");
 
+  /* Remove active state from both buttons */
+  btnNonsig.classList.remove("active");
+  btnSig.classList.remove("active");
+
+  /* Clear previous results */
   list.innerHTML = "";
 
+  /* Non-significant result */
   if (type === "nonsig") {
-    document.getElementById("btnNonsig").classList.add("active");
+
+    btnNonsig.classList.add("active");
+
     result.className = "result nonsig";
 
     document.getElementById("resultTitle").textContent =
       "Results";
+
+    document.getElementById("resultSubtitle").textContent =
+      "Your p-value is greater than or equal to .05.";
+
     [
       "The null hypothesis is supported.",
       "The results are NOT statistically significant.",
       "Do not calculate the effect size."
-    ].forEach(text => {
+    ].forEach(function(text) {
+
       const div = document.createElement("div");
+
       div.className = "item";
+
       div.textContent = text;
+
       list.appendChild(div);
+
     });
   }
 
+  /* Significant result */
   if (type === "sig") {
-    document.getElementById("btnSig").classList.add("active");
+
+    btnSig.classList.add("active");
+
     result.className = "result sig";
 
     document.getElementById("resultTitle").textContent =
       "Results";
+
+    document.getElementById("resultSubtitle").textContent =
+      "Your p-value is less than .05.";
+
     [
       "The alternative hypothesis is supported.",
       "The results ARE statistically significant.",
       "Proceed with calculating the effect size."
-    ].forEach(text => {
+    ].forEach(function(text) {
+
       const div = document.createElement("div");
+
       div.className = "item";
+
       div.textContent = text;
+
       list.appendChild(div);
+
     });
   }
 
+  /* Show result */
   result.style.display = "block";
 }
+
 </script>
 
 </body>
