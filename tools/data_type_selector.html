@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -49,6 +50,7 @@ body::after {
   z-index: -1;
 }
 
+
 /* =========================================
    MAIN LAYOUT
    ========================================= */
@@ -98,6 +100,7 @@ body::after {
   line-height: 1.6;
 }
 
+
 /* =========================================
    QUESTION ROWS
    ========================================= */
@@ -124,6 +127,7 @@ body::after {
   color: rgb(125,211,252);
   margin-right: 0.4rem;
 }
+
 
 /* =========================================
    OPTIONS
@@ -173,10 +177,15 @@ body::after {
 .feature-subtitle {
   font-size: 0.85rem;
   color: rgb(203,213,225);
-  margin-top: 0.15rem;
+  margin-top: 6px;
+  display: block;
+}
+
+.examples {
   display: block;
   margin-top: 6px;
 }
+
 
 /* =========================================
    RESULT PANEL
@@ -226,6 +235,7 @@ body::after {
   line-height: 1.6;
 }
 
+
 /* =========================================
    RESET BUTTON
    ========================================= */
@@ -256,6 +266,7 @@ body::after {
   background: rgba(255,255,255,0.14);
 }
 
+
 /* =========================================
    ANIMATION
    ========================================= */
@@ -273,6 +284,7 @@ body::after {
   }
 
 }
+
 
 /* =========================================
    MOBILE
@@ -292,16 +304,11 @@ body::after {
     grid-template-columns: 1fr;
   }
 
-  .examples {
-  display: block;
-  margin-top: 6px;
-
 }
-}
-  
 
 </style>
 </head>
+
 
 <body>
 
@@ -329,6 +336,8 @@ body::after {
 
       <div class="feature-list">
 
+
+        <!-- YES -->
         <label class="feature-option">
 
           <input
@@ -339,19 +348,28 @@ body::after {
           >
 
           <span>
-            <span class="feature-title">Yes</span>
+
+            <span class="feature-title">
+              Yes
+            </span>
+
             <br>
 
             <span class="feature-subtitle">
-              The variable places observations into distinct categories or groups.<br>
-<br>
-Examples: Red or blue, Group 1 or Group 2.
+              The variable places observations into distinct categories or groups.
+
+              <span class="examples">
+                Examples: Red or blue, Group 1 or Group 2.
+              </span>
+
             </span>
+
           </span>
 
         </label>
 
 
+        <!-- NO -->
         <label class="feature-option">
 
           <input
@@ -362,14 +380,22 @@ Examples: Red or blue, Group 1 or Group 2.
           >
 
           <span>
-            <span class="feature-title">No</span>
+
+            <span class="feature-title">
+              No
+            </span>
+
             <br>
 
             <span class="feature-subtitle">
-              The variable is measured using numerical values rather than categories.<br>
-<br>
-Example: Hours, inches, stress levels, temperature.
+              The variable is measured using numerical values rather than categories.
+
+              <span class="examples">
+                Example: Hours, inches, stress levels, temperature.
+              </span>
+
             </span>
+
           </span>
 
         </label>
@@ -383,7 +409,10 @@ Example: Hours, inches, stress levels, temperature.
     <!-- QUESTION 2A: CATEGORICAL -->
     <!-- ========================================= -->
 
-    <div class="question-row hidden" id="question2Categories">
+    <div
+      class="question-row hidden"
+      id="question2Categories"
+    >
 
       <div class="question-title">
         <span class="question-number">2.</span>
@@ -392,6 +421,8 @@ Example: Hours, inches, stress levels, temperature.
 
       <div class="feature-list">
 
+
+        <!-- YES -->
         <label class="feature-option">
 
           <input
@@ -402,17 +433,29 @@ Example: Hours, inches, stress levels, temperature.
           >
 
           <span>
-            <span class="feature-title">Yes</span>
+
+            <span class="feature-title">
+              Yes
+            </span>
+
             <br>
 
-<span class="feature-subtitle">
-  The categories can be meaningfully ranked, such as low, medium, and high.<br>
-    Examples: Single-item Likert scale, degree (High School, Bachelor's, Master's, Doctorate), letter grades (A, B, C, D, F), class rank (1st, 2nd, 3rd)
-  </span>
-</span>
+            <span class="feature-subtitle">
+
+              The categories can be meaningfully ranked, such as low, medium, and high.
+
+              <span class="examples">
+                Examples: Single-item Likert scale, degree (High School, Bachelor's, Master's, Doctorate), letter grades (A, B, C, D, F), class rank (1st, 2nd, 3rd).
+              </span>
+
+            </span>
+
+          </span>
+
         </label>
 
 
+        <!-- NO -->
         <label class="feature-option">
 
           <input
@@ -423,14 +466,23 @@ Example: Hours, inches, stress levels, temperature.
           >
 
           <span>
-            <span class="feature-title">No</span>
+
+            <span class="feature-title">
+              No
+            </span>
+
             <br>
 
             <span class="feature-subtitle">
-              The categories are labels only and cannot be meaningfully ranked.<br>
-<br>
-              Examples: Gender, nationality, eye color.
+
+              The categories are labels only and cannot be meaningfully ranked.
+
+              <span class="examples">
+                Examples: Gender, nationality, eye color.
+              </span>
+
             </span>
+
           </span>
 
         </label>
@@ -444,7 +496,10 @@ Example: Hours, inches, stress levels, temperature.
     <!-- QUESTION 2B: NUMERICAL -->
     <!-- ========================================= -->
 
-    <div class="question-row hidden" id="question2Numbers">
+    <div
+      class="question-row hidden"
+      id="question2Numbers"
+    >
 
       <div class="question-title">
         <span class="question-number">2.</span>
@@ -453,6 +508,8 @@ Example: Hours, inches, stress levels, temperature.
 
       <div class="feature-list">
 
+
+        <!-- YES -->
         <label class="feature-option">
 
           <input
@@ -463,19 +520,29 @@ Example: Hours, inches, stress levels, temperature.
           >
 
           <span>
-            <span class="feature-title">Yes</span>
+
+            <span class="feature-title">
+              Yes
+            </span>
+
             <br>
 
             <span class="feature-subtitle">
-              A value of zero represents the complete absence of the quantity being measured. Zero is the lowest you can go on the scale. <br>
-<br>
-Examples: Kilograms, pounds, centimeters, inches, kilometers, miles, years, hours.
+
+              A value of zero represents the complete absence of the quantity being measured. Zero is the lowest you can go on the scale.
+
+              <span class="examples">
+                Examples: Kilograms, pounds, centimeters, inches, kilometers, miles, years, hours.
+              </span>
+
             </span>
+
           </span>
 
         </label>
 
 
+        <!-- NO -->
         <label class="feature-option">
 
           <input
@@ -486,14 +553,23 @@ Examples: Kilograms, pounds, centimeters, inches, kilometers, miles, years, hour
           >
 
           <span>
-            <span class="feature-title">No</span>
+
+            <span class="feature-title">
+              No
+            </span>
+
             <br>
 
             <span class="feature-subtitle">
-              Zero does not represent the complete absence of the quantity being measured. You can go below zero. <br>
-<br>
-              Examples: multiple-item Likert scale, Celsius, or Fahrenheit.
+
+              Zero does not represent the complete absence of the quantity being measured. You can go below zero.
+
+              <span class="examples">
+                Examples: Multiple-item Likert scale, Celsius, or Fahrenheit.
+              </span>
+
             </span>
+
           </span>
 
         </label>
@@ -507,13 +583,19 @@ Examples: Kilograms, pounds, centimeters, inches, kilometers, miles, years, hour
     <!-- RESULT -->
     <!-- ========================================= -->
 
-    <div id="resultPanel" class="result-panel">
+    <div
+      id="resultPanel"
+      class="result-panel"
+    >
 
       <div class="result-label">
         Level of Measurement
       </div>
 
-      <h3 id="result" class="result-title"></h3>
+      <h3
+        id="result"
+        class="result-title"
+      ></h3>
 
       <div
         id="resultDescription"
@@ -542,6 +624,7 @@ Examples: Kilograms, pounds, centimeters, inches, kilometers, miles, years, hour
 
 <script>
 
+
 /* =========================================
    QUESTION 1
    CATEGORIES?
@@ -565,6 +648,9 @@ function handleCategories() {
   const resultPanel =
     document.getElementById("resultPanel");
 
+  const resetButton =
+    document.getElementById("resetButton");
+
 
   /*
     Reset all later answers whenever
@@ -583,8 +669,7 @@ function handleCategories() {
   */
 
   resultPanel.style.display = "none";
-
-  document.getElementById("resetButton").style.display = "none";
+  resetButton.style.display = "none";
 
 
   /*
@@ -630,8 +715,7 @@ function handleRanking() {
 
 
   /*
-    Categories with meaningful order
-    = ORDINAL
+    YES = ORDINAL
   */
 
   if (rankingYes) {
@@ -645,8 +729,7 @@ function handleRanking() {
 
 
   /*
-    Categories without meaningful order
-    = NOMINAL
+    NO = NOMINAL
   */
 
   if (rankingNo) {
@@ -676,8 +759,7 @@ function handleZero() {
 
 
   /*
-    Meaningful zero
-    = RATIO
+    YES = RATIO
   */
 
   if (zeroYes) {
@@ -691,8 +773,7 @@ function handleZero() {
 
 
   /*
-    No meaningful zero
-    = INTERVAL
+    NO = INTERVAL
   */
 
   if (zeroNo) {
@@ -830,3 +911,4 @@ function resetSelector() {
 
 </body>
 </html>
+```
