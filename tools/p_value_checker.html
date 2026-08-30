@@ -208,27 +208,22 @@ body::after {
     <div class="content">
 
       <div class="header">
-        <div class="pill">Hypothesis Testing Decision Tool</div>
-        <h1>What is your p-value?</h1>
+        <h1>P-Value Interpreter</h1>
         <p>
-          Choose the option that matches your result to determine statistical significance and next steps.
+          What is your obtained p-value?
         </p>
       </div>
 
       <div class="choice-grid">
         <div class="choice nonsig" onclick="showResult('nonsig')" id="btnNonsig">
           <div class="choice-title">p ≥ .05</div>
-          <div class="choice-sub">Above or equal to .05</div>
+          <div class="choice-sub">GREATER THAN or equal to .05</div>
         </div>
 
         <div class="choice sig" onclick="showResult('sig')" id="btnSig">
           <div class="choice-title">p &lt; .05</div>
-          <div class="choice-sub">Below .05</div>
+          <div class="choice-sub">LESS THAN .05</div>
         </div>
-      </div>
-
-      <div id="empty" class="empty">
-        Select a p-value category above to see the interpretation.
       </div>
 
       <div id="result" class="result">
