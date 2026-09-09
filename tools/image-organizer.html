@@ -3,111 +3,60 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Image Organizer</title>
+<title>My Image Organizer</title>
 
 <style>
 body{
-    font-family:Arial, sans-serif;
-    background:#f4f6f9;
-    margin:0;
-    padding:20px;
+    font-family:Arial,sans-serif;
+    margin:20px;
+    background:#f5f7fa;
 }
 
 h1{
-    text-align:center;
     color:#003366;
 }
 
-.toolbar{
-    display:flex;
-    gap:10px;
-    flex-wrap:wrap;
-    justify-content:center;
+input[type=file]{
     margin-bottom:20px;
 }
 
-button{
-    background:#003366;
-    color:white;
-    border:none;
-    padding:10px 16px;
-    border-radius:6px;
-    cursor:pointer;
-}
-
-button:hover{
-    background:#004c99;
-}
-
-input[type="text"]{
-    padding:10px;
-    border:1px solid #ccc;
-    border-radius:6px;
-}
-
-.category-container{
+.gallery{
     display:flex;
     flex-wrap:wrap;
-    gap:20px;
-    justify-content:center;
-}
-
-.category{
-    background:white;
-    width:320px;
-    min-height:350px;
-    border-radius:10px;
-    padding:15px;
-    box-shadow:0 2px 8px rgba(0,0,0,.15);
-}
-
-.category h3{
-    margin-top:0;
-    color:#003366;
-    text-align:center;
-}
-
-.image-grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fill,minmax(90px,1fr));
-    gap:10px;
+    gap:15px;
 }
 
 .image-card{
-    position:relative;
-    cursor:grab;
+    width:180px;
+    background:white;
+    border-radius:8px;
+    padding:10px;
+    box-shadow:0 2px 6px rgba(0,0,0,.15);
+    text-align:center;
+    cursor:move;
 }
 
 .image-card img{
     width:100%;
-    height:90px;
+    height:140px;
     object-fit:cover;
     border-radius:6px;
 }
 
 .image-name{
-    font-size:11px;
-    text-align:center;
-    margin-top:4px;
-    word-wrap:break-word;
+    margin-top:8px;
+    font-size:12px;
+    word-break:break-word;
 }
 
 .delete-btn{
-    position:absolute;
-    top:2px;
-    right:2px;
-    background:red;
+    margin-top:8px;
+    background:#cc0000;
     color:white;
     border:none;
-    border-radius:50%;
-    width:22px;
-    height:22px;
+    padding:6px 10px;
+    border-radius:4px;
     cursor:pointer;
-    font-size:12px;
-}
-
-.drop-zone{
-    min-height:220px;
 }
 </style>
 </head>
@@ -116,216 +65,108 @@ input[type="text"]{
 
 <h1>Image Organizer</h1>
 
-<div class="toolbar">
-    <input type="file" id="imageInput" multiple accept="image/*">
+<input type="file" id="upload" multiple accept="image/*">
 
-    <button onclick="createCategory()">
-        New Category
-    </button>
-
-    <input
-        type="text"
-        id="search"
-        placeholder="Search images..."
-        oninput="render()">
-</div>
-
-<div id="categories" class="category-container"></div>
+<div id="gallery" class="gallery"></div>
 
 <script>
 
-let data = JSON.parse(
-    localStorage.getItem("imageOrganizer")
-) || {
-    categories:[
-        {
-            id:Date.now(),
-            name:"Unsorted",
-            images:[]
-        }
-    ]
-};
+let images =
+JSON.parse(localStorage.getItem("images")) || [];
 
-function saveData(){
+function saveImages(){
     localStorage.setItem(
-        "imageOrganizer",
-        JSON.stringify(data)
+        "images",
+        JSON.stringify(images)
     );
 }
 
-function createCategory(){
-
-    let name = prompt("Category name:");
-
-    if(!name) return;
-
-    data.categories.push({
-        id:Date.now(),
-        name:name,
-        images:[]
-    });
-
-    saveData();
-    render();
-}
-
-document.getElementById("imageInput")
+document.getElementById("upload")
 .addEventListener("change", function(e){
 
-    const files = [...e.target.files];
+    [...e.target.files].forEach(file=>{
 
-    const unsorted = data.categories[0];
+        let reader = new FileReader();
 
-    files.forEach(file=>{
+        reader.onload = function(event){
 
-        const reader = new FileReader();
-
-        reader.onload=function(ev){
-
-            unsorted.images.push({
+            images.push({
                 id:Date.now()+Math.random(),
                 name:file.name,
-                src:ev.target.result
+                src:event.target.result
             });
 
-            saveData();
-            render();
+            saveImages();
+            renderGallery();
         };
 
         reader.readAsDataURL(file);
 
     });
+
 });
 
-function deleteImage(catId,imgId){
+function deleteImage(id){
 
-    const cat = data.categories.find(
-        c=>c.id===catId
+    images = images.filter(
+        img => img.id !== id
     );
 
-    cat.images = cat.images.filter(
-        img=>img.id!==imgId
-    );
-
-    saveData();
-    render();
+    saveImages();
+    renderGallery();
 }
 
-function allowDrop(ev){
-    ev.preventDefault();
-}
+let draggedIndex = null;
 
-function drag(ev){
-    ev.dataTransfer.setData(
-        "imageId",
-        ev.target.dataset.imageid
-    );
+function renderGallery(){
 
-    ev.dataTransfer.setData(
-        "fromCategory",
-        ev.target.dataset.categoryid
-    );
-}
+    const gallery =
+    document.getElementById("gallery");
 
-function drop(ev,toCategoryId){
+    gallery.innerHTML = "";
 
-    ev.preventDefault();
+    images.forEach((img,index)=>{
 
-    const imageId = ev.dataTransfer.getData("imageId");
-    const fromCategory = ev.dataTransfer.getData("fromCategory");
-
-    const source = data.categories.find(
-        c=>c.id==fromCategory
-    );
-
-    const target = data.categories.find(
-        c=>c.id==toCategoryId
-    );
-
-    const image = source.images.find(
-        i=>i.id==imageId
-    );
-
-    source.images = source.images.filter(
-        i=>i.id!=imageId
-    );
-
-    target.images.push(image);
-
-    saveData();
-    render();
-}
-
-function render(){
-
-    const search =
-        document.getElementById("search")
-        .value.toLowerCase();
-
-    const container =
-        document.getElementById("categories");
-
-    container.innerHTML="";
-
-    data.categories.forEach(cat=>{
-
-        const div =
+        const card =
         document.createElement("div");
 
-        div.className="category";
+        card.className = "image-card";
 
-        div.innerHTML=`
-            <h3>${cat.name}</h3>
+        card.draggable = true;
 
-            <div
-                class="drop-zone image-grid"
-                ondragover="allowDrop(event)"
-                ondrop="drop(event, ${cat.id})">
-            </div>
-        `;
-
-        const zone =
-        div.querySelector(".drop-zone");
-
-        cat.images
-        .filter(img =>
-            img.name.toLowerCase()
-            .includes(search)
-        )
-        .forEach(img=>{
-
-            const card =
-            document.createElement("div");
-
-            card.className="image-card";
-
-            card.innerHTML=`
-                <button
-                class="delete-btn"
-                onclick="deleteImage(${cat.id}, ${img.id})">
-                ×
-                </button>
-
-                <img
-                src="${img.src}"
-                draggable="true"
-                data-imageid="${img.id}"
-                data-categoryid="${cat.id}"
-                ondragstart="drag(event)">
-
-                <div class="image-name">
-                    ${img.name}
-                </div>
-            `;
-
-            zone.appendChild(card);
+        card.addEventListener("dragstart",()=>{
+            draggedIndex = index;
         });
 
-        container.appendChild(div);
+        card.addEventListener("dragover",(e)=>{
+            e.preventDefault();
+        });
+
+        card.addEventListener("drop",()=>{
+
+            const item =
+            images.splice(draggedIndex,1)[0];
+
+            images.splice(index,0,item);
+
+            saveImages();
+            renderGallery();
+        });
+
+        card.innerHTML = `
+            <img src="${img.src}">
+            <div class="image-name">${img.name}</div>
+            <button class="delete-btn"
+            onclick="deleteImage(${img.id})">
+            Delete
+            </button>
+        `;
+
+        gallery.appendChild(card);
     });
 }
 
-render();
+renderGallery();
 
 </script>
 
