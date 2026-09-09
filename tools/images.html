@@ -1,9 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>My Image Organizer</title>
+<title>Course Image Library</title>
 
 <style>
 body{
@@ -16,153 +15,137 @@ h1{
     color:#003366;
 }
 
-input[type=file]{
+.toolbar{
     margin-bottom:20px;
 }
 
+input{
+    padding:8px;
+    margin:5px;
+}
+
+button{
+    padding:8px 12px;
+    background:#003366;
+    color:white;
+    border:none;
+    border-radius:4px;
+    cursor:pointer;
+}
+
 .gallery{
-    display:flex;
-    flex-wrap:wrap;
-    gap:15px;
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(250px,1fr));
+    gap:20px;
 }
 
-.image-card{
-    width:180px;
+.card{
     background:white;
-    border-radius:8px;
     padding:10px;
+    border-radius:8px;
     box-shadow:0 2px 6px rgba(0,0,0,.15);
-    text-align:center;
-    cursor:move;
 }
 
-.image-card img{
+.card img{
     width:100%;
-    height:140px;
+    height:180px;
     object-fit:cover;
     border-radius:6px;
 }
 
-.image-name{
-    margin-top:8px;
+.category{
+    color:#003366;
     font-size:12px;
-    word-break:break-word;
-}
-
-.delete-btn{
-    margin-top:8px;
-    background:#cc0000;
-    color:white;
-    border:none;
-    padding:6px 10px;
-    border-radius:4px;
-    cursor:pointer;
+    font-weight:bold;
+    margin-top:5px;
 }
 </style>
 </head>
 
 <body>
 
-<h1>Image Organizer</h1>
+<h1>Course Image Library</h1>
 
-<input type="file" id="upload" multiple accept="image/*">
+<div class="toolbar">
+
+<input id="title" placeholder="Image Title">
+
+<input id="category"
+placeholder="Category">
+
+<input id="url"
+placeholder="OneDrive Image URL"
+style="width:350px;">
+
+<button onclick="addImage()">
+Add Image
+</button>
+
+</div>
 
 <div id="gallery" class="gallery"></div>
 
 <script>
 
 let images =
-JSON.parse(localStorage.getItem("images")) || [];
+JSON.parse(localStorage.getItem("courseImages"))
+|| [];
 
 function saveImages(){
     localStorage.setItem(
-        "images",
+        "courseImages",
         JSON.stringify(images)
     );
 }
 
-document.getElementById("upload")
-.addEventListener("change", function(e){
+function addImage(){
 
-    [...e.target.files].forEach(file=>{
+    const title =
+    document.getElementById("title").value;
 
-        let reader = new FileReader();
+    const category =
+    document.getElementById("category").value;
 
-        reader.onload = function(event){
+    const url =
+    document.getElementById("url").value;
 
-            images.push({
-                id:Date.now()+Math.random(),
-                name:file.name,
-                src:event.target.result
-            });
+    if(!title || !url){
+        alert("Enter title and URL");
+        return;
+    }
 
-            saveImages();
-            renderGallery();
-        };
-
-        reader.readAsDataURL(file);
-
+    images.push({
+        title,
+        category,
+        url
     });
-
-});
-
-function deleteImage(id){
-
-    images = images.filter(
-        img => img.id !== id
-    );
 
     saveImages();
     renderGallery();
-}
 
-let draggedIndex = null;
+    document.getElementById("title").value="";
+    document.getElementById("category").value="";
+    document.getElementById("url").value="";
+}
 
 function renderGallery(){
 
     const gallery =
     document.getElementById("gallery");
 
-    gallery.innerHTML = "";
+    gallery.innerHTML="";
 
-    images.forEach((img,index)=>{
+    images.forEach(img=>{
 
-        const card =
-        document.createElement("div");
-
-        card.className = "image-card";
-
-        card.draggable = true;
-
-        card.addEventListener("dragstart",()=>{
-            draggedIndex = index;
-        });
-
-        card.addEventListener("dragover",(e)=>{
-            e.preventDefault();
-        });
-
-        card.addEventListener("drop",()=>{
-
-            const item =
-            images.splice(draggedIndex,1)[0];
-
-            images.splice(index,0,item);
-
-            saveImages();
-            renderGallery();
-        });
-
-        card.innerHTML = `
-            <img src="${img.src}">
-            <div class="image-name">${img.name}</div>
-            <button class="delete-btn"
-            onclick="deleteImage(${img.id})">
-            Delete
-            </button>
+        gallery.innerHTML += `
+            <div class="card">
+                <img src="${img.url}">
+                <h3>${img.title}</h3>
+                <div class="category">
+                    ${img.category}
+                </div>
+            </div>
         `;
-
-        gallery.appendChild(card);
     });
 }
 
