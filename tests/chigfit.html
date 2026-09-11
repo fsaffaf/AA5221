@@ -176,328 +176,72 @@ hr{
 <body>
 
 <div class="container">
-  
-  <h1>Chi-Square Goodness-of-Fit Test</h1>
+<h1>RPubs</h1>
 
 <div class="card">
 
     <h2>Overview</h2>
 
     <p>
-        Follow the steps below to complete a Chi-Square Goodness-of-Fit test in RStudio.
+        <strong>RPubs</strong> is a free publishing service that allows you to share HTML reports created from R Markdown documents online.
+        After creating and knitting an R Markdown file into an HTML report, you can publish the report to RPubs and receive a web link that can be shared with instructors, classmates, colleagues, or other audiences.
+    </p>
+
+</div>
+
+<div class="card">
+
+    <h2>RPubs</h2>
+
+    <p>
+        Think of RPubs as a simple website that hosts the HTML version of your R Markdown report.
+        Instead of sending someone your R script, data files, graphs, and written explanations separately, RPubs allows you to share a single link displaying your completed analysis in an organized format.
     </p>
 
     <p>
-        Before beginning this assignment, review the Module 4 lesson on Chi-Square tests.
+        Viewers do not need R, RStudio, or programming experience to view an RPubs report.
+        Anyone with the link can open the report in a web browser and view the content included in the published document, such as written explanations, tables, graphs, and (if included) R code.
     </p>
-
-</div>
-
-<div class="card">
-
-    <h2>Part 1: Set Up Assignment Folders in Microsoft OneDrive</h2>
-
-    <div class="highlight">
-        Create and share your Microsoft OneDrive folder before starting the assignment.
-        This ensures your work is backed up and accessible to your instructor.
-    </div>
-
-    <h3>Step 1: Open Microsoft OneDrive</h3>
-
-    <ol>
-        <li>Go to myslu.slu.edu and sign in using your SLU username and password.</li>
-        <li>Locate and open Microsoft OneDrive.</li>
-        <li>OneDrive will open in a new browser tab.</li>
-    </ol>
-
-    <h3>Step 2: Create Your AA 5221 Folder</h3>
-
-    <ol>
-        <li>Select <strong>New → Folder</strong>.</li>
-        <li>Name the folder <strong>AA 5221</strong>.</li>
-        <li>Click <strong>Create</strong>.</li>
-    </ol>
-
-    <h3>Step 3: Share the Folder</h3>
-
-    <ol>
-        <li>Select the AA 5221 folder.</li>
-        <li>Click <strong>Share</strong>.</li>
-        <li>Share with <strong>falak.saffaf.1@slu.edu</strong>.</li>
-        <li>Confirm that viewing permission is selected.</li>
-        <li>Click <strong>Send</strong>.</li>
-    </ol>
-
-    <h3>Step 4: Create an Assignment 4 Folder</h3>
-
-    <ol>
-        <li>Create a folder named <strong>Assignment 4</strong> inside your AA 5221 folder.</li>
-        <li>Store all assignment files inside this folder.</li>
-    </ol>
-
-</div>
-
-<div class="card">
-
-    <h2>Part 2: Prepare for Data Analysis</h2>
-
-    <h3>Step 1: Download the Assignment Files</h3>
-
-    <ol>
-        <li>Locate the Module 4 assignment in Canvas.</li>
-        <li>Download the provided datasets.</li>
-        <li>Save them inside your <strong>Assignment 4</strong> folder.</li>
-    </ol>
-
-    <h3>Step 2: Create a New R Script</h3>
-
-    <ol>
-        <li>Open RStudio.</li>
-        <li>Select <strong>File → New File → R Script</strong>.</li>
-        <li>The Script Pane is where you will write and save your code.</li>
-    </ol>
-
-    <h3>Step 3: Save Your Script</h3>
-
-    <ol>
-        <li>Select <strong>File → Save As</strong>.</li>
-        <li>Save the file in your Assignment 4 folder.</li>
-        <li>Name the file something descriptive such as <strong>Assignment 4 Q1</strong>.</li>
-    </ol>
-
-</div>
-
-<div class="card">
-
-    <h2>Part 3: Install and Load the Required Package</h2>
-
-    <h3>Step 1: Install readxl</h3>
-
-    <div class="highlight">
-
-<pre>
-install.packages("readxl")
-</pre>
-
-    </div>
 
     <p>
-        Run this code once. After the package is installed, delete this line from your script.
-    </p>
-
-    <h3>Step 2: Load readxl</h3>
-
-    <div class="highlight">
-
-<pre>
-library(readxl)
-</pre>
-
-    </div>
-
-    <p>
-        Run the code. No output will appear, which is normal.
+        RPubs is commonly used by students, researchers, and data analysts because it provides a quick and convenient way to publish and share statistical analyses, assignments, and reports online.
     </p>
 
 </div>
 
 <div class="card">
 
-    <h2>Part 4: Import Your Excel Dataset</h2>
-
-    <ol>
-        <li>Select <strong>File → Import Dataset → From Excel</strong>.</li>
-        <li>Click <strong>Browse</strong>.</li>
-        <li>Select your dataset.</li>
-        <li>Click <strong>Import</strong>.</li>
-    </ol>
-
-    <p>
-        RStudio will automatically generate the code used to import the file.
-    </p>
-
-    <h3>Example Import Code</h3>
-
-<pre>
-DatasetName <- read_excel("filepath")
-</pre>
-
-    <h3>Example with a File Path</h3>
-
-<pre>
-DatasetName <- read_excel(
-"C:/Users/John/OneDrive/Documents/AA5221/Datasets/DatasetName.xlsx"
-)
-</pre>
-
-</div>
-
-<div class="card">
-
-    <h2>Part 5: Create and View a Frequency Table</h2>
-
-    <h3>Step 1: Create the Frequency Table</h3>
-
-<pre>
-table(dataset$variable)
-</pre>
-
-    <p>
-        Replace <strong>dataset</strong> with your dataset name and
-        <strong>variable</strong> with your variable name.
-    </p>
-
-    <h3>Step 2: Name the Table</h3>
-
-<pre>
-observed <- table(data2026$political)
-</pre>
-
-    <h3>Step 3: Display the Table</h3>
-
-<pre>
-observed <- table(data2026$political)
-
-observed
-</pre>
-
-    <h3>Example Output</h3>
-
-<pre>
-Democrat      50
-Republican    20
-Independent   30
-</pre>
-
-</div>
-
-<div class="card">
-
-    <h2>Part 6: Create a Bar Chart</h2>
-
-<pre>
-barplot(observed,
-main = "Variable Name",
-xlab = "Variable Name",
-ylab = "Count",
-col = rainbow(length(observed)))
-</pre>
-
-    <h3>Code Components</h3>
-
-    <table>
-        <thead>
-            <tr>
-                <th>Argument</th>
-                <th>Purpose</th>
-            </tr>
-        </thead>
-
-        <tbody>
-            <tr>
-                <td><strong>observed</strong></td>
-                <td>Frequency table</td>
-            </tr>
-
-            <tr>
-                <td><strong>main</strong></td>
-                <td>Chart title</td>
-            </tr>
-
-            <tr>
-                <td><strong>xlab</strong></td>
-                <td>X-axis label</td>
-            </tr>
-
-            <tr>
-                <td><strong>ylab</strong></td>
-                <td>Y-axis label</td>
-            </tr>
-
-            <tr>
-                <td><strong>col</strong></td>
-                <td>Bar colors</td>
-            </tr>
-        </tbody>
-    </table>
-
-</div>
-
-<div class="card">
-
-    <h2>Part 7: Conduct a Chi-Square Goodness-of-Fit Test</h2>
-
-    <h3>Step 1: Create Expected Proportions</h3>
-
-<pre>
-expected <- c(#, #, #)
-</pre>
-
-    <p>
-        Replace the placeholders with the expected proportions from the assignment scenario.
-    </p>
-
-    <div class="highlight">
-        Expected proportions must add up to 1.00 (100%).
-    </div>
-
-    <h3>Example</h3>
-
-<pre>
-expected <- c(.40, .20, .40)
-</pre>
-
-    <h3>Step 2: Conduct the Test</h3>
-
-<pre>
-chi_result <- chisq.test(
-  x = observed,
-  p = expected
-)
-
-chi_result
-</pre>
-
-    <h3>Example Output</h3>
-
-<pre>
-Chi-squared test for given probabilities
-
-data: observed
-X-squared = 12.64
-df = 2
-p-value = 0.009
-</pre>
-
-</div>
-
-<div class="card">
-
-    <h2>Part 8: Determine Statistical Significance</h2>
-
-    <p>
-        Compare the p-value to .05.
-    </p>
+    <h2>Benefits of RPubs</h2>
 
     <table>
 
         <thead>
             <tr>
-                <th>P-Value</th>
-                <th>Decision</th>
+                <th>Benefit</th>
+                <th>Explanation</th>
             </tr>
         </thead>
 
         <tbody>
 
             <tr>
-                <td>p &lt; .05</td>
-                <td>Statistically Significant</td>
+                <td><strong>Free</strong></td>
+                <td>RPubs provides free online publishing for R Markdown HTML reports.</td>
             </tr>
 
             <tr>
-                <td>p &gt; .05</td>
-                <td>Not Statistically Significant</td>
+                <td><strong>Shareable</strong></td>
+                <td>Creates a web link that can be shared with others.</td>
+            </tr>
+
+            <tr>
+                <td><strong>Accessible</strong></td>
+                <td>Viewers only need a web browser to view the published report.</td>
+            </tr>
+
+            <tr>
+                <td><strong>Professional Format</strong></td>
+                <td>Displays text, code, graphs, and tables together in one organized document.</td>
             </tr>
 
         </tbody>
@@ -508,105 +252,81 @@ p-value = 0.009
 
 <div class="card">
 
-    <h2>Part 9: Calculate Cohen's W</h2>
-
-<pre>
-w <- sqrt(as.numeric(chi_result$statistic) /
-          sum(observed))
-
-w
-</pre>
-
-    <h3>Interpretation Guidelines</h3>
-
-    <table>
-
-        <thead>
-            <tr>
-                <th>Cohen's W</th>
-                <th>Interpretation</th>
-            </tr>
-        </thead>
-
-        <tbody>
-
-            <tr>
-                <td>&lt; 0.10</td>
-                <td>Negligible Difference</td>
-            </tr>
-
-            <tr>
-                <td>0.10 - 0.29</td>
-                <td>Small Difference</td>
-            </tr>
-
-            <tr>
-                <td>0.30 - 0.49</td>
-                <td>Moderate Difference</td>
-            </tr>
-
-            <tr>
-                <td>0.50+</td>
-                <td>Large Difference</td>
-            </tr>
-
-        </tbody>
-
-    </table>
-
-</div>
-
-<div class="card">
-
-    <h2>Part 10: Report the Results</h2>
-
-    <div class="highlight">
-
-<pre>
-# A Chi-Square Goodness-of-Fit test was conducted
-# to determine whether there was a difference
-# between the observed and expected frequencies.
-
-# The results showed that there
-# [was / was not] a difference,
-# χ²(df) = xx.xx, p = .xxx.
-
-# The difference was
-# [small / moderate / large]
-# (Cohen's W = .xx).
-</pre>
-
-    </div>
-
-</div>
-
-<div class="card">
-
-    <h2>Part 11: Create an R Markdown File</h2>
+    <h2>How to Publish R Markdown Files to RPubs</h2>
 
     <ol>
-        <li>Create a new R Markdown file.</li>
-        <li>Select HTML as the output type.</li>
-        <li>Delete the example content.</li>
-        <li>Copy your R Script code into the file.</li>
-        <li>Add <code>```{r}</code> at the top.</li>
-        <li>Add <code>```</code> at the bottom.</li>
-        <li>Click <strong>Knit</strong>.</li>
-        <li>Save the generated HTML file.</li>
+        <li>Open your R Markdown file.</li>
+        <li>Click the <strong>Knit</strong> button at the top of the R Markdown document.</li>
+        <li>After the HTML report appears, locate the <strong>Publish</strong> button in the Viewer pane.</li>
+        <li>Select <strong>Publish to RPubs</strong>.</li>
+        <li>Log in or create a free RPubs account.</li>
+        <li>Enter a title and description for your report.</li>
+        <li>Click <strong>Publish</strong>.</li>
+        <li>Copy the generated URL and submit the link for your assignment.</li>
     </ol>
+
+    <div class="highlight">
+        <strong>Important:</strong>
+        Always click <strong>Knit</strong> before publishing.
+        RPubs publishes the HTML file generated by R Markdown, not the .Rmd file itself.
+    </div>
 
 </div>
 
 <div class="card">
 
-    <h2>Part 12: Publish Your Work to RPubs</h2>
+    <h2>How to Update an RPubs Report</h2>
 
-    <p>
-        After creating and knitting your R Markdown document, publish the HTML report to RPubs.
-    </p>
+    <ol>
+        <li>Open your R Markdown file and make your edits.</li>
+        <li>Click <strong>Knit</strong> to generate an updated HTML report.</li>
+        <li>Click <strong>Publish</strong>.</li>
+        <li>Select <strong>Yes</strong> when asked whether you want to update the existing document.</li>
+    </ol>
 
     <div class="highlight">
-        RPubs allows others to view your analysis, output, graphs, and conclusions directly through a web browser without installing RStudio.
+        Updating the existing RPubs document allows you to keep the same web link while replacing the old report with your revised version.
     </div>
+
+</div>
+
+<div class="card">
+
+    <h2>How to Save an RPubs HTML File to Microsoft OneDrive</h2>
+
+    <p>
+        In some assignments you may want to save a copy of your published RPubs report inside Microsoft OneDrive for backup or record-keeping purposes.
+    </p>
+
+    <ol>
+        <li>Open your RPubs report in a web browser.</li>
+        <li>Press <strong>Ctrl + S</strong> (Windows) or <strong>Command + S</strong> (Mac).</li>
+        <li>Select a location on your computer.</li>
+        <li>Choose <strong>Webpage, HTML Only</strong> if available.</li>
+        <li>Save the file.</li>
+    </ol>
+
+    <div class="highlight">
+        Depending on your browser, the exact save options may vary slightly.
+        The goal is to save a copy of the HTML webpage generated by RPubs.
+    </div>
+
+</div>
+
+<div class="card">
+
+    <h2>Key Takeaway</h2>
+
+    <div class="highlight">
+        RPubs allows you to transform an R Markdown report into a shareable website.
+        Anyone with the link can view your completed analysis, tables, figures, and written explanations without needing R or RStudio.
+    </div>
+
+    <p>
+        In this course, RPubs will be used to publish and share completed R Markdown assignments.
+        By combining R Markdown and RPubs, you can create professional, reproducible reports that are easy to distribute and review.
+    </p>
+
+</div>
 
 </div>
