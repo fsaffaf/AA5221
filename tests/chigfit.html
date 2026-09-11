@@ -1,1 +1,612 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RStudio</title>
+
+<style>
+
+body{
+    margin:0;
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    background:#f4f6f9;
+    color:#222222;
+}
+
+.container{
+    max-width:1000px;
+    margin:auto;
+    padding:50px 20px;
+}
+
+h1{
+    text-align:left;
+    color:#666666;
+    font-size:2.75rem;
+    font-weight:200;
+    letter-spacing:.08em;
+    text-transform:none;
+    margin-bottom:10px;
+}
+
+.subtitle{
+    text-align:center;
+    color:#6b7280;
+    text-transform:uppercase;
+    letter-spacing:.15em;
+    margin-bottom:40px;
+    font-size:.95rem;
+}
+
+h2,
+h3{
+    color:#0e68b3;
+    position:relative;
+    font-weight:500;
+    display:inline-block;
+}
+
+h2::after,
+h3::after{
+    content:"";
+    position:absolute;
+    left:0;
+    bottom:-4px;
+    width:0;
+    height:2px;
+    background:#0e68b3;
+    transition:.3s;
+}
+
+.card:hover h2::after,
+.card:hover h3::after{
+    width:100%;
+}
+
+p{
+    line-height:1.8;
+}
+
+.card{
+    background:white;
+    border-radius:16px;
+    padding:30px;
+    margin-bottom:25px;
+    border:1px solid #d9e2ec;
+
+    box-shadow:
+      0 3px 10px rgba(0,0,0,.05);
+
+    animation:fadeUp .6s ease forwards;
+    transition:all .25s ease;
+}
+
+.card:hover{
+    transform:translateY(-4px);
+    box-shadow:
+      0 10px 25px rgba(14,104,179,.15);
+}
+
+.highlight{
+    background:#eef6fc;
+    border-left:5px solid #0e68b3;
+    padding:15px;
+    border-radius:8px;
+    margin:20px 0;
+}
+
+ul{
+    padding-left:25px;
+}
+
+li{
+    margin-bottom:8px;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:20px;
+    background:white;
+    overflow:hidden;
+    border-radius:10px;
+}
+
+th{
+    background:#0e68b3;
+    color:white;
+    text-align:left;
+    padding:14px;
+}
+
+td{
+    padding:14px;
+    border-bottom:1px solid #e5e7eb;
+    vertical-align:top;
+}
+
+tr:nth-child(even){
+    background:#f8fafc;
+}
+
+tr:hover{
+    background:#edf6ff;
+}
+
+hr{
+    border:none;
+    height:1px;
+    background:#d6e4f0;
+    margin:30px 0;
+}
+
+@keyframes fadeUp{
+    from{
+        opacity:0;
+        transform:translateY(20px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+@media (max-width:768px){
+
+    h1{
+        font-size:2rem;
+    }
+
+    .card{
+        padding:20px;
+    }
+
+    th,
+    td{
+        padding:10px;
+        font-size:.95rem;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+  
+  <h1>Chi-Square Goodness-of-Fit Test</h1>
+
+<div class="card">
+
+    <h2>Overview</h2>
+
+    <p>
+        Follow the steps below to complete a Chi-Square Goodness-of-Fit test in RStudio.
+    </p>
+
+    <p>
+        Before beginning this assignment, review the Module 4 lesson on Chi-Square tests.
+    </p>
+
+</div>
+
+<div class="card">
+
+    <h2>Part 1: Set Up Assignment Folders in Microsoft OneDrive</h2>
+
+    <div class="highlight">
+        Create and share your Microsoft OneDrive folder before starting the assignment.
+        This ensures your work is backed up and accessible to your instructor.
+    </div>
+
+    <h3>Step 1: Open Microsoft OneDrive</h3>
+
+    <ol>
+        <li>Go to myslu.slu.edu and sign in using your SLU username and password.</li>
+        <li>Locate and open Microsoft OneDrive.</li>
+        <li>OneDrive will open in a new browser tab.</li>
+    </ol>
+
+    <h3>Step 2: Create Your AA 5221 Folder</h3>
+
+    <ol>
+        <li>Select <strong>New → Folder</strong>.</li>
+        <li>Name the folder <strong>AA 5221</strong>.</li>
+        <li>Click <strong>Create</strong>.</li>
+    </ol>
+
+    <h3>Step 3: Share the Folder</h3>
+
+    <ol>
+        <li>Select the AA 5221 folder.</li>
+        <li>Click <strong>Share</strong>.</li>
+        <li>Share with <strong>falak.saffaf.1@slu.edu</strong>.</li>
+        <li>Confirm that viewing permission is selected.</li>
+        <li>Click <strong>Send</strong>.</li>
+    </ol>
+
+    <h3>Step 4: Create an Assignment 4 Folder</h3>
+
+    <ol>
+        <li>Create a folder named <strong>Assignment 4</strong> inside your AA 5221 folder.</li>
+        <li>Store all assignment files inside this folder.</li>
+    </ol>
+
+</div>
+
+<div class="card">
+
+    <h2>Part 2: Prepare for Data Analysis</h2>
+
+    <h3>Step 1: Download the Assignment Files</h3>
+
+    <ol>
+        <li>Locate the Module 4 assignment in Canvas.</li>
+        <li>Download the provided datasets.</li>
+        <li>Save them inside your <strong>Assignment 4</strong> folder.</li>
+    </ol>
+
+    <h3>Step 2: Create a New R Script</h3>
+
+    <ol>
+        <li>Open RStudio.</li>
+        <li>Select <strong>File → New File → R Script</strong>.</li>
+        <li>The Script Pane is where you will write and save your code.</li>
+    </ol>
+
+    <h3>Step 3: Save Your Script</h3>
+
+    <ol>
+        <li>Select <strong>File → Save As</strong>.</li>
+        <li>Save the file in your Assignment 4 folder.</li>
+        <li>Name the file something descriptive such as <strong>Assignment 4 Q1</strong>.</li>
+    </ol>
+
+</div>
+
+<div class="card">
+
+    <h2>Part 3: Install and Load the Required Package</h2>
+
+    <h3>Step 1: Install readxl</h3>
+
+    <div class="highlight">
+
+<pre>
+install.packages("readxl")
+</pre>
+
+    </div>
+
+    <p>
+        Run this code once. After the package is installed, delete this line from your script.
+    </p>
+
+    <h3>Step 2: Load readxl</h3>
+
+    <div class="highlight">
+
+<pre>
+library(readxl)
+</pre>
+
+    </div>
+
+    <p>
+        Run the code. No output will appear, which is normal.
+    </p>
+
+</div>
+
+<div class="card">
+
+    <h2>Part 4: Import Your Excel Dataset</h2>
+
+    <ol>
+        <li>Select <strong>File → Import Dataset → From Excel</strong>.</li>
+        <li>Click <strong>Browse</strong>.</li>
+        <li>Select your dataset.</li>
+        <li>Click <strong>Import</strong>.</li>
+    </ol>
+
+    <p>
+        RStudio will automatically generate the code used to import the file.
+    </p>
+
+    <h3>Example Import Code</h3>
+
+<pre>
+DatasetName <- read_excel("filepath")
+</pre>
+
+    <h3>Example with a File Path</h3>
+
+<pre>
+DatasetName <- read_excel(
+"C:/Users/John/OneDrive/Documents/AA5221/Datasets/DatasetName.xlsx"
+)
+</pre>
+
+</div>
+
+<div class="card">
+
+    <h2>Part 5: Create and View a Frequency Table</h2>
+
+    <h3>Step 1: Create the Frequency Table</h3>
+
+<pre>
+table(dataset$variable)
+</pre>
+
+    <p>
+        Replace <strong>dataset</strong> with your dataset name and
+        <strong>variable</strong> with your variable name.
+    </p>
+
+    <h3>Step 2: Name the Table</h3>
+
+<pre>
+observed <- table(data2026$political)
+</pre>
+
+    <h3>Step 3: Display the Table</h3>
+
+<pre>
+observed <- table(data2026$political)
+
+observed
+</pre>
+
+    <h3>Example Output</h3>
+
+<pre>
+Democrat      50
+Republican    20
+Independent   30
+</pre>
+
+</div>
+
+<div class="card">
+
+    <h2>Part 6: Create a Bar Chart</h2>
+
+<pre>
+barplot(observed,
+main = "Variable Name",
+xlab = "Variable Name",
+ylab = "Count",
+col = rainbow(length(observed)))
+</pre>
+
+    <h3>Code Components</h3>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Argument</th>
+                <th>Purpose</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <td><strong>observed</strong></td>
+                <td>Frequency table</td>
+            </tr>
+
+            <tr>
+                <td><strong>main</strong></td>
+                <td>Chart title</td>
+            </tr>
+
+            <tr>
+                <td><strong>xlab</strong></td>
+                <td>X-axis label</td>
+            </tr>
+
+            <tr>
+                <td><strong>ylab</strong></td>
+                <td>Y-axis label</td>
+            </tr>
+
+            <tr>
+                <td><strong>col</strong></td>
+                <td>Bar colors</td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>
+
+<div class="card">
+
+    <h2>Part 7: Conduct a Chi-Square Goodness-of-Fit Test</h2>
+
+    <h3>Step 1: Create Expected Proportions</h3>
+
+<pre>
+expected <- c(#, #, #)
+</pre>
+
+    <p>
+        Replace the placeholders with the expected proportions from the assignment scenario.
+    </p>
+
+    <div class="highlight">
+        Expected proportions must add up to 1.00 (100%).
+    </div>
+
+    <h3>Example</h3>
+
+<pre>
+expected <- c(.40, .20, .40)
+</pre>
+
+    <h3>Step 2: Conduct the Test</h3>
+
+<pre>
+chi_result <- chisq.test(
+  x = observed,
+  p = expected
+)
+
+chi_result
+</pre>
+
+    <h3>Example Output</h3>
+
+<pre>
+Chi-squared test for given probabilities
+
+data: observed
+X-squared = 12.64
+df = 2
+p-value = 0.009
+</pre>
+
+</div>
+
+<div class="card">
+
+    <h2>Part 8: Determine Statistical Significance</h2>
+
+    <p>
+        Compare the p-value to .05.
+    </p>
+
+    <table>
+
+        <thead>
+            <tr>
+                <th>P-Value</th>
+                <th>Decision</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+            <tr>
+                <td>p &lt; .05</td>
+                <td>Statistically Significant</td>
+            </tr>
+
+            <tr>
+                <td>p &gt; .05</td>
+                <td>Not Statistically Significant</td>
+            </tr>
+
+        </tbody>
+
+    </table>
+
+</div>
+
+<div class="card">
+
+    <h2>Part 9: Calculate Cohen's W</h2>
+
+<pre>
+w <- sqrt(as.numeric(chi_result$statistic) /
+          sum(observed))
+
+w
+</pre>
+
+    <h3>Interpretation Guidelines</h3>
+
+    <table>
+
+        <thead>
+            <tr>
+                <th>Cohen's W</th>
+                <th>Interpretation</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+            <tr>
+                <td>&lt; 0.10</td>
+                <td>Negligible Difference</td>
+            </tr>
+
+            <tr>
+                <td>0.10 - 0.29</td>
+                <td>Small Difference</td>
+            </tr>
+
+            <tr>
+                <td>0.30 - 0.49</td>
+                <td>Moderate Difference</td>
+            </tr>
+
+            <tr>
+                <td>0.50+</td>
+                <td>Large Difference</td>
+            </tr>
+
+        </tbody>
+
+    </table>
+
+</div>
+
+<div class="card">
+
+    <h2>Part 10: Report the Results</h2>
+
+    <div class="highlight">
+
+<pre>
+# A Chi-Square Goodness-of-Fit test was conducted
+# to determine whether there was a difference
+# between the observed and expected frequencies.
+
+# The results showed that there
+# [was / was not] a difference,
+# χ²(df) = xx.xx, p = .xxx.
+
+# The difference was
+# [small / moderate / large]
+# (Cohen's W = .xx).
+</pre>
+
+    </div>
+
+</div>
+
+<div class="card">
+
+    <h2>Part 11: Create an R Markdown File</h2>
+
+    <ol>
+        <li>Create a new R Markdown file.</li>
+        <li>Select HTML as the output type.</li>
+        <li>Delete the example content.</li>
+        <li>Copy your R Script code into the file.</li>
+        <li>Add <code>```{r}</code> at the top.</li>
+        <li>Add <code>```</code> at the bottom.</li>
+        <li>Click <strong>Knit</strong>.</li>
+        <li>Save the generated HTML file.</li>
+    </ol>
+
+</div>
+
+<div class="card">
+
+    <h2>Part 12: Publish Your Work to RPubs</h2>
+
+    <p>
+        After creating and knitting your R Markdown document, publish the HTML report to RPubs.
+    </p>
+
+    <div class="highlight">
+        RPubs allows others to view your analysis, output, graphs, and conclusions directly through a web browser without installing RStudio.
+    </div>
+
+</div>
