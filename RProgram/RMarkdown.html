@@ -177,7 +177,304 @@ hr{
 
 <div class="container">
 
+<h1>R Markdown</h1>
 
+<div class="card">
+
+    <h2>Overview</h2>
+
+    <p>
+        R Scripts are excellent tools for conducting data analyses, but they are not always the best format for sharing your work with others.
+        An <strong>R Script</strong> records the steps of an analysis, while an <strong>R Markdown document</strong> communicates the entire research process by combining code, results, and explanations into one reproducible report.
+    </p>
+
+    <p>
+        The purpose of converting an R Script into R Markdown is not simply to run code.
+        It is to create a complete, readable report where another person can understand your analysis from beginning to end.
+    </p>
+
+</div>
+
+<div class="card">
+
+    <h2>R Markdown</h2>
+
+    <p>
+        An R Script contains the instructions needed to perform an analysis; however, someone else must have access to your script, your data files, and R software to reproduce your results.
+    </p>
+
+    <p>
+        An R Script shows <strong>how</strong> an analysis was performed, but it does not automatically include the results, graphs, tables, or explanations needed to understand the findings.
+        <strong>R Markdown</strong> solves this problem by combining multiple types of information into a single document.
+    </p>
+
+</div>
+
+<div class="card">
+
+    <h2>R Script vs. R Markdown</h2>
+
+    <table>
+
+        <thead>
+            <tr>
+                <th>Feature</th>
+                <th>R Script (.R)</th>
+                <th>R Markdown (.Rmd)</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+            <tr>
+                <td><strong>Main Purpose</strong></td>
+                <td>Write and execute R code.</td>
+                <td>Create a complete report combining code, results, and explanations.</td>
+            </tr>
+
+            <tr>
+                <td><strong>Contains</strong></td>
+                <td>Primarily R code and comments.</td>
+                <td>Code, text, tables, graphs, and statistical interpretation.</td>
+            </tr>
+
+            <tr>
+                <td><strong>Output</strong></td>
+                <td>Results appear in the Console or Plot pane.</td>
+                <td>Creates a formatted report such as an HTML document.</td>
+            </tr>
+
+            <tr>
+                <td><strong>Sharing</strong></td>
+                <td>Requires others to have R, your files, and your script.</td>
+                <td>Can be shared through a web link without requiring R or RStudio.</td>
+            </tr>
+
+        </tbody>
+
+    </table>
+
+</div>
+
+<div class="card">
+
+    <h2>How to Create an R Markdown Report</h2>
+
+    <p>
+        The following steps describe the process for converting an R analysis into a complete R Markdown report.
+        In this course, you will use R Markdown to organize your statistical analyses and create shareable HTML reports.
+    </p>
+
+</div>
+
+<div class="card">
+
+    <h2>Step 1: Install the R Markdown Package</h2>
+
+    <p>
+        Before creating an R Markdown document, you must install and load the
+        <strong>rmarkdown</strong> package.
+    </p>
+
+    <div class="highlight">
+
+<pre>
+install.packages("rmarkdown")
+
+library(rmarkdown)
+</pre>
+
+    </div>
+
+</div>
+
+<div class="card">
+
+    <h2>Step 2: Create a New R Markdown File</h2>
+
+    <p>
+        In RStudio, create a new R Markdown document:
+    </p>
+
+    <div class="highlight">
+        File → New File → R Markdown
+    </div>
+
+    <p>
+        A window will appear asking for information about your document.
+    </p>
+
+    <table>
+
+        <thead>
+            <tr>
+                <th>Setting</th>
+                <th>What to Enter</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+            <tr>
+                <td><strong>Title</strong></td>
+                <td>
+                    Enter your assignment or project title.<br>
+                    Example: <em>Assignment 1</em>
+                </td>
+            </tr>
+
+            <tr>
+                <td><strong>Author</strong></td>
+                <td>Enter your name.</td>
+            </tr>
+
+            <tr>
+                <td><strong>Output Format</strong></td>
+                <td>Select <strong>HTML</strong>.</td>
+            </tr>
+
+        </tbody>
+
+    </table>
+
+    <p>
+        Click <strong>OK</strong>. A new R Markdown file will open.
+    </p>
+
+    <p>
+        RStudio automatically creates a sample R Markdown document. Delete the example text and code before beginning your assignment.
+    </p>
+
+</div>
+
+<div class="card">
+
+    <h2>Step 3: Copy Code From Your R Script</h2>
+
+    <p>
+        R Markdown documents contain two types of content:
+    </p>
+
+    <table>
+
+        <thead>
+            <tr>
+                <th>Content Type</th>
+                <th>Purpose</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+            <tr>
+                <td><strong>Narrative Text</strong></td>
+                <td>
+                    Written explanations that describe your methods, results, and interpretations.
+                </td>
+            </tr>
+
+            <tr>
+                <td><strong>Code Chunks</strong></td>
+                <td>
+                    R code that performs calculations, creates graphs, and produces statistical output.
+                </td>
+            </tr>
+
+        </tbody>
+
+    </table>
+
+    <p>
+        Copy the analysis code from your existing <strong>.R script</strong> file and paste it into your new <strong>.Rmd file</strong>.
+    </p>
+
+</div>
+
+<div class="card">
+
+    <h2>Step 4: Convert Your R Script Into R Markdown Format</h2>
+
+    <p>
+        An R Script and an R Markdown document use different formatting rules.
+    </p>
+
+    <p>
+        When transferring code from an R Script into R Markdown, you must separate your
+        <strong>explanations</strong> from your <strong>R code</strong>.
+    </p>
+
+    <div class="highlight">
+
+        <strong>Outside Code Chunks:</strong>
+        Written explanations, instructions, and interpretations.
+
+        <br><br>
+
+        <strong>Inside Code Chunks:</strong>
+        R code that will be executed by the program.
+
+    </div>
+
+</div>
+
+<div class="card">
+
+    <h2>Converting Comments Into Written Text</h2>
+
+    <p>
+        In an R Script, comments are created using the <strong>#</strong> symbol.
+        Comments are notes for yourself and are ignored by R when the code runs.
+    </p>
+
+    <p>
+        In R Markdown, explanations should be written as regular text instead of comments.
+    </p>
+
+    <table>
+
+        <thead>
+            <tr>
+                <th>R Script</th>
+                <th>R Markdown</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+            <tr>
+                <td>
+<pre># Calculate descriptive statistics</pre>
+                </td>
+
+                <td>
+                    Calculate descriptive statistics.
+                </td>
+            </tr>
+
+        </tbody>
+
+    </table>
+
+</div>
+
+<div class="card">
+
+    <h2>Creating Code Chunks</h2>
+
+    <p>
+        R code must be placed inside a <strong>code chunk</strong> so that R Markdown knows which instructions should be executed.
+    </p>
+
+    <p>
+        Code chunks begin with three backticks followed by <strong>{r}</strong> and end with three backticks.
+    </p>
+
+    <div class="highlight">
+
+<pre>
+```{r}
+
+2 * 2
   
 
 </div>
