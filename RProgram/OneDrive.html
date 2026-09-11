@@ -1,157 +1,173 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Microsoft OneDrive</title>
 
 <style>
-body {
-  margin: 0;
-  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-  background: radial-gradient(circle at top, #0b1220, #020617 70%);
-  color: rgba(255,255,255,0.92);
+
+body{
+    margin:0;
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    background:#f4f6f9;
+    color:#222222;
 }
 
-.container {
-  max-width: 1000px;
-  margin: auto;
-  padding: 5rem 1.5rem;
+.container{
+    max-width:1000px;
+    margin:auto;
+    padding:50px 20px;
 }
 
-h1 {
-  font-size: 3rem;
-  letter-spacing: .2em;
-  text-transform: uppercase;
-  text-align: center;
-  background: linear-gradient(180deg, #fff, #7dd3fc);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  margin-bottom: 1rem;
+h1{
+    text-align:center;
+    color:#0e68b3;
+    font-size:2.8rem;
+    margin-bottom:10px;
+    letter-spacing:.03em;
 }
 
-.subtitle {
-  text-align: center;
-  letter-spacing: .3em;
-  margin-bottom: 3rem;
-  opacity: 0.8;
+.subtitle{
+    text-align:center;
+    color:#6b7280;
+    text-transform:uppercase;
+    letter-spacing:.15em;
+    margin-bottom:40px;
+    font-size:.95rem;
 }
 
 h2,
-h3 {
-  position: relative;
-  display: inline-block;
+h3{
+    color:#0e68b3;
+    position:relative;
+    display:inline-block;
 }
 
 h2::after,
-h3::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: -5px;
-  width: 0%;
-  height: 2px;
-  background: #38bdf8;
-  transition: width 0.3s ease;
+h3::after{
+    content:"";
+    position:absolute;
+    left:0;
+    bottom:-4px;
+    width:0;
+    height:2px;
+    background:#0e68b3;
+    transition:.3s;
 }
 
-h2:hover::after,
-h3:hover::after {
-  width: 100%;
+.card:hover h2::after,
+.card:hover h3::after{
+    width:100%;
 }
 
-h2 {
-  color: #93c5fd;
+p{
+    line-height:1.8;
 }
 
-h3 {
-  color: #7dd3fc;
+.card{
+    background:white;
+    border-radius:16px;
+    padding:30px;
+    margin-bottom:25px;
+    border:1px solid #d9e2ec;
+
+    box-shadow:
+      0 3px 10px rgba(0,0,0,.05);
+
+    animation:fadeUp .6s ease forwards;
+    transition:all .25s ease;
 }
 
-p {
-  line-height: 1.75;
-  margin-bottom: 1rem;
+.card:hover{
+    transform:translateY(-4px);
+    box-shadow:
+      0 10px 25px rgba(14,104,179,.15);
 }
 
-.card {
-  background: rgba(15,23,42,.6);
-  border-radius: 16px;
-  padding: 1.75rem;
-  margin-bottom: 2rem;
-  border: 1px solid rgba(255,255,255,.08);
-  box-shadow: 0 10px 30px rgba(0,0,0,.4);
-  transition: all .3s ease;
+.highlight{
+    background:#eef6fc;
+    border-left:5px solid #0e68b3;
+    padding:15px;
+    border-radius:8px;
+    margin:20px 0;
 }
 
-.card:hover {
-  transform: translateY(-6px) scale(1.01);
-  box-shadow: 0 20px 50px rgba(56,189,248,.25);
+ul{
+    padding-left:25px;
 }
 
-.highlight {
-  background: rgba(56,189,248,.12);
-  border-left: 4px solid #38bdf8;
-  padding: .9rem 1rem;
-  margin: 1rem 0;
-  border-radius: 6px;
+li{
+    margin-bottom:8px;
 }
 
-ul {
-  padding-left: 1.2rem;
+table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:20px;
+    background:white;
+    overflow:hidden;
+    border-radius:10px;
 }
 
-li {
-  margin-bottom: .5rem;
+th{
+    background:#0e68b3;
+    color:white;
+    text-align:left;
+    padding:14px;
 }
 
-hr {
-  border: none;
-  height: 1px;
-  background: linear-gradient(
-    to right,
-    transparent,
-    #38bdf8,
-    transparent
-  );
-  margin: 2rem 0;
-  opacity: .4;
+td{
+    padding:14px;
+    border-bottom:1px solid #e5e7eb;
+    vertical-align:top;
 }
 
-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 1rem;
+tr:nth-child(even){
+    background:#f8fafc;
 }
 
-th,
-td {
-  padding: .9rem;
-  border-bottom: 1px solid rgba(255,255,255,.12);
-  text-align: left;
-  vertical-align: top;
+tr:hover{
+    background:#edf6ff;
 }
 
-th {
-  color: #7dd3fc;
-  font-weight: 600;
+hr{
+    border:none;
+    height:1px;
+    background:#d6e4f0;
+    margin:30px 0;
 }
 
-tr:hover {
-  background: rgba(56,189,248,.08);
+@keyframes fadeUp{
+    from{
+        opacity:0;
+        transform:translateY(20px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
 }
 
-@media (max-width: 768px) {
-  h1 {
-    font-size: 2rem;
-    letter-spacing: .08em;
-  }
+@media (max-width:768px){
 
-  table {
-    font-size: .9rem;
-  }
+    h1{
+        font-size:2rem;
+    }
+
+    .card{
+        padding:20px;
+    }
+
+    th,
+    td{
+        padding:10px;
+        font-size:.95rem;
+    }
 }
+
 </style>
-
 </head>
 
 <body>
@@ -159,136 +175,131 @@ tr:hover {
 <div class="container">
 
 <div class="subtitle">Technology Guide</div>
+
 <h1>Microsoft OneDrive</h1>
 
 <div class="card">
-  <h2>Overview</h2>
+<h2>Overview</h2>
 
-  <p>
-    In this course, Microsoft OneDrive is used to organize coding assignment files
-    and provide access to submitted work.
-  </p>
+<p>
+In this course, Microsoft OneDrive is used to organize coding assignment files and provide access to submitted work.
+</p>
 </div>
 
 <div class="card">
-  <h2>What is Microsoft OneDrive?</h2>
+<h2>What is Microsoft OneDrive?</h2>
 
-  <p>
-    Microsoft OneDrive is Microsoft's cloud storage service. It allows you to
-    store files online, access them from multiple devices, and share documents
-    with others.
-  </p>
+<p>
+Microsoft OneDrive is Microsoft's cloud storage service. It allows you to store files online, access them from multiple devices, and share documents with others.
+</p>
 
-  <div class="highlight">
-    <strong>Important:</strong> Do NOT use Google Drive for course submissions.
-    Google Drive is a separate cloud storage system. All course files should be
-    stored and shared through Microsoft OneDrive.
-  </div>
+<div class="highlight">
+<strong>Important:</strong>
+Do NOT use Google Drive for course submissions. Google Drive is a separate cloud storage system. All course files should be stored and shared through Microsoft OneDrive.
+</div>
+
 </div>
 
 <div class="card">
-  <h2>Why is Digital File Organization Important?</h2>
 
-  <p>
-    Effective file organization is an essential skill in both academic and
-    professional settings. Organizing files into clearly labeled folders helps
-    you quickly locate documents, prevent lost work, and maintain a logical
-    structure for projects and assignments.
-  </p>
+<h2>Why is Digital File Organization Important?</h2>
 
-  <p>
-    File organization becomes especially important when working with multiple
-    versions of documents, submitting assignments, or collaborating with others.
-  </p>
+<p>
+Effective file organization is an essential skill in both academic and professional settings. Organizing files into clearly labeled folders helps you quickly locate documents, prevent lost work, and maintain a logical structure for projects and assignments.
+</p>
 
-  <h3>Professional File Organization Practices</h3>
+<p>
+File organization becomes especially important when working with multiple versions of documents, submitting assignments, or collaborating with others.
+</p>
 
-  <ul>
-    <li>Create folders with clear and descriptive names.</li>
-    <li>Keep related files together in the same location.</li>
-    <li>Avoid storing important course files only on your personal computer.</li>
-    <li>Use consistent naming conventions for assignments and projects.</li>
-    <li>Share files using appropriate permissions.</li>
-    <li>
-      Use shared cloud storage to share the most current version of a file
-      without repeatedly sending email attachments.
-    </li>
-  </ul>
+<h3>Professional File Organization Practices</h3>
+
+<ul>
+<li>Create folders with clear and descriptive names.</li>
+<li>Keep related files together in the same location.</li>
+<li>Avoid storing important course files only on your personal computer.</li>
+<li>Use consistent naming conventions for assignments and projects.</li>
+<li>Share files using appropriate permissions.</li>
+<li>Use shared cloud storage to share the most current version of a file without repeatedly sending email attachments.</li>
+</ul>
+
 </div>
 
 <div class="card">
-  <h2>What is Cloud Storage?</h2>
 
-  <div class="highlight">
-    <strong>Simple Definition:</strong>
-    Files can be stored using <strong>local storage</strong> or
-    <strong>cloud storage</strong>.
-  </div>
+<h2>What is Cloud Storage?</h2>
 
-  <table>
-    <thead>
-      <tr>
-        <th>Topic</th>
-        <th>Local Storage</th>
-        <th>Cloud Storage</th>
-      </tr>
-    </thead>
+<div class="highlight">
+<strong>Simple Definition:</strong>
+Files can be stored using <strong>local storage</strong> or <strong>cloud storage</strong>.
+</div>
 
-    <tbody>
+<table>
 
-      <tr>
-        <td><strong>Where are files stored?</strong></td>
-        <td>On your computer, USB drive, flash drive, or external hard drive.</td>
-        <td>On secure internet-based servers.</td>
-      </tr>
+<thead>
+<tr>
+<th>Topic</th>
+<th>Local Storage</th>
+<th>Cloud Storage</th>
+</tr>
+</thead>
 
-      <tr>
-        <td><strong>How do you access them?</strong></td>
-        <td>Directly from the device where they are stored.</td>
-        <td>From multiple devices by signing in and connecting to the internet.</td>
-      </tr>
+<tbody>
 
-      <tr>
-        <td><strong>If the device is lost or damaged</strong></td>
-        <td>You may lose access to your files.</td>
-        <td>Your files remain available online.</td>
-      </tr>
+<tr>
+<td><strong>Where are files stored?</strong></td>
+<td>On your computer, USB drive, flash drive, or external hard drive.</td>
+<td>On secure internet-based servers.</td>
+</tr>
 
-      <tr>
-        <td><strong>Think of it Like...</strong></td>
-        <td>Keeping important documents in your home.</td>
-        <td>Keeping important documents in a secure bank vault.</td>
-      </tr>
+<tr>
+<td><strong>How do you access them?</strong></td>
+<td>Directly from the device where they are stored.</td>
+<td>From multiple devices by signing in and connecting to the internet.</td>
+</tr>
 
-      <tr>
-        <td><strong>Example</strong></td>
-        <td>Saving your R files only on your computer.</td>
-        <td>Saving your R files to Microsoft OneDrive.</td>
-      </tr>
+<tr>
+<td><strong>If the device is lost or damaged</strong></td>
+<td>You may lose access to your files.</td>
+<td>Your files remain available online.</td>
+</tr>
 
-      <tr>
-        <td><strong>Final Point</strong></td>
-        <td>Your files depend on a single physical device.</td>
-        <td>Your files remain accessible from multiple devices.</td>
-      </tr>
+<tr>
+<td><strong>Think of it Like...</strong></td>
+<td>Keeping important documents in your home.</td>
+<td>Keeping important documents in a secure bank vault.</td>
+</tr>
 
-    </tbody>
-  </table>
+<tr>
+<td><strong>Example</strong></td>
+<td>Saving your R files only on your computer.</td>
+<td>Saving your R files to Microsoft OneDrive.</td>
+</tr>
+
+<tr>
+<td><strong>Final Point</strong></td>
+<td>Your files depend on a single physical device.</td>
+<td>Your files remain accessible from multiple devices.</td>
+</tr>
+
+</tbody>
+
+</table>
+
 </div>
 
 <div class="card">
-  <h2>Key Takeaway</h2>
 
-  <div class="highlight">
-    Microsoft OneDrive helps protect your work, keeps files organized, and
-    allows you to access your assignments from multiple devices.
-  </div>
+<h2>Key Takeaway</h2>
 
-  <p>
-    Developing good file organization habits now will make coursework easier
-    and prepare you for professional environments where cloud storage and
-    digital collaboration are standard practice.
-  </p>
+<div class="highlight">
+Microsoft OneDrive helps protect your work, keeps files organized, and allows you to access your assignments from multiple devices.
+</div>
+
+<p>
+Developing good file organization habits now will make coursework easier and prepare you for professional environments where cloud storage and digital collaboration are standard practice.
+</p>
+
 </div>
 
 </div>
