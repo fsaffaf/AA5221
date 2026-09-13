@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Interpreting Scatterplots</title>
+
+<style>
+
+body{
+    margin:0;
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    background:#f4f6f9;
+    color:#222222;
+}
+
+.container{
+    max-width:1000px;
+    margin:auto;
+    padding:50px 20px;
+}
+
+h1{
+    text-align:left;
+    color:#666666;
+    font-size:2.75rem;
+    font-weight:200;
+    letter-spacing:.08em;
+    margin-bottom:10px;
+}
+
+.subtitle{
+    text-align:center;
+    color:#6b7280;
+    text-transform:uppercase;
+    letter-spacing:.15em;
+    margin-bottom:40px;
+    font-size:.95rem;
+}
+
+h2,
+h3{
+    color:#0e68b3;
+    position:relative;
+    font-weight:500;
+    display:inline-block;
+}
+
+h2::after,
+h3::after{
+    content:"";
+    position:absolute;
+    left:0;
+    bottom:-4px;
+    width:0;
+    height:2px;
+    background:#0e68b3;
+    transition:.3s;
+}
+
+.card:hover h2::after,
+.card:hover h3::after{
+    width:100%;
+}
+
+p{
+    line-height:1.8;
+}
+
+.card{
+    background:white;
+    border-radius:16px;
+    padding:30px;
+    margin-bottom:25px;
+    border:1px solid #d9e2ec;
+
+    box-shadow:
+      0 3px 10px rgba(0,0,0,.05);
+
+    animation:fadeUp .6s ease forwards;
+    transition:all .25s ease;
+}
+
+.card:hover{
+    transform:translateY(-4px);
+    box-shadow:
+      0 10px 25px rgba(14,104,179,.15);
+}
+
+.highlight{
+    background:#eef6fc;
+    border-left:5px solid #0e68b3;
+    padding:15px;
+    border-radius:8px;
+    margin:20px 0;
+}
+
+ul{
+    padding-left:25px;
+}
+
+li{
+    margin-bottom:8px;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:20px;
+    background:white;
+    overflow:hidden;
+    border-radius:10px;
+}
+
+th{
+    background:#0e68b3;
+    color:white;
+    text-align:left;
+    padding:14px;
+}
+
+td{
+    padding:14px;
+    border-bottom:1px solid #e5e7eb;
+    vertical-align:top;
+}
+
+tr:nth-child(even){
+    background:#f8fafc;
+}
+
+tr:hover{
+    background:#edf6ff;
+}
+
+hr{
+    border:none;
+    height:1px;
+    background:#d6e4f0;
+    margin:30px 0;
+}
+
+@keyframes fadeUp{
+    from{
+        opacity:0;
+        transform:translateY(20px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+@media (max-width:768px){
+
+    h1{
+        font-size:2rem;
+    }
+
+    .card{
+        padding:20px;
+    }
+
+    th,
+    td{
+        padding:10px;
+        font-size:.95rem;
+    }
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Interpreting Scatterplots</h1>
+
+<div class="card">
+<h2>Overview</h2>
+
+<p>
+A scatterplot is used to examine the relationship between two quantitative variables. Each point represents one observation, with one variable plotted on the x-axis and the other variable plotted on the y-axis.
+</p>
+
+<div class="highlight">
+<strong>Key Idea:</strong>
+When interpreting a scatterplot, look for <strong>form, direction, and strength</strong>.
+</div>
+
+</div>
+
+<div class="card">
+
+<h2>Step 1: Look at the Form</h2>
+
+<p>
+First, look at the overall shape of the points. The relationship may follow a relatively straight pattern or may follow a curved pattern.
+</p>
+
+<table>
+
+<thead>
+<tr>
+<th>Form</th>
+<th>What to Look For</th>
+<th>What It Means</th>
+</tr>
+</thead>
+
+<tbody>
+
+<tr>
+<td><strong>Linear</strong></td>
+<td>The points generally follow a straight-line pattern.</td>
+<td>The relationship can be reasonably described by a straight line.</td>
+</tr>
+
+<tr>
+<td><strong>Curvilinear</strong></td>
+<td>The points follow a noticeable curve rather than a straight line.</td>
+<td>The relationship changes direction or rate as one variable increases.</td>
+</tr>
+
+</tbody>
+
+</table>
+
+<div class="highlight">
+<strong>Important:</strong>
+A relationship can be strong even when it is curvilinear. However, Pearson's correlation is designed to measure <strong>linear</strong> relationships, so a strong curved pattern may not produce a strong Pearson correlation.
+</div>
+
+</div>
+
+<div class="card">
+
+<h2>Step 2: Look at the Direction</h2>
+
+<p>
+If the relationship is linear, determine whether the variables move in the same direction or in opposite directions.
+</p>
+
+<table>
+
+<thead>
+<tr>
+<th>Direction</th>
+<th>What to Look For</th>
+<th>Interpretation</th>
+</tr>
+</thead>
+
+<tbody>
+
+<tr>
+<td><strong>Positive</strong></td>
+<td>As one variable increases, the other variable tends to increase.</td>
+<td>The variables move in the same direction.</td>
+</tr>
+
+<tr>
+<td><strong>Negative</strong></td>
+<td>As one variable increases, the other variable tends to decrease.</td>
+<td>The variables move in opposite directions.</td>
+</tr>
+
+<tr>
+<td><strong>No Relationship</strong></td>
+<td>The points do not show a consistent pattern.</td>
+<td>Knowing one variable does not provide much information about the other variable.</td>
+</tr>
+
+</tbody>
+
+</table>
+
+<div class="highlight">
+<strong>Remember:</strong>
+The direction of a relationship is described as <strong>positive</strong> or <strong>negative</strong>. The strength of a relationship is described separately.
+</div>
+
+</div>
+
+<div class="card">
+
+<h2>Step 3: Look at the Strength</h2>
+
+<p>
+Strength describes how closely the points follow the overall pattern. The closer the points are to the pattern, the stronger the relationship.
+</p>
+
+<table>
+
+<thead>
+<tr>
+<th>Strength</th>
+<th>What to Look For</th>
+</tr>
+</thead>
+
+<tbody>
+
+<tr>
+<td><strong>Strong</strong></td>
+<td>The points are tightly clustered around the overall pattern.</td>
+</tr>
+
+<tr>
+<td><strong>Moderate</strong></td>
+<td>The points show a clear pattern, but there is noticeable variation around it.</td>
+</tr>
+
+<tr>
+<td><strong>Weak</strong></td>
+<td>The points show a slight or inconsistent pattern.</td>
+</tr>
+
+<tr>
+<td><strong>No Relationship</strong></td>
+<td>The points are scattered without a clear pattern or direction.</td>
+</tr>
+
+</tbody>
+
+</table>
+
+<p>
+Strength is about how closely the observations follow the pattern, not how steep the pattern appears. A steep relationship is not necessarily stronger than a shallow relationship.
+</p>
+
+</div>
+
+<div class="card">
+
+<h2>Putting It All Together</h2>
+
+<p>
+A complete interpretation of a scatterplot considers <strong>form, direction, and strength</strong>.
+</p>
+
+<table>
+
+<thead>
+<tr>
+<th>Feature</th>
+<th>Question to Ask</th>
+</tr>
+</thead>
+
+<tbody>
+
+<tr>
+<td><strong>Form</strong></td>
+<td>Is the pattern linear or curvilinear?</td>
+</tr>
+
+<tr>
+<td><strong>Direction</strong></td>
+<td>Is the relationship positive, negative, or does it have no clear direction?</td>
+</tr>
+
+<tr>
+<td><strong>Strength</strong></td>
+<td>Is the pattern strong, moderate, weak, or absent?</td>
+</tr>
+
+</tbody>
+
+</table>
+
+<div class="highlight">
+<strong>Example:</strong>
+A scatterplot may show a <strong>strong, positive, linear relationship</strong>. This means the points closely follow a straight-line pattern and, as one variable increases, the other variable generally increases as well.
+</div>
+
+</div>
+
+<div class="card">
+
+<h2>Key Takeaway</h2>
+
+<div class="highlight">
+When reading a scatterplot, describe the <strong>form</strong>, <strong>direction</strong>, and <strong>strength</strong> of the relationship. Do not confuse the steepness of a pattern with its strength.
+</div>
+
+<p>
+A scatterplot provides a visual way to determine whether two quantitative variables are related and what that relationship looks like. Before calculating a correlation, always examine the scatterplot first.
+</p>
+
+<div class="card">
+
+<h2>Step 4: Look for Outliers</h2>
+
+<p>
+An <strong>outlier</strong> is an observation that is noticeably separated from the overall pattern of the other points. Outliers can occur in either variable and may have a substantial effect on the results of a correlation analysis.
+</p>
+
+<div class="highlight">
+<strong>Important:</strong>
+Always look for outliers before interpreting a correlation. A single unusual observation can make a relationship appear stronger, weaker, or different from the pattern shown by the rest of the data.
+</div>
+
+<h3>How to Identify an Outlier</h3>
+
+<ul>
+<li>Look for a point that is far away from the other observations.</li>
+<li>Determine whether the point follows the overall pattern.</li>
+<li>Consider whether the point may have a meaningful explanation or may represent an error.</li>
+</ul>
+
+<p>
+An outlier does not automatically mean that something is wrong with the data. It may represent a legitimate observation that is simply unusual compared with the rest of the sample.
+</p>
+
+<table>
+
+<thead>
+<tr>
+<th>What You See</th>
+<th>What It May Mean</th>
+</tr>
+</thead>
+
+<tbody>
+
+<tr>
+<td><strong>Point follows the overall pattern</strong></td>
+<td>The observation may be unusual in value but still consistent with the relationship.</td>
+</tr>
+
+<tr>
+<td><strong>Point is far from the overall pattern</strong></td>
+<td>The observation may be an outlier that could influence the correlation.</td>
+</tr>
+
+<tr>
+<td><strong>Several unusual points</strong></td>
+<td>The apparent relationship may be more complex than a simple linear pattern.</td>
+</tr>
+
+</tbody>
+
+</table>
+
+<div class="highlight">
+<strong>Do not automatically delete an outlier.</strong>
+First determine whether it is a data-entry or measurement error. If the observation is legitimate, it should generally remain in the analysis, and its potential influence should be considered when interpreting the results.
+</div>
+
+</div>
