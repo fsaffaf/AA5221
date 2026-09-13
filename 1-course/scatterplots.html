@@ -159,6 +159,29 @@ tr:hover{
     margin:0;
 }
 
+.outlier-grid{
+    display:grid;
+    grid-template-columns:repeat(2, 1fr);
+    gap:25px;
+    margin:25px 0;
+}
+
+.outlier-example{
+    text-align:center;
+}
+
+.outlier-example h3{
+    margin-top:0;
+}
+
+.outlier-example img{
+    width:100%;
+    height:auto;
+    display:block;
+    margin:20px auto 0;
+    border-radius:8px;
+}
+
 hr{
     border:none;
     height:1px;
@@ -193,7 +216,8 @@ hr{
         font-size:.95rem;
     }
 
-    .scatterplot-grid{
+    .scatterplot-grid,
+    .outlier-grid{
         grid-template-columns:1fr;
     }
 
@@ -223,7 +247,6 @@ When interpreting a scatterplot, look for <strong>form, direction, strength, and
 </div>
 
 </div>
-
 
 <div class="card">
 
@@ -275,7 +298,6 @@ A relationship can be strong even when it is curvilinear. However, Pearson's cor
 </div>
 
 </div>
-
 
 <div class="card">
 
@@ -331,7 +353,6 @@ If the relationship is linear, determine whether the variables move in the same 
 
 </div>
 
-
 <div class="scatterplot">
 
 <a href="https://www.flickr.com/photos/204970225@N06/55526695949/in/dateposted-public/" target="_blank">
@@ -348,7 +369,6 @@ The direction of a relationship is described as <strong>positive</strong> or <st
 </div>
 
 </div>
-
 
 <div class="card">
 
@@ -405,7 +425,6 @@ Strength describes how closely the points follow the overall pattern. The closer
 
 </div>
 
-
 <div class="scatterplot">
 
 <a href="https://www.flickr.com/photos/204970225@N06/55526642768/in/dateposted-public/" target="_blank">
@@ -414,7 +433,6 @@ Strength describes how closely the points follow the overall pattern. The closer
 
 </div>
 
-
 <div class="scatterplot">
 
 <a href="https://www.flickr.com/photos/204970225@N06/55526927610/in/dateposted-public/" target="_blank">
@@ -422,7 +440,6 @@ Strength describes how closely the points follow the overall pattern. The closer
 </a>
 
 </div>
-
 
 <div class="scatterplot">
 
@@ -435,7 +452,6 @@ Strength describes how closely the points follow the overall pattern. The closer
 </div>
 
 </div>
-
 
 <div class="card">
 
@@ -450,9 +466,11 @@ An <strong>outlier</strong> is an observation that is noticeably separated from 
 Always look for outliers before interpreting a correlation. A single unusual observation can make a relationship appear stronger, weaker, or different from the pattern shown by the rest of the data.
 </div>
 
-<h3>With an Outlier</h3>
+<div class="outlier-grid">
 
-<div class="scatterplot">
+<div class="outlier-example">
+
+<h3>With an Outlier</h3>
 
 <a href="https://www.flickr.com/photos/204970225@N06/55526927605/in/dateposted-public/" target="_blank">
 <img src="https://live.staticflickr.com/65535/55526927605_c7974741eb_c.jpg">
@@ -460,10 +478,9 @@ Always look for outliers before interpreting a correlation. A single unusual obs
 
 </div>
 
+<div class="outlier-example">
 
 <h3>Outlier Removed</h3>
-
-<div class="scatterplot">
 
 <a href="https://www.flickr.com/photos/204970225@N06/55526642758/in/dateposted-public/" target="_blank">
 <img src="https://live.staticflickr.com/65535/55526642758_5490e6baf8_c.jpg">
@@ -471,6 +488,7 @@ Always look for outliers before interpreting a correlation. A single unusual obs
 
 </div>
 
+</div>
 
 <h3>How to Identify an Outlier</h3>
 
@@ -520,7 +538,6 @@ First determine whether it is a data-entry or measurement error. If the observat
 </div>
 
 </div>
-
 
 <div class="card">
 
