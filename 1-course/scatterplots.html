@@ -155,6 +155,17 @@ tr:hover{
     font-weight:500;
 }
 
+.scatterplot-grid{
+    display:grid;
+    grid-template-columns:repeat(2, 1fr);
+    gap:25px;
+    margin:25px 0;
+}
+
+.scatterplot-grid .scatterplot{
+    margin:0;
+}
+
 hr{
     border:none;
     height:1px;
@@ -188,6 +199,11 @@ hr{
         padding:10px;
         font-size:.95rem;
     }
+
+    .scatterplot-grid{
+        grid-template-columns:1fr;
+    }
+
 }
 
 </style>
@@ -315,8 +331,9 @@ If the relationship is linear, determine whether the variables move in the same 
 
 </table>
 
+<h3>Direction Examples</h3>
 
-<h3>Positive Linear Relationship</h3>
+<div class="scatterplot-grid">
 
 <div class="scatterplot">
 
@@ -332,8 +349,6 @@ Positive Linear Relationship
 </div>
 
 
-<h3>Negative Linear Relationship</h3>
-
 <div class="scatterplot">
 
 <a href="https://www.flickr.com/photos/204970225@N06/55526695949/in/dateposted-public/" target="_blank">
@@ -347,6 +362,7 @@ Negative Linear Relationship
 
 </div>
 
+</div>
 
 <div class="highlight">
 <strong>Remember:</strong>
@@ -399,8 +415,9 @@ Strength describes how closely the points follow the overall pattern. The closer
 
 </table>
 
+<h3>Strength Examples</h3>
 
-<h3>Strong Relationship</h3>
+<div class="scatterplot-grid">
 
 <div class="scatterplot">
 
@@ -416,8 +433,6 @@ Strong Relationship
 </div>
 
 
-<h3>Moderate Relationship</h3>
-
 <div class="scatterplot">
 
 <a href="https://www.flickr.com/photos/204970225@N06/55526642768/in/dateposted-public/" target="_blank">
@@ -431,8 +446,6 @@ Moderate Relationship
 
 </div>
 
-
-<h3>Weak Relationship</h3>
 
 <div class="scatterplot">
 
@@ -448,8 +461,6 @@ Weak Relationship
 </div>
 
 
-<h3>No Relationship</h3>
-
 <div class="scatterplot">
 
 <a href="https://www.flickr.com/photos/204970225@N06/55525522832/in/dateposted-public/" target="_blank">
@@ -463,6 +474,7 @@ No Relationship
 
 </div>
 
+</div>
 
 <p>
 Strength is about how closely the observations follow the pattern, not how steep the pattern appears. A steep relationship is not necessarily stronger than a shallow relationship.
