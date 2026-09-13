@@ -11,7 +11,7 @@
 
 body{
     margin:0;
-    font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
     background:#f4f6f9;
     color:#222222;
 }
@@ -135,6 +135,26 @@ tr:hover{
     background:#edf6ff;
 }
 
+.scatterplot{
+    text-align:center;
+    margin:25px 0;
+}
+
+.scatterplot img{
+    max-width:100%;
+    height:auto;
+    display:block;
+    margin:0 auto;
+    border-radius:8px;
+}
+
+.scatterplot-caption{
+    margin-top:10px;
+    color:#555555;
+    font-size:.95rem;
+    font-weight:500;
+}
+
 hr{
     border:none;
     height:1px;
@@ -181,6 +201,7 @@ hr{
 <h1>Interpreting Scatterplots</h1>
 
 <div class="card">
+
 <h2>Overview</h2>
 
 <p>
@@ -189,10 +210,11 @@ A scatterplot is used to examine the relationship between two quantitative varia
 
 <div class="highlight">
 <strong>Key Idea:</strong>
-When interpreting a scatterplot, look for <strong>form, direction, and strength</strong>.
+When interpreting a scatterplot, look for <strong>form, direction, strength, and outliers</strong>.
 </div>
 
 </div>
+
 
 <div class="card">
 
@@ -230,12 +252,26 @@ First, look at the overall shape of the points. The relationship may follow a re
 
 </table>
 
+<div class="scatterplot">
+
+<a href="https://www.flickr.com/photos/204970225@N06/55526695999/in/dateposted-public/" target="_blank">
+<img src="https://live.staticflickr.com/65535/55526695999_692fc62a09_c.jpg"
+alt="Curvilinear Relationship">
+</a>
+
+<div class="scatterplot-caption">
+Example of a Curvilinear Relationship
+</div>
+
+</div>
+
 <div class="highlight">
 <strong>Important:</strong>
 A relationship can be strong even when it is curvilinear. However, Pearson's correlation is designed to measure <strong>linear</strong> relationships, so a strong curved pattern may not produce a strong Pearson correlation.
 </div>
 
 </div>
+
 
 <div class="card">
 
@@ -279,12 +315,46 @@ If the relationship is linear, determine whether the variables move in the same 
 
 </table>
 
+
+<h3>Positive Linear Relationship</h3>
+
+<div class="scatterplot">
+
+<a href="https://www.flickr.com/photos/204970225@N06/55526927630/in/dateposted-public/" target="_blank">
+<img src="https://live.staticflickr.com/65535/55526927630_d3a11a2205_c.jpg"
+alt="Positive Linear Relationship">
+</a>
+
+<div class="scatterplot-caption">
+Positive Linear Relationship
+</div>
+
+</div>
+
+
+<h3>Negative Linear Relationship</h3>
+
+<div class="scatterplot">
+
+<a href="https://www.flickr.com/photos/204970225@N06/55526695949/in/dateposted-public/" target="_blank">
+<img src="https://live.staticflickr.com/65535/55526695949_5f545ffa2c_c.jpg"
+alt="Negative Linear Relationship">
+</a>
+
+<div class="scatterplot-caption">
+Negative Linear Relationship
+</div>
+
+</div>
+
+
 <div class="highlight">
 <strong>Remember:</strong>
 The direction of a relationship is described as <strong>positive</strong> or <strong>negative</strong>. The strength of a relationship is described separately.
 </div>
 
 </div>
+
 
 <div class="card">
 
@@ -329,68 +399,77 @@ Strength describes how closely the points follow the overall pattern. The closer
 
 </table>
 
+
+<h3>Strong Relationship</h3>
+
+<div class="scatterplot">
+
+<a href="https://www.flickr.com/photos/204970225@N06/55526642763/in/dateposted-public/" target="_blank">
+<img src="https://live.staticflickr.com/65535/55526642763_1ba57b4bf9_c.jpg"
+alt="Strong Relationship">
+</a>
+
+<div class="scatterplot-caption">
+Strong Relationship
+</div>
+
+</div>
+
+
+<h3>Moderate Relationship</h3>
+
+<div class="scatterplot">
+
+<a href="https://www.flickr.com/photos/204970225@N06/55526642768/in/dateposted-public/" target="_blank">
+<img src="https://live.staticflickr.com/65535/55526642768_0689a8a882_c.jpg"
+alt="Moderate Relationship">
+</a>
+
+<div class="scatterplot-caption">
+Moderate Relationship
+</div>
+
+</div>
+
+
+<h3>Weak Relationship</h3>
+
+<div class="scatterplot">
+
+<a href="https://www.flickr.com/photos/204970225@N06/55526927610/in/dateposted-public/" target="_blank">
+<img src="https://live.staticflickr.com/65535/55526927610_c87bbcac22_c.jpg"
+alt="Weak Relationship">
+</a>
+
+<div class="scatterplot-caption">
+Weak Relationship
+</div>
+
+</div>
+
+
+<h3>No Relationship</h3>
+
+<div class="scatterplot">
+
+<a href="https://www.flickr.com/photos/204970225@N06/55525522832/in/dateposted-public/" target="_blank">
+<img src="https://live.staticflickr.com/65535/55525522832_94a9604b8f_c.jpg"
+alt="No Relationship">
+</a>
+
+<div class="scatterplot-caption">
+No Relationship
+</div>
+
+</div>
+
+
 <p>
 Strength is about how closely the observations follow the pattern, not how steep the pattern appears. A steep relationship is not necessarily stronger than a shallow relationship.
 </p>
 
 </div>
 
-<div class="card">
-
-<h2>Putting It All Together</h2>
-
-<p>
-A complete interpretation of a scatterplot considers <strong>form, direction, and strength</strong>.
-</p>
-
-<table>
-
-<thead>
-<tr>
-<th>Feature</th>
-<th>Question to Ask</th>
-</tr>
-</thead>
-
-<tbody>
-
-<tr>
-<td><strong>Form</strong></td>
-<td>Is the pattern linear or curvilinear?</td>
-</tr>
-
-<tr>
-<td><strong>Direction</strong></td>
-<td>Is the relationship positive, negative, or does it have no clear direction?</td>
-</tr>
-
-<tr>
-<td><strong>Strength</strong></td>
-<td>Is the pattern strong, moderate, weak, or absent?</td>
-</tr>
-
-</tbody>
-
-</table>
-
-<div class="highlight">
-<strong>Example:</strong>
-A scatterplot may show a <strong>strong, positive, linear relationship</strong>. This means the points closely follow a straight-line pattern and, as one variable increases, the other variable generally increases as well.
-</div>
-
-</div>
-
-<div class="card">
-
-<h2>Key Takeaway</h2>
-
-<div class="highlight">
-When reading a scatterplot, describe the <strong>form</strong>, <strong>direction</strong>, and <strong>strength</strong> of the relationship. Do not confuse the steepness of a pattern with its strength.
-</div>
-
-<p>
-A scatterplot provides a visual way to determine whether two quantitative variables are related and what that relationship looks like. Before calculating a correlation, always examine the scatterplot first.
-</p>
 
 <div class="card">
 
@@ -404,6 +483,38 @@ An <strong>outlier</strong> is an observation that is noticeably separated from 
 <strong>Important:</strong>
 Always look for outliers before interpreting a correlation. A single unusual observation can make a relationship appear stronger, weaker, or different from the pattern shown by the rest of the data.
 </div>
+
+<h3>With an Outlier</h3>
+
+<div class="scatterplot">
+
+<a href="https://www.flickr.com/photos/204970225@N06/55526927605/in/dateposted-public/" target="_blank">
+<img src="https://live.staticflickr.com/65535/55526927605_c7974741eb_c.jpg"
+alt="Scatterplot With Outlier">
+</a>
+
+<div class="scatterplot-caption">
+Relationship With an Outlier
+</div>
+
+</div>
+
+
+<h3>Outlier Removed</h3>
+
+<div class="scatterplot">
+
+<a href="https://www.flickr.com/photos/204970225@N06/55526642758/in/dateposted-public/" target="_blank">
+<img src="https://live.staticflickr.com/65535/55526642758_5490e6baf8_c.jpg"
+alt="Scatterplot With Outlier Removed">
+</a>
+
+<div class="scatterplot-caption">
+Relationship After Removing the Outlier
+</div>
+
+</div>
+
 
 <h3>How to Identify an Outlier</h3>
 
@@ -453,3 +564,75 @@ First determine whether it is a data-entry or measurement error. If the observat
 </div>
 
 </div>
+
+
+<div class="card">
+
+<h2>Putting It All Together</h2>
+
+<p>
+A complete interpretation of a scatterplot considers <strong>form, direction, strength, and outliers</strong>.
+</p>
+
+<table>
+
+<thead>
+<tr>
+<th>Feature</th>
+<th>Question to Ask</th>
+</tr>
+</thead>
+
+<tbody>
+
+<tr>
+<td><strong>Form</strong></td>
+<td>Is the pattern linear or curvilinear?</td>
+</tr>
+
+<tr>
+<td><strong>Direction</strong></td>
+<td>Is the relationship positive, negative, or does it have no clear direction?</td>
+</tr>
+
+<tr>
+<td><strong>Strength</strong></td>
+<td>Is the pattern strong, moderate, weak, or absent?</td>
+</tr>
+
+<tr>
+<td><strong>Outliers</strong></td>
+<td>Are there any observations that fall far from the overall pattern?</td>
+</tr>
+
+</tbody>
+
+</table>
+
+<div class="highlight">
+<strong>Example:</strong>
+A scatterplot may show a <strong>strong, positive, linear relationship</strong>. This means the points closely follow a straight-line pattern and, as one variable increases, the other variable generally increases as well.
+</div>
+
+</div>
+
+
+<div class="card">
+
+<h2>Key Takeaway</h2>
+
+<div class="highlight">
+When reading a scatterplot, describe the <strong>form</strong>, <strong>direction</strong>, and <strong>strength</strong> of the relationship, and check for <strong>outliers</strong>. Do not confuse the steepness of a pattern with its strength.
+</div>
+
+<p>
+A scatterplot provides a visual way to determine whether two quantitative variables are related and what that relationship looks like. Before calculating a correlation, always examine the scatterplot first.
+</p>
+
+</div>
+
+</div>
+
+</body>
+
+</html>
