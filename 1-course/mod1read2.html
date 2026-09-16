@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Scatterplots</title>
+
+<style>
+
+body{
+    margin:0;
+    font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+    background:#f4f6f9;
+    color:#222222;
+}
+
+.container{
+    max-width:1000px;
+    margin:auto;
+    padding:50px 20px;
+}
+
+h1{
+    text-align:left;
+    color:#666666;
+    font-size:2.75rem;
+    font-weight:200;
+    letter-spacing:.08em;
+    margin-bottom:10px;
+}
+
+.subtitle{
+    text-align:center;
+    color:#6b7280;
+    text-transform:uppercase;
+    letter-spacing:.15em;
+    margin-bottom:40px;
+    font-size:.95rem;
+}
+
+h2,
+h3{
+    color:#0e68b3;
+    position:relative;
+    font-weight:500;
+    display:inline-block;
+}
+
+h2::after,
+h3::after{
+    content:"";
+    position:absolute;
+    left:0;
+    bottom:-4px;
+    width:0;
+    height:2px;
+    background:#0e68b3;
+    transition:.3s;
+}
+
+.card:hover h2::after,
+.card:hover h3::after{
+    width:100%;
+}
+
+p{
+    line-height:1.8;
+}
+
+.card{
+    background:white;
+    border-radius:16px;
+    padding:30px;
+    margin-bottom:25px;
+    border:1px solid #d9e2ec;
+
+    box-shadow:
+      0 3px 10px rgba(0,0,0,.05);
+
+    animation:fadeUp .6s ease forwards;
+    transition:all .25s ease;
+}
+
+.card:hover{
+    transform:translateY(-4px);
+    box-shadow:
+      0 10px 25px rgba(14,104,179,.15);
+}
+
+.highlight{
+    background:#eef6fc;
+    border-left:5px solid #0e68b3;
+    padding:15px;
+    border-radius:8px;
+    margin:20px 0;
+}
+
+ul{
+    padding-left:25px;
+}
+
+li{
+    margin-bottom:8px;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:20px;
+    background:white;
+    overflow:hidden;
+    border-radius:10px;
+}
+
+th{
+    background:#0e68b3;
+    color:white;
+    text-align:left;
+    padding:14px;
+}
+
+td{
+    padding:14px;
+    border-bottom:1px solid #e5e7eb;
+    vertical-align:top;
+}
+
+tr:nth-child(even){
+    background:#f8fafc;
+}
+
+tr:hover{
+    background:#edf6ff;
+}
+
+.scatterplot{
+    text-align:center;
+    margin:25px 0;
+}
+
+.scatterplot img{
+    max-width:100%;
+    height:auto;
+    display:block;
+    margin:0 auto;
+    border-radius:8px;
+}
+
+.scatterplot-grid{
+    display:grid;
+    grid-template-columns:repeat(2, 1fr);
+    gap:25px;
+    margin:25px 0;
+}
+
+.scatterplot-grid .scatterplot{
+    margin:0;
+}
+
+.outlier-grid{
+    display:grid;
+    grid-template-columns:repeat(2, minmax(0, 1fr));
+    gap:25px;
+    margin:25px 0;
+}
+
+.outlier-example{
+    text-align:center;
+}
+
+.outlier-example h3{
+    margin-top:0;
+}
+
+.outlier-example img{
+    width:100%;
+    height:auto;
+    display:block;
+    margin:20px auto 0;
+    border-radius:8px;
+}
+
+hr{
+    border:none;
+    height:1px;
+    background:#d6e4f0;
+    margin:30px 0;
+}
+
+@keyframes fadeUp{
+    from{
+        opacity:0;
+        transform:translateY(20px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+@media (max-width:768px){
+
+    h1{
+        font-size:2rem;
+    }
+
+    .card{
+        padding:20px;
+    }
+
+    th,
+    td{
+        padding:10px;
+        font-size:.95rem;
+    }
+
+    .scatterplot-grid,
+    .outlier-grid{
+        grid-template-columns:1fr;
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+  Below is the AA 5221-compatible HTML structure using your required layout and component styles. Because the source content is extremely long, I converted it into the site's card-based design pattern, preserving headings, definitions, tables, examples, and takeaways.
+
+Insert this inside <body> immediately after the opening body tag from your template:
+
+<div class="container">
+
+    <h1>Scientific Research & the Scientific Method</h1>
+
+    <div class="card">
+        <h2>Overview</h2>
+        <p>
+            This lecture explains how scientists use evidence to answer questions and
+            build reliable knowledge.
+        </p>
+    </div>
+
+    <div class="card">
+        <h2>Scientific Research</h2>
+
+        <div class="highlight">
+            <strong>Definition</strong>
+            <p>
+                <strong>Science</strong> is a systematic way of understanding the world around us.
+            </p>
+        </div>
+
+        <p>
+            Science uses a careful, organized process to explain how the natural world works.
+            The scientific method is a structured process for collecting and evaluating evidence
+            to test ideas and answer questions.
+        </p>
+
+        <p>
+            Science is not about finding absolute truths. Knowledge becomes stronger over time
+            as researchers collect more evidence, improve methods, and refine explanations.
+        </p>
+
+        <p>
+            Although scientific research is one of the most reliable ways of acquiring knowledge,
+            it requires time, resources, and funding and is best suited to questions answerable
+            through observation and measurable evidence.
+        </p>
+
+        <h3>Major Steps in the Scientific Method</h3>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Step</th>
+                    <th>Purpose</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>1. Make an Observation</strong></td>
+                    <td>Identify a phenomenon and develop a research question.</td>
+                </tr>
+                <tr>
+                    <td><strong>2. Review What is Already Known</strong></td>
+                    <td>Examine prior research and existing knowledge.</td>
+                </tr>
+                <tr>
+                    <td><strong>3. Make a Prediction</strong></td>
+                    <td>Develop a testable hypothesis.</td>
+                </tr>
+                <tr>
+                    <td><strong>4. Select a Research Design</strong></td>
+                    <td>Determine how evidence will be collected.</td>
+                </tr>
+                <tr>
+                    <td><strong>5. Analyze Data & Report Results</strong></td>
+                    <td>Evaluate evidence and communicate findings.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="card">
+        <h2>Step 1: Make an Observation</h2>
+
+        <p>
+            The scientific method begins with observation. Every investigation starts when
+            someone notices something interesting, unexpected, or important.
+        </p>
+
+        <p>
+            Observations may come from personal experiences, previous studies, existing data,
+            or information shared by others. These observations help identify patterns,
+            problems, and opportunities for inquiry.
+        </p>
+
+        <div class="highlight">
+            <strong>Example: Isaac Newton</strong>
+            <p>
+                Newton observed an apple falling from a tree and asked:
+                <em>Why do objects fall downward instead of upward?</em>
+                This question contributed to theories of gravity and motion.
+            </p>
+        </div>
+
+        <div class="highlight">
+            <strong>Definition: Population</strong>
+            <p>
+                A <strong>population</strong> is the entire group of individuals,
+                objects, or events that a researcher wishes to study.
+            </p>
+
+            <p>
+                Example: If studying Tesla owners in the United States, the population
+                includes all Tesla owners in the country.
+            </p>
+        </div>
+
+        <div class="highlight">
+            <strong>Key Takeaway</strong>
+            <p>
+                Scientific research begins with curiosity. Researchers observe the world,
+                identify a question, and seek evidence to answer it.
+            </p>
+        </div>
+    </div>
+
+    <div class="card">
+        <h2>Step 2: Review What Is Already Known</h2>
+
+        <p>
+            Before conducting new research, scientists examine existing knowledge through
+            a <strong>literature review</strong>.
+        </p>
+
+        <p>
+            Literature includes journal articles, books, scientific reports, and other
+            credible sources relevant to a research topic.
+        </p>
+
+        <div class="highlight">
+            <strong>Definition: Literature Review</strong>
+            <p>
+                A literature review is a systematic examination of existing research that
+                summarizes current knowledge, identifies gaps, and explains how new studies
+                contribute to a field.
+            </p>
+        </div>
+
+        <h3>A Literature Review Should</h3>
+
+        <ul>
+            <li>Summarize what is currently known.</li>
+            <li>Identify unanswered questions and research gaps.</li>
+            <li>Identify relevant theories.</li>
+            <li>Explain how new research contributes to knowledge.</li>
+        </ul>
+
+        <div class="highlight">
+            <strong>Research in Organizations</strong>
+            <p>
+                Organizations often review internal data, employee feedback, customer
+                insights, industry reports, expert opinions, and competitor information
+                before making decisions.
+            </p>
+        </div>
+
+        <div class="highlight">
+            <strong>Key Takeaway</strong>
+            <p>
+                Scientists begin by examining existing evidence to understand what is
+                known and what questions still require investigation.
+            </p>
+        </div>
+    </div>
+
+    <div class="card">
+        <h2>Step 3: Make a Prediction</h2>
+
+        <p>
+            After identifying a research question and reviewing the literature,
+            researchers develop a <strong>hypothesis</strong>.
+        </p>
+
+        <div class="highlight">
+            <strong>Definition: Hypothesis</strong>
+            <p>
+                A hypothesis is a testable prediction about the relationship between
+                variables.
+            </p>
+        </div>
+
+        <div class="highlight">
+            <strong>Example: Exercise and Blood Pressure</strong>
+            <p><em>People who exercise more have lower blood pressure.</em></p>
+
+            <p>
+                Exercise and blood pressure can both be measured, making this hypothesis
+                testable.
+            </p>
+        </div>
+
+        <h3>Variables in a Hypothesis</h3>
+
+        <ul>
+            <li><strong>Exercise:</strong> Amount of physical activity.</li>
+            <li><strong>Blood Pressure:</strong> Indicator of cardiovascular health.</li>
+        </ul>
+
+        <h3>Null and Alternative Hypotheses</h3>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Hypothesis Type</th>
+                    <th>Meaning</th>
+                    <th>Example</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Null (H₀)</strong></td>
+                    <td>No relationship exists.</td>
+                    <td>Exercise is not related to blood pressure.</td>
+                </tr>
+                <tr>
+                    <td><strong>Alternative (H₁)</strong></td>
+                    <td>A relationship exists.</td>
+                    <td>More exercise is associated with lower blood pressure.</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="highlight">
+            <strong>Key Takeaway</strong>
+            <p>
+                A hypothesis converts a research question into a testable prediction.
+            </p>
+        </div>
+    </div>
+
+    <div class="card">
+        <h2>Hypotheses vs. Facts, Laws, and Theories</h2>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Term</th>
+                    <th>Definition</th>
+                    <th>Example</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr>
+                    <td><strong>Facts</strong></td>
+                    <td>Objective observations describing what happens.</td>
+                    <td>Water boils at 100°C at sea level.</td>
+                </tr>
+
+                <tr>
+                    <td><strong>Laws</strong></td>
+                    <td>Describe consistent patterns in nature.</td>
+                    <td>Newton's Laws; Laws of Thermodynamics.</td>
+                </tr>
+
+                <tr>
+                    <td><strong>Hypotheses</strong></td>
+                    <td>Testable predictions.</td>
+                    <td>Exercise is related to blood pressure.</td>
+                </tr>
+
+                <tr>
+                    <td><strong>Theories</strong></td>
+                    <td>Evidence-based explanations for why phenomena occur.</td>
+                    <td>Relativity, Natural Selection, Theory of Planned Behavior.</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="highlight">
+            <strong>Important Note</strong>
+            <p>
+                A scientific theory is not "just a theory." It represents one of the
+                strongest forms of scientific explanation and is supported by extensive
+                evidence.
+            </p>
+        </div>
+    </div>
+
+    <div class="card">
+        <h2>Step 4: Select the Research Study Design</h2>
+
+        <p>
+            Researchers determine how they will collect evidence to test their hypothesis.
+        </p>
+
+        <div class="highlight">
+            <strong>Definition: Sample</strong>
+            <p>
+                A sample is a smaller group selected from a population that researchers
+                can realistically access and study.
+            </p>
+        </div>
+
+        <div class="highlight">
+            <strong>Example: Tesla Owners</strong>
+            <p>
+                Rather than studying all Tesla owners in the United States, researchers
+                may collect data from a sample of 100 owners.
+            </p>
+        </div>
+
+        <h3>Independent and Dependent Variables</h3>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Variable Type</th>
+                    <th>Definition</th>
+                    <th>Example</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr>
+                    <td><strong>Independent Variable</strong></td>
+                    <td>Variable expected to influence outcomes.</td>
+                    <td>Exercise level.</td>
+                </tr>
+
+                <tr>
+                    <td><strong>Dependent Variable</strong></td>
+                    <td>Outcome being measured.</td>
+                    <td>Blood pressure.</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>Additional Variables</h3>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Type</th>
+                    <th>Definition</th>
+                    <th>Example</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr>
+                    <td><strong>Mediator</strong></td>
+                    <td>Explains how or why an effect occurs.</td>
+                    <td>Endorphins may explain exercise effects.</td>
+                </tr>
+
+                <tr>
+                    <td><strong>Moderator</strong></td>
+                    <td>Changes strength or direction of a relationship.</td>
+                    <td>Type of exercise.</td>
+                </tr>
+
+                <tr>
+                    <td><strong>Confound</strong></td>
+                    <td>Uncontrolled factor producing misleading conclusions.</td>
+                    <td>Diet may influence blood pressure.</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="highlight">
+            <strong>Key Takeaway</strong>
+            <p>
+                Researchers must carefully plan study design, select samples,
+                and identify variables before collecting data.
+            </p>
+        </div>
+    </div>
+
+    <div class="card">
+        <h2>Step 5: Analyze the Data & Report the Results</h2>
+
+        <p>
+            After collecting data, researchers use statistical methods to determine
+            whether evidence supports the hypothesis.
+        </p>
+
+        <div class="highlight">
+            <strong>Definition: Statistical Analysis</strong>
+            <p>
+                Statistical analysis uses mathematical methods to organize,
+                summarize, and evaluate data.
+            </p>
+        </div>
+
+        <h3>The Importance of Sample Representation</h3>
+
+        <div class="highlight">
+            <strong>Example: Sampling Bias</strong>
+            <p>
+                If a population is evenly divided between males and females but a
+                sample contains 80% males and 20% females, results may be biased.
+            </p>
+        </div>
+
+        <h3>Why Sampling Matters</h3>
+
+        <ul>
+            <li>Representative samples improve accuracy.</li>
+            <li>Biased samples produce misleading results.</li>
+            <li>Larger and more diverse samples improve confidence.</li>
+        </ul>
+
+        <h3>Generalizability</h3>
+
+        <p>
+            Generalizability refers to the extent to which findings can be applied
+            beyond the sample studied.
+        </p>
+
+        <div class="highlight">
+            <strong>Questions to Consider</strong>
+            <ul>
+                <li>Who participated in the study?</li>
+                <li>Were important groups excluded?</li>
+                <li>How large was the sample?</li>
+                <li>Does the sample resemble the population?</li>
+            </ul>
+        </div>
+
+        <div class="highlight">
+            <strong>Key Takeaway</strong>
+            <p>
+                Good research depends on analyzing evidence appropriately and
+                collecting data from representative samples that support meaningful
+                conclusions.
+            </p>
+        </div>
+
+    </div>
+
+</div>
