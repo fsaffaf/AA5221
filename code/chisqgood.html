@@ -715,28 +715,23 @@ it is helpful to save it as an object that can be reused later in your analysis.
 </p>
 
 <p>
-Add <code>observed &lt;-</code> before the <code>table()</code> function.
-</p>
+Add the <b>observed <-</b> before the <b>table</b> function to name the object. <br>
+The arrow tells RStudio to name the object, and the word it points to is the name you give it. <br>
+Here, we have intentionally named the table observed, because we will use it in the chi-squared code later.
+<br>
+By writing the word <b>observed</b> again on a new line, we are "calling" the object and asking RStudio to show it to us in the Console pane.
+<div class="highlight highlight-orange">
 
-<div class="highlight highlight-blue">
-
-<pre><code>observed &lt;- table(data2026$political)</code></pre>
+<pre><code><b>observed &lt;-</b> table(dataset$variable)
+observed
+</code></pre>
 
 </div>
 
-<p>
-The object name <code>observed</code> will be used throughout the remainder
-of the assignment.
-</p>
 
 <hr>
 
-<h3>Display the Frequency Table</h3>
-
-<p>
-To view the frequency table, place <code>observed</code> on a new line
-and run both lines of code.
-</p>
+<h3>Example</h3>
 
 <div class="highlight highlight-blue">
 
@@ -838,7 +833,7 @@ across categories.
 Copy and paste the code below into your R Script.
 </p>
 
-<div class="highlight highlight-blue">
+<div class="highlight highlight-orange">
 
 <pre><code>barplot(observed,
 main = "Variable Name",
@@ -849,9 +844,9 @@ col = rainbow(length(observed)))</code></pre>
 </div>
 
 <p>
-Replace <code>"Variable Name"</code> in both
-<code>main =</code> and
-<code>xlab =</code>
+Replace <b>"Variable Name"</b> in both
+<b>main =</b> and
+<b>xlab =</b>
 with the name of the variable you are analyzing.
 </p>
 
@@ -898,7 +893,7 @@ Text labels may contain spaces.
 
 <hr>
 
-<h3>Example Using Political Party Data</h3>
+<h3>Example</h3>
 
 <div class="highlight highlight-blue">
 
@@ -923,19 +918,6 @@ represent categories with fewer observations.
 <p>
 The bar chart provides a quick visual comparison of the category counts before
 conducting the Chi-Square test.
-</p>
-
-<div class="highlight highlight-blue">
-
-<p>
-<strong>Example Interpretation:</strong>
-</p>
-
-<p>
-If the Democrat bar is much taller than the Republican bar,
-the frequency table contains more Democrats than Republicans.
-The Chi-Square Goodness-of-Fit test will determine whether those differences
-are statistically significant.
 </p>
 
 </div>
