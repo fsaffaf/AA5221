@@ -20,8 +20,6 @@ body {
     padding: 50px 20px;
 }
 
-/* Main Title */
-
 h1 {
     text-align: left;
     color: #666666;
@@ -40,24 +38,21 @@ h1 {
     font-size: .95rem;
 }
 
-/* Headings */
-
 h2,
 h3 {
     color: #0e68b3;
     font-weight: 500;
+    display: inline-block;
 }
 
 p {
     line-height: 1.8;
 }
 
-/* Main Cards */
-
 .card {
     background: white;
-    border-radius: 14px;
-    margin-bottom: 20px;
+    border-radius: 16px;
+    margin-bottom: 25px;
     border: 1px solid #d9e2ec;
     box-shadow: 0 3px 10px rgba(0, 0, 0, .05);
     animation: fadeUp .6s ease forwards;
@@ -66,23 +61,21 @@ p {
 }
 
 .card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 20px rgba(14, 104, 179, .12);
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px rgba(14, 104, 179, .15);
 }
 
-/* Blue Collapsible Headers */
+/* Collapsible Section Headers */
 
 details.card > summary {
-    padding: 20px 30px;
+    padding: 22px 30px;
     cursor: pointer;
-    background: #0e68b3;
-    color: white;
-    font-size: 1.25rem;
+    color: #0e68b3;
+    font-size: 1.35rem;
     font-weight: 600;
     list-style: none;
     position: relative;
     user-select: none;
-    transition: background .25s ease;
 }
 
 details.card > summary::-webkit-details-marker {
@@ -95,25 +88,22 @@ details.card > summary::after {
     right: 30px;
     top: 50%;
     transform: translateY(-50%);
-    font-size: 1.5rem;
+    font-size: 1.6rem;
     font-weight: 400;
     line-height: 1;
-    color: white;
 }
 
 details.card[open] > summary::after {
     content: "−";
 }
 
-details.card > summary:hover {
-    background: #2b6cb0;
-}
-
 details.card[open] > summary {
     border-bottom: 1px solid #d9e2ec;
 }
 
-/* Card Content */
+details.card > summary:hover {
+    background: #f8fbfe;
+}
 
 .details-content {
     padding: 5px 30px 30px;
@@ -237,8 +227,6 @@ code {
 .test-path-content {
     padding: 10px 20px 20px;
 }
-
-/* Collapsible Steps Inside Test Paths */
 
 .test-path-content details {
     border-bottom: 1px solid #e5e7eb;
