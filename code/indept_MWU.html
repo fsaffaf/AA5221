@@ -189,10 +189,6 @@ code {
     font-family: Consolas, Monaco, "Courier New", monospace;
 }
 
-.highlight pre {
-    background: transparent;
-}
-
 .highlight {
     padding: 15px 20px;
     border-radius: 10px;
@@ -282,6 +278,8 @@ code {
 .test-paths .test-path-content details[open] summary::after {
     content: "−";
 }
+
+/* Step Labels */
 
 .step-label {
     display: inline-block;
@@ -448,33 +446,21 @@ a.button:hover {
         </details>
 
 
+        <!-- STEP 1 -->
 
         <details>
 
-            
-                <summary>
-                    RScript Code Template
-                </summary>
-
-        </details>
-
-
-
-        <details>
-
-            
-                <summary>
-                    <span class="step-label">Step 1</span><br>
-                    Install and Open the Packages
-                </summary>
-
+            <summary>
+                <span class="step-label">Step 1</span><br>
+                Install the Required Packages
+            </summary>
 
             <div class="path-step-content">
 
                 <h3>Directions</h3>
 
                 <ul>
-                    <li>Install the packages you need. What is a package?</li>
+                    <li>Install the packages you need.</li>
                     <li>R Packages only need to be installed once.</li>
                     <li>Do <strong>NOT</strong> run the install code more than once after successful installation as this can lead to errors.</li>
                 </ul>
@@ -482,7 +468,10 @@ a.button:hover {
                 <div class="highlight-orange">
 
                     <strong>Important:</strong>
-                    R packages only need to be installed once. After a package has been successfully installed, do not run the <code>install.packages()</code> code again.
+
+                    <p>
+                        R packages only need to be installed once. After a package has been successfully installed, do not run the <code>install.packages()</code> code again.
+                    </p>
 
                 </div>
 
@@ -536,6 +525,19 @@ install.packages("effsize")</code></pre>
 
             </div>
 
+        </details>
+
+
+        <!-- STEP 2 -->
+
+        <details>
+
+            <summary>
+                <span class="step-label">Step 2</span><br>
+                Open the Installed Packages
+            </summary>
+
+            <div class="path-step-content">
 
                 <h3>Directions</h3>
 
@@ -620,14 +622,10 @@ library(effsize)</code></pre>
 
         <details>
 
-            
-                <summary>
-                    <span class="step-label">Step 2</span><br>
-                    Install and Open the Packages
-                </summary>
-            
-
-            <summary>Import and Name the Dataset</summary>
+            <summary>
+                <span class="step-label">Step 3</span><br>
+                Import and Name the Dataset
+            </summary>
 
             <div class="path-step-content">
 
@@ -682,14 +680,12 @@ library(effsize)</code></pre>
 
         <!-- STEP 4 -->
 
-
         <details>
 
-            
-                <summary>
-                    <span class="step-label">Step 3</span><br>
-                    Calculate the Descriptive Statistics
-                </summary>
+            <summary>
+                <span class="step-label">Step 4</span><br>
+                Calculate the Descriptive Statistics
+            </summary>
 
             <div class="path-step-content">
 
@@ -704,34 +700,34 @@ library(effsize)</code></pre>
 
                 <div class="highlight-blue">
                     <pre><code>DatasetName %&gt;%
-  group_by(GroupVariable) %&gt;%
-  summarise(
-    Mean = mean(OutcomeVariable, na.rm = TRUE),
-    Median = median(OutcomeVariable, na.rm = TRUE),
-    SD = sd(OutcomeVariable, na.rm = TRUE),
-    N = n()
-  )</code></pre>
+    group_by(GroupVariable) %&gt;%
+    summarise(
+        Mean = mean(OutcomeVariable, na.rm = TRUE),
+        Median = median(OutcomeVariable, na.rm = TRUE),
+        SD = sd(OutcomeVariable, na.rm = TRUE),
+        N = n()
+    )</code></pre>
                 </div>
 
                 <h3>Example</h3>
 
                 <div class="highlight-blue">
                     <pre><code>DatasetZ %&gt;%
-  group_by(Gender) %&gt;%
-  summarise(
-    Mean = mean(ExamScores, na.rm = TRUE),
-    Median = median(ExamScores, na.rm = TRUE),
-    SD = sd(ExamScores, na.rm = TRUE),
-    N = n()
-  )</code></pre>
+    group_by(Gender) %&gt;%
+    summarise(
+        Mean = mean(ExamScores, na.rm = TRUE),
+        Median = median(ExamScores, na.rm = TRUE),
+        SD = sd(ExamScores, na.rm = TRUE),
+        N = n()
+    )</code></pre>
                 </div>
 
                 <h3>Example Output</h3>
 
                 <div class="highlight-blue">
                     <pre><code># A tibble: 2 × 5
-  Gender Mean Median SD     N
-  &lt;chr&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt;
+Gender Mean Median SD     N
+&lt;chr&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt;
 1 Female 78.7 79.3  7.68   50
 2 Male   72.8 79.5  10.1   50</code></pre>
                 </div>
@@ -743,14 +739,12 @@ library(effsize)</code></pre>
 
         <!-- STEP 5 -->
 
-
         <details>
 
-            
-                <summary>
-                    <span class="step-label">Step 4</span><br>
-Create & Interpret Histograms (Normality Check #1)
-                </summary>
+            <summary>
+                <span class="step-label">Step 5</span><br>
+                Create Histograms (Normality Check #1)
+            </summary>
 
             <div class="path-step-content">
 
@@ -828,6 +822,15 @@ hist(DatasetZ$ExamScores[DatasetZ$Gender == "Male"],
         </details>
 
 
+        <!-- STEP 6 -->
+
+        <details>
+
+            <summary>
+                <span class="step-label">Step 6</span><br>
+                Interpret the Histograms
+            </summary>
+
             <div class="path-step-content">
 
                 <h3>Directions</h3>
@@ -891,16 +894,12 @@ hist(DatasetZ$ExamScores[DatasetZ$Gender == "Male"],
 
         <!-- STEP 7 -->
 
-
         <details>
 
-            
-                <summary>
-                    <span class="step-label">Step 6</span><br>
-                    Create & Inspect Boxplots (Normality Check #2)
-                </summary>
-            
-            <details>
+            <summary>
+                <span class="step-label">Step 7</span><br>
+                Create Boxplots for Outliers (Normality Check #2)
+            </summary>
 
             <div class="path-step-content">
 
@@ -914,18 +913,18 @@ hist(DatasetZ$ExamScores[DatasetZ$Gender == "Male"],
 
                 <div class="highlight-blue">
                     <pre><code>ggboxplot(DatasetName, x = "GroupVariable", y = "OutcomeVariable",
-         color = "GroupVariable",
-         palette = "jco",
-         add = "jitter")</code></pre>
+    color = "GroupVariable",
+    palette = "jco",
+    add = "jitter")</code></pre>
                 </div>
 
                 <h3>Example</h3>
 
                 <div class="highlight-blue">
                     <pre><code>ggboxplot(DatasetZ, x = "Gender", y = "ExamScores",
-         color = "Gender",
-         palette = "jco",
-         add = "jitter")</code></pre>
+    color = "Gender",
+    palette = "jco",
+    add = "jitter")</code></pre>
                 </div>
 
                 <h3>Example Output</h3>
@@ -939,6 +938,20 @@ hist(DatasetZ$ExamScores[DatasetZ$Gender == "Male"],
                 </div>
 
             </div>
+
+        </details>
+
+
+        <!-- STEP 8 -->
+
+        <details>
+
+            <summary>
+                <span class="step-label">Step 8</span><br>
+                Interpret the Boxplots
+            </summary>
+
+            <div class="path-step-content">
 
                 <h3>Directions</h3>
 
@@ -1032,14 +1045,12 @@ hist(DatasetZ$ExamScores[DatasetZ$Gender == "Male"],
 
         <!-- STEP 9 -->
 
-
         <details>
 
-            
-                <summary>
-                    <span class="step-label">Step 8</span><br>
-                    Conduct & Interpret Shapiro-Wilk Test (Normality Check #3)
-                </summary>
+            <summary>
+                <span class="step-label">Step 9</span><br>
+                Conduct the Shapiro-Wilk Test (Normality Check #3)
+            </summary>
 
             <div class="path-step-content">
 
@@ -1075,6 +1086,19 @@ W = 0.89172, p-value = 0.0611</code></pre>
 
             </div>
 
+        </details>
+
+
+        <!-- STEP 10 -->
+
+        <details>
+
+            <summary>
+                <span class="step-label">Step 10</span><br>
+                Interpret the Shapiro-Wilk Test
+            </summary>
+
+            <div class="path-step-content">
 
                 <h3>Directions</h3>
 
@@ -1142,15 +1166,12 @@ W = 0.89172, p-value = 0.0611</code></pre>
 
         <!-- STEP 11 -->
 
-
         <details>
 
-            
-                <summary>
-                    <span class="step-label">Step 10</span><br>
-                    Determine Overall Normality & Select the Correct Test
-                </summary>
-            
+            <summary>
+                <span class="step-label">Step 11</span><br>
+                Determine Overall Normality &amp; Select the Correct Test
+            </summary>
 
             <div class="path-step-content">
 
@@ -1484,10 +1505,6 @@ print(cohens_d_result)</code></pre>
                     <div class="highlight-orange">
 
                         <strong>Only report effect size when the test is statistically significant (p &lt; .05).</strong>
-
-                        <p>
-                            Correlation is special because the effect size is automatically provided. The <strong>r-value</strong> is the effect size.
-                        </p>
 
                         <ul>
                             <li>± 0.00 to 0.19 = no difference between groups</li>
