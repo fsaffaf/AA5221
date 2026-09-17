@@ -453,37 +453,21 @@ Below is an example of what your code will look like. Your code will be differen
 
 <pre><code>
 library(readxl)
-
-data2026 <- read_excel(
-"C:/Users/John/OneDrive/Documents/AA5221/Datasets/political_data.xlsx"
-)
-
-observed <- table(data2026$political)
-observed
-
-barplot(observed,
-main = "Political Party",
-xlab = "Political Party",
-ylab = "Frequency",
-col = rainbow(length(observed)))
-
-expected <- c(.40, .20, .40)
-
-chi_result <- chisq.test(
-x = observed,
-p = expected
-)
-
+library(rcompanion)
+data2026 <- read_excel("C:/Users/John/OneDrive/Documents/AA5221/Datasets/political_data.xlsx")
+polit_table <- table(data2026$gender, data2026$voting)
+polit_table
+barplot(polit_table,
+beside = TRUE,
+col = rainbow(nrow(polit_table)),
+legend = rownames(polit_table))
+chi_result <- chisq.test(polit_table)
 chi_result
-
-w <- sqrt(
-as.numeric(chi_result$statistic) /
-sum(observed)
-)
-
-w
-
-# A Chi-Square Goodness-of-Fit test was conducted...
+cramer_v <- rcompanion::cramerV(polit_table)
+cramer_v
+# A Chi-Square Test of Independence was conducted to determine if there was an association between gender (male or female) and voting behavior (yes or no).
+# The results showed that there was an association between the two variables, χ²(1) = 7.84, p = .005.
+# The association was moderate (Cramer's V = .32).
 
 </code></pre>
 
