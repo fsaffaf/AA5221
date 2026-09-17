@@ -115,15 +115,7 @@ details.card > summary:hover {
     margin-top: 25px;
 }
 
-/* Highlight Boxes */
 
-.highlight {
-    background: #eef6fc;
-    border-left: 5px solid #0e68b3;
-    padding: 15px;
-    border-radius: 8px;
-    margin: 20px 0;
-}
 
 /* Lists */
 
@@ -230,6 +222,23 @@ code {
 
 .highlight pre {
     background: transparent;
+}
+
+.highlight {
+    padding: 15px 20px;
+    border-radius: 10px;
+    margin: 20px 0;
+    line-height: 1.6;
+}
+
+.highlight-blue {
+    background: #f0f7fc;
+    border-left: 5px solid #0e68b3;
+}
+
+.highlight-orange {
+    background: #fff4e6;
+    border-left: 5px solid #e67e22;
 }
 
 /* Horizontal Rules */
@@ -504,10 +513,11 @@ The <strong>readxl</strong> package allows R to import Excel files.
 <h3>Install readxl</h3>
 
 <p>
-Run the following code once:
+Copy-and-paste the following code into your RScript file. <br>
+    Run the code once.
 </p>
 
-<div class="highlight">
+<div class="highlight highlight-orange">
 
 <pre><code>install.packages("readxl")</code></pre>
 
@@ -525,10 +535,11 @@ Packages only need to be installed once.
 <h3>Load readxl</h3>
 
 <p>
-Run the code below each time you start a new R session:
+Copy-and-paste the code below into your RScript. <br>
+Keep this line of code in your RScript.
 </p>
 
-<div class="highlight">
+<div class="highlight highlight-orange">
 
 <pre><code>library(readxl)</code></pre>
 
@@ -641,12 +652,12 @@ of a categorical variable. The frequency table will provide the observed
 frequencies used in the Chi-Square Goodness-of-Fit test.
 </p>
 
-<h3>Step 1: Create the Frequency Table</h3>
+<h3>Create the Frequency Table</h3>
 
 <ol>
 
 <li>
-Copy the template below into your R Script.
+Copy-and-paste the code template below into your R Script.
 </li>
 
 <li>
@@ -670,7 +681,7 @@ The <code>table()</code> function counts the number of observations in each cate
 
 <h3>Code Template</h3>
 
-<div class="highlight">
+<div class="highlight highlight-orange">
 
 <pre><code>table(dataset$variable)</code></pre>
 
