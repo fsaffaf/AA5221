@@ -454,19 +454,27 @@ Below is an example of what your code will look like. Your code will be differen
 <pre><code>
 library(readxl)
 library(rcompanion)
+    
 data2026 <- read_excel("C:/Users/John/OneDrive/Documents/AA5221/Datasets/political_data.xlsx")
+    
 polit_table <- table(data2026$gender, data2026$voting)
 polit_table
+    
 barplot(polit_table,
 beside = TRUE,
 col = rainbow(nrow(polit_table)),
 legend = rownames(polit_table))
+    
 chi_result <- chisq.test(polit_table)
 chi_result
+    
 cramer_v <- rcompanion::cramerV(polit_table)
 cramer_v
-# A Chi-Square Test of Independence was conducted to determine if there was an association between gender (male or female) and voting behavior (yes or no).
-# The results showed that there was an association between the two variables, χ²(1) = 7.84, p = .005.
+    
+# A Chi-Square Test of Independence was conducted to determine if there was <br>
+    an association between gender (male or female) and voting behavior (yes or no).
+# The results showed that there was an association between the two variables, <br>
+    χ²(1) = 7.84, p = .005.
 # The association was moderate (Cramer's V = .32).
 
 </code></pre>
