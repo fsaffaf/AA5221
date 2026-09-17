@@ -8,320 +8,306 @@
 
 <style>
 
-body{
-    margin:0;
-    font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-    background:#f4f6f9;
-    color:#222222;
+body {
+    margin: 0;
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    background: #f4f6f9;
+    color: #222222;
 }
 
-.container{
-    max-width:1000px;
-    margin:auto;
-    padding:50px 20px;
+.container {
+    max-width: 1000px;
+    margin: auto;
+    padding: 50px 20px;
 }
 
-h1{
-    text-align:left;
-    color:#666666;
-    font-size:2.75rem;
-    font-weight:200;
-    letter-spacing:.08em;
-    margin-bottom:10px;
+h1 {
+    text-align: left;
+    color: #666666;
+    font-size: 2.75rem;
+    font-weight: 200;
+    letter-spacing: .08em;
+    margin-bottom: 10px;
 }
 
-.subtitle{
-    text-align:center;
-    color:#6b7280;
-    text-transform:uppercase;
-    letter-spacing:.15em;
-    margin-bottom:40px;
-    font-size:.95rem;
-}
-
-h2::after,
-h3::after{
-    content:"";
-    position:absolute;
-    left:0;
-    bottom:-4px;
-    width:0;
-    height:2px;
-    background:#0e68b3;
-    transition:.3s;
+.subtitle {
+    text-align: center;
+    color: #6b7280;
+    text-transform: uppercase;
+    letter-spacing: .15em;
+    margin-bottom: 40px;
+    font-size: .95rem;
 }
 
 h2,
-h3{
-    color:#0e68b3;
-    font-weight:500;
-    display:inline-block;
-}
-    
-p{
-    line-height:1.8;
+h3 {
+    color: #0e68b3;
+    font-weight: 500;
+    display: inline-block;
 }
 
-.card{
-    background:white;
-    border-radius:16px;
-    margin-bottom:25px;
-    border:1px solid #d9e2ec;
-    box-shadow:0 3px 10px rgba(0,0,0,.05);
-    animation:fadeUp .6s ease forwards;
-    transition:all .25s ease;
-    overflow:hidden;
+p {
+    line-height: 1.8;
 }
 
-.card:hover{
-    transform:translateY(-4px);
-    box-shadow:0 10px 25px rgba(14,104,179,.15);
+.card {
+    background: white;
+    border-radius: 16px;
+    margin-bottom: 25px;
+    border: 1px solid #d9e2ec;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, .05);
+    animation: fadeUp .6s ease forwards;
+    transition: all .25s ease;
+    overflow: hidden;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px rgba(14, 104, 179, .15);
 }
 
 /* Collapsible Section Headers */
 
-details.card > summary{
-    padding:22px 30px;
-    cursor:pointer;
-    color:#0e68b3;
-    font-size:1.35rem;
-    font-weight:600;
-    list-style:none;
-    position:relative;
-    user-select:none;
+details.card > summary {
+    padding: 22px 30px;
+    cursor: pointer;
+    color: #0e68b3;
+    font-size: 1.35rem;
+    font-weight: 600;
+    list-style: none;
+    position: relative;
+    user-select: none;
 }
 
-details.card > summary::-webkit-details-marker{
-    display:none;
+details.card > summary::-webkit-details-marker {
+    display: none;
 }
 
-details.card > summary::after{
-    content:"+";
-    position:absolute;
-    right:30px;
-    top:50%;
-    transform:translateY(-50%);
-    font-size:1.6rem;
-    font-weight:400;
-    line-height:1;
+details.card > summary::after {
+    content: "+";
+    position: absolute;
+    right: 30px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.6rem;
+    font-weight: 400;
+    line-height: 1;
 }
 
-details.card[open] > summary::after{
-    content:"−";
+details.card[open] > summary::after {
+    content: "−";
 }
 
-details.card[open] > summary{
-    border-bottom:1px solid #d9e2ec;
+details.card[open] > summary {
+    border-bottom: 1px solid #d9e2ec;
 }
 
-details.card > summary:hover{
-    background:#f8fbfe;
+details.card > summary:hover {
+    background: #f8fbfe;
 }
 
-.details-content{
-    padding:5px 30px 30px;
+.details-content {
+    padding: 5px 30px 30px;
 }
-
-/* Prevent headings inside collapsible content from behaving like section headers */
 
 .details-content h2,
-.details-content h3{
-    margin-top:25px;
+.details-content h3 {
+    margin-top: 25px;
 }
 
 /* Highlight Boxes */
 
-.highlight{
-    background:#eef6fc;
-    border-left:5px solid #0e68b3;
-    padding:15px;
-    border-radius:8px;
-    margin:20px 0;
+.highlight {
+    background: #eef6fc;
+    border-left: 5px solid #0e68b3;
+    padding: 15px;
+    border-radius: 8px;
+    margin: 20px 0;
 }
 
 /* Lists */
 
-ul{
-    padding-left:25px;
+ul {
+    padding-left: 25px;
 }
 
-li{
-    margin-bottom:8px;
+li {
+    margin-bottom: 8px;
 }
 
 /* Tables */
 
-table{
-    width:100%;
-    border-collapse:collapse;
-    margin-top:20px;
-    background:white;
-    overflow:hidden;
-    border-radius:10px;
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background: white;
+    overflow: hidden;
+    border-radius: 10px;
 }
 
-th{
-    background:#0e68b3;
-    color:white;
-    text-align:left;
-    padding:14px;
+th {
+    background: #0e68b3;
+    color: white;
+    text-align: left;
+    padding: 14px;
 }
 
-td{
-    padding:14px;
-    border-bottom:1px solid #e5e7eb;
-    vertical-align:top;
+td {
+    padding: 14px;
+    border-bottom: 1px solid #e5e7eb;
+    vertical-align: top;
 }
 
-tr:nth-child(even){
-    background:#f8fafc;
+tr:nth-child(even) {
+    background: #f8fafc;
 }
 
-tr:hover{
-    background:#edf6ff;
+tr:hover {
+    background: #edf6ff;
 }
 
 /* Scatterplots */
 
-.scatterplot{
-    text-align:center;
-    margin:25px 0;
+.scatterplot {
+    text-align: center;
+    margin: 25px 0;
 }
 
-.scatterplot img{
-    max-width:100%;
-    height:auto;
-    display:block;
-    margin:0 auto;
-    border-radius:8px;
+.scatterplot img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    border-radius: 8px;
 }
 
-.scatterplot-grid{
-    display:grid;
-    grid-template-columns:repeat(2, 1fr);
-    gap:25px;
-    margin:25px 0;
+.scatterplot-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+    margin: 25px 0;
 }
 
-.scatterplot-grid .scatterplot{
-    margin:0;
+.scatterplot-grid .scatterplot {
+    margin: 0;
 }
 
-.outlier-grid{
-    display:grid;
-    grid-template-columns:repeat(2, minmax(0, 1fr));
-    gap:25px;
-    margin:25px 0;
+.outlier-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 25px;
+    margin: 25px 0;
 }
 
-.outlier-example{
-    text-align:center;
+.outlier-example {
+    text-align: center;
 }
 
-.outlier-example h3{
-    margin-top:0;
+.outlier-example h3 {
+    margin-top: 0;
 }
 
-.outlier-example img{
-    width:100%;
-    height:auto;
-    display:block;
-    margin:20px auto 0;
-    border-radius:8px;
+.outlier-example img {
+    width: 100%;
+    height: auto;
+    display: block;
+    margin: 20px auto 0;
+    border-radius: 8px;
 }
 
 /* Code */
 
-pre{
-    white-space:pre-wrap;
-    overflow-x:auto;
-    margin:0;
+pre {
+    white-space: pre-wrap;
+    overflow-x: auto;
+    margin: 0;
 }
 
-code{
-    font-family:Consolas,Monaco,"Courier New",monospace;
+code {
+    font-family: Consolas, Monaco, "Courier New", monospace;
 }
 
-.highlight pre{
-    background:transparent;
+.highlight pre {
+    background: transparent;
 }
 
 /* Horizontal Rules */
 
-hr{
-    border:none;
-    height:1px;
-    background:#d6e4f0;
-    margin:30px 0;
+hr {
+    border: none;
+    height: 1px;
+    background: #d6e4f0;
+    margin: 30px 0;
 }
 
 /* Links */
 
-a{
-    color:#0e68b3;
+a {
+    color: #0e68b3;
 }
 
-a.button{
-    display:inline-block;
-    background:#0e68b3;
-    color:white;
-    padding:14px 28px;
-    border-radius:999px;
-    text-decoration:none;
-    font-weight:600;
-    transition:.3s;
+a.button {
+    display: inline-block;
+    background: #0e68b3;
+    color: white;
+    padding: 14px 28px;
+    border-radius: 999px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: .3s;
 }
 
-a.button:hover{
-    background:#2b6cb0;
-    transform:translateY(-2px);
+a.button:hover {
+    background: #2b6cb0;
+    transform: translateY(-2px);
 }
 
 /* Animation */
 
-@keyframes fadeUp{
-    from{
-        opacity:0;
-        transform:translateY(20px);
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
     }
 
-    to{
-        opacity:1;
-        transform:translateY(0);
+    to {
+        opacity: 1;
+        transform: translateY(0);
     }
 }
 
 /* Mobile */
 
-@media (max-width:768px){
+@media (max-width: 768px) {
 
-    h1{
-        font-size:2rem;
+    h1 {
+        font-size: 2rem;
     }
 
-    details.card > summary{
-        padding:20px;
-        padding-right:50px;
-        font-size:1.15rem;
+    details.card > summary {
+        padding: 20px;
+        padding-right: 50px;
+        font-size: 1.15rem;
     }
 
-    details.card > summary::after{
-        right:20px;
+    details.card > summary::after {
+        right: 20px;
     }
 
-    .details-content{
-        padding:5px 20px 25px;
+    .details-content {
+        padding: 5px 20px 25px;
     }
 
     th,
-    td{
-        padding:10px;
-        font-size:.95rem;
+    td {
+        padding: 10px;
+        font-size: .95rem;
     }
 
     .scatterplot-grid,
-    .outlier-grid{
-        grid-template-columns:1fr;
+    .outlier-grid {
+        grid-template-columns: 1fr;
     }
 
 }
@@ -413,7 +399,9 @@ to frequencies that are expected based on historical data, previous research,
 or a theoretical expectation.
 </p>
 
-<p><strong>Example Expected Distribution</strong></p>
+<p>
+<strong>Example Expected Distribution</strong>
+</p>
 
 <ul>
 <li>40% Democrat</li>
@@ -526,7 +514,7 @@ Run the following code once:
 </div>
 
 <p>
-You will see a long "warning" message appear when you install the package. 
+You will see a long "warning" message appear when you install the package.
 This actually means you have successfully installed the package.
 After installation is complete, remove or comment out this line.
 Packages only need to be installed once.
@@ -574,7 +562,7 @@ point-and-click import method to generate the necessary code automatically.
 <ol>
 
 <li>
-Select: File → Import Dataset → From Excel
+Select: <strong>File → Import Dataset → From Excel</strong>
 </li>
 
 <li>
@@ -587,13 +575,11 @@ Locate your assigned Excel dataset.
 </li>
 
 <li>
-Select the dataset and choose
-<strong>Open</strong>.
+Select the dataset and choose <strong>Open</strong>.
 </li>
 
 <li>
-Return to the import window and select
-<strong>Import</strong>.
+Return to the import window and select <strong>Import</strong>.
 </li>
 
 </ol>
@@ -606,11 +592,12 @@ Return to the import window and select
 Once imported, the dataset will appear in a new tab and will also appear
 in the Environment pane.
 </p>
-    
+
 <p>
 RStudio also automatically generates the code used to import the dataset.
 This code appears in the Console window.
-Copy the import code and paste it into your R Script. This allows the dataset to be automatically imported the next time you run your script.
+Copy the import code and paste it into your R Script. This allows the dataset
+to be automatically imported the next time you run your script.
 </p>
 
 <p>
@@ -640,7 +627,7 @@ The generated code will vary depending on your file location and file name.
 </details>
 
 
-<!-- PART 5 -->
+<!-- FREQUENCY TABLE -->
 
 <details class="card">
 
@@ -758,11 +745,9 @@ The second line instructs R to display the contents of the object.
 
 <div class="highlight">
 
-<pre><code>
-Democrat       50
+<pre><code>Democrat       50
 Independent    30
-Republican     20
-</code></pre>
+Republican     20</code></pre>
 
 </div>
 
@@ -787,7 +772,9 @@ Later, when creating the expected proportions for the Chi-Square test,
 the expected values must appear in the same order as the categories shown here.
 </p>
 
-</div>
+<hr>
+
+<h3>Understanding Observed Frequencies</h3>
 
 <p>
 The values in the frequency table are called
@@ -801,9 +788,13 @@ The Chi-Square Goodness-of-Fit test compares:
 
 <ul>
 
-<li><strong>Observed Frequencies</strong> → What you found in your dataset.</li>
+<li>
+<strong>Observed Frequencies</strong> → What you found in your dataset.
+</li>
 
-<li><strong>Expected Frequencies</strong> → What you expected to find based on previous research, theory, or historical data.</li>
+<li>
+<strong>Expected Frequencies</strong> → What you expected to find based on previous research, theory, or historical data.
+</li>
 
 </ul>
 
@@ -816,7 +807,7 @@ In the next section, you will create a bar chart to visualize the observed frequ
 </details>
 
 
-<!-- PART 6 -->
+<!-- BAR CHART -->
 
 <details class="card">
 
@@ -938,11 +929,9 @@ are statistically significant.
 
 </div>
 
-</div>
+<hr>
 
-<summary>Understanding Bar Charts</summary>
-
-<div class="details-content">
+<h3>Understanding Bar Charts</h3>
 
 <p>
 Bar charts are appropriate for categorical variables because each category
@@ -983,7 +972,7 @@ Chi-Square Goodness-of-Fit test.
 </details>
 
 
-<!-- PART 7 -->
+<!-- CHI-SQUARE TEST -->
 
 <details class="card">
 
@@ -1019,8 +1008,7 @@ Convert each percentage to a decimal.
 </li>
 
 <li>
-Enter the decimals into a vector named
-<code>expected</code>.
+Enter the decimals into a vector named <code>expected</code>.
 </li>
 
 <li>
@@ -1196,19 +1184,13 @@ Used to determine whether the result is statistically significant.
 </details>
 
 
+<!-- STATISTICAL SIGNIFICANCE -->
+
 <details class="card">
 
 <summary>Determine Statistical Significance</summary>
 
 <div class="details-content">
-
-    
-</div>
-
-<p>
-This indicates that the observed frequencies differed from the expected
-frequencies by an amount represented by χ² = 12.64.
-</p>
 
 <p>
 After running the Chi-Square Goodness-of-Fit test, the next step is to determine
@@ -1249,10 +1231,9 @@ to conclude that a real difference exists.
 
 </table>
 
-</div>
+<hr>
 
-</details>
-
+<h3>What Does Statistical Significance Mean?</h3>
 
 <p>
 A statistically significant result suggests that the differences between the
@@ -1282,7 +1263,126 @@ The observed distribution is similar to the expected distribution.
 
 </div>
 
+<hr>
+
+<h3>Example 1: Statistically Significant Result</h3>
+
+<p>
+Suppose your Chi-Square output is:
+</p>
+
+<div class="highlight">
+
+<pre><code>X-squared = 12.64
+
+df = 2
+
+p-value = .009</code></pre>
+
 </div>
+
+<p>
+Since:
+</p>
+
+<div class="highlight">
+
+<p>
+.009 &lt; .05
+</p>
+
+</div>
+
+<p>
+The result is <strong>statistically significant</strong>.
+</p>
+
+<p>
+This means the observed frequencies differ from the expected frequencies.
+</p>
+
+<hr>
+
+<h3>Example 2: Not Statistically Significant</h3>
+
+<p>
+Suppose your Chi-Square output is:
+</p>
+
+<div class="highlight">
+
+<pre><code>X-squared = 1.82
+
+df = 2
+
+p-value = .403</code></pre>
+
+</div>
+
+<p>
+Since:
+</p>
+
+<div class="highlight">
+
+<p>
+.403 &gt; .05
+</p>
+
+</div>
+
+<p>
+The result is <strong>not statistically significant</strong>.
+</p>
+
+<p>
+This means the observed frequencies do not differ enough from the expected
+frequencies to conclude that a meaningful difference exists.
+</p>
+
+<hr>
+
+<h3>Decision-Making Workflow</h3>
+
+<ol>
+
+<li>Locate the p-value in the Chi-Square output.</li>
+
+<li>Compare the p-value to .05.</li>
+
+<li>
+If the p-value is less than .05, conclude that the result is statistically significant.
+</li>
+
+<li>
+If the p-value is greater than .05, conclude that the result is not statistically significant.
+</li>
+
+<li>
+Only calculate Cohen's W if the result is statistically significant.
+</li>
+
+</ol>
+
+<div class="highlight">
+
+<p>
+<strong>Important:</strong>
+If your result is not statistically significant (p &gt; .05),
+you should not calculate or interpret Cohen's W for this assignment.
+Proceed directly to writing your results summary.
+</p>
+
+</div>
+
+</div>
+
+</details>
+
+
+<!-- P VALUE TOOL -->
+
+<details class="card">
 
 <summary>Interactive Study Tool</summary>
 
@@ -1309,13 +1409,18 @@ P-Value Interpreter
 </details>
 
 
-<!-- PART 9 -->
+<!-- COHEN'S W -->
 
 <details class="card">
 
 <summary>Part 9: Calculate Cohen's W</summary>
 
 <div class="details-content">
+
+<p>
+If your Chi-Square Goodness-of-Fit test is statistically significant
+(<strong>p &lt; .05</strong>), the next step is to calculate an effect size.
+</p>
 
 <p>
 For Chi-Square Goodness-of-Fit tests, the effect size is
@@ -1326,6 +1431,20 @@ For Chi-Square Goodness-of-Fit tests, the effect size is
 Cohen's W describes the magnitude of the difference between the observed
 and expected distributions.
 </p>
+
+<div class="highlight">
+
+<p>
+<strong>Remember:</strong>
+Only calculate and interpret Cohen's W if your Chi-Square test was
+statistically significant.
+</p>
+
+</div>
+
+<hr>
+
+<h3>Calculate Cohen's W</h3>
 
 <p>
 Copy and paste the following code into your R Script.
@@ -1362,9 +1481,9 @@ This value represents the magnitude of the discrepancy between the observed
 and expected frequencies.
 </p>
 
-</div>
+<hr>
 
-</details>
+<h3>Interpreting Cohen's W</h3>
 
 <p>
 Use the table below to classify the size of the effect.
@@ -1399,11 +1518,34 @@ Use the table below to classify the size of the effect.
 
 </table>
 
+<hr>
+
+<h3>Example Interpretation</h3>
+
+<p>
+Suppose your output produced:
+</p>
+
+<div class="highlight">
+
+<pre><code>w = 0.40</code></pre>
+
 </div>
 
-</details>
+<p>
+Since 0.40 falls between 0.30 and 0.49,
+the effect size would be interpreted as a
+<strong>moderate difference</strong>.
+</p>
 
+<p>
+This indicates that the observed frequencies differ from the expected
+frequencies by a moderate amount.
+</p>
 
+<hr>
+
+<h3>Reporting Cohen's W</h3>
 
 <p>
 When reporting results, include a verbal interpretation of Cohen's W.
@@ -1451,12 +1593,59 @@ The difference was large (Cohen's W = .62).
 </details>
 
 
+<!-- PUTTING IT ALL TOGETHER -->
+
+<details class="card">
+
+<summary>Putting It All Together</summary>
+
+<div class="details-content">
+
+<p>
+After running your analysis, you should now have:
+</p>
+
+<ol>
+
+<li>A frequency table (<code>observed</code>)</li>
+
+<li>A bar chart</li>
+
+<li>Expected proportions (<code>expected</code>)</li>
+
+<li>A Chi-Square Goodness-of-Fit test result (<code>chi_result</code>)</li>
+
+<li>A decision regarding statistical significance</li>
+
+<li>A Cohen's W effect size (if the result was significant)</li>
+
+</ol>
+
+<p>
+The final step is to write a professional summary describing the results
+of the analysis.
+</p>
+
+<div class="highlight">
+
+<p>
+<strong>Next:</strong>
+In Part 10, you will learn how to report the results of a
+Chi-Square Goodness-of-Fit test using APA-style language.
+</p>
+
+</div>
+
+</div>
+
+</details>
+
 
 <!-- PART 10 -->
 
 <details class="card">
 
-<summary>Report the Results</summary>
+<summary>Part 10: Report the Results</summary>
 
 <div class="details-content">
 
@@ -1480,9 +1669,9 @@ Comments are used to document and explain your findings.
 
 </div>
 
-</div>
+<hr>
 
-</details>
+<h3>Reporting P-Values</h3>
 
 <p>
 When reporting p-values, use the rules below.
@@ -1515,7 +1704,9 @@ Report the exact value to three decimal places
 
 </table>
 
-</div>
+<hr>
+
+<h3>Reporting Other Numerical Values</h3>
 
 <p>
 Report all other numerical values to
@@ -1550,8 +1741,9 @@ Always round your values appropriately.
 
 </table>
 
-</div>
+<hr>
 
+<h3>Results Reporting Template</h3>
 
 <p>
 Use the template below to create your results summary.
@@ -1574,6 +1766,88 @@ Replace the bracketed text with information from your analysis.
 # [small / moderate / large]
 # (Cohen's W = .xx).</code></pre>
 
+</div>
+
+<hr>
+
+<h3>Completed Example</h3>
+
+<p>
+The example below demonstrates how a complete results summary might appear.
+</p>
+
+<div class="highlight">
+
+<pre><code># A Chi-Square Goodness-of-Fit test was conducted
+# to determine if there was a difference between
+# the observed political party frequencies
+# and the expected frequencies.
+
+# The results showed that there was a difference
+# between the observed and expected frequencies,
+# χ²(2) = 12.64, p = .009.
+
+# The difference was moderate
+# (Cohen's W = .40).</code></pre>
+
+</div>
+
+<hr>
+
+<h3>Writing the Interpretation</h3>
+
+<p>
+Your written interpretation should answer the original research question.
+</p>
+
+<ul>
+
+<li>
+If <strong>p &lt; .05</strong>,
+conclude that the observed frequencies differ significantly from the expected frequencies.
+</li>
+
+<li>
+If <strong>p &gt; .05</strong>,
+conclude that the observed frequencies do not differ significantly from the expected frequencies.
+</li>
+
+<li>
+If the result was significant, include an interpretation of Cohen's W.
+</li>
+
+</ul>
+
+<p>
+A reader should be able to understand the outcome of the analysis by reading
+your results summary without needing to examine the statistical output.
+</p>
+
+<div class="highlight">
+
+<p>
+<strong>Checklist Before Moving On</strong>
+</p>
+
+<ul>
+
+<li>Frequency table created and displayed.</li>
+
+<li>Bar chart created.</li>
+
+<li>Expected proportions entered correctly.</li>
+
+<li>Chi-Square Goodness-of-Fit test completed.</li>
+
+<li>Statistical significance determined.</li>
+
+<li>Cohen's W calculated (if significant).</li>
+
+<li>Results summary written as comments at the end of the R Script.</li>
+
+</ul>
+
+</div>
 
 <p>
 Once your R Script is complete, the next step is to convert it into an
@@ -1615,18 +1889,9 @@ R Markdown Files
 </a>
 </p>
 
-</div>
+<hr>
 
-</details>
-
-
-<!-- R MARKDOWN STEP 1 -->
-
-<details class="card">
-
-<summary>Step 1: Create a New R Markdown File</summary>
-
-<div class="details-content">
+<h3>Step 1: Create a New R Markdown File</h3>
 
 <ol>
 
@@ -1636,11 +1901,7 @@ Open RStudio.
 
 <li>
 Select:
-
-<div class="highlight">
-File → New File → R Markdown
-</div>
-
+<strong>File → New File → R Markdown</strong>
 </li>
 
 <li>
@@ -1658,34 +1919,18 @@ You do not need to complete any of the optional fields.
 The default settings are sufficient for this assignment.
 </p>
 
-</div>
+<hr>
 
-</details>
-
-
-<!-- R MARKDOWN STEP 2 -->
-
-<details class="card">
-
-<summary>Step 2: Save the R Markdown File</summary>
-
-<div class="details-content">
+<h3>Step 2: Save the R Markdown File</h3>
 
 <ol>
 
 <li>
-Select:
-
-<div class="highlight">
-File → Save As
-</div>
-
+Select <strong>File → Save As</strong>.
 </li>
 
 <li>
-Navigate to your
-<strong>Assignment 4</strong>
-folder.
+Navigate to your <strong>Assignment 4</strong> folder.
 </li>
 
 <li>
@@ -1710,18 +1955,9 @@ Save the file on the virtual desktop and upload it to OneDrive after completing 
 
 </ul>
 
-</div>
+<hr>
 
-</details>
-
-
-<!-- R MARKDOWN STEP 3 -->
-
-<details class="card">
-
-<summary>Step 3: Copy Your R Script into the R Markdown File</summary>
-
-<div class="details-content">
+<h3>Step 3: Copy Your R Script into the R Markdown File</h3>
 
 <ol>
 
@@ -1747,18 +1983,9 @@ Paste the code into the empty R Markdown document.
 At this point, the R Markdown document should contain only your assignment code.
 </p>
 
-</div>
+<hr>
 
-</details>
-
-
-<!-- R MARKDOWN STEP 4 -->
-
-<details class="card">
-
-<summary>Step 4: Create a Code Chunk</summary>
-
-<div class="details-content">
+<h3>Step 4: Create a Code Chunk</h3>
 
 <p>
 R code inside an R Markdown file must be placed inside a
@@ -1806,18 +2033,9 @@ When the code chunk has been created correctly, the code region will typically
 appear shaded or highlighted within RStudio.
 </p>
 
-</div>
+<hr>
 
-</details>
-
-
-<!-- R MARKDOWN STEP 5 -->
-
-<details class="card">
-
-<summary>Step 5: Knit the Document</summary>
-
-<div class="details-content">
+<h3>Step 5: Knit the Document</h3>
 
 <p>
 Once the code chunk has been created, generate the HTML report.
@@ -1848,18 +2066,9 @@ The report will display your code, output, tables, charts, and statistical
 results in a web-friendly format.
 </p>
 
-</div>
+<hr>
 
-</details>
-
-
-<!-- R MARKDOWN STEP 6 -->
-
-<details class="card">
-
-<summary>Step 6: Save the HTML Report</summary>
-
-<div class="details-content">
+<h3>Step 6: Save the HTML Report</h3>
 
 <p>
 After the document finishes knitting, save the generated HTML file.
@@ -1872,9 +2081,7 @@ Verify that the report displays correctly.
 </li>
 
 <li>
-Save the HTML file inside your
-<strong>Assignment 4</strong>
-folder.
+Save the HTML file inside your <strong>Assignment 4</strong> folder.
 </li>
 
 <li>
@@ -1883,18 +2090,9 @@ Confirm that the file opens correctly in a web browser.
 
 </ol>
 
-</div>
+<hr>
 
-</details>
-
-
-<!-- WHY R MARKDOWN -->
-
-<details class="card">
-
-<summary>Why Use R Markdown?</summary>
-
-<div class="details-content">
+<h3>Why Use R Markdown?</h3>
 
 <p>
 R Markdown improves reproducibility by keeping your code and results together
@@ -1960,18 +2158,9 @@ RPubs
 </a>
 </p>
 
-</div>
+<hr>
 
-</details>
-
-
-<!-- RPUBS STEP 1 -->
-
-<details class="card">
-
-<summary>Step 1: Open Your R Markdown File</summary>
-
-<div class="details-content">
+<h3>Step 1: Open Your R Markdown File</h3>
 
 <ol>
 
@@ -1993,18 +2182,9 @@ Select the <strong>Knit</strong> button if you have not already generated the HT
 After knitting, the completed HTML report should appear in the Viewer pane or open in a web browser.
 </p>
 
-</div>
+<hr>
 
-</details>
-
-
-<!-- RPUBS STEP 2 -->
-
-<details class="card">
-
-<summary>Step 2: Publish to RPubs</summary>
-
-<div class="details-content">
+<h3>Step 2: Publish to RPubs</h3>
 
 <ol>
 
@@ -2048,18 +2228,9 @@ Use a descriptive title such as
 
 </div>
 
-</div>
+<hr>
 
-</details>
-
-
-<!-- RPUBS STEP 3 -->
-
-<details class="card">
-
-<summary>Step 3: Obtain the RPubs URL</summary>
-
-<div class="details-content">
+<h3>Step 3: Obtain the RPubs URL</h3>
 
 <p>
 After publishing, RPubs will generate a unique web address for your report.
@@ -2093,18 +2264,9 @@ Your RPubs link allows others to view your analysis without downloading any file
 
 </div>
 
-</div>
+<hr>
 
-</details>
-
-
-<!-- SAVE RPUBS COPY -->
-
-<details class="card">
-
-<summary>Save a Copy of the RPubs HTML File</summary>
-
-<div class="details-content">
+<h3>Save a Copy of the RPubs HTML File</h3>
 
 <p>
 In addition to publishing the report online, save a copy of the HTML file for your records.
@@ -2133,9 +2295,7 @@ Save the file.
 </li>
 
 <li>
-Place the saved HTML file inside your
-<strong>Assignment 4</strong>
-folder.
+Place the saved HTML file inside your <strong>Assignment 4</strong> folder.
 </li>
 
 </ol>
