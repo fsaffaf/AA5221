@@ -1,10 +1,11 @@
 <!DOCTYPE html>
+
 <html lang="en">
 
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Chi-Square Goodness-of-Fit Test</title>
+<title>Independent T-Test & Mann-Whitney U Test</title>
 
 <style>
 
@@ -50,40 +51,61 @@ p {
     line-height: 1.8;
 }
 
-.card {
-    background: white;
-    border-radius: 16px;
-    margin-bottom: 25px;
+.test-path {
     border: 1px solid #d9e2ec;
-    box-shadow: 0 3px 10px rgba(0, 0, 0, .05);
-    animation: fadeUp .6s ease forwards;
-    transition: all .25s ease;
+    border-radius: 14px;
     overflow: hidden;
+    background: #ffffff;
+    margin: 30px 0;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, .05);
 }
 
-.card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 10px 25px rgba(14, 104, 179, .15);
+.test-path-header {
+    background: #0e68b3;
+    color: white;
+    padding: 20px 25px;
 }
 
+.test-path-header h2,
+.test-path-header h3 {
+    color: white;
+    margin: 0;
+    font-size: 1.35rem;
+    font-weight: 600;
+}
 
-/* Collapsible Section Headers */
+.test-path-subtitle {
+    margin: 6px 0 0;
+    font-size: .95rem;
+    opacity: .95;
+}
 
-details.card > summary {
+.test-path-content {
+    padding: 10px 25px 20px;
+}
+
+.test-path-content details {
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.test-path-content details:last-child {
+    border-bottom: none;
+}
+
+.test-path-content summary {
     list-style: none;
     cursor: pointer;
     position: relative;
     padding: 17px 35px 17px 5px;
     color: #0e68b3;
     font-weight: 600;
-    user-select: none;
 }
 
-details.card > summary::-webkit-details-marker {
+.test-path-content summary::-webkit-details-marker {
     display: none;
 }
 
-details.card > summary::after {
+.test-path-content summary::after {
     content: "+";
     position: absolute;
     right: 5px;
@@ -91,32 +113,19 @@ details.card > summary::after {
     transform: translateY(-50%);
     font-size: 1.3rem;
     font-weight: 400;
-    line-height: 1;
 }
 
-details.card[open] > summary::after {
+.test-path-content details[open] summary::after {
     content: "−";
 }
 
-details.card[open] > summary {
-    border-bottom: 1px solid #d9e2ec;
+.path-step-content {
+    padding: 0 5px 20px;
 }
 
-details.card > summary:hover {
-    background: #f8fbfe;
+.path-step-content p {
+    margin-top: 10px;
 }
-
-.details-content {
-    padding: 5px 30px 30px;
-}
-
-.details-content h2,
-.details-content h3 {
-    margin-top: 25px;
-}
-
-
-/* Lists */
 
 ul {
     padding-left: 25px;
@@ -125,9 +134,6 @@ ul {
 li {
     margin-bottom: 8px;
 }
-
-
-/* Tables */
 
 table {
     width: 100%;
@@ -159,59 +165,6 @@ tr:hover {
     background: #edf6ff;
 }
 
-
-/* Scatterplots */
-
-.scatterplot {
-    text-align: center;
-    margin: 25px 0;
-}
-
-.scatterplot img {
-    max-width: 100%;
-    height: auto;
-    display: block;
-    margin: 0 auto;
-    border-radius: 8px;
-}
-
-.scatterplot-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 25px;
-    margin: 25px 0;
-}
-
-.scatterplot-grid .scatterplot {
-    margin: 0;
-}
-
-.outlier-grid {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 25px;
-    margin: 25px 0;
-}
-
-.outlier-example {
-    text-align: center;
-}
-
-.outlier-example h3 {
-    margin-top: 0;
-}
-
-.outlier-example img {
-    width: 100%;
-    height: auto;
-    display: block;
-    margin: 20px auto 0;
-    border-radius: 8px;
-}
-
-
-/* Code */
-
 pre {
     white-space: pre-wrap;
     overflow-x: auto;
@@ -236,15 +189,93 @@ code {
 .highlight-blue {
     background: #f0f7fc;
     border-left: 5px solid #0e68b3;
+    padding: 15px 20px;
+    border-radius: 10px;
+    margin: 20px 0;
+    line-height: 1.6;
 }
 
 .highlight-orange {
     background: #fff4e6;
     border-left: 5px solid #e67e22;
+    padding: 15px 20px;
+    border-radius: 10px;
+    margin: 20px 0;
+    line-height: 1.6;
 }
 
+.test-paths {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 25px;
+    margin: 30px 0;
+}
 
-/* Horizontal Rules */
+.test-paths .test-path {
+    margin: 0;
+}
+
+.test-paths .test-path-header {
+    background: #0e68b3;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+.test-paths .test-path-header h3 {
+    color: white;
+    margin: 0;
+    font-size: 1.25rem;
+}
+
+.test-paths .test-path-content {
+    padding: 10px 20px 20px;
+}
+
+.test-paths .test-path-content details {
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.test-paths .test-path-content details:last-child {
+    border-bottom: none;
+}
+
+.test-paths .test-path-content summary {
+    list-style: none;
+    cursor: pointer;
+    position: relative;
+    padding: 17px 30px 17px 5px;
+    color: #0e68b3;
+    font-weight: 600;
+}
+
+.test-paths .test-path-content summary::-webkit-details-marker {
+    display: none;
+}
+
+.test-paths .test-path-content summary::after {
+    content: "+";
+    position: absolute;
+    right: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.3rem;
+    font-weight: 400;
+}
+
+.test-paths .test-path-content details[open] summary::after {
+    content: "−";
+}
+
+.step-label {
+    display: inline-block;
+    font-size: .8rem;
+    font-weight: 700;
+    letter-spacing: .05em;
+    text-transform: uppercase;
+    color: #6b7280;
+    margin-bottom: 5px;
+}
 
 hr {
     border: none;
@@ -252,9 +283,6 @@ hr {
     background: #d6e4f0;
     margin: 30px 0;
 }
-
-
-/* Links */
 
 a {
     color: #0e68b3;
@@ -276,40 +304,14 @@ a.button:hover {
     transform: translateY(-2px);
 }
 
-
-/* Animation */
-
-@keyframes fadeUp {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-
-/* Mobile */
-
 @media (max-width: 768px) {
 
     h1 {
         font-size: 2rem;
     }
 
-    details.card > summary {
-        padding: 17px 35px 17px 5px;
-    }
-
-    details.card > summary::after {
-        right: 5px;
-    }
-
-    .details-content {
-        padding: 5px 20px 25px;
+    .test-path-content {
+        padding: 10px 20px 20px;
     }
 
     th,
@@ -318,30 +320,41 @@ a.button:hover {
         font-size: .95rem;
     }
 
-    .scatterplot-grid,
-    .outlier-grid {
+    .test-paths {
         grid-template-columns: 1fr;
     }
 
 }
 
 </style>
+
 </head>
 
 <body>
 
 <div class="container">
 
-<h1>Chi-Square Goodness-of-Fit Test</h1>
+<h1>Chi-Square Goodness of Fit test</h1>
+
+<!-- MAIN PATH -->
+
+<div class="test-path">
+
+<div class="test-path-header">
+<h2>Steps to Conduct an Chi-Square Goodness of Fit in RStudio</h2>
+</div>
+
+<div class="test-path-content">
 
 
 <!-- OVERVIEW -->
 
-<details class="card">
+<details>
 
-<summary>Overview</summary>
+<summary>Overview of the Chi-Square Goodness of Fit Test</summary>
 
-<div class="details-content">
+<div class="path-step-content">
+
 
 <p>
 The <strong>Chi-Square Goodness-of-Fit test</strong> is used for categorical data only.
@@ -456,11 +469,12 @@ Inferential Test Selector
 
 <!-- R SCRIPT CODE TEMPLATE -->
 
-<details class="card">
+<details>
 
-<summary>R Script Code Template</summary>
+<summary>RScript Code Template</summary>
 
-<div class="details-content">
+<div class="path-step-content">
+    
 
 <p>
 Below is an example of what your code will look like. Your code will be different because the dataset name, variable name, expected proportions, results, and interpretations will depend on your assigned dataset.
@@ -502,12 +516,12 @@ cramer_v
 
 <!-- INSTALL READXL -->
 
-<details class="card">
+<details>
 
-<summary>Install & Load the Packages</summary>
+<summary>Install & Open the Packages</summary>
 
-<div class="details-content">
-
+<div class="path-step-content">
+    
 <p>
 Packages add additional functionality to R.
 The <strong>readxl</strong> package allows R to import Excel files.
@@ -559,11 +573,11 @@ No output will appear. This simply loads the package into memory.
 
 <!-- IMPORT DATASET -->
 
-<details class="card">
+<details>
 
-<summary>Import Your Excel Dataset into RStudio</summary>
+<summary>Import & Name the Dataset</summary>
 
-<div class="details-content">
+<div class="path-step-content">
 
 <p>
 Although datasets can be imported entirely through code, many students
@@ -643,11 +657,11 @@ The generated code will vary depending on your file location and file name.
 
 <!-- FREQUENCY TABLE -->
 
-<details class="card">
+<details>
 
 <summary>Create a Frequency Table</summary>
 
-<div class="details-content">
+<div class="path-step-content">
 
 <p>
 A frequency table summarizes how many observations belong to each category
@@ -808,11 +822,11 @@ the expected values must appear in the same order as the categories shown here.
 
 <!-- BAR CHART -->
 
-<details class="card">
+<details>
 
 <summary>Create a Bar Chart</summary>
 
-<div class="details-content">
+<div class="path-step-content">
 
 <p>
 A bar chart provides a visual summary of the frequencies contained in your
@@ -940,11 +954,11 @@ represent categories with fewer observations.
 
 <!-- CHI-SQUARE TEST -->
 
-<details class="card">
+<details>
 
-<summary>Conduct a Chi-Square Goodness-of-Fit Test</summary>
+<summary>Conduct a Chi-Square Goodness of Fit</summary>
 
-<div class="details-content">
+<div class="path-step-content">
 
 <p>
 The Chi-Square Goodness-of-Fit test compares the frequencies observed in your
@@ -1197,11 +1211,11 @@ P-Value Interpreter
 
 <!-- COHEN'S W -->
 
-<details class="card">
+<details>
 
 <summary>Calculate the Effect Size</summary>
 
-<div class="details-content">
+<div class="path-step-content">
 
 <p>
 For Chi-Square Goodness-of-Fit tests, the effect size is
@@ -1358,11 +1372,11 @@ The difference was large (Cohen's W = .62).
 </details>
 
 
-<details class="card">
+<details>
 
 <summary>Report the Results</summary>
 
-<div class="details-content">
+<div class="path-step-content">
 
 <p>
 After completing the analysis, the final statistical task is to write a
@@ -1503,11 +1517,11 @@ and expected frequencies, χ²(2) = 12.64, p = .009.
 
 <!-- PART 11 -->
 
-<details class="card">
+<details>
 
-<summary>Create an R Markdown File</summary>
+<summary>Create an RMarkdown File</summary>
 
-<div class="details-content">
+<div class="path-step-content">
 
 <p>
 After completing your R Script, the next step is to convert it into an
@@ -1738,11 +1752,11 @@ Confirm that the file opens correctly in a web browser.
 
 <!-- PART 12 -->
 
-<details class="card">
+<details>
 
-<summary>Publish Your Work as an RPubs HTML File</summary>
+<summary>Publish in RPubs</summary>
 
-<div class="details-content">
+<div class="path-step-content">
 
 <p>
 After creating and knitting your R Markdown document, the final step is to
