@@ -920,10 +920,8 @@ The bar chart provides a quick visual comparison of the category counts before
 conducting the Chi-Square test.
 </p>
 
-</div>
-
 <hr>
-
+    
 <h3>Understanding Bar Charts</h3>
 
 <p>
@@ -949,16 +947,10 @@ The Chi-Square Goodness-of-Fit test will determine whether the differences
 between the observed and expected distributions are statistically significant.
 </p>
 
-<div class="highlight highlight-blue">
-
-<p>
-<strong>Important:</strong>
 The bar chart displays the <em>observed frequencies</em> only.
 The expected proportions will be created in the next section and used in the
 Chi-Square Goodness-of-Fit test.
 </p>
-
-</div>
 
 </div>
 
@@ -1119,6 +1111,8 @@ df = 2
 
 p-value = 0.009</code></pre>
 
+</div>
+
 <p>
 The Chi-Square output contains three values that are used when reporting results.
 </p>
@@ -1271,25 +1265,15 @@ Cohen's W describes the magnitude of the difference between the observed
 and expected distributions.
 </p>
 
-<div class="highlight highlight-blue">
-
-<p>
-<strong>Remember:</strong>
-Only calculate and interpret Cohen's W if your Chi-Square test was
-statistically significant.
-</p>
-
-</div>
-
 <hr>
 
 <h3>Calculate Cohen's W</h3>
 
 <p>
-Copy and paste the following code into your R Script.
+Copy-and-paste the following code into your R Script.
 </p>
 
-<div class="highlight highlight-blue">
+<div class="highlight highlight-orange">
 
 <pre><code>w &lt;- sqrt(
 as.numeric(chi_result$statistic) /
