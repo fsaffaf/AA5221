@@ -223,6 +223,48 @@ hr{
 
 }
 
+    details {
+    margin: 20px 0;
+    border: 1px solid #d9e2ec;
+    border-radius: 8px;
+    background: #ffffff;
+    overflow: hidden;
+}
+
+details summary {
+    padding: 18px 22px;
+    cursor: pointer;
+    color: #0e68b3;
+    font-size: 1.15rem;
+    font-weight: 600;
+    list-style: none;
+    position: relative;
+}
+
+details summary::-webkit-details-marker {
+    display: none;
+}
+
+details summary::after {
+    content: "+";
+    position: absolute;
+    right: 22px;
+    font-size: 1.4rem;
+    font-weight: 400;
+}
+
+details[open] summary::after {
+    content: "−";
+}
+
+details[open] summary {
+    border-bottom: 1px solid #d9e2ec;
+}
+
+.details-content {
+    padding: 20px 22px;
+}
+    
 </style>
 
 </head>
@@ -234,8 +276,10 @@ hr{
 <h1>Chi-Square Goodness-of-Fit Test</h1>
 
 
-<div class="card">
+<details class="card">
+<summary>
 <h2>Overview</h2>
+</summary>
 
 <p>
 The <strong>Chi-Square Goodness-of-Fit test</strong> is used for categorical data only.
