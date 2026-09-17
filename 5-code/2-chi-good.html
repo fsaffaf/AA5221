@@ -1,147 +1,574 @@
-<div style="background:#3b7ed1;padding:12px 16px;border-radius:6px;">
-  <span style="color:#fff;font-size:14pt;font-family:system-ui,Arial;">
-    <strong>Overview</strong>
-  </span>
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Assignment 4 | Chi-Square Goodness-of-Fit Test</title>
+
+<style>
+
+body{
+    margin:0;
+    font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+    background:#f4f6f9;
+    color:#222222;
+}
+
+.container{
+    max-width:1000px;
+    margin:auto;
+    padding:50px 20px;
+}
+
+h1{
+    text-align:left;
+    color:#666666;
+    font-size:2.75rem;
+    font-weight:200;
+    letter-spacing:.08em;
+    margin-bottom:10px;
+}
+
+.subtitle{
+    text-align:center;
+    color:#6b7280;
+    text-transform:uppercase;
+    letter-spacing:.15em;
+    margin-bottom:40px;
+    font-size:.95rem;
+}
+
+h2,
+h3{
+    color:#0e68b3;
+    position:relative;
+    font-weight:500;
+    display:inline-block;
+}
+
+h2::after,
+h3::after{
+    content:"";
+    position:absolute;
+    left:0;
+    bottom:-4px;
+    width:0;
+    height:2px;
+    background:#0e68b3;
+    transition:.3s;
+}
+
+.card:hover h2::after,
+.card:hover h3::after{
+    width:100%;
+}
+
+p{
+    line-height:1.8;
+}
+
+.card{
+    background:white;
+    border-radius:16px;
+    padding:30px;
+    margin-bottom:25px;
+    border:1px solid #d9e2ec;
+
+    box-shadow:
+      0 3px 10px rgba(0,0,0,.05);
+
+    animation:fadeUp .6s ease forwards;
+    transition:all .25s ease;
+}
+
+.card:hover{
+    transform:translateY(-4px);
+    box-shadow:
+      0 10px 25px rgba(14,104,179,.15);
+}
+
+.highlight{
+    background:#eef6fc;
+    border-left:5px solid #0e68b3;
+    padding:15px;
+    border-radius:8px;
+    margin:20px 0;
+}
+
+ul{
+    padding-left:25px;
+}
+
+li{
+    margin-bottom:8px;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:20px;
+    background:white;
+    overflow:hidden;
+    border-radius:10px;
+}
+
+th{
+    background:#0e68b3;
+    color:white;
+    text-align:left;
+    padding:14px;
+}
+
+td{
+    padding:14px;
+    border-bottom:1px solid #e5e7eb;
+    vertical-align:top;
+}
+
+tr:nth-child(even){
+    background:#f8fafc;
+}
+
+tr:hover{
+    background:#edf6ff;
+}
+
+.scatterplot{
+    text-align:center;
+    margin:25px 0;
+}
+
+.scatterplot img{
+    max-width:100%;
+    height:auto;
+    display:block;
+    margin:0 auto;
+    border-radius:8px;
+}
+
+.scatterplot-grid{
+    display:grid;
+    grid-template-columns:repeat(2, 1fr);
+    gap:25px;
+    margin:25px 0;
+}
+
+.scatterplot-grid .scatterplot{
+    margin:0;
+}
+
+.outlier-grid{
+    display:grid;
+    grid-template-columns:repeat(2, minmax(0, 1fr));
+    gap:25px;
+    margin:25px 0;
+}
+
+.outlier-example{
+    text-align:center;
+}
+
+.outlier-example h3{
+    margin-top:0;
+}
+
+.outlier-example img{
+    width:100%;
+    height:auto;
+    display:block;
+    margin:20px auto 0;
+    border-radius:8px;
+}
+
+hr{
+    border:none;
+    height:1px;
+    background:#d6e4f0;
+    margin:30px 0;
+}
+
+@keyframes fadeUp{
+    from{
+        opacity:0;
+        transform:translateY(20px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+@media (max-width:768px){
+
+    h1{
+        font-size:2rem;
+    }
+
+    .card{
+        padding:20px;
+    }
+
+    th,
+    td{
+        padding:10px;
+        font-size:.95rem;
+    }
+
+    .scatterplot-grid,
+    .outlier-grid{
+        grid-template-columns:1fr;
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Assignment 4</h1>
+
+<p class="subtitle">
+Chi-Square Goodness-of-Fit Test in RStudio
+</p>
+
+<div class="card">
+
+<h2>Overview</h2>
+
+<p>
+In this assignment, you will conduct a
+<strong>Chi-Square Goodness-of-Fit Test</strong>
+using RStudio.
+</p>
+
+<p>
+Read:
+../Module4/ChiSquaredTests.html
+Module 4 | Chi-Squared Tests
+</a>
+</p>
+
 </div>
 
-<p style="font-size:14pt;">
-  The Chi‑Square Goodness of Fit test is for <strong>categorical data only</strong>.
+<div class="card">
+
+<h2>In this Assignment You Will...</h2>
+
+<ol>
+<li>Set up your Assignment 4 folder.</li>
+<li>Download and import the dataset into RStudio.</li>
+<li>Create a frequency table.</li>
+<li>Create a bar chart.</li>
+<li>Conduct a Chi-Square Goodness-of-Fit test.</li>
+<li>Determine statistical significance.</li>
+<li>Calculate Cohen's W if significant.</li>
+<li>Write a results summary.</li>
+<li>Convert your R Script into an RMarkdown file.</li>
+<li>Publish your analysis as an RPubs HTML file.</li>
+</ol>
+
+</div>
+
+<div class="card">
+
+<h2>Create an Assignment 4 Folder</h2>
+
+<ol>
+<li>Create a folder called <strong>Assignment 4</strong> inside your <strong>AA 5221</strong> folder.</li>
+
+<li>
+Save all Assignment 4 files in this location.
+<ul>
+<li>
+<strong>Apporto users:</strong>
+Save files on the virtual desktop and upload them to OneDrive when finished.
+</li>
+</ul>
+</li>
+</ol>
+
+</div>
+
+<div class="card">
+
+<h2>R Script Code Template</h2>
+
+<p>
+Your code will differ depending on your assigned dataset.
 </p>
 
-<p style="font-size:14pt;">
-  It determines whether the observed distribution of <em>one categorical variable</em>
-  matches an expected distribution.
-</p>
+<div class="highlight">
 
-<p style="font-size:14pt;">
-  Normality does not apply because categorical data cannot be represented with histograms.
-</p>
+<pre><code>
+library(readxl)
 
-<table style="border-collapse:collapse;width:100%;margin-top:16px;" border="1">
-  <tr>
-    <th style="padding:10px;">Component</th>
-    <th style="padding:10px;">Structure</th>
-    <th style="padding:10px;">Example</th>
-  </tr>
-  <tr>
-    <td style="padding:10px;"><strong>Research Question</strong></td>
-    <td style="padding:10px;">
-      Is the observed distribution the same as the expected distribution?
-    </td>
-    <td style="padding:10px;">
-      Is the political party distribution of SLU students (2026) the same as in 2025?
-    </td>
-  </tr>
-  <tr>
-    <td style="padding:10px;"><strong>Null Hypothesis</strong></td>
-    <td style="padding:10px;">
-      There is no difference between observed and expected frequencies.
-    </td>
-    <td style="padding:10px;">
-      There is no difference between observed and expected party frequencies.
-    </td>
-  </tr>
-  <tr>
-    <td style="padding:10px;"><strong>Alternate Hypothesis</strong></td>
-    <td style="padding:10px;">
-      There is a difference between observed and expected frequencies.
-    </td>
-    <td style="padding:10px;">
-      There is a difference between observed and expected party frequencies.
-    </td>
-  </tr>
+data2026 <- read_excel(
+"C:/Users/John/OneDrive/Documents/AA5221/Datasets/political_data.xlsx"
+)
+
+observed <- table(data2026$political)
+observed
+
+barplot(observed,
+main = "Political Party",
+xlab = "Political Party",
+ylab = "Frequency",
+col = rainbow(length(observed)))
+
+expected <- c(.40, .20, .40)
+
+chi_result <- chisq.test(
+x = observed,
+p = expected
+)
+
+chi_result
+
+w <- sqrt(
+as.numeric(chi_result$statistic) /
+sum(observed)
+)
+
+w
+
+# A Chi-Square Goodness-of-Fit test was conducted...
+
+</code></pre>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<h2>Part 2: Prepare for Data Analysis</h2>
+
+<h3>Step 1: Download the Assignment Files</h3>
+
+<ol>
+<li>Download the datasets from Canvas.</li>
+<li>Save them in your Assignment 4 folder.</li>
+<li>Open RStudio.</li>
+</ol>
+
+</div>
+
+<div class="card">
+
+<h2>Part 3: Install and Open readxl</h2>
+
+<h3>Install readxl</h3>
+
+<div class="highlight">
+<pre><code>
+install.packages("readxl")
+</code></pre>
+</div>
+
+<h3>Load readxl</h3>
+
+<div class="highlight">
+<pre><code>
+library(readxl)
+</code></pre>
+</div>
+
+</div>
+
+<div class="card">
+
+<h2>Part 4: Import Your Dataset</h2>
+
+<ol>
+<li>File → Import Dataset → From Excel</li>
+<li>Browse to your dataset.</li>
+<li>Select Import.</li>
+</ol>
+
+<div class="highlight">
+<pre><code>
+DatasetName <- read_excel("filepath")
+</code></pre>
+</div>
+
+</div>
+
+<div class="card">
+
+<h2>Part 5: Create a Frequency Table</h2>
+
+<h3>Code Template</h3>
+
+<div class="highlight">
+<pre><code>
+observed <- table(dataset$variable)
+observed
+</code></pre>
+</div>
+
+</div>
+
+<div class="card">
+
+<h2>Part 6: Create a Bar Chart</h2>
+
+<div class="highlight">
+<pre><code>
+barplot(observed,
+main = "Variable Name",
+xlab = "Variable Name",
+ylab = "Count",
+col = rainbow(length(observed)))
+</code></pre>
+</div>
+
+</div>
+
+<div class="card">
+
+<h2>Part 7: Conduct a Chi-Square Test</h2>
+
+<div class="highlight">
+<pre><code>
+expected <- c(.40, .20, .40)
+
+chi_result <- chisq.test(
+x = observed,
+p = expected
+)
+
+chi_result
+</code></pre>
+</div>
+
+</div>
+
+<div class="card">
+
+<h2>Part 8: Determine Statistical Significance</h2>
+
+<table>
+
+<tr>
+<th>P-Value</th>
+<th>Decision</th>
+</tr>
+
+<tr>
+<td>p &lt; .05</td>
+<td>Statistically Significant</td>
+</tr>
+
+<tr>
+<td>p &gt; .05</td>
+<td>Not Statistically Significant</td>
+</tr>
+
 </table>
 
-<hr>
+</div>
 
-<h3>Step 1: Open Required Packages</h3>
+<div class="card">
 
-<pre>
-library(readxl)
-library(ggpubr)
-</pre>
+<h2>Part 9: Calculate Cohen's W</h2>
 
-<h3>Step 2: Import and Name Dataset</h3>
-
-<pre>
-DatasetZ <- read_excel("C:/Users/YourName/Desktop/dataset.xlsx")
-</pre>
-
-<h3>Step 3: Create Frequency Table</h3>
-
-<pre>
-observed <- table(DatasetZ$PoliticalParty)
-observed
-</pre>
-
-<p style="font-size:14pt;">
-Example output:
-</p>
-
-<pre>
-Democrat      50
-Republican    20
-Independent   30
-</pre>
-
-<h3>Step 4: Create Bar Chart</h3>
-
-<pre>
-barplot(
-  observed,
-  main = "Political Party",
-  xlab = "Political Party",
-  ylab = "Count",
-  col = rainbow(length(observed))
+<div class="highlight">
+<pre><code>
+w <- sqrt(
+as.numeric(chi_result$statistic) /
+sum(observed)
 )
-</pre>
 
-<h3>Step 5: Create Expected Data</h3>
-
-<p style="font-size:14pt;">
-Expected frequencies must sum to 100%.
-</p>
-
-<pre>
-expected <- c(0.40, 0.20, 0.40)
-</pre>
-
-<h3>Step 6: Conduct Chi‑Square Goodness‑of‑Fit</h3>
-
-<pre>
-chi_result <- chisq.test(x = observed, p = expected)
-chi_result
-</pre>
-
-<p style="font-size:14pt;">Example output:</p>
-
-<pre>
-X-squared = 12.64, df = 2, p-value = 0.009
-</pre>
-
-<h3>Step 7: Calculate Cohen’s W (Effect Size)</h3>
-
-<pre>
-w <- sqrt(as.numeric(chi_result$statistic) / sum(observed))
 w
-</pre>
+</code></pre>
+</div>
 
-<p style="font-size:14pt;">
-Interpretation:
-</p>
+<table>
 
-<ul style="font-size:14pt;">
-  <li>0.10 = weak</li>
-  <li>0.30 = moderate</li>
-  <li>0.50+ = strong</li>
-</ul>
+<tr>
+<th>Cohen's W</th>
+<th>Interpretation</th>
+</tr>
 
-<h3>Step 8: Interpret and Report Results</h3>
+<tr>
+<td>&lt; 0.10</td>
+<td>Negligible</td>
+</tr>
 
-<pre>
-# A Chi-Square Goodness of Fit test was conducted to determine if there was a
-# difference between observed political party frequencies and expected frequencies.
-# There was a statistically significant difference,
+<tr>
+<td>0.10 - 0.29</td>
+<td>Small</td>
+</tr>
+
+<tr>
+<td>0.30 - 0.49</td>
+<td>Moderate</td>
+</tr>
+
+<tr>
+<td>≥ 0.50</td>
+<td>Large</td>
+</tr>
+
+</table>
+
+</div>
+
+<div class="card">
+
+<h2>Part 10: Report the Results</h2>
+
+<div class="highlight">
+<pre><code>
+# A Chi-Square Goodness-of-Fit test was conducted...
+
+# The results showed that there was a difference
+# between the observed and expected frequencies,
 # χ²(2) = 12.64, p = .009.
-# The effect size was moderate (Cohen's W = .40).
-</pre>
+
+# The difference was moderate
+# (Cohen's W = .40).
+</code></pre>
+</div>
+
+</div>
+
+<div class="card">
+
+<h2>Part 11: Create an RMarkdown File</h2>
+
+<ol>
+<li>Create a new RMarkdown file.</li>
+<li>Copy your R Script into the document.</li>
+<li>Add a code chunk.</li>
+<li>Knit to HTML.</li>
+<li>Save the file.</li>
+</ol>
+
+</div>
+
+<div class="card">
+
+<h2>Part 12: Publish to RPubs</h2>
+
+<ol>
+<li>Open your RMarkdown file.</li>
+<li>Knit the document.</li>
+<li>Select <strong>Publish to RPubs</strong>.</li>
+<li>Create a title.</li>
+<li>Publish.</li>
+<li>Submit the URL.</li>
+</ol>
+
+</div>
+
+</div>
+
+</body>
+</html>
