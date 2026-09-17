@@ -239,39 +239,231 @@ Chi-Square Goodness-of-Fit Test in RStudio
 
 <div class="card">
 
+<h1>Chi-Square Tests</h1>
+
+<p class="subtitle">
+Categorical Data Analysis
+</p>
+
+<div class="card">
+
 <h2>Overview</h2>
 
 <p>
-In this assignment, you will conduct a
-<strong>Chi-Square Goodness-of-Fit Test</strong>
-using RStudio.
+Chi-Square tests are used to analyze <strong>categorical data only</strong>.
 </p>
 
 <p>
-Read:
-../Module4/ChiSquaredTests.html
-Module 4 | Chi-Squared Tests
-</a>
+There are two common Chi-Square procedures used in introductory statistics:
 </p>
+
+<ul>
+<li><strong>Chi-Square Goodness-of-Fit Test</strong></li>
+<li><strong>Chi-Square Test of Independence</strong></li>
+</ul>
 
 </div>
 
 <div class="card">
 
-<h2>In this Assignment You Will...</h2>
+<h2>Chi-Square Goodness-of-Fit Test</h2>
 
-<ol>
-<li>Set up your Assignment 4 folder.</li>
-<li>Download and import the dataset into RStudio.</li>
-<li>Create a frequency table.</li>
-<li>Create a bar chart.</li>
-<li>Conduct a Chi-Square Goodness-of-Fit test.</li>
-<li>Determine statistical significance.</li>
-<li>Calculate Cohen's W if significant.</li>
-<li>Write a results summary.</li>
-<li>Convert your R Script into an RMarkdown file.</li>
-<li>Publish your analysis as an RPubs HTML file.</li>
-</ol>
+<p>
+The <strong>Chi-Square Goodness-of-Fit test</strong> is used for categorical data only.
+</p>
+
+<p>
+It allows you to determine whether the distribution of
+<strong>one categorical variable</strong>
+matches an expected distribution.
+</p>
+
+<p>
+In this context, <strong>distribution</strong> refers to how participants are distributed
+across the categories of a variable. Normality does not apply because categorical
+data cannot be represented on a histogram.
+</p>
+
+<p>
+The research design is observational. Therefore, there is no independent variable
+(IV) and no dependent variable (DV).
+</p>
+
+<table>
+
+<tr>
+<th>Component</th>
+<th>General Structure</th>
+<th>Example</th>
+</tr>
+
+<tr>
+<td><strong>Research Question</strong></td>
+<td>
+Is the current frequency distribution of the variable the same as the expected frequency distribution?
+</td>
+<td>
+Is the current frequency distribution of political parties among SLU students (2026)
+the same as the previous year (2025)?
+</td>
+</tr>
+
+<tr>
+<td><strong>Null Hypothesis</strong></td>
+<td>
+There is <strong>no difference</strong> between the observed and expected frequencies.
+</td>
+<td>
+There is no difference between the observed political party frequencies and the expected frequencies.
+</td>
+</tr>
+
+<tr>
+<td><strong>Alternative Hypothesis</strong></td>
+<td>
+There <strong>is a difference</strong> between the observed and expected frequencies.
+</td>
+<td>
+There is a difference between the observed political party frequencies and the expected frequencies.
+</td>
+</tr>
+
+</table>
+
+<p>
+The Chi-Square Goodness-of-Fit test compares the frequencies observed in a dataset
+to frequencies that are expected based on historical data, previous research,
+or a theoretical expectation.
+</p>
+
+<div class="highlight">
+
+<p><strong>Example Expected Distribution</strong></p>
+
+<ul>
+<li>40% Democrat</li>
+<li>20% Independent</li>
+<li>40% Republican</li>
+</ul>
+
+<p>
+These percentages become the expected proportions used in the analysis.
+</p>
+
+<p>
+<strong>Important:</strong>
+Expected proportions must always add up to 100% (1.00).
+</p>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<h2>Chi-Square Test of Independence</h2>
+
+<p>
+The <strong>Chi-Square Test of Independence</strong> is used for categorical data only.
+</p>
+
+<p>
+A Chi-Square Test uses the term <strong>association</strong> when discussing categorical variables.
+This differs from correlation analysis, which uses the term
+<strong>relationship</strong> for continuous variables.
+</p>
+
+<p>
+Normality does not apply because categorical variables cannot be displayed on a histogram.
+</p>
+
+<p>
+The research design is observational. Therefore, there is no IV and no DV.
+</p>
+
+<table>
+
+<tr>
+<th>Component</th>
+<th>General Structure</th>
+<th>Example</th>
+</tr>
+
+<tr>
+<td><strong>Research Question</strong></td>
+<td>
+Is there an <strong>association</strong> between Variable A and Variable B?
+</td>
+<td>
+Is there an association between voting behavior (Yes/No) and gender (Male/Female)?
+</td>
+</tr>
+
+<tr>
+<td><strong>Null Hypothesis</strong></td>
+<td>
+There is <strong>no association</strong> between Variable A and Variable B.
+</td>
+<td>
+There is no association between voting behavior and gender.
+</td>
+</tr>
+
+<tr>
+<td><strong>Alternative Hypothesis</strong></td>
+<td>
+There <strong>is an association</strong> between Variable A and Variable B.
+</td>
+<td>
+There is an association between voting behavior and gender.
+</td>
+</tr>
+
+</table>
+
+</div>
+
+<div class="card">
+
+<h2>Interactive Study Tools</h2>
+
+<p>
+Use the Inferential Test Selector to determine which inferential procedure
+is appropriate for your study.
+</p>
+
+<p>
+The tool evaluates:
+</p>
+
+<ul>
+<li>Number of variables</li>
+<li>Levels of measurement</li>
+<li>Research design</li>
+<li>Type of research question</li>
+</ul>
+
+<p style="text-align:center; margin-top:25px;">
+
+<a
+href="https://fsaffaf.github.io/AA5221/tools/inferential_test_selector.html"
+target="_blank"
+style="
+display:inline-block;
+background:#0e68b3;
+color:white;
+padding:14px 28px;
+border-radius:999px;
+text-decoration:none;
+font-weight:600;
+transition:.3s;
+">
+Inferential Test Selector
+</a>
+
+</p>
+
+</div>
 
 </div>
 
