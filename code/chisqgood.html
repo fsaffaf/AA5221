@@ -982,16 +982,17 @@ categories shown in your frequency table.
 </ol>
 
 <h3>Code Template</h3>
-
-<div class="highlight highlight-blue">
+<p>
+Copy-and-paste the code into your RScript.
+Replace the hashtags with the expected proportions from your research scenario.
+</p>
+<div class="highlight highlight-orange">
 
 <pre><code>expected &lt;- c(#, #, #)</code></pre>
 
 </div>
 
-<p>
-Replace the hashtags with the expected proportions from your research scenario.
-</p>
+
 
 <hr>
 
@@ -1034,14 +1035,12 @@ Then your expected proportions must follow the same order.
 
 </ul>
 
-<div class="highlight highlight-blue">
-
 <p>
 <strong>Important:</strong>
 Expected proportions must add up to 1.00 (100%).
 </p>
 
-</div>
+<h3>Why is there no output?</h3>
 
 <p>
 Running this line of code will not produce any output.
@@ -1055,9 +1054,10 @@ That is normal.
 <p>
 Once the observed frequencies and expected proportions have been created,
 use the <code>chisq.test()</code> function to perform the analysis.
+Copy-and-paste the text below into your RScript.
 </p>
 
-<div class="highlight highlight-blue">
+<div class="highlight highlight-orange">
 
 <pre><code>chi_result &lt;- chisq.test(
 x = observed,
@@ -1170,34 +1170,6 @@ to conclude that a real difference exists.
 </table>
 
 <hr>
-
-<h3>What Does Statistical Significance Mean?</h3>
-
-<p>
-A statistically significant result suggests that the differences between the
-observed and expected frequencies are unlikely to be explained by random variation alone.
-</p>
-
-<div class="highlight highlight-blue">
-
-<p>
-<strong>Statistically Significant:</strong>
-The observed distribution differs from the expected distribution.
-</p>
-
-</div>
-
-<p>
-A non-significant result suggests that any differences between the observed and
-expected frequencies are small enough that they could reasonably be due to chance.
-</p>
-
-<div class="highlight highlight-blue">
-
-<p>
-<strong>Not Statistically Significant:</strong>
-The observed distribution is similar to the expected distribution.
-</p>
 
 <p>
 If you need help interpreting your p-value, use the interactive p-value interpreter.
@@ -1755,41 +1727,6 @@ Confirm that the file opens correctly in a web browser.
 </li>
 
 </ol>
-
-<hr>
-
-<h3>Why Use R Markdown?</h3>
-
-<p>
-R Markdown improves reproducibility by keeping your code and results together
-in a single document.
-</p>
-
-<ul>
-
-<li>Readers can view the analysis and results in one place.</li>
-
-<li>All calculations can be reproduced automatically.</li>
-
-<li>Charts and tables appear alongside the code that created them.</li>
-
-<li>The final report can be shared without requiring others to run your script.</li>
-
-</ul>
-
-<div class="highlight highlight-blue">
-
-<p>
-<strong>Checkpoint:</strong>
-Before moving to the final section, confirm that you have successfully created
-an HTML report using the Knit button.
-</p>
-
-</div>
-
-<p>
-The final step is to publish the HTML report using RPubs and submit the generated URL.
-</p>
 
 </div>
 
