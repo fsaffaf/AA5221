@@ -233,36 +233,9 @@ hr{
 
 <h1>Chi-Square Goodness-of-Fit Test</h1>
 
-<div class="card">
-
-<h1>Chi-Square Tests</h1>
-
-<p class="subtitle">
-Categorical Data Analysis
-</p>
 
 <div class="card">
-
 <h2>Overview</h2>
-
-<p>
-Chi-Square tests are used to analyze <strong>categorical data only</strong>.
-</p>
-
-<p>
-There are two common Chi-Square procedures used in introductory statistics:
-</p>
-
-<ul>
-<li><strong>Chi-Square Goodness-of-Fit Test</strong></li>
-<li><strong>Chi-Square Test of Independence</strong></li>
-</ul>
-
-</div>
-
-<div class="card">
-
-<h2>Chi-Square Goodness-of-Fit Test</h2>
 
 <p>
 The <strong>Chi-Square Goodness-of-Fit test</strong> is used for categorical data only.
@@ -332,8 +305,6 @@ to frequencies that are expected based on historical data, previous research,
 or a theoretical expectation.
 </p>
 
-<div class="highlight">
-
 <p><strong>Example Expected Distribution</strong></p>
 
 <ul>
@@ -350,65 +321,6 @@ These percentages become the expected proportions used in the analysis.
 <strong>Important:</strong>
 Expected proportions must always add up to 100% (1.00).
 </p>
-
-</div>
-
-</div>
-
-<div class="card">
-
-<h2>Chi-Square Test of Independence</h2>
-
-Normality does not apply because categorical variables cannot be displayed on a histogram.
-</p>
-
-<p>
-The research design is observational. Therefore, there is no IV and no DV.
-</p>
-
-<table>
-
-<tr>
-<th>Component</th>
-<th>General Structure</th>
-<th>Example</th>
-</tr>
-
-<tr>
-<td><strong>Research Question</strong></td>
-<td>
-Is there an <strong>association</strong> between Variable A and Variable B?
-</td>
-<td>
-Is there an association between voting behavior (Yes/No) and gender (Male/Female)?
-</td>
-</tr>
-
-<tr>
-<td><strong>Null Hypothesis</strong></td>
-<td>
-There is <strong>no association</strong> between Variable A and Variable B.
-</td>
-<td>
-There is no association between voting behavior and gender.
-</td>
-</tr>
-
-<tr>
-<td><strong>Alternative Hypothesis</strong></td>
-<td>
-There <strong>is an association</strong> between Variable A and Variable B.
-</td>
-<td>
-There is an association between voting behavior and gender.
-</td>
-</tr>
-
-</table>
-
-</div>
-
-<div class="card">
 
 <h2>Interactive Study Tools</h2>
 
@@ -472,9 +384,9 @@ cramer_v <- rcompanion::cramerV(polit_table)
 cramer_v
     
 # A Chi-Square Test of Independence was conducted to determine if there was <br>
-    an association between gender (male or female) and voting behavior (yes or no).
+  an association between gender (male or female) and voting behavior (yes or no).
 # The results showed that there was an association between the two variables, <br>
-    χ²(1) = 7.84, p = .005.
+  χ²(1) = 7.84, p = .005.
 # The association was moderate (Cramer's V = .32).
 
 </code></pre>
