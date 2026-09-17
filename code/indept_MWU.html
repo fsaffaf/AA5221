@@ -426,21 +426,7 @@ Install the Required Packages
 
 <div class="path-step-content">
 
-<p>
-Install the packages you need. What is a package?
-</p>
-
-<ul>
-<li>R Packages only need to be installed once.</li>
-<li>Do <strong>NOT</strong> run the install code more than once after successful installation as this can lead to errors.</li>
-</ul>
-
-<div class="highlight-orange">
-
-<strong>Important:</strong>
-Once a package has been successfully installed, you do not need to install it again.
-
-</div>
+<h3>Install the packages needed</h3>
 
 <table>
 
@@ -466,25 +452,40 @@ Once a package has been successfully installed, you do not need to install it ag
 
 </table>
 
-<p><strong>Code Template</strong></p>
+<p>
+Copy-and-paste the following code into your RScript file. <br>
+    Run the code once.
+</p>
 
-<div class="highlight-blue">
+<div class="highlight highlight-orange">
 
-<pre><code>install.packages("PackageName")</code></pre>
-
+<pre><code>install.packages("dplyr")</code></pre>
+<pre><code>install.packages("effectsize")</code></pre>
+<pre><code>install.packages("effsize")</code></pre>
 </div>
 
-<p><strong>Example</strong></p>
+<p>
+You will see a long "warning" message appear when you install the package.
+This actually means you have successfully installed the package.
+After installation is complete, remove or comment out this line.
+Packages only need to be installed once.
+</p>
 
-<div class="highlight-blue">
+<hr>
 
-<pre><code>install.packages("dplyr")
-install.packages("effectsize")
-install.packages("effsize")</code></pre>
+<h3>Load the packages</h3>
 
-</div>
+<p>
+Copy-and-paste the code below into your RScript. <br>
+Keep this line of code in your RScript.
+</p>
 
-<p><strong>Output:</strong> None</p>
+<div class="highlight highlight-orange">
+
+<pre><code>library(dplyr)</code></pre>
+<pre><code>library(effectsize)</code></pre>
+<pre><code>library(effsize)</code></pre>
+    
 
 </div>
 
@@ -1700,27 +1701,6 @@ The output provides the effect size and magnitude.
 </div>
 
 </div>
-
-</div>
-
-
-<!-- FINAL REMINDER -->
-
-<div class="highlight-blue">
-
-<h3>Remember</h3>
-
-<p>
-Your normality results determine which path you follow.
-</p>
-
-<p>
-<strong>Normal → Independent T-Test → Cohen's d → Report the T-Test</strong>
-</p>
-
-<p>
-<strong>Abnormal → Mann-Whitney U → Cliff's Delta → Report the Mann-Whitney U Test</strong>
-</p>
 
 </div>
 
