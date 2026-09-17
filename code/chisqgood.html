@@ -652,6 +652,29 @@ of a categorical variable. The frequency table will provide the observed
 frequencies used in the Chi-Square Goodness-of-Fit test.
 </p>
 
+
+<h3>Understanding Observed Frequencies</h3>
+
+<p>
+The values in the frequency table are called
+<strong>observed frequencies</strong>.
+These are the actual category counts found in your dataset.
+</p>
+
+<p>
+The Chi-Square Goodness-of-Fit test compares:
+</p>
+
+<ul>
+
+<li>
+<strong>Observed Frequencies</strong> → What you found in your dataset.
+</li>
+
+<li>
+<strong>Expected Frequencies</strong> → What you expected to find based on previous research, theory, or historical data.
+</li>
+    
 <h3>Create the Frequency Table</h3>
 
 <ol>
@@ -742,10 +765,6 @@ observed</code></pre>
 
 </div>
 
-<p>
-The second line instructs R to display the contents of the object.
-</p>
-
 <hr>
 
 <h3>Example Output</h3>
@@ -779,36 +798,6 @@ Later, when creating the expected proportions for the Chi-Square test,
 the expected values must appear in the same order as the categories shown here.
 </p>
 
-<hr>
-
-<h3>Understanding Observed Frequencies</h3>
-
-<p>
-The values in the frequency table are called
-<strong>observed frequencies</strong>.
-These are the actual category counts found in your dataset.
-</p>
-
-<p>
-The Chi-Square Goodness-of-Fit test compares:
-</p>
-
-<ul>
-
-<li>
-<strong>Observed Frequencies</strong> → What you found in your dataset.
-</li>
-
-<li>
-<strong>Expected Frequencies</strong> → What you expected to find based on previous research, theory, or historical data.
-</li>
-
-</ul>
-
-<p>
-In the next section, you will create a bar chart to visualize the observed frequencies.
-</p>
-
 </div>
 
 </details>
@@ -827,6 +816,31 @@ A bar chart provides a visual summary of the frequencies contained in your
 frequency table. It allows you to quickly compare the number of observations
 across categories.
 </p>
+
+<p>
+The bar chart provides a quick visual comparison of the category counts before
+conducting the Chi-Square test.
+</p>
+
+<hr>
+    
+<h3>Understanding Bar Charts</h3>
+
+<p>
+Bar charts are appropriate for categorical variables because each category
+represents a distinct group.
+</p>
+
+<ul>
+
+<li>Each bar represents one category.</li>
+
+<li>The height of the bar represents the frequency (count).</li>
+
+<li>Bars are separated because categories are distinct groups.</li>
+
+<li>The chart allows you to visually inspect the distribution of the variable.</li>
+    
 
 <h3> Create the Bar Chart</h3>
 
@@ -914,43 +928,6 @@ col = rainbow(length(observed)))</code></pre>
 The chart displays the observed frequencies from your dataset as bars.
 Higher bars represent categories with more observations, while shorter bars
 represent categories with fewer observations.
-</p>
-
-<p>
-The bar chart provides a quick visual comparison of the category counts before
-conducting the Chi-Square test.
-</p>
-
-<hr>
-    
-<h3>Understanding Bar Charts</h3>
-
-<p>
-Bar charts are appropriate for categorical variables because each category
-represents a distinct group.
-</p>
-
-<ul>
-
-<li>Each bar represents one category.</li>
-
-<li>The height of the bar represents the frequency (count).</li>
-
-<li>Bars are separated because categories are distinct groups.</li>
-
-<li>The chart allows you to visually inspect the distribution of the variable.</li>
-
-</ul>
-
-<p>
-Remember that the bar chart is used for visualization only.
-The Chi-Square Goodness-of-Fit test will determine whether the differences
-between the observed and expected distributions are statistically significant.
-</p>
-
-The bar chart displays the <em>observed frequencies</em> only.
-The expected proportions will be created in the next section and used in the
-Chi-Square Goodness-of-Fit test.
 </p>
 
 </div>
