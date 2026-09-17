@@ -463,7 +463,7 @@ Inferential Test Selector
 Below is an example of what your code will look like. Your code will be different because the dataset name, variable name, expected proportions, results, and interpretations will depend on your assigned dataset.
 </p>
 
-<div class="highlight">
+<div class="highlight highlight-blue">
 
 <pre><code>library(readxl)
 library(rcompanion)
@@ -617,7 +617,7 @@ The generated code will vary depending on your file location and file name.
 
 <h3>General Example</h3>
 
-<div class="highlight">
+<div class="highlight highlight-blue">
 
 <pre><code>DatasetName &lt;- read_excel("filepath")</code></pre>
 
@@ -625,7 +625,7 @@ The generated code will vary depending on your file location and file name.
 
 <h3>Example with a Sample File Path</h3>
 
-<div class="highlight">
+<div class="highlight highlight-blue">
 
 <pre><code>DatasetName &lt;- read_excel(
 "C:/Users/John/OneDrive/Documents/AA5221/Datasets/DatasetName.xlsx"
@@ -699,7 +699,7 @@ Variable name:
 <strong>political</strong>
 </p>
 
-<div class="highlight">
+<div class="highlight highlight-blue">
 
 <pre><code>table(data2026$political)</code></pre>
 
@@ -718,7 +718,7 @@ it is helpful to save it as an object that can be reused later in your analysis.
 Add <code>observed &lt;-</code> before the <code>table()</code> function.
 </p>
 
-<div class="highlight">
+<div class="highlight highlight-blue">
 
 <pre><code>observed &lt;- table(data2026$political)</code></pre>
 
@@ -738,7 +738,7 @@ To view the frequency table, place <code>observed</code> on a new line
 and run both lines of code.
 </p>
 
-<div class="highlight">
+<div class="highlight highlight-blue">
 
 <pre><code>observed &lt;- table(data2026$political)
 
@@ -754,7 +754,7 @@ The second line instructs R to display the contents of the object.
 
 <h3>Example Output</h3>
 
-<div class="highlight">
+<div class="highlight highlight-blue">
 
 <pre><code>Democrat       50
 Independent    30
@@ -838,7 +838,7 @@ across categories.
 Copy and paste the code below into your R Script.
 </p>
 
-<div class="highlight">
+<div class="highlight highlight-blue">
 
 <pre><code>barplot(observed,
 main = "Variable Name",
@@ -900,7 +900,7 @@ Text labels may contain spaces.
 
 <h3>Example Using Political Party Data</h3>
 
-<div class="highlight">
+<div class="highlight highlight-blue">
 
 <pre><code>barplot(observed,
 main = "Political Party",
@@ -925,7 +925,7 @@ The bar chart provides a quick visual comparison of the category counts before
 conducting the Chi-Square test.
 </p>
 
-<div class="highlight">
+<div class="highlight highlight-blue">
 
 <p>
 <strong>Example Interpretation:</strong>
@@ -967,7 +967,7 @@ The Chi-Square Goodness-of-Fit test will determine whether the differences
 between the observed and expected distributions are statistically significant.
 </p>
 
-<div class="highlight">
+<div class="highlight highlight-blue">
 
 <p>
 <strong>Important:</strong>
@@ -1031,7 +1031,7 @@ categories shown in your frequency table.
 
 <h3>Code Template</h3>
 
-<div class="highlight">
+<div class="highlight highlight-blue">
 
 <pre><code>expected &lt;- c(#, #, #)</code></pre>
 
@@ -1054,7 +1054,7 @@ displayed in your frequency table.
 Suppose your frequency table displays:
 </p>
 
-<div class="highlight">
+<div class="highlight highlight-blue">
 
 <pre><code>Democrat
 Independent
@@ -1066,7 +1066,7 @@ Republican</code></pre>
 Then your expected proportions must follow the same order.
 </p>
 
-<div class="highlight">
+<div class="highlight highlight-blue">
 
 <pre><code>expected &lt;- c(.40, .20, .40)</code></pre>
 
@@ -1082,7 +1082,7 @@ Then your expected proportions must follow the same order.
 
 </ul>
 
-<div class="highlight">
+<div class="highlight highlight-blue">
 
 <p>
 <strong>Important:</strong>
@@ -1105,7 +1105,7 @@ Once the observed frequencies and expected proportions have been created,
 use the <code>chisq.test()</code> function to perform the analysis.
 </p>
 
-<div class="highlight">
+<div class="highlight highlight-blue">
 
 <pre><code>chi_result &lt;- chisq.test(
 x = observed,
@@ -1125,7 +1125,7 @@ The second line displays the results.
 
 <h3>Example Output</h3>
 
-<div class="highlight">
+<div class="highlight highlight-blue">
 
 <pre><code>Chi-squared test for given probabilities
 
@@ -1251,7 +1251,7 @@ A statistically significant result suggests that the differences between the
 observed and expected frequencies are unlikely to be explained by random variation alone.
 </p>
 
-<div class="highlight">
+<div class="highlight highlight-blue">
 
 <p>
 <strong>Statistically Significant:</strong>
@@ -1265,7 +1265,7 @@ A non-significant result suggests that any differences between the observed and
 expected frequencies are small enough that they could reasonably be due to chance.
 </p>
 
-<div class="highlight">
+<div class="highlight highlight-blue">
 
 <p>
 <strong>Not Statistically Significant:</strong>
@@ -1282,7 +1282,7 @@ The observed distribution is similar to the expected distribution.
 Suppose your Chi-Square output is:
 </p>
 
-<div class="highlight">
+<div class="highlight highlight-blue">
 
 <pre><code>X-squared = 12.64
 
@@ -1296,7 +1296,7 @@ p-value = .009</code></pre>
 Since:
 </p>
 
-<div class="highlight">
+<div class="highlight highlight-blue">
 
 <p>
 .009 &lt; .05
@@ -1320,7 +1320,7 @@ This means the observed frequencies differ from the expected frequencies.
 Suppose your Chi-Square output is:
 </p>
 
-<div class="highlight">
+<div class="highlight highlight-blue">
 
 <pre><code>X-squared = 1.82
 
@@ -1334,7 +1334,7 @@ p-value = .403</code></pre>
 Since:
 </p>
 
-<div class="highlight">
+<div class="highlight highlight-blue">
 
 <p>
 .403 &gt; .05
@@ -1375,7 +1375,7 @@ Only calculate Cohen's W if the result is statistically significant.
 
 </ol>
 
-<div class="highlight">
+<div class="highlight highlight-blue">
 
 <p>
 <strong>Important:</strong>
@@ -1443,7 +1443,7 @@ Cohen's W describes the magnitude of the difference between the observed
 and expected distributions.
 </p>
 
-<div class="highlight">
+<div class="highlight highlight-blue">
 
 <p>
 <strong>Remember:</strong>
@@ -1461,7 +1461,7 @@ statistically significant.
 Copy and paste the following code into your R Script.
 </p>
 
-<div class="highlight">
+<div class="highlight highlight-blue">
 
 <pre><code>w &lt;- sqrt(
 as.numeric(chi_result$statistic) /
@@ -1481,7 +1481,7 @@ The second line displays the result.
 
 <h3>Example Output</h3>
 
-<div class="highlight">
+<div class="highlight highlight-blue">
 
 <pre><code>0.40</code></pre>
 
@@ -1537,7 +1537,7 @@ Use the table below to classify the size of the effect.
 Suppose your output produced:
 </p>
 
-<div class="highlight">
+<div class="highlight highlight-blue">
 
 <pre><code>w = 0.40</code></pre>
 
@@ -1637,7 +1637,7 @@ The final step is to write a professional summary describing the results
 of the analysis.
 </p>
 
-<div class="highlight">
+<div class="highlight highlight-blue">
 
 <p>
 <strong>Next:</strong>
@@ -1670,7 +1670,7 @@ For this assignment, add your results summary as comments at the end of your
 R Script. Each sentence should begin with a hashtag (<code>#</code>).
 </p>
 
-<div class="highlight">
+<div class="highlight highlight-blue">
 
 <p>
 <strong>Reminder:</strong>
@@ -1761,7 +1761,7 @@ Use the template below to create your results summary.
 Replace the bracketed text with information from your analysis.
 </p>
 
-<div class="highlight">
+<div class="highlight highlight-blue">
 
 <pre><code># A Chi-Square Goodness-of-Fit test was conducted
 # to determine if there was a difference between
@@ -1787,7 +1787,7 @@ Replace the bracketed text with information from your analysis.
 The example below demonstrates how a complete results summary might appear.
 </p>
 
-<div class="highlight">
+<div class="highlight highlight-blue">
 
 <pre><code># A Chi-Square Goodness-of-Fit test was conducted
 # to determine if there was a difference between
@@ -1834,7 +1834,7 @@ A reader should be able to understand the outcome of the analysis by reading
 your results summary without needing to examine the statistical output.
 </p>
 
-<div class="highlight">
+<div class="highlight highlight-blue">
 
 <p>
 <strong>Checklist Before Moving On</strong>
@@ -2007,7 +2007,7 @@ R code inside an R Markdown file must be placed inside a
 Add the following line at the very beginning of your document:
 </p>
 
-<div class="highlight">
+<div class="highlight highlight-blue">
 
 <pre><code>```{r}</code></pre>
 
@@ -2017,7 +2017,7 @@ Add the following line at the very beginning of your document:
 Then add the following line at the very end of your document:
 </p>
 
-<div class="highlight">
+<div class="highlight highlight-blue">
 
 <pre><code>```</code></pre>
 
@@ -2029,7 +2029,7 @@ All of your code should now be located between the two lines.
 
 <h3>Example Structure</h3>
 
-<div class="highlight">
+<div class="highlight highlight-blue">
 
 <pre><code>```{r}
 
@@ -2122,7 +2122,7 @@ in a single document.
 
 </ul>
 
-<div class="highlight">
+<div class="highlight highlight-blue">
 
 <p>
 <strong>Checkpoint:</strong>
@@ -2229,7 +2229,7 @@ Select <strong>Publish</strong>.
 
 </ol>
 
-<div class="highlight">
+<div class="highlight highlight-blue">
 
 <p>
 <strong>Tip:</strong>
@@ -2267,7 +2267,7 @@ Submit the URL according to your instructor's directions.
 
 </ol>
 
-<div class="highlight">
+<div class="highlight highlight-blue">
 
 <p>
 Your RPubs link allows others to view your analysis without downloading any files.
