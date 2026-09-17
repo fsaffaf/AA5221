@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="en">
 
 <head>
@@ -72,22 +71,71 @@ p{
 .card{
     background:white;
     border-radius:16px;
-    padding:30px;
     margin-bottom:25px;
     border:1px solid #d9e2ec;
-
-    box-shadow:
-      0 3px 10px rgba(0,0,0,.05);
-
+    box-shadow:0 3px 10px rgba(0,0,0,.05);
     animation:fadeUp .6s ease forwards;
     transition:all .25s ease;
+    overflow:hidden;
 }
 
 .card:hover{
     transform:translateY(-4px);
-    box-shadow:
-      0 10px 25px rgba(14,104,179,.15);
+    box-shadow:0 10px 25px rgba(14,104,179,.15);
 }
+
+/* Collapsible Section Headers */
+
+details.card > summary{
+    padding:22px 30px;
+    cursor:pointer;
+    color:#0e68b3;
+    font-size:1.35rem;
+    font-weight:600;
+    list-style:none;
+    position:relative;
+    user-select:none;
+}
+
+details.card > summary::-webkit-details-marker{
+    display:none;
+}
+
+details.card > summary::after{
+    content:"+";
+    position:absolute;
+    right:30px;
+    top:50%;
+    transform:translateY(-50%);
+    font-size:1.6rem;
+    font-weight:400;
+    line-height:1;
+}
+
+details.card[open] > summary::after{
+    content:"−";
+}
+
+details.card[open] > summary{
+    border-bottom:1px solid #d9e2ec;
+}
+
+details.card > summary:hover{
+    background:#f8fbfe;
+}
+
+.details-content{
+    padding:5px 30px 30px;
+}
+
+/* Prevent headings inside collapsible content from behaving like section headers */
+
+.details-content h2,
+.details-content h3{
+    margin-top:25px;
+}
+
+/* Highlight Boxes */
 
 .highlight{
     background:#eef6fc;
@@ -97,6 +145,8 @@ p{
     margin:20px 0;
 }
 
+/* Lists */
+
 ul{
     padding-left:25px;
 }
@@ -104,6 +154,8 @@ ul{
 li{
     margin-bottom:8px;
 }
+
+/* Tables */
 
 table{
     width:100%;
@@ -134,6 +186,8 @@ tr:nth-child(even){
 tr:hover{
     background:#edf6ff;
 }
+
+/* Scatterplots */
 
 .scatterplot{
     text-align:center;
@@ -182,6 +236,24 @@ tr:hover{
     border-radius:8px;
 }
 
+/* Code */
+
+pre{
+    white-space:pre-wrap;
+    overflow-x:auto;
+    margin:0;
+}
+
+code{
+    font-family:Consolas,Monaco,"Courier New",monospace;
+}
+
+.highlight pre{
+    background:transparent;
+}
+
+/* Horizontal Rules */
+
 hr{
     border:none;
     height:1px;
@@ -189,16 +261,43 @@ hr{
     margin:30px 0;
 }
 
+/* Links */
+
+a{
+    color:#0e68b3;
+}
+
+a.button{
+    display:inline-block;
+    background:#0e68b3;
+    color:white;
+    padding:14px 28px;
+    border-radius:999px;
+    text-decoration:none;
+    font-weight:600;
+    transition:.3s;
+}
+
+a.button:hover{
+    background:#2b6cb0;
+    transform:translateY(-2px);
+}
+
+/* Animation */
+
 @keyframes fadeUp{
     from{
         opacity:0;
         transform:translateY(20px);
     }
+
     to{
         opacity:1;
         transform:translateY(0);
     }
 }
+
+/* Mobile */
 
 @media (max-width:768px){
 
@@ -206,8 +305,18 @@ hr{
         font-size:2rem;
     }
 
-    .card{
+    details.card > summary{
         padding:20px;
+        padding-right:50px;
+        font-size:1.15rem;
+    }
+
+    details.card > summary::after{
+        right:20px;
+    }
+
+    .details-content{
+        padding:5px 20px 25px;
     }
 
     th,
@@ -223,48 +332,6 @@ hr{
 
 }
 
-    details {
-    margin: 20px 0;
-    border: 1px solid #d9e2ec;
-    border-radius: 8px;
-    background: #ffffff;
-    overflow: hidden;
-}
-
-details summary {
-    padding: 18px 22px;
-    cursor: pointer;
-    color: #0e68b3;
-    font-size: 1.15rem;
-    font-weight: 600;
-    list-style: none;
-    position: relative;
-}
-
-details summary::-webkit-details-marker {
-    display: none;
-}
-
-details summary::after {
-    content: "+";
-    position: absolute;
-    right: 22px;
-    font-size: 1.4rem;
-    font-weight: 400;
-}
-
-details[open] summary::after {
-    content: "−";
-}
-
-details[open] summary {
-    border-bottom: 1px solid #d9e2ec;
-}
-
-.details-content {
-    padding: 20px 22px;
-}
-    
 </style>
 
 </head>
@@ -276,10 +343,13 @@ details[open] summary {
 <h1>Chi-Square Goodness-of-Fit Test</h1>
 
 
+<!-- OVERVIEW -->
+
 <details class="card">
-<summary>
-<h2>Overview</h2>
-</summary>
+
+<summary>Overview</summary>
+
+<div class="details-content">
 
 <p>
 The <strong>Chi-Square Goodness-of-Fit test</strong> is used for categorical data only.
@@ -366,7 +436,7 @@ These percentages become the expected proportions used in the analysis.
 Expected proportions must always add up to 100% (1.00).
 </p>
 
-<h2>Interactive Study Tools</h2>
+<h3>Interactive Study Tools</h3>
 
 <p>
 Use the Inferential Test Selector to determine which inferential procedure
@@ -378,62 +448,56 @@ is appropriate for your study.
 <a
 href="https://fsaffaf.github.io/AA5221/tools/inferential_test_selector.html"
 target="_blank"
-style="
-display:inline-block;
-background:#0e68b3;
-color:white;
-padding:14px 28px;
-border-radius:999px;
-text-decoration:none;
-font-weight:600;
-transition:.3s;
-">
+rel="noopener noreferrer"
+class="button">
 Inferential Test Selector
 </a>
 
 </p>
 
+</div>
+
 </details>
 
 
+<!-- R SCRIPT CODE TEMPLATE -->
+
 <details class="card">
-<summary>
-<h2>R Script Code Template</h2>
-</summary>
-    
+
+<summary>R Script Code Template</summary>
+
+<div class="details-content">
+
 <p>
 Below is an example of what your code will look like. Your code will be different because the dataset name, variable name, expected proportions, results, and interpretations will depend on your assigned dataset.
 </p>
 
 <div class="highlight">
 
-<pre><code>
-library(readxl)
+<pre><code>library(readxl)
 library(rcompanion)
-    
-data2026 <- read_excel("C:/Users/John/OneDrive/Documents/AA5221/Datasets/political_data.xlsx")
-    
-polit_table <- table(data2026$gender, data2026$voting)
+
+data2026 &lt;- read_excel("C:/Users/John/OneDrive/Documents/AA5221/Datasets/political_data.xlsx")
+
+polit_table &lt;- table(data2026$gender, data2026$voting)
 polit_table
-    
+
 barplot(polit_table,
 beside = TRUE,
 col = rainbow(nrow(polit_table)),
 legend = rownames(polit_table))
-    
-chi_result <- chisq.test(polit_table)
-chi_result
-    
-cramer_v <- rcompanion::cramerV(polit_table)
-cramer_v
-    
-# A Chi-Square Test of Independence was conducted to determine if there was <br>
-  an association between gender (male or female) and voting behavior (yes or no).
-# The results showed that there was an association between the two variables, <br>
-  χ²(1) = 7.84, p = .005.
-# The association was moderate (Cramer's V = .32).
 
-</code></pre>
+chi_result &lt;- chisq.test(polit_table)
+chi_result
+
+cramer_v &lt;- rcompanion::cramerV(polit_table)
+cramer_v
+
+# A Chi-Square Test of Independence was conducted to determine if there was
+# an association between gender (male or female) and voting behavior (yes or no).
+# The results showed that there was an association between the two variables,
+# χ²(1) = 7.84, p = .005.
+# The association was moderate (Cramer's V = .32).</code></pre>
 
 </div>
 
@@ -441,11 +505,15 @@ cramer_v
 
 </details>
 
+
+<!-- INSTALL READXL -->
+
 <details class="card">
-<summary>
-<h2>Install and Load the readxl Package</h2>
-</summary>
-    
+
+<summary>Install and Load the readxl Package</summary>
+
+<div class="details-content">
+
 <p>
 Packages add additional functionality to R.
 The <strong>readxl</strong> package allows R to import Excel files.
@@ -458,9 +526,9 @@ Run the following code once:
 </p>
 
 <div class="highlight">
-<pre><code>
-install.packages("readxl")
-</code></pre>
+
+<pre><code>install.packages("readxl")</code></pre>
+
 </div>
 
 <p>
@@ -477,23 +545,27 @@ Run the code below each time you start a new R session:
 </p>
 
 <div class="highlight">
-<pre><code>
-library(readxl)
-</code></pre>
+
+<pre><code>library(readxl)</code></pre>
+
 </div>
 
 <p>
 No output will appear. This simply loads the package into memory.
 </p>
 
-</summary>
+</div>
 
-    
+</details>
+
+
+<!-- IMPORT DATASET -->
 
 <details class="card">
-<summary>
-<h2>Import Your Excel Dataset into RStudio</h2>
-</summary>
+
+<summary>Import Your Excel Dataset into RStudio</summary>
+
+<div class="details-content">
 
 <p>
 Although datasets can be imported entirely through code, many students
@@ -569,11 +641,9 @@ Once imported, the dataset will appear in a new tab and will also appear
 in the Environment pane.
 </p>
 
-</summary>
+<hr>
 
-<div class="card">
-
-<h2>Import Code Generated by RStudio</h2>
+<h3>Import Code Generated by RStudio</h3>
 
 <p>
 The generated code will vary depending on your file location and file name.
@@ -583,9 +653,7 @@ The generated code will vary depending on your file location and file name.
 
 <div class="highlight">
 
-<pre><code>
-DatasetName <- read_excel("filepath")
-</code></pre>
+<pre><code>DatasetName &lt;- read_excel("filepath")</code></pre>
 
 </div>
 
@@ -593,11 +661,9 @@ DatasetName <- read_excel("filepath")
 
 <div class="highlight">
 
-<pre><code>
-DatasetName <- read_excel(
+<pre><code>DatasetName &lt;- read_excel(
 "C:/Users/John/OneDrive/Documents/AA5221/Datasets/DatasetName.xlsx"
-)
-</code></pre>
+)</code></pre>
 
 </div>
 
@@ -606,11 +672,9 @@ Copy the generated code and paste it into your R Script.
 This ensures the dataset can be imported automatically whenever the script is run.
 </p>
 
-</div>
+<hr>
 
-<div class="card">
-
-<h2>Verify the Dataset Imported Correctly</h2>
+<h3>Verify the Dataset Imported Correctly</h3>
 
 <p>
 After importing the dataset, verify that:
@@ -641,9 +705,16 @@ Capitalization and spelling must match exactly.
 
 </div>
 
-    <div class="card">
+</details>
 
-<h2>Part 5: Create and View a Frequency Table</h2>
+
+<!-- PART 5 -->
+
+<details class="card">
+
+<summary>Part 5: Create and View a Frequency Table</summary>
+
+<div class="details-content">
 
 <p>
 A frequency table summarizes how many observations belong to each category
@@ -682,9 +753,7 @@ The <code>table()</code> function counts the number of observations in each cate
 
 <div class="highlight">
 
-<pre><code>
-table(dataset$variable)
-</code></pre>
+<pre><code>table(dataset$variable)</code></pre>
 
 </div>
 
@@ -702,9 +771,7 @@ Variable name:
 
 <div class="highlight">
 
-<pre><code>
-table(data2026$political)
-</code></pre>
+<pre><code>table(data2026$political)</code></pre>
 
 </div>
 
@@ -718,14 +785,12 @@ it is helpful to save it as an object that can be reused later in your analysis.
 </p>
 
 <p>
-Add <code>observed <-</code> before the <code>table()</code> function.
+Add <code>observed &lt;-</code> before the <code>table()</code> function.
 </p>
 
 <div class="highlight">
 
-<pre><code>
-observed <- table(data2026$political)
-</code></pre>
+<pre><code>observed &lt;- table(data2026$political)</code></pre>
 
 </div>
 
@@ -745,11 +810,9 @@ and run both lines of code.
 
 <div class="highlight">
 
-<pre><code>
-observed <- table(data2026$political)
+<pre><code>observed &lt;- table(data2026$political)
 
-observed
-</code></pre>
+observed</code></pre>
 
 </div>
 
@@ -763,11 +826,9 @@ The second line instructs R to display the contents of the object.
 
 <div class="highlight">
 
-<pre><code>
-Democrat       50
+<pre><code>Democrat       50
 Independent    30
-Republican     20
-</code></pre>
+Republican     20</code></pre>
 
 </div>
 
@@ -785,8 +846,6 @@ This output indicates that:
 
 </ul>
 
-<div class="highlight">
-
 <p>
 <strong>Important:</strong>
 The order of the categories displayed in the frequency table is important.
@@ -796,11 +855,16 @@ the expected values must appear in the same order as the categories shown here.
 
 </div>
 
-</div>
+</details>
 
-<div class="card">
 
-<h2>Understanding Observed Frequencies</h2>
+<!-- UNDERSTANDING OBSERVED FREQUENCIES -->
+
+<details class="card">
+
+<summary>Understanding Observed Frequencies</summary>
+
+<div class="details-content">
 
 <p>
 The values in the frequency table are called
@@ -826,9 +890,16 @@ In the next section, you will create a bar chart to visualize the observed frequ
 
 </div>
 
-    <div class="card">
+</details>
 
-<h2>Part 6: Create a Bar Chart</h2>
+
+<!-- PART 6 -->
+
+<details class="card">
+
+<summary>Part 6: Create a Bar Chart</summary>
+
+<div class="details-content">
 
 <p>
 A bar chart provides a visual summary of the frequencies contained in your
@@ -844,13 +915,11 @@ Copy and paste the code below into your R Script.
 
 <div class="highlight">
 
-<pre><code>
-barplot(observed,
+<pre><code>barplot(observed,
 main = "Variable Name",
 xlab = "Variable Name",
 ylab = "Count",
-col = rainbow(length(observed)))
-</code></pre>
+col = rainbow(length(observed)))</code></pre>
 
 </div>
 
@@ -908,13 +977,11 @@ Text labels may contain spaces.
 
 <div class="highlight">
 
-<pre><code>
-barplot(observed,
+<pre><code>barplot(observed,
 main = "Political Party",
 xlab = "Political Party",
 ylab = "Frequency",
-col = rainbow(length(observed)))
-</code></pre>
+col = rainbow(length(observed)))</code></pre>
 
 </div>
 
@@ -950,9 +1017,16 @@ are statistically significant.
 
 </div>
 
-<div class="card">
+</details>
 
-<h2>Understanding Bar Charts</h2>
+
+<!-- UNDERSTANDING BAR CHARTS -->
+
+<details class="card">
+
+<summary>Understanding Bar Charts</summary>
+
+<div class="details-content">
 
 <p>
 Bar charts are appropriate for categorical variables because each category
@@ -990,9 +1064,16 @@ Chi-Square Goodness-of-Fit test.
 
 </div>
 
-<div class="card">
+</details>
 
-<h2>Part 7: Conduct a Chi-Square Goodness-of-Fit Test</h2>
+
+<!-- PART 7 -->
+
+<details class="card">
+
+<summary>Part 7: Conduct a Chi-Square Goodness-of-Fit Test</summary>
+
+<div class="details-content">
 
 <p>
 The Chi-Square Goodness-of-Fit test compares the frequencies observed in your
@@ -1037,9 +1118,7 @@ categories shown in your frequency table.
 
 <div class="highlight">
 
-<pre><code>
-expected <- c(#, #, #)
-</code></pre>
+<pre><code>expected &lt;- c(#, #, #)</code></pre>
 
 </div>
 
@@ -1062,11 +1141,9 @@ Suppose your frequency table displays:
 
 <div class="highlight">
 
-<pre><code>
-Democrat
+<pre><code>Democrat
 Independent
-Republican
-</code></pre>
+Republican</code></pre>
 
 </div>
 
@@ -1076,9 +1153,7 @@ Then your expected proportions must follow the same order.
 
 <div class="highlight">
 
-<pre><code>
-expected <- c(.40, .20, .40)
-</code></pre>
+<pre><code>expected &lt;- c(.40, .20, .40)</code></pre>
 
 </div>
 
@@ -1117,14 +1192,12 @@ use the <code>chisq.test()</code> function to perform the analysis.
 
 <div class="highlight">
 
-<pre><code>
-chi_result <- chisq.test(
+<pre><code>chi_result &lt;- chisq.test(
 x = observed,
 p = expected
 )
 
-chi_result
-</code></pre>
+chi_result</code></pre>
 
 </div>
 
@@ -1139,8 +1212,7 @@ The second line displays the results.
 
 <div class="highlight">
 
-<pre><code>
-Chi-squared test for given probabilities
+<pre><code>Chi-squared test for given probabilities
 
 data: observed
 
@@ -1148,16 +1220,22 @@ X-squared = 12.64
 
 df = 2
 
-p-value = 0.009
-</code></pre>
+p-value = 0.009</code></pre>
 
 </div>
 
 </div>
 
-<div class="card">
+</details>
 
-<h2>Understanding the Output</h2>
+
+<!-- UNDERSTANDING OUTPUT -->
+
+<details class="card">
+
+<summary>Understanding the Output</summary>
+
+<div class="details-content">
 
 <p>
 The Chi-Square output contains three values that are used when reporting results.
@@ -1199,9 +1277,16 @@ Used to determine whether the result is statistically significant.
 
 </div>
 
-<div class="card">
+</details>
 
-<h2>Example Interpretation</h2>
+
+<!-- EXAMPLE INTERPRETATION -->
+
+<details class="card">
+
+<summary>Example Interpretation</summary>
+
+<div class="details-content">
 
 <p>
 Suppose the output produced the following values:
@@ -1209,13 +1294,11 @@ Suppose the output produced the following values:
 
 <div class="highlight">
 
-<pre><code>
-X-squared = 12.64
+<pre><code>X-squared = 12.64
 
 df = 2
 
-p-value = .009
-</code></pre>
+p-value = .009</code></pre>
 
 </div>
 
@@ -1242,9 +1325,16 @@ This will be completed in Part 8.
 
 </div>
 
-<div class="card">
+</details>
 
-<h2>Part 8: Determine Statistical Significance</h2>
+
+<!-- PART 8 -->
+
+<details class="card">
+
+<summary>Part 8: Determine Statistical Significance</summary>
+
+<div class="details-content">
 
 <p>
 After running the Chi-Square Goodness-of-Fit test, the next step is to determine
@@ -1287,9 +1377,16 @@ to conclude that a real difference exists.
 
 </div>
 
-<div class="card">
+</details>
 
-<h2>What Does Statistical Significance Mean?</h2>
+
+<!-- STATISTICAL SIGNIFICANCE -->
+
+<details class="card">
+
+<summary>What Does Statistical Significance Mean?</summary>
+
+<div class="details-content">
 
 <p>
 A statistically significant result suggests that the differences between the
@@ -1321,9 +1418,16 @@ The observed distribution is similar to the expected distribution.
 
 </div>
 
-<div class="card">
+</details>
 
-<h2>Example 1: Statistically Significant Result</h2>
+
+<!-- EXAMPLE 1 -->
+
+<details class="card">
+
+<summary>Example 1: Statistically Significant Result</summary>
+
+<div class="details-content">
 
 <p>
 Suppose your Chi-Square output is:
@@ -1331,13 +1435,11 @@ Suppose your Chi-Square output is:
 
 <div class="highlight">
 
-<pre><code>
-X-squared = 12.64
+<pre><code>X-squared = 12.64
 
 df = 2
 
-p-value = .009
-</code></pre>
+p-value = .009</code></pre>
 
 </div>
 
@@ -1363,9 +1465,16 @@ This means the observed frequencies differ from the expected frequencies.
 
 </div>
 
-<div class="card">
+</details>
 
-<h2>Example 2: Not Statistically Significant</h2>
+
+<!-- EXAMPLE 2 -->
+
+<details class="card">
+
+<summary>Example 2: Not Statistically Significant</summary>
+
+<div class="details-content">
 
 <p>
 Suppose your Chi-Square output is:
@@ -1373,13 +1482,11 @@ Suppose your Chi-Square output is:
 
 <div class="highlight">
 
-<pre><code>
-X-squared = 1.82
+<pre><code>X-squared = 1.82
 
 df = 2
 
-p-value = .403
-</code></pre>
+p-value = .403</code></pre>
 
 </div>
 
@@ -1406,9 +1513,16 @@ frequencies to conclude that a meaningful difference exists.
 
 </div>
 
-<div class="card">
+</details>
 
-<h2>Decision-Making Workflow</h2>
+
+<!-- DECISION WORKFLOW -->
+
+<details class="card">
+
+<summary>Decision-Making Workflow</summary>
+
+<div class="details-content">
 
 <ol>
 
@@ -1443,9 +1557,16 @@ Proceed directly to writing your results summary.
 
 </div>
 
-<div class="card">
+</details>
 
-<h2>Interactive Study Tool</h2>
+
+<!-- P VALUE TOOL -->
+
+<details class="card">
+
+<summary>Interactive Study Tool</summary>
+
+<div class="details-content">
 
 <p>
 If you need help interpreting your p-value, use the interactive p-value interpreter.
@@ -1456,16 +1577,8 @@ If you need help interpreting your p-value, use the interactive p-value interpre
 <a
 href="https://fsaffaf.github.io/AA5221/tools/p_value_interpreter.html"
 target="_blank"
-style="
-display:inline-block;
-background:#0e68b3;
-color:white;
-padding:14px 28px;
-border-radius:999px;
-text-decoration:none;
-font-weight:600;
-transition:.3s;
-">
+rel="noopener noreferrer"
+class="button">
 P-Value Interpreter
 </a>
 
@@ -1473,9 +1586,16 @@ P-Value Interpreter
 
 </div>
 
-<div class="card">
+</details>
 
-<h2>Part 9: Calculate Cohen's W</h2>
+
+<!-- PART 9 -->
+
+<details class="card">
+
+<summary>Part 9: Calculate Cohen's W</summary>
+
+<div class="details-content">
 
 <p>
 If your Chi-Square Goodness-of-Fit test is statistically significant
@@ -1512,14 +1632,12 @@ Copy and paste the following code into your R Script.
 
 <div class="highlight">
 
-<pre><code>
-w <- sqrt(
+<pre><code>w &lt;- sqrt(
 as.numeric(chi_result$statistic) /
 sum(observed)
 )
 
-w
-</code></pre>
+w</code></pre>
 
 </div>
 
@@ -1534,9 +1652,7 @@ The second line displays the result.
 
 <div class="highlight">
 
-<pre><code>
-0.40
-</code></pre>
+<pre><code>0.40</code></pre>
 
 </div>
 
@@ -1547,9 +1663,16 @@ and expected frequencies.
 
 </div>
 
-<div class="card">
+</details>
 
-<h2>Interpreting Cohen's W</h2>
+
+<!-- INTERPRETING COHEN'S W -->
+
+<details class="card">
+
+<summary>Interpreting Cohen's W</summary>
+
+<div class="details-content">
 
 <p>
 Use the table below to classify the size of the effect.
@@ -1586,9 +1709,16 @@ Use the table below to classify the size of the effect.
 
 </div>
 
-<div class="card">
+</details>
 
-<h2>Example Interpretation</h2>
+
+<!-- COHEN'S W EXAMPLE -->
+
+<details class="card">
+
+<summary>Example Interpretation</summary>
+
+<div class="details-content">
 
 <p>
 Suppose your output produced:
@@ -1596,9 +1726,7 @@ Suppose your output produced:
 
 <div class="highlight">
 
-<pre><code>
-w = 0.40
-</code></pre>
+<pre><code>w = 0.40</code></pre>
 
 </div>
 
@@ -1615,9 +1743,16 @@ frequencies by a moderate amount.
 
 </div>
 
-<div class="card">
+</details>
 
-<h2>Reporting Cohen's W</h2>
+
+<!-- REPORTING COHEN'S W -->
+
+<details class="card">
+
+<summary>Reporting Cohen's W</summary>
+
+<div class="details-content">
 
 <p>
 When reporting results, include a verbal interpretation of Cohen's W.
@@ -1662,9 +1797,16 @@ The difference was large (Cohen's W = .62).
 
 </div>
 
-<div class="card">
+</details>
 
-<h2>Putting It All Together</h2>
+
+<!-- PUTTING IT ALL TOGETHER -->
+
+<details class="card">
+
+<summary>Putting It All Together</summary>
+
+<div class="details-content">
 
 <p>
 After running your analysis, you should now have:
@@ -1703,9 +1845,16 @@ Chi-Square Goodness-of-Fit test using APA-style language.
 
 </div>
 
-<div class="card">
+</details>
 
-<h2>Part 10: Report the Results</h2>
+
+<!-- PART 10 -->
+
+<details class="card">
+
+<summary>Part 10: Report the Results</summary>
+
+<div class="details-content">
 
 <p>
 After completing the analysis, the final statistical task is to write a
@@ -1729,9 +1878,16 @@ Comments are used to document and explain your findings.
 
 </div>
 
-<div class="card">
+</details>
 
-<h2>Reporting P-Values</h2>
+
+<!-- REPORTING P VALUES -->
+
+<details class="card">
+
+<summary>Reporting P-Values</summary>
+
+<div class="details-content">
 
 <p>
 When reporting p-values, use the rules below.
@@ -1751,7 +1907,10 @@ When reporting p-values, use the rules below.
 
 <tr>
 <td>Between .001 and .050</td>
-<td>Report the exact value to three decimal places (e.g., <strong>p = .003</strong>)</td>
+<td>
+Report the exact value to three decimal places
+(e.g., <strong>p = .003</strong>)
+</td>
 </tr>
 
 <tr>
@@ -1763,9 +1922,16 @@ When reporting p-values, use the rules below.
 
 </div>
 
-<div class="card">
+</details>
 
-<h2>Reporting Other Numerical Values</h2>
+
+<!-- REPORTING OTHER NUMERICAL VALUES -->
+
+<details class="card">
+
+<summary>Reporting Other Numerical Values</summary>
+
+<div class="details-content">
 
 <p>
 Report all other numerical values to
@@ -1802,9 +1968,16 @@ Always round your values appropriately.
 
 </div>
 
-<div class="card">
+</details>
 
-<h2>Results Reporting Template</h2>
+
+<!-- RESULTS TEMPLATE -->
+
+<details class="card">
+
+<summary>Results Reporting Template</summary>
+
+<div class="details-content">
 
 <p>
 Use the template below to create your results summary.
@@ -1813,8 +1986,7 @@ Replace the bracketed text with information from your analysis.
 
 <div class="highlight">
 
-<pre><code>
-# A Chi-Square Goodness-of-Fit test was conducted
+<pre><code># A Chi-Square Goodness-of-Fit test was conducted
 # to determine if there was a difference between
 # the observed [categorical variable] frequencies
 # and the expected frequencies.
@@ -1826,16 +1998,22 @@ Replace the bracketed text with information from your analysis.
 
 # The difference was
 # [small / moderate / large]
-# (Cohen's W = .xx).
-</code></pre>
+# (Cohen's W = .xx).</code></pre>
 
 </div>
 
 </div>
 
-<div class="card">
+</details>
 
-<h2>Completed Example</h2>
+
+<!-- COMPLETED EXAMPLE -->
+
+<details class="card">
+
+<summary>Completed Example</summary>
+
+<div class="details-content">
 
 <p>
 The example below demonstrates how a complete results summary might appear.
@@ -1843,8 +2021,7 @@ The example below demonstrates how a complete results summary might appear.
 
 <div class="highlight">
 
-<pre><code>
-# A Chi-Square Goodness-of-Fit test was conducted
+<pre><code># A Chi-Square Goodness-of-Fit test was conducted
 # to determine if there was a difference between
 # the observed political party frequencies
 # and the expected frequencies.
@@ -1854,16 +2031,22 @@ The example below demonstrates how a complete results summary might appear.
 # χ²(2) = 12.64, p = .009.
 
 # The difference was moderate
-# (Cohen's W = .40).
-</code></pre>
+# (Cohen's W = .40).</code></pre>
 
 </div>
 
 </div>
 
-<div class="card">
+</details>
 
-<h2>Writing the Interpretation</h2>
+
+<!-- WRITING INTERPRETATION -->
+
+<details class="card">
+
+<summary>Writing the Interpretation</summary>
+
+<div class="details-content">
 
 <p>
 Your written interpretation should answer the original research question.
@@ -1926,9 +2109,16 @@ in a professional HTML report.
 
 </div>
 
-<div class="card">
+</details>
 
-<h2>Part 11: Create an R Markdown File</h2>
+
+<!-- PART 11 -->
+
+<details class="card">
+
+<summary>Part 11: Create an R Markdown File</summary>
+
+<div class="details-content">
 
 <p>
 After completing your R Script, the next step is to convert it into an
@@ -1946,16 +2136,23 @@ Before proceeding, review the R Markdown lesson.
 </p>
 
 <p>
-../RProgram/RMarkdown.html
+<a href="../RProgram/RMarkdown.html">
 R Markdown Files
 </a>
 </p>
 
 </div>
 
-<div class="card">
+</details>
 
-<h2>Step 1: Create a New R Markdown File</h2>
+
+<!-- R MARKDOWN STEP 1 -->
+
+<details class="card">
+
+<summary>Step 1: Create a New R Markdown File</summary>
+
+<div class="details-content">
 
 <ol>
 
@@ -1965,9 +2162,11 @@ Open RStudio.
 
 <li>
 Select:
+
 <div class="highlight">
 File → New File → R Markdown
 </div>
+
 </li>
 
 <li>
@@ -1987,9 +2186,16 @@ The default settings are sufficient for this assignment.
 
 </div>
 
-<div class="card">
+</details>
 
-<h2>Step 2: Save the R Markdown File</h2>
+
+<!-- R MARKDOWN STEP 2 -->
+
+<details class="card">
+
+<summary>Step 2: Save the R Markdown File</summary>
+
+<div class="details-content">
 
 <ol>
 
@@ -2032,9 +2238,16 @@ Save the file on the virtual desktop and upload it to OneDrive after completing 
 
 </div>
 
-<div class="card">
+</details>
 
-<h2>Step 3: Copy Your R Script into the R Markdown File</h2>
+
+<!-- R MARKDOWN STEP 3 -->
+
+<details class="card">
+
+<summary>Step 3: Copy Your R Script into the R Markdown File</summary>
+
+<div class="details-content">
 
 <ol>
 
@@ -2062,9 +2275,16 @@ At this point, the R Markdown document should contain only your assignment code.
 
 </div>
 
-<div class="card">
+</details>
 
-<h2>Step 4: Create a Code Chunk</h2>
+
+<!-- R MARKDOWN STEP 4 -->
+
+<details class="card">
+
+<summary>Step 4: Create a Code Chunk</summary>
+
+<div class="details-content">
 
 <p>
 R code inside an R Markdown file must be placed inside a
@@ -2114,9 +2334,16 @@ appear shaded or highlighted within RStudio.
 
 </div>
 
-<div class="card">
+</details>
 
-<h2>Step 5: Knit the Document</h2>
+
+<!-- R MARKDOWN STEP 5 -->
+
+<details class="card">
+
+<summary>Step 5: Knit the Document</summary>
+
+<div class="details-content">
 
 <p>
 Once the code chunk has been created, generate the HTML report.
@@ -2149,9 +2376,16 @@ results in a web-friendly format.
 
 </div>
 
-<div class="card">
+</details>
 
-<h2>Step 6: Save the HTML Report</h2>
+
+<!-- R MARKDOWN STEP 6 -->
+
+<details class="card">
+
+<summary>Step 6: Save the HTML Report</summary>
+
+<div class="details-content">
 
 <p>
 After the document finishes knitting, save the generated HTML file.
@@ -2177,9 +2411,16 @@ Confirm that the file opens correctly in a web browser.
 
 </div>
 
-<div class="card">
+</details>
 
-<h2>Why Use R Markdown?</h2>
+
+<!-- WHY R MARKDOWN -->
+
+<details class="card">
+
+<summary>Why Use R Markdown?</summary>
+
+<div class="details-content">
 
 <p>
 R Markdown improves reproducibility by keeping your code and results together
@@ -2214,9 +2455,16 @@ The final step is to publish the HTML report using RPubs and submit the generate
 
 </div>
 
-<div class="card">
+</details>
 
-<h2>Part 12: Publish Your Work as an RPubs HTML File</h2>
+
+<!-- PART 12 -->
+
+<details class="card">
+
+<summary>Part 12: Publish Your Work as an RPubs HTML File</summary>
+
+<div class="details-content">
 
 <p>
 After creating and knitting your R Markdown document, the final step is to
@@ -2233,11 +2481,23 @@ Before beginning, review the RPubs lesson.
 </p>
 
 <p>
-<a href="../RProgram/RPubs.html">RPubs</div>
+<a href="../RProgram/RPubs.html">
+RPubs
+</a>
+</p>
 
-<div class="card">
+</div>
 
-<h2>Step 1: Open Your R Markdown File</h2>
+</details>
+
+
+<!-- RPUBS STEP 1 -->
+
+<details class="card">
+
+<summary>Step 1: Open Your R Markdown File</summary>
+
+<div class="details-content">
 
 <ol>
 
@@ -2261,9 +2521,16 @@ After knitting, the completed HTML report should appear in the Viewer pane or op
 
 </div>
 
-<div class="card">
+</details>
 
-<h2>Step 2: Publish to RPubs</h2>
+
+<!-- RPUBS STEP 2 -->
+
+<details class="card">
+
+<summary>Step 2: Publish to RPubs</summary>
+
+<div class="details-content">
 
 <ol>
 
@@ -2309,9 +2576,16 @@ Use a descriptive title such as
 
 </div>
 
-<div class="card">
+</details>
 
-<h2>Step 3: Obtain the RPubs URL</h2>
+
+<!-- RPUBS STEP 3 -->
+
+<details class="card">
+
+<summary>Step 3: Obtain the RPubs URL</summary>
+
+<div class="details-content">
 
 <p>
 After publishing, RPubs will generate a unique web address for your report.
@@ -2347,9 +2621,16 @@ Your RPubs link allows others to view your analysis without downloading any file
 
 </div>
 
-<div class="card">
+</details>
 
-<h2>Save a Copy of the RPubs HTML File</h2>
+
+<!-- SAVE RPUBS COPY -->
+
+<details class="card">
+
+<summary>Save a Copy of the RPubs HTML File</summary>
+
+<div class="details-content">
 
 <p>
 In addition to publishing the report online, save a copy of the HTML file for your records.
@@ -2387,9 +2668,16 @@ folder.
 
 </div>
 
-<div class="card">
+</details>
 
-<h2>Assignment Submission Checklist</h2>
+
+<!-- SUBMISSION CHECKLIST -->
+
+<details class="card">
+
+<summary>Assignment Submission Checklist</summary>
+
+<div class="details-content">
 
 <p>
 Before submitting your assignment, confirm that all required files have been completed.
@@ -2466,9 +2754,16 @@ Before submitting your assignment, confirm that all required files have been com
 
 </div>
 
-<div class="card">
+</details>
 
-<h2>Congratulations</h2>
+
+<!-- CONGRATULATIONS -->
+
+<details class="card">
+
+<summary>Congratulations</summary>
+
+<div class="details-content">
 
 <p>
 You have completed a full Chi-Square Goodness-of-Fit analysis using RStudio.
@@ -2512,3 +2807,12 @@ previous research, theory, or historical data.
 </div>
 
 </div>
+
+</details>
+
+
+</div>
+
+</body>
+
+</html>
