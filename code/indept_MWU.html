@@ -84,15 +84,23 @@ p {
     padding: 10px 25px 20px;
 }
 
-.test-path-content details {
+<style>
+/* Collapsible Sections */
+
+.test-path-content details,
+.test-paths .test-path-content details {
+    margin: 0;
+    padding: 0;
     border-bottom: 1px solid #e5e7eb;
 }
 
-.test-path-content details:last-child {
+.test-path-content details:last-child,
+.test-paths .test-path-content details:last-child {
     border-bottom: none;
 }
 
-.test-path-content summary {
+.test-path-content summary,
+.test-paths .test-path-content summary {
     list-style: none;
     cursor: pointer;
     position: relative;
@@ -101,11 +109,13 @@ p {
     font-weight: 600;
 }
 
-.test-path-content summary::-webkit-details-marker {
+.test-path-content summary::-webkit-details-marker,
+.test-paths .test-path-content summary::-webkit-details-marker {
     display: none;
 }
 
-.test-path-content summary::after {
+.test-path-content summary::after,
+.test-paths .test-path-content summary::after {
     content: "+";
     position: absolute;
     right: 5px;
@@ -115,7 +125,8 @@ p {
     font-weight: 400;
 }
 
-.test-path-content details[open] summary::after {
+.test-path-content details[open] summary::after,
+.test-paths .test-path-content details[open] summary::after {
     content: "−";
 }
 
@@ -126,7 +137,7 @@ p {
 .path-step-content p {
     margin-top: 10px;
 }
-
+</style>
 ul {
     padding-left: 25px;
 }
