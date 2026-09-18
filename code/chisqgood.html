@@ -1,6 +1,3 @@
-<!DOCTYPE html>
-
-
 <html lang="en">
 
 <head>
@@ -23,7 +20,6 @@ body {
     padding: 50px 20px;
 }
 
-/* Main page heading */
 h1 {
     text-align: left;
     color: #666666;
@@ -33,7 +29,6 @@ h1 {
     margin-bottom: 10px;
 }
 
-/* Subtitle */
 .subtitle {
     text-align: center;
     color: #6b7280;
@@ -43,20 +38,18 @@ h1 {
     font-size: .95rem;
 }
 
-/* Regular section headings */
-h2,
-h3 {
-    color: #155a8a;
+h2, 
+h3 { 
+    color: #155a8a; 
     font-size: 1.15rem;
-    font-weight: 500;
-    display: inline-block;
+    font-weight: 500; 
+    display: inline-block; 
 }
 
 p {
     line-height: 1.8;
 }
 
-/* Main test-path card */
 .test-path {
     border: 1px solid #d9e2ec;
     border-radius: 14px;
@@ -66,14 +59,12 @@ p {
     box-shadow: 0 3px 10px rgba(0, 0, 0, .05);
 }
 
-/* Blue card header */
 .test-path-header {
     background: #0e68b3;
     color: white;
     padding: 20px 25px;
 }
 
-/* Heading inside blue card header */
 .test-path-header h2,
 .test-path-header h3 {
     color: white;
@@ -88,26 +79,25 @@ p {
     opacity: .95;
 }
 
-/* Card content */
 .test-path-content {
     padding: 10px 25px 20px;
 }
 
 .test-path-content details {
-    border-bottom: 1px solid #e5e7eb;
+    border-bottom: none;
+    margin-bottom: 8px;
 }
 
 .test-path-content details:last-child {
-    border-bottom: none;
+    margin-bottom: 0;
 }
 
-/* Collapsible step headings */
+/* Step headings */
 .test-path-content summary {
     list-style: none;
     cursor: pointer;
     position: relative;
-    display: inline-block;
-    padding: 8px 38px 8px 14px;
+    padding: 12px 40px 12px 15px;
     color: white;
     background: #0e68b3;
     font-size: 1rem;
@@ -119,11 +109,10 @@ p {
     display: none;
 }
 
-/* Plus/minus icon */
 .test-path-content summary::after {
     content: "+";
     position: absolute;
-    right: 5px;
+    right: 15px;
     top: 50%;
     transform: translateY(-50%);
     font-size: 1.3rem;
@@ -134,9 +123,8 @@ p {
     content: "−";
 }
 
-/* Content inside each step */
 .path-step-content {
-    padding: 0 5px 20px;
+    padding: 0 15px 20px;
 }
 
 .path-step-content p {
@@ -151,7 +139,6 @@ li {
     margin-bottom: 8px;
 }
 
-/* Tables */
 table {
     width: 100%;
     border-collapse: collapse;
@@ -182,7 +169,6 @@ tr:hover {
     background: #edf6ff;
 }
 
-/* Code */
 pre {
     white-space: pre-wrap;
     overflow-x: auto;
@@ -204,7 +190,6 @@ code {
     line-height: 1.6;
 }
 
-/* Blue highlight box */
 .highlight-blue {
     background: #f0f7fc;
     border-left: 5px solid #0e68b3;
@@ -214,7 +199,6 @@ code {
     line-height: 1.6;
 }
 
-/* Orange highlight box */
 .highlight-orange {
     background: #fff4e6;
     border-left: 5px solid #e67e22;
@@ -224,7 +208,6 @@ code {
     line-height: 1.6;
 }
 
-/* Two-column test paths */
 .test-paths {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -236,7 +219,6 @@ code {
     margin: 0;
 }
 
-/* Two-column blue headers */
 .test-paths .test-path-header {
     background: #0e68b3;
     color: white;
@@ -244,7 +226,6 @@ code {
     text-align: center;
 }
 
-/* Two-column blue header headings */
 .test-paths .test-path-header h3 {
     color: white;
     margin: 0;
@@ -257,33 +238,35 @@ code {
 }
 
 .test-paths .test-path-content details {
-    border-bottom: 1px solid #e5e7eb;
+    border-bottom: none;
+    margin-bottom: 8px;
 }
 
 .test-paths .test-path-content details:last-child {
-    border-bottom: none;
+    margin-bottom: 0;
 }
 
-/* Two-column collapsible step headings */
+/* Two-column step headings */
 .test-paths .test-path-content summary {
     list-style: none;
     cursor: pointer;
     position: relative;
-    padding: 17px 30px 17px 5px;
-    color: #0e68b3;
+    padding: 12px 35px 12px 15px;
+    color: white;
+    background: #0e68b3;
     font-size: 1rem;
     font-weight: 600;
+    border-radius: 8px;
 }
 
 .test-paths .test-path-content summary::-webkit-details-marker {
     display: none;
 }
 
-/* Two-column plus/minus icon */
 .test-paths .test-path-content summary::after {
     content: "+";
     position: absolute;
-    right: 5px;
+    right: 15px;
     top: 50%;
     transform: translateY(-50%);
     font-size: 1.3rem;
@@ -294,7 +277,6 @@ code {
     content: "−";
 }
 
-/* Step label */
 .step-label {
     display: inline-block;
     font-size: .8rem;
@@ -305,7 +287,6 @@ code {
     margin-bottom: 5px;
 }
 
-/* Horizontal rule */
 hr {
     border: none;
     height: 1px;
@@ -313,12 +294,10 @@ hr {
     margin: 30px 0;
 }
 
-/* Links */
 a {
     color: #0e68b3;
 }
 
-/* Buttons */
 a.button {
     display: inline-block;
     background: #0e68b3;
@@ -335,7 +314,6 @@ a.button:hover {
     transform: translateY(-2px);
 }
 
-/* Mobile */
 @media (max-width: 768px) {
 
     h1 {
