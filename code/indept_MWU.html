@@ -877,46 +877,33 @@ Normality Check 2: Boxplots
 
 <div class="path-step-content">
 
-<h3>Create Boxplots for Outliers</h3>
-
 <p>
 Before conducting the t-test, create boxplots to check for <strong>extreme outliers</strong> in your numerical variables.
 </p>
 
-<p>
-A box-and-whisker plot, or <strong>boxplot</strong>, provides a quick visual summary of a numerical variable. 
-The box shows the middle 50% of the data, the line inside the box shows the median, and the whiskers (lines outside the box) extend to the typical lower and higher values. 
-Individual dots outside the whiskers represent potential outliers.
-</p>
+<h3>What is an Outlier?</h3>
 
 <p>
 An <strong>outlier</strong> is a score that is unusually high or low compared to the other scores in the dataset.
 Outliers can affect the normality of a dataset. An outlier can increase the <strong>skewness</strong> of a dataset, which can be the difference between normal and abnormal data.
 <p>
 
+<h3>What Causes Outlier?</h3>
+  
 <p>
-What causes outliers? Sometimes the outlier is a legitimate datapoint. For example, let's say we were collecting data on the average income of a U.S. citizen and, somehow, Elon Musk took our survey. 
+Sometimes the outlier is a legitimate datapoint. For example, let's say we were collecting data on the average income of a U.S. citizen and, somehow, Elon Musk took our survey. 
 Although his data is legitimate, he would be an outlier that severely impacts our dataset and causes the data to be abnormal (specifically negatively skewed).
 Sometimes an outlier is due to a survey response error, such as a participant accidentally adding an extra zero to their annual income.
 <p>
 
-<p>
-Investigate potential outliers before deciding what to do with them.
-Check the original data and consider the value in the context of the variable and research question. Ask: Is this value correct? Does it make sense? Is there a reasonable explanation for why it is unusual?</em>
-</p>
+<h3>What do we do with outliers?</h3>
 
 <p>
-If an outlier is the result of a data-entry or measurement error</strong>, it may be appropriate to correct or remove it. If the value is accurate and represents a legitimate observation</strong>, do not remove it simply because it is unusual. Any decision to remove an observation should have a clear justification and should be documented.
-</p>
-
-</p>
+Investigate potential outliers before deciding what to do with them. Check the original data and consider the value in the context of the variable and research question. Ask: Is this value correct? Does it make sense? Is there a reasonable explanation for why it is unusual?</em>
+If an outlier is the result of a data-entry or measurement error, it may be appropriate to correct or remove it. If the value is accurate and represents a legitimate observation</strong>, do not remove it simply because it is unusual. Any decision to remove an observation should have a clear justification and should be documented.
 Removing a legitimate outlier can change the distribution, sample size, and results of your analysis. In some situations, investigating an outlier may also affect which statistical test is most appropriate.
 For example, if an outlier makes the data substantially non-normal, you may need to consider whether the assumptions of the t-test are adequately met or whether a <strong>nonparametric alternative</strong>, such as the Mann-Whitney U test, would be more appropriate. The goal is not to remove data simply to make the results fit a particular test. The goal is to understand the data and choose an analysis that is appropriate for the data you actually have.
 </p>
-
-<p>
-Although there are more details to the boxplot, and statistical analyses we can do to definitively determine if a dot is truly an outlier, for our class we will keep things simple.
-For your boxplots, please check if a) there are any dots on your boxplot and b) are they past the whiskers on the plot? If the answer is yes to both, then you have an outlier in your dataset. If you answered no to both, or yes to A but no to B, then you do not have any outliers.</p>
 
 <div style="display: flex; gap: 30px; align-items: center; justify-content: center; flex-wrap: wrap; margin: 25px 0;">
 
@@ -968,42 +955,34 @@ For your boxplots, please check if a) there are any dots on your boxplot and b) 
 
 <h3>Interpret the Boxplots</h3>
 
+    <p>
+A box-and-whisker plot, or <strong>boxplot</strong>, provides a quick visual summary of a numerical variable. 
+The box shows the middle 50% of the data, the line inside the box shows the median, and the whiskers (lines outside the box) extend to the typical lower and higher values. 
+Individual dots outside the whiskers represent potential outliers. A boxplot allows you to quickly see the <strong>center, spread, and unusual values</strong> in a numerical variable.
+</p>
+
 <p>
 In your R Script, report if each boxplot was normal or not normal.
+There are statistical analyses we can do to definitively determine if a dot is truly an outlier.  However, we will keep things simple for our class.
 </p>
+    
+<ol>
+    <li>
+        <strong>Start with the box.</strong> The box represents the middle 50% of the data. The line inside the box represents the <strong>median</strong>, or the middle value.
+    </li>
 
-<details>
+    <li>
+        <strong>Next, look at the whiskers.</strong> The whiskers extend from the box and represent the typical lower and higher values in the dataset.
+    </li>
 
-<summary>
-<span class="step-label">Interpret</span><br>
-How to Read a Boxplot and Identify Outliers
-</summary>
+    <li>
+        <strong>Finally, look for individual dots.</strong> A point that appears <strong>outside a whisker</strong> is identified by RStudio as a potential outlier. Points that fall within the whiskers are not flagged as outliers by the boxplot.
+    </li>
 
-<div class="path-step-content">
-
-<p>
-A boxplot allows you to quickly see the <strong>center, spread, and unusual values</strong> in a numerical variable.
-</p>
-
-<p>
-<strong>Start with the box.</strong> The box represents the middle 50% of the data. The line inside the box represents the <strong>median</strong>, or the middle value.
-</p>
-
-<p>
-<strong>Next, look at the whiskers.</strong> The whiskers extend from the box and represent the typical lower and higher values in the dataset.
-</p>
-
-<p>
-<strong>Finally, look for individual dots.</strong> A point that appears <strong>outside a whisker</strong> is identified by RStudio as a potential outlier. Points that fall within the whiskers are not flagged as outliers by the boxplot.
-</p>
-
-<p>
-You do not need to calculate the IQR or determine the outlier cutoff values yourself. <strong>RStudio uses the IQR-based rule to identify potential outliers for you.</strong> Your job is to interpret the boxplot and investigate any points that appear outside the whiskers.
-</p>
-
-<p>
-<strong>Quick visual check:</strong> Look for a dot that is separated from the rest of the data and located beyond a whisker. If you see one, investigate that observation before proceeding with your analysis.
-</p>
+    <li>
+        <strong>Quick visual check:</strong> Look for a dot that is separated from the rest of the data and located beyond a whisker. If you see one, investigate that observation before proceeding with your analysis.
+    </li>
+</ol>
 
 </div>
 </details>
