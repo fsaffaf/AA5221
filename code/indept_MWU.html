@@ -437,102 +437,18 @@ The normality checks in this lesson will help you determine which statistical te
 
     <!-- STEP 1 -->
 
+<!-- INSTALL READXL -->
 <details>
 
 <summary>
 <span class="step-label">Step 1</span><br>
 Install & Open the Packages
 </summary>
-
-<div class="path-step-content">
-
-<h3>Install the packages needed</h3>
-
-<table>
-
-<tr>
-<th>Package</th>
-<th>Purpose</th>
-</tr>
-
-<tr>
-<td><code>dplyr</code></td>
-<td>Calculate descriptive statistics</td>
-</tr>
-
-<tr>
-<td><code>effectsize</code></td>
-<td>Calculate the effect size for the Independent T-Test</td>
-</tr>
-
-<tr>
-<td><code>effsize</code></td>
-<td>Calculate the effect size for the Mann-Whitney U test</td>
-</tr>
-
-</table>
-
-<p>
-Copy-and-paste the following code into your RScript file. <br>
-    Run the code once.
-</p>
-
-<div class="highlight highlight-orange">
-
-<pre><code>install.packages("dplyr")</code></pre>
-<pre><code>install.packages("effectsize")</code></pre>
-<pre><code>install.packages("effsize")</code></pre>
-</div>
-
-<p>
-You will see a long "warning" message appear when you install the package.
-This actually means you have successfully installed the package.
-After installation is complete, remove or comment out this line.
-Packages only need to be installed once.
-</p>
-
-<hr>
-
-<h3>Load the packages</h3>
-
-<p>
-Copy-and-paste the code below into your RScript. <br>
-Keep this line of code in your RScript.
-</p>
-
-<div class="highlight highlight-orange">
-
-<pre><code>library(dplyr)</code></pre>
-<pre><code>library(effectsize)</code></pre>
-<pre><code>library(effsize)</code></pre>
     
-
-</div>
-
-</details>
-
-
-<!-- STEP 2 -->
-
-<details>
-
-<summary>
-<span class="step-label">Step 2</span><br>
-Import & Name the Dataset
-</summary>
-
 <div class="path-step-content">
-
-<h3>Open the Installed Packages</h3>
-
+    
 <p>
-Open the packages you need.
-</p>
-
-<ul>
-<li>You must re-open your desired packages every time you start a new RStudio session.</li>
-<li>This is because loading everything by default would slow startup and waste memory.</li>
-</ul>
+Packages add additional functionality to R.
 
 <table>
 
@@ -568,79 +484,143 @@ Open the packages you need.
 
 </table>
 
-<p><strong>Code Template</strong></p>
+<h3>Install the packages</h3>
 
-<div class="highlight-blue">
+<p>
+Copy-and-paste the following code into your RScript file. <br>
+    Run the code once.
+</p>
 
-<pre><code>library(PackageName)</code></pre>
-
-</div>
-
-<p><strong>Example</strong></p>
-
-<div class="highlight-blue">
-
-<pre><code>library(readxl)
-library(ggpubr)
+<div class="highlight highlight-orange">
+<pre><code>
 library(dplyr)
 library(effectsize)
-library(effsize)</code></pre>
-
+library(effsize)
+</code></pre>
 </div>
 
-<p><strong>Output:</strong> None</p>
+<p>
+You will see a long "warning" message appear when you install the package.
+This actually means you have successfully installed the package.
+After installation is complete, remove or comment out this line.
+Packages only need to be installed once.
+</p>
 
 <hr>
 
-<h3>Import and Name the Dataset</h3>
+<h3>Load the packages</h3>
 
 <p>
-Download the R dataset from Canvas and save it to your desktop.
+Copy-and-paste the code below into your RScript. <br>
+Keep this line of code in your RScript.
 </p>
 
-<p>
-This can be done as a line of code (see below). However, MAC users have found consistent issues locating their file path, so the point-and-click directions are provided below:
-</p>
-
-<div class="highlight-blue">
-
-<strong>Point-and-Click Directions:</strong>
-
-<p>
-Open RStudio → File → Import Dataset → From Excel → Browse → Locate where you saved the downloaded dataset → Import.
-</p>
+<div class="highlight highlight-orange">
+<pre><code>
+install.packages("dplyr")
+install.packages("effectsize")
+install.packages("effsize")
+</code></pre>
+</div>
+</div>
 
 <p>
-Once you click <strong>Import</strong>, the dataset appears in the Environment.
-</p>
-
-<p>
-RStudio generates import code. Keep this line in your R Script so it automatically imports the dataset after closing and reopening RStudio.
+No output will appear. This simply opens the package so you can use its functions in RStudio.
 </p>
 
 </div>
 
-<p><strong>Code Template</strong></p>
+</details>
 
-<div class="highlight-blue">
+
+    
+
+<!-- IMPORT DATASET -->
+<details>
+
+<summary>
+<span class="step-label">Step 2</span><br>
+Import & Name the Dataset
+</summary>
+    
+<div class="path-step-content">
+
+
+<p>
+Although datasets can be imported entirely through code, many students
+experience difficulty locating file paths. Therefore, this course uses the
+<b>point-and-click import method</b> to generate the necessary code automatically.
+</p>
+
+<h3>Import the Excel File</h3>
+
+<ol>
+
+<li>
+Select: <strong>File → Import Dataset → From Excel</strong>
+</li>
+
+<li>
+A new import window will appear.
+Select <strong>Browse</strong>.
+</li>
+
+<li>
+Locate your assigned Excel dataset.
+</li>
+
+<li>
+Select the dataset and choose <strong>Open</strong>.
+</li>
+
+<li>
+Return to the import window and select <strong>Import</strong>.
+</li>
+
+</ol>
+
+<hr>
+
+<h3>What Happens When You Click Import?</h3>
+
+<p>
+Once imported, the dataset will appear in a new tab and will also appear
+in the Environment pane.
+</p>
+
+<p>
+RStudio also automatically generates the code used to import the dataset.
+This code appears in the Console window.
+Copy the import code and paste it into your R Script. This allows the dataset
+to be automatically imported the next time you run your script.
+</p>
+
+<p>
+The generated code will vary depending on your file location and file name.
+</p>
+
+<h3>General Example</h3>
+
+<div class="highlight highlight-blue">
 
 <pre><code>DatasetName &lt;- read_excel("filepath")</code></pre>
 
 </div>
 
-<p><strong>Example</strong></p>
+<h3>Example with a Sample File Path</h3>
 
-<div class="highlight-blue">
+<div class="highlight highlight-blue">
 
-<pre><code>DatasetZ &lt;- read_excel("C:/Users/Joseph/Desktop/dataset.xlsx")</code></pre>
+<pre><code>DatasetName &lt;- read_excel(
+"C:/Users/John/OneDrive/Documents/AA5221/Datasets/DatasetName.xlsx"
+)</code></pre>
 
 </div>
-
-<p><strong>Output:</strong> NA</p>
 
 </div>
 
 </details>
+
 
 
 <!-- STEP 3 -->
