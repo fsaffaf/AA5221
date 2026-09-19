@@ -437,6 +437,8 @@ The normality checks in this lesson will help you determine which statistical te
     <!-- STEP 1 -->
 
 <!-- INSTALL READXL -->
+<!-- STEP 1 -->
+
 <details>
 
 <summary>
@@ -448,6 +450,7 @@ Install & Open the Packages
     
 <p>
 Packages add additional functionality to R.
+</p>
 
 <table>
 
@@ -483,50 +486,51 @@ Packages add additional functionality to R.
 
 </table>
 
-<h3>Install the packages</h3>
+<h3>Install the Packages</h3>
 
 <p>
-Copy-and-paste the following code into your RScript file. <br>
-    Run the code once.
+Copy-and-paste the following code into your R Script file.<br>
+Run the code once.
 </p>
 
 <div class="highlight highlight-orange">
-<pre><code>
-library(dplyr)
-library(effectsize)
-library(effsize)
-</code></pre>
-</div>
 
-<p>
-You will see a long "warning" message appear when you install the package.
-This actually means you have successfully installed the package.
-After installation is complete, remove or comment out this line.
-Packages only need to be installed once.
-</p>
-
-<hr>
-
-<h3>Load the packages</h3>
-
-<p>
-Copy-and-paste the code below into your RScript. <br>
-Keep this line of code in your RScript.
-</p>
-
-<div class="highlight highlight-orange">
 <pre><code>
 install.packages("dplyr")
 install.packages("effectsize")
 install.packages("effsize")
 </code></pre>
-</div>
+
 </div>
 
 <p>
-No output will appear. This simply opens the package so you can use its functions in RStudio.
+You may see warning messages appear when you install a package.
+These messages do not necessarily mean that the installation failed.
+Packages only need to be installed once.
 </p>
 
+<hr>
+
+<h3>Load the Packages</h3>
+
+<p>
+Copy-and-paste the code below into your R Script.<br>
+Keep these lines of code in your R Script.
+</p>
+
+<div class="highlight highlight-orange">
+
+<pre><code>
+library(dplyr)
+library(effectsize)
+library(effsize)
+</code></pre>
+
+</div>
+
+<p>
+No output will appear. This simply opens the packages so you can use their functions in RStudio.
+</p>
 
 </div>
 
