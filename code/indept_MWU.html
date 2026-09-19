@@ -860,9 +860,37 @@ Normality Check 2: Boxplots
 <h3>Create Boxplots for Outliers</h3>
 
 <p>
-Create boxplots to check for extreme outliers before conducting the T-Test.
+Before conducting the t-test, create boxplots to check for <strong>extreme outliers</strong> in your numerical variables.
 </p>
 
+<p>
+A <strong>box-and-whisker plot</strong>, or <strong>boxplot</strong>, provides a quick visual summary of a numerical variable. The <strong>box</strong> shows the middle 50% of the data, the line inside the box shows the <strong>median</strong>, and the <strong>whiskers</strong> extend to the typical lower and higher values. Individual <strong>dots outside the whiskers</strong> represent potential outliers.
+</p>
+
+<p>
+An <strong>outlier</strong> is a value that is unusually far from the other values in a dataset. An outlier may be a legitimate and meaningful observation, an unusual event, or a data problem such as an error in recording or measurement.
+</p>
+
+<p>
+<strong>Investigate potential outliers before deciding what to do with them.</strong> Check the original data and consider the value in the context of the variable and research question. Ask: <em>Is this value correct? Does it make sense? Is there a reasonable explanation for why it is unusual?</em>
+</p>
+
+<p>
+If an outlier is the result of a <strong>data-entry or measurement error</strong>, it may be appropriate to correct or remove it. If the value is <strong>accurate and represents a legitimate observation</strong>, do not remove it simply because it is unusual. Any decision to remove an observation should have a clear justification and should be documented.
+</p>
+
+<p>
+Outliers can affect the overall shape of a dataset. A very high or low value can increase <strong>skewness</strong> and may make the data less normally distributed. Removing a legitimate outlier can change the distribution, sample size, and results of your analysis. In some situations, investigating an outlier may also affect which statistical test is most appropriate.
+</p>
+
+<p>
+For example, if an outlier makes the data substantially non-normal, you may need to consider whether the assumptions of the t-test are adequately met or whether a <strong>nonparametric alternative</strong>, such as the Mann-Whitney U test, would be more appropriate. The goal is not to remove data simply to make the results fit a particular test. The goal is to understand the data and choose an analysis that is appropriate for the data you actually have.
+</p>
+
+<p>
+<strong>RStudio does the IQR calculation for you.</strong> You do not need to calculate the IQR or determine the cutoff values yourself. Instead, use the boxplot to visually identify <strong>individual dots outside the whiskers</strong>. These points are potential outliers that should be investigated before selecting and interpreting your statistical test.
+</p>
+    
 <p><strong>Code Template</strong></p>
 
 <div class="highlight-blue">
@@ -897,88 +925,41 @@ Create boxplots to check for extreme outliers before conducting the T-Test.
 In your R Script, report if each boxplot was normal or not normal.
 </p>
 
-<div class="highlight-orange">
+<details>
 
-<strong>Important:</strong>
-This method for checking outliers is simplified for this class.
+<summary>
+<span class="step-label">Interpret</span><br>
+How to Read a Boxplot and Identify Outliers
+</summary>
 
-</div>
-
-<p><strong>Question 1: Were there any dots outside the boxplot?</strong></p>
-
-<ul>
-<li>If there are no dots, the data is normal. Stop. Do not answer more questions.</li>
-<li>If there are dots, continue to Question 2.</li>
-</ul>
-
-<p><strong>Question 2: Are the dots past the whiskers?</strong></p>
+<div class="path-step-content">
 
 <p>
-Whiskers are the lines extending from the boxplot.
+A boxplot allows you to quickly see the <strong>center, spread, and unusual values</strong> in a numerical variable.
 </p>
-
-<ul>
-<li>If the dots are not past the whiskers, the data is normal. Stop.</li>
-<li>If the dots are past the whiskers, continue to Question 3.</li>
-</ul>
-
-<p><strong>Question 3: Are the dots VERY far away from the whiskers?</strong></p>
-
-<ul>
-<li>If the dots are not very far away, the data is normal. Stop.</li>
-<li>If the dots are VERY far away, continue to Question 4.</li>
-</ul>
-
-<p><strong>Question 4: Are the outliers balanced or unbalanced?</strong></p>
 
 <p>
-<strong>Balanced:</strong> Generally equal numbers of outliers on each side and similar distance from the boxplot. These generally "cancel out," so the data stays generally balanced.
+<strong>Start with the box.</strong> The box represents the middle 50% of the data. The line inside the box represents the <strong>median</strong>, or the middle value.
 </p>
 
-<ul>
-<li>If the outliers are balanced, the data is normal.</li>
-<li>If the outliers are primarily on one side and are not equally balanced, the data is NOT normal.</li>
-</ul>
+<p>
+<strong>Next, look at the whiskers.</strong> The whiskers extend from the box and represent the typical lower and higher values in the dataset.
+</p>
 
-<p><strong>Code Template</strong></p>
+<p>
+<strong>Finally, look for individual dots.</strong> A point that appears <strong>outside a whisker</strong> is identified by RStudio as a potential outlier. Points that fall within the whiskers are not flagged as outliers by the boxplot.
+</p>
 
-<div class="highlight-blue">
+<p>
+You do not need to calculate the IQR or determine the outlier cutoff values yourself. <strong>RStudio uses the IQR-based rule to identify potential outliers for you.</strong> Your job is to interpret the boxplot and investigate any points that appear outside the whiskers.
+</p>
 
-<pre><code>#Boxplot 1: Group 1
-#There [are / are no] dots outside the boxplot.
-#The dots [are / are not] close to the whiskers.
-#The dots [are / are not] very far away from the whiskers.
-#The outliers [are / are not] balanced.
-#Based on these findings, the boxplot is [normal / not normal]
-
-#Boxplot 2: Group 2
-#There [are / are no] dots outside the boxplot.
-#The dots [are / are not] close to the whiskers.
-#The dots [are / are not] very far away from the whiskers.
-#The outliers [are / are not] balanced.
-#Based on these findings, the boxplot is [normal / not normal]</code></pre>
+<p>
+<strong>Quick visual check:</strong> Look for a dot that is separated from the rest of the data and located beyond a whisker. If you see one, investigate that observation before proceeding with your analysis.
+</p>
 
 </div>
-
-<p><strong>Example</strong></p>
-
-<div class="highlight-blue">
-
-<pre><code>#Boxplot 1: Male
-#There is one dot outside the boxplot.
-#The dot is close to the whisker.
-#Based on these findings, the boxplot is normal.
-
-#Boxplot 2: Female
-#There are dots outside the boxplot.
-#The dots are not close to the whiskers.
-#The dots are very far away from the whiskers.
-#The outliers are not balanced.
-#Based on these findings, the boxplot is not normal.</code></pre>
-
-</div>
-
-<p><strong>Output:</strong> NA</p>
+</details>
 
 </div>
 
