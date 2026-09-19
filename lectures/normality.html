@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Data Visualization and Normality</title>
+
+<style>
+
+body{
+    margin:0;
+    font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+    background:#f4f6f9;
+    color:#222222;
+}
+
+.container{
+    max-width:1000px;
+    margin:auto;
+    padding:50px 20px;
+}
+
+h1{
+    text-align:left;
+    color:#666666;
+    font-size:2.75rem;
+    font-weight:200;
+    letter-spacing:.08em;
+    margin-bottom:10px;
+}
+
+.subtitle{
+    text-align:center;
+    color:#6b7280;
+    text-transform:uppercase;
+    letter-spacing:.15em;
+    margin-bottom:40px;
+    font-size:.95rem;
+}
+
+h2,
+h3{
+    color:#0e68b3;
+    position:relative;
+    font-weight:500;
+    display:inline-block;
+}
+
+h2::after,
+h3::after{
+    content:"";
+    position:absolute;
+    left:0;
+    bottom:-4px;
+    width:0;
+    height:2px;
+    background:#0e68b3;
+    transition:.3s;
+}
+
+.card:hover h2::after,
+.card:hover h3::after{
+    width:100%;
+}
+
+p{
+    line-height:1.8;
+}
+
+.card{
+    background:white;
+    border-radius:16px;
+    padding:30px;
+    margin-bottom:25px;
+    border:1px solid #d9e2ec;
+
+    box-shadow:
+      0 3px 10px rgba(0,0,0,.05);
+
+    animation:fadeUp .6s ease forwards;
+    transition:all .25s ease;
+}
+
+.card:hover{
+    transform:translateY(-4px);
+    box-shadow:
+      0 10px 25px rgba(14,104,179,.15);
+}
+
+.highlight{
+    background:#eef6fc;
+    border-left:5px solid #0e68b3;
+    padding:15px;
+    border-radius:8px;
+    margin:20px 0;
+}
+
+ul{
+    padding-left:25px;
+}
+
+ol{
+    padding-left:25px;
+}
+
+li{
+    margin-bottom:8px;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:20px;
+    background:white;
+    overflow:hidden;
+    border-radius:10px;
+}
+
+th{
+    background:#0e68b3;
+    color:white;
+    text-align:left;
+    padding:14px;
+}
+
+td{
+    padding:14px;
+    border-bottom:1px solid #e5e7eb;
+    vertical-align:top;
+}
+
+tr:nth-child(even){
+    background:#f8fafc;
+}
+
+tr:hover{
+    background:#edf6ff;
+}
+
+.scatterplot{
+    text-align:center;
+    margin:25px 0;
+}
+
+.scatterplot img{
+    max-width:100%;
+    height:auto;
+    display:block;
+    margin:0 auto;
+    border-radius:8px;
+}
+
+.scatterplot-grid{
+    display:grid;
+    grid-template-columns:repeat(2, 1fr);
+    gap:25px;
+    margin:25px 0;
+}
+
+.scatterplot-grid .scatterplot{
+    margin:0;
+}
+
+.outlier-grid{
+    display:grid;
+    grid-template-columns:repeat(2, minmax(0, 1fr));
+    gap:25px;
+    margin:25px 0;
+}
+
+.outlier-example{
+    text-align:center;
+}
+
+.outlier-example h3{
+    margin-top:0;
+}
+
+.outlier-example img{
+    width:100%;
+    height:auto;
+    display:block;
+    margin:20px auto 0;
+    border-radius:8px;
+}
+
+hr{
+    border:none;
+    height:1px;
+    background:#d6e4f0;
+    margin:30px 0;
+}
+
+@keyframes fadeUp{
+    from{
+        opacity:0;
+        transform:translateY(20px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+@media (max-width:768px){
+
+    h1{
+        font-size:2rem;
+    }
+
+    .card{
+        padding:20px;
+    }
+
+    th,
+    td{
+        padding:10px;
+        font-size:.95rem;
+    }
+
+    .scatterplot-grid,
+    .outlier-grid{
+        grid-template-columns:1fr;
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Data Visualization and Normality</h1>
+
+<div class="subtitle">
+Visual Descriptive Statistics • Histograms • Normality • Skewness • Kurtosis
+</div>
+
+<div class="card">
+
+<h2>Visual Descriptive Statistics</h2>
+
+<p>
+<strong>Understanding the type of data you have determines how you can visualize it.
+Bar graphs and histograms are used for different purposes.</strong>
+</p>
+
+<table>
+<thead>
+<tr>
+<th>Graph</th>
+<th>Purpose</th>
+<th>Data Type</th>
+</tr>
+</thead>
+
+<tbody>
+
+<tr>
+<td><strong>Bar Graph</strong></td>
+<td>
+A graph that displays how many times each category occurs in a dataset.
+Each bar represents a category, and the height of the bar represents the
+frequency or count of observations.
+</td>
+<td>Categorical Data</td>
+</tr>
+
+<tr>
+<td><strong>Histogram</strong></td>
+<td>
+A graph that displays the distribution of numerical data. Histograms group
+values into ranges called bins and show how many observations fall within
+each range.
+</td>
+<td>Continuous Data</td>
+</tr>
+
+</tbody>
+</table>
+
+</div>
+
+<div class="card">
+
+<h2>Bar Graphs</h2>
+
+<ul>
+<li>Used for categorical data (nominal and ordinal).</li>
+<li>Used to compare values between groups.</li>
+<li>Each bar represents a separate category.</li>
+<li>Bars do not touch because categories are separate.</li>
+<li><strong>X-axis:</strong> Categories</li>
+<li><strong>Y-axis:</strong> Frequency or value</li>
+</ul>
+
+<p>
+<strong>Bar charts are only needed when there are three or more groups.</strong><br>
+The purpose of a bar chart is to make differences between multiple groups
+easier to see visually. When there are only two groups, the difference can
+usually be clearly described in a sentence, so a bar chart is unnecessary.
+</p>
+
+<p>
+<strong>Publishing limitations:</strong> Scientific journals often have strict
+limits on the number of pages, figures, and tables that can be included in
+an article. Because figures take up valuable space, scientists may leave out
+a graph when the same information can be communicated clearly in a sentence
+or table. This allows them to use the available space for results that are
+more important or difficult to explain in text.
+</p>
+
+<p>Below is an example of a bar graph:</p>
+
+<div class="scatterplot">
+https://www.basic-mathematics.com/images/vertical-bar-graph1.png
+</div>
+
+</div>
+
+<div class="card">
+
+<h2>Histograms</h2>
+
+<ul>
+<li>Used for continuous data (interval and ratio).</li>
+<li>Used to examine the distribution and normality of data.</li>
+<li>Should be created for continuous variables.</li>
+<li>Bars touch because values represent continuous ranges.</li>
+<li><strong>X-axis:</strong> Ranges of values (bins)</li>
+<li><strong>Y-axis:</strong> Frequency</li>
+</ul>
+
+<h3>Steps to Determine Which Visual Graphs to Use</h3>
+
+<ol>
+
+<li>Identify the IV and DV in the research question.</li>
+
+<li>
+For the IV, determine if each variable is categorical
+(nominal or ordinal) or continuous (interval or ratio).
+</li>
+
+<li>
+If the IV is categorical, determine how many groups there are.
+<ol>
+<li>If there are only 2 groups, no bar chart is needed.</li>
+<li>If there are 3 or more groups, use a bar chart.</li>
+</ol>
+</li>
+
+<li>If the IV is continuous, ALWAYS use a histogram.</li>
+
+<li>
+Repeat steps 2 through 4 to determine what graph should be used
+to display the DV.
+</li>
+
+</ol>
+
+</div>
+
+<div class="card">
+
+<h2>Checking Normality</h2>
+
+<p>
+Inferential statistics are used to determine whether evidence supports the
+null or alternative hypothesis. The inferential test selected depends on
+whether continuous variables are normally distributed.
+</p>
+
+<p>
+Failing to examine data distribution can lead to incorrect statistical test
+selection and inaccurate conclusions.
+</p>
+
+<div class="highlight">
+<strong>Important:</strong><br>
+Normality only applies to <strong>continuous data</strong>. Categorical
+variables (nominal and ordinal data) do not have a normal distribution.
+</div>
+
+<h3>Normal Distribution</h3>
+
+<p>
+A normal distribution occurs when continuous data follow a predictable
+mathematical pattern.
+</p>
+
+<p><strong>Key characteristics of an approximately normal distribution:</strong></p>
+
+<ol>
+<li>
+<strong>Mean, median, and mode are similar:</strong>
+The three measures of central tendency occur near the center of the
+distribution.
+</li>
+
+<li>
+<strong>Symmetry:</strong>
+The left and right sides of the distribution are approximately mirror images.
+</li>
+
+<li>
+<strong>Bell-shaped curve:</strong>
+Most observations cluster near the center, with fewer observations occurring
+at extreme values.
+</li>
+</ol>
+
+<div class="scatterplot">
+https://www.scribbr.de/wp-content/uploads/2023/01/Standard-normal-distribution.webp
+</div>
+
+</div>
+
+<div class="card">
+
+<h2>Skewness</h2>
+
+<p>
+A distribution is symmetrical when each side is a mirror image of the other.
+When data are not symmetrical, the distribution is considered skewed.
+</p>
+
+<div class="highlight">
+
+<p><strong>Positive Skewness (Right Skew)</strong></p>
+
+<ul>
+<li>The tail extends toward the right side of the distribution.</li>
+<li>Most observations are concentrated on the left side.</li>
+</ul>
+
+<p><strong>Negative Skewness (Left Skew)</strong></p>
+
+<ul>
+<li>The tail extends toward the left side of the distribution.</li>
+<li>Most observations are concentrated on the right side.</li>
+</ul>
+
+</div>
+
+<div class="scatterplot">
+https://www.biologyforlife.com/uploads/2/2/3/9/22392738/c101b0da6ea1a0dab31f80d9963b0368_orig.png
+</div>
+
+</div>
+
+<div class="card">
+
+<h2>Kurtosis</h2>
+
+<p>
+<strong>Kurtosis</strong> describes the shape of the distribution curve,
+particularly the height and width of the curve. Kurtosis values are
+calculated automatically by statistical software.
+</p>
+
+<div class="highlight">
+
+<ul>
+<li>
+<strong>Leptokurtic:</strong>
+The distribution is too peaked, meaning values are highly concentrated
+around the center.
+</li>
+
+<li>
+<strong>Mesokurtic:</strong>
+The distribution is approximately normal.
+</li>
+
+<li>
+<strong>Platykurtic:</strong>
+The distribution is too flat, meaning values are more spread out across
+the range.
+</li>
+
+</ul>
+
+</div>
+
+<div class="scatterplot">
+https://analystprep.com/cfa-level-1-exam/wp-content/uploads/2019/08/page-64.png
+</div>
+
+</div>
+
+</div>
+
+</body>
+
+</html>
