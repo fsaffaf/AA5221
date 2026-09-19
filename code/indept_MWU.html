@@ -884,32 +884,39 @@ Before conducting the t-test, create boxplots to check for <strong>extreme outli
 </p>
 
 <p>
-A <strong>box-and-whisker plot</strong>, or <strong>boxplot</strong>, provides a quick visual summary of a numerical variable. The <strong>box</strong> shows the middle 50% of the data, the line inside the box shows the <strong>median</strong>, and the <strong>whiskers</strong> extend to the typical lower and higher values. Individual <strong>dots outside the whiskers</strong> represent potential outliers.
+A box-and-whisker plot, or <strong>boxplot</strong>, provides a quick visual summary of a numerical variable. 
+The box shows the middle 50% of the data, the line inside the box shows the median, and the whiskers (lines outside the box) extend to the typical lower and higher values. 
+Individual dots outside the whiskers represent potential outliers.
 </p>
 
 <p>
-An <strong>outlier</strong> is a value that is unusually far from the other values in a dataset. An outlier may be a legitimate and meaningful observation, an unusual event, or a data problem such as an error in recording or measurement.
+An <strong>outlier</strong> is a score that is unusually high or low compared to the other scores in the dataset.
+Outliers can affect the normality of a dataset. An outlier can increase the <strong>skewness</strong> of a dataset, which can be the difference between normal and abnormal data.
+<p>
+
+<p>
+What causes outliers? Sometimes the outlier is a legitimate datapoint. For example, let's say we were collecting data on the average income of a U.S. citizen and, somehow, Elon Musk took our survey. 
+Although his data is legitimate, he would be an outlier that severely impacts our dataset and causes the data to be abnormal (specifically negatively skewed).
+Sometimes an outlier is due to a survey response error, such as a participant accidentally adding an extra zero to their annual income.
+<p>
+
+<p>
+Investigate potential outliers before deciding what to do with them.
+Check the original data and consider the value in the context of the variable and research question. Ask: Is this value correct? Does it make sense? Is there a reasonable explanation for why it is unusual?</em>
 </p>
 
 <p>
-<strong>Investigate potential outliers before deciding what to do with them.</strong> Check the original data and consider the value in the context of the variable and research question. Ask: <em>Is this value correct? Does it make sense? Is there a reasonable explanation for why it is unusual?</em>
+If an outlier is the result of a data-entry or measurement error</strong>, it may be appropriate to correct or remove it. If the value is accurate and represents a legitimate observation</strong>, do not remove it simply because it is unusual. Any decision to remove an observation should have a clear justification and should be documented.
 </p>
 
-<p>
-If an outlier is the result of a <strong>data-entry or measurement error</strong>, it may be appropriate to correct or remove it. If the value is <strong>accurate and represents a legitimate observation</strong>, do not remove it simply because it is unusual. Any decision to remove an observation should have a clear justification and should be documented.
 </p>
-
-<p>
-Outliers can affect the overall shape of a dataset. A very high or low value can increase <strong>skewness</strong> and may make the data less normally distributed. Removing a legitimate outlier can change the distribution, sample size, and results of your analysis. In some situations, investigating an outlier may also affect which statistical test is most appropriate.
-</p>
-
-<p>
+Removing a legitimate outlier can change the distribution, sample size, and results of your analysis. In some situations, investigating an outlier may also affect which statistical test is most appropriate.
 For example, if an outlier makes the data substantially non-normal, you may need to consider whether the assumptions of the t-test are adequately met or whether a <strong>nonparametric alternative</strong>, such as the Mann-Whitney U test, would be more appropriate. The goal is not to remove data simply to make the results fit a particular test. The goal is to understand the data and choose an analysis that is appropriate for the data you actually have.
 </p>
 
 <p>
-<strong>RStudio does the IQR calculation for you.</strong> You do not need to calculate the IQR or determine the cutoff values yourself. Instead, use the boxplot to visually identify <strong>individual dots outside the whiskers</strong>. These points are potential outliers that should be investigated before selecting and interpreting your statistical test.
-</p>
+Although there are more details to the boxplot, and statistical analyses we can do to definitively determine if a dot is truly an outlier, for our class we will keep things simple.
+For your boxplots, please check if a) there are any dots on your boxplot and b) are they past the whiskers on the plot? If the answer is yes to both, then you have an outlier in your dataset. If you answered no to both, or yes to A but no to B, then you do not have any outliers.</p>
 
 <div style="display: flex; gap: 30px; align-items: center; justify-content: center; flex-wrap: wrap; margin: 25px 0;">
 
