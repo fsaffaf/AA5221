@@ -778,20 +778,40 @@ hist(DatasetZ$ExamScores[DatasetZ$Gender == "Male"],
 In your R Script, report skewness and kurtosis for each variable. What is a comment in R?
 </p>
 
+<p>
+A <strong>histogram</strong> is a graph that shows how the values of a numerical variable are distributed. It groups values into ranges and uses bars to show how many observations fall within each range.
+</p>
+
+<p>
+To interpret a histogram, look at the <strong>overall shape of the data</strong>.
+</p>
+
 <ul>
 <li>
-<strong>Skewness:</strong> Does the histogram look symmetrical (most data in the middle), positively skewed (most data on the left), or negatively skewed (most data on the right)?
+<strong>Symmetric:</strong> The data are fairly balanced on both sides of the center.
 </li>
+
 <li>
-<strong>What does skewness look like?</strong>
+<strong>Right-skewed:</strong> Most values are toward the lower end, with a longer tail extending to the right.
 </li>
+
 <li>
-<strong>Kurtosis:</strong> Does the histogram have a proper bell curve or not (too tall or too flat)?
+<strong>Left-skewed:</strong> Most values are toward the higher end, with a longer tail extending to the left.
 </li>
+
 <li>
-<strong>What does kurtosis look like?</strong>
+<strong>Approximately normal:</strong> The data have a roughly <strong>bell-shaped and symmetric</strong> pattern, with most values near the center and fewer values toward the ends.
+</li>
+
+<li>
+<strong>Unusual features:</strong> Look for gaps, separate clusters, or values that appear far away from the rest of the data.
 </li>
 </ul>
+
+<p>
+You <strong>can</strong> calculate statistics such as <strong>skewness</strong> and <strong>kurtosis</strong> to describe the shape of a distribution more precisely. However, <strong>we are keeping it simple in this class</strong>. You do not need to calculate these statistics by hand. Instead, use the histogram to visually assess whether the data look approximately normal or noticeably skewed.
+</p>
+
 
 <div class="highlight-orange">
 
