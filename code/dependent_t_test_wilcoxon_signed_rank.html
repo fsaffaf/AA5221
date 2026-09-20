@@ -366,7 +366,7 @@ Overview of the Test
 <div class="path-step-content">
 
 <p>
-A <strong>Dependent T-Test</strong>, also called a <strong>Paired Samples T-Test</strong>, tests whether there is a mean difference in outcome scores before versus after participants are exposed to an independent variable.
+A <strong>Dependent T-Test</strong>, also called a <strong>Paired Samples T-Test</strong>, tests whether there is a  difference in outcome scores before versus after participants are exposed to an independent variable.
 </p>
 
 <p>
@@ -396,7 +396,7 @@ If the difference scores are not normally distributed, use the
 </p>
 
 <p>
-The Dependent T-Test is generally preferred when its assumptions are reasonably met because it uses the actual numerical values of the paired observations and can provide greater statistical power for detecting a mean difference.
+The Dependent T-Test is generally preferred when its assumptions are reasonably met because it uses the actual numerical values of the paired observations and can provide greater statistical power for detecting a  difference.
 The Wilcoxon Signed-Rank Test is a useful alternative when the difference scores are not normally distributed.
 </p>
 
@@ -410,7 +410,7 @@ The Wilcoxon Signed-Rank Test is a useful alternative when the difference scores
 
 <tr>
 <td>Research Question</td>
-<td>Is there a mean difference in the outcome scores before versus after the independent variable?</td>
+<td>Is there a  difference in the outcome scores before versus after the independent variable?</td>
 <td>Is there a mean difference in weight (kg) before versus after the exercise program?</td>
 </tr>
 
@@ -733,31 +733,18 @@ Calculate the <strong>mean, standard deviation, and median</strong> for the Befo
 These descriptive statistics will be used when reporting your results.
 </p>
 
-<p><strong>Code Template</strong></p>
+<p><strong>Exact Code</strong></p>
 
-<div class="highlight-blue">
+<div class="highlight-orange">
+<pre><code>
+mean(Before, na.rm = TRUE)
+median(Before, na.rm = TRUE)
+sd(Before, na.rm = TRUE)
 
-<pre><code>mean(<span style="color: #e67e22; font-weight: bold;">Before</span>, na.rm = TRUE)
-median(<span style="color: #e67e22; font-weight: bold;">Before</span>, na.rm = TRUE)
-sd(<span style="color: #e67e22; font-weight: bold;">Before</span>, na.rm = TRUE)
-
-mean(<span style="color: #e67e22; font-weight: bold;">After</span>, na.rm = TRUE)
-median(<span style="color: #e67e22; font-weight: bold;">After</span>, na.rm = TRUE)
-sd(<span style="color: #e67e22; font-weight: bold;">After</span>, na.rm = TRUE)</code></pre>
-
-</div>
-
-<p><strong>Example</strong></p>
-
-<div class="highlight-blue">
-<pre><code>mean(<span style="color: #e67e22; font-weight: bold;">Before</span>, na.rm = TRUE)
-median(<span style="color: #e67e22; font-weight: bold;">Before</span>, na.rm = TRUE)
-sd(<span style="color: #e67e22; font-weight: bold;">Before</span>, na.rm = TRUE)
-
-mean(<span style="color: #e67e22; font-weight: bold;">After</span>, na.rm = TRUE)
-median(<span style="color: #e67e22; font-weight: bold;">After</span>, na.rm = TRUE)
-sd(<span style="color: #e67e22; font-weight: bold;">After</span>, na.rm = TRUE)</code></pre>
-
+mean(After, na.rm = TRUE)
+median(After, na.rm = TRUE)
+sd(After, na.rm = TRUE)
+</code></pre>
 </div>
 
 <p><strong>Example Output</strong></p>
