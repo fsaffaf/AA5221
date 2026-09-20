@@ -634,12 +634,12 @@ Calculate the Descriptive Statistics
 
 <div class="highlight-blue">
 
-<pre><code><span style="color: orange;strong">DatasetName</span> %&gt;%
-  group_by(<span style="color: orange;strong">GroupVariable</span>) %&gt;%
+<pre><code><span style="color: orange; font-weight: bold;">DatasetName</span> %&gt;%
+  group_by(<span style="color: orange; font-weight: bold;">GroupVariable</span>) %&gt;%
   summarise(
-    Mean = mean(OutcomeVariable, na.rm = TRUE),
-    Median = median(OutcomeVariable, na.rm = TRUE),
-    SD = sd(OutcomeVariable, na.rm = TRUE),
+    Mean = mean(<span style="color: orange; font-weight: bold;">OutcomeVariable</span>, na.rm = TRUE),
+    Median = median(<span style="color: orange; font-weight: bold;">OutcomeVariable</span>, na.rm = TRUE),
+    SD = sd(<span style="color: orange; font-weight: bold;">OutcomeVariable</span>, na.rm = TRUE),
     N = n()
   )</code></pre>
 
