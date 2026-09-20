@@ -1157,11 +1157,6 @@ Calculate Cohen's d (Effect Size)
 
 <div class="path-step-content">
 
-<p>
-Calculate the effect size <strong>only if the Dependent T-Test is statistically significant
-(p &lt; .05)</strong>.
-</p>
-
 <p><strong>Exact Code</strong></p>
 
 <div class="highlight-orange">
@@ -1376,11 +1371,6 @@ Calculate the Effect Size
 <div class="path-step-content">
 
 <p>
-Calculate the effect size <strong>only if the Wilcoxon Signed-Rank Test is statistically significant
-(p &lt; .05)</strong>.
-</p>
-
-<p>
 The effect size is reported as <strong>r</strong>.
 </p>
 
@@ -1388,13 +1378,8 @@ The effect size is reported as <strong>r</strong>.
 
 <div class="highlight-orange">
 
-<pre><code>df_long &lt;- data.frame(
-   id = rep(1:length(Before), 2),
-   time = rep(c("Before", "After"), each = length(Before)),
-   score = c(Before, After)
-)
-
-wilcox_effsize(df_long, score ~ time, paired = TRUE)</code></pre>
+<pre><code>df_long &lt;- data.frame(id = rep(1:length(Before), 2), time = rep(c("Before", "After"), each = length(Before)), score = c(Before, After))
+<br>wilcox_effsize(df_long, score ~ time, paired = TRUE)</code></pre>
 
 </div>
 
