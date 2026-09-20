@@ -850,7 +850,8 @@ hist(<span style="color: #e67e22; font-weight: bold;">DatasetZ</span>$<span styl
 </div>
 
 <p>
-<strong>Output:</strong> Histograms appear in the Plots pane.
+<strong>Output:</strong> 
+Histograms appear in the Plots pane.
 </p>
 
 <hr>
@@ -860,44 +861,35 @@ hist(<span style="color: #e67e22; font-weight: bold;">DatasetZ</span>$<span styl
 <p>
 In your R Script, report whether you think the histogram is normal or abnormally distributed based on a visual assessment.
 </p>
-Specifically, check determine if you think the histogram has normal skewness (symmetry) and kurtosis (height).
+Specifically, visually determine if you think the histogram has normal skewness (symmetry) and kurtosis (height).
 <p>
 You <strong>can</strong> calculate statistics such as <strong>skewness</strong> and <strong>kurtosis</strong> to describe the shape of a distribution more precisely. However, <strong>we are keeping it simple in this class</strong>. You do not need to calculate these statistics by hand. Instead, use the histogram to visually assess whether the data look approximately normal or noticeably skewed.
 </p>
-
-<a href="https://fsaffaf.github.io/AA5221/lectures/data-visualization-normality.html" target="_blank" style="color: #0e68b3; font-weight: bold; text-decoration: none;">What is a histogram?</a>
+Click below for a refresher on histograms, normality, skewness, and kurtosis.
+<a href="https://fsaffaf.github.io/AA5221/lectures/data-visualization-normality.html" target="_blank" style="color: #0e68b3; font-weight: bold; text-decoration: none;">Data Visualizatin & Normality</a>
 
 <p>
-Normal data must have normal skewness AND kurtosis.
+In order for data to be considered normal, it must have normal skewness AND kurtosis.
 </p>
 
 
-<p><strong>Code Template</strong></p>
+<p><strong>Reporting Template</strong></p>
 
 <div class="highlight-blue">
-
 <pre><code>
 #Data for Group #1 appears [abnormally / normally] distributed.
-
 #Data for Group #2 appears [abnormally / normally] distributed.
-
-
-
+</code></pre>
 </div>
 
 <p><strong>Example</strong></p>
 
 <div class="highlight-blue">
-
 <pre><code>
 #Data for Males appears normally distributed.
 #Data for Females appears normally distributed.
-
 </code></pre>
-
 </div>
-
-<p><strong>Output:</strong> NA</p>
 
 </div>
 
@@ -919,28 +911,17 @@ Normality Check 2: Boxplots
 Before conducting the t-test, create boxplots to check for <strong>extreme outliers</strong> in your numerical variables.
 </p>
 
-<h3>What is an Outlier?</h3>
-
 <p>
 An <strong>outlier</strong> is a score that is unusually high or low compared to the other scores in the dataset.
 Outliers can affect the normality of a dataset. An outlier can increase the <strong>skewness</strong> of a dataset, which can be the difference between normal and abnormal data.
 <p>
 
-<h3>What Causes Outlier?</h3>
-  
 <p>
-Sometimes the outlier is a legitimate datapoint. For example, let's say we were collecting data on the average income of a U.S. citizen and, somehow, Elon Musk took our survey. 
-Although his data is legitimate, he would be an outlier that severely impacts our dataset and causes the data to be abnormal (specifically negatively skewed).
-Sometimes an outlier is due to a survey response error, such as a participant accidentally adding an extra zero to their annual income.
-<p>
-
-<h3>What do we do with outliers?</h3>
-
-<p>
-Investigate potential outliers before deciding what to do with them. Check the original data and consider the value in the context of the variable and research question. Ask: Is this value correct? Does it make sense? Is there a reasonable explanation for why it is unusual?</em>
-If an outlier is the result of a data-entry or measurement error, it may be appropriate to correct or remove it. If the value is accurate and represents a legitimate observation</strong>, do not remove it simply because it is unusual. Any decision to remove an observation should have a clear justification and should be documented.
-Removing a legitimate outlier can change the distribution, sample size, and results of your analysis.
+A box-and-whisker plot, or <strong>boxplot</strong>, provides a quick visual summary of a numerical variable. 
+The box shows the middle 50% of the data, the line inside the box shows the median, and the whiskers (lines outside the box) extend to the typical lower and higher values. 
+Individual dots outside the whiskers represent potential outliers. A boxplot allows you to quickly see the center, spread, and unusual values in a continuous variable.
 </p>
+
 
 <div style="text-align: center; margin: 30px 0;">
     <img 
@@ -979,34 +960,48 @@ Removing a legitimate outlier can change the distribution, sample size, and resu
 
 <h3>Interpret the Boxplots</h3>
 
-    <p>
-A box-and-whisker plot, or <strong>boxplot</strong>, provides a quick visual summary of a numerical variable. 
-The box shows the middle 50% of the data, the line inside the box shows the median, and the whiskers (lines outside the box) extend to the typical lower and higher values. 
-Individual dots outside the whiskers represent potential outliers. A boxplot allows you to quickly see the <strong>center, spread, and unusual values</strong> in a numerical variable.
-</p>
-
 <p>
 In your R Script, report if each boxplot was normal or not normal.
 There are statistical analyses we can do to definitively determine if a dot is truly an outlier.  However, we will keep things simple for our class.
 </p>
     
-<ol>
-    <li>
-        <strong>Start with the box.</strong> The box represents the middle 50% of the data. The line inside the box represents the <strong>median</strong>, or the middle value.
-    </li>
+<p>
+Look for individual dots <strong>beyond</strong> the whiskers. Those are potential outliers.
+</p>
 
-    <li>
-        <strong>Next, look at the whiskers.</strong> The whiskers extend from the box and represent the typical lower and higher values in the dataset.
-    </li>
+<p><strong>Reporting Template</strong></p>
 
-    <li>
-        <strong>Finally, look for individual dots.</strong> A point that appears <strong>outside a whisker</strong> is identified by RStudio as a potential outlier. Points that fall within the whiskers are not flagged as outliers by the boxplot.
-    </li>
+<div class="highlight-blue">
+<pre><code>
+# The Group #1 boxplot does/ does not have outliers.
+# The Group #1 boxplot does/ does not have outliers.
+</code></pre>
+</div>
 
-    <li>
-        <strong>Quick visual check:</strong> Look for a dot that is separated from the rest of the data and located beyond a whisker. If you see one, investigate that observation before proceeding with your analysis.
-    </li>
-</ol>
+<p><strong>Example</strong></p>
+
+<div class="highlight-blue">
+<pre><code>
+# The Male boxplot does not have outliers.
+# The Female boxplot does not have outliers.
+</code></pre>
+</div>
+
+<h3>What Causes Outlier?</h3>
+  
+<p>
+Sometimes the outlier is a legitimate datapoint. For example, let's say we were collecting data on the average income of a U.S. citizen and, somehow, Elon Musk took our survey. 
+Although his data is legitimate, he would be an outlier that severely impacts our dataset and causes the data to be abnormal (specifically negatively skewed).
+Sometimes an outlier is due to a survey response error, such as a participant accidentally adding an extra zero to their annual income.
+<p>
+
+<h3>What do we do with outliers?</h3>
+
+<p>
+In more advanced data analytics classes, we investigate potential outliers before deciding what to do with them. Check the original data and consider the value in the context of the variable and research question. Ask: Is this value correct? Does it make sense? Is there a reasonable explanation for why it is unusual?</em>
+If an outlier is the result of a data-entry or measurement error, it may be appropriate to correct or remove it. If the value is accurate and represents a legitimate observation</strong>, do not remove it simply because it is unusual. Any decision to remove an observation should have a clear justification and should be documented.
+Removing a legitimate outlier can change the distribution, sample size, and results of your analysis.
+</p>
 
 </div>
 </details>
