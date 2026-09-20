@@ -1,0 +1,1976 @@
+```html
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Pearson &amp; Spearman Correlation</title>
+
+<style>
+
+body {
+    margin: 0;
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    background: #f4f6f9;
+    color: #222222;
+}
+
+.container {
+    max-width: 1000px;
+    margin: auto;
+    padding: 50px 20px;
+}
+
+h1 {
+    text-align: left;
+    color: #666666;
+    font-size: 2.75rem;
+    font-weight: 200;
+    letter-spacing: .08em;
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    text-align: center;
+    color: #6b7280;
+    text-transform: uppercase;
+    letter-spacing: .15em;
+    margin-bottom: 40px;
+    font-size: .95rem;
+}
+
+h2,
+h3 {
+    color: #0e68b3;
+    font-weight: 500;
+    display: inline-block;
+}
+
+p {
+    line-height: 1.8;
+}
+
+.test-path {
+    border: 1px solid #d9e2ec;
+    border-radius: 14px;
+    overflow: hidden;
+    background: #ffffff;
+    margin: 30px 0;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, .05);
+}
+
+.test-path-header {
+    background: #0e68b3;
+    color: white;
+    padding: 20px 25px;
+}
+
+.test-path-header h2,
+.test-path-header h3 {
+    color: white;
+    margin: 0;
+    font-size: 1.35rem;
+    font-weight: 600;
+}
+
+.test-path-subtitle {
+    margin: 6px 0 0;
+    font-size: .95rem;
+    opacity: .95;
+}
+
+.test-path-content {
+    padding: 10px 25px 20px;
+}
+
+.test-path-content details {
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.test-path-content details:last-child {
+    border-bottom: none;
+}
+
+.test-path-content summary {
+    list-style: none;
+    cursor: pointer;
+    position: relative;
+    padding: 17px 35px 17px 5px;
+    color: #0e68b3;
+    font-weight: 600;
+}
+
+.test-path-content summary::-webkit-details-marker {
+    display: none;
+}
+
+.test-path-content summary::after {
+    content: "+";
+    position: absolute;
+    right: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.3rem;
+    font-weight: 400;
+}
+
+.test-path-content details[open] summary::after {
+    content: "−";
+}
+
+.path-step-content {
+    padding: 0 5px 20px;
+}
+
+.path-step-content p {
+    margin-top: 10px;
+}
+
+.path-step-content h2,
+.path-step-content h3 {
+    color: #222222;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+ul {
+    padding-left: 25px;
+}
+
+li {
+    margin-bottom: 8px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background: white;
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+th {
+    background: #0e68b3;
+    color: white;
+    text-align: left;
+    padding: 14px;
+}
+
+td {
+    padding: 14px;
+    border-bottom: 1px solid #e5e7eb;
+    vertical-align: top;
+}
+
+tr:nth-child(even) {
+    background: #f8fafc;
+}
+
+tr:hover {
+    background: #edf6ff;
+}
+
+pre {
+    white-space: pre-wrap;
+    overflow-x: auto;
+    margin: 0;
+}
+
+code {
+    font-family: Consolas, Monaco, "Courier New", monospace;
+}
+
+.highlight pre {
+    background: transparent;
+}
+
+.highlight {
+    padding: 15px 20px;
+    border-radius: 10px;
+    margin: 20px 0;
+    line-height: 1.6;
+}
+
+.highlight-blue {
+    background: #f0f7fc;
+    border-left: 5px solid #0e68b3;
+    padding: 15px 20px;
+    border-radius: 10px;
+    margin: 20px 0;
+    line-height: 1.6;
+}
+
+.highlight-orange {
+    background: #fff4e6;
+    border-left: 5px solid #e67e22;
+    padding: 15px 20px;
+    border-radius: 10px;
+    margin: 20px 0;
+    line-height: 1.6;
+}
+
+.test-paths {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 25px;
+    margin: 30px 0;
+}
+
+.test-paths .test-path {
+    margin: 0;
+}
+
+.test-paths .test-path-header {
+    background: #0e68b3;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+.test-paths .test-path-header h3 {
+    color: white;
+    margin: 0;
+    font-size: 1.25rem;
+}
+
+.test-paths .test-path-content {
+    padding: 10px 20px 20px;
+}
+
+.test-paths .test-path-content details {
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.test-paths .test-path-content details:last-child {
+    border-bottom: none;
+}
+
+.test-paths .test-path-content summary {
+    list-style: none;
+    cursor: pointer;
+    position: relative;
+    padding: 17px 30px 17px 5px;
+    color: #0e68b3;
+    font-weight: 600;
+}
+
+.test-paths .test-path-content summary::-webkit-details-marker {
+    display: none;
+}
+
+.test-paths .test-path-content summary::after {
+    content: "+";
+    position: absolute;
+    right: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.3rem;
+    font-weight: 400;
+}
+
+.test-paths .test-path-content details[open] summary::after {
+    content: "−";
+}
+
+.step-label {
+    display: inline-block;
+    font-size: .8rem;
+    font-weight: 700;
+    letter-spacing: .05em;
+    text-transform: uppercase;
+    color: #6b7280;
+    margin-bottom: 5px;
+}
+
+hr {
+    border: none;
+    height: 1px;
+    background: #d6e4f0;
+    margin: 30px 0;
+}
+
+a {
+    color: #0e68b3;
+}
+
+a.button {
+    display: inline-block;
+    background: #0e68b3;
+    color: white;
+    padding: 14px 28px;
+    border-radius: 999px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: .3s;
+}
+
+a.button:hover {
+    background: #2b6cb0;
+    transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    .test-path-content {
+        padding: 10px 20px 20px;
+    }
+
+    th,
+    td {
+        padding: 10px;
+        font-size: .95rem;
+    }
+
+    .test-paths {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Pearson Correlation &amp; Spearman Correlation</h1>
+
+
+<!-- MAIN PATH -->
+
+<div class="test-path">
+
+<div class="test-path-header">
+<h2>Steps to Conduct a Correlation in RStudio</h2>
+</div>
+
+<div class="test-path-content">
+
+
+<!-- CODE TEMPLATE -->
+
+<details>
+
+<summary>
+<span class="step-label">Prepare</span><br>
+R Script Code Template
+</summary>
+
+<div class="path-step-content">
+
+<p>
+Below is an example of what your code may look like.
+Your code will be different because the dataset name, variable names, normality results, correlation test, and interpretations will depend on your assigned dataset.
+</p>
+
+<div class="highlight-blue">
+
+<pre><code>library(readxl)
+library(ggpubr)
+
+data2026 &lt;- read_excel("C:/Users/John/OneDrive/Documents/AA5221/Datasets/correlation_data.xlsx")
+
+ggscatter(
+    data2026,
+    x = "Age",
+    y = "Income",
+    add = "reg.line",
+    xlab = "Age",
+    ylab = "Income"
+)
+
+# The relationship is linear.
+# The relationship is positive.
+# There are no outliers.
+
+mean(data2026$Age)
+sd(data2026$Age)
+median(data2026$Age)
+
+mean(data2026$Income)
+sd(data2026$Income)
+median(data2026$Income)
+
+hist(data2026$Age)
+hist(data2026$Income)
+
+# Variable 1: Age
+# The variable looks normally distributed.
+# The data is symmetrical.
+# The data has a proper bell curve.
+
+# Variable 2: Income
+# The variable looks normally distributed.
+# The data is symmetrical.
+# The data has a proper bell curve.
+
+shapiro.test(data2026$Age)
+shapiro.test(data2026$Income)
+
+# Variable 1: Age
+# The variable is normally distributed (p = .75).
+
+# Variable 2: Income
+# The variable is normally distributed (p = .87).
+
+cor.test(
+    data2026$Age,
+    data2026$Income,
+    method = "pearson"
+)
+
+# A Pearson correlation was conducted to test the relationship between age and income.
+# There was a statistically significant relationship between the variables, r(98) = .42, p = .003.
+# The relationship was positive and moderate.
+# As age increased, income increased.</code></pre>
+
+</div>
+
+</div>
+
+</details>
+
+
+<!-- STEP 1 -->
+
+<details>
+
+<summary>
+<span class="step-label">Step 1</span><br>
+Prepare for Data Analysis
+</summary>
+
+<div class="path-step-content">
+
+<h3>Download the Assignment 5 Dataset</h3>
+
+<ol>
+
+<li>Download the dataset from Canvas.</li>
+
+<li>
+For students using a <strong>personal laptop</strong>, save the file inside your
+<strong>Assignment 5</strong> folder in Microsoft OneDrive.
+If you are having issues using Microsoft OneDrive, save the file to a folder on your desktop and upload everything later.
+</li>
+
+<li>
+For students using a <strong>SLU-issued laptop</strong>, save the file inside a folder on your virtual desktop.
+You will upload everything to your <strong>Assignment 5</strong> folder in OneDrive later.
+</li>
+
+</ol>
+
+<hr>
+
+<h3>Open RStudio and Create a New R Script</h3>
+
+<ol>
+
+<li>Open RStudio.</li>
+
+<li>Click <strong>File → New File → R Script</strong>.</li>
+
+<li>
+The top-left pane is where you will write and save your R code.
+You will save this as an R Script file (<strong>.R</strong>).
+</li>
+
+<li>Read <strong>Navigating RStudio</strong>.</li>
+
+<li>Read <strong>R Script Files</strong>.</li>
+
+</ol>
+
+<hr>
+
+<h3>Save Your R Script</h3>
+
+<ol>
+
+<li>Click <strong>File → Save As</strong>.</li>
+
+<li>
+For students using a <strong>personal laptop</strong>, save the file inside your
+<strong>Assignment 5</strong> folder in Microsoft OneDrive.
+If you are having issues using Microsoft OneDrive, save the file to a folder on your desktop and upload everything later.
+</li>
+
+<li>
+For students using a <strong>SLU-issued laptop</strong>, save the file inside a folder on your virtual desktop.
+You will upload everything to your <strong>Assignment 5</strong> folder in OneDrive later.
+</li>
+
+<li>Remember to save frequently as you work.</li>
+
+</ol>
+
+</div>
+
+</details>
+
+
+<!-- STEP 2 -->
+
+<details>
+
+<summary>
+<span class="step-label">Step 2</span><br>
+Install &amp; Open the Required Packages
+</summary>
+
+<div class="path-step-content">
+
+<p>
+A package is a collection of functions that adds additional abilities to R.
+</p>
+
+<p>
+For this assignment:
+</p>
+
+<ul>
+
+<li>
+<strong>readxl</strong> allows R to import Excel files.
+</li>
+
+<li>
+<strong>ggpubr</strong> allows R to create scatterplots and other publication-quality graphics.
+</li>
+
+</ul>
+
+<h3>Install the Required Packages</h3>
+
+<p>
+Copy and paste the following code into your R Script.
+</p>
+
+<div class="highlight-orange">
+
+<pre><code>install.packages("readxl")
+install.packages("ggpubr")</code></pre>
+
+</div>
+
+<p>
+Run each line only one time.
+Packages only need to be installed once.
+After successful installation, delete the
+<code>install.packages()</code> lines from your R Script.
+Running installation code repeatedly can sometimes create errors.
+</p>
+
+<p>
+<strong>What will you see?</strong><br>
+RStudio will display installation messages in the Console.
+Once installation is complete, the packages are ready to use.
+</p>
+
+<hr>
+
+<h3>Open the Installed Packages</h3>
+
+<p>
+Copy and paste the following code into your R Script:
+</p>
+
+<div class="highlight-blue">
+
+<pre><code>library(readxl)
+library(ggpubr)</code></pre>
+
+</div>
+
+<p>
+Run the code.
+</p>
+
+<p>
+<strong>What will you see?</strong><br>
+Nothing will appear in the Console.
+That is normal.
+The packages are now available for use in your R session.
+</p>
+
+</div>
+
+</details>
+
+
+<!-- STEP 3 -->
+
+<details>
+
+<summary>
+<span class="step-label">Step 3</span><br>
+Import Your Excel Dataset into RStudio
+</summary>
+
+<div class="path-step-content">
+
+<p>
+Although datasets can be imported entirely with code, many students experience difficulties locating file paths.
+Therefore, we will use the <strong>point-and-click method</strong>.
+</p>
+
+<ol>
+
+<li>
+Click <strong>File → Import Dataset → From Excel</strong>.
+</li>
+
+<li>
+A new window inside RStudio should appear.
+Click <strong>Browse</strong> in the top-right corner.
+</li>
+
+<li>
+Locate and select your dataset.
+<br>
+For students using a personal laptop: the dataset should be inside your
+<strong>OneDrive → AA 5221 → Assignment 5</strong> folder.
+<br>
+If you are having issues using Microsoft OneDrive, save the dataset to a folder on your desktop and upload it later.
+<br>
+For students using a <strong>SLU-issued laptop</strong>, the dataset should be located on your virtual desktop.
+</li>
+
+<li>
+Click <strong>Import</strong>.
+</li>
+
+</ol>
+
+<p>
+RStudio will automatically generate the code used to import the dataset.
+</p>
+
+<h3>General Example</h3>
+
+<div class="highlight-blue">
+
+<pre><code>DatasetName &lt;- read_excel("filepath")</code></pre>
+
+</div>
+
+<h3>Example with a Pretend File Path</h3>
+
+<div class="highlight-blue">
+
+<pre><code>DatasetZ &lt;- read_excel("C:/Users/Joseph/Desktop/dataset.xlsx")</code></pre>
+
+</div>
+
+<p>
+Copy the generated code and paste it into your R Script.
+This allows the dataset to be automatically imported the next time you run your script.
+</p>
+
+<p>
+Once imported, the dataset will appear in a new tab in RStudio.
+</p>
+
+</div>
+
+</details>
+
+
+<!-- STEP 4 -->
+
+<details>
+
+<summary>
+<span class="step-label">Step 4</span><br>
+Create a Scatterplot
+</summary>
+
+<div class="path-step-content">
+
+<p>
+Scatterplots are always required when conducting a correlation because they allow you to visually inspect the relationship between two variables.
+</p>
+
+<p>
+Read:
+<a href="https://fsaffaf.github.io/AA5221/1-course/scatterplots.html" target="_blank" rel="noopener">
+Scatterplots
+</a>
+</p>
+
+<p>In a scatterplot:</p>
+
+<ul>
+
+<li>Each dot represents one observation (one person).</li>
+
+<li>The x-axis contains the independent (predictor) variable.</li>
+
+<li>The y-axis contains the dependent (outcome) variable.</li>
+
+</ul>
+
+<p>
+Copy and paste the following code into your R Script:
+</p>
+
+<div class="highlight-blue">
+
+<pre><code>ggscatter(
+    DatasetName,
+    x = "IndependentVariable",
+    y = "DependentVariable",
+    add = "reg.line",
+    xlab = "Independent Variable",
+    ylab = "Dependent Variable"
+)</code></pre>
+
+</div>
+
+<p>Replace:</p>
+
+<ul>
+
+<li><code>DatasetName</code></li>
+
+<li><code>IndependentVariable</code></li>
+
+<li><code>DependentVariable</code></li>
+
+</ul>
+
+<p>
+with the names used in your dataset.
+</p>
+
+<h3>Example with Pretend Data</h3>
+
+<div class="highlight-blue">
+
+<pre><code>ggscatter(
+    DatasetZ,
+    x = "Age",
+    y = "USD",
+    add = "reg.line",
+    xlab = "Age",
+    ylab = "USD"
+)</code></pre>
+
+</div>
+
+<p>
+<strong>What will you see?</strong><br>
+A scatterplot showing the relationship between the two variables.
+The line of best fit makes the relationship easier to interpret.
+</p>
+
+</div>
+
+</details>
+
+
+<!-- STEP 5 -->
+
+<details>
+
+<summary>
+<span class="step-label">Step 5</span><br>
+Interpret the Scatterplot
+</summary>
+
+<div class="path-step-content">
+
+<p>
+After creating the scatterplot, summarize what you see as comments in your R Script.
+Begin each sentence with a hashtag (<code>#</code>).
+</p>
+
+<h3>Relationship Type</h3>
+
+<p>Determine whether the relationship is:</p>
+
+<ul>
+
+<li>Linear</li>
+
+<li>Curved (non-linear)</li>
+
+</ul>
+
+<p>
+A linear relationship is required for a Pearson Correlation.
+If the relationship appears curved, you will likely use a Spearman Correlation instead.
+</p>
+
+<h3>Relationship Direction</h3>
+
+<p>Determine whether the relationship is:</p>
+
+<ul>
+
+<li>Positive</li>
+
+<li>Negative</li>
+
+<li>No relationship</li>
+
+</ul>
+
+<p>
+A positive relationship means both variables increase together.
+A negative relationship means one variable increases while the other decreases.
+</p>
+
+<h3>Outliers</h3>
+
+<p>
+Look for observations that are far away from the main cluster of points.
+Determine whether meaningful outliers are present.
+</p>
+
+<p><strong>Reporting Template</strong></p>
+
+<div class="highlight-blue">
+
+<pre><code># The relationship is [linear / curved].
+# The relationship is [positive / negative / does not exist].
+# There [are / are no] outliers.</code></pre>
+
+</div>
+
+</div>
+
+</details>
+
+
+<!-- STEP 6 -->
+
+<details>
+
+<summary>
+<span class="step-label">Step 6</span><br>
+Calculate Descriptive Statistics
+</summary>
+
+<div class="path-step-content">
+
+<p>
+Calculate the <strong>mean, standard deviation, and median</strong> for both variables.
+These values will later be included in your results summary.
+</p>
+
+<p>Replace:</p>
+
+<ul>
+
+<li><code>DatasetName</code> with the name of your dataset.</li>
+
+<li><code>IndependentVariable</code> with your independent variable.</li>
+
+<li><code>DependentVariable</code> with your dependent variable.</li>
+
+</ul>
+
+<h3>Code Template</h3>
+
+<div class="highlight-blue">
+
+<pre><code>mean(DatasetName$IndependentVariable)
+sd(DatasetName$IndependentVariable)
+median(DatasetName$IndependentVariable)
+
+mean(DatasetName$DependentVariable)
+sd(DatasetName$DependentVariable)
+median(DatasetName$DependentVariable)</code></pre>
+
+</div>
+
+<h3>Example with Pretend Data</h3>
+
+<div class="highlight-blue">
+
+<pre><code>mean(DatasetZ$Age)
+sd(DatasetZ$Age)
+median(DatasetZ$Age)
+
+mean(DatasetZ$USD)
+sd(DatasetZ$USD)
+median(DatasetZ$USD)</code></pre>
+
+</div>
+
+<h3>Example Output</h3>
+
+<div class="highlight">
+
+<pre><code>&gt; mean(DatasetZ$Age)
+[1] 40.12
+
+&gt; sd(DatasetZ$Age)
+[1] 2.19
+
+&gt; median(DatasetZ$Age)
+[1] 40
+
+&gt; mean(DatasetZ$USD)
+[1] 41000.11
+
+&gt; sd(DatasetZ$USD)
+[1] 1002.09
+
+&gt; median(DatasetZ$USD)
+[1] 41000</code></pre>
+
+</div>
+
+</div>
+
+</details>
+
+
+<!-- STEP 7 -->
+
+<details>
+
+<summary>
+<span class="step-label">Step 7</span><br>
+Check Normality Visually: Histograms
+</summary>
+
+<div class="path-step-content">
+
+<p>
+Checking normality is extremely important when determining whether a Pearson or Spearman Correlation should be used.
+</p>
+
+<p>
+Therefore, we check normality in multiple ways.
+The first method is a visual inspection using histograms.
+</p>
+
+<p>
+A histogram displays the distribution of a variable and allows you to look for skewness, symmetry, and the presence of a bell curve.
+</p>
+
+<h3>Create Histograms</h3>
+
+<p>
+Create a histogram for each variable.
+</p>
+
+<h3>Code Template</h3>
+
+<div class="highlight-blue">
+
+<pre><code>hist(DatasetName$IndependentVariable,
+     main = "Independent Variable",
+     breaks = 20,
+     col = "lightblue",
+     border = "white",
+     cex.main = 1,
+     cex.axis = 1,
+     cex.lab = 1)
+
+hist(DatasetName$DependentVariable,
+     main = "Dependent Variable",
+     breaks = 20,
+     col = "lightcoral",
+     border = "white",
+     cex.main = 1,
+     cex.axis = 1,
+     cex.lab = 1)</code></pre>
+
+</div>
+
+<h3>Example with Pretend Data</h3>
+
+<div class="highlight-blue">
+
+<pre><code>hist(DatasetZ$Age,
+     main = "Age",
+     breaks = 20,
+     col = "lightblue",
+     border = "white")
+
+hist(DatasetZ$USD,
+     main = "USD",
+     breaks = 20,
+     col = "lightcoral",
+     border = "white")</code></pre>
+
+</div>
+
+<p>
+<strong>What will you see?</strong><br>
+Two histograms showing the distribution of each variable.
+</p>
+
+</div>
+
+</details>
+
+
+<!-- STEP 8 -->
+
+<details>
+
+<summary>
+<span class="step-label">Step 8</span><br>
+Interpret the Histograms
+</summary>
+
+<div class="path-step-content">
+
+<p>
+Write your comments directly below the histogram code in your R Script.
+</p>
+
+<p>For each variable, determine:</p>
+
+<ul>
+
+<li>
+Whether the variable appears normally or abnormally distributed.
+</li>
+
+<li>
+Whether the variable is symmetrical, positively skewed, or negatively skewed.
+</li>
+
+<li>
+Whether the histogram displays a proper bell curve.
+</li>
+
+</ul>
+
+<h3>Normality Guidelines</h3>
+
+<ul>
+
+<li>
+<strong>Normally distributed</strong> data are generally symmetrical and have a bell-shaped curve.
+</li>
+
+<li>
+<strong>Positively skewed</strong> data have a longer tail on the right side.
+</li>
+
+<li>
+<strong>Negatively skewed</strong> data have a longer tail on the left side.
+</li>
+
+<li>
+Abnormal skewness or abnormal kurtosis indicates non-normal data.
+</li>
+
+</ul>
+
+<p><strong>Reporting Template</strong></p>
+
+<div class="highlight-blue">
+
+<pre><code># Variable 1: Name of Variable
+# The variable looks [normally / abnormally] distributed.
+# The data is [symmetrical / positively skewed / negatively skewed].
+# The data [has / does not have] a proper bell curve.
+
+# Variable 2: Name of Variable
+# The variable looks [normally / abnormally] distributed.
+# The data is [symmetrical / positively skewed / negatively skewed].
+# The data [has / does not have] a proper bell curve.</code></pre>
+
+</div>
+
+<h3>Example Report</h3>
+
+<div class="highlight-blue">
+
+<pre><code># Variable 1: Age
+# The variable looks normally distributed.
+# The data is symmetrical.
+# The data has a proper bell curve.
+
+# Variable 2: USD
+# The variable looks normally distributed.
+# The data is symmetrical.
+# The data has a proper bell curve.</code></pre>
+
+</div>
+
+</div>
+
+</details>
+
+
+<!-- STEP 9 -->
+
+<details>
+
+<summary>
+<span class="step-label">Step 9</span><br>
+Check Normality Statistically: Shapiro-Wilk Test
+</summary>
+
+<div class="path-step-content">
+
+<p>
+The Shapiro-Wilk test provides a statistical method for checking normality.
+Unlike visual inspection, the Shapiro-Wilk test evaluates whether the observed distribution differs significantly from a theoretically normal distribution.
+</p>
+
+<h3>Run the Shapiro-Wilk Tests</h3>
+
+<p>
+Copy and paste the following code into your R Script:
+</p>
+
+<div class="highlight-blue">
+
+<pre><code>shapiro.test(DatasetName$IndependentVariable)
+
+shapiro.test(DatasetName$DependentVariable)</code></pre>
+
+</div>
+
+<h3>Example with Pretend Data</h3>
+
+<div class="highlight-blue">
+
+<pre><code>shapiro.test(DatasetZ$Age)
+
+shapiro.test(DatasetZ$USD)</code></pre>
+
+</div>
+
+<h3>Example Output</h3>
+
+<div class="highlight">
+
+<pre><code>Shapiro-Wilk normality test
+
+data: DatasetZ$Age
+W = 0.959
+p-value = 0.754
+
+Shapiro-Wilk normality test
+
+data: DatasetZ$USD
+W = 0.970
+p-value = 0.865</code></pre>
+
+</div>
+
+</div>
+
+</details>
+
+
+<!-- STEP 10 -->
+
+<details>
+
+<summary>
+<span class="step-label">Step 10</span><br>
+Interpret the Shapiro-Wilk Test
+</summary>
+
+<div class="path-step-content">
+
+<p>
+The Shapiro-Wilk test evaluates the following question:
+</p>
+
+<div class="highlight-blue">
+
+<strong>
+"Is there a statistically significant difference between my data's distribution and a perfectly normal distribution?"
+</strong>
+
+</div>
+
+<table>
+
+<tr>
+<th>P-Value</th>
+<th>Meaning</th>
+<th>Conclusion</th>
+</tr>
+
+<tr>
+
+<td>p &gt; .05</td>
+
+<td>
+No significant difference from a normal distribution
+</td>
+
+<td>
+<strong>Normal</strong>
+</td>
+
+</tr>
+
+<tr>
+
+<td>p &lt; .05</td>
+
+<td>
+Significant difference from a normal distribution
+</td>
+
+<td>
+<strong>Abnormal</strong>
+</td>
+
+</tr>
+
+</table>
+
+<p><strong>Reporting Template</strong></p>
+
+<div class="highlight-blue">
+
+<pre><code># Variable 1: Name of Variable
+# The variable is [normally / abnormally] distributed (p = .xx).
+
+# Variable 2: Name of Variable
+# The variable is [normally / abnormally] distributed (p = .xx).</code></pre>
+
+</div>
+
+<h3>Example Report</h3>
+
+<div class="highlight-blue">
+
+<pre><code># Variable 1: Age
+# The variable is normally distributed (p = .75).
+
+# Variable 2: USD
+# The variable is normally distributed (p = .87).</code></pre>
+
+</div>
+
+</div>
+
+</details>
+
+
+<!-- STEP 11 -->
+
+<details>
+
+<summary>
+<span class="step-label">Step 11</span><br>
+Determine Which Correlation to Use
+</summary>
+
+<div class="path-step-content">
+
+<p>
+Use the information from your histograms and Shapiro-Wilk tests to determine whether you should conduct a Pearson Correlation or a Spearman Correlation.
+</p>
+
+<table>
+
+<tr>
+<th>Scenario</th>
+<th>Decision</th>
+</tr>
+
+<tr>
+
+<td>
+Both histograms appear normal and both Shapiro-Wilk tests indicate normality.
+</td>
+
+<td>
+<strong>Use Pearson Correlation.</strong>
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+One or both histograms appear abnormal, but both Shapiro-Wilk tests indicate normality.
+</td>
+
+<td>
+You most likely have misinterpreted the histograms.
+Check your Shapiro-Wilk tests for the answer on whether the data are normal or not.
+The datasets for this assignment are designed so that the histograms and Shapiro-Wilk tests match.
+In real-world data, the two methods can sometimes disagree.
+When they disagree, this may indicate that the data need additional investigation, such as checking for data-entry errors or methodological problems.
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+One or both Shapiro-Wilk tests indicate abnormality.
+</td>
+
+<td>
+<strong>Use Spearman Correlation.</strong>
+</td>
+
+</tr>
+
+</table>
+
+<div class="highlight-orange">
+
+<strong>Important:</strong>
+
+<p>
+For this assignment, follow the decision rule above.
+If one or both Shapiro-Wilk tests indicate abnormality, conduct a Spearman Correlation.
+</p>
+
+</div>
+
+<p>
+Once you determine which correlation is appropriate, continue to either the Pearson Correlation section or the Spearman Correlation section.
+</p>
+
+</div>
+
+</details>
+
+
+</div>
+
+</div>
+
+
+<!-- TEST PATHS -->
+
+<div class="test-paths">
+
+
+<!-- PEARSON -->
+
+<div class="test-path">
+
+<div class="test-path-header">
+
+<h3>Option A: Pearson Correlation</h3>
+
+</div>
+
+<div class="test-path-content">
+
+
+<!-- STEP 12A -->
+
+<details>
+
+<summary>
+<span class="step-label">Step 12a</span><br>
+Conduct the Pearson Correlation
+</summary>
+
+<div class="path-step-content">
+
+<p>
+If both variables are normally distributed, conduct a
+<strong>Pearson Correlation</strong>.
+</p>
+
+<p>
+The Pearson Correlation measures the strength and direction of a
+<strong>linear relationship</strong> between two variables.
+</p>
+
+<p>
+Replace the dataset and variable names with the names used in your dataset.
+</p>
+
+<h3>Code Template</h3>
+
+<div class="highlight-blue">
+
+<pre><code>cor.test(
+    DatasetName$IndependentVariable,
+    DatasetName$DependentVariable,
+    method = "pearson"
+)</code></pre>
+
+</div>
+
+<h3>Example with Pretend Data</h3>
+
+<div class="highlight-blue">
+
+<pre><code>cor.test(
+    DatasetZ$Age,
+    DatasetZ$USD,
+    method = "pearson"
+)</code></pre>
+
+</div>
+
+<h3>Example Output</h3>
+
+<div class="highlight">
+
+<pre><code>Pearson's product-moment correlation
+
+data: DatasetZ$Age and DatasetZ$USD
+t = 4.275
+df = 98
+p-value = 0.003
+
+sample estimates:
+cor
+0.417</code></pre>
+
+</div>
+
+</div>
+
+</details>
+
+
+<!-- STEP 13A -->
+
+<details>
+
+<summary>
+<span class="step-label">Step 13a</span><br>
+Report the Pearson Correlation
+</summary>
+
+<div class="path-step-content">
+
+<p>
+After completing your analysis, summarize the results as comments at the end of your R Script.
+Begin each sentence with a hashtag (<code>#</code>).
+</p>
+
+<h3>How to Report P-Values</h3>
+
+<ul>
+
+<li>
+If p &lt; .001, report <strong>p &lt; .001</strong>.
+</li>
+
+<li>
+If .001 &lt; p &lt; .05, report the exact p-value to three decimal places.
+</li>
+
+<li>
+If p &gt; .05, report <strong>p &gt; .05</strong>.
+</li>
+
+</ul>
+
+<h3>Reporting Other Numerical Values</h3>
+
+<p>
+Report all other numerical values to two decimal places.
+Remember to round.
+</p>
+
+<p>
+Example: <strong>.1252 → .13</strong>
+</p>
+
+<h3>Interpreting Effect Size</h3>
+
+<p>
+For correlations, the effect size is the correlation coefficient itself
+(<strong>r</strong>).
+Unlike tests such as chi-square tests where a separate effect size may be calculated,
+correlation analysis directly produces a measure of effect size.
+</p>
+
+<p>
+The value of <strong>r</strong> tells us both the direction and strength of the relationship between two variables, so no additional effect size calculation is needed.
+</p>
+
+<p>
+Only interpret the effect size if your results are statistically significant
+(<strong>p &lt; .05</strong>).
+</p>
+
+<table>
+
+<tr>
+<th>Correlation Value</th>
+<th>Interpretation</th>
+</tr>
+
+<tr>
+<td>± 0.00 to 0.09</td>
+<td>No Relationship</td>
+</tr>
+
+<tr>
+<td>± 0.10 to 0.29</td>
+<td>Weak Relationship</td>
+</tr>
+
+<tr>
+<td>± 0.30 to 0.49</td>
+<td>Moderate Relationship</td>
+</tr>
+
+<tr>
+<td>± 0.50 to 1.00</td>
+<td>Strong Relationship</td>
+</tr>
+
+</table>
+
+<h3>Pearson Reporting Template</h3>
+
+<div class="highlight-blue">
+
+<pre><code># A Pearson correlation was conducted to test the relationship between Variable 1 (M = xx.xx, SD = xx.xx) and Variable 2 (M = xx.xx, SD = xx.xx).
+
+# There [was / was not] a statistically significant relationship between the two variables, r(df) = .xx, p = .xxx.
+
+# The relationship was [positive / negative] and [weak / moderate / strong].
+
+# As Variable 1 increased, Variable 2 [increased / decreased].</code></pre>
+
+</div>
+
+<h3>Pearson Example</h3>
+
+<div class="highlight-blue">
+
+<pre><code># A Pearson correlation was conducted to test the relationship between age (M = 40.12, SD = 2.19) and income (M = 41000.11, SD = 1002.09).
+
+# There was a statistically significant relationship between the two variables, r(98) = .42, p = .003.
+
+# The relationship was positive and moderate.
+
+# As age increased, income increased.</code></pre>
+
+</div>
+
+</div>
+
+</details>
+
+
+</div>
+
+</div>
+
+
+<!-- SPEARMAN -->
+
+<div class="test-path">
+
+<div class="test-path-header">
+
+<h3>Option B: Spearman Correlation</h3>
+
+</div>
+
+<div class="test-path-content">
+
+
+<!-- STEP 12B -->
+
+<details>
+
+<summary>
+<span class="step-label">Step 12b</span><br>
+Conduct the Spearman Correlation
+</summary>
+
+<div class="path-step-content">
+
+<p>
+If one or both variables are not normally distributed, conduct a
+<strong>Spearman Correlation</strong>.
+</p>
+
+<p>
+The Spearman Correlation measures the strength and direction of a
+<strong>monotonic relationship</strong> between two variables.
+</p>
+
+<h3>Code Template</h3>
+
+<div class="highlight-blue">
+
+<pre><code>cor.test(
+    DatasetName$IndependentVariable,
+    DatasetName$DependentVariable,
+    method = "spearman"
+)</code></pre>
+
+</div>
+
+<h3>Example with Pretend Data</h3>
+
+<div class="highlight-blue">
+
+<pre><code>cor.test(
+    DatasetZ$Age,
+    DatasetZ$USD,
+    method = "spearman"
+)</code></pre>
+
+</div>
+
+<h3>Example Output</h3>
+
+<div class="highlight">
+
+<pre><code>Spearman's rank correlation rho
+
+data: DatasetZ$Age and DatasetZ$USD
+S = 1620
+p-value = 0.003
+
+sample estimates:
+rho
+0.42</code></pre>
+
+</div>
+
+</div>
+
+</details>
+
+
+<!-- STEP 13B -->
+
+<details>
+
+<summary>
+<span class="step-label">Step 13b</span><br>
+Report the Spearman Correlation
+</summary>
+
+<div class="path-step-content">
+
+<p>
+After completing your analysis, summarize the results as comments at the end of your R Script.
+Begin each sentence with a hashtag (<code>#</code>).
+</p>
+
+<h3>How to Report P-Values</h3>
+
+<ul>
+
+<li>
+If p &lt; .001, report <strong>p &lt; .001</strong>.
+</li>
+
+<li>
+If .001 &lt; p &lt; .05, report the exact p-value to three decimal places.
+</li>
+
+<li>
+If p &gt; .05, report <strong>p &gt; .05</strong>.
+</li>
+
+</ul>
+
+<h3>Reporting Other Numerical Values</h3>
+
+<p>
+Report all other numerical values to two decimal places.
+Remember to round.
+</p>
+
+<p>
+Example: <strong>.1252 → .13</strong>
+</p>
+
+<h3>Interpreting Effect Size</h3>
+
+<p>
+For a Spearman correlation, the correlation coefficient
+(<strong>ρ</strong>) provides the effect size.
+</p>
+
+<p>
+Only interpret the effect size if your results are statistically significant
+(<strong>p &lt; .05</strong>).
+</p>
+
+<table>
+
+<tr>
+<th>Correlation Value</th>
+<th>Interpretation</th>
+</tr>
+
+<tr>
+<td>± 0.00 to 0.09</td>
+<td>No Relationship</td>
+</tr>
+
+<tr>
+<td>± 0.10 to 0.29</td>
+<td>Weak Relationship</td>
+</tr>
+
+<tr>
+<td>± 0.30 to 0.49</td>
+<td>Moderate Relationship</td>
+</tr>
+
+<tr>
+<td>± 0.50 to 1.00</td>
+<td>Strong Relationship</td>
+</tr>
+
+</table>
+
+<h3>Spearman Reporting Template</h3>
+
+<div class="highlight-blue">
+
+<pre><code># A Spearman correlation was conducted to test the relationship between Variable 1 (Mdn = xx.xx) and Variable 2 (Mdn = xx.xx).
+
+# There [was / was not] a statistically significant relationship between the two variables, ρ = .xx, p = .xxx.
+
+# The relationship was [positive / negative] and [weak / moderate / strong].
+
+# As the independent variable increased, the dependent variable [increased / decreased].</code></pre>
+
+</div>
+
+</div>
+
+</details>
+
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- FINAL STEPS -->
+
+<div class="test-path">
+
+<div class="test-path-content">
+
+
+<!-- STEP 14 -->
+
+<details>
+
+<summary>
+<span class="step-label">Step 14</span><br>
+Create an RMarkdown File
+</summary>
+
+<div class="path-step-content">
+
+<p>
+After completing your R Script, convert it into an RMarkdown file.
+</p>
+
+<p>
+An RMarkdown file allows others to reproduce your analysis while viewing both the code and output together.
+</p>
+
+<p>
+Read:
+<a href="https://fsaffaf.github.io/AA5221/RProgram/RMarkdown.html" target="_blank" rel="noopener">
+RMarkdown Files
+</a>
+</p>
+
+<h3>Create a New RMarkdown File</h3>
+
+<ol>
+
+<li>
+Create a new file:
+<strong>File → New File → RMarkdown</strong>.
+</li>
+
+<li>
+Make sure <strong>HTML</strong> is selected and click <strong>OK</strong>.
+</li>
+
+<li>
+Save the file inside your <strong>Assignment 5</strong> folder.
+</li>
+
+<li>
+Delete all of the pre-written text.
+</li>
+
+<li>
+Copy and paste your R Script into the RMarkdown file.
+</li>
+
+<li>
+Add <strong>```{r}</strong> at the very top of your code.
+</li>
+
+<li>
+Add <strong>```</strong> at the very bottom of your code.
+</li>
+
+<li>
+Your code section should turn gray.
+</li>
+
+<li>
+Click the <strong>Knit</strong> button at the top of the screen.
+</li>
+
+<li>
+Your completed report will open in a new window.
+</li>
+
+</ol>
+
+<h3>Example Structure</h3>
+
+<div class="highlight-blue">
+
+<pre><code>```{r}
+
+paste all your code here
+
+```</code></pre>
+
+</div>
+
+</div>
+
+</details>
+
+
+<!-- STEP 15 -->
+
+<details>
+
+<summary>
+<span class="step-label">Step 15</span><br>
+Publish Your Work as an RPubs HTML File
+</summary>
+
+<div class="path-step-content">
+
+<p>
+An RPubs HTML file allows people to view your analysis in a web browser without installing RStudio.
+</p>
+
+<p>
+Read:
+<a href="https://fsaffaf.github.io/AA5221/RProgram/RPubs.html" target="_blank" rel="noopener">
+RPubs
+</a>
+</p>
+
+<p>
+After creating your RMarkdown file, publish it to RPubs.
+</p>
+
+<h3>Publish Your Report</h3>
+
+<ol>
+
+<li>
+Open your R Markdown file.
+</li>
+
+<li>
+Click the <strong>Knit</strong> button at the top of the document.
+</li>
+
+<li>
+After the HTML report appears, locate the <strong>Publish</strong> button in the Viewer pane.
+</li>
+
+<li>
+Select <strong>Publish to RPubs</strong>.
+</li>
+
+<li>
+Log in or create a free RPubs account.
+</li>
+
+<li>
+Enter a title and description for your report.
+</li>
+
+<li>
+Click <strong>Publish</strong>.
+</li>
+
+<li>
+Copy the generated URL and submit the link for your assignment.
+</li>
+
+</ol>
+
+<hr>
+
+<h3>Save the RPubs HTML File</h3>
+
+<ol>
+
+<li>
+Open your RPubs report in a web browser.
+</li>
+
+<li>
+Press <strong>Ctrl + S</strong> (Windows) or <strong>Command + S</strong> (Mac).
+</li>
+
+<li>
+Select a location on your computer.
+</li>
+
+<li>
+Choose <strong>Webpage, HTML Only</strong> if available.
+</li>
+
+<li>
+Save the file.
+</li>
+
+<li>
+Save the RPubs HTML file to your <strong>Assignment 5</strong> OneDrive folder.
+</li>
+
+</ol>
+
+</div>
+
+</details>
+
+
+</div>
+
+</div>
+
+
+</div>
+
+</body>
+
+</html>
+```
