@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Types of Data</title>
+
+<style>
+
+body{
+    margin:0;
+    font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+    background:#f4f6f9;
+    color:#222222;
+}
+
+.container{
+    max-width:1000px;
+    margin:auto;
+    padding:50px 20px;
+}
+
+h1{
+    text-align:left;
+    color:#666666;
+    font-size:2.75rem;
+    font-weight:200;
+    letter-spacing:.08em;
+    margin-bottom:10px;
+}
+
+.subtitle{
+    text-align:center;
+    color:#6b7280;
+    text-transform:uppercase;
+    letter-spacing:.15em;
+    margin-bottom:40px;
+    font-size:.95rem;
+}
+
+h2,
+h3{
+    color:#0e68b3;
+    position:relative;
+    font-weight:500;
+    display:inline-block;
+}
+
+h2::after,
+h3::after{
+    content:"";
+    position:absolute;
+    left:0;
+    bottom:-4px;
+    width:0;
+    height:2px;
+    background:#0e68b3;
+    transition:.3s;
+}
+
+.card:hover h2::after,
+.card:hover h3::after{
+    width:100%;
+}
+
+p{
+    line-height:1.8;
+}
+
+.card{
+    background:white;
+    border-radius:16px;
+    padding:30px;
+    margin-bottom:25px;
+    border:1px solid #d9e2ec;
+    box-shadow:0 3px 10px rgba(0,0,0,.05);
+    animation:fadeUp .6s ease forwards;
+    transition:all .25s ease;
+}
+
+.card:hover{
+    transform:translateY(-4px);
+    box-shadow:0 10px 25px rgba(14,104,179,.15);
+}
+
+.highlight{
+    background:#eef6fc;
+    border-left:5px solid #0e68b3;
+    padding:15px;
+    border-radius:8px;
+    margin:20px 0;
+}
+
+.section-banner{
+    background:#0e68b3;
+    color:white;
+    padding:12px 18px;
+    border-radius:10px;
+    font-weight:600;
+    margin-bottom:20px;
+}
+
+ul{
+    padding-left:25px;
+}
+
+li{
+    margin-bottom:8px;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:20px;
+    background:white;
+    overflow:hidden;
+    border-radius:10px;
+}
+
+th{
+    background:#0e68b3;
+    color:white;
+    text-align:left;
+    padding:14px;
+}
+
+td{
+    padding:14px;
+    border-bottom:1px solid #e5e7eb;
+    vertical-align:top;
+}
+
+tr:nth-child(even){
+    background:#f8fafc;
+}
+
+tr:hover{
+    background:#edf6ff;
+}
+
+blockquote{
+    background:#f8fafc;
+    padding:15px;
+    border-left:5px solid #0e68b3;
+    border-radius:6px;
+    margin:20px 0;
+    font-style:italic;
+}
+
+.button{
+    display:inline-block;
+    background:#0e68b3;
+    color:white;
+    text-decoration:none;
+    font-weight:600;
+    padding:12px 24px;
+    border-radius:50px;
+    transition:.25s;
+}
+
+.button:hover{
+    background:#095491;
+    transform:translateY(-2px);
+}
+
+.center{
+    text-align:center;
+}
+
+hr{
+    border:none;
+    height:1px;
+    background:#d6e4f0;
+    margin:30px 0;
+}
+
+@keyframes fadeUp{
+    from{
+        opacity:0;
+        transform:translateY(20px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+@media (max-width:768px){
+
+    h1{
+        font-size:2rem;
+    }
+
+    .card{
+        padding:20px;
+    }
+
+    th,
+    td{
+        padding:10px;
+        font-size:.95rem;
+    }
+
+    table{
+        display:block;
+        overflow-x:auto;
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Types of Data</h1>
+
+<div class="card">
+
+<p>
+There are four types of data, also known as <strong>levels of measurement</strong>.
+You must correctly identify the level of measurement for your variables because it determines:
+</p>
+
+<ul>
+<li>Which descriptive statistics can be calculated</li>
+<li>Which inferential statistics can be used</li>
+<li>Which graphs are appropriate for visualizing the data</li>
+</ul>
+
+</div>
+
+<div class="card">
+
+<div class="section-banner">
+Levels of Measurement
+</div>
+
+<table>
+<thead>
+<tr>
+<th>Level</th>
+<th>Definition</th>
+<th>Examples</th>
+<th>Data Type</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><strong>Nominal</strong></td>
+<td>Categories with no rank order.</td>
+<td>Race, gender, nationality</td>
+<td>Categorical</td>
+</tr>
+
+<tr>
+<td><strong>Ordinal</strong></td>
+<td>Categories can be ranked, but spacing between categories is unequal.</td>
+<td>Single-item Likert scales</td>
+<td>Categorical</td>
+</tr>
+
+<tr>
+<td><strong>Interval</strong></td>
+<td>Equal spacing between values, but no true zero.</td>
+<td>Multiple-item Likert scales</td>
+<td>Continuous</td>
+</tr>
+
+<tr>
+<td><strong>Ratio</strong></td>
+<td>Equal spacing with a true zero point.</td>
+<td>Weight, height, distance</td>
+<td>Continuous</td>
+</tr>
+
+</tbody>
+</table>
+
+<div class="highlight">
+<strong>Continuous (Quantitative) Data</strong><br>
+Number-based data that can be used in higher-level mathematical and statistical calculations.
+</div>
+
+<div class="highlight">
+<strong>Categorical (Qualitative) Data</strong><br>
+Word-based data that describe categories, groups, experiences, or characteristics.
+</div>
+
+</div>
+
+<div class="card">
+
+<div class="section-banner">
+Single-Item vs. Multiple-Item Likert Measures
+</div>
+
+<p>
+Researchers frequently use Likert scales to measure attitudes, opinions, perceptions, and other psychological constructs.
+</p>
+
+<h2>Single-Item Measures</h2>
+
+<p>
+A single-item measure uses one question to assess a variable.
+</p>
+
+<blockquote>
+Overall, how satisfied are you with your job?
+</blockquote>
+
+<p>
+<strong>Advantages:</strong> Simple, quick, and reduces survey fatigue.
+</p>
+
+<p>
+<strong>Limitation:</strong> May not fully capture a complex construct.
+</p>
+
+<hr>
+
+<h2>Multiple-Item Measures</h2>
+
+<p>
+A multiple-item measure uses several related questions to assess a single construct.
+Researchers typically combine responses using a sum or average score.
+</p>
+
+<ol>
+<li>I enjoy the work I do.</li>
+<li>I am satisfied with my current job.</li>
+<li>I would recommend my workplace to others.</li>
+<li>My job meets my expectations.</li>
+</ol>
+
+<p>
+Multiple-item measures are often treated as
+<strong>interval-level data</strong>
+because researchers calculate an overall score across several questions.
+</p>
+
+<div class="highlight">
+<strong>Benefits of Multiple-Item Measures</strong>
+
+<ul>
+<li>More dependable results</li>
+<li>More accurate measurement</li>
+<li>Allows evaluation of measurement quality</li>
+<li>Produces more consistent findings</li>
+</ul>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<div class="section-banner">
+Interactive Study Tool
+</div>
+
+<p>
+Use the tool below to identify the level of measurement for your variables.
+</p>
+
+<div class="center">
+<a class="button"
+href="https://fsaffaf.github.io/AA5221/tools/data_type_selector.html">
+Level of Measurement Identifier
+</a>
+</div>
+
+</div>
+
+</div>
+
+</body>
+
+</html>
