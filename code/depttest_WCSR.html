@@ -1,1 +1,2111 @@
+<!DOCTYPE html>
 
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dependent T-Test &amp; Wilcoxon Signed-Rank Test</title>
+
+<style>
+
+body {
+    margin: 0;
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    background: #f4f6f9;
+    color: #222222;
+}
+
+.container {
+    max-width: 1000px;
+    margin: auto;
+    padding: 50px 20px;
+}
+
+h1 {
+    text-align: left;
+    color: #666666;
+    font-size: 2.75rem;
+    font-weight: 200;
+    letter-spacing: .08em;
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    text-align: center;
+    color: #6b7280;
+    text-transform: uppercase;
+    letter-spacing: .15em;
+    margin-bottom: 40px;
+    font-size: .95rem;
+}
+
+h2,
+h3 {
+    color: #0e68b3;
+    font-weight: 500;
+    display: inline-block;
+}
+
+p {
+    line-height: 1.8;
+}
+
+.test-path {
+    border: 1px solid #d9e2ec;
+    border-radius: 14px;
+    overflow: hidden;
+    background: #ffffff;
+    margin: 30px 0;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, .05);
+}
+
+.test-path-header {
+    background: #0e68b3;
+    color: white;
+    padding: 20px 25px;
+}
+
+.test-path-header h2,
+.test-path-header h3 {
+    color: white;
+    margin: 0;
+    font-size: 1.35rem;
+    font-weight: 600;
+}
+
+.test-path-subtitle {
+    margin: 6px 0 0;
+    font-size: .95rem;
+    opacity: .95;
+}
+
+.test-path-content {
+    padding: 10px 25px 20px;
+}
+
+.test-path-content details {
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.test-path-content details:last-child {
+    border-bottom: none;
+}
+
+.test-path-content summary {
+    list-style: none;
+    cursor: pointer;
+    position: relative;
+    padding: 17px 35px 17px 5px;
+    color: #0e68b3;
+    font-weight: 600;
+}
+
+.test-path-content summary::-webkit-details-marker {
+    display: none;
+}
+
+.test-path-content summary::after {
+    content: "+";
+    position: absolute;
+    right: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.3rem;
+    font-weight: 400;
+}
+
+.test-path-content details[open] summary::after {
+    content: "−";
+}
+
+.path-step-content {
+    padding: 0 5px 20px;
+}
+
+.path-step-content p {
+    margin-top: 10px;
+}
+
+.path-step-content h2,
+.path-step-content h3 {
+    color: #222222;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+ul {
+    padding-left: 25px;
+}
+
+li {
+    margin-bottom: 8px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background: white;
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+th {
+    background: #0e68b3;
+    color: white;
+    text-align: left;
+    padding: 14px;
+}
+
+td {
+    padding: 14px;
+    border-bottom: 1px solid #e5e7eb;
+    vertical-align: top;
+}
+
+tr:nth-child(even) {
+    background: #f8fafc;
+}
+
+tr:hover {
+    background: #edf6ff;
+}
+
+pre {
+    white-space: pre-wrap;
+    overflow-x: auto;
+    margin: 0;
+}
+
+code {
+    font-family: Consolas, Monaco, "Courier New", monospace;
+}
+
+.highlight pre {
+    background: transparent;
+}
+
+.highlight {
+    padding: 15px 20px;
+    border-radius: 10px;
+    margin: 20px 0;
+    line-height: 1.6;
+}
+
+.highlight-blue {
+    background: #f0f7fc;
+    border-left: 5px solid #0e68b3;
+    padding: 15px 20px;
+    border-radius: 10px;
+    margin: 20px 0;
+    line-height: 1.6;
+}
+
+.highlight-orange {
+    background: #fff4e6;
+    border-left: 5px solid #e67e22;
+    padding: 15px 20px;
+    border-radius: 10px;
+    margin: 20px 0;
+    line-height: 1.6;
+}
+
+.test-paths {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 25px;
+    margin: 30px 0;
+}
+
+.test-paths .test-path {
+    margin: 0;
+}
+
+.test-paths .test-path-header {
+    background: #0e68b3;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+.test-paths .test-path-header h3 {
+    color: white;
+    margin: 0;
+    font-size: 1.25rem;
+}
+
+.test-paths .test-path-content {
+    padding: 10px 20px 20px;
+}
+
+.test-paths .test-path-content details {
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.test-paths .test-path-content details:last-child {
+    border-bottom: none;
+}
+
+.test-paths .test-path-content summary {
+    list-style: none;
+    cursor: pointer;
+    position: relative;
+    padding: 17px 30px 17px 5px;
+    color: #0e68b3;
+    font-weight: 600;
+}
+
+.test-paths .test-path-content summary::-webkit-details-marker {
+    display: none;
+}
+
+.test-paths .test-path-content summary::after {
+    content: "+";
+    position: absolute;
+    right: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.3rem;
+    font-weight: 400;
+}
+
+.test-paths .test-path-content details[open] summary::after {
+    content: "−";
+}
+
+.step-label {
+    display: inline-block;
+    font-size: .8rem;
+    font-weight: 700;
+    letter-spacing: .05em;
+    text-transform: uppercase;
+    color: #6b7280;
+    margin-bottom: 5px;
+}
+
+hr {
+    border: none;
+    height: 1px;
+    background: #d6e4f0;
+    margin: 30px 0;
+}
+
+a {
+    color: #0e68b3;
+}
+
+a.button {
+    display: inline-block;
+    background: #0e68b3;
+    color: white;
+    padding: 14px 28px;
+    border-radius: 999px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: .3s;
+}
+
+a.button:hover {
+    background: #2b6cb0;
+    transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    .test-path-content {
+        padding: 10px 20px 20px;
+    }
+
+    th,
+    td {
+        padding: 10px;
+        font-size: .95rem;
+    }
+
+    .test-paths {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Dependent T-Test &amp; Wilcoxon Signed-Rank Test</h1>
+
+<!-- MAIN PATH -->
+
+<div class="test-path">
+
+<div class="test-path-header">
+<h2>Steps to Conduct a Dependent t-test (or Wilcoxon Signed-Rank Test) in RStudio</h2>
+</div>
+
+<div class="test-path-content">
+
+
+<!-- OVERVIEW -->
+
+<details>
+
+<summary>
+<span class="step-label">Prepare</span><br>
+Overview of the Test
+</summary>
+
+<div class="path-step-content">
+
+<p>
+A <strong>Dependent T-Test</strong>, also called a <strong>Paired Samples T-Test</strong>, tests whether there is a mean difference in outcome scores before versus after participants are exposed to an independent variable.
+</p>
+
+<p>
+Because the same participants are measured twice, this is called a
+<strong>within-subjects design</strong>.
+</p>
+
+<p>
+The normality assumption for a Dependent T-Test applies to the
+<strong>difference scores</strong>, not to the Before and After scores separately.
+</p>
+
+<div class="highlight-blue">
+
+<strong>Difference Scores = After − Before</strong>
+
+</div>
+
+<p>
+If the difference scores are normally distributed, use a
+<strong>Dependent T-Test</strong>.
+</p>
+
+<p>
+If the difference scores are not normally distributed, use the
+<strong>Wilcoxon Signed-Rank Test</strong>.
+</p>
+
+<p>
+The Dependent T-Test is generally preferred when its assumptions are reasonably met because it uses the actual numerical values of the paired observations and can provide greater statistical power for detecting a mean difference.
+The Wilcoxon Signed-Rank Test is a useful alternative when the difference scores are not normally distributed.
+</p>
+
+<table>
+
+<tr>
+<th>Component</th>
+<th>Structure</th>
+<th>Example</th>
+</tr>
+
+<tr>
+<td>Research Question</td>
+<td>Is there a mean difference in the outcome scores before versus after the independent variable?</td>
+<td>Is there a mean difference in weight (kg) before versus after the exercise program?</td>
+</tr>
+
+<tr>
+<td>Null Hypothesis</td>
+<td>There is NO difference in the outcome scores before versus after the independent variable.</td>
+<td>There is NO difference in weight (kg) before versus after the exercise program.</td>
+</tr>
+
+<tr>
+<td>Alternative Hypothesis</td>
+<td>There IS a difference in the outcome scores before versus after the independent variable.</td>
+<td>There IS a difference in weight (kg) before versus after the exercise program.</td>
+</tr>
+
+</table>
+
+</div>
+
+</details>
+
+
+<!-- CODE TEMPLATE -->
+
+<details>
+
+<summary>
+<span class="step-label">Prepare</span><br>
+RScript Code Template
+</summary>
+
+<div class="path-step-content">
+
+<div class="highlight-blue">
+
+<pre><code>#Lecture 6.2: Dependent T-Test &amp; Wilcoxon Signed-Rank Test
+
+#Step 1: Install Packages
+install.packages("effsize")
+install.packages("rstatix")
+
+#Step 2: Open Packages
+library(readxl)
+library(ggpubr)
+library(effsize)
+library(rstatix)
+
+#Step 3: Import Dataset
+DatasetName &lt;- read_excel("filepath")
+
+#Step 4: Create Before, After, and Difference Scores
+Before &lt;- DatasetName$ScoresBefore
+After &lt;- DatasetName$ScoresAfter
+
+Differences &lt;- After - Before
+
+#Step 5: Descriptive Statistics
+mean(Before, na.rm = TRUE)
+median(Before, na.rm = TRUE)
+sd(Before, na.rm = TRUE)
+
+mean(After, na.rm = TRUE)
+median(After, na.rm = TRUE)
+sd(After, na.rm = TRUE)
+
+#Step 6: Histogram
+hist(Differences,
+     main = "Histogram of Difference Scores",
+     xlab = "Value",
+     ylab = "Frequency",
+     col = "blue",
+     border = "black",
+     breaks = 20)
+
+#Step 7: Interpret Histogram
+
+#Step 8: Boxplot
+boxplot(Differences,
+        main = "Distribution of Score Differences (After - Before)",
+        ylab = "Difference in Scores",
+        col = "blue",
+        border = "darkblue")
+
+#Step 9: Interpret Boxplot
+
+#Step 10: Shapiro-Wilk Test
+shapiro.test(Differences)
+
+#Step 11: Interpret Shapiro-Wilk
+
+#Step 12: Determine Overall Normality
+
+#Step 13a: Dependent T-Test
+t.test(Before, After, paired = TRUE, na.action = na.omit)
+
+#Step 13b: Wilcoxon Signed-Rank Test
+wilcox.test(Before, After, paired = TRUE, na.action = na.omit)
+
+#Step 14a: Cohen's d
+cohen.d(Before, After, paired = TRUE)
+
+#Step 14b: Wilcoxon Effect Size
+df_long &lt;- data.frame(
+   id = rep(1:length(Before), 2),
+   time = rep(c("Before", "After"), each = length(Before)),
+   score = c(Before, After)
+)
+
+wilcox_effsize(df_long, score ~ time, paired = TRUE)
+
+#Step 15a: Report Dependent T-Test
+
+#Step 15b: Report Wilcoxon Signed-Rank Test</code></pre>
+
+</div>
+
+</div>
+
+</details>
+
+
+<!-- STEP 1 -->
+
+<details>
+
+<summary>
+<span class="step-label">Step 1</span><br>
+Install &amp; Open the Packages
+</summary>
+
+<div class="path-step-content">
+
+<p>
+Packages add additional functionality to R.
+</p>
+
+<p>
+R packages only need to be installed once.
+<strong>Do NOT run the install code more than once</strong> after successful installation.
+</p>
+
+<table>
+
+<tr>
+<th>Package</th>
+<th>Purpose</th>
+</tr>
+
+<tr>
+<td><code>readxl</code></td>
+<td>Import Excel datasets</td>
+</tr>
+
+<tr>
+<td><code>ggpubr</code></td>
+<td>Create histograms and boxplots</td>
+</tr>
+
+<tr>
+<td><code>effsize</code></td>
+<td>Calculate the effect size for the Dependent T-Test</td>
+</tr>
+
+<tr>
+<td><code>rstatix</code></td>
+<td>Calculate the effect size for the Wilcoxon Signed-Rank Test</td>
+</tr>
+
+</table>
+
+<h3>Install the Packages</h3>
+
+<p>
+Copy-and-paste the following code into your R Script file.
+Run the installation code once.
+</p>
+
+<div class="highlight-orange">
+
+<pre><code>install.packages("effsize")
+install.packages("rstatix")</code></pre>
+
+</div>
+
+<p>
+You may see warning messages appear when you install a package.
+These messages do not necessarily mean that the installation failed.
+</p>
+
+<hr>
+
+<h3>Load the Packages</h3>
+
+<p>
+Copy-and-paste the code below into your R Script.
+Keep these lines of code in your R Script.
+</p>
+
+<div class="highlight-blue">
+
+<pre><code>library(readxl)
+library(ggpubr)
+library(effsize)
+library(rstatix)</code></pre>
+
+</div>
+
+<p>
+You must re-open your desired packages every time you start a new RStudio session.
+</p>
+
+<p>
+No output will appear. This simply opens the packages so you can use their functions in RStudio.
+</p>
+
+</div>
+
+</details>
+
+
+<!-- STEP 2 -->
+
+<details>
+
+<summary>
+<span class="step-label">Step 2</span><br>
+Import &amp; Name the Dataset
+</summary>
+
+<div class="path-step-content">
+
+<p>
+Although datasets can be imported entirely through code, many students experience difficulty locating file paths.
+Therefore, this course uses the <strong>point-and-click import method</strong> to generate the necessary code automatically.
+</p>
+
+<h3>Import the Excel File</h3>
+
+<ol>
+
+<li>Select <strong>File → Import Dataset → From Excel</strong>.</li>
+
+<li>Select <strong>Browse</strong>.</li>
+
+<li>Locate where you saved the downloaded dataset.</li>
+
+<li>Select the dataset and choose <strong>Open</strong>.</li>
+
+<li>Return to the import window and select <strong>Import</strong>.</li>
+
+</ol>
+
+<hr>
+
+<h3>What Happens When You Click Import?</h3>
+
+<p>
+Once imported, the dataset will appear in the Environment pane.
+</p>
+
+<p>
+RStudio also automatically generates the code used to import the dataset.
+Copy this line of code into your R Script.
+This allows the dataset to be automatically imported whenever you reopen your R Script.
+</p>
+
+<h3>General Example</h3>
+
+<div class="highlight-blue">
+
+<pre><code>DatasetName &lt;- read_excel("filepath")</code></pre>
+
+</div>
+
+<h3>Example with a Sample File Path</h3>
+
+<div class="highlight-blue">
+
+<pre><code>DatasetZ &lt;- read_excel(
+"C:/Users/John/OneDrive/Documents/AA5221/Datasets/DatasetZ.xlsx"
+)</code></pre>
+
+</div>
+
+</div>
+
+</details>
+
+
+<!-- STEP 3 -->
+
+<details>
+
+<summary>
+<span class="step-label">Step 3</span><br>
+Create Groups for Before &amp; After
+</summary>
+
+<div class="path-step-content">
+
+<p>
+Create separate variables for the <strong>Before</strong> and <strong>After</strong> scores.
+Then calculate the difference score for each participant.
+</p>
+
+<div class="highlight-orange">
+
+<strong>Important:</strong>
+The difference score is calculated as <strong>After − Before</strong>.
+
+</div>
+
+<p>
+This difference score is what we use to check the normality assumption for the Dependent T-Test.
+</p>
+
+<p><strong>Code Template</strong></p>
+
+<div class="highlight-blue">
+
+<pre><code>Before &lt;- DatasetName$ScoresBefore
+After &lt;- DatasetName$ScoresAfter
+
+Differences &lt;- After - Before</code></pre>
+
+</div>
+
+<p><strong>Example</strong></p>
+
+<div class="highlight-blue">
+
+<pre><code>Before &lt;- DatasetZ$MedicationA
+After &lt;- DatasetZ$MedicationB
+
+Differences &lt;- After - Before</code></pre>
+
+</div>
+
+<p>
+<strong>Output:</strong> None
+</p>
+
+</div>
+
+</details>
+
+
+<!-- STEP 4 -->
+
+<details>
+
+<summary>
+<span class="step-label">Step 4</span><br>
+Calculate the Descriptive Statistics
+</summary>
+
+<div class="path-step-content">
+
+<p>
+Calculate the <strong>mean, standard deviation, and median</strong> for the Before and After scores.
+</p>
+
+<p>
+These descriptive statistics will be used when reporting your results.
+</p>
+
+<p><strong>Code Template</strong></p>
+
+<div class="highlight-blue">
+
+<pre><code>mean(Before, na.rm = TRUE)
+median(Before, na.rm = TRUE)
+sd(Before, na.rm = TRUE)
+
+mean(After, na.rm = TRUE)
+median(After, na.rm = TRUE)
+sd(After, na.rm = TRUE)</code></pre>
+
+</div>
+
+<p><strong>Example</strong></p>
+
+<div class="highlight-blue">
+
+<pre><code>mean(Before, na.rm = TRUE)
+median(Before, na.rm = TRUE)
+sd(Before, na.rm = TRUE)
+
+mean(After, na.rm = TRUE)
+median(After, na.rm = TRUE)
+sd(After, na.rm = TRUE)</code></pre>
+
+</div>
+
+<p><strong>Example Output</strong></p>
+
+<div class="highlight">
+
+<pre><code>[1] 7.82
+[1] 7.50
+[1] 1.64
+
+[1] 5.21
+[1] 5.00
+[1] 1.48</code></pre>
+
+</div>
+
+</div>
+
+</details>
+
+
+<!-- STEP 5 -->
+
+<details>
+
+<summary>
+<span class="step-label">Step 5</span><br>
+Normality Check 1: Histogram
+</summary>
+
+<div class="path-step-content">
+
+<p>
+Check the normality of the <strong>difference scores</strong> in three different ways:
+Histogram, Boxplot, and Shapiro-Wilk.
+</p>
+
+<div class="highlight-orange">
+
+<strong>Important:</strong>
+For a Dependent T-Test, the normality assumption applies to the
+<strong>difference scores</strong>, not to the Before and After scores separately.
+
+</div>
+
+<h3>Create the Histogram</h3>
+
+<p>
+Create a histogram of the difference scores to visually check the shape of the distribution.
+The histogram should look approximately bell-shaped and symmetrical.
+</p>
+
+<p><strong>Code</strong></p>
+
+<div class="highlight-blue">
+
+<pre><code>hist(Differences,
+     main = "Histogram of Difference Scores",
+     xlab = "Value",
+     ylab = "Frequency",
+     col = "blue",
+     border = "black",
+     breaks = 20)</code></pre>
+
+</div>
+
+<p>
+<strong>Output:</strong> The histogram appears in the Plots pane.
+</p>
+
+<hr>
+
+<h3>Interpret the Histogram</h3>
+
+<p>
+A histogram shows how the difference scores are distributed.
+Look at the overall shape of the data.
+</p>
+
+<ul>
+
+<li>
+<strong>Symmetrical:</strong> The data are fairly balanced on both sides of the center.
+</li>
+
+<li>
+<strong>Right-skewed:</strong> Most values are toward the lower end, with a longer tail extending to the right.
+</li>
+
+<li>
+<strong>Left-skewed:</strong> Most values are toward the higher end, with a longer tail extending to the left.
+</li>
+
+<li>
+<strong>Approximately normal:</strong> The data have a roughly bell-shaped and symmetric pattern.
+</li>
+
+</ul>
+
+<p>
+For this class, use the histogram as a visual check of whether the difference scores appear approximately normal.
+</p>
+
+<div class="highlight-orange">
+
+<strong>Final Decision:</strong>
+
+<p>
+Determine whether the <strong>difference scores</strong> look normally or abnormally distributed.
+</p>
+
+</div>
+
+<p><strong>Code Template</strong></p>
+
+<div class="highlight-blue">
+
+<pre><code>#Histogram of Difference Scores
+#The difference scores look [abnormally / normally] distributed.
+#The data is [symmetrical / negatively skewed / positively skewed].
+#The data [has / does not have] a proper bell curve.</code></pre>
+
+</div>
+
+<p><strong>Example</strong></p>
+
+<div class="highlight-blue">
+
+<pre><code>#Histogram of Difference Scores
+#The difference scores look normally distributed.
+#The data is symmetrical.
+#The data has a proper bell curve.</code></pre>
+
+</div>
+
+<p>
+<strong>Output:</strong> NA
+</p>
+
+</div>
+
+</details>
+
+
+<!-- STEP 6 -->
+
+<details>
+
+<summary>
+<span class="step-label">Step 6</span><br>
+Normality Check 2: Boxplot
+</summary>
+
+<div class="path-step-content">
+
+<p>
+Create a boxplot of the <strong>difference scores</strong> to check for extreme outliers before conducting the test.
+</p>
+
+<h3>What is an Outlier?</h3>
+
+<p>
+An <strong>outlier</strong> is a score that is unusually high or low compared to the other scores in the dataset.
+Outliers can affect the shape and normality of the difference scores.
+</p>
+
+<h3>What Causes an Outlier?</h3>
+
+<p>
+Sometimes an outlier is a legitimate data point.
+For example, if a participant experiences an unusually large change after an intervention, that observation may be unusual but still valid.
+</p>
+
+<p>
+Other outliers may be caused by data-entry or measurement errors, such as accidentally entering an extra zero.
+</p>
+
+<h3>What Do We Do With Outliers?</h3>
+
+<p>
+Investigate potential outliers before deciding what to do with them.
+Check the original data and consider the value in the context of the variable and research question.
+</p>
+
+<p>
+Ask: Is this value correct? Does it make sense? Is there a reasonable explanation for why it is unusual?
+</p>
+
+<p>
+If an outlier is the result of a data-entry or measurement error, it may be appropriate to correct or remove it.
+If the value is accurate and represents a legitimate observation, do not remove it simply because it is unusual.
+Any decision to remove an observation should have a clear justification and should be documented.
+</p>
+
+<div style="text-align: center; margin: 30px 0;">
+
+<img
+src="https://www.simplypsychology.org/wp-content/uploads/box-and-whisker-plot-for-the-standard-normal-distribution.jpg"
+alt="Box-and-whisker plot showing the standard normal distribution"
+style="display: block; width: 90%; max-width: 1000px; height: auto; margin: 0 auto;"
+>
+
+</div>
+
+<h3>Create the Boxplot</h3>
+
+<p><strong>Exact Code</strong></p>
+
+<div class="highlight-blue">
+
+<pre><code>boxplot(Differences,
+        main = "Distribution of Score Differences (After - Before)",
+        ylab = "Difference in Scores",
+        col = "blue",
+        border = "darkblue")</code></pre>
+
+</div>
+
+<p>
+<strong>Output:</strong> The boxplot appears in the Plots pane.
+</p>
+
+<hr>
+
+<h3>Interpret the Boxplot</h3>
+
+<p>
+For this class, use the following simplified method for determining whether the boxplot suggests extreme outliers.
+</p>
+
+<ol>
+
+<li>
+<strong>Are there any dots outside of the boxplot?</strong>
+<br>
+If there are no dots, the data are normal. Stop here.
+</li>
+
+<li>
+<strong>Are the dots past the whiskers?</strong>
+<br>
+The whiskers are the lines extending from the box.
+If the dots are not past the whiskers, the data are normal. Stop here.
+</li>
+
+<li>
+<strong>Are the dots VERY far away from the whiskers?</strong>
+<br>
+If the dots are not very far away, the data are normal. Stop here.
+If the dots are very far away, switch to the Wilcoxon Signed-Rank Test.
+</li>
+
+</ol>
+
+<p><strong>Code Template</strong></p>
+
+<div class="highlight-blue">
+
+<pre><code>#Boxplot
+
+#There [are / are no] dots outside the boxplot.
+#The dots [are / are not] close to the whiskers.
+#The dots [are / are not] very far away from the whiskers.
+#Based on these findings, the boxplot is [normal / not normal].</code></pre>
+
+</div>
+
+<p><strong>Example</strong></p>
+
+<div class="highlight-blue">
+
+<pre><code>#Boxplot
+
+#There is one dot outside the boxplot.
+#The dot is close to the whiskers.
+#The dot is not very far away from the whiskers.
+#Based on these findings, the boxplot is normal.</code></pre>
+
+</div>
+
+</div>
+
+</details>
+
+
+<!-- STEP 7 -->
+
+<details>
+
+<summary>
+<span class="step-label">Step 7</span><br>
+Normality Check 3: Shapiro-Wilk
+</summary>
+
+<div class="path-step-content">
+
+<p>
+The Shapiro-Wilk test allows you to check whether the
+<strong>difference scores</strong> are normally distributed using a statistical test.
+</p>
+
+<p>
+The test asks:
+<strong>"Is there a significant difference between my data's distribution and a theoretically perfect normal distribution?"</strong>
+</p>
+
+<p>
+A p-value greater than .05 indicates that there is not a statistically significant difference between the observed distribution and a normal distribution.
+A p-value less than .05 indicates that there is a statistically significant difference.
+</p>
+
+<p><strong>Code</strong></p>
+
+<div class="highlight-blue">
+
+<pre><code>shapiro.test(Differences)</code></pre>
+
+</div>
+
+<p><strong>Example Output</strong></p>
+
+<div class="highlight">
+
+<pre><code>Shapiro-Wilk normality test
+
+data: Differences
+W = 0.99388, p-value = 0.9349</code></pre>
+
+</div>
+
+<hr>
+
+<h3>Interpret the Shapiro-Wilk Test</h3>
+
+<table>
+
+<tr>
+<th>Shapiro-Wilk P-Value</th>
+<th>Meaning</th>
+<th>Result</th>
+</tr>
+
+<tr>
+<td>p &gt; .05</td>
+<td>There is NO significant difference between the data's distribution and a normal distribution.</td>
+<td>Data is normal</td>
+</tr>
+
+<tr>
+<td>p &lt; .05</td>
+<td>There IS a significant difference between the data's distribution and a normal distribution.</td>
+<td>Data is abnormal</td>
+</tr>
+
+</table>
+
+<p><strong>Code Template</strong></p>
+
+<div class="highlight-blue">
+
+<pre><code>#Shapiro-Wilk Difference Scores
+#The data is [normally / abnormally] distributed, (p = .xxx).</code></pre>
+
+</div>
+
+<p><strong>Example</strong></p>
+
+<div class="highlight-blue">
+
+<pre><code>#Shapiro-Wilk Difference Scores
+#The data is normally distributed, (p = .934).</code></pre>
+
+</div>
+
+<p>
+<strong>Output:</strong> NA
+</p>
+
+</div>
+
+</details>
+
+
+<!-- STEP 8 -->
+
+<details>
+
+<summary>
+<span class="step-label">Step 8</span><br>
+Determine Overall Normality
+</summary>
+
+<div class="path-step-content">
+
+<div class="highlight-orange">
+
+<strong>Important:</strong>
+The method below is simplified for this class.
+
+</div>
+
+<p>
+Use the histogram, boxplot, and Shapiro-Wilk test together to determine whether the
+<strong>difference scores</strong> are normal.
+</p>
+
+<table>
+
+<tr>
+<th>Histogram</th>
+<th>Boxplot</th>
+<th>Shapiro-Wilk</th>
+<th>Decision</th>
+</tr>
+
+<tr>
+<td>Normal</td>
+<td>Normal</td>
+<td>Normal</td>
+<td>Normal</td>
+</tr>
+
+<tr>
+<td>Abnormal</td>
+<td>Normal</td>
+<td>Normal</td>
+<td>Normal</td>
+</tr>
+
+<tr>
+<td>Normal</td>
+<td>Abnormal</td>
+<td>Normal</td>
+<td>Normal</td>
+</tr>
+
+<tr>
+<td>Normal</td>
+<td>Normal</td>
+<td>Abnormal</td>
+<td>Abnormal</td>
+</tr>
+
+<tr>
+<td>Abnormal</td>
+<td>Abnormal</td>
+<td>Normal</td>
+<td>Check with Mentor</td>
+</tr>
+
+<tr>
+<td>Abnormal</td>
+<td>Abnormal</td>
+<td>Abnormal</td>
+<td>Abnormal</td>
+</tr>
+
+</table>
+
+<div class="highlight-orange">
+
+<strong>Final Decision:</strong>
+
+<p>
+<strong>Normal Difference Scores → Dependent T-Test</strong>
+</p>
+
+<p>
+<strong>Abnormal Difference Scores → Wilcoxon Signed-Rank Test</strong>
+</p>
+
+</div>
+
+</div>
+
+</details>
+
+
+</div>
+
+</div>
+
+
+<!-- TEST PATHS -->
+
+<div class="test-paths">
+
+
+<!-- DEPENDENT T-TEST -->
+
+<div class="test-path">
+
+<div class="test-path-content">
+
+
+<!-- STEP 9A -->
+
+<details>
+
+<summary>
+<span class="step-label">Step 9a</span><br>
+Conduct the Dependent T-Test
+</summary>
+
+<div class="path-step-content">
+
+<p>
+Conduct the <strong>Dependent T-Test</strong> if the difference scores were determined to be
+<strong>normal</strong>.
+</p>
+
+<p>
+The Dependent T-Test determines whether there is a statistically significant difference between the Before and After scores.
+</p>
+
+<p><strong>Exact Code</strong></p>
+
+<div class="highlight-blue">
+
+<pre><code>t.test(Before, After, paired = TRUE, na.action = na.omit)</code></pre>
+
+</div>
+
+<p><strong>Example Output</strong></p>
+
+<div class="highlight">
+
+<pre><code>Paired t-test
+
+data: Before and After
+t = 4.12, df = 19, p-value = 0.0006
+
+alternative hypothesis: true mean difference is not equal to 0
+
+95 percent confidence interval:
+0.98 2.87
+
+sample estimates:
+mean of the differences
+1.92</code></pre>
+
+</div>
+
+</div>
+
+</details>
+
+
+<!-- STEP 10A -->
+
+<details>
+
+<summary>
+<span class="step-label">Step 10a</span><br>
+Calculate Cohen's d (Effect Size)
+</summary>
+
+<div class="path-step-content">
+
+<p>
+Calculate the effect size <strong>only if the Dependent T-Test is statistically significant
+(p &lt; .05)</strong>.
+</p>
+
+<p><strong>Exact Code</strong></p>
+
+<div class="highlight-blue">
+
+<pre><code>cohen.d(Before, After, paired = TRUE)</code></pre>
+
+</div>
+
+<p><strong>Example Output</strong></p>
+
+<div class="highlight">
+
+<pre><code>0.65</code></pre>
+
+</div>
+
+<table>
+
+<tr>
+<th>Cohen's d</th>
+<th>Interpretation</th>
+</tr>
+
+<tr>
+<td>~ 0.20</td>
+<td>Small effect</td>
+</tr>
+
+<tr>
+<td>~ 0.50</td>
+<td>Medium effect</td>
+</tr>
+
+<tr>
+<td>~ 0.80</td>
+<td>Large effect</td>
+</tr>
+
+<tr>
+<td>≥ 1.20</td>
+<td>Very large effect</td>
+</tr>
+
+</table>
+
+</div>
+
+</details>
+
+
+<!-- STEP 11A -->
+
+<details>
+
+<summary>
+<span class="step-label">Step 11a</span><br>
+Report the Dependent T-Test
+</summary>
+
+<div class="path-step-content">
+
+<p>
+After conducting your analyses, report what you found in a few clear sentences in your R Script.
+</p>
+
+<div class="highlight-orange">
+
+<strong>Standardized Method:</strong>
+Copy the template below and replace the placeholders with your results.
+<strong>Do NOT be creative.</strong>
+
+</div>
+
+<h3>P-Value Reporting</h3>
+
+<ul>
+
+<li>
+<strong>p &lt; .001</strong> → report <strong>p &lt; .001</strong>
+</li>
+
+<li>
+<strong>.001 &lt; p &lt; .05</strong> → report the exact p-value to three decimals.
+Example: <strong>p = .003</strong>
+</li>
+
+<li>
+<strong>p &gt; .05</strong> → report <strong>p &gt; .05</strong>
+</li>
+
+</ul>
+
+<h3>Reporting Other Values</h3>
+
+<p>
+Report numbers to two decimal places. Remember to round.
+</p>
+
+<p>
+Example: .1252 becomes .13.
+</p>
+
+<h3>Definitions</h3>
+
+<ul>
+
+<li><strong>M</strong> = mean</li>
+
+<li><strong>SD</strong> = standard deviation</li>
+
+<li><strong>df</strong> = degrees of freedom</li>
+
+<li><strong>t</strong> = t-test value</li>
+
+<li><strong>p</strong> = p-value</li>
+
+</ul>
+
+<p>
+For the Dependent T-Test, degrees of freedom are calculated as the number of paired observations minus 1.
+For example, if there are 20 participants:
+<strong>df = 20 − 1 = 19</strong>.
+</p>
+
+<div class="highlight-orange">
+
+<strong>Effect Size:</strong>
+
+<p>
+Only report the effect size when the results are statistically significant
+(<strong>p &lt; .05</strong>).
+</p>
+
+</div>
+
+<p><strong>Report Template</strong></p>
+
+<div class="highlight-blue">
+
+<pre><code>#A Dependent T-Test was conducted to determine if there was a difference in OutcomeVariable before Independent Variable versus after Independent Variable.
+#Before scores (M = xx.xx, SD = xx.xx) were [significantly / not significantly] different from after scores (M = xx.xx, SD = xx.xx), t(df#) = x.xx, p = .xxx.
+#The effect size was [small / medium / large / very large], Cohen's d = .xxx.</code></pre>
+
+</div>
+
+<p><strong>Example Report</strong></p>
+
+<div class="highlight-blue">
+
+<pre><code>#A Dependent T-Test was conducted to determine if there was a difference in weight before the diet versus after the diet.
+#Before scores (M = 7.82, SD = 1.64) were significantly different from after scores (M = 5.21, SD = 1.48), t(19) = 4.12, p &lt; .001.
+#The effect size was large, Cohen's d = 0.65.</code></pre>
+
+</div>
+
+</div>
+
+</details>
+
+
+</div>
+
+</div>
+
+
+<!-- WILCOXON -->
+
+<div class="test-path">
+
+<div class="test-path-content">
+
+
+<!-- STEP 9B -->
+
+<details>
+
+<summary>
+<span class="step-label">Step 9b</span><br>
+Conduct the Wilcoxon Signed-Rank Test
+</summary>
+
+<div class="path-step-content">
+
+<p>
+Conduct the <strong>Wilcoxon Signed-Rank Test</strong> if the difference scores were determined to be
+<strong>abnormally distributed</strong>.
+</p>
+
+<p>
+The Wilcoxon Signed-Rank Test determines whether there is a statistically significant difference between the Before and After scores without requiring normally distributed difference scores.
+</p>
+
+<p><strong>Exact Code</strong></p>
+
+<div class="highlight-blue">
+
+<pre><code>wilcox.test(Before, After, paired = TRUE, na.action = na.omit)</code></pre>
+
+</div>
+
+<p><strong>Example Output</strong></p>
+
+<div class="highlight">
+
+<pre><code>Wilcoxon signed rank test with continuity correction
+
+data: Before and After
+V = 35, p-value = 0.0124
+
+alternative hypothesis:
+true location shift is not equal to 0</code></pre>
+
+</div>
+
+</div>
+
+</details>
+
+
+<!-- STEP 10B -->
+
+<details>
+
+<summary>
+<span class="step-label">Step 10b</span><br>
+Calculate the Effect Size
+</summary>
+
+<div class="path-step-content">
+
+<p>
+Calculate the effect size <strong>only if the Wilcoxon Signed-Rank Test is statistically significant
+(p &lt; .05)</strong>.
+</p>
+
+<p>
+The effect size is reported as <strong>r</strong>.
+</p>
+
+<p><strong>Code Template</strong></p>
+
+<div class="highlight-blue">
+
+<pre><code>df_long &lt;- data.frame(
+   id = rep(1:length(Before), 2),
+   time = rep(c("Before", "After"), each = length(Before)),
+   score = c(Before, After)
+)
+
+wilcox_effsize(df_long, score ~ time, paired = TRUE)</code></pre>
+
+</div>
+
+<p><strong>Example Output</strong></p>
+
+<div class="highlight">
+
+<pre><code># A tibble: 1 × 4
+  .y.    effsize conf.low conf.high
+  &lt;chr&gt;    &lt;dbl&gt;     &lt;dbl&gt;      &lt;dbl&gt;
+1 score    0.42      0.15       0.66</code></pre>
+
+</div>
+
+<table>
+
+<tr>
+<th>r Value</th>
+<th>Interpretation</th>
+</tr>
+
+<tr>
+<td>~ .10</td>
+<td>Small effect</td>
+</tr>
+
+<tr>
+<td>~ .30</td>
+<td>Medium effect</td>
+</tr>
+
+<tr>
+<td>~ .50</td>
+<td>Large effect</td>
+</tr>
+
+</table>
+
+</div>
+
+</details>
+
+
+<!-- STEP 11B -->
+
+<details>
+
+<summary>
+<span class="step-label">Step 11b</span><br>
+Report the Wilcoxon Signed-Rank Test
+</summary>
+
+<div class="path-step-content">
+
+<p>
+After conducting your analyses, report what you found in a few clear sentences in your R Script.
+</p>
+
+<div class="highlight-orange">
+
+<strong>Standardized Method:</strong>
+Copy the template below and replace the placeholders with your results.
+<strong>Do NOT be creative.</strong>
+
+</div>
+
+<h3>P-Value Reporting</h3>
+
+<ul>
+
+<li>
+<strong>p &lt; .001</strong> → report <strong>p &lt; .001</strong>
+</li>
+
+<li>
+<strong>.001 &lt; p &lt; .05</strong> → report the exact p-value to three decimals.
+Example: <strong>p = .003</strong>
+</li>
+
+<li>
+<strong>p &gt; .05</strong> → report <strong>p &gt; .05</strong>
+</li>
+
+</ul>
+
+<h3>Reporting Other Values</h3>
+
+<p>
+Report numbers to two decimal places. Remember to round.
+</p>
+
+<p>
+Example: .1252 becomes .13.
+</p>
+
+<h3>Definitions</h3>
+
+<ul>
+
+<li><strong>Mdn</strong> = median</li>
+
+<li><strong>V</strong> = Wilcoxon Signed-Rank test value</li>
+
+<li><strong>p</strong> = p-value</li>
+
+</ul>
+
+<div class="highlight-orange">
+
+<strong>Effect Size:</strong>
+
+<p>
+Only report the effect size when the results are statistically significant
+(<strong>p &lt; .05</strong>).
+</p>
+
+<p>
+The effect size is reported as <strong>r</strong>.
+</p>
+
+</div>
+
+<p><strong>Report Template</strong></p>
+
+<div class="highlight-blue">
+
+<pre><code>#A Wilcoxon Signed-Rank Test was conducted to determine if there was a difference in OutcomeVariable before Independent Variable versus after Independent Variable.
+#Before scores (Mdn = xx.xx) were [significantly / not significantly] different from after scores (Mdn = xx.xx), V = xx, p = [&lt; .001 / = .xxx / &gt; .05].
+#The effect size was [small / medium / large], r = .xxx.</code></pre>
+
+</div>
+
+<p><strong>Example Report</strong></p>
+
+<div class="highlight-blue">
+
+<pre><code>#A Wilcoxon Signed-Rank Test was conducted to determine if there was a difference in OutcomeVariable before Independent Variable versus after Independent Variable.
+#Before scores (Mdn = 7.50) were significantly different from after scores (Mdn = 5.00), V = 35, p = .012.
+#The effect size was medium, r = .46.</code></pre>
+
+</div>
+
+</div>
+
+</details>
+
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- FINAL STEPS -->
+
+<div class="test-path">
+
+<div class="test-path-content">
+
+
+<!-- STEP 12 -->
+
+<details>
+
+<summary>
+<span class="step-label">Step 12</span><br>
+Create an RMarkdown File
+</summary>
+
+<div class="path-step-content">
+
+<p>
+After completing your R Script, the next step is to convert it into an
+<strong>R Markdown</strong> document.
+</p>
+
+<p>
+An R Markdown document combines your code, output, and written explanation
+into a single HTML report.
+</p>
+
+<p>
+Before proceeding, review the R Markdown lesson.
+</p>
+
+<p>
+<a href="../RProgram/RMarkdown.html">
+R Markdown Files
+</a>
+</p>
+
+<hr>
+
+<h3>Create a New R Markdown File</h3>
+
+<ol>
+
+<li>Open RStudio.</li>
+
+<li>Select <strong>File → New File → R Markdown</strong>.</li>
+
+<li>Ensure that <strong>HTML</strong> is selected as the output format.</li>
+
+<li>Select <strong>OK</strong>.</li>
+
+</ol>
+
+<p>
+You do not need to complete any of the optional fields.
+The default settings are sufficient for this assignment.
+</p>
+
+<hr>
+
+<h3>Save the R Markdown File</h3>
+
+<ol>
+
+<li>Select <strong>File → Save As</strong>.</li>
+
+<li>Navigate to your <strong>Assignment 4</strong> folder.</li>
+
+<li>Save the file using a descriptive filename.</li>
+
+</ol>
+
+<h3>File Location</h3>
+
+<ul>
+
+<li>
+<strong>Personal Laptop:</strong>
+Save the file inside your Assignment 4 folder.
+</li>
+
+<li>
+<strong>Virtual Desktop / Apporto:</strong>
+Save the file on the virtual desktop and upload it to OneDrive after completing the assignment.
+</li>
+
+</ul>
+
+<hr>
+
+<h3>Copy Your R Script into the R Markdown File</h3>
+
+<ol>
+
+<li>Delete all of the prewritten sample text generated by RStudio.</li>
+
+<li>Open your completed R Script.</li>
+
+<li>Copy all of your code.</li>
+
+<li>Paste the code into the empty R Markdown document.</li>
+
+</ol>
+
+<p>
+At this point, the R Markdown document should contain only your assignment code.
+</p>
+
+<hr>
+
+<h3>Create a Code Chunk</h3>
+
+<p>
+R code inside an R Markdown file must be placed inside a
+<strong>code chunk</strong>.
+</p>
+
+<p>
+Add the following line at the very beginning of your document:
+</p>
+
+<div class="highlight-blue">
+
+<pre><code>```{r}</code></pre>
+
+</div>
+
+<p>
+Then add the following line at the very end of your document:
+</p>
+
+<div class="highlight-blue">
+
+<pre><code>```</code></pre>
+
+</div>
+
+<p>
+All of your code should now be located between the two lines.
+</p>
+
+<h3>Example Structure</h3>
+
+<div class="highlight-blue">
+
+<pre><code>```{r}
+
+paste all your code here
+
+```</code></pre>
+
+</div>
+
+<hr>
+
+<h3>Knit the Document</h3>
+
+<ol>
+
+<li>Select the <strong>Knit</strong> button at the top of the R Markdown document.</li>
+
+<li>Wait for the document to compile.</li>
+
+<li>A new HTML report should open automatically.</li>
+
+</ol>
+
+<p>
+The report will display your code, output, tables, charts, and statistical results.
+</p>
+
+<hr>
+
+<h3>Save the HTML Report</h3>
+
+<ol>
+
+<li>Verify that the report displays correctly.</li>
+
+<li>Save the HTML file inside your <strong>Assignment 4</strong> folder.</li>
+
+<li>Confirm that the file opens correctly in a web browser.</li>
+
+</ol>
+
+</div>
+
+</details>
+
+
+<!-- STEP 13 -->
+
+<details>
+
+<summary>
+<span class="step-label">Step 13</span><br>
+Create an RPubs File
+</summary>
+
+<div class="path-step-content">
+
+<p>
+After creating and knitting your R Markdown document, the final step is to
+publish your report to <strong>RPubs</strong>.
+</p>
+
+<p>
+RPubs allows you to share your analysis as a web page that can be viewed in any
+browser without requiring RStudio.
+</p>
+
+<p>
+Before beginning, review the RPubs lesson.
+</p>
+
+<p>
+<a href="../RProgram/RPubs.html">
+RPubs
+</a>
+</p>
+
+<hr>
+
+<h3>Open Your R Markdown File</h3>
+
+<ol>
+
+<li>Open your completed R Markdown file.</li>
+
+<li>Verify that the document knits successfully and displays all output correctly.</li>
+
+<li>Select the <strong>Knit</strong> button if you have not already generated the HTML report.</li>
+
+</ol>
+
+<p>
+After knitting, the completed HTML report should appear in the Viewer pane or open in a web browser.
+</p>
+
+<hr>
+
+<h3>Publish to RPubs</h3>
+
+<ol>
+
+<li>Locate the <strong>Publish</strong> button in the Viewer pane.</li>
+
+<li>Select <strong>Publish to RPubs</strong>.</li>
+
+<li>Log in to your RPubs account.</li>
+
+<li>If you do not already have an account, create a free RPubs account.</li>
+
+<li>Enter a title for your report.</li>
+
+<li>Optionally enter a description.</li>
+
+<li>Select <strong>Publish</strong>.</li>
+
+</ol>
+
+<div class="highlight-blue">
+
+<p>
+<strong>Tip:</strong>
+Use a descriptive title such as
+<em>Assignment: Dependent T-Test &amp; Wilcoxon Signed-Rank Test</em>.
+</p>
+
+</div>
+
+<hr>
+
+<h3>Obtain the RPubs URL</h3>
+
+<p>
+After publishing, RPubs will generate a unique web address for your report.
+</p>
+
+<ol>
+
+<li>Copy the RPubs URL.</li>
+
+<li>Open the URL in a web browser.</li>
+
+<li>Verify that your report displays correctly.</li>
+
+<li>Submit the URL according to your instructor's directions.</li>
+
+</ol>
+
+<div class="highlight-blue">
+
+<p>
+Your RPubs link allows others to view your analysis without downloading any files.
+</p>
+
+</div>
+
+<hr>
+
+<h3>Save a Copy of the RPubs HTML File</h3>
+
+<p>
+In addition to publishing the report online, save a copy of the HTML file for your records.
+</p>
+
+<ol>
+
+<li>Open your published RPubs report in a web browser.</li>
+
+<li>Press <strong>Ctrl + S</strong> (Windows) or <strong>Command + S</strong> (Mac).</li>
+
+<li>Choose a location on your computer.</li>
+
+<li>If available, select <strong>Webpage, HTML Only</strong>.</li>
+
+<li>Save the file.</li>
+
+<li>Place the saved HTML file inside your <strong>Assignment 4</strong> folder.</li>
+
+</ol>
+
+</div>
+
+</details>
+
+
+</div>
+
+</div>
+
+</div>
+
+</body>
+
+</html>
