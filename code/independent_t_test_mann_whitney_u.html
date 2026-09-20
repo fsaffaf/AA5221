@@ -486,7 +486,6 @@ Run the code once.
 </p>
 
 <div class="highlight highlight-orange">
-
 <pre><code>
 install.packages("dplyr")
 install.packages("effectsize")
@@ -511,7 +510,6 @@ Keep these lines of code in your R Script.
 </p>
 
 <div class="highlight highlight-orange">
-
 <pre><code>
 library(dplyr)
 library(effectsize)
@@ -636,8 +634,8 @@ Calculate the Descriptive Statistics
 
 <div class="highlight-blue">
 
-<pre><code>DatasetName %&gt;%
-  group_by(GroupVariable) %&gt;%
+<pre><code><span style="color: orange;strong">DatasetName</span> %&gt;%
+  group_by(<span style="color: orange;strong">GroupVariable</span>) %&gt;%
   summarise(
     Mean = mean(OutcomeVariable, na.rm = TRUE),
     Median = median(OutcomeVariable, na.rm = TRUE),
