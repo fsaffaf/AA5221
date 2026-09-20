@@ -874,45 +874,22 @@ Normality Check 2: Boxplot
 
 <div class="path-step-content">
 
-<p>
-Create a boxplot of the <strong>difference scores</strong> to check for extreme outliers before conducting the test.
-</p>
-
-<h3>What is an Outlier?</h3>
 
 <p>
-An <strong>outlier</strong> is a score that is unusually high or low compared to the other scores in the dataset.
-Outliers can affect the shape and normality of the difference scores.
-</p>
+Before conducting the t-test, create boxplots to check for outliers in your numerical variables. An <strong>outlier</strong> is a score that is unusually high or low compared to the other scores in the dataset.
+Outliers can affect the normality of a dataset. An outlier can increase the <strong>skewness</strong> of a dataset, which can be the difference between normal and abnormal data.
+<p>
 
-<h3>What Causes an Outlier?</h3>
+<h3>Boxplots</h3>
 
 <p>
-Sometimes an outlier is a legitimate data point.
-For example, if a participant experiences an unusually large change after an intervention, that observation may be unusual but still valid.
+A box-and-whisker plot, or <strong>boxplot</strong>, provides a quick visual summary of a numerical variable. 
+The box shows the middle 50% of the data, the line inside the box shows the median, and the whiskers (lines outside the box) extend to the typical lower and higher values. 
+Individual dots outside the whiskers represent potential outliers. A boxplot allows you to quickly see the center, spread, and unusual values in a continuous variable.
 </p>
 
-<p>
-Other outliers may be caused by data-entry or measurement errors, such as accidentally entering an extra zero.
-</p>
 
-<h3>What Do We Do With Outliers?</h3>
-
-<p>
-Investigate potential outliers before deciding what to do with them.
-Check the original data and consider the value in the context of the variable and research question.
-</p>
-
-<p>
-Ask: Is this value correct? Does it make sense? Is there a reasonable explanation for why it is unusual?
-</p>
-
-<p>
-If an outlier is the result of a data-entry or measurement error, it may be appropriate to correct or remove it.
-If the value is accurate and represents a legitimate observation, do not remove it simply because it is unusual.
-Any decision to remove an observation should have a clear justification and should be documented.
-</p>
-
+    
 <div style="text-align: center; margin: 30px 0;">
 
 <img
@@ -927,7 +904,7 @@ style="display: block; width: 90%; max-width: 1000px; height: auto; margin: 0 au
 
 <p><strong>Exact Code</strong></p>
 
-<div class="highlight-blue">
+<div class="highlight-orange">
 
 <pre><code>boxplot(Differences,
         main = "Distribution of Score Differences (After - Before)",
@@ -943,59 +920,51 @@ style="display: block; width: 90%; max-width: 1000px; height: auto; margin: 0 au
 
 <hr>
 
-<h3>Interpret the Boxplot</h3>
+<h3>Interpret the Boxplots</h3>
 
 <p>
-For this class, use the following simplified method for determining whether the boxplot suggests extreme outliers.
+In your R Script, report if each boxplot was normal or not normal.
+There are statistical analyses we can do to definitively determine if a dot is truly an outlier.  However, we will keep things simple for our class.
+</p>
+    
+<p>
+Look for individual dots <strong>beyond</strong> the whiskers. Those are potential outliers.
 </p>
 
-<ol>
-
-<li>
-<strong>Are there any dots outside of the boxplot?</strong>
-<br>
-If there are no dots, the data are normal. Stop here.
-</li>
-
-<li>
-<strong>Are the dots past the whiskers?</strong>
-<br>
-The whiskers are the lines extending from the box.
-If the dots are not past the whiskers, the data are normal. Stop here.
-</li>
-
-<li>
-<strong>Are the dots VERY far away from the whiskers?</strong>
-<br>
-If the dots are not very far away, the data are normal. Stop here.
-If the dots are very far away, switch to the Wilcoxon Signed-Rank Test.
-</li>
-
-</ol>
-
-<p><strong>Code Template</strong></p>
+<p><strong>Reporting Template</strong></p>
 
 <div class="highlight-blue">
-
-<pre><code>#Boxplot
-
-#There [are / are no] dots outside the boxplot.
-#The dots [are / are not] close to the whiskers.
-#The dots [are / are not] very far away from the whiskers.
-#Based on these findings, the boxplot is [normal / not normal].</code></pre>
-
+<pre><code>
+# The Group #1 boxplot does/ does not have outliers.
+# The Group #1 boxplot does/ does not have outliers.
+</code></pre>
 </div>
 
 <p><strong>Example</strong></p>
 
 <div class="highlight-blue">
+<pre><code>
+# The Male boxplot does not have outliers.
+# The Female boxplot does not have outliers.
+</code></pre>
+</div>
 
-<pre><code>#Boxplot
+<h3>What Causes Outlier?</h3>
+  
+<p>
+Sometimes the outlier is a legitimate datapoint. For example, let's say we were collecting data on the average income of a U.S. citizen and, somehow, Elon Musk took our survey. 
+Although his data is legitimate, he would be an outlier that severely impacts our dataset and causes the data to be abnormal (specifically negatively skewed).
+Sometimes an outlier is due to a survey response error, such as a participant accidentally adding an extra zero to their annual income.
+<p>
 
-#There is one dot outside the boxplot.
-#The dot is close to the whiskers.
-#The dot is not very far away from the whiskers.
-#Based on these findings, the boxplot is normal.</code></pre>
+<h3>What do we do with outliers?</h3>
+
+<p>
+In more advanced data analytics classes, we investigate potential outliers before deciding what to do with them. Check the original data and consider the value in the context of the variable and research question. Ask: Is this value correct? Does it make sense? Is there a reasonable explanation for why it is unusual?</em>
+If an outlier is the result of a data-entry or measurement error, it may be appropriate to correct or remove it. If the value is accurate and represents a legitimate observation</strong>, do not remove it simply because it is unusual. Any decision to remove an observation should have a clear justification and should be documented.
+Removing a legitimate outlier can change the distribution, sample size, and results of your analysis.
+</p>
+
 
 </div>
 
