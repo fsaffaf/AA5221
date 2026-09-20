@@ -575,7 +575,7 @@ Copy-and-paste the code below into your R Script.
 Keep these lines of code in your R Script.
 </p>
 
-<div class="highlight-blue">
+<div class="highlight-orange">
 
 <pre><code>library(readxl)
 library(ggpubr)
@@ -1020,7 +1020,7 @@ W = 0.99388, p-value = 0.9349</code></pre>
 
 </table>
 
-<p><strong>Code Template</strong></p>
+<p><strong>Reporting Template</strong></p>
 
 <div class="highlight-blue">
 
@@ -1115,7 +1115,7 @@ The Dependent T-Test determines whether there is a statistically significant dif
 
 <p><strong>Exact Code</strong></p>
 
-<div class="highlight-blue">
+<div class="highlight-orange">
 
 <pre><code>t.test(Before, After, paired = TRUE, na.action = na.omit)</code></pre>
 
@@ -1164,7 +1164,7 @@ Calculate the effect size <strong>only if the Dependent T-Test is statistically 
 
 <p><strong>Exact Code</strong></p>
 
-<div class="highlight-blue">
+<div class="highlight-orange">
 
 <pre><code>cohen.d(Before, After, paired = TRUE)</code></pre>
 
@@ -1356,7 +1356,7 @@ The Wilcoxon Signed-Rank Test determines whether there is a statistically signif
 
 <p><strong>Exact Code</strong></p>
 
-<div class="highlight-blue">
+<div class="highlight-orange">
 
 <pre><code>wilcox.test(Before, After, paired = TRUE, na.action = na.omit)</code></pre>
 
@@ -1401,9 +1401,9 @@ Calculate the effect size <strong>only if the Wilcoxon Signed-Rank Test is stati
 The effect size is reported as <strong>r</strong>.
 </p>
 
-<p><strong>Code Template</strong></p>
+<p><strong>Exact Code</strong></p>
 
-<div class="highlight-blue">
+<div class="highlight-orange">
 
 <pre><code>df_long &lt;- data.frame(
    id = rep(1:length(Before), 2),
