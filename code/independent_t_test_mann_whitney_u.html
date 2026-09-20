@@ -649,12 +649,12 @@ Calculate the Descriptive Statistics
 
 <div class="highlight-blue">
 
-<pre><code>DatasetZ %&gt;%
-  group_by(Gender) %&gt;%
+<pre><code><span style="color: orange; font-weight: bold;">DatasetZ</span> %&gt;%
+  group_by(<span style="color: orange; font-weight: bold;">Gender</span>) %&gt;%
   summarise(
-    Mean = mean(ExamScores, na.rm = TRUE),
-    Median = median(ExamScores, na.rm = TRUE),
-    SD = sd(ExamScores, na.rm = TRUE),
+    Mean = mean(<span style="color: orange; font-weight: bold;">ExamScores</span>, na.rm = TRUE),
+    Median = median(<span style="color: orange; font-weight: bold;">ExamScores</span>, na.rm = TRUE),
+    SD = sd(<span style="color: orange; font-weight: bold;">ExamScores</span>, na.rm = TRUE),
     N = n()
   )</code></pre>
 
