@@ -448,26 +448,21 @@ RScript Code Template
 
 <pre><code>#Lecture 6.2: Dependent T-Test &amp; Wilcoxon Signed-Rank Test
 
-#Step 1: Install Packages
-install.packages("effsize")
-install.packages("rstatix")
+# install.packages("effsize")
+# install.packages("rstatix")
 
-#Step 2: Open Packages
 library(readxl)
 library(ggpubr)
 library(effsize)
 library(rstatix)
 
-#Step 3: Import Dataset
 DatasetName &lt;- read_excel("filepath")
 
-#Step 4: Create Before, After, and Difference Scores
 Before &lt;- DatasetName$ScoresBefore
 After &lt;- DatasetName$ScoresAfter
 
 Differences &lt;- After - Before
 
-#Step 5: Descriptive Statistics
 mean(Before, na.rm = TRUE)
 median(Before, na.rm = TRUE)
 sd(Before, na.rm = TRUE)
@@ -476,7 +471,6 @@ mean(After, na.rm = TRUE)
 median(After, na.rm = TRUE)
 sd(After, na.rm = TRUE)
 
-#Step 6: Histogram
 hist(Differences,
      main = "Histogram of Difference Scores",
      xlab = "Value",
@@ -485,45 +479,24 @@ hist(Differences,
      border = "black",
      breaks = 20)
 
-#Step 7: Interpret Histogram
 
-#Step 8: Boxplot
 boxplot(Differences,
         main = "Distribution of Score Differences (After - Before)",
         ylab = "Difference in Scores",
         col = "blue",
         border = "darkblue")
 
-#Step 9: Interpret Boxplot
 
-#Step 10: Shapiro-Wilk Test
 shapiro.test(Differences)
 
-#Step 11: Interpret Shapiro-Wilk
-
-#Step 12: Determine Overall Normality
 
 #Step 13a: Dependent T-Test
 t.test(Before, After, paired = TRUE, na.action = na.omit)
 
-#Step 13b: Wilcoxon Signed-Rank Test
-wilcox.test(Before, After, paired = TRUE, na.action = na.omit)
 
-#Step 14a: Cohen's d
 cohen.d(Before, After, paired = TRUE)
 
-#Step 14b: Wilcoxon Effect Size
-df_long &lt;- data.frame(
-   id = rep(1:length(Before), 2),
-   time = rep(c("Before", "After"), each = length(Before)),
-   score = c(Before, After)
-)
-
-wilcox_effsize(df_long, score ~ time, paired = TRUE)
-
-#Step 15a: Report Dependent T-Test
-
-#Step 15b: Report Wilcoxon Signed-Rank Test</code></pre>
+</code></pre>
 
 </div>
 
@@ -545,11 +518,6 @@ Install &amp; Open the Packages
 
 <p>
 Packages add additional functionality to R.
-</p>
-
-<p>
-R packages only need to be installed once.
-<strong>Do NOT run the install code more than once</strong> after successful installation.
 </p>
 
 <table>
@@ -716,13 +684,6 @@ Create separate variables for the <strong>Before</strong> and <strong>After</str
 Then calculate the difference score for each participant.
 </p>
 
-<div class="highlight-orange">
-
-<strong>Important:</strong>
-The difference score is calculated as <strong>After − Before</strong>.
-
-</div>
-
 <p>
 This difference score is what we use to check the normality assumption for the Dependent T-Test.
 </p>
@@ -771,9 +732,6 @@ Calculate the Descriptive Statistics
 
 <p>
 Calculate the <strong>mean, standard deviation, and median</strong> for the Before and After scores.
-</p>
-
-<p>
 These descriptive statistics will be used when reporting your results.
 </p>
 
@@ -781,27 +739,26 @@ These descriptive statistics will be used when reporting your results.
 
 <div class="highlight-blue">
 
-<pre><code>mean(Before, na.rm = TRUE)
-median(Before, na.rm = TRUE)
-sd(Before, na.rm = TRUE)
+<pre><code>mean(<span style="color: #e67e22; font-weight: bold;">Before</span>, na.rm = TRUE)
+median(<span style="color: #e67e22; font-weight: bold;">Before</span>, na.rm = TRUE)
+sd(<span style="color: #e67e22; font-weight: bold;">Before</span>, na.rm = TRUE)
 
-mean(After, na.rm = TRUE)
-median(After, na.rm = TRUE)
-sd(After, na.rm = TRUE)</code></pre>
+mean(<span style="color: #e67e22; font-weight: bold;">After</span>, na.rm = TRUE)
+median(<span style="color: #e67e22; font-weight: bold;">After</span>, na.rm = TRUE)
+sd(<span style="color: #e67e22; font-weight: bold;">After</span>, na.rm = TRUE)</code></pre>
 
 </div>
 
 <p><strong>Example</strong></p>
 
 <div class="highlight-blue">
+<pre><code>mean(<span style="color: #e67e22; font-weight: bold;">Before</span>, na.rm = TRUE)
+median(<span style="color: #e67e22; font-weight: bold;">Before</span>, na.rm = TRUE)
+sd(<span style="color: #e67e22; font-weight: bold;">Before</span>, na.rm = TRUE)
 
-<pre><code>mean(Before, na.rm = TRUE)
-median(Before, na.rm = TRUE)
-sd(Before, na.rm = TRUE)
-
-mean(After, na.rm = TRUE)
-median(After, na.rm = TRUE)
-sd(After, na.rm = TRUE)</code></pre>
+mean(<span style="color: #e67e22; font-weight: bold;">After</span>, na.rm = TRUE)
+median(<span style="color: #e67e22; font-weight: bold;">After</span>, na.rm = TRUE)
+sd(<span style="color: #e67e22; font-weight: bold;">After</span>, na.rm = TRUE)</code></pre>
 
 </div>
 
@@ -836,28 +793,25 @@ Normality Check 1: Histogram
 <div class="path-step-content">
 
 <p>
-Check the normality of the <strong>difference scores</strong> in three different ways:
-Histogram, Boxplot, and Shapiro-Wilk.
+Because normnality is so important, data analysts check normality in at least three different ways before determining which test to use. The first way is by creating and checking histograms.
+<br>
+For dependent t-tests, we check the normality of the <strong>difference scores</strong>.
 </p>
 
-<div class="highlight-orange">
+    
+<h3>Create the Histogram</h3>
 
-<strong>Important:</strong>
 For a Dependent T-Test, the normality assumption applies to the
 <strong>difference scores</strong>, not to the Before and After scores separately.
 
-</div>
-
-<h3>Create the Histogram</h3>
-
 <p>
-Create a histogram of the difference scores to visually check the shape of the distribution.
-The histogram should look approximately bell-shaped and symmetrical.
+A histogram is a graph that shows how the values of a numerical variable are distributed. It groups values into ranges and uses bars to show how many observations fall within each range.
 </p>
 
 <p><strong>Code</strong></p>
 
-<div class="highlight-blue">
+<p>If you name your difference scores <strong>Differences</strong>, you can copy-and-paste this code directly into your RScript.</p>
+<div class="highlight-orange">
 
 <pre><code>hist(Differences,
      main = "Histogram of Difference Scores",
@@ -875,45 +829,35 @@ The histogram should look approximately bell-shaped and symmetrical.
 
 <hr>
 
-<h3>Interpret the Histogram</h3>
+<h3>Interpret the Histograms</h3>
 
 <p>
-A histogram shows how the difference scores are distributed.
-Look at the overall shape of the data.
+In your R Script, report whether you think the histogram is normal or abnormally distributed based on a visual assessment.
+<br>
+Specifically, visually determine if you think the histogram has normal skewness (symmetry) and kurtosis (height).
+<br>
+You can calculate statistics such as skewness and kurtosis to describe the shape of a distribution more precisely. 
+However, we are keeping it simple in this class. You do not need to calculate these statistics by hand. 
+Instead, use the histogram to visually assess whether the data look approximately normal or noticeably skewed.
 </p>
-
-<ul>
-
-<li>
-<strong>Symmetrical:</strong> The data are fairly balanced on both sides of the center.
-</li>
-
-<li>
-<strong>Right-skewed:</strong> Most values are toward the lower end, with a longer tail extending to the right.
-</li>
-
-<li>
-<strong>Left-skewed:</strong> Most values are toward the higher end, with a longer tail extending to the left.
-</li>
-
-<li>
-<strong>Approximately normal:</strong> The data have a roughly bell-shaped and symmetric pattern.
-</li>
-
-</ul>
 
 <p>
-For this class, use the histogram as a visual check of whether the difference scores appear approximately normal.
+In order for data to be considered normal, it must have normal skewness AND kurtosis.
+Before proceeding, review the Data Visualization and Normality lesson.
 </p>
-
-<div class="highlight-orange">
-
-<strong>Final Decision:</strong>
 
 <p>
-Determine whether the <strong>difference scores</strong> look normally or abnormally distributed.
+<a href="../lectures/data-visualization-normality.html">
+Data Visualization and Normality
+</a>
 </p>
 
+<p><strong>Reporting Template</strong></p>
+<div class="highlight-blue">
+<pre><code>
+#Data for the difference scores appears [abnormally / normally] distributed.
+</code></pre>
+</div>
 </div>
 
 <p><strong>Code Template</strong></p>
