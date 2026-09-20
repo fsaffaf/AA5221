@@ -468,15 +468,8 @@ hist(DatasetZ$ExamScores[DatasetZ$Gender == "Male"],
      border = "black",
      breaks = 10)
 
-#Group 1: Male
-#The first variable looks normally distributed.
-#The data is symmetrical.
-#The data has a proper bell curve.
-
-#Group 2: Female
-#The second variable looks normally distributed.
-#The data is symmetrical.
-#The data has a proper bell curve.   
+#Data for Males appears normally distributed.
+#Data for Females appears normally distributed.
 
 ggboxplot(DatasetZ, x = "Gender", y = "ExamScores",
           color = "Gender",
@@ -801,20 +794,19 @@ Normality Check 1: Histograms
 <p>Because normnality is so important, data analysts check normality in at least three different ways before determining which test to use.
 The first way is by creating and checking histograms.</p>
     
-<h3>Histograms</h3>
-
 <p>
 Check normality of the data in three different ways: Histogram, Boxplot, and Shapiro-Wilk.
 </p>
 
-<a href="https://fsaffaf.github.io/AA5221/lectures/data-visualization-normality.html" target="_blank" style="color: #0e68b3; font-weight: bold; text-decoration: none;">What is a histogram?</a>
-
-<strong>Important:</strong>
+<h3>Histograms</h3>
 <p>
-When filling in <code>Group1Name</code> and <code>Group2Name</code>, use the actual group names in your Excel dataset.
+A <strong>histogram</strong> is a graph that shows how the values of a numerical variable are distributed. It groups values into ranges and uses bars to show how many observations fall within each range.
 </p>
 
 <p><strong>Code Template</strong></p>
+<p>
+When filling in <code>Group1Name</code> and <code>Group2Name</code>, use the actual group names in your Excel dataset.
+</p>
 
 <div class="highlight-blue">
 
@@ -866,51 +858,17 @@ hist(<span style="color: #e67e22; font-weight: bold;">DatasetZ</span>$<span styl
 <h3>Interpret the Histograms</h3>
 
 <p>
-In your R Script, report skewness and kurtosis for each variable. What is a comment in R?
+In your R Script, report whether you think the histogram is normal or abnormally distributed based on a visual assessment.
 </p>
-
-<p>
-A <strong>histogram</strong> is a graph that shows how the values of a numerical variable are distributed. It groups values into ranges and uses bars to show how many observations fall within each range.
-</p>
-
-<p>
-To interpret a histogram, look at the <strong>overall shape of the data</strong>.
-</p>
-
-<ul>
-<li>
-<strong>Symmetric:</strong> The data are fairly balanced on both sides of the center.
-</li>
-
-<li>
-<strong>Right-skewed:</strong> Most values are toward the lower end, with a longer tail extending to the right.
-</li>
-
-<li>
-<strong>Left-skewed:</strong> Most values are toward the higher end, with a longer tail extending to the left.
-</li>
-
-<li>
-<strong>Approximately normal:</strong> The data have a roughly <strong>bell-shaped and symmetric</strong> pattern, with most values near the center and fewer values toward the ends.
-</li>
-
-<li>
-<strong>Unusual features:</strong> Look for gaps, separate clusters, or values that appear far away from the rest of the data.
-</li>
-</ul>
-
+Specifically, check determine if you think the histogram has normal skewness (symmetry) and kurtosis (height).
 <p>
 You <strong>can</strong> calculate statistics such as <strong>skewness</strong> and <strong>kurtosis</strong> to describe the shape of a distribution more precisely. However, <strong>we are keeping it simple in this class</strong>. You do not need to calculate these statistics by hand. Instead, use the histogram to visually assess whether the data look approximately normal or noticeably skewed.
 </p>
 
-<strong>Final Decision:</strong>
+<a href="https://fsaffaf.github.io/AA5221/lectures/data-visualization-normality.html" target="_blank" style="color: #0e68b3; font-weight: bold; text-decoration: none;">What is a histogram?</a>
 
 <p>
-Determine if each group is normally or abnormally distributed.
-</p>
-
-<p>
-Normal data must have <strong>normal skewness AND kurtosis</strong>.
+Normal data must have normal skewness AND kurtosis.
 </p>
 
 
@@ -918,15 +876,12 @@ Normal data must have <strong>normal skewness AND kurtosis</strong>.
 
 <div class="highlight-blue">
 
-<pre><code>#Group 1: Name of Group
-#The first variable looks [abnormally / normally] distributed.
-#The data is [symmetrical / negatively skewed / positively skewed].
-#The data [has / does not have] a proper bell curve.
+<pre><code>
+#Data for Group #1 appears [abnormally / normally] distributed.
 
-#Group 2: Name of Group
-#The second variable looks [abnormally / normally] distributed.
-#The data is [symmetrical / negatively skewed / positively skewed].
-#The data [has / does not have] a proper bell curve.</code></pre>
+#Data for Group #2 appears [abnormally / normally] distributed.
+
+
 
 </div>
 
@@ -934,15 +889,11 @@ Normal data must have <strong>normal skewness AND kurtosis</strong>.
 
 <div class="highlight-blue">
 
-<pre><code>#Group 1: Female
-#The first variable looks normally distributed.
-#The data is symmetrical.
-#The data has a proper bell curve.
+<pre><code>
+#Data for Males appears normally distributed.
+#Data for Females appears normally distributed.
 
-#Group 2: Male
-#The second variable looks normally distributed.
-#The data is symmetrical.
-#The data has a proper bell curve.</code></pre>
+</code></pre>
 
 </div>
 
