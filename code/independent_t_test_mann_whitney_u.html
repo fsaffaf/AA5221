@@ -895,9 +895,8 @@ Removing a legitimate outlier can change the distribution, sample size, and resu
 <p><strong>Code Template</strong></p>
 
 <div class="highlight-blue">
-
-<pre><code>ggboxplot(DatasetName, x = "GroupVariable", y = "OutcomeVariable",
-     color = "GroupVariable",
+<pre><code>ggboxplot(<span style="color: #e67e22; font-weight: bold;">DatasetName</span>, x = "<span style="color: #e67e22; font-weight: bold;">GroupVariable</span>", y = "<span style="color: #e67e22; font-weight: bold;">OutcomeVariable</span>",
+     color = "<span style="color: #e67e22; font-weight: bold;">GroupVariable</span>",
      palette = "jco",
      add = "jitter")</code></pre>
 
@@ -907,8 +906,8 @@ Removing a legitimate outlier can change the distribution, sample size, and resu
 
 <div class="highlight-blue">
 
-<pre><code>ggboxplot(DatasetZ, x = "Gender", y = "ExamScores",
-     color = "Gender",
+<pre><code>ggboxplot(<span style="color: #e67e22; font-weight: bold;">DatasetZ</span>, x = "<span style="color: #e67e22; font-weight: bold;">Gender</span>", y = "<span style="color: #e67e22; font-weight: bold;">ExamScores</span>",
+     color = "<span style="color: #e67e22; font-weight: bold;">Gender</span>",
      palette = "jco",
      add = "jitter")</code></pre>
 
@@ -977,18 +976,16 @@ A p-value of less than .05 indicates there is a significant difference, which me
 
 <div class="highlight-blue">
 
-<pre><code>shapiro.test(DatasetName$OutcomeVariable[DatasetName$GroupVariable == "Group1"])
-shapiro.test(DatasetName$OutcomeVariable[DatasetName$GroupVariable == "Group2"])</code></pre>
-
+<pre><code>shapiro.test(<span style="color: #e67e22; font-weight: bold;">DatasetName</span>$<span style="color: #e67e22; font-weight: bold;">OutcomeVariable</span>[<span style="color: #e67e22; font-weight: bold;">DatasetName</span>$<span style="color: #e67e22; font-weight: bold;">GroupVariable</span> == "<span style="color: #e67e22; font-weight: bold;">Group1</span>"])
+shapiro.test(<span style="color: #e67e22; font-weight: bold;">DatasetName</span>$<span style="color: #e67e22; font-weight: bold;">OutcomeVariable</span>[<span style="color: #e67e22; font-weight: bold;">DatasetName</span>$<span style="color: #e67e22; font-weight: bold;">GroupVariable</span> == "<span style="color: #e67e22; font-weight: bold;">Group2</span>"])</code></pre>
 </div>
 
 <p><strong>Example</strong></p>
 
 <div class="highlight-blue">
 
-<pre><code>shapiro.test(DatasetZ$ExamScores[DatasetZ$Gender == "Female"])
-shapiro.test(DatasetZ$ExamScores[DatasetZ$Gender == "Male"])</code></pre>
-
+<pre><code>shapiro.test(<span style="color: #e67e22; font-weight: bold;">DatasetZ</span>$<span style="color: #e67e22; font-weight: bold;">ExamScores</span>[<span style="color: #e67e22; font-weight: bold;">DatasetZ</span>$<span style="color: #e67e22; font-weight: bold;">Gender</span> == "<span style="color: #e67e22; font-weight: bold;">Female</span>"])
+shapiro.test(<span style="color: #e67e22; font-weight: bold;">DatasetZ</span>$<span style="color: #e67e22; font-weight: bold;">ExamScores</span>[<span style="color: #e67e22; font-weight: bold;">DatasetZ</span>$<span style="color: #e67e22; font-weight: bold;">Gender</span> == "<span style="color: #e67e22; font-weight: bold;">Male</span>"])</code></pre>
 </div>
 
 <p><strong>Output:</strong></p>
@@ -1076,11 +1073,6 @@ Select the Correct Test
 <div class="path-step-content">
 
 <div class="highlight-orange">
-
-<strong>Important:</strong>
-The method below is simplified for this class.
-
-</div>
 
 <p>
 <strong>Step 1:</strong> Determine normality for each group using the histogram, boxplot, and Shapiro-Wilk test.
@@ -1197,20 +1189,6 @@ The method below is simplified for this class.
 
 </table>
 
-<div class="highlight-orange">
-
-<strong>Final Decision:</strong>
-
-<p>
-<strong>Normal → Independent T-Test</strong>
-</p>
-
-<p>
-<strong>Abnormal → Mann-Whitney U Test</strong>
-</p>
-
-</div>
-
 </div>
 
 </details>
@@ -1250,16 +1228,14 @@ Conduct an Independent T-Test to determine whether there is a difference between
 
 <div class="highlight-blue">
 
-<pre><code>t.test(OutcomeVariable ~ GroupVariable, data = DatasetName, var.equal = TRUE)</code></pre>
-
+<pre><code>t.test(<span style="color: #e67e22; font-weight: bold;">OutcomeVariable</span> ~ <span style="color: #e67e22; font-weight: bold;">GroupVariable</span>, data = <span style="color: #e67e22; font-weight: bold;">DatasetName</span>, var.equal = TRUE)</code></pre>
 </div>
 
 <p><strong>Example</strong></p>
 
 <div class="highlight-blue">
 
-<pre><code>t.test(ExamScores ~ Gender, data = DatasetZ, var.equal = TRUE)</code></pre>
-
+<pre><code>t.test(<span style="color: #e67e22; font-weight: bold;">ExamScores</span> ~ <span style="color: #e67e22; font-weight: bold;">Gender</span>, data = <span style="color: #e67e22; font-weight: bold;">DatasetZ</span>, var.equal = TRUE)</code></pre>
 </div>
 
 <p><strong>Output:</strong></p>
@@ -1301,8 +1277,8 @@ Only calculate Cohen's d if the Independent T-Test is significant (<strong>p &lt
 
 <div class="highlight-blue">
 
-<pre><code>cohens_d_result &lt;- cohens_d(OutcomeVariable ~ GroupVariable, data = DatasetName, pooled_sd = TRUE)
-<br>print(cohens_d_result)</code></pre>
+<pre><code>cohens_d_result &lt;- cohens_d(<span style="color: #e67e22; font-weight: bold;">OutcomeVariable</span> ~ <span style="color: #e67e22; font-weight: bold;">GroupVariable</span>, data = <span style="color: #e67e22; font-weight: bold;">DatasetName</span>, pooled_sd = TRUE)
+&lt;br&gt;print(cohens_d_result)</code></pre>
 
 </div>
 
@@ -1310,9 +1286,7 @@ Only calculate Cohen's d if the Independent T-Test is significant (<strong>p &lt
 
 <div class="highlight-blue">
 
-<pre><code>cohens_d_result &lt;- cohens_d(ExamScores ~ Gender,
-                             data = DatasetZ,
-                             pooled_sd = TRUE)
+<pre><code>cohens_d_result &lt;- cohens_d(<span style="color: #e67e22; font-weight: bold;">ExamScores</span> ~ <span style="color: #e67e22; font-weight: bold;">Gender</span>, data = <span style="color: #e67e22; font-weight: bold;">DatasetZ</span>, pooled_sd = TRUE)
 print(cohens_d_result)</code></pre>
 
 </div>
@@ -1345,12 +1319,8 @@ After the analyses, report your findings in a few clear sentences in your R Scri
 Copy the template and replace the highlighted portions with your output results.
 </p>
 
-<div class="highlight-orange">
-
 <strong>Standardized Method:</strong>
 DO NOT be creative. Use the provided reporting format.
-
-</div>
 
 <p><strong>P-Value Reporting</strong></p>
 
@@ -1376,16 +1346,6 @@ DO NOT be creative. Use the provided reporting format.
 </p>
 
 <div class="highlight-orange">
-
-<strong>Effect Size:</strong>
-
-<p>
-Only report the effect size when the test is significant (<strong>p &lt; .05</strong>).
-</p>
-
-<p>
-Correlation is special because the effect size is automatically provided. The r-value is the effect size.
-</p>
 
 </div>
 
@@ -1427,20 +1387,18 @@ Correlation is special because the effect size is automatically provided. The r-
 
 <div class="highlight-blue">
 
-<pre><code>#An Independent T-Test was conducted to determine if there was a difference in OutcomeVariable between Group1 and Group2.
-#Group 1 scores (M = xx.xx, SD = xx.xx) were [significantly / not significantly] different from Group2 scores (M = xx.xx, SD = xx.xx), t(df#) = x.xx, p = .xxx.
+<pre><code>#An Independent T-Test was conducted to determine if there was a difference in <span style="color: #e67e22; font-weight: bold;">OutcomeVariable</span> between <span style="color: #e67e22; font-weight: bold;">Group1</span> and <span style="color: #e67e22; font-weight: bold;">Group2</span>.
+#<span style="color: #e67e22; font-weight: bold;">Group1</span> scores (M = xx.xx, SD = xx.xx) were [significantly / not significantly] different from <span style="color: #e67e22; font-weight: bold;">Group2</span> scores (M = xx.xx, SD = xx.xx), t(df#) = x.xx, p = .xxx.
 #The effect size was [small / medium / large / very large], Cohen's d = .xxx.</code></pre>
-
 </div>
 
 <p><strong>Example</strong></p>
 
 <div class="highlight-blue">
 
-<pre><code>#An Independent T-Test was conducted to determine if there was a difference in Exam Scores between Females and Males.
-#Female scores (M = 83.00, SD = 7.50) were significantly different from Male scores (M = 76.70, SD = 6.00), t(98) = 2.01, p = .002.
-#The effect size was medium, Cohen's d = .65.</code></pre>
-
+<pre><code>#An Independent T-Test was conducted to determine if there was a difference in <span style="color: #e67e22; font-weight: bold;">Exam Scores</span> between <span style="color: #e67e22; font-weight: bold;">Females</span> and <span style="color: #e67e22; font-weight: bold;">Males</span>.
+#<span style="color: #e67e22; font-weight: bold;">Female</span> scores (M = <span style="color: #e67e22; font-weight: bold;">83.00</span>, SD = <span style="color: #e67e22; font-weight: bold;">7.50</span>) were <span style="color: #e67e22; font-weight: bold;">significantly</span> different from <span style="color: #e67e22; font-weight: bold;">Male</span> scores (M = <span style="color: #e67e22; font-weight: bold;">76.70</span>, SD = <span style="color: #e67e22; font-weight: bold;">6.00</span>), t(<span style="color: #e67e22; font-weight: bold;">98</span>) = <span style="color: #e67e22; font-weight: bold;">2.01</span>, p = <span style="color: #e67e22; font-weight: bold;">.002</span>.
+#The effect size was <span style="color: #e67e22; font-weight: bold;">medium</span>, Cohen's d = <span style="color: #e67e22; font-weight: bold;">.65</span>.</code></pre>
 </div>
 
 </div>
