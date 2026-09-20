@@ -1074,95 +1074,29 @@ W = 0.99388, p-value = 0.9349</code></pre>
 <details>
 
 <summary>
-<span class="step-label">Step 8</span><br>
-Determine Overall Normality
+<span class="step-label">Step 7</span><br>
+Select the Correct Test
 </summary>
 
 <div class="path-step-content">
-
-<div class="highlight-orange">
-
-<strong>Important:</strong>
-The method below is simplified for this class.
-
-</div>
-
 <p>
-Use the histogram, boxplot, and Shapiro-Wilk test together to determine whether the
-<strong>difference scores</strong> are normal.
-</p>
-
-<table>
-
-<tr>
-<th>Histogram</th>
-<th>Boxplot</th>
-<th>Shapiro-Wilk</th>
-<th>Decision</th>
-</tr>
-
-<tr>
-<td>Normal</td>
-<td>Normal</td>
-<td>Normal</td>
-<td>Normal</td>
-</tr>
-
-<tr>
-<td>Abnormal</td>
-<td>Normal</td>
-<td>Normal</td>
-<td>Normal</td>
-</tr>
-
-<tr>
-<td>Normal</td>
-<td>Abnormal</td>
-<td>Normal</td>
-<td>Normal</td>
-</tr>
-
-<tr>
-<td>Normal</td>
-<td>Normal</td>
-<td>Abnormal</td>
-<td>Abnormal</td>
-</tr>
-
-<tr>
-<td>Abnormal</td>
-<td>Abnormal</td>
-<td>Normal</td>
-<td>Check with Mentor</td>
-</tr>
-
-<tr>
-<td>Abnormal</td>
-<td>Abnormal</td>
-<td>Abnormal</td>
-<td>Abnormal</td>
-</tr>
-
-</table>
-
-<div class="highlight-orange">
-
-<strong>Final Decision:</strong>
-
-<p>
-<strong>Normal Difference Scores → Dependent T-Test</strong>
+Were any of your histograms, boxplots, or shapiro-wilk tests abnormal?
+If any of them were abnormal, this would require an investigation.
 </p>
 
 <p>
-<strong>Abnormal Difference Scores → Wilcoxon Signed-Rank Test</strong>
+Since we are keeping our class simple, just look at your Shapiro-Wilk tests.
+Were they both normal, or was one or both abnormal?
 </p>
 
-</div>
+<p>
+If both were normal, choose the Independent t-test.
+If one or both were abnormal, choose the Mann-Whitney U.
+</p>
 
 </div>
 
 </details>
-
 
 </div>
 
