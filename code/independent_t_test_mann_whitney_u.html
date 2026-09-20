@@ -424,9 +424,10 @@ RScript Code Template
 <div class="highlight highlight-blue">
 
 <pre><code>
-install.packages("dplyr")
-install.packages("effectsize")
-install.packages("effsize")
+# install.packages("dplyr")
+# install.packages("effectsize")
+# install.packages("effsize")
+    
 library(readxl)
 library(ggpubr)
 library(dplyr)
@@ -434,7 +435,6 @@ library(effectsize)
 library(effsize)
 
 DatasetZ <- read_excel("C:/Users/Joseph/Desktop/dataset.xlsx")
-Example Output	NA
 
 DatasetZ %>%
   group_by(Gender) %>%
@@ -445,6 +445,12 @@ DatasetZ %>%
     N = n()
   )
 
+# A tibble: 2 × 5
+  Gender  Mean Median    SD     N
+  <chr>  <dbl>  <dbl> <dbl> <int>
+1 Female  78.7   79.3  7.68    50
+2 Male    72.8   79.5 10.1     50
+      
 hist(DatasetZ$ExamScores[DatasetZ$Gender == "Female"],
      main = "Histogram of Female ExamScores",
      xlab = "Value",
@@ -462,23 +468,28 @@ hist(DatasetZ$ExamScores[DatasetZ$Gender == "Male"],
      border = "black",
      breaks = 10)
 
- #Group 1: Male
+#Group 1: Male
 #The first variable looks normally distributed.
 #The data is symmetrical.
 #The data has a proper bell curve.
-
 
 #Group 2: Female
 #The second variable looks normally distributed.
 #The data is symmetrical.
 #The data has a proper bell curve.   
 
-
 ggboxplot(DatasetZ, x = "Gender", y = "ExamScores",
           color = "Gender",
           palette = "jco",
           add = "jitter")
 
+# Group 1: Male
+# The boxplot has no outliers.
+
+# Group 2: Female
+# The boxplot has no outliers.
+
+      
 shapiro.test(DatasetZ$ExamScores[DatasetZ$Gender == "Female"])
 shapiro.test(DatasetZ$ExamScores[DatasetZ$Gender == "Male"])
 
