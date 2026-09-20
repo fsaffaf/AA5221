@@ -1407,16 +1407,14 @@ Conduct a Mann-Whitney U test to determine whether there is a difference between
 
 <div class="highlight-blue">
 
-<pre><code>wilcox.test(OutcomeVariable ~ GroupVariable, data = DatasetName)</code></pre>
-
+<pre><code>wilcox.test(<span style="color: #e67e22; font-weight: bold;">OutcomeVariable</span> ~ <span style="color: #e67e22; font-weight: bold;">GroupVariable</span>, data = <span style="color: #e67e22; font-weight: bold;">DatasetName</span>)</code></pre>
 </div>
 
 <p><strong>Example</strong></p>
 
 <div class="highlight-blue">
 
-<pre><code>wilcox.test(ExamScores ~ Gender, data = DatasetZ)</code></pre>
-
+<pre><code>wilcox.test(<span style="color: #e67e22; font-weight: bold;">ExamScores</span> ~ <span style="color: #e67e22; font-weight: bold;">Gender</span>, data = <span style="color: #e67e22; font-weight: bold;">DatasetZ</span>)</code></pre>
 </div>
 
 <p><strong>Output:</strong></p>
@@ -1448,28 +1446,20 @@ Calculate Cliff's Delta (Effect Size)
 
 <div class="path-step-content">
 
-<p>
-Only calculate the effect size if the Mann-Whitney U test is significant (<strong>p &lt; .05</strong>).
-</p>
 
 <p><strong>Code Template</strong></p>
 
 <div class="highlight-blue">
-
-<pre><code>mw_effect &lt;- cliff.delta(OutcomeVariable ~ GroupVariable,
-                          data = DatasetName)
+<pre><code>mw_effect &lt;- cliff.delta(<span style="color: #e67e22; font-weight: bold;">OutcomeVariable</span> ~ <span style="color: #e67e22; font-weight: bold;">GroupVariable</span>, data = <span style="color: #e67e22; font-weight: bold;">DatasetName</span>)
 print(mw_effect)</code></pre>
-
 </div>
 
 <p><strong>Example</strong></p>
 
 <div class="highlight-blue">
 
-<pre><code>mw_effect &lt;- cliff.delta(ExamScores ~ Gender,
-                          data = DatasetZ)
+<pre><code>mw_effect &lt;- cliff.delta(<span style="color: #e67e22; font-weight: bold;">ExamScores</span> ~ <span style="color: #e67e22; font-weight: bold;">Gender</span>, data = <span style="color: #e67e22; font-weight: bold;">DatasetZ</span>)
 print(mw_effect)</code></pre>
-
 </div>
 
 <p><strong>Output:</strong></p>
@@ -1507,23 +1497,38 @@ After the analyses, report your findings in a few clear sentences in your R Scri
 
 <p>
 Copy the template and replace the highlighted portions with your output results.
+There is a standardized method of reporting. DO NOT be creative. Use the provided reporting format.
 </p>
-
-<div class="highlight-orange">
-
-<strong>Standardized Method:</strong>
-DO NOT be creative. Use the provided reporting format.
-
-</div>
 
 <p><strong>P-Value Reporting</strong></p>
 
-<ul>
-<li><strong>p &lt; .001</strong> → report <strong>p &lt; .001</strong></li>
-<li><strong>.001 &lt; p &lt; .05</strong> → report the exact p-value to three decimals (example: p = .003)</li>
-<li><strong>p &gt; .05</strong> → report <strong>p &gt; .05</strong></li>
-<li>All other values → report two decimal places (example: .1252 → .13)</li>
-</ul>
+<table style="width: 100%; border-collapse: collapse; font-size: 12pt;">
+    <thead>
+        <tr>
+            <th style="text-align: left; padding: 10px; border-bottom: 2px solid #0e68b3;">p-value</th>
+            <th style="text-align: left; padding: 10px; border-bottom: 2px solid #0e68b3;">How to Report</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td style="padding: 10px; border-bottom: 1px solid #ddd;"><strong>p &lt; .001</strong></td>
+            <td style="padding: 10px; border-bottom: 1px solid #ddd;">Report <strong>p &lt; .001</strong></td>
+        </tr>
+        <tr>
+            <td style="padding: 10px; border-bottom: 1px solid #ddd;"><strong>.001 &lt; p &lt; .05</strong></td>
+            <td style="padding: 10px; border-bottom: 1px solid #ddd;">Report the exact p-value to three decimals (example: <strong>p = .003</strong>)</td>
+        </tr>
+        <tr>
+            <td style="padding: 10px; border-bottom: 1px solid #ddd;"><strong>p &gt; .05</strong></td>
+            <td style="padding: 10px; border-bottom: 1px solid #ddd;">Report <strong>p &gt; .05</strong></td>
+        </tr>
+        <tr>
+            <td style="padding: 10px;"><strong>All other values</strong></td>
+            <td style="padding: 10px;">Report two decimal places (example: <strong>.1252 → .13</strong>)</td>
+        </tr>
+    </tbody>
+</table>
+
 
 <p><strong>Definitions</strong></p>
 
@@ -1532,20 +1537,6 @@ DO NOT be creative. Use the provided reporting format.
 <li><strong>U</strong> = Mann-Whitney U value</li>
 <li><strong>p</strong> = p-value</li>
 </ul>
-
-<div class="highlight-orange">
-
-<strong>Effect Size:</strong>
-
-<p>
-Only report the effect size when the test is significant (<strong>p &lt; .05</strong>).
-</p>
-
-<p>
-The output provides the effect size and magnitude.
-</p>
-
-</div>
 
 <p><strong>Code Template</strong></p>
 
