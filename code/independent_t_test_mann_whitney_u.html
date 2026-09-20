@@ -421,6 +421,96 @@ RScript Code Template
 
 <div class="path-step-content">
 
+
+install.packages("dplyr")
+install.packages("effectsize")
+install.packages("effsize")
+library(readxl)
+library(ggpubr)
+library(dplyr)
+library(effectsize)
+library(effsize)
+
+DatasetZ <- read_excel("C:/Users/Joseph/Desktop/dataset.xlsx")
+Example Output	NA
+
+DatasetZ %>%
+  group_by(Gender) %>%
+  summarise(
+    Mean = mean(ExamScores, na.rm = TRUE),
+    Median = median(ExamScores, na.rm = TRUE),
+    SD = sd(ExamScores, na.rm = TRUE),
+    N = n()
+  )
+
+hist(DatasetZ$ExamScores[DatasetZ$Gender == "Female"],
+     main = "Histogram of Female ExamScores",
+     xlab = "Value",
+     ylab = "Frequency",
+     col = "lightblue",
+     border = "black",
+     breaks = 10)
+
+
+hist(DatasetZ$ExamScores[DatasetZ$Gender == "Male"],
+     main = "Histogram of Male ExamScores",
+     xlab = "Value",
+     ylab = "Frequency",
+     col = "lightgreen",
+     border = "black",
+     breaks = 10)
+
+ #Group 1: Male
+#The first variable looks normally distributed.
+#The data is symmetrical.
+#The data has a proper bell curve.
+
+
+#Group 2: Female
+#The second variable looks normally distributed.
+#The data is symmetrical.
+#The data has a proper bell curve.   
+
+
+ggboxplot(DatasetZ, x = "Gender", y = "ExamScores",
+          color = "Gender",
+          palette = "jco",
+          add = "jitter")
+
+shapiro.test(DatasetZ$ExamScores[DatasetZ$Gender == "Female"])
+shapiro.test(DatasetZ$ExamScores[DatasetZ$Gender == "Male"])
+
+Female
+W = 0.91523, p-value = 0.0027
+
+Male
+W = 0.89172, p-value = 0.0611
+
+#Group 1: Female
+#The first group is abnormally distributed, (p = .003).
+
+#Group 2: Male
+#The second group is normally distributed, (p = .061).
+
+    
+t.test(ExamScores ~ Gender, data = DatasetZ, var.equal = TRUE)
+
+Two Sample t-test
+
+data:  score by gender
+t = 2.01, df = 98, p-value = 0.002
+mean in group Female = 83.0
+mean in group Male  = 76.7
+
+cohens_d_result <- cohens_d(ExamScores ~ Gender, data = DatasetZ, pooled_sd = TRUE)
+print(cohens_d_result)
+0.65
+
+#An Independent T-Test was conducted to determine if there was a difference in Exam Scores between Females and Males.
+#Female scores (M = 83.00, SD = 7.50) were significantly different from Male scores (M = 76.70, SD = 6.00), t(98) = 2.01, p = .002.
+#The effect size was medium, Cohen's d = .65.
+
+    
 </div>
 
 </details>
@@ -514,6 +604,8 @@ Keep these lines of code in your R Script.
 library(dplyr)
 library(effectsize)
 library(effsize)
+library(readxl)
+library(ggpubr)
 </code></pre>
 
 </div>
