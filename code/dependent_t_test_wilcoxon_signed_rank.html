@@ -487,7 +487,7 @@ boxplot(Differences,
         border = "darkblue")
 
 
-shapiro.test(Differences)
+.test(Differences)
 
 
 #Step 13a: Dependent T-Test
@@ -793,9 +793,8 @@ For a Dependent T-Test, the normality assumption applies to the
 A histogram is a graph that shows how the values of a numerical variable are distributed. It groups values into ranges and uses bars to show how many observations fall within each range.
 </p>
 
-<p><strong>Code</strong></p>
+<p><strong>Exact Code</strong></p>
 
-<p>If you name your difference scores <strong>Differences</strong>, you can copy-and-paste this code directly into your RScript.</p>
 <div class="highlight-orange">
 
 <pre><code>hist(Differences,
@@ -976,9 +975,9 @@ A p-value greater than .05 indicates that there is not a statistically significa
 A p-value less than .05 indicates that there is a statistically significant difference.
 </p>
 
-<p><strong>Code</strong></p>
+<p><strong>Exact Code</strong></p>
 
-<div class="highlight-blue">
+<div class="highlight-orange">
 
 <pre><code>shapiro.test(Differences)</code></pre>
 
