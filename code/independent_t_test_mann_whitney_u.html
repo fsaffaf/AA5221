@@ -711,22 +711,21 @@ When filling in <code>Group1Name</code> and <code>Group2Name</code>, use the act
 
 <div class="highlight-blue">
 
-<pre><code>hist(DatasetName$OutcomeVariable[DatasetName$GroupVariable == "Group1Name"],
-   main = "Histogram of Group1Name OutcomeVariable",
+<pre><code>hist(<span style="color: #e67e22; font-weight: bold;">DatasetName</span>$<span style="color: #e67e22; font-weight: bold;">OutcomeVariable</span>[<span style="color: #e67e22; font-weight: bold;">DatasetName</span>$<span style="color: #e67e22; font-weight: bold;">GroupVariable</span> == "<span style="color: #e67e22; font-weight: bold;">Group1Name</span>"],
+   main = "Histogram of <span style="color: #e67e22; font-weight: bold;">Group1Name</span> <span style="color: #e67e22; font-weight: bold;">OutcomeVariable</span>",
    xlab = "Value",
    ylab = "Frequency",
    col = "lightblue",
    border = "black",
    breaks = 10)
 
-hist(DatasetName$OutcomeVariable[DatasetName$GroupVariable == "Group2Name"],
-   main = "Histogram of Group2Name OutcomeVariable",
+hist(<span style="color: #e67e22; font-weight: bold;">DatasetName</span>$<span style="color: #e67e22; font-weight: bold;">OutcomeVariable</span>[<span style="color: #e67e22; font-weight: bold;">DatasetName</span>$<span style="color: #e67e22; font-weight: bold;">GroupVariable</span> == "<span style="color: #e67e22; font-weight: bold;">Group2Name</span>"],
+   main = "Histogram of <span style="color: #e67e22; font-weight: bold;">Group2Name</span> <span style="color: #e67e22; font-weight: bold;">OutcomeVariable</span>",
    xlab = "Value",
    ylab = "Frequency",
    col = "lightgreen",
    border = "black",
    breaks = 10)</code></pre>
-
 </div>
 
 <p><strong>Example</strong></p>
