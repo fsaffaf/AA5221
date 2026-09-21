@@ -793,6 +793,10 @@ Normality Check 1: Histograms
 <p>Because normnality is so important, data analysts check normality in at least three different ways before determining which test to use.
 The first way is by creating and checking histograms.</p>
     
+<p>
+Check normality of the data in three different ways: Histogram, Boxplot, and Shapiro-Wilk.
+</p>
+
 <h3>Histograms</h3>
 <p>
 A <strong>histogram</strong> is a graph that shows how the values of a numerical variable are distributed. It groups values into ranges and uses bars to show how many observations fall within each range.
@@ -909,11 +913,13 @@ Normality Check 2: Boxplots
 <div class="path-step-content">
 
 <p>
-Before conducting the t-test, create boxplots to check for outliers in your numerical variables. An <strong>outlier</strong> is a score that is unusually high or low compared to the other scores in the dataset.
+Before conducting the t-test, create boxplots to check for <strong>extreme outliers</strong> in your numerical variables.
+</p>
+
+<p>
+An <strong>outlier</strong> is a score that is unusually high or low compared to the other scores in the dataset.
 Outliers can affect the normality of a dataset. An outlier can increase the <strong>skewness</strong> of a dataset, which can be the difference between normal and abnormal data.
 <p>
-
-<h3>Boxplots</h3>
 
 <p>
 A box-and-whisker plot, or <strong>boxplot</strong>, provides a quick visual summary of a numerical variable. 
@@ -1218,13 +1224,16 @@ Calculate Cohen's d (Effect Size)
 
 <div class="path-step-content">
 
+<p>
+Only calculate Cohen's d if the Independent T-Test is significant (<strong>p &lt; .05</strong>).
+</p>
 
 <p><strong>Code Template</strong></p>
 
 <div class="highlight-blue">
 
 <pre><code>cohens_d_result &lt;- cohens_d(<span style="color: #e67e22; font-weight: bold;">OutcomeVariable</span> ~ <span style="color: #e67e22; font-weight: bold;">GroupVariable</span>, data = <span style="color: #e67e22; font-weight: bold;">DatasetName</span>, pooled_sd = TRUE)
-print(cohens_d_result)</code></pre>
+&lt;br&gt;print(cohens_d_result)</code></pre>
 
 </div>
 
@@ -1237,11 +1246,9 @@ print(cohens_d_result)</code></pre>
 
 </div>
 
-<strong>Output:</strong> 
-<pre><code>
-0.65
-</code></pre>
-</div>
+<p>
+<strong>Output:</strong> 0.65
+</p>
 
 </div>
 
@@ -1283,12 +1290,16 @@ There is a standardized method of reporting. DO NOT be creative. Use the provide
             <td style="padding: 10px; border-bottom: 1px solid #ddd;">Report <strong>p &lt; .001</strong></td>
         </tr>
         <tr>
-            <td style="padding: 10px; border-bottom: 1px solid #ddd;"><strong>.001 &le; p &lt; .05</strong></td>
+            <td style="padding: 10px; border-bottom: 1px solid #ddd;"><strong>.001 &lt; p &lt; .05</strong></td>
             <td style="padding: 10px; border-bottom: 1px solid #ddd;">Report the exact p-value to three decimals (example: <strong>p = .003</strong>)</td>
         </tr>
         <tr>
-            <td style="padding: 10px;"><strong>p &ge; .05</strong></td>
-            <td style="padding: 10px;">Report <strong>p &gt; .05</strong></td>
+            <td style="padding: 10px; border-bottom: 1px solid #ddd;"><strong>p &gt; .05</strong></td>
+            <td style="padding: 10px; border-bottom: 1px solid #ddd;">Report <strong>p &gt; .05</strong></td>
+        </tr>
+        <tr>
+            <td style="padding: 10px;"><strong>All other values</strong></td>
+            <td style="padding: 10px;">Report two decimal places (example: <strong>.1252 → .13</strong>)</td>
         </tr>
     </tbody>
 </table>
@@ -1307,37 +1318,38 @@ There is a standardized method of reporting. DO NOT be creative. Use the provide
 <strong>Degrees of Freedom:</strong> Total sample size minus the number of groups. For two groups, if <code>n = 100</code>, then <code>df = 98</code>.
 </p>
 
-<p><strong>Effect Size</strong></p>
+<table>
 
-<table style="width: 100%; border-collapse: collapse; font-size: 12pt;">
-    <thead>
-        <tr>
-            <th style="text-align: left; padding: 10px; border-bottom: 2px solid #0e68b3;">Effect Size</th>
-            <th style="text-align: left; padding: 10px; border-bottom: 2px solid #0e68b3;">Interpretation</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td style="padding: 10px; border-bottom: 1px solid #ddd;">±0.00–0.19</td>
-            <td style="padding: 10px; border-bottom: 1px solid #ddd;">No difference between groups</td>
-        </tr>
-        <tr>
-            <td style="padding: 10px; border-bottom: 1px solid #ddd;">±0.20–0.49</td>
-            <td style="padding: 10px; border-bottom: 1px solid #ddd;">Small difference</td>
-        </tr>
-        <tr>
-            <td style="padding: 10px; border-bottom: 1px solid #ddd;">±0.50–0.79</td>
-            <td style="padding: 10px; border-bottom: 1px solid #ddd;">Medium difference</td>
-        </tr>
-        <tr>
-            <td style="padding: 10px; border-bottom: 1px solid #ddd;">±0.80–1.29</td>
-            <td style="padding: 10px; border-bottom: 1px solid #ddd;">Large difference</td>
-        </tr>
-        <tr>
-            <td style="padding: 10px;">±1.30+</td>
-            <td style="padding: 10px;">Very large difference</td>
-        </tr>
-    </tbody>
+<tr>
+<th>Effect Size</th>
+<th>Interpretation</th>
+</tr>
+
+<tr>
+<td>±0.00–0.19</td>
+<td>No difference between groups</td>
+</tr>
+
+<tr>
+<td>±0.20–0.49</td>
+<td>Small difference</td>
+</tr>
+
+<tr>
+<td>±0.50–0.79</td>
+<td>Medium difference</td>
+</tr>
+
+<tr>
+<td>±0.80–1.29</td>
+<td>Large difference</td>
+</tr>
+
+<tr>
+<td>±1.30+</td>
+<td>Very large difference</td>
+</tr>
+
 </table>
 
 <p><strong>Code Template</strong></p>
@@ -1345,18 +1357,76 @@ There is a standardized method of reporting. DO NOT be creative. Use the provide
 <div class="highlight-blue">
 
 <pre><code># An Independent T-Test was conducted to determine if there was a difference in <span style="color: #e67e22; font-weight: bold;">OutcomeVariable</span> between <span style="color: #e67e22; font-weight: bold;">Group1</span> and <span style="color: #e67e22; font-weight: bold;">Group2</span>.
-# <span style="color: #e67e22; font-weight: bold;">Group1</span> scores (M = <span style="color: #e67e22; font-weight: bold;">xx.xx</span>, SD = <span style="color: #e67e22; font-weight: bold;">xx.xx</span>) were <span style="color: #e67e22; font-weight: bold;">significantly / not significantly</span> different from <span style="color: #e67e22; font-weight: bold;">Group2</span> scores (M = <span style="color: #e67e22; font-weight: bold;">xx.xx</span>, SD = <span style="color: #e67e22; font-weight: bold;">xx.xx</span>), t(<span style="color: #e67e22; font-weight: bold;">df#</span>) = <span style="color: #e67e22; font-weight: bold;">xx.xx</span>, p = <span style="color: #e67e22; font-weight: bold;">.xxx</span>.
-# The effect size was <span style="color: #e67e22; font-weight: bold;">small / medium / large / very large</span>, Cohen's d = <span style="color: #e67e22; font-weight: bold;">.xxx</span>.</code></pre>
-
+<span style="color: #e67e22; font-weight: bold;">Group1</span> scores (M = <span style="color: #e67e22; font-weight: bold;">xx.xx</span>, SD = <span style="color: #e67e22; font-weight: bold;">xx.xx</span>) were <span style="color: #e67e22; font-weight: bold;">significantly / not significantly</span> different from <span style="color: #e67e22; font-weight: bold;">Group2</span> scores (M = <span style="color: #e67e22; font-weight: bold;">xx.xx</span>, SD = <span style="color: #e67e22; font-weight: bold;">xx.xx</span>), (t(<span style="color: #e67e22; font-weight: bold;">df#</span> = <span style="color: #e67e22; font-weight: bold;">xx.xx</span>, p = <span style="color: #e67e22; font-weight: bold;">.xxx</span>)
+#The effect size was [small / medium / large / very large], Cohen's d = .xxx.</code></pre>
 </div>
 
 <p><strong>Example</strong></p>
 
 <div class="highlight-blue">
 
-<pre><code># An Independent T-Test was conducted to determine if there was a difference in <span style="color: #e67e22; font-weight: bold;">Exam Scores</span> between <span style="color: #e67e22; font-weight: bold;">Females</span> and <span style="color: #e67e22; font-weight: bold;">Males</span>.
-# <span style="color: #e67e22; font-weight: bold;">Female</span> scores (M = <span style="color: #e67e22; font-weight: bold;">83.00</span>, SD = <span style="color: #e67e22; font-weight: bold;">7.50</span>) were <span style="color: #e67e22; font-weight: bold;">significantly</span> different from <span style="color: #e67e22; font-weight: bold;">Male</span> scores (M = <span style="color: #e67e22; font-weight: bold;">76.70</span>, SD = <span style="color: #e67e22; font-weight: bold;">6.00</span>), t(<span style="color: #e67e22; font-weight: bold;">98</span>) = <span style="color: #e67e22; font-weight: bold;">2.01</span>, p = <span style="color: #e67e22; font-weight: bold;">.002</span>.
-# The effect size was <span style="color: #e67e22; font-weight: bold;">medium</span>, Cohen's d = <span style="color: #e67e22; font-weight: bold;">.65</span>.</code></pre>
+<pre><code>#An Independent T-Test was conducted to determine if there was a difference in <span style="color: #e67e22; font-weight: bold;">Exam Scores</span> between <span style="color: #e67e22; font-weight: bold;">Females</span> and <span style="color: #e67e22; font-weight: bold;">Males</span>.
+#<span style="color: #e67e22; font-weight: bold;">Female</span> scores (M = <span style="color: #e67e22; font-weight: bold;">83.00</span>, SD = <span style="color: #e67e22; font-weight: bold;">7.50</span>) were <span style="color: #e67e22; font-weight: bold;">significantly</span> different from <span style="color: #e67e22; font-weight: bold;">Male</span> scores (M = <span style="color: #e67e22; font-weight: bold;">76.70</span>, SD = <span style="color: #e67e22; font-weight: bold;">6.00</span>), t(<span style="color: #e67e22; font-weight: bold;">98</span>) = <span style="color: #e67e22; font-weight: bold;">2.01</span>, p = <span style="color: #e67e22; font-weight: bold;">.002</span>.
+#The effect size was <span style="color: #e67e22; font-weight: bold;">medium</span>, Cohen's d = <span style="color: #e67e22; font-weight: bold;">.65</span>.</code></pre>
+</div>
+
+</div>
+
+</details>
+
+</div>
+
+</div>
+
+
+<!-- MANN-WHITNEY U -->
+
+<div class="test-path">
+
+
+
+<div class="test-path-content">
+
+
+<!-- STEP 8B -->
+
+<details>
+
+<summary>
+<span class="step-label">Step 8b</span><br>
+Conduct the Mann-Whitney U Test (Abnormal Data)
+</summary>
+
+<div class="path-step-content">
+
+<p>
+Conduct a Mann-Whitney U test to determine whether there is a difference between groups.
+</p>
+
+<p><strong>Code Template</strong></p>
+
+<div class="highlight-blue">
+
+<pre><code>wilcox.test(<span style="color: #e67e22; font-weight: bold;">OutcomeVariable</span> ~ <span style="color: #e67e22; font-weight: bold;">GroupVariable</span>, data = <span style="color: #e67e22; font-weight: bold;">DatasetName</span>)</code></pre>
+</div>
+
+<p><strong>Example</strong></p>
+
+<div class="highlight-blue">
+
+<pre><code>wilcox.test(<span style="color: #e67e22; font-weight: bold;">ExamScores</span> ~ <span style="color: #e67e22; font-weight: bold;">Gender</span>, data = <span style="color: #e67e22; font-weight: bold;">DatasetZ</span>)</code></pre>
+</div>
+
+<p><strong>Output:</strong></p>
+
+<div class="highlight">
+
+<pre><code>Wilcoxon rank sum test with continuity correction
+
+data: score by gender
+
+W = 30, p-value = 0.002
+alternative hypothesis: true location shift is not equal to 0</code></pre>
 
 </div>
 
@@ -1364,13 +1434,59 @@ There is a standardized method of reporting. DO NOT be creative. Use the provide
 
 </details>
 
-<!-- STEP 10B -->
+
+<!-- STEP 9B -->
 
 <details>
 
 <summary>
-<span class="step-label">Step 10b</span><br>
-Report the Results
+<span class="step-label">Step 9b</span><br>
+Calculate Cliff's Delta (Effect Size)
+</summary>
+
+<div class="path-step-content">
+
+
+<p><strong>Code Template</strong></p>
+
+<div class="highlight-blue">
+<pre><code>mw_effect &lt;- cliff.delta(<span style="color: #e67e22; font-weight: bold;">OutcomeVariable</span> ~ <span style="color: #e67e22; font-weight: bold;">GroupVariable</span>, data = <span style="color: #e67e22; font-weight: bold;">DatasetName</span>)
+print(mw_effect)</code></pre>
+</div>
+
+<p><strong>Example</strong></p>
+
+<div class="highlight-blue">
+
+<pre><code>mw_effect &lt;- cliff.delta(<span style="color: #e67e22; font-weight: bold;">ExamScores</span> ~ <span style="color: #e67e22; font-weight: bold;">Gender</span>, data = <span style="color: #e67e22; font-weight: bold;">DatasetZ</span>)
+print(mw_effect)</code></pre>
+</div>
+
+<p><strong>Output:</strong></p>
+
+<div class="highlight">
+
+<pre><code>Cliff's Delta
+
+delta estimate: 0.45
+95 percent confidence interval:
+0.21 0.66
+Magnitude: medium</code></pre>
+
+</div>
+
+</div>
+
+</details>
+
+
+<!-- STEP 10B -->
+
+<!-- Step 8a -->
+            <details>
+                <summary>
+                    <span class="step-label">Step 10b</span><br>
+                    Report the Results
 </summary>
 
 <div class="path-step-content">
@@ -1399,15 +1515,20 @@ There is a standardized method of reporting. DO NOT be creative. Use the provide
             <td style="padding: 10px; border-bottom: 1px solid #ddd;">Report <strong>p &lt; .001</strong></td>
         </tr>
         <tr>
-            <td style="padding: 10px; border-bottom: 1px solid #ddd;"><strong>.001 &le; p &lt; .05</strong></td>
+            <td style="padding: 10px; border-bottom: 1px solid #ddd;"><strong>.001 &lt; p &lt; .05</strong></td>
             <td style="padding: 10px; border-bottom: 1px solid #ddd;">Report the exact p-value to three decimals (example: <strong>p = .003</strong>)</td>
         </tr>
         <tr>
-            <td style="padding: 10px;"><strong>p &ge; .05</strong></td>
-            <td style="padding: 10px;">Report <strong>p &gt; .05</strong></td>
+            <td style="padding: 10px; border-bottom: 1px solid #ddd;"><strong>p &gt; .05</strong></td>
+            <td style="padding: 10px; border-bottom: 1px solid #ddd;">Report <strong>p &gt; .05</strong></td>
+        </tr>
+        <tr>
+            <td style="padding: 10px;"><strong>All other values</strong></td>
+            <td style="padding: 10px;">Report two decimal places (example: <strong>.1252 → .13</strong>)</td>
         </tr>
     </tbody>
 </table>
+
 
 <p><strong>Definitions</strong></p>
 
@@ -1417,42 +1538,13 @@ There is a standardized method of reporting. DO NOT be creative. Use the provide
 <li><strong>p</strong> = p-value</li>
 </ul>
 
-<p><strong>Effect Size</strong></p>
-
-<table style="width: 100%; border-collapse: collapse; font-size: 12pt;">
-    <thead>
-        <tr>
-            <th style="text-align: left; padding: 10px; border-bottom: 2px solid #0e68b3;">Cliff's Delta</th>
-            <th style="text-align: left; padding: 10px; border-bottom: 2px solid #0e68b3;">Interpretation</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td style="padding: 10px; border-bottom: 1px solid #ddd;">0.00–0.14</td>
-            <td style="padding: 10px; border-bottom: 1px solid #ddd;">Negligible difference</td>
-        </tr>
-        <tr>
-            <td style="padding: 10px; border-bottom: 1px solid #ddd;">0.15–0.32</td>
-            <td style="padding: 10px; border-bottom: 1px solid #ddd;">Small difference</td>
-        </tr>
-        <tr>
-            <td style="padding: 10px; border-bottom: 1px solid #ddd;">0.33–0.47</td>
-            <td style="padding: 10px; border-bottom: 1px solid #ddd;">Medium difference</td>
-        </tr>
-        <tr>
-            <td style="padding: 10px;">0.48+</td>
-            <td style="padding: 10px;">Large difference</td>
-        </tr>
-    </tbody>
-</table>
-
 <p><strong>Code Template</strong></p>
 
 <div class="highlight-blue">
 
-<pre><code># A Mann-Whitney U test was conducted to determine if there was a difference in <span style="color: #e67e22; font-weight: bold;">OutcomeVariable</span> between <span style="color: #e67e22; font-weight: bold;">Group1</span> and <span style="color: #e67e22; font-weight: bold;">Group2</span>.
-# <span style="color: #e67e22; font-weight: bold;">Group1</span> scores (Mdn = <span style="color: #e67e22; font-weight: bold;">xx.xx</span>) were <span style="color: #e67e22; font-weight: bold;">significantly / not significantly</span> different from <span style="color: #e67e22; font-weight: bold;">Group2</span> scores (Mdn = <span style="color: #e67e22; font-weight: bold;">xx.xx</span>), U = <span style="color: #e67e22; font-weight: bold;">xx</span>, p = <span style="color: #e67e22; font-weight: bold;">.xxx</span>.
-# The effect size was <span style="color: #e67e22; font-weight: bold;">small / medium / large</span>, Cliff's Delta = <span style="color: #e67e22; font-weight: bold;">.xxx</span>.</code></pre>
+<pre><code>#A Mann-Whitney U test was conducted to determine if there was a difference in OutcomeVariable between Group1 and Group2.
+#Group1 scores (Mdn = xx.xx) were [significantly / not significantly] different from Group2 scores (Mdn = xx.xx), U = x.xx, p = .xxx.
+#The effect size was [small / medium / large / very large], Cliff's Delta = .xxx.</code></pre>
 
 </div>
 
@@ -1460,16 +1552,21 @@ There is a standardized method of reporting. DO NOT be creative. Use the provide
 
 <div class="highlight-blue">
 
-<pre><code># A Mann-Whitney U test was conducted to determine if there was a difference in <span style="color: #e67e22; font-weight: bold;">Exam Scores</span> between <span style="color: #e67e22; font-weight: bold;">Females</span> and <span style="color: #e67e22; font-weight: bold;">Males</span>.
-# <span style="color: #e67e22; font-weight: bold;">Female</span> scores (Mdn = <span style="color: #e67e22; font-weight: bold;">84.00</span>) were <span style="color: #e67e22; font-weight: bold;">significantly</span> different from <span style="color: #e67e22; font-weight: bold;">Male</span> scores (Mdn = <span style="color: #e67e22; font-weight: bold;">77.00</span>), U = <span style="color: #e67e22; font-weight: bold;">30</span>, p = <span style="color: #e67e22; font-weight: bold;">.002</span>.
-# The effect size was <span style="color: #e67e22; font-weight: bold;">medium</span>, Cliff's Delta = <span style="color: #e67e22; font-weight: bold;">.45</span>.</code></pre>
+<pre><code>#A Mann-Whitney U test was conducted to determine if there was a difference in Exam Scores between Females and Males.
+#Female scores (Mdn = 84.00) were significantly different from Male scores (Mdn = 77.00), U = 30.00, p = .002.
+#The effect size was medium, Cliff's Delta = .45.</code></pre>
 
 </div>
 
 </div>
 
 </details>
-        
+
+</div>
+
+</div>
+</div>
+
 <!-- FINAL STEPS -->
 
 <div class="test-path">
@@ -1570,6 +1667,10 @@ Paste the code into the empty R Markdown document.
 
 </ol>
 
+<p>
+At this point, the R Markdown document should contain only your assignment code.
+</p>
+
 <hr>
 
 <h3> Create a Code Chunk</h3>
@@ -1652,6 +1753,30 @@ A new HTML report should open automatically.
 The report will display your code, output, tables, charts, and statistical
 results in a web-friendly format.
 </p>
+
+<hr>
+
+<h3>Step 6: Save the HTML Report</h3>
+
+<p>
+After the document finishes knitting, save the generated HTML file.
+</p>
+
+<ol>
+
+<li>
+Verify that the report displays correctly.
+</li>
+
+<li>
+Save the HTML file inside your <strong>Assignment 4</strong> folder.
+</li>
+
+<li>
+Confirm that the file opens correctly in a web browser.
+</li>
+
+</ol>
 
 </div>
 
@@ -1805,6 +1930,10 @@ If available, select <strong>Webpage, HTML Only</strong>.
 
 <li>
 Save the file.
+</li>
+
+<li>
+Place the saved HTML file inside your <strong>Assignment 4</strong> folder.
 </li>
 
 </ol>
