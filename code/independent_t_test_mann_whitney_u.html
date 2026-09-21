@@ -451,22 +451,15 @@ DatasetZ %>%
 1 Female  78.7   79.3  7.68    50
 2 Male    72.8   79.5 10.1     50
       
-hist(DatasetZ$ExamScores[DatasetZ$Gender == "Female"],
-     main = "Histogram of Female ExamScores",
-     xlab = "Value",
-     ylab = "Frequency",
-     col = "lightblue",
-     border = "black",
-     breaks = 10)
+hist(DatasetZ$ExamScores[DatasetZ$Gender == "Feales"],
+     breaks = 15,
+     col = "skyblue",
+     border = "white")
 
-
-hist(DatasetZ$ExamScores[DatasetZ$Gender == "Male"],
-     main = "Histogram of Male ExamScores",
-     xlab = "Value",
-     ylab = "Frequency",
-     col = "lightgreen",
-     border = "black",
-     breaks = 10)
+hist(DatasetZ$ExamScores[DatasetZ$Gender == "Males"],
+     breaks = 15,
+     col = "firebrick",
+     border = "white")
 
 #Data for Males appears normally distributed.
 #Data for Females appears normally distributed.
