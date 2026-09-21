@@ -982,12 +982,12 @@ hist(<span style="color: #e67e22; font-weight: bold;">DatasetName</span>$<span s
 <div class="highlight-blue">
 
 <pre><code>
-hist(DatasetZ$Age,
+hist(<span style="color: #e67e22; font-weight: bold;">DatasetZ</span>$<span style="color: #e67e22; font-weight: bold;">Age</span>,
      breaks = 15,
      col = "skyblue",
      border = "white")
 
-hist(DatasetZ$USD,
+hist(<span style="color: #e67e22; font-weight: bold;">DatasetZ</span>$<span style="color: #e67e22; font-weight: bold;">USD</span>,
      breaks = 15,
      col = "firebrick",
      border = "white")
@@ -1025,8 +1025,8 @@ Data Visualization and Normality
 
 <div class="highlight-blue">
 <pre><code>
-#Data for Variable1 appears <span style="color: #e67e22; font-weight: bold;">abnormally/ normally</span> distributed.
-#Data for Variable2 appears <span style="color: #e67e22; font-weight: bold;">abnormally/ normally</span> distributed.
+#Data for <span style="color: #e67e22; font-weight: bold;">Variable1</span> appears <span style="color: #e67e22; font-weight: bold;">abnormally/ normally</span> distributed.
+#Data for <span style="color: #e67e22; font-weight: bold;">Variable2</span> appears <span style="color: #e67e22; font-weight: bold;">abnormally/ normally</span> distributed.
 </code></pre>
 </div>
 
@@ -1034,8 +1034,8 @@ Data Visualization and Normality
 
 <div class="highlight-blue">
 <pre><code>
-#Data for age appears normally distributed.
-#Data for USD appears normally distributed.
+#Data for <span style="color: #e67e22; font-weight: bold;">Age</span> appears <span style="color: #e67e22; font-weight: bold;">normally</span> distributed.
+#Data for <span style="color: #e67e22; font-weight: bold;">USD</span> appears <span style="color: #e67e22; font-weight: bold;">normally</span> distributed.
 </code></pre>
 </div>
 
@@ -1105,8 +1105,10 @@ Shapiro-Wilk normality test
 
 data: DatasetZ$USD
 W = 0.970
-p-value = 0.865</code></pre>
-
+p-value = 0.865
+</code></pre>
+</div>
+    
 <h3>Interpret the Shapiro-Wilk Test</h3>
 
 <p>
