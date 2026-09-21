@@ -432,85 +432,6 @@ cor.test(
 </details>
 
 
-<!-- STEP 1 -->
-
-<details>
-
-<summary>
-<span class="step-label">Step 1</span><br>
-Prepare for Data Analysis
-</summary>
-
-<div class="path-step-content">
-
-<h3>Download the Assignment 5 Dataset</h3>
-
-<ol>
-
-<li>Download the dataset from Canvas.</li>
-
-<li>
-For students using a <strong>personal laptop</strong>, save the file inside your
-<strong>Assignment 5</strong> folder in Microsoft OneDrive.
-If you are having issues using Microsoft OneDrive, save the file to a folder on your desktop and upload everything later.
-</li>
-
-<li>
-For students using a <strong>SLU-issued laptop</strong>, save the file inside a folder on your virtual desktop.
-You will upload everything to your <strong>Assignment 5</strong> folder in OneDrive later.
-</li>
-
-</ol>
-
-<hr>
-
-<h3>Open RStudio and Create a New R Script</h3>
-
-<ol>
-
-<li>Open RStudio.</li>
-
-<li>Click <strong>File → New File → R Script</strong>.</li>
-
-<li>
-The top-left pane is where you will write and save your R code.
-You will save this as an R Script file (<strong>.R</strong>).
-</li>
-
-<li>Read <strong>Navigating RStudio</strong>.</li>
-
-<li>Read <strong>R Script Files</strong>.</li>
-
-</ol>
-
-<hr>
-
-<h3>Save Your R Script</h3>
-
-<ol>
-
-<li>Click <strong>File → Save As</strong>.</li>
-
-<li>
-For students using a <strong>personal laptop</strong>, save the file inside your
-<strong>Assignment 5</strong> folder in Microsoft OneDrive.
-If you are having issues using Microsoft OneDrive, save the file to a folder on your desktop and upload everything later.
-</li>
-
-<li>
-For students using a <strong>SLU-issued laptop</strong>, save the file inside a folder on your virtual desktop.
-You will upload everything to your <strong>Assignment 5</strong> folder in OneDrive later.
-</li>
-
-<li>Remember to save frequently as you work.</li>
-
-</ol>
-
-</div>
-
-</details>
-
-
 <!-- STEP 2 -->
 
 <details>
@@ -600,82 +521,89 @@ The packages are now available for use in your R session.
 </details>
 
 
-<!-- STEP 3 -->
-
+<!-- IMPORT DATASET -->
 <details>
 
 <summary>
-<span class="step-label">Step 3</span><br>
-Import Your Excel Dataset into RStudio
+<span class="step-label">Step 2</span><br>
+Import & Name the Dataset
 </summary>
-
+    
 <div class="path-step-content">
 
+
 <p>
-Although datasets can be imported entirely with code, many students experience difficulties locating file paths.
-Therefore, we will use the <strong>point-and-click method</strong>.
+Although datasets can be imported entirely through code, many students
+experience difficulty locating file paths. Therefore, this course uses the
+<b>point-and-click import method</b> to generate the necessary code automatically.
 </p>
+
+<h3>Import the Excel File</h3>
 
 <ol>
 
 <li>
-Click <strong>File → Import Dataset → From Excel</strong>.
+Select: <strong>File → Import Dataset → From Excel</strong>
 </li>
 
 <li>
-A new window inside RStudio should appear.
-Click <strong>Browse</strong> in the top-right corner.
+A new import window will appear.
+Select <strong>Browse</strong>.
 </li>
 
 <li>
-Locate and select your dataset.
-<br>
-For students using a personal laptop: the dataset should be inside your
-<strong>OneDrive → AA 5221 → Assignment 5</strong> folder.
-<br>
-If you are having issues using Microsoft OneDrive, save the dataset to a folder on your desktop and upload it later.
-<br>
-For students using a <strong>SLU-issued laptop</strong>, the dataset should be located on your virtual desktop.
+Locate your assigned Excel dataset.
 </li>
 
 <li>
-Click <strong>Import</strong>.
+Select the dataset and choose <strong>Open</strong>.
+</li>
+
+<li>
+Return to the import window and select <strong>Import</strong>.
 </li>
 
 </ol>
 
+<hr>
+
+<h3>What Happens When You Click Import?</h3>
+
 <p>
-RStudio will automatically generate the code used to import the dataset.
+Once imported, the dataset will appear in a new tab and will also appear
+in the Environment pane.
+</p>
+
+<p>
+RStudio also automatically generates the code used to import the dataset.
+This code appears in the Console window.
+Copy the import code and paste it into your R Script. This allows the dataset
+to be automatically imported the next time you run your script.
+</p>
+
+<p>
+The generated code will vary depending on your file location and file name.
 </p>
 
 <h3>General Example</h3>
 
-<div class="highlight-blue">
+<div class="highlight highlight-blue">
 
 <pre><code>DatasetName &lt;- read_excel("filepath")</code></pre>
 
 </div>
 
-<h3>Example with a Pretend File Path</h3>
+<h3>Example with a Sample File Path</h3>
 
-<div class="highlight-blue">
+<div class="highlight highlight-blue">
 
-<pre><code>DatasetZ &lt;- read_excel("C:/Users/Joseph/Desktop/dataset.xlsx")</code></pre>
-
-</div>
-
-<p>
-Copy the generated code and paste it into your R Script.
-This allows the dataset to be automatically imported the next time you run your script.
-</p>
-
-<p>
-Once imported, the dataset will appear in a new tab in RStudio.
-</p>
+<pre><code>DatasetName &lt;- read_excel(
+"C:/Users/John/OneDrive/Documents/AA5221/Datasets/DatasetName.xlsx"
+)</code></pre>
 
 </div>
-
 </details>
+
 
 
 <!-- STEP 4 -->
@@ -684,13 +612,13 @@ Once imported, the dataset will appear in a new tab in RStudio.
 
 <summary>
 <span class="step-label">Step 4</span><br>
-Visually Inspect the Relationship with a Scatterplot
+View the Relationship with a Scatterplot
 </summary>
 
 <div class="path-step-content">
 
 <p>
-Scatterplots are always required when conducting a correlation because they allow you to visually inspect the relationship between two variables.
+Scatterplots allow you to visually inspect the relationship between two variables.
 </p>
 
 <p>
