@@ -403,24 +403,16 @@ median(data2026$Income)
 hist(data2026$Age)
 hist(data2026$Income)
 
-# Variable 1: Age
-# The variable looks normally distributed.
-# The data is symmetrical.
-# The data has a proper bell curve.
+# The variable age is normally distributed.
+# The variable USD is normally distributed.
 
-# Variable 2: Income
-# The variable looks normally distributed.
-# The data is symmetrical.
-# The data has a proper bell curve.
 
 shapiro.test(data2026$Age)
 shapiro.test(data2026$Income)
 
-# Variable 1: Age
-# The variable is normally distributed (p = .75).
+# The variable age is normally distributed (p = .75).
 
-# Variable 2: Income
-# The variable is normally distributed (p = .87).
+# The variable USD normally distributed (p = .87).
 
 cor.test(
     data2026$Age,
@@ -883,13 +875,15 @@ median(DatasetName$DependentVariable)</code></pre>
 
 <div class="highlight-blue">
 
-<pre><code>mean(DatasetZ$Age)
+<pre><code>
+mean(DatasetZ$Age)
 sd(DatasetZ$Age)
 median(DatasetZ$Age)
 
 mean(DatasetZ$USD)
 sd(DatasetZ$USD)
-median(DatasetZ$USD)</code></pre>
+median(DatasetZ$USD)
+</code></pre>
 
 </div>
 
@@ -897,23 +891,26 @@ median(DatasetZ$USD)</code></pre>
 
 <div class="highlight">
 
-<pre><code>&gt; mean(DatasetZ$Age)
+<pre><code>
+mean(DatasetZ$Age)
 [1] 40.12
 
-&gt; sd(DatasetZ$Age)
+sd(DatasetZ$Age)
 [1] 2.19
 
-&gt; median(DatasetZ$Age)
+median(DatasetZ$Age)
 [1] 40
 
-&gt; mean(DatasetZ$USD)
+mean(DatasetZ$USD)
 [1] 41000.11
 
-&gt; sd(DatasetZ$USD)
+sd(DatasetZ$USD)
 [1] 1002.09
 
-&gt; median(DatasetZ$USD)
-[1] 41000</code></pre>
+median(DatasetZ$USD)
+[1] 41000
+
+</code></pre>
 
 </div>
 
@@ -984,7 +981,8 @@ hist(<span style="color: #e67e22; font-weight: bold;">DatasetName</span>$<span s
 
 <div class="highlight-blue">
 
-<pre><code>hist(DatasetZ$Age,
+<pre><code>
+hist(DatasetZ$Age,
      breaks = 15,
      col = "skyblue",
      border = "white")
@@ -993,16 +991,12 @@ hist(DatasetZ$USD,
      breaks = 15,
      col = "firebrick",
      border = "white")
-
-
 </code></pre>
 
 </div>
 
-<p>
 <strong>Output:</strong> 
 Histograms appear in the Plots pane.
-</p>
     
 <h3>Interpret the Histograms</h3>
 
@@ -1069,15 +1063,9 @@ Check Normality Statistically: Shapiro-Wilk Test
 <div class="path-step-content">
 
 <p>
-The Shapiro-Wilk test provides a statistical method for checking normality.
-Unlike visual inspection, the Shapiro-Wilk test evaluates whether the observed distribution differs significantly from a theoretically normal distribution.
-</p>
+The Shapiro-Wilk test allows you to check whether your data is normal or abnormal using a statistical test. The test asks: "Is there a significant difference between my data's distribution and a theoretically perfect distribution?" A p-value of less than .05 indicates there is a significant difference, which means the data is abnormal. A p-value of greater than .05 indiciates there is no significant difference, which means the data is normal.</p>
 
-<h3>Run the Shapiro-Wilk Tests</h3>
-
-<p>
-Copy and paste the following code into your R Script:
-</p>
+<p>Code Template</p>
 
 <div class="highlight-blue">
 
@@ -1119,79 +1107,61 @@ data: DatasetZ$USD
 W = 0.970
 p-value = 0.865</code></pre>
 
+<h3>Interpret the Shapiro-Wilk Test</h3>
+
 <p>
-The Shapiro-Wilk test evaluates the following question:
+In your R Script, report if the data is normal or abnormal according to the Shapiro-Wilk test.
 </p>
-
-<div class="highlight-blue">
-
-<strong>
-"Is there a statistically significant difference between my data's distribution and a perfectly normal distribution?"
-</strong>
-
-</div>
 
 <table>
 
 <tr>
-<th>P-Value</th>
-<th>Meaning</th>
-<th>Conclusion</th>
+<th>p-value</th>
+<th>Interpretation</th>
+<th>Decision</th>
 </tr>
 
 <tr>
-
 <td>p &gt; .05</td>
-
-<td>
-No significant difference from a normal distribution
-</td>
-
-<td>
-<strong>Normal</strong>
-</td>
-
+<td>There is NO significant difference between our data's distribution and a normal distribution.</td>
+<td>Data is normal</td>
 </tr>
 
 <tr>
-
 <td>p &lt; .05</td>
-
-<td>
-Significant difference from a normal distribution
-</td>
-
-<td>
-<strong>Abnormal</strong>
-</td>
-
+<td>There is a significant difference between our data's distribution and a normal distribution.</td>
+<td>Data is abnormal</td>
 </tr>
 
 </table>
 
-<p><strong>Reporting Template</strong></p>
+<p><strong>Code Template</strong></p>
 
 <div class="highlight-blue">
 
-<pre><code># Variable 1: Name of Variable
-# The variable is [normally / abnormally] distributed (p = .xx).
+<pre><code>#Group 1: Name of First Group
+#The first group is [normally / abnormally] distributed, (p = .xxx).
 
-# Variable 2: Name of Variable
-# The variable is [normally / abnormally] distributed (p = .xx).</code></pre>
+#Group 2: Name of Second Group
+#The second group is [normally / abnormally] distributed, (p = .xxx).</code></pre>
 
 </div>
 
-<h3>Example Report</h3>
+<p><strong>Example</strong></p>
 
 <div class="highlight-blue">
 
-<pre><code># Variable 1: Age
-# The variable is normally distributed (p = .75).
+<pre><code>
+    
+#Age is abnormally distributed, (p = .003).
 
-# Variable 2: USD
-# The variable is normally distributed (p = .87).</code></pre>
+#USD is normally distributed, (p = .061).
+
+</code></pre>
 
 </div>
+
+<p><strong>Output:</strong> NA</p>
 
 </div>
 
