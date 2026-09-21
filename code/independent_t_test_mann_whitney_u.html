@@ -1283,16 +1283,12 @@ There is a standardized method of reporting. DO NOT be creative. Use the provide
             <td style="padding: 10px; border-bottom: 1px solid #ddd;">Report <strong>p &lt; .001</strong></td>
         </tr>
         <tr>
-            <td style="padding: 10px; border-bottom: 1px solid #ddd;"><strong>.001 &lt; p &lt; .05</strong></td>
+            <td style="padding: 10px; border-bottom: 1px solid #ddd;"><strong>.001 &le; p &lt; .05</strong></td>
             <td style="padding: 10px; border-bottom: 1px solid #ddd;">Report the exact p-value to three decimals (example: <strong>p = .003</strong>)</td>
         </tr>
         <tr>
-            <td style="padding: 10px; border-bottom: 1px solid #ddd;"><strong>p &gt; .05</strong></td>
-            <td style="padding: 10px; border-bottom: 1px solid #ddd;">Report <strong>p &gt; .05</strong></td>
-        </tr>
-        <tr>
-            <td style="padding: 10px;"><strong>All other values</strong></td>
-            <td style="padding: 10px;">Report two decimal places (example: <strong>.1252 → .13</strong>)</td>
+            <td style="padding: 10px;"><strong>p &ge; .05</strong></td>
+            <td style="padding: 10px;">Report <strong>p &gt; .05</strong></td>
         </tr>
     </tbody>
 </table>
@@ -1311,38 +1307,37 @@ There is a standardized method of reporting. DO NOT be creative. Use the provide
 <strong>Degrees of Freedom:</strong> Total sample size minus the number of groups. For two groups, if <code>n = 100</code>, then <code>df = 98</code>.
 </p>
 
-<table>
+<p><strong>Effect Size</strong></p>
 
-<tr>
-<th>Effect Size</th>
-<th>Interpretation</th>
-</tr>
-
-<tr>
-<td>±0.00–0.19</td>
-<td>No difference between groups</td>
-</tr>
-
-<tr>
-<td>±0.20–0.49</td>
-<td>Small difference</td>
-</tr>
-
-<tr>
-<td>±0.50–0.79</td>
-<td>Medium difference</td>
-</tr>
-
-<tr>
-<td>±0.80–1.29</td>
-<td>Large difference</td>
-</tr>
-
-<tr>
-<td>±1.30+</td>
-<td>Very large difference</td>
-</tr>
-
+<table style="width: 100%; border-collapse: collapse; font-size: 12pt;">
+    <thead>
+        <tr>
+            <th style="text-align: left; padding: 10px; border-bottom: 2px solid #0e68b3;">Effect Size</th>
+            <th style="text-align: left; padding: 10px; border-bottom: 2px solid #0e68b3;">Interpretation</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td style="padding: 10px; border-bottom: 1px solid #ddd;">±0.00–0.19</td>
+            <td style="padding: 10px; border-bottom: 1px solid #ddd;">No difference between groups</td>
+        </tr>
+        <tr>
+            <td style="padding: 10px; border-bottom: 1px solid #ddd;">±0.20–0.49</td>
+            <td style="padding: 10px; border-bottom: 1px solid #ddd;">Small difference</td>
+        </tr>
+        <tr>
+            <td style="padding: 10px; border-bottom: 1px solid #ddd;">±0.50–0.79</td>
+            <td style="padding: 10px; border-bottom: 1px solid #ddd;">Medium difference</td>
+        </tr>
+        <tr>
+            <td style="padding: 10px; border-bottom: 1px solid #ddd;">±0.80–1.29</td>
+            <td style="padding: 10px; border-bottom: 1px solid #ddd;">Large difference</td>
+        </tr>
+        <tr>
+            <td style="padding: 10px;">±1.30+</td>
+            <td style="padding: 10px;">Very large difference</td>
+        </tr>
+    </tbody>
 </table>
 
 <p><strong>Code Template</strong></p>
@@ -1350,23 +1345,24 @@ There is a standardized method of reporting. DO NOT be creative. Use the provide
 <div class="highlight-blue">
 
 <pre><code># An Independent T-Test was conducted to determine if there was a difference in <span style="color: #e67e22; font-weight: bold;">OutcomeVariable</span> between <span style="color: #e67e22; font-weight: bold;">Group1</span> and <span style="color: #e67e22; font-weight: bold;">Group2</span>.
-<span style="color: #e67e22; font-weight: bold;">Group1</span> scores (M = <span style="color: #e67e22; font-weight: bold;">xx.xx</span>, SD = <span style="color: #e67e22; font-weight: bold;">xx.xx</span>) were <span style="color: #e67e22; font-weight: bold;">significantly / not significantly</span> different from <span style="color: #e67e22; font-weight: bold;">Group2</span> scores (M = <span style="color: #e67e22; font-weight: bold;">xx.xx</span>, SD = <span style="color: #e67e22; font-weight: bold;">xx.xx</span>), (t(<span style="color: #e67e22; font-weight: bold;">df#</span> = <span style="color: #e67e22; font-weight: bold;">xx.xx</span>, p = <span style="color: #e67e22; font-weight: bold;">.xxx</span>)
-#The effect size was [small / medium / large / very large], Cohen's d = .xxx.</code></pre>
+# <span style="color: #e67e22; font-weight: bold;">Group1</span> scores (M = <span style="color: #e67e22; font-weight: bold;">xx.xx</span>, SD = <span style="color: #e67e22; font-weight: bold;">xx.xx</span>) were <span style="color: #e67e22; font-weight: bold;">significantly / not significantly</span> different from <span style="color: #e67e22; font-weight: bold;">Group2</span> scores (M = <span style="color: #e67e22; font-weight: bold;">xx.xx</span>, SD = <span style="color: #e67e22; font-weight: bold;">xx.xx</span>), t(<span style="color: #e67e22; font-weight: bold;">df#</span>) = <span style="color: #e67e22; font-weight: bold;">xx.xx</span>, p = <span style="color: #e67e22; font-weight: bold;">.xxx</span>.
+# The effect size was <span style="color: #e67e22; font-weight: bold;">small / medium / large / very large</span>, Cohen's d = <span style="color: #e67e22; font-weight: bold;">.xxx</span>.</code></pre>
+
 </div>
 
 <p><strong>Example</strong></p>
 
 <div class="highlight-blue">
 
-<pre><code>#An Independent T-Test was conducted to determine if there was a difference in <span style="color: #e67e22; font-weight: bold;">Exam Scores</span> between <span style="color: #e67e22; font-weight: bold;">Females</span> and <span style="color: #e67e22; font-weight: bold;">Males</span>.
-#<span style="color: #e67e22; font-weight: bold;">Female</span> scores (M = <span style="color: #e67e22; font-weight: bold;">83.00</span>, SD = <span style="color: #e67e22; font-weight: bold;">7.50</span>) were <span style="color: #e67e22; font-weight: bold;">significantly</span> different from <span style="color: #e67e22; font-weight: bold;">Male</span> scores (M = <span style="color: #e67e22; font-weight: bold;">76.70</span>, SD = <span style="color: #e67e22; font-weight: bold;">6.00</span>), t(<span style="color: #e67e22; font-weight: bold;">98</span>) = <span style="color: #e67e22; font-weight: bold;">2.01</span>, p = <span style="color: #e67e22; font-weight: bold;">.002</span>.
-#The effect size was <span style="color: #e67e22; font-weight: bold;">medium</span>, Cohen's d = <span style="color: #e67e22; font-weight: bold;">.65</span>.</code></pre>
+<pre><code># An Independent T-Test was conducted to determine if there was a difference in <span style="color: #e67e22; font-weight: bold;">Exam Scores</span> between <span style="color: #e67e22; font-weight: bold;">Females</span> and <span style="color: #e67e22; font-weight: bold;">Males</span>.
+# <span style="color: #e67e22; font-weight: bold;">Female</span> scores (M = <span style="color: #e67e22; font-weight: bold;">83.00</span>, SD = <span style="color: #e67e22; font-weight: bold;">7.50</span>) were <span style="color: #e67e22; font-weight: bold;">significantly</span> different from <span style="color: #e67e22; font-weight: bold;">Male</span> scores (M = <span style="color: #e67e22; font-weight: bold;">76.70</span>, SD = <span style="color: #e67e22; font-weight: bold;">6.00</span>), t(<span style="color: #e67e22; font-weight: bold;">98</span>) = <span style="color: #e67e22; font-weight: bold;">2.01</span>, p = <span style="color: #e67e22; font-weight: bold;">.002</span>.
+# The effect size was <span style="color: #e67e22; font-weight: bold;">medium</span>, Cohen's d = <span style="color: #e67e22; font-weight: bold;">.65</span>.</code></pre>
+
 </div>
 
 </div>
 
 </details>
-
 
 <!-- MANN-WHITNEY U -->
 
