@@ -1269,72 +1269,24 @@ Determine Which Correlation to Use
 <div class="path-step-content">
 
 <p>
-Use the information from your histograms and Shapiro-Wilk tests to determine whether you should conduct a Pearson Correlation or a Spearman Correlation.
+Were any of your histograms or Shapiro-Wilk tests abnormal?
+If any of them were abnormal, this would require an investigation.
+
+In more advanced data analytics classes, we investigate potential causes of abnormal data (if we had expected it to be normal). 
+Potential causes could be data-entry errors or even major methodological errors. 
+Sometimes abnormal data is due to errors that can be fixed.
 </p>
-
-<table>
-
-<tr>
-<th>Scenario</th>
-<th>Decision</th>
-</tr>
-
-<tr>
-
-<td>
-Both histograms appear normal and both Shapiro-Wilk tests indicate normality.
-</td>
-
-<td>
-<strong>Use Pearson Correlation.</strong>
-</td>
-
-</tr>
-
-<tr>
-
-<td>
-One or both histograms appear abnormal, but both Shapiro-Wilk tests indicate normality.
-</td>
-
-<td>
-You most likely have misinterpreted the histograms.
-Check your Shapiro-Wilk tests for the answer on whether the data are normal or not.
-The datasets for this assignment are designed so that the histograms and Shapiro-Wilk tests match.
-In real-world data, the two methods can sometimes disagree.
-When they disagree, this may indicate that the data need additional investigation, such as checking for data-entry errors or methodological problems.
-</td>
-
-</tr>
-
-<tr>
-
-<td>
-One or both Shapiro-Wilk tests indicate abnormality.
-</td>
-
-<td>
-<strong>Use Spearman Correlation.</strong>
-</td>
-
-</tr>
-
-</table>
-
-<div class="highlight-orange">
-
-<strong>Important:</strong>
 
 <p>
-For this assignment, follow the decision rule above.
-If one or both Shapiro-Wilk tests indicate abnormality, conduct a Spearman Correlation.
+Since we are keeping our class simple, just look at your Shapiro-Wilk tests.
+Were they both normal, or was one or both abnormal?
 </p>
-
-</div>
 
 <p>
-Once you determine which correlation is appropriate, continue to either the Pearson Correlation section or the Spearman Correlation section.
+If both were normal, choose the Pearson Correlation.
+If one or both were abnormal, choose the Spearman Correlation.
 </p>
+
 
 </div>
 
