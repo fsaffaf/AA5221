@@ -731,8 +731,6 @@ Copy and paste the following code into your R Script:
     x = "IndependentVariable",
     y = "DependentVariable",
     add = "reg.line",
-    xlab = "Independent Variable",
-    ylab = "Dependent Variable"
 )</code></pre>
 
 </div>
@@ -753,18 +751,20 @@ Copy and paste the following code into your R Script:
 with the names used in your dataset.
 </p>
 
-<h3>Example with Pretend Data</h3>
+<h3>Example</h3>
 
 <div class="highlight-blue">
 
-<pre><code>ggscatter(
+<pre><code>
+    
+ggscatter(
     DatasetZ,
     x = "Age",
     y = "USD",
     add = "reg.line",
-    xlab = "Age",
-    ylab = "USD"
-)</code></pre>
+)
+
+</code></pre>
 
 </div>
 
@@ -964,27 +964,6 @@ When filling in <code>Group1Name</code> and <code>Group2Name</code>, use the act
 
 <div class="highlight-blue">
 
-<pre><code>hist(<span style="color: #e67e22; font-weight: bold;">DatasetName</span>$<span style="color: #e67e22; font-weight: bold;">IndependentVariable</span>[<span style="color: #e67e22; font-weight: bold;">DatasetName</span>$<span style="color: #e67e22; font-weight: bold;">GroupVariable</span> == "<span style="color: #e67e22; font-weight: bold;">Group1Name</span>"],
-   main = "Histogram of <span style="color: #e67e22; font-weight: bold;">IndependentVariable</span>",
-   xlab = "Value",
-   ylab = "Frequency",
-   col = "lightblue",
-   border = "black",
-   breaks = 10)
-
-hist(<span style="color: #e67e22; font-weight: bold;">DatasetName</span>$<span style="color: #e67e22; font-weight: bold;">OutcomeVariable</span>[<span style="color: #e67e22; font-weight: bold;">DatasetName</span>$<span style="color: #e67e22; font-weight: bold;">GroupVariable</span> == "<span style="color: #e67e22; font-weight: bold;">Group2Name</span>"],
-   main = "Histogram of <span style="color: #e67e22; font-weight: bold;">Group2Name</span> <span style="color: #e67e22; font-weight: bold;">OutcomeVariable</span>",
-   xlab = "Value",
-   ylab = "Frequency",
-   col = "lightgreen",
-   border = "black",
-   breaks = 10)</code></pre>
-</div>
-
-<h3>Code Template</h3>
-
-<div class="highlight-blue">
-
 <pre><code>
     
 hist(<span style="color: #e67e22; font-weight: bold;">DatasetName</span>$<span style="color: #e67e22; font-weight: bold;">Variable1</span>,
@@ -1021,83 +1000,55 @@ hist(DatasetZ$USD,
 </div>
 
 <p>
-<strong>What will you see?</strong><br>
-Two histograms showing the distribution of each variable.
+<strong>Output:</strong> 
+Histograms appear in the Plots pane.
+</p>
+    
+<h3>Interpret the Histograms</h3>
+
+<p>
+In your R Script, report whether you think the histogram is normal or abnormally distributed based on a visual assessment.
+Specifically, visually determine if you think the histogram has normal skewness (symmetry) and kurtosis (height).
+</p>
+    
+<p>
+You can calculate skewness and kurtosis statistically in RStudio to determine if they are normal or abnormal. 
+However, we are keeping things simple for this class.
 </p>
 
 <p>
-Write your comments directly below the histogram code in your R Script.
+In order for data to be considered normal, it must have normal skewness AND kurtosis.
+Review the Data Visualization and Normality lesson (linked below) for what is considered normal skewness and kurtosis.
 </p>
 
-<p>For each variable, determine:</p>
-
-<ul>
-
-<li>
-Whether the variable appears normally or abnormally distributed.
-</li>
-
-<li>
-Whether the variable is symmetrical, positively skewed, or negatively skewed.
-</li>
-
-<li>
-Whether the histogram displays a proper bell curve.
-</li>
-
-</ul>
-
-<h3>Normality Guidelines</h3>
-
-<ul>
-
-<li>
-<strong>Normally distributed</strong> data are generally symmetrical and have a bell-shaped curve.
-</li>
-
-<li>
-<strong>Positively skewed</strong> data have a longer tail on the right side.
-</li>
-
-<li>
-<strong>Negatively skewed</strong> data have a longer tail on the left side.
-</li>
-
-<li>
-Abnormal skewness or abnormal kurtosis indicates non-normal data.
-</li>
-
-</ul>
+<p>
+<a href="../lectures/data-visualization-normality.html">
+Data Visualization and Normality
+</a>
+</p>
 
 <p><strong>Reporting Template</strong></p>
 
 <div class="highlight-blue">
+<pre><code>
+#Data for Variable1 appears <span style="color: #e67e22; font-weight: bold;">abnormally/ normally</span> distributed.
+#Data for Variable2 appears <span style="color: #e67e22; font-weight: bold;">abnormally/ normally</span> distributed.
+</code></pre>
+</div>
 
-<pre><code># Variable 1: Name of Variable
-# The variable looks [normally / abnormally] distributed.
-# The data is [symmetrical / positively skewed / negatively skewed].
-# The data [has / does not have] a proper bell curve.
+<p><strong>Example</strong></p>
 
-# Variable 2: Name of Variable
-# The variable looks [normally / abnormally] distributed.
-# The data is [symmetrical / positively skewed / negatively skewed].
-# The data [has / does not have] a proper bell curve.</code></pre>
+<div class="highlight-blue">
+<pre><code>
+#Data for age appears normally distributed.
+#Data for USD appears normally distributed.
+</code></pre>
+</div>
 
 </div>
 
-<h3>Example Report</h3>
+</details>
 
-<div class="highlight-blue">
-
-<pre><code># Variable 1: Age
-# The variable looks normally distributed.
-# The data is symmetrical.
-# The data has a proper bell curve.
-
-# Variable 2: USD
-# The variable looks normally distributed.
-# The data is symmetrical.
-# The data has a proper bell curve.</code></pre>
 
 </div>
 
@@ -1130,9 +1081,13 @@ Copy and paste the following code into your R Script:
 
 <div class="highlight-blue">
 
-<pre><code>shapiro.test(DatasetName$IndependentVariable)
+<pre><code>
+    
+shapiro.test(<span style="color: #e67e22; font-weight: bold;">DatasetName</span>$<span style="color: #e67e22; font-weight: bold;">Variable1</span>)
 
-shapiro.test(DatasetName$DependentVariable)</code></pre>
+shapiro.test(<span style="color: #e67e22; font-weight: bold;">DatasetName</span>$<span style="color: #e67e22; font-weight: bold;">Variable2</span>)
+
+</code></pre>
 
 </div>
 
@@ -1140,9 +1095,11 @@ shapiro.test(DatasetName$DependentVariable)</code></pre>
 
 <div class="highlight-blue">
 
-<pre><code>shapiro.test(DatasetZ$Age)
+<pre><code>
 
-shapiro.test(DatasetZ$USD)</code></pre>
+shapiro.test(<span style="color: #e67e22; font-weight: bold;">DatasetZ</span>$<span style="color: #e67e22; font-weight: bold;">Age</span>)
+
+shapiro.test(<span style="color: #e67e22; font-weight: bold;">DatasetZ</span>$<span style="color: #e67e22; font-weight: bold;">USD</span>)
 
 </div>
 
