@@ -1364,114 +1364,13 @@ There is a standardized method of reporting. DO NOT be creative. Use the provide
 
 </details>
 
-<!-- MANN-WHITNEY U -->
-
-<div class="test-path">
-
-
-
-<div class="test-path-content">
-
-
-<!-- STEP 8B -->
-
-<details>
-
-<summary>
-<span class="step-label">Step 8b</span><br>
-Conduct the Mann-Whitney U Test (Abnormal Data)
-</summary>
-
-<div class="path-step-content">
-
-<p>
-Conduct a Mann-Whitney U test to determine whether there is a difference between groups.
-</p>
-
-<p><strong>Code Template</strong></p>
-
-<div class="highlight-blue">
-
-<pre><code>wilcox.test(<span style="color: #e67e22; font-weight: bold;">OutcomeVariable</span> ~ <span style="color: #e67e22; font-weight: bold;">GroupVariable</span>, data = <span style="color: #e67e22; font-weight: bold;">DatasetName</span>)</code></pre>
-</div>
-
-<p><strong>Example</strong></p>
-
-<div class="highlight-blue">
-
-<pre><code>wilcox.test(<span style="color: #e67e22; font-weight: bold;">ExamScores</span> ~ <span style="color: #e67e22; font-weight: bold;">Gender</span>, data = <span style="color: #e67e22; font-weight: bold;">DatasetZ</span>)</code></pre>
-</div>
-
-<p><strong>Output:</strong></p>
-
-<div class="highlight">
-
-<pre><code>Wilcoxon rank sum test with continuity correction
-
-data: score by gender
-
-W = 30, p-value = 0.002
-alternative hypothesis: true location shift is not equal to 0</code></pre>
-
-</div>
-
-</div>
-
-</details>
-
-
-<!-- STEP 9B -->
-
-<details>
-
-<summary>
-<span class="step-label">Step 9b</span><br>
-Calculate Cliff's Delta (Effect Size)
-</summary>
-
-<div class="path-step-content">
-
-
-<p><strong>Code Template</strong></p>
-
-<div class="highlight-blue">
-<pre><code>mw_effect &lt;- cliff.delta(<span style="color: #e67e22; font-weight: bold;">OutcomeVariable</span> ~ <span style="color: #e67e22; font-weight: bold;">GroupVariable</span>, data = <span style="color: #e67e22; font-weight: bold;">DatasetName</span>)
-print(mw_effect)</code></pre>
-</div>
-
-<p><strong>Example</strong></p>
-
-<div class="highlight-blue">
-
-<pre><code>mw_effect &lt;- cliff.delta(<span style="color: #e67e22; font-weight: bold;">ExamScores</span> ~ <span style="color: #e67e22; font-weight: bold;">Gender</span>, data = <span style="color: #e67e22; font-weight: bold;">DatasetZ</span>)
-print(mw_effect)</code></pre>
-</div>
-
-<p><strong>Output:</strong></p>
-
-<div class="highlight">
-
-<pre><code>Cliff's Delta
-
-delta estimate: 0.45
-95 percent confidence interval:
-0.21 0.66
-Magnitude: medium</code></pre>
-
-</div>
-
-</div>
-
-</details>
-
-
 <!-- STEP 10B -->
 
-<!-- Step 8a -->
-            <details>
-                <summary>
-                    <span class="step-label">Step 10b</span><br>
-                    Report the Results
+<details>
+
+<summary>
+<span class="step-label">Step 10b</span><br>
+Report the Results
 </summary>
 
 <div class="path-step-content">
@@ -1500,20 +1399,15 @@ There is a standardized method of reporting. DO NOT be creative. Use the provide
             <td style="padding: 10px; border-bottom: 1px solid #ddd;">Report <strong>p &lt; .001</strong></td>
         </tr>
         <tr>
-            <td style="padding: 10px; border-bottom: 1px solid #ddd;"><strong>.001 &lt; p &lt; .05</strong></td>
+            <td style="padding: 10px; border-bottom: 1px solid #ddd;"><strong>.001 &le; p &lt; .05</strong></td>
             <td style="padding: 10px; border-bottom: 1px solid #ddd;">Report the exact p-value to three decimals (example: <strong>p = .003</strong>)</td>
         </tr>
         <tr>
-            <td style="padding: 10px; border-bottom: 1px solid #ddd;"><strong>p &gt; .05</strong></td>
-            <td style="padding: 10px; border-bottom: 1px solid #ddd;">Report <strong>p &gt; .05</strong></td>
-        </tr>
-        <tr>
-            <td style="padding: 10px;"><strong>All other values</strong></td>
-            <td style="padding: 10px;">Report two decimal places (example: <strong>.1252 → .13</strong>)</td>
+            <td style="padding: 10px;"><strong>p &ge; .05</strong></td>
+            <td style="padding: 10px;">Report <strong>p &gt; .05</strong></td>
         </tr>
     </tbody>
 </table>
-
 
 <p><strong>Definitions</strong></p>
 
@@ -1523,33 +1417,59 @@ There is a standardized method of reporting. DO NOT be creative. Use the provide
 <li><strong>p</strong> = p-value</li>
 </ul>
 
+<p><strong>Effect Size</strong></p>
+
+<table style="width: 100%; border-collapse: collapse; font-size: 12pt;">
+    <thead>
+        <tr>
+            <th style="text-align: left; padding: 10px; border-bottom: 2px solid #0e68b3;">Cliff's Delta</th>
+            <th style="text-align: left; padding: 10px; border-bottom: 2px solid #0e68b3;">Interpretation</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td style="padding: 10px; border-bottom: 1px solid #ddd;">0.00–0.14</td>
+            <td style="padding: 10px; border-bottom: 1px solid #ddd;">Negligible difference</td>
+        </tr>
+        <tr>
+            <td style="padding: 10px; border-bottom: 1px solid #ddd;">0.15–0.32</td>
+            <td style="padding: 10px; border-bottom: 1px solid #ddd;">Small difference</td>
+        </tr>
+        <tr>
+            <td style="padding: 10px; border-bottom: 1px solid #ddd;">0.33–0.47</td>
+            <td style="padding: 10px; border-bottom: 1px solid #ddd;">Medium difference</td>
+        </tr>
+        <tr>
+            <td style="padding: 10px;">0.48+</td>
+            <td style="padding: 10px;">Large difference</td>
+        </tr>
+    </tbody>
+</table>
+
 <p><strong>Code Template</strong></p>
 
 <div class="highlight-blue">
 
-<pre><code>#A Mann-Whitney U test was conducted to determine if there was a difference in <span style="color: #e67e22; font-weight: bold;">OutcomeVariable</span> between <span style="color: #e67e22; font-weight: bold;">Group1</span> and <span style="color: #e67e22; font-weight: bold;">Group2</span>.
-#<span style="color: #e67e22; font-weight: bold;">Group1</span> scores (Mdn = <span style="color: #e67e22; font-weight: bold;">xx.xx</span>) were <span style="color: #e67e22; font-weight: bold;">[significantly / not significantly]</span> different from <span style="color: #e67e22; font-weight: bold;">Group2</span> scores (Mdn = <span style="color: #e67e22; font-weight: bold;">xx.xx</span>), U = <span style="color: #e67e22; font-weight: bold;">x.xx</span>, p = <span style="color: #e67e22; font-weight: bold;">.xxx</span>.
-#The effect size was <span style="color: #e67e22; font-weight: bold;">[small / medium / large / very large]</span>, Cliff's Delta = <span style="color: #e67e22; font-weight: bold;">.xxx</span>.</code></pre>
+<pre><code># A Mann-Whitney U test was conducted to determine if there was a difference in <span style="color: #e67e22; font-weight: bold;">OutcomeVariable</span> between <span style="color: #e67e22; font-weight: bold;">Group1</span> and <span style="color: #e67e22; font-weight: bold;">Group2</span>.
+# <span style="color: #e67e22; font-weight: bold;">Group1</span> scores (Mdn = <span style="color: #e67e22; font-weight: bold;">xx.xx</span>) were <span style="color: #e67e22; font-weight: bold;">significantly / not significantly</span> different from <span style="color: #e67e22; font-weight: bold;">Group2</span> scores (Mdn = <span style="color: #e67e22; font-weight: bold;">xx.xx</span>), U = <span style="color: #e67e22; font-weight: bold;">xx</span>, p = <span style="color: #e67e22; font-weight: bold;">.xxx</span>.
+# The effect size was <span style="color: #e67e22; font-weight: bold;">small / medium / large</span>, Cliff's Delta = <span style="color: #e67e22; font-weight: bold;">.xxx</span>.</code></pre>
 
 </div>
 
 <p><strong>Example</strong></p>
 
 <div class="highlight-blue">
-<pre><code>#A Mann-Whitney U test was conducted to determine if there was a difference in <span style="color: #e67e22; font-weight: bold;">Exam Scores</span> between <span style="color: #e67e22; font-weight: bold;">Females</span> and <span style="color: #e67e22; font-weight: bold;">Males</span>.
-#<span style="color: #e67e22; font-weight: bold;">Female</span> scores (Mdn = <span style="color: #e67e22; font-weight: bold;">84.00</span>) were <span style="color: #e67e22; font-weight: bold;">significantly</span> different from <span style="color: #e67e22; font-weight: bold;">Male</span> scores (Mdn = <span style="color: #e67e22; font-weight: bold;">77.00</span>), U = <span style="color: #e67e22; font-weight: bold;">30.00</span>, p = <span style="color: #e67e22; font-weight: bold;">.002</span>.
-#The effect size was <span style="color: #e67e22; font-weight: bold;">medium</span>, Cliff's Delta = <span style="color: #e67e22; font-weight: bold;">.45</span>.</code></pre>
+
+<pre><code># A Mann-Whitney U test was conducted to determine if there was a difference in <span style="color: #e67e22; font-weight: bold;">Exam Scores</span> between <span style="color: #e67e22; font-weight: bold;">Females</span> and <span style="color: #e67e22; font-weight: bold;">Males</span>.
+# <span style="color: #e67e22; font-weight: bold;">Female</span> scores (Mdn = <span style="color: #e67e22; font-weight: bold;">84.00</span>) were <span style="color: #e67e22; font-weight: bold;">significantly</span> different from <span style="color: #e67e22; font-weight: bold;">Male</span> scores (Mdn = <span style="color: #e67e22; font-weight: bold;">77.00</span>), U = <span style="color: #e67e22; font-weight: bold;">30</span>, p = <span style="color: #e67e22; font-weight: bold;">.002</span>.
+# The effect size was <span style="color: #e67e22; font-weight: bold;">medium</span>, Cliff's Delta = <span style="color: #e67e22; font-weight: bold;">.45</span>.</code></pre>
+
 </div>
 
 </div>
 
 </details>
-
-</div>
-
-</div>
-</div>
-
+        
 <!-- FINAL STEPS -->
 
 <div class="test-path">
