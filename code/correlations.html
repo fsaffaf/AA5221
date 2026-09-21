@@ -968,27 +968,52 @@ A histogram displays the distribution of a variable and allows you to look for s
 Create a histogram for each variable.
 </p>
 
+<h3>Histograms</h3>
+<p>
+A <strong>histogram</strong> is a graph that shows how the values of a continous variable are distributed. It groups values into ranges and uses bars to show how many observations fall within each range.
+</p>
+
+<p><strong>Code Template</strong></p>
+<p>
+When filling in <code>Group1Name</code> and <code>Group2Name</code>, use the actual group names in your Excel dataset.
+</p>
+
+<div class="highlight-blue">
+
+<pre><code>hist(<span style="color: #e67e22; font-weight: bold;">DatasetName</span>$<span style="color: #e67e22; font-weight: bold;">IndependentVariable</span>[<span style="color: #e67e22; font-weight: bold;">DatasetName</span>$<span style="color: #e67e22; font-weight: bold;">GroupVariable</span> == "<span style="color: #e67e22; font-weight: bold;">Group1Name</span>"],
+   main = "Histogram of <span style="color: #e67e22; font-weight: bold;">IndependentVariable</span>",
+   xlab = "Value",
+   ylab = "Frequency",
+   col = "lightblue",
+   border = "black",
+   breaks = 10)
+
+hist(<span style="color: #e67e22; font-weight: bold;">DatasetName</span>$<span style="color: #e67e22; font-weight: bold;">OutcomeVariable</span>[<span style="color: #e67e22; font-weight: bold;">DatasetName</span>$<span style="color: #e67e22; font-weight: bold;">GroupVariable</span> == "<span style="color: #e67e22; font-weight: bold;">Group2Name</span>"],
+   main = "Histogram of <span style="color: #e67e22; font-weight: bold;">Group2Name</span> <span style="color: #e67e22; font-weight: bold;">OutcomeVariable</span>",
+   xlab = "Value",
+   ylab = "Frequency",
+   col = "lightgreen",
+   border = "black",
+   breaks = 10)</code></pre>
+</div>
+
 <h3>Code Template</h3>
 
 <div class="highlight-blue">
 
-<pre><code>hist(DatasetName$IndependentVariable,
-     main = "Independent Variable",
-     breaks = 20,
-     col = "lightblue",
-     border = "white",
-     cex.main = 1,
-     cex.axis = 1,
-     cex.lab = 1)
+<pre><code>
+    
+hist(<span style="color: #e67e22; font-weight: bold;">DatasetName</span>$<span style="color: #e67e22; font-weight: bold;">Variable1</span>,
+     breaks = 15,
+     col = "skyblue",
+     border = "white")
 
-hist(DatasetName$DependentVariable,
-     main = "Dependent Variable",
-     breaks = 20,
-     col = "lightcoral",
-     border = "white",
-     cex.main = 1,
-     cex.axis = 1,
-     cex.lab = 1)</code></pre>
+hist(<span style="color: #e67e22; font-weight: bold;">DatasetName</span>$<span style="color: #e67e22; font-weight: bold;">Variable2</span>,
+     breaks = 15,
+     col = "firebrick",
+     border = "white")
+
+</code></pre>
 
 </div>
 
@@ -997,16 +1022,17 @@ hist(DatasetName$DependentVariable,
 <div class="highlight-blue">
 
 <pre><code>hist(DatasetZ$Age,
-     main = "Age",
-     breaks = 20,
-     col = "lightblue",
+     breaks = 15,
+     col = "skyblue",
      border = "white")
 
 hist(DatasetZ$USD,
-     main = "USD",
-     breaks = 20,
-     col = "lightcoral",
-     border = "white")</code></pre>
+     breaks = 15,
+     col = "firebrick",
+     border = "white")
+
+
+</code></pre>
 
 </div>
 
