@@ -799,7 +799,7 @@ Check normality of the data in three different ways: Histogram, Boxplot, and Sha
 
 <h3>Histograms</h3>
 <p>
-A <strong>histogram</strong> is a graph that shows how the values of a numerical variable are distributed. It groups values into ranges and uses bars to show how many observations fall within each range.
+A <strong>histogram</strong> is a graph that shows how the values of a continous variable are distributed. It groups values into ranges and uses bars to show how many observations fall within each range.
 </p>
 
 <p><strong>Code Template</strong></p>
@@ -810,42 +810,16 @@ When filling in <code>Group1Name</code> and <code>Group2Name</code>, use the act
 <div class="highlight-blue">
 
 <pre><code>hist(<span style="color: #e67e22; font-weight: bold;">DatasetName</span>$<span style="color: #e67e22; font-weight: bold;">OutcomeVariable</span>[<span style="color: #e67e22; font-weight: bold;">DatasetName</span>$<span style="color: #e67e22; font-weight: bold;">GroupVariable</span> == "<span style="color: #e67e22; font-weight: bold;">Group1Name</span>"],
-   main = "Histogram of <span style="color: #e67e22; font-weight: bold;">Group1Name</span> <span style="color: #e67e22; font-weight: bold;">OutcomeVariable</span>",
-   xlab = "Value",
-   ylab = "Frequency",
-   col = "lightblue",
-   border = "black",
-   breaks = 10)
+     breaks = 15,
+     col = "skyblue",
+     border = "white")
 
 hist(<span style="color: #e67e22; font-weight: bold;">DatasetName</span>$<span style="color: #e67e22; font-weight: bold;">OutcomeVariable</span>[<span style="color: #e67e22; font-weight: bold;">DatasetName</span>$<span style="color: #e67e22; font-weight: bold;">GroupVariable</span> == "<span style="color: #e67e22; font-weight: bold;">Group2Name</span>"],
-   main = "Histogram of <span style="color: #e67e22; font-weight: bold;">Group2Name</span> <span style="color: #e67e22; font-weight: bold;">OutcomeVariable</span>",
-   xlab = "Value",
-   ylab = "Frequency",
-   col = "lightgreen",
-   border = "black",
-   breaks = 10)</code></pre>
-</div>
+     breaks = 15,
+     col = "firebrick",
+     border = "white")
 
-<p><strong>Example</strong></p>
-
-<div class="highlight-blue">
-
-<pre><code>hist(<span style="color: #e67e22; font-weight: bold;">DatasetZ</span>$<span style="color: #e67e22; font-weight: bold;">ExamScores</span>[<span style="color: #e67e22; font-weight: bold;">DatasetZ</span>$<span style="color: #e67e22; font-weight: bold;">Gender</span> == "<span style="color: #e67e22; font-weight: bold;">Female</span>"],
-   main = "Histogram of <span style="color: #e67e22; font-weight: bold;">Female</span> <span style="color: #e67e22; font-weight: bold;">ExamScores</span>",
-   xlab = "Value",
-   ylab = "Frequency",
-   col = "lightblue",
-   border = "black",
-   breaks = 10)
-
-hist(<span style="color: #e67e22; font-weight: bold;">DatasetZ</span>$<span style="color: #e67e22; font-weight: bold;">ExamScores</span>[<span style="color: #e67e22; font-weight: bold;">DatasetZ</span>$<span style="color: #e67e22; font-weight: bold;">Gender</span> == "<span style="color: #e67e22; font-weight: bold;">Male</span>"],
-   main = "Histogram of <span style="color: #e67e22; font-weight: bold;">Male</span> <span style="color: #e67e22; font-weight: bold;">ExamScores</span>",
-   xlab = "Value",
-   ylab = "Frequency",
-   col = "lightgreen",
-   border = "black",
-   breaks = 10)</code></pre>
-
+</code></pre>
 </div>
 
 <p>
