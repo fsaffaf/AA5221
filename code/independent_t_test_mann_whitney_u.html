@@ -822,6 +822,24 @@ hist(<span style="color: #e67e22; font-weight: bold;">DatasetName</span>$<span s
 </code></pre>
 </div>
 
+
+<p><strong>Example</strong></p>
+
+<div class="highlight-blue">
+
+<pre><code>hist(<span style="color: #e67e22; font-weight: bold;">DatasetZ</span>$<span style="color: #e67e22; font-weight: bold;">ExamScores</span>[<span style="color: #e67e22; font-weight: bold;">DatasetZ</span>$<span style="color: #e67e22; font-weight: bold;">Gender</span> == "<span style="color: #e67e22; font-weight: bold;">Feales</span>"],
+     breaks = 15,
+     col = "skyblue",
+     border = "white")
+
+<pre><code>hist(<span style="color: #e67e22; font-weight: bold;">DatasetZ</span>$<span style="color: #e67e22; font-weight: bold;">ExamScores</span>[<span style="color: #e67e22; font-weight: bold;">DatasetZ</span>$<span style="color: #e67e22; font-weight: bold;">Gender</span> == "<span style="color: #e67e22; font-weight: bold;">Males</span>"],
+     breaks = 15,
+     col = "firebrick",
+     border = "white")
+
+</code></pre>
+</div>
+
 <p>
 <strong>Output:</strong> 
 Histograms appear in the Plots pane.
