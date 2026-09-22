@@ -369,8 +369,7 @@ Your code will be different because the dataset name, variable names, normality 
 </p>
 
 <div class="highlight-blue">
-<pre><code>
-#library(readxl)
+<pre><code>#library(readxl)
 #library(ggpubr)
     
 library(readxl)
@@ -475,8 +474,7 @@ Run the code once.
 </p>
 
 <div class="highlight highlight-orange">
-<pre><code>
-install.packages("readxl")
+<pre><code>install.packages("readxl")
 install.packages("ggpubr")
 </code></pre>
 
@@ -498,8 +496,7 @@ Keep these lines of code in your R Script.
 </p>
 
 <div class="highlight highlight-orange">
-<pre><code>
-library(readxl)
+<pre><code>library(readxl)
 library(ggpubr)
 </code></pre>
 
@@ -664,10 +661,7 @@ with the names used in your dataset.
 <h3>Example</h3>
 
 <div class="highlight-blue">
-
-<pre><code>
-    
-ggscatter(
+<pre><code>ggscatter(
     DatasetZ,
     x = "Age",
     y = "USD",
@@ -735,7 +729,6 @@ Determine whether meaningful outliers are present.
 <h3>Reporting Template</h3>
 
 <div class="highlight-blue">
-
 <pre><code># The relationship is [linear / curved].
 # The relationship is [positive / negative / does not exist].
 # There [are / are no] outliers.</code></pre>
@@ -778,9 +771,7 @@ These values will later be included in your results summary.
 <h3>Code Template</h3>
 
 <div class="highlight-blue">
-
-<pre><code>
-mean(<span style="color: #e67e22; font-weight: bold;">DatasetName</span>$<span style="color: #e67e22; font-weight: bold;">Variable1</span>)
+<pre><code>mean(<span style="color: #e67e22; font-weight: bold;">DatasetName</span>$<span style="color: #e67e22; font-weight: bold;">Variable1</span>)
 sd(<span style="color: #e67e22; font-weight: bold;">DatasetName</span>$<span style="color: #e67e22; font-weight: bold;">Variable1</span>)
 median(<span style="color: #e67e22; font-weight: bold;">DatasetName</span>$<span style="color: #e67e22; font-weight: bold;">Variable1</span>)
 
@@ -794,8 +785,6 @@ median(<span style="color: #e67e22; font-weight: bold;">DatasetName</span>$<span
 <h3>Example</h3>
 
 <div class="highlight-blue">
-
-<pre><code>
 <pre><code>mean(<span style="color: #e67e22; font-weight: bold;">DatasetZ</span>$<span style="color: #e67e22; font-weight: bold;">Age</span>)
 sd(<span style="color: #e67e22; font-weight: bold;">DatasetZ</span>$<span style="color: #e67e22; font-weight: bold;">Age</span>)
 median(<span style="color: #e67e22; font-weight: bold;">DatasetZ</span>$<span style="color: #e67e22; font-weight: bold;">Age</span>)
@@ -803,16 +792,13 @@ median(<span style="color: #e67e22; font-weight: bold;">DatasetZ</span>$<span st
 mean(<span style="color: #e67e22; font-weight: bold;">DatasetZ</span>$<span style="color: #e67e22; font-weight: bold;">USD</span>)
 sd(<span style="color: #e67e22; font-weight: bold;">DatasetZ</span>$<span style="color: #e67e22; font-weight: bold;">USD</span>)
 median(<span style="color: #e67e22; font-weight: bold;">DatasetZ</span>$<span style="color: #e67e22; font-weight: bold;">USD</span>)</code></pre>
-</code></pre>
 
 </div>
 
 <h3>Output</h3>
 
 <div class="highlight">
-
-<pre><code>
-mean(DatasetZ$Age)
+<pre><code>mean(DatasetZ$Age)
 [1] 40.12
 
 sd(DatasetZ$Age)
@@ -876,10 +862,7 @@ A histogram is a graph that shows how the values of a continous variable are dis
 <h3>Code Template</h3>
 
 <div class="highlight-blue">
-
-<pre><code>
-    
-hist(<span style="color: #e67e22; font-weight: bold;">DatasetName</span>$<span style="color: #e67e22; font-weight: bold;">Variable1</span>,
+<pre><code>hist(<span style="color: #e67e22; font-weight: bold;">DatasetName</span>$<span style="color: #e67e22; font-weight: bold;">Variable1</span>,
      breaks = 15,
      col = "skyblue",
      border = "white")
@@ -897,8 +880,7 @@ hist(<span style="color: #e67e22; font-weight: bold;">DatasetName</span>$<span s
 
 <div class="highlight-blue">
 
-<pre><code>
-hist(<span style="color: #e67e22; font-weight: bold;">DatasetZ</span>$<span style="color: #e67e22; font-weight: bold;">Age</span>,
+<pre><code>hist(<span style="color: #e67e22; font-weight: bold;">DatasetZ</span>$<span style="color: #e67e22; font-weight: bold;">Age</span>,
      breaks = 15,
      col = "skyblue",
      border = "white")
@@ -944,8 +926,7 @@ Data Visualization and Normality
 <h3>Reporting Template</h3>
 
 <div class="highlight-blue">
-<pre><code>
-#Data for <span style="color: #e67e22; font-weight: bold;">Variable1</span> appears <span style="color: #e67e22; font-weight: bold;">abnormally/ normally</span> distributed.
+<pre><code>#Data for <span style="color: #e67e22; font-weight: bold;">Variable1</span> appears <span style="color: #e67e22; font-weight: bold;">abnormally/ normally</span> distributed.
 #Data for <span style="color: #e67e22; font-weight: bold;">Variable2</span> appears <span style="color: #e67e22; font-weight: bold;">abnormally/ normally</span> distributed.
 </code></pre>
 </div>
@@ -953,8 +934,7 @@ Data Visualization and Normality
 <h3>Example</h3>
 
 <div class="highlight-blue">
-<pre><code>
-#Data for <span style="color: #e67e22; font-weight: bold;">Age</span> appears <span style="color: #e67e22; font-weight: bold;">normally</span> distributed.
+<pre><code>#Data for <span style="color: #e67e22; font-weight: bold;">Age</span> appears <span style="color: #e67e22; font-weight: bold;">normally</span> distributed.
 #Data for <span style="color: #e67e22; font-weight: bold;">USD</span> appears <span style="color: #e67e22; font-weight: bold;">normally</span> distributed.
 </code></pre>
 </div>
@@ -981,8 +961,7 @@ The Shapiro-Wilk test allows you to check whether your data is normal or abnorma
 <h3>Code Template</h3>
 
 <div class="highlight-blue">
-<pre><code>
-shapiro.test(<span style="color: #e67e22; font-weight: bold;">DatasetName</span>$<span style="color: #e67e22; font-weight: bold;">Variable1</span>)
+<pre><code>shapiro.test(<span style="color: #e67e22; font-weight: bold;">DatasetName</span>$<span style="color: #e67e22; font-weight: bold;">Variable1</span>)
 shapiro.test(<span style="color: #e67e22; font-weight: bold;">DatasetName</span>$<span style="color: #e67e22; font-weight: bold;">Variable2</span>)
 </code></pre>
 </div>
@@ -990,8 +969,7 @@ shapiro.test(<span style="color: #e67e22; font-weight: bold;">DatasetName</span>
 <h3>Example</h3>
 
 <div class="highlight-blue">
-<pre><code>
-shapiro.test(<span style="color: #e67e22; font-weight: bold;">DatasetZ</span>$<span style="color: #e67e22; font-weight: bold;">Age</span>)
+<pre><code>shapiro.test(<span style="color: #e67e22; font-weight: bold;">DatasetZ</span>$<span style="color: #e67e22; font-weight: bold;">Age</span>)
 shapiro.test(<span style="color: #e67e22; font-weight: bold;">DatasetZ</span>$<span style="color: #e67e22; font-weight: bold;">USD</span>)
 </code></pre>
 </div>
@@ -1053,11 +1031,8 @@ In your R Script, report if the data is normal or abnormal according to the Shap
 
 <div class="highlight-blue">
 
-<pre><code>
-    
 <pre><code>#<span style="color: #e67e22; font-weight: bold;">Age</span> was <span style="color: #e67e22; font-weight: bold;">normally</span> distributed, W = <span style="color: #e67e22; font-weight: bold;">0.959</span>, p = <span style="color: #e67e22; font-weight: bold;">.754</span>.
-#<span style="color: #e67e22; font-weight: bold;">USD</span> was <span style="color: #e67e22; font-weight: bold;">normally</span> distributed, W = <span style="color: #e67e22; font-weight: bold;">0.970</span>, p = <span style="color: #e67e22; font-weight: bold;">.865</span>.</code></pre>
-
+#<span style="color: #e67e22; font-weight: bold;">USD</span> was <span style="color: #e67e22; font-weight: bold;">normally</span> distributed, W = <span style="color: #e67e22; font-weight: bold;">0.970</span>, p = <span style="color: #e67e22; font-weight: bold;">.865</span>.
 </code></pre>
 
 </div>
