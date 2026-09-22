@@ -1162,11 +1162,11 @@ cor
 0.417</code></pre>
 
 <ul>
-    <li>Pearson's r = The correlation coefficient. Values closer to −1 or +1 indicate a stronger linear relationship between the two variables.</li>
+    <li>cor = The correlation coefficient (effect size)</li>
 
-    <li>Degrees of Freedom (df) = Used to determine the sampling distribution for the test. For Pearson's correlation: df = n − 2.</li>
+    <li>df = Degrees of freedom. Used to calculate the p-value. For Pearson's correlation, it is the sample size minus 2.</li>
 
-    <li>P-Value = Used to determine whether the correlation is statistically significant.</li>
+    <li>p-Value = Used to determine whether the correlation is statistically significant.</li>
 </ul>
 </div>
 
@@ -1184,20 +1184,25 @@ class="button">
 P-Value Interpreter
 </a>
 </p>
-    
+
+<hr>
+
+<h3>Effect Size (Correlation Coefficient)</h3>
 <p>
-For correlations, the effect size is the correlation coefficient itself
-(r).
-Unlike tests such as chi-square tests where a separate effect size may be calculated,
+For correlations, the effect size is the correlation coefficient. For Pearson's correlation, it is also known a the r-value.
+</p>
+
+<p>
+Unlike tests such as chi-square tests where a separate effect size needs to be calculated,
 correlation analysis directly produces a measure of effect size.
 </p>
 
 <p>
-The value of r tells us both the direction and strength of the relationship between two variables, so no additional effect size calculation is needed.
-</p>
-    
-<p>
-Correlation Coefficient: The correlation coefficient ranges from -1.00 to +1.00. The sign tells you the direction of the relationship, while the number tells you the strength of the relationship.
+The correlation coefficient ranges from -1.00 to +1.00. The sign tells you the direction of the relationship, while the number tells you the strength of the relationship.
+<br>
+A positive number means that as Variable 1 increases, Variable 2 increases.
+<br>
+A negative number means that as Variable 1 increases, Variable 2 decreases.
 </p>
 
 <table style="width: 100%; border-collapse: collapse; font-size: 12pt;">
