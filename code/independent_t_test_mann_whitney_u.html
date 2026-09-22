@@ -374,7 +374,7 @@ When data is abnormal, the back-up test is the <b> Mann-Whitney U test</b>.
 </p>
 
 <p> The independent t-test is preferred because it is a more statistically powerful test. This means it is more effective at detecting an effect if there is one. 
-However, the Mann-Whitney U test is a very useful and legitimate test to use when data is abnormal.</p>
+However, the Mann-Whitney U test is a very useful and legitimate test to use when data is abnormal.
 Because normnality is so important, data analysts check normality in at least three different ways before determining which test to use.
 </p>
 
@@ -448,10 +448,10 @@ DatasetZ %>%
 # A tibble: 2 × 5
   Gender  Mean Median    SD     N
   <chr>  <dbl>  <dbl> <dbl> <int>
-1 Female  78.7   79.3  7.68    50
-2 Male    72.8   79.5 10.1     50
+1 Females  83.0   79.3  7.50    50
+2 Males    76.7   79.5 6.00     50
       
-hist(DatasetZ$ExamScores[DatasetZ$Gender == "Feales"],
+hist(DatasetZ$ExamScores[DatasetZ$Gender == "Females"],
      breaks = 15,
      col = "skyblue",
      border = "white")
@@ -469,26 +469,26 @@ ggboxplot(DatasetZ, x = "Gender", y = "ExamScores",
           palette = "jco",
           add = "jitter")
 
-# Group 1: Male
+# Group 1: Males
 # The boxplot has no outliers.
 
-# Group 2: Female
+# Group 2: Females
 # The boxplot has no outliers.
 
       
-shapiro.test(DatasetZ$ExamScores[DatasetZ$Gender == "Female"])
-shapiro.test(DatasetZ$ExamScores[DatasetZ$Gender == "Male"])
+shapiro.test(DatasetZ$ExamScores[DatasetZ$Gender == "Females"])
+shapiro.test(DatasetZ$ExamScores[DatasetZ$Gender == "Males"])
 
-Female
-W = 0.91523, p-value = 0.0027
+Females
+W = 0.91523, p-value = 0.0778
 
-Male
+Males
 W = 0.89172, p-value = 0.0611
 
-#Group 1: Female
+#Group 1: Females
 #The first group is abnormally distributed, (p = .003).
 
-#Group 2: Male
+#Group 2: Males
 #The second group is normally distributed, (p = .061).
 
     
@@ -498,15 +498,15 @@ Two Sample t-test
 
 data:  score by gender
 t = 2.01, df = 98, p-value = 0.002
-mean in group Female = 83.0
-mean in group Male  = 76.7
+mean in group Females = 83.0
+mean in group Males  = 76.7
 
 cohens_d_result <- cohens_d(ExamScores ~ Gender, data = DatasetZ, pooled_sd = TRUE)
 print(cohens_d_result)
 0.65
 
 #An Independent T-Test was conducted to determine if there was a difference in Exam Scores between Females and Males.
-#Female scores (M = 83.00, SD = 7.50) were significantly different from Male scores (M = 76.70, SD = 6.00), t(98) = 2.01, p = .002.
+#Females scores (M = 83.00, SD = 7.50) were significantly different from Males scores (M = 76.70, SD = 6.00), t(98) = 2.01, p = .002.
 #The effect size was medium, Cohen's d = .65.
 </code></pre>
 
@@ -762,8 +762,8 @@ Calculate the Descriptive Statistics
 <pre><code># A tibble: 2 × 5
   Gender  Mean Median    SD     N
   &lt;chr&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt;
-1 Female  78.7   79.3  7.68    50
-2 Male    72.8   79.5 10.1     50</code></pre>
+1 Females  83.0   79.3  7.50    50
+2 Males    76.7   79.5 6.00     50</code></pre>
 
 </div>
 
@@ -792,7 +792,7 @@ Check normality of the data in three different ways: Histogram, Boxplot, and Sha
 
 <h3>Histograms</h3>
 <p>
-A <strong>histogram</strong> is a graph that shows how the values of a continous variable are distributed. It groups values into ranges and uses bars to show how many observations fall within each range.
+A <strong>histogram</strong> is a graph that shows how the values of a continuous variable are distributed. It groups values into ranges and uses bars to show how many observations fall within each range.
 </p>
 
 <p><strong>Code Template</strong></p>
@@ -839,7 +839,7 @@ Histograms appear in the Plots pane.
 <div style="text-align: center; margin: 30px 0;">
     <img 
         src="https://live.staticflickr.com/65535/55542281405_2e8362c649_c.jpg" 
-        alt="Female Exam Scores Histogram"
+        alt="Females Exam Scores Histogram"
         style="width: 800px; max-width: 100%; height: auto;"
     >
 </div>
@@ -847,7 +847,7 @@ Histograms appear in the Plots pane.
 <div style="text-align: center; margin: 30px 0;">
     <img 
         src="https://live.staticflickr.com/65535/55541892441_6e9d96c158_c.jpg" 
-        alt="Male Exam Scores Histogram"
+        alt="Males Exam Scores Histogram"
         style="width: 800px; max-width: 100%; height: auto;"
     >
 </div>
@@ -916,7 +916,7 @@ Before conducting the t-test, create boxplots to check for <strong>extreme outli
 <p>
 An <strong>outlier</strong> is a score that is unusually high or low compared to the other scores in the dataset.
 Outliers can affect the normality of a dataset. An outlier can increase the <strong>skewness</strong> of a dataset, which can be the difference between normal and abnormal data.
-<p>
+</p>
 
 <p>
 A box-and-whisker plot, or <strong>boxplot</strong>, provides a quick visual summary of a numerical variable. 
@@ -961,7 +961,7 @@ Individual dots outside the whiskers represent potential outliers. A boxplot all
 <div style="text-align: center; margin: 30px 0;">
     <img 
         src="https://live.staticflickr.com/65535/55541892436_c4a556efa1_c.jpg" 
-        alt="Male Female Boxplots"
+        alt="Males Females Boxplots"
         style="width: 800px; max-width: 100%; height: auto;"
     >
 </div>
@@ -992,25 +992,25 @@ Look for individual dots <strong>beyond</strong> the whiskers. Those are potenti
 
 <div class="highlight-blue">
 <pre><code>
-# The <span style="color: #e67e22; font-weight: bold;">Male</span> boxplot <span style="color: #e67e22; font-weight: bold;">does not have</span> outliers.
-# The <span style="color: #e67e22; font-weight: bold;">Female</span> boxplot <span style="color: #e67e22; font-weight: bold;">has</span> outliers.
+# The <span style="color: #e67e22; font-weight: bold;">Males</span> boxplot <span style="color: #e67e22; font-weight: bold;">does not have</span> outliers.
+# The <span style="color: #e67e22; font-weight: bold;">Females</span> boxplot <span style="color: #e67e22; font-weight: bold;">has</span> outliers.
 </code></pre>
 </div>
 
 
-<h3>What Causes Outlier?</h3>
+<h3>What Causes an Outlier?</h3>
   
 <p>
 Sometimes the outlier is a legitimate datapoint. For example, let's say we were collecting data on the average income of a U.S. citizen and, somehow, Elon Musk took our survey. 
 Although his data is legitimate, he would be an outlier that severely impacts our dataset and causes the data to be abnormal (specifically negatively skewed).
 Sometimes an outlier is due to a survey response error, such as a participant accidentally adding an extra zero to their annual income.
-<p>
+</p>
 
 <h3>What do we do with outliers?</h3>
 
 <p>
-In more advanced data analytics classes, we investigate potential outliers before deciding what to do with them. Check the original data and consider the value in the context of the variable and research question. Ask: Is this value correct? Does it make sense? Is there a reasonable explanation for why it is unusual?</em>
-If an outlier is the result of a data-entry or measurement error, it may be appropriate to correct or remove it. If the value is accurate and represents a legitimate observation</strong>, do not remove it simply because it is unusual. Any decision to remove an observation should have a clear justification and should be documented.
+In more advanced data analytics classes, we investigate potential outliers before deciding what to do with them. Check the original data and consider the value in the context of the variable and research question. Ask: Is this value correct? Does it make sense? Is there a reasonable explanation for why it is unusual?
+If an outlier is the result of a data-entry or measurement error, it may be appropriate to correct or remove it. If the value is accurate and represents a legitimate observation, do not remove it simply because it is unusual. Any decision to remove an observation should have a clear justification and should be documented.
 Removing a legitimate outlier can change the distribution, sample size, and results of your analysis.
 </p>
 
@@ -1048,18 +1048,21 @@ shapiro.test(<span style="color: #e67e22; font-weight: bold;">DatasetName</span>
 
 <div class="highlight-blue">
 
-<pre><code>shapiro.test(<span style="color: #e67e22; font-weight: bold;">DatasetZ</span>$<span style="color: #e67e22; font-weight: bold;">ExamScores</span>[<span style="color: #e67e22; font-weight: bold;">DatasetZ</span>$<span style="color: #e67e22; font-weight: bold;">Gender</span> == "<span style="color: #e67e22; font-weight: bold;">Female</span>"])
-shapiro.test(<span style="color: #e67e22; font-weight: bold;">DatasetZ</span>$<span style="color: #e67e22; font-weight: bold;">ExamScores</span>[<span style="color: #e67e22; font-weight: bold;">DatasetZ</span>$<span style="color: #e67e22; font-weight: bold;">Gender</span> == "<span style="color: #e67e22; font-weight: bold;">Male</span>"])</code></pre>
+<pre><code>
+#The <span style="color: #e67e22; font-weight: bold;">Females</span> group is <span style="color: #e67e22; font-weight: bold;">normally</span> distributed, (p = <span style="color: #e67e22; font-weight: bold;">.078</span>).
+#The <span style="color: #e67e22; font-weight: bold;">Males</span> group is <span style="color: #e67e22; font-weight: bold;">normally</span> distributed, (p = <span style="color: #e67e22; font-weight: bold;">.061</span>).
+</code></pre>
+
 </div>
 
 <p><strong>Output:</strong></p>
 
 <div class="highlight">
 
-<pre><code>Female
+<pre><code>Females
 W = 0.91523, p-value = 0.0778
 
-Male
+Males
 W = 0.89172, p-value = 0.0611</code></pre>
 
 </div>
@@ -1111,8 +1114,8 @@ In your R Script, report if the data is normal or abnormal according to the Shap
 
 <pre><code>
 <pre><code>
-#The <span style="color: #e67e22; font-weight: bold;">Female</span> group is <span style="color: #e67e22; font-weight: bold;">normally</span> distributed, (p = <span style="color: #e67e22; font-weight: bold;">.078</span>).
-#The <span style="color: #e67e22; font-weight: bold;">Male</span> group is <span style="color: #e67e22; font-weight: bold;">normally</span> distributed, (p = <span style="color: #e67e22; font-weight: bold;">.061</span>).</code></pre>
+#The <span style="color: #e67e22; font-weight: bold;">Females</span> group is <span style="color: #e67e22; font-weight: bold;">normally</span> distributed, (p = <span style="color: #e67e22; font-weight: bold;">.078</span>).
+#The <span style="color: #e67e22; font-weight: bold;">Males</span> group is <span style="color: #e67e22; font-weight: bold;">normally</span> distributed, (p = <span style="color: #e67e22; font-weight: bold;">.061</span>).</code></pre>
 
 </code></pre>
 
@@ -1209,8 +1212,8 @@ data: score by gender
 
 t = 2.01, df = 98, p-value = 0.002
 
-mean in group Female = 83.0
-mean in group Male = 76.7</code></pre>
+mean in group Females = 83.0
+mean in group Males = 76.7</code></pre>
 
 </div>
 
@@ -1378,7 +1381,7 @@ There is a standardized method of reporting. DO NOT be creative. Use the provide
 <pre><code>
     
 #An Independent T-Test was conducted to determine if there was a difference in <span style="color: #e67e22; font-weight: bold;">Exam Scores</span> between <span style="color: #e67e22; font-weight: bold;">Females</span> and <span style="color: #e67e22; font-weight: bold;">Males</span>.
-#<span style="color: #e67e22; font-weight: bold;">Female</span> scores (M = <span style="color: #e67e22; font-weight: bold;">83.00</span>, SD = <span style="color: #e67e22; font-weight: bold;">7.50</span>) were <span style="color: #e67e22; font-weight: bold;">significantly</span> different from <span style="color: #e67e22; font-weight: bold;">Male</span> scores (M = <span style="color: #e67e22; font-weight: bold;">76.70</span>, SD = <span style="color: #e67e22; font-weight: bold;">6.00</span>), t(<span style="color: #e67e22; font-weight: bold;">98</span>) = <span style="color: #e67e22; font-weight: bold;">2.01</span>, p = <span style="color: #e67e22; font-weight: bold;">.002</span>.
+#<span style="color: #e67e22; font-weight: bold;">Females</span> scores (M = <span style="color: #e67e22; font-weight: bold;">83.00</span>, SD = <span style="color: #e67e22; font-weight: bold;">7.50</span>) were <span style="color: #e67e22; font-weight: bold;">significantly</span> different from <span style="color: #e67e22; font-weight: bold;">Males</span> scores (M = <span style="color: #e67e22; font-weight: bold;">76.70</span>, SD = <span style="color: #e67e22; font-weight: bold;">6.00</span>), t(<span style="color: #e67e22; font-weight: bold;">98</span>) = <span style="color: #e67e22; font-weight: bold;">2.01</span>, p = <span style="color: #e67e22; font-weight: bold;">.002</span>.
 #The effect size was <span style="color: #e67e22; font-weight: bold;">medium</span>, Cohen's d = <span style="color: #e67e22; font-weight: bold;">.65</span>.
 
 </code></pre>
@@ -1559,7 +1562,7 @@ There is a standardized method of reporting. DO NOT be creative. Use the provide
 <pre><code>
 
 #A Mann-Whitney U test was conducted to determine if there was a difference in <span style="color: #e67e22; font-weight: bold;">OutcomeVariable</span> between <span style="color: #e67e22; font-weight: bold;">Group1</span> and <span style="color: #e67e22; font-weight: bold;">Group2</span>.
-#<span style="color: #e67e22; font-weight: bold;">Group1</span> scores (Mdn = <span style="color: #e67e22; font-weight: bold;">xx.xx</span>) were <span style="color: #e67e22; font-weight: bold;">significantly / not significantly</span> different from <span style="color: #e67e22; font-weight: bold;">Group2</span> scores (Mdn = <span style="color: #e67e22; font-weight: bold;">xx.xx</span>), U = <span style="color: #e67e22; font-weight: bold;">x.xx</span>, p = <span style="color: #e67e22; font-weight: bold;">.xxx</span>.
+#<span style="color: #e67e22; font-weight: bold;">Group1</span> scores (Mdn = <span style="color: #e67e22; font-weight: bold;">xx.xx</span>) were <span style="color: #e67e22; font-weight: bold;">significantly / not significantly</span> different from <span style="color: #e67e22; font-weight: bold;">Group2</span> scores (Mdn = <span style="color: #e67e22; font-weight: bold;">xx.xx</span>), W = <span style="color: #e67e22; font-weight: bold;">x.xx</span>, p = <span style="color: #e67e22; font-weight: bold;">.xxx</span>.
 #The effect size was <span style="color: #e67e22; font-weight: bold;">small / medium / large / very large</span>, Cliff's Delta = <span style="color: #e67e22; font-weight: bold;">.xxx</span>.
 
 </code></pre>
@@ -1573,7 +1576,7 @@ There is a standardized method of reporting. DO NOT be creative. Use the provide
 <pre><code>
 
 #A Mann-Whitney U test was conducted to determine if there was a difference in <span style="color: #e67e22; font-weight: bold;">Exam Scores</span> between <span style="color: #e67e22; font-weight: bold;">Females</span> and <span style="color: #e67e22; font-weight: bold;">Males</span>.
-#<span style="color: #e67e22; font-weight: bold;">Female</span> scores (Mdn = <span style="color: #e67e22; font-weight: bold;">84.00</span>) were <span style="color: #e67e22; font-weight: bold;">significantly</span> different from <span style="color: #e67e22; font-weight: bold;">Male</span> scores (Mdn = <span style="color: #e67e22; font-weight: bold;">77.00</span>), U = <span style="color: #e67e22; font-weight: bold;">30.00</span>, p = <span style="color: #e67e22; font-weight: bold;">.002</span>.
+#<span style="color: #e67e22; font-weight: bold;">Females</span> scores (Mdn = <span style="color: #e67e22; font-weight: bold;">84.00</span>) were <span style="color: #e67e22; font-weight: bold;">significantly</span> different from <span style="color: #e67e22; font-weight: bold;">Males</span> scores (Mdn = <span style="color: #e67e22; font-weight: bold;">77.00</span>), W = <span style="color: #e67e22; font-weight: bold;">30.00</span>, p = <span style="color: #e67e22; font-weight: bold;">.002</span>.
 #The effect size was <span style="color: #e67e22; font-weight: bold;">medium</span>, Cliff's Delta = <span style="color: #e67e22; font-weight: bold;">.45</span>.
 
 </code></pre>
