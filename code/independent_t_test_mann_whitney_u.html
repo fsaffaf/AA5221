@@ -375,7 +375,7 @@ When data is abnormal, the back-up test is the <b> Mann-Whitney U test</b>.
 
 <p> The independent t-test is preferred because it is a more statistically powerful test. This means it is more effective at detecting an effect if there is one. 
 However, the Mann-Whitney U test is a very useful and legitimate test to use when data is abnormal.
-Because normnality is so important, data analysts check normality in at least three different ways before determining which test to use.
+Because normality is so important, data analysts check normality in at least three different ways before determining which test to use.
 </p>
 
 <table>
@@ -698,6 +698,8 @@ The generated code will vary depending on your file location and file name.
 )</code></pre>
 
 </div>
+
+</div>
 </details>
 
 
@@ -779,7 +781,7 @@ Normality Check 1: Histograms
 
 <div class="path-step-content">
 
-<p>Because normnality is so important, data analysts check normality in at least three different ways before determining which test to use.
+<p>Because normality is so important, data analysts check normality in at least three different ways before determining which test to use.
 The first way is by creating and checking histograms.</p>
     
 <p>
@@ -1028,7 +1030,7 @@ Normality Check 3: Shapiro-Wilk
 
 <p>
 The Shapiro-Wilk test allows you to check whether your data is normal or abnormal using a statistical test. The test asks: "Is there a significant difference between my data's distribution and a theoretically perfect distribution?"</strong>
-A p-value of less than .05 indicates there is a significant difference, which means the data is abnormal. A p-value of greater than .05 indiciates there is no significant difference, which means the data is normal.</p>
+A p-value of less than .05 indicates there is a significant difference, which means the data is abnormal. A p-value of greater than .05 indicates there is no significant difference, which means the data is normal.</p>
 
 </p>
 
@@ -1109,11 +1111,8 @@ In your R Script, report if the data is normal or abnormal according to the Shap
 <div class="highlight-blue">
 
 <pre><code>
-<pre><code>
 #The <span style="color: #e67e22; font-weight: bold;">Females</span> group is <span style="color: #e67e22; font-weight: bold;">normally</span> distributed, (p = <span style="color: #e67e22; font-weight: bold;">.078</span>).
 #The <span style="color: #e67e22; font-weight: bold;">Males</span> group is <span style="color: #e67e22; font-weight: bold;">normally</span> distributed, (p = <span style="color: #e67e22; font-weight: bold;">.061</span>).</code></pre>
-
-</code></pre>
 
 </div>
 
@@ -1585,55 +1584,6 @@ There is a standardized method of reporting. DO NOT be creative. Use the provide
 
 
 
-<!-- FINAL STEPS -->
-
-<div class="test-path">
-
-<div class="test-path-content">
-
-
-
-
-<li>
-A new HTML report should open automatically.
-</li>
-
-</ol>
-
-<p>
-The report will display your code, output, tables, charts, and statistical
-results in a web-friendly format.
-</p>
-
-<hr>
-
-<h3>Step 6: Save the HTML Report</h3>
-
-<p>
-After the document finishes knitting, save the generated HTML file.
-</p>
-
-<ol>
-
-<li>
-Verify that the report displays correctly.
-</li>
-
-<li>
-Save the HTML file inside your <strong>Assignment 4</strong> folder.
-</li>
-
-<li>
-Confirm that the file opens correctly in a web browser.
-</li>
-
-</ol>
-
-</div>
-
-</details>
-
-
 
 <details>
 
@@ -1779,7 +1729,7 @@ appear shaded or highlighted within RStudio.
 
 <hr>
 
-<h3>Step 5: Knit the Document</h3>
+<h3>Knit the Document</h3>
 
 <p>
 Once the code chunk has been created, generate the HTML report.
