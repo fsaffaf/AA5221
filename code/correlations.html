@@ -369,8 +369,11 @@ Your code will be different because the dataset name, variable names, normality 
 </p>
 
 <div class="highlight-blue">
-
-<pre><code>library(readxl)
+<pre><code>
+#library(readxl)
+#library(ggpubr)
+    
+library(readxl)
 library(ggpubr)
 
 data2026 &lt;- read_excel("C:/Users/John/OneDrive/Documents/AA5221/Datasets/correlation_data.xlsx")
@@ -419,7 +422,8 @@ cor.test(
 # A Pearson correlation was conducted to test the relationship between age and income.
 # There was a statistically significant relationship between the variables, r(98) = .42, p = .003.
 # The relationship was positive and moderate.
-# As age increased, income increased.</code></pre>
+# As age increased, income increased.
+</code></pre>
 
 </div>
 
@@ -575,9 +579,7 @@ The generated code will vary depending on your file location and file name.
 <h3>Code Template</h3>
 
 <div class="highlight highlight-blue">
-
 <pre><code>DatasetName &lt;- read_excel("filepath")</code></pre>
-
 </div>
 
 <h3>Example</h3>
