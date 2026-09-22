@@ -789,13 +789,15 @@ These values will later be included in your results summary.
 
 <div class="highlight-blue">
 
-<pre><code>mean(DatasetName$IndependentVariable)
-sd(DatasetName$IndependentVariable)
-median(DatasetName$IndependentVariable)
+<pre><code>
+mean(<span style="color: #e67e22; font-weight: bold;">DatasetName</span>$<span style="color: #e67e22; font-weight: bold;">Variable1</span>)
+sd(<span style="color: #e67e22; font-weight: bold;">DatasetName</span>$<span style="color: #e67e22; font-weight: bold;">Variable1</span>)
+median(<span style="color: #e67e22; font-weight: bold;">DatasetName</span>$<span style="color: #e67e22; font-weight: bold;">Variable1</span>)
 
-mean(DatasetName$DependentVariable)
-sd(DatasetName$DependentVariable)
-median(DatasetName$DependentVariable)</code></pre>
+mean(<span style="color: #e67e22; font-weight: bold;">DatasetName</span>$<span style="color: #e67e22; font-weight: bold;">Variable2</span>)
+sd(<span style="color: #e67e22; font-weight: bold;">DatasetName</span>$<span style="color: #e67e22; font-weight: bold;">Variable2</span>)
+median(<span style="color: #e67e22; font-weight: bold;">DatasetName</span>$<span style="color: #e67e22; font-weight: bold;">Variable2</span>)
+</code></pre>
 
 </div>
 
@@ -804,13 +806,13 @@ median(DatasetName$DependentVariable)</code></pre>
 <div class="highlight-blue">
 
 <pre><code>
-mean(DatasetZ$Age)
-sd(DatasetZ$Age)
-median(DatasetZ$Age)
+<pre><code>mean(<span style="color: #e67e22; font-weight: bold;">DatasetZ</span>$<span style="color: #e67e22; font-weight: bold;">Age</span>)
+sd(<span style="color: #e67e22; font-weight: bold;">DatasetZ</span>$<span style="color: #e67e22; font-weight: bold;">Age</span>)
+median(<span style="color: #e67e22; font-weight: bold;">DatasetZ</span>$<span style="color: #e67e22; font-weight: bold;">Age</span>)
 
-mean(DatasetZ$USD)
-sd(DatasetZ$USD)
-median(DatasetZ$USD)
+mean(<span style="color: #e67e22; font-weight: bold;">DatasetZ</span>$<span style="color: #e67e22; font-weight: bold;">USD</span>)
+sd(<span style="color: #e67e22; font-weight: bold;">DatasetZ</span>$<span style="color: #e67e22; font-weight: bold;">USD</span>)
+median(<span style="color: #e67e22; font-weight: bold;">DatasetZ</span>$<span style="color: #e67e22; font-weight: bold;">USD</span>)</code></pre>
 </code></pre>
 
 </div>
@@ -1058,13 +1060,8 @@ In your R Script, report if the data is normal or abnormal according to the Shap
 <p><strong>Code Template</strong></p>
 
 <div class="highlight-blue">
-
-<pre><code>#Group 1: Name of First Group
-#The first group is [normally / abnormally] distributed, (p = .xxx).
-
-#Group 2: Name of Second Group
-#The second group is [normally / abnormally] distributed, (p = .xxx).</code></pre>
-
+<pre><code>#<span style="color: #e67e22; font-weight: bold;">Variable1</span> is [<span style="color: #e67e22; font-weight: bold;">normally / abnormally</span>] distributed, (p = <span style="color: #e67e22; font-weight: bold;">.xxx</span>).
+#<span style="color: #e67e22; font-weight: bold;">Variable2</span> is [<span style="color: #e67e22; font-weight: bold;">normally / abnormally</span>] distributed, (p = <span style="color: #e67e22; font-weight: bold;">.xxx</span>).</code></pre>
 </div>
 
 <p><strong>Example</strong></p>
@@ -1073,9 +1070,8 @@ In your R Script, report if the data is normal or abnormal according to the Shap
 
 <pre><code>
     
-#Age is abnormally distributed, (p = .003).
-
-#USD is normally distributed, (p = .061).
+<pre><code>#<span style="color: #e67e22; font-weight: bold;">Age</span> was <span style="color: #e67e22; font-weight: bold;">normally</span> distributed, W = <span style="color: #e67e22; font-weight: bold;">0.959</span>, p = <span style="color: #e67e22; font-weight: bold;">.754</span>.
+#<span style="color: #e67e22; font-weight: bold;">USD</span> was <span style="color: #e67e22; font-weight: bold;">normally</span> distributed, W = <span style="color: #e67e22; font-weight: bold;">0.970</span>, p = <span style="color: #e67e22; font-weight: bold;">.865</span>.</code></pre>
 
 </code></pre>
 
@@ -1230,40 +1226,49 @@ Report the Pearson Correlation
 <div class="path-step-content">
 
 <p>
-After completing your analysis, summarize the results as comments at the end of your R Script.
-Begin each sentence with a hashtag (<code>#</code>).
+After the analyses, report your findings in a few clear sentences in your R Script.
 </p>
 
-<h3>How to Report P-Values</h3>
+<p>
+Copy the template and replace the highlighted portions with your output results.
+There is a standardized method of reporting. DO NOT be creative. Use the provided reporting format.
+</p>
+
+<p><strong>P-Value Reporting</strong></p>
+
+<table style="width: 100%; border-collapse: collapse; font-size: 12pt;">
+    <thead>
+        <tr>
+            <th style="text-align: left; padding: 10px; border-bottom: 2px solid #0e68b3;">p-value</th>
+            <th style="text-align: left; padding: 10px; border-bottom: 2px solid #0e68b3;">How to Report</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td style="padding: 10px; border-bottom: 1px solid #ddd;"><strong>p &lt; .001</strong></td>
+            <td style="padding: 10px; border-bottom: 1px solid #ddd;">Report <strong>p &lt; .001</strong></td>
+        </tr>
+        <tr>
+            <td style="padding: 10px; border-bottom: 1px solid #ddd;"><strong>.001 &lt; p &lt; .05</strong></td>
+            <td style="padding: 10px; border-bottom: 1px solid #ddd;">Report the exact p-value to three decimals (example: <strong>p = .003</strong>)</td>
+        </tr>
+        <tr>
+            <td style="padding: 10px; border-bottom: 1px solid #ddd;"><strong>p &gt; .05</strong></td>
+            <td style="padding: 10px; border-bottom: 1px solid #ddd;">Report <strong>p &gt; .05</strong></td>
+        </tr>
+        <tr>
+            <td style="padding: 10px;"><strong>All other values</strong></td>
+            <td style="padding: 10px;">Report two decimal places (example: <strong>.1252 → .13</strong>)</td>
+        </tr>
+    </tbody>
+</table>
+
+<p><strong>Definitions</strong></p>
 
 <ul>
-
-<li>
-If p &lt; .001, report <strong>p &lt; .001</strong>.
-</li>
-
-<li>
-If .001 &lt; p &lt; .05, report the exact p-value to three decimal places.
-</li>
-
-<li>
-If p &gt; .05, report <strong>p &gt; .05</strong>.
-</li>
-
+<li><strong>r</strong> = correlation coefficient</li>
+<li><strong>p</strong> = p-value</li>
 </ul>
-
-<h3>Reporting Other Numerical Values</h3>
-
-<p>
-Report all other numerical values to two decimal places.
-Remember to round.
-</p>
-
-<p>
-Example: <strong>.1252 → .13</strong>
-</p>
-
-<h3>Interpreting Effect Size</h3>
 
 <p>
 For correlations, the effect size is the correlation coefficient itself
@@ -1275,37 +1280,41 @@ correlation analysis directly produces a measure of effect size.
 <p>
 The value of <strong>r</strong> tells us both the direction and strength of the relationship between two variables, so no additional effect size calculation is needed.
 </p>
-
+    
 <p>
-Only interpret the effect size if your results are statistically significant
-(<strong>p &lt; .05</strong>).
+<strong>Correlation Coefficient:</strong> The correlation coefficient ranges from -1.00 to +1.00. The sign tells you the direction of the relationship, while the number tells you the strength of the relationship.
 </p>
 
-<table>
+<table style="width: 100%; border-collapse: collapse; font-size: 12pt;">
 
 <tr>
-<th>Correlation Value</th>
-<th>Interpretation</th>
+<th style="text-align: left; padding: 10px; border-bottom: 2px solid #0e68b3;">Correlation</th>
+<th style="text-align: left; padding: 10px; border-bottom: 2px solid #0e68b3;">Interpretation</th>
 </tr>
 
 <tr>
-<td>± 0.00 to 0.09</td>
-<td>No Relationship</td>
+<td style="padding: 10px; border-bottom: 1px solid #ddd;">±0.00–0.19</td>
+<td style="padding: 10px; border-bottom: 1px solid #ddd;">Very weak relationship</td>
 </tr>
 
 <tr>
-<td>± 0.10 to 0.29</td>
-<td>Weak Relationship</td>
+<td style="padding: 10px; border-bottom: 1px solid #ddd;">±0.20–0.39</td>
+<td style="padding: 10px; border-bottom: 1px solid #ddd;">Weak relationship</td>
 </tr>
 
 <tr>
-<td>± 0.30 to 0.49</td>
-<td>Moderate Relationship</td>
+<td style="padding: 10px; border-bottom: 1px solid #ddd;">±0.40–0.59</td>
+<td style="padding: 10px; border-bottom: 1px solid #ddd;">Moderate relationship</td>
 </tr>
 
 <tr>
-<td>± 0.50 to 1.00</td>
-<td>Strong Relationship</td>
+<td style="padding: 10px; border-bottom: 1px solid #ddd;">±0.60–0.79</td>
+<td style="padding: 10px; border-bottom: 1px solid #ddd;">Strong relationship</td>
+</tr>
+
+<tr>
+<td style="padding: 10px;">±0.80–1.00</td>
+<td style="padding: 10px;">Very strong relationship</td>
 </tr>
 
 </table>
@@ -1314,13 +1323,14 @@ Only interpret the effect size if your results are statistically significant
 
 <div class="highlight-blue">
 
-<pre><code># A Pearson correlation was conducted to test the relationship between Variable 1 (M = xx.xx, SD = xx.xx) and Variable 2 (M = xx.xx, SD = xx.xx).
+<pre><code># A Pearson correlation was conducted to test the relationship between <span style="color: #e67e22; font-weight: bold;">Variable1</span> (M = <span style="color: #e67e22; font-weight: bold;">xx.xx</span>, SD = <span style="color: #e67e22; font-weight: bold;">xx.xx</span>) and <span style="color: #e67e22; font-weight: bold;">Variable2</span> (M = <span style="color: #e67e22; font-weight: bold;">xx.xx</span>, SD = <span style="color: #e67e22; font-weight: bold;">xx.xx</span>).
 
-# There [was / was not] a statistically significant relationship between the two variables, r(df) = .xx, p = .xxx.
+# There <span style="color: #e67e22; font-weight: bold;">was / was not</span> a statistically significant relationship between the two variables, r(df) = <span style="color: #e67e22; font-weight: bold;">.xx</span>, p = <span style="color: #e67e22; font-weight: bold;">.xxx</span>.
 
-# The relationship was [positive / negative] and [weak / moderate / strong].
+# The relationship was <span style="color: #e67e22; font-weight: bold;">positive / negative</span> and <span style="color: #e67e22; font-weight: bold;">weak / moderate / strong</span>.
 
-# As Variable 1 increased, Variable 2 [increased / decreased].</code></pre>
+# As <span style="color: #e67e22; font-weight: bold;">Variable1</span> increased, <span style="color: #e67e22; font-weight: bold;">Variable2</span> <span style="color: #e67e22; font-weight: bold;">increased / decreased</span>.</code></pre>
+
 
 </div>
 
@@ -1328,13 +1338,13 @@ Only interpret the effect size if your results are statistically significant
 
 <div class="highlight-blue">
 
-<pre><code># A Pearson correlation was conducted to test the relationship between age (M = 40.12, SD = 2.19) and income (M = 41000.11, SD = 1002.09).
+<pre><code># A Pearson correlation was conducted to test the relationship between <span style="color: #e67e22; font-weight: bold;">age</span> (M = <span style="color: #e67e22; font-weight: bold;">40.12</span>, SD = <span style="color: #e67e22; font-weight: bold;">2.19</span>) and <span style="color: #e67e22; font-weight: bold;">income</span> (M = <span style="color: #e67e22; font-weight: bold;">41000.11</span>, SD = <span style="color: #e67e22; font-weight: bold;">1002.09</span>).
 
-# There was a statistically significant relationship between the two variables, r(98) = .42, p = .003.
+# There was a statistically significant relationship between the two variables, r(<span style="color: #e67e22; font-weight: bold;">98</span>) = <span style="color: #e67e22; font-weight: bold;">.42</span>, p = <span style="color: #e67e22; font-weight: bold;">.003</span>.
 
-# The relationship was positive and moderate.
+# The relationship was <span style="color: #e67e22; font-weight: bold;">positive</span> and <span style="color: #e67e22; font-weight: bold;">moderate</span>.
 
-# As age increased, income increased.</code></pre>
+# As <span style="color: #e67e22; font-weight: bold;">age</span> increased, <span style="color: #e67e22; font-weight: bold;">income</span> increased.</code></pre>
 
 </div>
 
@@ -1439,93 +1449,128 @@ Report the Spearman Correlation
 <div class="path-step-content">
 
 <p>
-After completing your analysis, summarize the results as comments at the end of your R Script.
-Begin each sentence with a hashtag (<code>#</code>).
+After the analyses, report your findings in a few clear sentences in your R Script.
 </p>
 
-<h3>How to Report P-Values</h3>
+<p>
+Copy the template and replace the highlighted portions with your output results.
+There is a standardized method of reporting. DO NOT be creative. Use the provided reporting format.
+</p>
+
+<p><strong>P-Value Reporting</strong></p>
+
+<table style="width: 100%; border-collapse: collapse; font-size: 12pt;">
+    <thead>
+        <tr>
+            <th style="text-align: left; padding: 10px; border-bottom: 2px solid #0e68b3;">p-value</th>
+            <th style="text-align: left; padding: 10px; border-bottom: 2px solid #0e68b3;">How to Report</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td style="padding: 10px; border-bottom: 1px solid #ddd;"><strong>p &lt; .001</strong></td>
+            <td style="padding: 10px; border-bottom: 1px solid #ddd;">Report <strong>p &lt; .001</strong></td>
+        </tr>
+        <tr>
+            <td style="padding: 10px; border-bottom: 1px solid #ddd;"><strong>.001 &lt; p &lt; .05</strong></td>
+            <td style="padding: 10px; border-bottom: 1px solid #ddd;">Report the exact p-value to three decimals (example: <strong>p = .003</strong>)</td>
+        </tr>
+        <tr>
+            <td style="padding: 10px; border-bottom: 1px solid #ddd;"><strong>p &gt; .05</strong></td>
+            <td style="padding: 10px; border-bottom: 1px solid #ddd;">Report <strong>p &gt; .05</strong></td>
+        </tr>
+        <tr>
+            <td style="padding: 10px;"><strong>All other values</strong></td>
+            <td style="padding: 10px;">Report two decimal places (example: <strong>.1252 → .13</strong>)</td>
+        </tr>
+    </tbody>
+</table>
+
+<p><strong>Definitions</strong></p>
 
 <ul>
-
-<li>
-If p &lt; .001, report <strong>p &lt; .001</strong>.
-</li>
-
-<li>
-If .001 &lt; p &lt; .05, report the exact p-value to three decimal places.
-</li>
-
-<li>
-If p &gt; .05, report <strong>p &gt; .05</strong>.
-</li>
-
+<li><strong>r</strong> = correlation coefficient</li>
+<li><strong>p</strong> = p-value</li>
 </ul>
 
-<h3>Reporting Other Numerical Values</h3>
-
 <p>
-Report all other numerical values to two decimal places.
-Remember to round.
+For correlations, the effect size is the correlation coefficient itself
+(<strong>r</strong>).
+Unlike tests such as chi-square tests where a separate effect size may be calculated,
+correlation analysis directly produces a measure of effect size.
 </p>
 
 <p>
-Example: <strong>.1252 → .13</strong>
+The value of <strong>r</strong> tells us both the direction and strength of the relationship between two variables, so no additional effect size calculation is needed.
 </p>
-
-<h3>Interpreting Effect Size</h3>
-
+    
 <p>
-For a Spearman correlation, the correlation coefficient
-(<strong>ρ</strong>) provides the effect size.
+<strong>Correlation Coefficient:</strong> The correlation coefficient ranges from -1.00 to +1.00. The sign tells you the direction of the relationship, while the number tells you the strength of the relationship.
 </p>
 
-<p>
-Only interpret the effect size if your results are statistically significant
-(<strong>p &lt; .05</strong>).
-</p>
-
-<table>
+<table style="width: 100%; border-collapse: collapse; font-size: 12pt;">
 
 <tr>
-<th>Correlation Value</th>
-<th>Interpretation</th>
+<th style="text-align: left; padding: 10px; border-bottom: 2px solid #0e68b3;">Correlation</th>
+<th style="text-align: left; padding: 10px; border-bottom: 2px solid #0e68b3;">Interpretation</th>
 </tr>
 
 <tr>
-<td>± 0.00 to 0.09</td>
-<td>No Relationship</td>
+<td style="padding: 10px; border-bottom: 1px solid #ddd;">±0.00–0.19</td>
+<td style="padding: 10px; border-bottom: 1px solid #ddd;">Very weak relationship</td>
 </tr>
 
 <tr>
-<td>± 0.10 to 0.29</td>
-<td>Weak Relationship</td>
+<td style="padding: 10px; border-bottom: 1px solid #ddd;">±0.20–0.39</td>
+<td style="padding: 10px; border-bottom: 1px solid #ddd;">Weak relationship</td>
 </tr>
 
 <tr>
-<td>± 0.30 to 0.49</td>
-<td>Moderate Relationship</td>
+<td style="padding: 10px; border-bottom: 1px solid #ddd;">±0.40–0.59</td>
+<td style="padding: 10px; border-bottom: 1px solid #ddd;">Moderate relationship</td>
 </tr>
 
 <tr>
-<td>± 0.50 to 1.00</td>
-<td>Strong Relationship</td>
+<td style="padding: 10px; border-bottom: 1px solid #ddd;">±0.60–0.79</td>
+<td style="padding: 10px; border-bottom: 1px solid #ddd;">Strong relationship</td>
+</tr>
+
+<tr>
+<td style="padding: 10px;">±0.80–1.00</td>
+<td style="padding: 10px;">Very strong relationship</td>
 </tr>
 
 </table>
+
 
 <h3>Spearman Reporting Template</h3>
 
 <div class="highlight-blue">
 
-<pre><code># A Spearman correlation was conducted to test the relationship between Variable 1 (Mdn = xx.xx) and Variable 2 (Mdn = xx.xx).
+<pre><code># A Spearman correlation was conducted to test the relationship between <span style="color: #e67e22; font-weight: bold;">Variable 1</span> (Mdn = <span style="color: #e67e22; font-weight: bold;">xx.xx</span>) and <span style="color: #e67e22; font-weight: bold;">Variable 2</span> (Mdn = <span style="color: #e67e22; font-weight: bold;">xx.xx</span>).
 
-# There [was / was not] a statistically significant relationship between the two variables, ρ = .xx, p = .xxx.
+# There <span style="color: #e67e22; font-weight: bold;">was / was not</span> a statistically significant relationship between the two variables, ρ = <span style="color: #e67e22; font-weight: bold;">.xx</span>, p = <span style="color: #e67e22; font-weight: bold;">.xxx</span>.
 
-# The relationship was [positive / negative] and [weak / moderate / strong].
+# The relationship was <span style="color: #e67e22; font-weight: bold;">positive / negative</span> and <span style="color: #e67e22; font-weight: bold;">weak / moderate / strong</span>.
 
-# As the independent variable increased, the dependent variable [increased / decreased].</code></pre>
-
+# As <span style="color: #e67e22; font-weight: bold;">Variable 1</span> increased, <span style="color: #e67e22; font-weight: bold;">Variable 2</span> <span style="color: #e67e22; font-weight: bold;">increased / decreased</span>.</code></pre>
 </div>
+
+
+
+<h3>Example</h3>
+
+<div class="highlight-blue">
+
+<pre><code># A Spearman correlation was conducted to test the relationship between age (Mdn = <span style="color: #e67e22; font-weight: bold;">40</span>) and income (Mdn = <span style="color: #e67e22; font-weight: bold;">41000</span>).
+
+# There was a statistically significant relationship between the two variables, ρ = <span style="color: #e67e22; font-weight: bold;">.42</span>, p = <span style="color: #e67e22; font-weight: bold;">.003</span>.
+
+# The relationship was <span style="color: #e67e22; font-weight: bold;">positive</span> and <span style="color: #e67e22; font-weight: bold;">moderate</span>.
+
+# As age increased, income <span style="color: #e67e22; font-weight: bold;">increased</span>.</code></pre>
+ </div>
+   
 
 </div>
 
