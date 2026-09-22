@@ -430,86 +430,79 @@ cor.test(
 
 <!-- STEP 2 -->
 
+
 <details>
 
 <summary>
-<span class="step-label">Step 2</span><br>
-Install &amp; Open the Required Packages
+<span class="step-label">Step 1</span><br>
+Install & Open the Packages
 </summary>
-
+    
 <div class="path-step-content">
-
+    
 <p>
-A package is a collection of functions that adds additional abilities to R.
+Packages add additional functionality to R.
 </p>
 
+<table>
+
+<tr>
+<th>Package</th>
+<th>Purpose</th>
+</tr>
+
+<tr>
+<td><code>readxl</code></td>
+<td>Import Excel datasets</td>
+</tr>
+
+<tr>
+<td><code>ggpubr</code></td>
+<td>Create histograms and boxplots</td>
+</tr>
+
+</table>
+
+<h3>Install the Packages</h3>
+
 <p>
-For this assignment:
+Copy-and-paste the following code into your R Script file.<br>
+Run the code once.
 </p>
 
-<ul>
-
-<li>
-<strong>readxl</strong> allows R to import Excel files.
-</li>
-
-<li>
-<strong>ggpubr</strong> allows R to create scatterplots and other publication-quality graphics.
-</li>
-
-</ul>
-
-<h3>Install the Required Packages</h3>
-
-<p>
-Copy and paste the following code into your R Script.
-</p>
-
-<div class="highlight-orange">
-
-<pre><code>install.packages("readxl")
-install.packages("ggpubr")</code></pre>
+<div class="highlight highlight-orange">
+<pre><code>
+install.packages("readxl")
+install.packages("ggpubr")
+</code></pre>
 
 </div>
-
+<h3>Output</h3>
 <p>
-Run each line only one time.
+You may see warning messages appear when you install a package.
+These messages do not necessarily mean that the installation failed.
 Packages only need to be installed once.
-After successful installation, delete the
-<code>install.packages()</code> lines from your R Script.
-Running installation code repeatedly can sometimes create errors.
-</p>
-
-<p>
-<strong>What will you see?</strong><br>
-RStudio will display installation messages in the Console.
-Once installation is complete, the packages are ready to use.
 </p>
 
 <hr>
 
-<h3>Open the Installed Packages</h3>
+<h3>Load the Packages</h3>
 
 <p>
-Copy and paste the following code into your R Script:
+Copy-and-paste the code below into your R Script.<br>
+Keep these lines of code in your R Script.
 </p>
 
-<div class="highlight-blue">
-
-<pre><code>library(readxl)
-library(ggpubr)</code></pre>
+<div class="highlight highlight-orange">
+<pre><code>
+library(readxl)
+library(ggpubr)
+</code></pre>
 
 </div>
-
+<h3>Output</h3>
 <p>
-Run the code.
-</p>
-
-<p>
-<strong>What will you see?</strong><br>
-Nothing will appear in the Console.
-That is normal.
-The packages are now available for use in your R session.
+No output will appear. This simply opens the packages so you can use their functions in RStudio.
 </p>
 
 </div>
@@ -517,7 +510,6 @@ The packages are now available for use in your R session.
 </details>
 
 
-<!-- IMPORT DATASET -->
 <details>
 
 <summary>
@@ -530,8 +522,7 @@ Import & Name the Dataset
 
 <p>
 Although datasets can be imported entirely through code, many students
-experience difficulty locating file paths. Therefore, this course uses the
-<b>point-and-click import method</b> to generate the necessary code automatically.
+experience difficulty locating file paths. Therefore, this course uses the point-and-click import method to generate the necessary code automatically.
 </p>
 
 <h3>Import the Excel File</h3>
@@ -539,12 +530,12 @@ experience difficulty locating file paths. Therefore, this course uses the
 <ol>
 
 <li>
-Select: <strong>File → Import Dataset → From Excel</strong>
+Select: <span style="color: #e67e22; font-weight: bold;">File → Import Dataset → From Excel</span>
 </li>
 
 <li>
 A new import window will appear.
-Select <strong>Browse</strong>.
+Select: <span style="color: #e67e22; font-weight: bold;">Browse</span>
 </li>
 
 <li>
@@ -552,18 +543,18 @@ Locate your assigned Excel dataset.
 </li>
 
 <li>
-Select the dataset and choose <strong>Open</strong>.
+Select the dataset and choose: <span style="color: #e67e22; font-weight: bold;">Open</span>
+
 </li>
 
 <li>
-Return to the import window and select <strong>Import</strong>.
+Return to the import window and elect: <span style="color: #e67e22; font-weight: bold;">Import</span>
+
 </li>
 
 </ol>
 
-<hr>
-
-<h3>What Happens When You Click Import?</h3>
+<h3>Output</h3>
 
 <p>
 Once imported, the dataset will appear in a new tab and will also appear
@@ -581,7 +572,7 @@ to be automatically imported the next time you run your script.
 The generated code will vary depending on your file location and file name.
 </p>
 
-<h3>General Example</h3>
+<h3>Code Template</h3>
 
 <div class="highlight highlight-blue">
 
@@ -589,7 +580,7 @@ The generated code will vary depending on your file location and file name.
 
 </div>
 
-<h3>Example with a Sample File Path</h3>
+<h3>Example</h3>
 
 <div class="highlight highlight-blue">
 
@@ -598,10 +589,11 @@ The generated code will vary depending on your file location and file name.
 )</code></pre>
 
 </div>
+
+</div>
 </details>
 
-
-
+    
 <!-- STEP 4 -->
 
 <details>
