@@ -365,12 +365,12 @@ Overview of the Test
 <div class="path-step-content">
 
 <p>
-An <strong>Independent T-Test</strong> tests if there is a difference between the scores of two different groups.
-When two different groups are compared, this is called a <b>between-subjects design</b>.
+An Independent T-Test tests if there is a difference between the scores of two different groups.
+When two different groups are compared, this is called a between-subjects design.
 </p>
 <p>
 The independent t-test is extremely sensitive and requires normal data. 
-When data is abnormal, the back-up test is the <b> Mann-Whitney U test</b>.
+When data is abnormal, the back-up test is the  Mann-Whitney U test.
 </p>
 
 <p> The independent t-test is preferred because it is a more statistically powerful test. This means it is more effective at detecting an effect if there is one. 
@@ -785,7 +785,7 @@ Check normality of the data in three different ways: Histogram, Boxplot, and Sha
 
 <h3>Histograms</h3>
 <p>
-A <strong>histogram</strong> is a graph that shows how the values of a continuous variable are distributed. It groups values into ranges and uses bars to show how many observations fall within each range.
+A histogram is a graph that shows how the values of a continuous variable are distributed. It groups values into ranges and uses bars to show how many observations fall within each range.
 </p>
 
 <h3>Code Tempalte</h3>
@@ -905,16 +905,16 @@ Normality Check 2: Boxplots
 <div class="path-step-content">
 
 <p>
-Before conducting the t-test, create boxplots to check for <strong>extreme outliers</strong> in your numerical variables.
+Before conducting the t-test, create boxplots to check for extreme outliers in your numerical variables.
 </p>
 
 <p>
-An <strong>outlier</strong> is a score that is unusually high or low compared to the other scores in the dataset.
-Outliers can affect the normality of a dataset. An outlier can increase the <strong>skewness</strong> of a dataset, which can be the difference between normal and abnormal data.
+An outlier is a score that is unusually high or low compared to the other scores in the dataset.
+Outliers can affect the normality of a dataset. An outlier can increase the skewness of a dataset, which can be the difference between normal and abnormal data.
 </p>
 
 <p>
-A box-and-whisker plot, or <strong>boxplot</strong>, provides a quick visual summary of a numerical variable. 
+A box-and-whisker plot, or boxplot, provides a quick visual summary of a numerical variable. 
 The box shows the middle 50% of the data, the line inside the box shows the median, and the whiskers (lines outside the box) extend to the typical lower and higher values. 
 Individual dots outside the whiskers represent potential outliers. A boxplot allows you to quickly see the center, spread, and unusual values in a continuous variable.
 </p>
@@ -973,7 +973,7 @@ There are statistical analyses we can do to definitively determine if a dot is t
 </p>
     
 <p>
-Look for individual dots <strong>beyond</strong> the whiskers. Those are potential outliers.
+Look for individual dots beyond the whiskers. Those are potential outliers.
 </p>
 
 <h3>Reporting Template</h3>
@@ -1028,7 +1028,7 @@ Normality Check 3: Shapiro-Wilk
 <div class="path-step-content">
 
 <p>
-The Shapiro-Wilk test allows you to check whether your data is normal or abnormal using a statistical test. The test asks: "Is there a significant difference between my data's distribution and a theoretically perfect distribution?"</strong>
+The Shapiro-Wilk test allows you to check whether your data is normal or abnormal using a statistical test. The test asks: "Is there a significant difference between my data's distribution and a theoretically perfect distribution?"
 A p-value of less than .05 indicates there is a significant difference, which means the data is abnormal. A p-value of greater than .05 indicates there is no significant difference, which means the data is normal.</p>
 
 </p>
@@ -1146,10 +1146,10 @@ Were they both normal, or was one or both abnormal?
 </p>
 
 <p>
-If both were normal, choose the <b>Independent t-test.</b>
+If both were normal, choose the Independent t-test.
 </p>
 <p>
-If one or both were abnormal, choose the <b>Mann-Whitney U test.</b>
+If one or both were abnormal, choose the Mann-Whitney U test.
 </p>
 
 </div>
@@ -1232,7 +1232,7 @@ Calculate Cohen's d (Effect Size)
 <div class="path-step-content">
 
 <p>
-Only calculate Cohen's d if the Independent T-Test is significant (<strong>p &lt; .05</strong>).
+Only calculate Cohen's d if the Independent T-Test is significant (p &lt; .05).
 </p>
 
 <h3>Code Template</h3>
@@ -1254,7 +1254,7 @@ print(cohens_d_result)</code></pre>
 </div>
 
 <p>
-<strong>Output:</strong> 0.65
+Output: 0.65
 </p>
 
 </div>
@@ -1293,35 +1293,35 @@ There is a standardized method of reporting. DO NOT be creative. Use the provide
     </thead>
     <tbody>
         <tr>
-            <td style="padding: 10px; border-bottom: 1px solid #ddd;"><strong>p &lt; .001</strong></td>
-            <td style="padding: 10px; border-bottom: 1px solid #ddd;">Report <strong>p &lt; .001</strong></td>
+            <td style="padding: 10px; border-bottom: 1px solid #ddd;">p &lt; .001</td>
+            <td style="padding: 10px; border-bottom: 1px solid #ddd;">Report p &lt; .001</td>
         </tr>
         <tr>
-            <td style="padding: 10px; border-bottom: 1px solid #ddd;"><strong>.001 &lt; p &lt; .05</strong></td>
-            <td style="padding: 10px; border-bottom: 1px solid #ddd;">Report the exact p-value to three decimals (example: <strong>p = .003</strong>)</td>
+            <td style="padding: 10px; border-bottom: 1px solid #ddd;">.001 &lt; p &lt; .05</td>
+            <td style="padding: 10px; border-bottom: 1px solid #ddd;">Report the exact p-value to three decimals (example: p = .003)</td>
         </tr>
         <tr>
-            <td style="padding: 10px; border-bottom: 1px solid #ddd;"><strong>p &gt; .05</strong></td>
-            <td style="padding: 10px; border-bottom: 1px solid #ddd;">Report <strong>p &gt; .05</strong></td>
+            <td style="padding: 10px; border-bottom: 1px solid #ddd;">p &gt; .05</td>
+            <td style="padding: 10px; border-bottom: 1px solid #ddd;">Report p &gt; .05</td>
         </tr>
         <tr>
-            <td style="padding: 10px;"><strong>All other values</strong></td>
-            <td style="padding: 10px;">Report two decimal places (example: <strong>.1252 → .13</strong>)</td>
+            <td style="padding: 10px;">All other values</td>
+            <td style="padding: 10px;">Report two decimal places (example: .1252 → .13)</td>
         </tr>
     </tbody>
 </table>
 
 <h3>Definitions</h3>
 <ul>
-<li><strong>M</strong> = mean</li>
-<li><strong>SD</strong> = standard deviation</li>
-<li><strong>df</strong> = degrees of freedom</li>
-<li><strong>t</strong> = t-test value</li>
-<li><strong>p</strong> = p-value</li>
+<li>M = mean</li>
+<li>SD = standard deviation</li>
+<li>df = degrees of freedom</li>
+<li>t = t-test value</li>
+<li>p = p-value</li>
 </ul>
 
 <p>
-<strong>Degrees of Freedom:</strong> Total sample size minus the number of groups. For two groups, if <code>n = 100</code>, then <code>df = 98</code>.
+Degrees of Freedom: Total sample size minus the number of groups. For two groups, if <code>n = 100</code>, then <code>df = 98</code>.
 </p>
 
 <table>
@@ -1524,20 +1524,20 @@ There is a standardized method of reporting. DO NOT be creative. Use the provide
     </thead>
     <tbody>
         <tr>
-            <td style="padding: 10px; border-bottom: 1px solid #ddd;"><strong>p &lt; .001</strong></td>
-            <td style="padding: 10px; border-bottom: 1px solid #ddd;">Report <strong>p &lt; .001</strong></td>
+            <td style="padding: 10px; border-bottom: 1px solid #ddd;">p &lt; .001</td>
+            <td style="padding: 10px; border-bottom: 1px solid #ddd;">Report p &lt; .001</td>
         </tr>
         <tr>
-            <td style="padding: 10px; border-bottom: 1px solid #ddd;"><strong>.001 &lt; p &lt; .05</strong></td>
-            <td style="padding: 10px; border-bottom: 1px solid #ddd;">Report the exact p-value to three decimals (example: <strong>p = .003</strong>)</td>
+            <td style="padding: 10px; border-bottom: 1px solid #ddd;">.001 &lt; p &lt; .05</td>
+            <td style="padding: 10px; border-bottom: 1px solid #ddd;">Report the exact p-value to three decimals (example: p = .003)</td>
         </tr>
         <tr>
-            <td style="padding: 10px; border-bottom: 1px solid #ddd;"><strong>p &gt; .05</strong></td>
-            <td style="padding: 10px; border-bottom: 1px solid #ddd;">Report <strong>p &gt; .05</strong></td>
+            <td style="padding: 10px; border-bottom: 1px solid #ddd;">p &gt; .05</td>
+            <td style="padding: 10px; border-bottom: 1px solid #ddd;">Report p &gt; .05</td>
         </tr>
         <tr>
-            <td style="padding: 10px;"><strong>All other values</strong></td>
-            <td style="padding: 10px;">Report two decimal places (example: <strong>.1252 → .13</strong>)</td>
+            <td style="padding: 10px;">All other values</td>
+            <td style="padding: 10px;">Report two decimal places (example: .1252 → .13)</td>
         </tr>
     </tbody>
 </table>
@@ -1546,9 +1546,9 @@ There is a standardized method of reporting. DO NOT be creative. Use the provide
 <h3>Definitions</h3>
 
 <ul>
-<li><strong>Mdn</strong> = median</li>
-<li><strong>U</strong> = Mann-Whitney U value</li>
-<li><strong>p</strong> = p-value</li>
+<li>Mdn = median</li>
+<li>U = Mann-Whitney U value</li>
+<li>p = p-value</li>
 </ul>
 
 <h3>Code Template</h3>
@@ -1610,7 +1610,7 @@ Create an RMarkdown File
 
 <p>
 After completing your R Script, the next step is to convert it into an
-<strong>R Markdown</strong> document.
+R Markdown document.
 </p>
 
 <p>
@@ -1641,15 +1641,15 @@ Open RStudio.
 
 <li>
 Select:
-<strong>File → New File → R Markdown</strong>
+File → New File → R Markdown
 </li>
 
 <li>
-Ensure that <strong>HTML</strong> is selected as the output format.
+Ensure that HTML is selected as the output format.
 </li>
 
 <li>
-Select <strong>OK</strong>.
+Select OK.
 </li>
 
 </ol>
@@ -1666,7 +1666,7 @@ The default settings are sufficient for this assignment.
 <ol>
 
 <li>
-Select <strong>File → Save As</strong>.
+Select File → Save As.
 </li>
 
 <li>
@@ -1697,7 +1697,7 @@ Paste the code into the empty R Markdown document.
 
 <p>
 R code inside an R Markdown file must be placed inside a
-<strong>code chunk</strong>.
+code chunk.
 </p>
 
 <p>
@@ -1752,7 +1752,7 @@ Once the code chunk has been created, generate the HTML report.
 <ol>
 
 <li>
-Select the <strong>Knit</strong> button at the top of the R Markdown document.
+Select the Knit button at the top of the R Markdown document.
 </li>
 
 <li>
@@ -1791,7 +1791,7 @@ Create an RPubs File
 
 <p>
 After creating and knitting your R Markdown document, the final step is to
-publish your report to <strong>RPubs</strong>.
+publish your report to RPubs.
 </p>
 
 <p>
@@ -1824,7 +1824,7 @@ Verify that the document knits successfully and displays all output correctly.
 </li>
 
 <li>
-Select the <strong>Knit</strong> button if you have not already generated the HTML report.
+Select the Knit button if you have not already generated the HTML report.
 </li>
 
 </ol>
@@ -1840,11 +1840,11 @@ After knitting, the completed HTML report should appear in the Viewer pane or op
 <ol>
 
 <li>
-Locate the <strong>Publish</strong> button in the Viewer pane.
+Locate the Publish button in the Viewer pane.
 </li>
 
 <li>
-Select <strong>Publish to RPubs</strong>.
+Select Publish to RPubs.
 </li>
 
 <li>
@@ -1864,7 +1864,7 @@ Optionally enter a description.
 </li>
 
 <li>
-Select <strong>Publish</strong>.
+Select Publish.
 </li>
 
 </ol>
@@ -1885,7 +1885,7 @@ Open your published RPubs report in a web browser.
 </li>
 
 <li>
-Press <strong>Ctrl + S</strong> (Windows) or <strong>Command + S</strong> (Mac).
+Press Ctrl + S (Windows) or Command + S (Mac).
 </li>
 
 <li>
@@ -1893,7 +1893,7 @@ Choose a location on your computer.
 </li>
 
 <li>
-If available, select <strong>Webpage, HTML Only</strong>.
+If available, select Webpage, HTML Only.
 </li>
 
 <li>
