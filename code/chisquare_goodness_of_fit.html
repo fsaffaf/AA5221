@@ -525,7 +525,8 @@ cramer_v
 </details>
 
 
-<!-- INSTALL READXL -->
+
+
 <details>
 
 <summary>
@@ -537,46 +538,57 @@ Install & Open the Packages
     
 <p>
 Packages add additional functionality to R.
-The <strong>readxl</strong> package allows R to import Excel files.
 </p>
 
-<h3>Install readxl</h3>
+<table>
+
+<tr>
+<th>Package</th>
+<th>Purpose</th>
+</tr>
+
+<tr>
+<td><code>readxl</code></td>
+<td>Import Excel datasets</td>
+</tr>
+</table>
+
+<h3>Install the Packages</h3>
 
 <p>
-Copy-and-paste the following code into your RScript file. <br>
-    Run the code once.
+Copy-and-paste the following code into your R Script file.<br>
+Run the code once.
 </p>
 
 <div class="highlight highlight-orange">
-
-<pre><code>install.packages("readxl")</code></pre>
+<pre><code>install.packages("readxl")
+</code></pre>
 
 </div>
-
+<h3>Output</h3>
 <p>
-You will see a long "warning" message appear when you install the package.
-This actually means you have successfully installed the package.
-After installation is complete, remove or comment out this line.
+You may see warning messages appear when you install a package.
+These messages do not necessarily mean that the installation failed.
 Packages only need to be installed once.
 </p>
 
 <hr>
 
-<h3>Load readxl</h3>
+<h3>Load the Packages</h3>
 
 <p>
-Copy-and-paste the code below into your RScript. <br>
-Keep this line of code in your RScript.
+Copy-and-paste the code below into your R Script.<br>
+Keep these lines of code in your R Script.
 </p>
 
 <div class="highlight highlight-orange">
-
-<pre><code>library(readxl)</code></pre>
+<pre><code>library(readxl)
+</code></pre>
 
 </div>
-
+<h3>Output</h3>
 <p>
-No output will appear. This simply opens the package so you can use its functions in RStudio.
+No output will appear. This simply opens the packages so you can use their functions in RStudio.
 </p>
 
 </div>
@@ -584,7 +596,6 @@ No output will appear. This simply opens the package so you can use its function
 </details>
 
 
-<!-- IMPORT DATASET -->
 <details>
 
 <summary>
@@ -597,8 +608,7 @@ Import & Name the Dataset
 
 <p>
 Although datasets can be imported entirely through code, many students
-experience difficulty locating file paths. Therefore, this course uses the
-<b>point-and-click import method</b> to generate the necessary code automatically.
+experience difficulty locating file paths. Therefore, this course uses the point-and-click import method to generate the necessary code automatically.
 </p>
 
 <h3>Import the Excel File</h3>
@@ -606,12 +616,12 @@ experience difficulty locating file paths. Therefore, this course uses the
 <ol>
 
 <li>
-Select: <strong>File → Import Dataset → From Excel</strong>
+Select: <span style="color: #e67e22; font-weight: bold;">File → Import Dataset → From Excel</span>
 </li>
 
 <li>
 A new import window will appear.
-Select <strong>Browse</strong>.
+Select: <span style="color: #e67e22; font-weight: bold;">Browse</span>
 </li>
 
 <li>
@@ -619,18 +629,18 @@ Locate your assigned Excel dataset.
 </li>
 
 <li>
-Select the dataset and choose <strong>Open</strong>.
+Select the dataset and choose: <span style="color: #e67e22; font-weight: bold;">Open</span>
+
 </li>
 
 <li>
-Return to the import window and select <strong>Import</strong>.
+Return to the import window and elect: <span style="color: #e67e22; font-weight: bold;">Import</span>
+
 </li>
 
 </ol>
 
-<hr>
-
-<h3>What Happens When You Click Import?</h3>
+<h3>Output</h3>
 
 <p>
 Once imported, the dataset will appear in a new tab and will also appear
@@ -648,15 +658,13 @@ to be automatically imported the next time you run your script.
 The generated code will vary depending on your file location and file name.
 </p>
 
-<h3>General Example</h3>
+<h3>Code Template</h3>
 
 <div class="highlight highlight-blue">
-
 <pre><code>DatasetName &lt;- read_excel("filepath")</code></pre>
-
 </div>
 
-<h3>Example with a Sample File Path</h3>
+<h3>Example</h3>
 
 <div class="highlight highlight-blue">
 
@@ -667,8 +675,8 @@ The generated code will vary depending on your file location and file name.
 </div>
 
 </div>
-
 </details>
+
 
 
 <!-- FREQUENCY TABLE -->
@@ -692,7 +700,7 @@ frequencies used in the Chi-Square Goodness-of-Fit test.
 
 <p>
 The values in the frequency table are called
-<strong>observed frequencies</strong>.
+observed frequencies.
 These are the actual category counts found in your dataset.
 </p>
 
@@ -703,11 +711,11 @@ The Chi-Square Goodness-of-Fit test compares:
 <ul>
 
 <li>
-<strong>Observed Frequencies</strong> → What you found in your dataset.
+Observed Frequencies → What you found in your dataset.
 </li>
 
 <li>
-<strong>Expected Frequencies</strong> → What you expected to find based on previous research, theory, or historical data.
+Expected Frequencies → What you expected to find based on previous research, theory, or historical data.
 </li>
     
 <h3>Create the Frequency Table</h3>
@@ -728,7 +736,7 @@ Replace <code>variable</code> with the name of the categorical variable you are 
 
 <li>
 If you are unsure of the dataset name or variable name, check the
-<strong>Environment</strong> pane.
+Environment pane.
 </li>
 
 </ol>
@@ -749,12 +757,12 @@ The <code>table()</code> function counts the number of observations in each cate
 
 <p>
 Dataset name:
-<strong>data2026</strong>
+data2026
 </p>
 
 <p>
 Variable name:
-<strong>political</strong>
+political
 </p>
 
 <div class="highlight highlight-blue">
@@ -773,11 +781,11 @@ it is helpful to save it as an object that can be reused later in your analysis.
 </p>
 
 <p>
-Add the <b>observed <-</b> before the <b>table</b> function to name the object. <br>
+Add the observed <- before the table function to name the object. <br>
 The arrow tells RStudio to name the object, and the word it points to is the name you give it. <br>
 Here, we have intentionally named the table observed, because we will use it in the chi-squared code later.
 <br>
-By writing the word <b>observed</b> again on a new line, we are "calling" the object and asking RStudio to show it to us in the Console pane.
+By writing the word observed again on a new line, we are "calling" the object and asking RStudio to show it to us in the Console pane.
 <div class="highlight highlight-orange">
 
 <pre><code>observed &lt;-table(dataset$variable)
@@ -827,7 +835,7 @@ This output indicates that:
 </ul>
 
 <p>
-<strong>Important:</strong>
+Important:
 The order of the categories displayed in the frequency table is important.
 Later, when creating the expected proportions for the Chi-Square test,
 the expected values must appear in the same order as the categories shown here.
@@ -896,9 +904,9 @@ col = rainbow(length(observed)))</code></pre>
 </div>
 
 <p>
-Replace <b>"Variable Name"</b> in both
-<b>main =</b> and
-<b>xlab =</b>
+Replace "Variable Name" in both
+main = and
+xlab =
 with the name of the variable you are analyzing.
 </p>
 
@@ -912,27 +920,27 @@ with the name of the variable you are analyzing.
 </tr>
 
 <tr>
-<td><strong>observed</strong></td>
+<td>observed</td>
 <td>The frequency table you created earlier.</td>
 </tr>
 
 <tr>
-<td><strong>main =</strong></td>
+<td>main =</td>
 <td>The title displayed at the top of the chart.</td>
 </tr>
 
 <tr>
-<td><strong>xlab =</strong></td>
+<td>xlab =</td>
 <td>The label displayed on the x-axis.</td>
 </tr>
 
 <tr>
-<td><strong>ylab =</strong></td>
+<td>ylab =</td>
 <td>The label displayed on the y-axis.</td>
 </tr>
 
 <tr>
-<td><strong>col =</strong></td>
+<td>col =</td>
 <td>The colors assigned to the bars.</td>
 </tr>
 
@@ -1075,7 +1083,7 @@ Then your expected proportions must follow the same order.
 </ul>
 
 <p>
-<strong>Important:</strong>
+Important:
 Expected proportions must add up to 1.00 (100%).
 </p>
 
@@ -1142,7 +1150,7 @@ The Chi-Square output contains three values that are used when reporting results
 </tr>
 
 <tr>
-<td><strong>X-squared (χ²)</strong></td>
+<td>X-squared (χ²)</td>
 <td>
 The Chi-Square test statistic. Larger values indicate greater differences
 between the observed and expected frequencies.
@@ -1150,7 +1158,7 @@ between the observed and expected frequencies.
 </tr>
 
 <tr>
-<td><strong>Degrees of Freedom (df)</strong></td>
+<td>Degrees of Freedom (df)</td>
 <td>
 Used to determine the sampling distribution for the test.
 For a Goodness-of-Fit test:
@@ -1160,7 +1168,7 @@ For a Goodness-of-Fit test:
 </tr>
 
 <tr>
-<td><strong>P-Value</strong></td>
+<td>P-Value</td>
 <td>
 Used to determine whether the result is statistically significant.
 </td>
@@ -1175,8 +1183,8 @@ whether the observed distribution differs significantly from the expected distri
 </p>
 
 <p>
-To make this decision, compare the <strong>p-value</strong> from your output
-to the significance level of <strong>.05</strong>.
+To make this decision, compare the p-value from your output
+to the significance level of .05.
 </p>
 
 <h3>Decision Rule</h3>
@@ -1190,7 +1198,7 @@ to the significance level of <strong>.05</strong>.
 </tr>
 
 <tr>
-<td><strong>p &lt; .05</strong></td>
+<td>p &lt; .05</td>
 <td>Statistically Significant</td>
 <td>
 The observed frequencies differ from the expected frequencies.
@@ -1198,7 +1206,7 @@ The observed frequencies differ from the expected frequencies.
 </tr>
 
 <tr>
-<td><strong>p &gt; .05</strong></td>
+<td>p &gt; .05</td>
 <td>Not Statistically Significant</td>
 <td>
 The observed frequencies do not differ enough from the expected frequencies
@@ -1243,7 +1251,7 @@ Calculate the Cohen's W (Effect Size)
 
 <p>
 For Chi-Square Goodness-of-Fit tests, the effect size is
-<strong>Cohen's W</strong>.
+Cohen's W.
 </p>
 
 <p>
@@ -1338,7 +1346,7 @@ Suppose your output produced:
 <p>
 Since 0.40 falls between 0.30 and 0.49,
 the effect size would be interpreted as a
-<strong>moderate difference</strong>.
+moderate difference.
 </p>
 
 <p>
@@ -1416,7 +1424,7 @@ R Script. Each sentence should begin with a hashtag (<code>#</code>).
 <div class="highlight highlight-blue">
 
 <p>
-<strong>Reminder:</strong>
+Reminder:
 Comments begin with <code>#</code> and are ignored by R when the script runs.
 Comments are used to document and explain your findings.
 </p>
@@ -1440,20 +1448,20 @@ When reporting p-values, use the rules below.
 
 <tr>
 <td>Less than .001</td>
-<td><strong>p &lt; .001</strong></td>
+<td>p &lt; .001</td>
 </tr>
 
 <tr>
 <td>Between .001 and .050</td>
 <td>
 Report the exact value to three decimal places
-(e.g., <strong>p = .003</strong>)
+(e.g., p = .003)
 </td>
 </tr>
 
 <tr>
 <td>Greater than .050</td>
-<td><strong>p &gt; .05</strong></td>
+<td>p &gt; .05</td>
 </tr>
 
 </table>
@@ -1464,7 +1472,7 @@ Report the exact value to three decimal places
 
 <p>
 Report all other numerical values to
-<strong>two decimal places</strong>.
+two decimal places.
 </p>
 
 <p>
@@ -1502,8 +1510,8 @@ Always round your values appropriately.
 <p>
 Copy-and-paste the template below into your RScript.
 Replace the bracketed text with information from your analysis.
-Replace <b>df</b> with the actual number for your degrees of freedom. <br>
-The number that follows <b> χ²(df) = </b> should be your chi-square value.
+Replace df with the actual number for your degrees of freedom. <br>
+The number that follows  χ²(df) =  should be your chi-square value.
 </p>
 
 <div class="highlight highlight-orange">
@@ -1552,7 +1560,7 @@ Create an RMarkdown File
 
 <p>
 After completing your R Script, the next step is to convert it into an
-<strong>R Markdown</strong> document.
+R Markdown document.
 </p>
 
 <p>
@@ -1583,15 +1591,15 @@ Open RStudio.
 
 <li>
 Select:
-<strong>File → New File → R Markdown</strong>
+File → New File → R Markdown
 </li>
 
 <li>
-Ensure that <strong>HTML</strong> is selected as the output format.
+Ensure that HTML is selected as the output format.
 </li>
 
 <li>
-Select <strong>OK</strong>.
+Select OK.
 </li>
 
 </ol>
@@ -1608,11 +1616,11 @@ The default settings are sufficient for this assignment.
 <ol>
 
 <li>
-Select <strong>File → Save As</strong>.
+Select File → Save As.
 </li>
 
 <li>
-Navigate to your <strong>Assignment 4</strong> folder.
+Navigate to your Assignment 4 folder.
 </li>
 
 <li>
@@ -1626,12 +1634,12 @@ Save the file using a descriptive filename.
 <ul>
 
 <li>
-<strong>Personal Laptop:</strong>
+Personal Laptop:
 Save the file inside your Assignment 4 folder.
 </li>
 
 <li>
-<strong>Virtual Desktop / Apporto:</strong>
+Virtual Desktop / Apporto:
 Save the file on the virtual desktop and upload it to OneDrive after completing the assignment.
 </li>
 
@@ -1671,7 +1679,7 @@ At this point, the R Markdown document should contain only your assignment code.
 
 <p>
 R code inside an R Markdown file must be placed inside a
-<strong>code chunk</strong>.
+code chunk.
 </p>
 
 <p>
@@ -1726,7 +1734,7 @@ Once the code chunk has been created, generate the HTML report.
 <ol>
 
 <li>
-Select the <strong>Knit</strong> button at the top of the R Markdown document.
+Select the Knit button at the top of the R Markdown document.
 </li>
 
 <li>
@@ -1763,7 +1771,7 @@ Verify that the report displays correctly.
 </li>
 
 <li>
-Save the HTML file inside your <strong>Assignment 4</strong> folder.
+Save the HTML file inside your Assignment 4 folder.
 </li>
 
 <li>
@@ -1789,7 +1797,7 @@ Create an RPubs File
 
 <p>
 After creating and knitting your R Markdown document, the final step is to
-publish your report to <strong>RPubs</strong>.
+publish your report to RPubs.
 </p>
 
 <p>
@@ -1822,7 +1830,7 @@ Verify that the document knits successfully and displays all output correctly.
 </li>
 
 <li>
-Select the <strong>Knit</strong> button if you have not already generated the HTML report.
+Select the Knit button if you have not already generated the HTML report.
 </li>
 
 </ol>
@@ -1838,11 +1846,11 @@ After knitting, the completed HTML report should appear in the Viewer pane or op
 <ol>
 
 <li>
-Locate the <strong>Publish</strong> button in the Viewer pane.
+Locate the Publish button in the Viewer pane.
 </li>
 
 <li>
-Select <strong>Publish to RPubs</strong>.
+Select Publish to RPubs.
 </li>
 
 <li>
@@ -1862,7 +1870,7 @@ Optionally enter a description.
 </li>
 
 <li>
-Select <strong>Publish</strong>.
+Select Publish.
 </li>
 
 </ol>
@@ -1870,7 +1878,7 @@ Select <strong>Publish</strong>.
 <div class="highlight highlight-blue">
 
 <p>
-<strong>Tip:</strong>
+Tip:
 Use a descriptive title such as
 <em>Assignment 4: Chi-Square Goodness-of-Fit Test</em>.
 </p>
@@ -1928,7 +1936,7 @@ Open your published RPubs report in a web browser.
 </li>
 
 <li>
-Press <strong>Ctrl + S</strong> (Windows) or <strong>Command + S</strong> (Mac).
+Press Ctrl + S (Windows) or Command + S (Mac).
 </li>
 
 <li>
@@ -1936,7 +1944,7 @@ Choose a location on your computer.
 </li>
 
 <li>
-If available, select <strong>Webpage, HTML Only</strong>.
+If available, select Webpage, HTML Only.
 </li>
 
 <li>
@@ -1944,7 +1952,7 @@ Save the file.
 </li>
 
 <li>
-Place the saved HTML file inside your <strong>Assignment 4</strong> folder.
+Place the saved HTML file inside your Assignment 4 folder.
 </li>
 
 </ol>
