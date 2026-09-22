@@ -116,7 +116,7 @@ p {
     font-weight: 400;
 }
 
-.test-path-content details[open] summary::after {
+.test-path-content detailsopen summary::after {
     content: "−";
 }
 
@@ -271,7 +271,7 @@ code {
     font-weight: 400;
 }
 
-.test-paths .test-path-content details[open] summary::after {
+.test-paths .test-path-content detailsopen summary::after {
     content: "−";
 }
 
@@ -729,9 +729,9 @@ Determine whether meaningful outliers are present.
 <h3>Reporting Template</h3>
 
 <div class="highlight-blue">
-<pre><code># The relationship is [linear / curved].
-# The relationship is [positive / negative / does not exist].
-# There [are / are no] outliers.</code></pre>
+<pre><code># The relationship is linear / curved.
+# The relationship is positive / negative / does not exist.
+# There are / are no outliers.</code></pre>
 
 </div>
 
@@ -799,22 +799,22 @@ median(<span style="color: #e67e22; font-weight: bold;">DatasetZ</span>$<span st
 
 <div class="highlight">
 <pre><code>mean(DatasetZ$Age)
-[1] 40.12
+1 40.12
 
 sd(DatasetZ$Age)
-[1] 2.19
+1 2.19
 
 median(DatasetZ$Age)
-[1] 40
+1 40
 
 mean(DatasetZ$USD)
-[1] 41000.11
+1 41000.11
 
 sd(DatasetZ$USD)
-[1] 1002.09
+1 1002.09
 
 median(DatasetZ$USD)
-[1] 41000
+1 41000
 
 </code></pre>
 
@@ -1023,8 +1023,8 @@ In your R Script, report if the data is normal or abnormal according to the Shap
 <h3>Code Template</h3>
 
 <div class="highlight-blue">
-<pre><code>#<span style="color: #e67e22; font-weight: bold;">Variable1</span> is [<span style="color: #e67e22; font-weight: bold;">normally / abnormally</span>] distributed, (p = <span style="color: #e67e22; font-weight: bold;">.xxx</span>).
-#<span style="color: #e67e22; font-weight: bold;">Variable2</span> is [<span style="color: #e67e22; font-weight: bold;">normally / abnormally</span>] distributed, (p = <span style="color: #e67e22; font-weight: bold;">.xxx</span>).</code></pre>
+<pre><code>#<span style="color: #e67e22; font-weight: bold;">Variable1</span> is <span style="color: #e67e22; font-weight: bold;">normally / abnormally</span> distributed, (p = <span style="color: #e67e22; font-weight: bold;">.xxx</span>).
+#<span style="color: #e67e22; font-weight: bold;">Variable2</span> is <span style="color: #e67e22; font-weight: bold;">normally / abnormally</span> distributed, (p = <span style="color: #e67e22; font-weight: bold;">.xxx</span>).</code></pre>
 </div>
 
 <h3>Example</h3>
@@ -1072,6 +1072,9 @@ Were they both normal, or was one or both abnormal?
 
 <p>
 If both were normal, choose the Pearson Correlation.
+</p>
+
+<p>
 If one or both were abnormal, choose the Spearman Correlation.
 </p>
 
