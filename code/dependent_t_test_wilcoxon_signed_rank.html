@@ -482,15 +482,18 @@ boxplot(Differences,
         col = "blue",
         border = "darkblue")
 
+# The difference scores boxplot has one outlier.
 
-.test(Differences)
+shapiro.test(Differences)
+#The data is normally distributed, (p = .934).
 
-
-#Step 13a: Dependent T-Test
 t.test(Before, After, paired = TRUE, na.action = na.omit)
 
-
 cohen.d(Before, After, paired = TRUE)
+
+# A Dependent T-Test was conducted to determine if there was a difference in weight between Before and After.
+Before scores (M = 7.82, SD = 1.64) were significantly different from After scores (M = 5.21, SD = 1.48), t(19) = 4.12, p < .001.
+#The effect size was large, Cohen's d = 0.65.
 
 </code></pre>
 
