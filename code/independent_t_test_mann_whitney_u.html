@@ -469,12 +469,8 @@ ggboxplot(DatasetZ, x = "Gender", y = "ExamScores",
           palette = "jco",
           add = "jitter")
 
-# Group 1: Males
-# The boxplot has no outliers.
-
-# Group 2: Females
-# The boxplot has no outliers.
-
+# The Males boxplot does not have outliers.
+# The Females boxplot has outliers.
       
 shapiro.test(DatasetZ$ExamScores[DatasetZ$Gender == "Females"])
 shapiro.test(DatasetZ$ExamScores[DatasetZ$Gender == "Males"])
@@ -485,8 +481,8 @@ W = 0.91523, p-value = 0.0778
 Males
 W = 0.89172, p-value = 0.0611
 
-#The Females group is normally distributed, (p = .078).
-#The Males group is normally distributed, (p = .061).
+#The Females group is normally distributed, (p > .05).
+#The Males group is normally distributed, (p > .05).
     
 t.test(ExamScores ~ Gender, data = DatasetZ, var.equal = TRUE)
 
@@ -1100,8 +1096,8 @@ In your R Script, report if the data is normal or abnormal according to the Shap
 <div class="highlight-blue">
 
 <pre><code>
-#The <span style="color: #e67e22; font-weight: bold;">first group</span> is <span style="color: #e67e22; font-weight: bold;">normally / abnormally</span> distributed, (p = <span style="color: #e67e22; font-weight: bold;">.xxx</span>).
-#The <span style="color: #e67e22; font-weight: bold;">second group</span> is <span style="color: #e67e22; font-weight: bold;">normally / abnormally</span> distributed, (p = <span style="color: #e67e22; font-weight: bold;">.xxx</span>).
+#The <span style="color: #e67e22; font-weight: bold;">first group</span> is <span style="color: #e67e22; font-weight: bold;">normally / abnormally</span> distributed, (p<span style="color: #e67e22; font-weight: bold;"> > or < </span>.05).
+#The <span style="color: #e67e22; font-weight: bold;">second group</span> is <span style="color: #e67e22; font-weight: bold;">normally / abnormally</span> distributed, (p<span style="color: #e67e22; font-weight: bold;"> > or < </span>.05).
 </code></pre>
 
 </div>
@@ -1111,8 +1107,9 @@ In your R Script, report if the data is normal or abnormal according to the Shap
 <div class="highlight-blue">
 
 <pre><code>
-#The <span style="color: #e67e22; font-weight: bold;">Females</span> group is <span style="color: #e67e22; font-weight: bold;">normally</span> distributed, (p = <span style="color: #e67e22; font-weight: bold;">.078</span>).
-#The <span style="color: #e67e22; font-weight: bold;">Males</span> group is <span style="color: #e67e22; font-weight: bold;">normally</span> distributed, (p = <span style="color: #e67e22; font-weight: bold;">.061</span>).</code></pre>
+#The <span style="color: #e67e22; font-weight: bold;">Females</span> group is <span style="color: #e67e22; font-weight: bold;">normally</span> distributed, (p<span style="color: #e67e22; font-weight: bold;"> > </span>.05).
+#The <span style="color: #e67e22; font-weight: bold;">Males</span> group is <span style="color: #e67e22; font-weight: bold;">normally</span> distributed, (p<span style="color: #e67e22; font-weight: bold;"> > </span>.05).
+</code></pre>
 
 </div>
 
