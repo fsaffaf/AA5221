@@ -575,7 +575,7 @@ install.packages("effsize")
 </code></pre>
 
 </div>
-<p><strong>Output</strong></p>
+<h3>Output</h3>
 <p>
 You may see warning messages appear when you install a package.
 These messages do not necessarily mean that the installation failed.
@@ -601,7 +601,7 @@ library(ggpubr)
 </code></pre>
 
 </div>
-<p><strong>Output</strong></p>
+<h3>Output</h3>
 <p>
 No output will appear. This simply opens the packages so you can use their functions in RStudio.
 </p>
@@ -658,8 +658,6 @@ Return to the import window and elect: <span style="color: #e67e22; font-weight:
 
 </ol>
 
-<hr>
-
 <h3>Output</h3>
 
 <p>
@@ -678,7 +676,7 @@ to be automatically imported the next time you run your script.
 The generated code will vary depending on your file location and file name.
 </p>
 
-<h3>General Example</h3>
+<h3><b>Code Template</b></h3>
 
 <div class="highlight highlight-blue">
 
@@ -686,7 +684,7 @@ The generated code will vary depending on your file location and file name.
 
 </div>
 
-<h3>Example with a Sample File Path</h3>
+<h3>Example</h3>
 
 <div class="highlight highlight-blue">
 
@@ -721,7 +719,7 @@ Calculate the Descriptive Statistics
 <li>n = Sample Size</li>
 </ul>
 
-<p><strong>Code Template</strong></p>
+<h3>Code Template</h3>
 
 <div class="highlight-blue">
 
@@ -735,7 +733,7 @@ Calculate the Descriptive Statistics
   )</code></pre>
 </div>
 
-<p><strong>Example</strong></p>
+<h3>Example</h3>
 
 <div class="highlight-blue">
 
@@ -750,7 +748,7 @@ Calculate the Descriptive Statistics
 
 </div>
 
-<p><strong>Output:</strong></p>
+<h3>Output</h3>
 
 <div class="highlight">
 
@@ -790,7 +788,7 @@ Check normality of the data in three different ways: Histogram, Boxplot, and Sha
 A <strong>histogram</strong> is a graph that shows how the values of a continuous variable are distributed. It groups values into ranges and uses bars to show how many observations fall within each range.
 </p>
 
-<p><strong>Code Template</strong></p>
+<h3>Code Tempalte</h3>
 <p>
 When filling in <code>Group1Name</code> and <code>Group2Name</code>, use the actual group names in your Excel dataset.
 </p>
@@ -811,7 +809,7 @@ hist(<span style="color: #e67e22; font-weight: bold;">DatasetName</span>$<span s
 </div>
 
 
-<p><strong>Example</strong></p>
+<h3>Example</h3>
 
 <div class="highlight-blue">
 
@@ -828,7 +826,7 @@ hist(<span style="color: #e67e22; font-weight: bold;">DatasetName</span>$<span s
 </code></pre>
 </div>
     
-<strong>Output:</strong> 
+<h3>Output</h3>
 Histograms appear in the Plots pane.
 
 <div style="text-align: center; margin: 30px 0;">
@@ -871,7 +869,7 @@ Data Visualization and Normality
 </a>
 </p>
 
-<p><strong>Reporting Template</strong></p>
+<h3>Reporting Template</h3>
 
 <div class="highlight-blue">
 <pre><code>
@@ -880,7 +878,7 @@ Data Visualization and Normality
 </code></pre>
 </div>
 
-<p><strong>Example</strong></p>
+<h3>Example</h3>
 
 <div class="highlight-blue">
 <pre><code>
@@ -928,7 +926,7 @@ Individual dots outside the whiskers represent potential outliers. A boxplot all
     >
 </div>
     
-<p><strong>Code Template</strong></p>
+<h3>Code Template</h3>
 
 <div class="highlight-blue">
 <pre><code>ggboxplot(<span style="color: #e67e22; font-weight: bold;">DatasetName</span>, x = "<span style="color: #e67e22; font-weight: bold;">GroupVariable</span>", y = "<span style="color: #e67e22; font-weight: bold;">OutcomeVariable</span>",
@@ -938,7 +936,7 @@ Individual dots outside the whiskers represent potential outliers. A boxplot all
 
 </div>
 
-<p><strong>Example</strong></p>
+<h3>Example</h3>
 
 <div class="highlight-blue">
 
@@ -974,7 +972,7 @@ There are statistical analyses we can do to definitively determine if a dot is t
 Look for individual dots <strong>beyond</strong> the whiskers. Those are potential outliers.
 </p>
 
-<p><strong>Reporting Template</strong></p>
+<h3>Reporting Template</h3>
 
 <div class="highlight-blue">
 <pre><code>
@@ -983,7 +981,7 @@ Look for individual dots <strong>beyond</strong> the whiskers. Those are potenti
 </code></pre>
 </div>
 
-<p><strong>Example</strong></p>
+<h3>Example</h3>
 
 <div class="highlight-blue">
 <pre><code>
@@ -1031,7 +1029,7 @@ A p-value of less than .05 indicates there is a significant difference, which me
 
 </p>
 
-<p><strong>Code Template</strong></p>
+<h3>Code Template</h3>
 
 <div class="highlight-blue">
 
@@ -1039,7 +1037,7 @@ A p-value of less than .05 indicates there is a significant difference, which me
 shapiro.test(<span style="color: #e67e22; font-weight: bold;">DatasetName</span>$<span style="color: #e67e22; font-weight: bold;">OutcomeVariable</span>[<span style="color: #e67e22; font-weight: bold;">DatasetName</span>$<span style="color: #e67e22; font-weight: bold;">GroupVariable</span> == "<span style="color: #e67e22; font-weight: bold;">Group2</span>"])</code></pre>
 </div>
 
-<p><strong>Example</strong></p>
+<h3>Example</h3>
 
 <div class="highlight-blue">
 
@@ -1050,15 +1048,17 @@ shapiro.test(<span style="color: #e67e22; font-weight: bold;">DatasetName</span>
 
 </div>
 
-<p><strong>Output:</strong></p>
+<h3>Output</h3>
 
 <div class="highlight">
 
-<pre><code>Females
+<pre><code>
+Females
 W = 0.91523, p-value = 0.0778
 
 Males
-W = 0.89172, p-value = 0.0611</code></pre>
+W = 0.89172, p-value = 0.0611
+</code></pre>
 
 </div>
 
@@ -1092,7 +1092,7 @@ In your R Script, report if the data is normal or abnormal according to the Shap
 
 </table>
 
-<p><strong>Code Template</strong></p>
+<h3>Code Template</h3>
 
 <div class="highlight-blue">
 
@@ -1103,7 +1103,7 @@ In your R Script, report if the data is normal or abnormal according to the Shap
 
 </div>
 
-<p><strong>Example</strong></p>
+<h3>Example</h3>
 
 <div class="highlight-blue">
 
@@ -1114,8 +1114,8 @@ In your R Script, report if the data is normal or abnormal according to the Shap
 
 </div>
 
-<p><strong>Output:</strong> NA</p>
-
+<h3>Output</strong>h3>
+<p>NA</p>
 </div>
 
 </details>
@@ -1181,21 +1181,21 @@ Conduct an Independent T-Test to determine whether there is a difference between
 <li>In advanced analyses, Levene's Test is often used to assess equality of variances.</li>
 </ul>
 
-<p><strong>Code Template</strong></p>
+<h3>Code Template</h3>
 
 <div class="highlight-blue">
 
 <pre><code>t.test(<span style="color: #e67e22; font-weight: bold;">OutcomeVariable</span> ~ <span style="color: #e67e22; font-weight: bold;">GroupVariable</span>, data = <span style="color: #e67e22; font-weight: bold;">DatasetName</span>, var.equal = TRUE)</code></pre>
 </div>
 
-<p><strong>Example</strong></p>
+<h3>Example</h3>
 
 <div class="highlight-blue">
 
 <pre><code>t.test(<span style="color: #e67e22; font-weight: bold;">ExamScores</span> ~ <span style="color: #e67e22; font-weight: bold;">Gender</span>, data = <span style="color: #e67e22; font-weight: bold;">DatasetZ</span>, var.equal = TRUE)</code></pre>
 </div>
 
-<p><strong>Output:</strong></p>
+<h3>Output</h3>
 
 <div class="highlight">
 
@@ -1230,7 +1230,7 @@ Calculate Cohen's d (Effect Size)
 Only calculate Cohen's d if the Independent T-Test is significant (<strong>p &lt; .05</strong>).
 </p>
 
-<p><strong>Code Template</strong></p>
+<h3>Code Template</h3>
 
 <div class="highlight-blue">
 
@@ -1239,7 +1239,7 @@ Only calculate Cohen's d if the Independent T-Test is significant (<strong>p &lt
 
 </div>
 
-<p><strong>Example</strong></p>
+<h3>Example</h3>
 
 <div class="highlight-blue">
 
@@ -1277,7 +1277,7 @@ Copy the template and replace the highlighted portions with your output results.
 There is a standardized method of reporting. DO NOT be creative. Use the provided reporting format.
 </p>
 
-<p><strong>P-Value Reporting</strong></p>
+<h3>P-Value Reporting</h3>
 
 <table style="width: 100%; border-collapse: collapse; font-size: 12pt;">
     <thead>
@@ -1306,8 +1306,7 @@ There is a standardized method of reporting. DO NOT be creative. Use the provide
     </tbody>
 </table>
 
-<p><strong>Definitions</strong></p>
-
+<h3>Definitions</h3>
 <ul>
 <li><strong>M</strong> = mean</li>
 <li><strong>SD</strong> = standard deviation</li>
@@ -1354,7 +1353,7 @@ There is a standardized method of reporting. DO NOT be creative. Use the provide
 
 </table>
 
-<p><strong>Code Template</strong></p>
+<h3>Code Template</h3>
 
 <div class="highlight-blue">
 
@@ -1367,7 +1366,7 @@ There is a standardized method of reporting. DO NOT be creative. Use the provide
 </code></pre>
 </div>
 
-<p><strong>Example</strong></p>
+<h3>Example</h3>
 
 <div class="highlight-blue">
 
@@ -1413,21 +1412,21 @@ Conduct the Mann-Whitney U Test (Abnormal Data)
 Conduct a Mann-Whitney U test to determine whether there is a difference between groups.
 </p>
 
-<p><strong>Code Template</strong></p>
+<h3>Code Template</h3>
 
 <div class="highlight-blue">
 
 <pre><code>wilcox.test(<span style="color: #e67e22; font-weight: bold;">OutcomeVariable</span> ~ <span style="color: #e67e22; font-weight: bold;">GroupVariable</span>, data = <span style="color: #e67e22; font-weight: bold;">DatasetName</span>)</code></pre>
 </div>
 
-<p><strong>Example</strong></p>
+<h3>Example</h3>
 
 <div class="highlight-blue">
 
 <pre><code>wilcox.test(<span style="color: #e67e22; font-weight: bold;">ExamScores</span> ~ <span style="color: #e67e22; font-weight: bold;">Gender</span>, data = <span style="color: #e67e22; font-weight: bold;">DatasetZ</span>)</code></pre>
 </div>
 
-<p><strong>Output:</strong></p>
+<h3>Output</h3>
 
 <div class="highlight">
 
@@ -1457,14 +1456,14 @@ Calculate Cliff's Delta (Effect Size)
 <div class="path-step-content">
 
 
-<p><strong>Code Template</strong></p>
+<h3>Code Template</h3>
 
 <div class="highlight-blue">
 <pre><code>mw_effect &lt;- cliff.delta(<span style="color: #e67e22; font-weight: bold;">OutcomeVariable</span> ~ <span style="color: #e67e22; font-weight: bold;">GroupVariable</span>, data = <span style="color: #e67e22; font-weight: bold;">DatasetName</span>)
 print(mw_effect)</code></pre>
 </div>
 
-<p><strong>Example</strong></p>
+<h3>Example</h3>
 
 <div class="highlight-blue">
 
@@ -1472,7 +1471,7 @@ print(mw_effect)</code></pre>
 print(mw_effect)</code></pre>
 </div>
 
-<p><strong>Output:</strong></p>
+<h3>Output</h3>
 
 <div class="highlight">
 
@@ -1510,8 +1509,7 @@ Copy the template and replace the highlighted portions with your output results.
 There is a standardized method of reporting. DO NOT be creative. Use the provided reporting format.
 </p>
 
-<p><strong>P-Value Reporting</strong></p>
-
+<h3>P-Value Reporting</h3>
 <table style="width: 100%; border-collapse: collapse; font-size: 12pt;">
     <thead>
         <tr>
@@ -1540,7 +1538,7 @@ There is a standardized method of reporting. DO NOT be creative. Use the provide
 </table>
 
 
-<p><strong>Definitions</strong></p>
+<h3>Definitions</h3>
 
 <ul>
 <li><strong>Mdn</strong> = median</li>
@@ -1548,7 +1546,7 @@ There is a standardized method of reporting. DO NOT be creative. Use the provide
 <li><strong>p</strong> = p-value</li>
 </ul>
 
-<p><strong>Code Template</strong></p>
+<h3>Code Template</h3>
 
 <div class="highlight-blue">
 
@@ -1562,7 +1560,7 @@ There is a standardized method of reporting. DO NOT be creative. Use the provide
 
 </div>
 
-<p><strong>Example</strong></p>
+<h3>Example</h3>
 
 <div class="highlight-blue">
 
