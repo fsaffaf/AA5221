@@ -1,207 +1,339 @@
-<!DOCTYPE html>
 <html lang="en">
 
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Chi-Square Test of Independence</title>
 
-<style>
-
+<style/>
+    
 body {
     margin: 0;
-    font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
     background: #f4f6f9;
-    color: #222;
-    line-height: 1.55;
+    color: #222222;
 }
 
 .container {
     max-width: 1000px;
-    margin: 40px auto;
-    padding: 0 20px;
+    margin: auto;
+    padding: 50px 20px;
 }
 
 h1 {
-    font-size: 28px;
-    font-weight: 400;
-    color: #333;
-    margin-bottom: 25px;
+    text-align: left;
+    color: #666666;
+    font-size: 2.75rem;
+    font-weight: 200;
+    letter-spacing: .08em;
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    text-align: center;
+    color: #6b7280;
+    text-transform: uppercase;
+    letter-spacing: .15em;
+    margin-bottom: 40px;
+    font-size: .95rem;
+}
+
+h2,
+h3 {
+    color: #0e68b3;
+    font-weight: 500;
+    display: inline-block;
+}
+
+p {
+    line-height: 1.8;
 }
 
 .test-path {
-    background: #fff;
-    border-radius: 8px;
+    border: 1px solid #d9e2ec;
+    border-radius: 14px;
     overflow: hidden;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-    margin-bottom: 25px;
+    background: #ffffff;
+    margin: 30px 0;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, .05);
 }
 
 .test-path-header {
     background: #0e68b3;
     color: white;
-    padding: 18px 22px;
+    padding: 20px 25px;
 }
 
-.test-path-header h2 {
+.test-path-header h2,
+.test-path-header h3 {
+    color: white;
     margin: 0;
-    font-size: 18px;
+    font-size: 1.35rem;
     font-weight: 600;
+}
+
+.test-path-subtitle {
+    margin: 6px 0 0;
+    font-size: .95rem;
+    opacity: .95;
 }
 
 .test-path-content {
-    padding: 0;
+    padding: 10px 25px 20px;
 }
 
-details {
-    border-bottom: 1px solid #dfe5eb;
-    margin: 0;
+.test-path-content details {
+    border-bottom: 1px solid #e5e7eb;
 }
 
-details:last-child {
+.test-path-content details:last-child {
     border-bottom: none;
 }
 
-summary {
-    cursor: pointer;
+.test-path-content summary {
     list-style: none;
-    padding: 17px 22px;
-    color: #0e68b3;
-    font-size: 15px;
-    font-weight: 600;
-    line-height: 1.35;
+    cursor: pointer;
     position: relative;
-    padding-right: 50px;
+    padding: 17px 35px 17px 5px;
+    color: #0e68b3;
+    font-weight: 600;
 }
 
-summary::-webkit-details-marker {
+.test-path-content summary::-webkit-details-marker {
     display: none;
 }
 
-summary::after {
+.test-path-content summary::after {
     content: "+";
     position: absolute;
-    right: 22px;
+    right: 5px;
     top: 50%;
     transform: translateY(-50%);
-    font-size: 22px;
+    font-size: 1.3rem;
     font-weight: 400;
-    color: #0e68b3;
 }
 
-details[open] summary::after {
+.test-path-content details[open] summary::after {
+    content: "−";
+}
+
+.path-step-content {
+    padding: 0 5px 20px;
+}
+
+.path-step-content p {
+    margin-top: 10px;
+}
+
+.path-step-content h2,
+.path-step-content h3 {
+    color: #222222;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+ul {
+    padding-left: 25px;
+}
+
+li {
+    margin-bottom: 8px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background: white;
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+th {
+    background: #0e68b3;
+    color: white;
+    text-align: left;
+    padding: 14px;
+}
+
+td {
+    padding: 14px;
+    border-bottom: 1px solid #e5e7eb;
+    vertical-align: top;
+}
+
+tr:nth-child(even) {
+    background: #f8fafc;
+}
+
+tr:hover {
+    background: #edf6ff;
+}
+
+pre {
+    white-space: pre-wrap;
+    overflow-x: auto;
+    margin: 0;
+}
+
+code {
+    font-family: Consolas, Monaco, "Courier New", monospace;
+}
+
+.highlight pre {
+    background: transparent;
+}
+
+.highlight {
+    padding: 15px 20px;
+    border-radius: 0px;
+    margin: 20px 0;
+    line-height: 1.6;
+}
+
+.highlight-blue {
+    background: #f0f7fc;
+    border-left: 5px solid #0e68b3;
+    padding: 15px 20px;
+    border-radius: 0px;
+    margin: 20px 0;
+    line-height: 1.6;
+}
+
+.highlight-orange {
+    background: #fff4e6;
+    border-left: 5px solid #e67e22;
+    padding: 15px 20px;
+    border-radius: 0px;
+    margin: 20px 0;
+    line-height: 1.6;
+}
+
+.test-paths {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 25px;
+    margin: 30px 0;
+}
+
+.test-paths .test-path {
+    margin: 0;
+}
+
+.test-paths .test-path-header {
+    background: #0e68b3;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+.test-paths .test-path-header h3 {
+    color: white;
+    margin: 0;
+    font-size: 1.25rem;
+}
+
+.test-paths .test-path-content {
+    padding: 10px 20px 20px;
+}
+
+.test-paths .test-path-content details {
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.test-paths .test-path-content details:last-child {
+    border-bottom: none;
+}
+
+.test-paths .test-path-content summary {
+    list-style: none;
+    cursor: pointer;
+    position: relative;
+    padding: 17px 30px 17px 5px;
+    color: #0e68b3;
+    font-weight: 600;
+}
+
+.test-paths .test-path-content summary::-webkit-details-marker {
+    display: none;
+}
+
+.test-paths .test-path-content summary::after {
+    content: "+";
+    position: absolute;
+    right: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.3rem;
+    font-weight: 400;
+}
+
+.test-paths .test-path-content details[open] summary::after {
     content: "−";
 }
 
 .step-label {
-    font-size: 13px;
+    display: inline-block;
+    font-size: .8rem;
     font-weight: 700;
-    color: #0e68b3;
+    letter-spacing: .05em;
     text-transform: uppercase;
-    letter-spacing: 0.3px;
+    color: #6b7280;
+    margin-bottom: 5px;
 }
 
-.path-step-content {
-    padding: 5px 22px 24px 22px;
+hr {
+    border: none;
+    height: 1px;
+    background: #d6e4f0;
+    margin: 30px 0;
 }
 
-.path-step-content p {
-    margin: 12px 0;
-}
-
-.path-step-content ul,
-.path-step-content ol {
-    margin-top: 10px;
-    margin-bottom: 15px;
-}
-
-.path-step-content li {
-    margin-bottom: 7px;
-}
-
-.path-step-content a {
+a {
     color: #0e68b3;
 }
 
-.path-step-content code {
-    font-family: "Courier New", Courier, monospace;
-    background: #f1f4f7;
-    padding: 2px 5px;
-    border-radius: 3px;
+a.button {
+    display: inline-block;
+    background: #0e68b3;
+    color: white;
+    padding: 14px 28px;
+    border-radius: 999px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: .3s;
 }
 
-.code-box {
-    background: #f5faff;
-    border-left: 6px solid #0e68b3;
-    padding: 16px 18px;
-    margin: 18px 0;
-    border-radius: 0 8px 8px 0;
-    overflow-x: auto;
+a.button:hover {
+    background: #2b6cb0;
+    transform: translateY(-2px);
 }
 
-.code-box pre {
-    margin: 0;
-    white-space: pre-wrap;
-    font-family: "Courier New", Courier, monospace;
-    font-size: 13px;
-    line-height: 1.5;
-}
+@media (max-width: 768px) {
 
-.code-box code {
-    background: none;
-    padding: 0;
-}
+    h1 {
+        font-size: 2rem;
+    }
 
-.example-box {
-    background: #f5faff;
-    border-left: 6px solid #0e68b3;
-    padding: 16px 18px;
-    margin: 18px 0;
-    border-radius: 0 8px 8px 0;
-}
+    .test-path-content {
+        padding: 10px 20px 20px;
+    }
 
-.warning-box {
-    background: #fff7ed;
-    border-left: 6px solid #e67e22;
-    padding: 16px 18px;
-    margin: 18px 0;
-    border-radius: 0 8px 8px 0;
-}
+    th,
+    td {
+        padding: 10px;
+        font-size: .95rem;
+    }
 
-.section-table {
-    border-collapse: collapse;
-    width: 100%;
-    max-width: 700px;
-    margin: 18px 0;
-}
+    .test-paths {
+        grid-template-columns: 1fr;
+    }
 
-.section-table th {
-    border-bottom: 2px solid #0e68b3;
-    text-align: left;
-    padding: 9px;
-}
-
-.section-table td {
-    border-bottom: 1px solid #dfe5eb;
-    padding: 9px;
-}
-
-.center-image {
-    text-align: center;
-    margin: 20px 0;
-}
-
-.center-image img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 8px;
 }
 
 </style>
 
 </head>
-
 
 <body>
 
@@ -209,15 +341,9 @@ details[open] summary::after {
 
 <h1>Chi-Square Test of Independence</h1>
 
-
 <!-- MAIN PATH -->
 
 <div class="test-path">
-
-<div class="test-path-header">
-<h2>Steps to Conduct a Chi-Square Test of Independence in RStudio</h2>
-</div>
-
 
 <div class="test-path-content">
 
@@ -227,112 +353,134 @@ details[open] summary::after {
 <details>
 
 <summary>
-<span class="step-label">Overview</span><br>
-Chi-Square Test of Independence
+<span class="step-label">Prepare</span><br>
+Overview of the Test
 </summary>
-
+    
 <div class="path-step-content">
 
-<p>
-In this assignment, you will conduct a <strong>Chi-Square Test of Independence</strong> using RStudio.
-</p>
+
+
+
+<h3>Interactive Study Tools</h3>
 
 <p>
-Read:
-<a href="https://canvas.slu.edu/courses/96362/pages/module-4-%7C-chi-squared-tests"
+Use the Inferential Test Selector to determine which inferential procedure
+is appropriate for your study.
+</p>
+
+<p style="text-align:center; margin-top:25px;">
+
+<a
+href="https://fsaffaf.github.io/AA5221/tools/inferential_test_selector.html"
 target="_blank"
-rel="noopener">
-Module 4 | Chi-Squared Tests
+rel="noopener noreferrer"
+class="button">
+Inferential Test Selector
 </a>
+
 </p>
-
-<p>
-<strong>In this assignment you will:</strong>
-</p>
-
-<ul>
-
-<li>Set up your Assignment 4 folder.</li>
-
-<li>Download and import the dataset into RStudio.</li>
-
-<li>Create a contingency table (a type of frequency table).</li>
-
-<li>Create a bar chart.</li>
-
-<li>Conduct a Chi-Square Test of Independence.</li>
-
-<li>Determine whether the result is statistically significant.</li>
-
-<li>Calculate Cramér's V if the result is significant.</li>
-
-<li>Write a results summary.</li>
-
-<li>Convert your R Script into an RMarkdown file.</li>
-
-<li>Publish your analysis as an RPubs HTML file.</li>
-
-</ul>
 
 </div>
 
 </details>
 
 
-<!-- PART 1 -->
+<!-- R SCRIPT CODE TEMPLATE -->
 
 <details>
 
 <summary>
-<span class="step-label">Part 1</span><br>
-Set Up Assignment Folders in Microsoft OneDrive
+<span class="step-label">Prepare</span><br>
+RScript Code Template
 </summary>
-
+    
 <div class="path-step-content">
+    
 
 <p>
-Read
-<a href="https://fsaffaf.github.io/AA5221/RProgram/OneDrive.html"
-target="_blank"
-rel="noopener">
-Using Microsoft OneDrive
-</a>
+Below is an example of what your code will look like. Your code will be different because the dataset name, variable name, expected proportions, results, and interpretations will depend on your assigned dataset.
 </p>
 
-<p>
-Read
-<a href="https://ask.slu.edu/TDClient/30/Portal/KB/Article/698/OneDrive-Managed-Backups-and-Files-on-Demand"
-target="_blank"
-rel="noopener">
-OneDrive at Saint Louis University
-</a>
-</p>
+<div class="highlight highlight-blue">
+
+<pre><code>
+
+    insert code here
+</code></pre>
+
+</div>
+
+</div>
+
+</details>
+
+
 
 
 <details>
 
 <summary>
 <span class="step-label">Step 1</span><br>
-Open Microsoft OneDrive
+Install & Open the Packages
 </summary>
-
+    
 <div class="path-step-content">
+    
+<p>
+Packages add additional functionality to R.
+</p>
 
-<ol>
+<table>
 
-<li>
-Go to myslu.slu.edu and sign in using your SLU username and password.
-</li>
+<tr>
+<th>Package</th>
+<th>Purpose</th>
+</tr>
 
-<li>
-Locate and select the Microsoft OneDrive application.
-</li>
+<tr>
+<td><code>readxl</code></td>
+<td>Import Excel datasets</td>
+</tr>
+</table>
 
-<li>
-OneDrive will open in a new browser window or tab.
-</li>
+<h3>Install the Packages</h3>
 
-</ol>
+<p>
+Copy-and-paste the following code into your R Script file.<br>
+Run the code once.
+</p>
+
+<div class="highlight highlight-orange">
+<pre><code>install.packages("readxl")
+</code></pre>
+
+</div>
+<h3>Output</h3>
+<p>
+You may see warning messages appear when you install a package.
+These messages do not necessarily mean that the installation failed.
+Packages only need to be installed once.
+</p>
+
+<hr>
+
+<h3>Load the Packages</h3>
+
+<p>
+Copy-and-paste the code below into your R Script.<br>
+Keep these lines of code in your R Script.
+</p>
+
+<div class="highlight highlight-orange">
+<pre><code>library(readxl)
+</code></pre>
+
+</div>
+<h3>Output</h3>
+<p>
+No output will appear. This simply opens the packages so you can use their functions in RStudio.
+</p>
 
 </div>
 
@@ -343,256 +491,462 @@ OneDrive will open in a new browser window or tab.
 
 <summary>
 <span class="step-label">Step 2</span><br>
-Create Your AA 5221 Course Folder
+Import & Name the Dataset
 </summary>
-
+    
 <div class="path-step-content">
+
+
+<p>
+Although datasets can be imported entirely through code, many students
+experience difficulty locating file paths. Therefore, this course uses the point-and-click import method to generate the necessary code automatically.
+</p>
+
+<h3>Import the Excel File</h3>
 
 <ol>
 
 <li>
-In OneDrive, select <strong>New</strong> and then choose <strong>Folder</strong>.
+Select: <span style="color: #e67e22; font-weight: bold;">File → Import Dataset → From Excel</span>
 </li>
 
 <li>
-Name the folder <strong>AA 5221</strong>.
+A new import window will appear.
+Select: <span style="color: #e67e22; font-weight: bold;">Browse</span>
 </li>
 
 <li>
-Click <strong>Create</strong>.
+Locate your assigned Excel dataset.
 </li>
 
 <li>
-Need help? Watch:
-<a href="https://www.youtube.com/watch?v=wTY4_7I0SvE"
-target="_blank"
-rel="noopener">
-How to Create a Folder
-</a>
+Select the dataset and choose: <span style="color: #e67e22; font-weight: bold;">Open</span>
+
+</li>
+
+<li>
+Return to the import window and elect: <span style="color: #e67e22; font-weight: bold;">Import</span>
+
 </li>
 
 </ol>
 
+<h3>Output</h3>
+
+<p>
+Once imported, the dataset will appear in a new tab and will also appear
+in the Environment pane.
+</p>
+
+<p>
+RStudio also automatically generates the code used to import the dataset.
+This code appears in the Console window.
+Copy the import code and paste it into your R Script. This allows the dataset
+to be automatically imported the next time you run your script.
+</p>
+
+<p>
+The generated code will vary depending on your file location and file name.
+</p>
+
+<h3>Code Template</h3>
+
+<div class="highlight highlight-blue">
+<pre><code>DatasetName &lt;- read_excel("filepath")</code></pre>
 </div>
 
+<h3>Example</h3>
+
+<div class="highlight highlight-blue">
+
+<pre><code>DatasetName &lt;- read_excel(
+"C:/Users/John/OneDrive/Documents/AA5221/Datasets/DatasetName.xlsx"
+)</code></pre>
+
+</div>
+
+</div>
 </details>
 
 
+
+<!-- FREQUENCY TABLE -->
 <details>
 
 <summary>
 <span class="step-label">Step 3</span><br>
-Share the Course Folder with Dr. Saffaf
+Create a Frequency Table
 </summary>
-
+    
 <div class="path-step-content">
+
+<p>
+A frequency table summarizes how many observations belong to each category
+of a categorical variable.
+</p>
+  
+<h3>Create the Frequency Table</h3>
 
 <ol>
 
 <li>
-Locate the <strong>AA 5221</strong> folder you created.
+Copy-and-paste the code template below into your R Script.
 </li>
 
 <li>
-Select the folder by clicking the circle next to the folder name.
+Replace <code>dataset</code> with the name of your dataset.
 </li>
 
 <li>
-Click <strong>Share</strong>.
+Replace <code>variable</code> with the name of the categorical variable you are analyzing.
 </li>
 
 <li>
-Enter:
-<a href="mailto:falak.saffaf.1@slu.edu">
-falak.saffaf.1@slu.edu
-</a>
-</li>
-
-<li>
-Confirm that viewing access is selected. The instructor does not need editing permissions.
-</li>
-
-<li>
-Click <strong>Send</strong> or <strong>Share</strong>.
-</li>
-
-<li>
-Need help? Watch:
-<a href="https://www.youtube.com/watch?v=xy-6n9W8F7A"
-target="_blank"
-rel="noopener">
-How to Share a Folder in OneDrive
-</a>
+If you are unsure of the dataset name or variable name, check the
+Environment pane.
 </li>
 
 </ol>
+
+<p>
+The <code>table()</code> function counts the number of observations in each category.
+</p>
+
+<h3>Code Template</h3>
+
+<div class="highlight highlight-orange">
+
+<pre><code>table(dataset$variable1, dataset$variable2)</code></pre>
+
+</div>
+
+<h3>Example</h3>
+
+<p>
+Dataset name:
+data2026
+</p>
+
+<p>
+Variable 1 name:
+gender
+</p>
+
+<p>
+Variable 2 name:
+voting
+</p>
+
+<div class="highlight highlight-blue">
+
+<pre><code>table(data2026$political)</code></pre>
+
+</div>
+
+<hr>
+
+<h3>Save the Frequency Table as an Object</h3>
+
+<p>
+Instead of displaying the frequency table only once,
+it is helpful to save it as an object that can be reused later in your analysis.
+</p>
+
+<p>
+Add the observed <- before the table function to name the object. <br>
+The arrow tells RStudio to name the object, and the word it points to is the name you give it. <br>
+Here, we have intentionally named the table observed, because we will use it in the chi-squared code later.
+<br>
+By writing the word observed again on a new line, we are "calling" the object and asking RStudio to show it to us in the Console pane.
+<div class="highlight highlight-orange">
+
+<pre><code>observed &lt;-table(dataset$variable)
+    
+observed
+</code></pre>
+
+</div>
+
+
+<hr>
+
+<h3>Example</h3>
+
+<div class="highlight highlight-blue">
+
+<pre><code>observed &lt;- table(data2026$political)
+
+observed</code></pre>
+
+</div>
+
+<hr>
+
+<h3>Output</h3>
+
+<pre><code>          Voting_Behavior
+Gender       No  Yes
+Female       42  158
+Male         55  145</code></pre>
+
+<p>
+This output indicates that:
+</p>
+
+<ul>
+
+<li>50 participants identified as Democrats.</li>
+
+<li>30 participants identified as Independents.</li>
+
+<li>20 participants identified as Republicans.</li>
+
+</ul>
+
+<p>
+Important:
+The order of the categories displayed in the frequency table is important.
+Later, when creating the expected proportions for the Chi-Square test,
+the expected values must appear in the same order as the categories shown here.
+</p>
 
 </div>
 
 </details>
 
 
+<!-- BAR CHART -->
 <details>
 
 <summary>
 <span class="step-label">Step 4</span><br>
-Create an Assignment 4 Folder
+Create a Bar Graph
 </summary>
-
-<div class="path-step-content">
-
-<ol>
-
-<li>
-Create a folder called <strong>Assignment 4</strong> inside your
-<strong>AA 5221</strong> OneDrive folder.
-</li>
-
-<li>
-All files for Module 4 will go inside the
-<strong>Assignment 4</strong> folder.
-
-<ol>
-
-<li>
-<span style="color:#e62429;"><strong>Important:</strong></span>
-If you are using <strong>Apporto</strong> for this assignment, you will not have access to Microsoft OneDrive.
-Instead, save everything in a folder on the virtual desktop.
-When the assignment is complete, upload everything to OneDrive.
-</li>
-
-</ol>
-
-</li>
-
-</ol>
-
-</div>
-
-</details>
-
-</div>
-
-</details>
-
-
-<!-- R SCRIPT TEMPLATE -->
-
-<details>
-
-<summary>
-<span class="step-label">R Script</span><br>
-R Script Code Template
-</summary>
-
+    
 <div class="path-step-content">
 
 <p>
-Below is an example of what your code will look like.
-Your code will be different because the dataset name, variable names,
-results, and interpretations will depend on your assigned dataset.
+A bar chart provides a visual summary of the frequencies contained in your
+frequency table. It allows you to quickly compare the number of observations
+across categories.
 </p>
 
-<div class="code-box">
+<p>
+The bar chart provides a quick visual comparison of the category counts before
+conducting the Chi-Square test.
+</p>
 
-<pre><code>library(readxl)
-library(rcompanion)
-library(ggplot2)
+<hr>
+    
+<h3>Understanding Bar Charts</h3>
 
-data2026 &lt;- read_excel("C:/Users/John/OneDrive/Documents/AA5221/Datasets/political_data.xlsx")
+<p>
+Bar charts are appropriate for categorical variables because each category
+represents a distinct group.
+</p>
 
-polit_table &lt;- table(data2026$gender, data2026$voting)
+<ul>
 
-polit_table
+<li>Each bar represents one category.</li>
 
-barplot(
-    polit_table,
+<li>The height of the bar represents the frequency (count).</li>
+
+<li>Bars are separated because categories are distinct groups.</li>
+
+<li>The chart allows you to visually inspect the distribution of the variable.</li>
+    
+
+<h3> Create the Bar Chart</h3>
+
+<p>
+Copy and paste the code below into your R Script.
+</p>
+<h3>Code Template</h3>
+<div class="highlight highlight-blue">
+
+<pre><code>barplot(
+    mytable,
     beside = TRUE,
-    col = rainbow(nrow(polit_table)),
+    col = rainbow(nrow(mytable),
+    legend = rownames(mytable)
+)</code></pre>
+</div>
+
+<h3>Example</h3>
+<div class="highlight highlight-blue">
+
+<pre><code>barplot(
+    polit_able,
+    beside = TRUE,
+    col = rainbow(nrow(polit_table),
     legend = rownames(polit_table)
-)
+)</code></pre>
 
-chi_result &lt;- chisq.test(polit_table)
+</div>
 
+<hr>
+    
+<h3>Output</h3></h3>
+
+<p>
+The chart displays the observed frequencies from your dataset as bars.
+Higher bars represent categories with more observations, while shorter bars
+represent categories with fewer observations.
+</p>
+
+</div>
+
+</details>
+
+
+<!-- CHI-SQUARE TEST -->
+<details>
+
+<summary>
+<span class="step-label">Step 5</span><br>
+Conduct the Chi-Square Test of Independence
+</summary>
+    
+<div class="path-step-content">
+
+<p>
+The first line performs the Chi-Square Goodness-of-Fit test.
+The second line displays the results.
+</p>
+    
+<h3>Code Template</h3>
+
+<div class="highlight highlight-blue">
+<pre><code>chi_result <- chisq.test(mytable)
 chi_result
-
-cramer_v &lt;- rcompanion::cramerV(polit_table)
-
-cramer_v
-
-# A Chi-Square Test of Independence was conducted to determine if there was an association between gender (male or female) and voting behavior (yes or no).
-
-# The results showed that there was an association between the two variables, χ²(1) = 7.84, p = .005.
-
-# The association was moderate (Cramer's V = .32).</code></pre>
-
+</code></pre>
 </div>
 
+<h3>Example</h3>
+
+<div class="highlight highlight-blue">
+<pre><code>chi_result <- chisq.test(polit_table)
+chi_result
+</code></pre>
 </div>
+    
+<hr>
 
-</details>
+<h3>Output</h3>
 
+<pre><code>Pearson's Chi-squared test
 
-<!-- PART 2 -->
+data:  polit_table
+X-squared = 7.84, df = 1, p-value = 0.005</code></pre>
+</p>
 
-<details>
+<br>
 
-<summary>
-<span class="step-label">Part 2</span><br>
-Prepare for Data Analysis
-</summary>
+<ul>
+    <li>X-squared (χ²) = The Chi-Square test statistic. Larger values indicate greater association between Variable 1 and Variable 2.</li>
 
-<div class="path-step-content">
+    <li>Degrees of Freedom (df) = Used to help calculate the p-value. df = Number of Categories − 1.</li>
 
+    <li>P-Value = Used to determine whether the result is statistically significant.</li>
+</ul>
 
-<details>
+<table>
 
-<summary>
-<span class="step-label">Step 1</span><br>
-Download the Assignment 4 Excel Files from Canvas
-</summary>
+<tr>
+<th>P-Value</th>
+<th>Decision</th>
+<th>Conclusion</th>
+</tr>
 
-<div class="path-step-content">
+<tr>
+<td>p &lt; .05</td>
+<td>Statistically Significant</td>
+<td>
+The observed frequencies differ from the expected frequencies.
+</td>
+</tr>
 
-<ol>
+<tr>
+<td>p &gt; .05</td>
+<td>Not Statistically Significant</td>
+<td>
+The observed frequencies do not differ enough from the expected frequencies
+to conclude that a real difference exists.
+</td>
+</tr>
 
-<li>
-The files are located here:
-<a href="https://canvas.slu.edu/courses/96362/assignments/797871"
+</table>
+
+<hr>
+
+<p>
+If you need help interpreting your p-value, use the interactive p-value interpreter.
+</p>
+
+<p style="text-align:center; margin-top:25px;">
+
+<a
+href="https://fsaffaf.github.io/AA5221/tools/p_value_interpreter.html"
 target="_blank"
-rel="noopener">
-4.4 | Module 4 | Assignment Part 1: Initial Attempt
+rel="noopener noreferrer"
+class="button">
+P-Value Interpreter
 </a>
-</li>
+</p>
 
-<li>
-Click the datasets to download them.
-</li>
 
-<li>
-For students using <strong>personal laptops</strong>:
-Save them inside your <strong>Assignment 4</strong> folder in Microsoft OneDrive.
 
-<ol>
 
-<li>
-If you are having issues using Microsoft OneDrive,
-create a folder on your desktop.
-You can save the files there and upload everything to OneDrive later.
-</li>
+</div>
 
-</ol>
+</details>
 
-</li>
 
-<li>
-For students using a <strong>SLU-issued laptop</strong>:
-Save them inside a folder on your virtual desktop.
-You will upload everything to OneDrive later.
-</li>
+<!-- COHEN'S W -->
+<details>
 
-</ol>
+<summary>
+<span class="step-label">Step 6</span><br>
+Calculate the Cohen's W (Effect Size)
+</summary>
+    
+<div class="path-step-content">
 
+<p>
+For Chi-Square Goodness-of-Fit tests, the effect size is Cramér's V.
+</p>
+
+<p>
+Cramér's V describes the strength of the association between the two categorical variables.
+</p>
+
+<h3>Calculate Cramér's V </h3>
+
+<p>
+Copy-and-paste the following code into your R Script.
+</p>
+
+<p>
+The first line calculates Cohen's W.
+The second line displays the result.
+</p>
+
+<div class="highlight highlight-orange">
+<pre><code>cramer_v <- rcompanion::cramerV(polit_table)
+
+cramer_v</code></pre>
+</div>
+
+
+<hr>
+
+<h3>Output</h3>
+
+<pre><code>0.40</code></pre>
+
+<hr>
+
+[insert table here]
 </div>
 
 </details>
@@ -601,11 +955,120 @@ You will upload everything to OneDrive later.
 <details>
 
 <summary>
-<span class="step-label">Step 2</span><br>
-Open RStudio and Create a New R Script
+<span class="step-label">Step 7</span><br>
+Report the Results
 </summary>
 
+<p>
+After the analyses, report your findings in a few clear sentences in your R Script.
+</p>
+
+<p>
+Copy the template and replace the highlighted portions with your output results.
+There is a standardized method of reporting. DO NOT be creative. Use the provided reporting format.
+</p>
+
+<p>P-Value Reporting</p>
+
+<table style="width: 100%; border-collapse: collapse; font-size: 12pt;">
+    <thead>
+        <tr>
+            <th style="text-align: left; padding: 10px; border-bottom: 2px solid #0e68b3;">p-value</th>
+            <th style="text-align: left; padding: 10px; border-bottom: 2px solid #0e68b3;">How to Report</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td style="padding: 10px; border-bottom: 1px solid #ddd;">p &lt; .001</td>
+            <td style="padding: 10px; border-bottom: 1px solid #ddd;">Report p &lt; .001</td>
+        </tr>
+        <tr>
+            <td style="padding: 10px; border-bottom: 1px solid #ddd;">.001 &lt; p &lt; .05</td>
+            <td style="padding: 10px; border-bottom: 1px solid #ddd;">Report the exact p-value to three decimals (example: p = .003)</td>
+        </tr>
+        <tr>
+            <td style="padding: 10px; border-bottom: 1px solid #ddd;">p &gt; .05</td>
+            <td style="padding: 10px; border-bottom: 1px solid #ddd;">Report p &gt; .05</td>
+        </tr>
+        <tr>
+            <td style="padding: 10px;">All other values</td>
+            <td style="padding: 10px;">Report two decimal places (example: .1252 → .13)</td>
+        </tr>
+    </tbody>
+</table>
+
+<p>
+Copy-and-paste the template below into your RScript.
+Replace the bracketed text with information from your analysis.
+</p>
+    
+<h3>Spearman Reporting Template</h3>
+
+<div class="highlight highlight-blue">
+
+<pre><code># A Chi-Square Test of Independence was conducted to determine if there was an association between Variable 1 and Variable 2.
+# The results showed that there [was / was not] an association between the two variables, χ²(df) = xx.xx, p = .xxx.
+# The association was [negligible / small / moderate / large] (Cramer's V = .xx).
+</code></pre>
+</div>
+    
+<hr>
+
+<h3>Example</h3>
+
+<div class="highlight highlight-blue">
+
+<pre><code># A Chi-Square Test of Independence was conducted to determine if there was an association between gender (male or female) and voting behavior (yes or no).
+# The results showed that there was an association between the two variables, χ²(1) = 7.84, p = .005.
+# The association was moderate (Cramer's V = .32).</code>
+</code></pre>
+
+</div>
+
+</details>
+
+
+<!-- FINAL STEPS -->
+
+<div class="test-path">
+
+<div class="test-path-content">
+
+
+
+<details>
+
+<summary>
+<span class="step-label">Prepare to Publish</span><br>
+Create an RMarkdown File
+</summary>
+    
 <div class="path-step-content">
+
+<p>
+After completing your R Script, the next step is to convert it into an
+R Markdown document.
+</p>
+
+<p>
+An R Markdown document combines your code, output, and written explanation
+into a single HTML report. This allows others to reproduce your analysis and
+view both the code and results in one document.
+</p>
+
+<p>
+Before proceeding, review the R Markdown lesson.
+</p>
+
+<p>
+<a href="../RProgram/RMarkdown.html">
+R Markdown Files
+</a>
+</p>
+
+<hr>
+
+<h3> Create a New R Markdown File</h3>
 
 <ol>
 
@@ -614,1013 +1077,139 @@ Open RStudio.
 </li>
 
 <li>
-In the top-left corner, click
-<strong>File → New File → R Script</strong>.
+Select:
+File → New File → R Markdown
 </li>
 
 <li>
-The top-left pane in RStudio is where you will write and save your R code.
-You will save this as an R Script file (<strong>.R</strong>).
+Ensure that HTML is selected as the output format.
 </li>
 
 <li>
-Read
-<a href="https://fsaffaf.github.io/AA5221/RProgram/RStudio.html"
-target="_blank"
-rel="noopener">
-Navigating RStudio
-</a>
-to learn about the RStudio layout.
-</li>
-
-<li>
-Read
-<a href="https://fsaffaf.github.io/AA5221/RProgram/RScript.html"
-target="_blank"
-rel="noopener">
-RScript Files
-</a>
-for an overview of R Script files.
+Select OK.
 </li>
 
 </ol>
 
-</div>
+<p>
+You do not need to complete any of the optional fields.
+The default settings are sufficient for this assignment.
+</p>
 
-</details>
+<hr>
 
-
-<details>
-
-<summary>
-<span class="step-label">Step 3</span><br>
-Save Your R Script
-</summary>
-
-<div class="path-step-content">
+<h3> Save the R Markdown File</h3>
 
 <ol>
 
 <li>
-Click <strong>File → Save As</strong>.
+Select File → Save As.
 </li>
 
 <li>
-For students using <strong>personal laptops</strong>:
-Navigate to your <strong>Assignment 4</strong> folder in OneDrive.
-Name the file <strong>Assignment 4 Q 1</strong>,
-or another name that clearly identifies the file.
-
-<ol>
+Save the file to your desktop.
+</li>
 
 <li>
-If you are having issues using Microsoft OneDrive,
-create a folder on your desktop.
-You can save the files there and upload everything to OneDrive later.
+Delete all of the prewritten sample text generated by RStudio.
+</li>
+
+<li>
+Open your completed R Script.
+</li>
+
+<li>
+Copy all of your code.
+</li>
+
+<li>
+Paste the code into the empty R Markdown document.
 </li>
 
 </ol>
 
-</li>
+<hr>
 
-<li>
-For students using a <strong>SLU-issued laptop</strong>:
-Save the file inside a folder on your virtual desktop.
-You will upload everything to OneDrive later.
-</li>
-
-<li>
-Remember to save frequently as you work.
-</li>
-
-</ol>
-
-</div>
-
-</details>
-
-
-</div>
-
-</details>
-
-
-<!-- PART 3 -->
-
-<details>
-
-<summary>
-<span class="step-label">Part 3</span><br>
-Install and Open the Required Packages
-</summary>
-
-<div class="path-step-content">
-
-
-<details>
-
-<summary>
-<span class="step-label">Step 1</span><br>
-Install readxl, rcompanion, and ggplot2
-</summary>
-
-<div class="path-step-content">
+<h3> Create a Code Chunk</h3>
 
 <p>
-A package is a collection of functions that adds additional abilities to R.
+R code inside an R Markdown file must be placed inside a
+code chunk.
 </p>
-
-<ul>
-
-<li>
-<strong>readxl</strong> allows you to import Excel files.
-Please skip downloading this package if you have already installed it.
-</li>
-
-<li>
-<strong>rcompanion</strong> allows you to calculate Cramer's V.
-</li>
-
-<li>
-<strong>ggplot2</strong> provides additional graphing functions.
-</li>
-
-</ul>
 
 <p>
-Copy and paste the following code into your R Script:
+Add the following line at the very beginning of your document:
 </p>
 
-<div class="code-box">
+<div class="highlight highlight-blue">
 
-<pre><code>install.packages("readxl")
-install.packages("rcompanion")
-install.packages("ggplot2")</code></pre>
+<pre><code>```{r}</code></pre>
 
 </div>
 
 <p>
-Run the code by highlighting it and clicking the <strong>Run</strong> button
-at the top of the R Script pane.
+Then add the following line at the very end of your document:
 </p>
 
-<p>
-RStudio will display multiple lines of installation messages in the Console.
-Once the installation is complete, the package is ready to use.
-</p>
+<div class="highlight highlight-blue">
 
-<div class="warning-box">
-
-<strong>Important:</strong>
-Packages only need to be installed into RStudio once.
-After the package has been installed, delete the installation code from your R Script.
-</div>
-
-<p>
-<img src="https://docs.posit.co/ide/user/ide/guide/code/images/run-current-line.png"
-alt="Run Current Line"
-style="max-width:544px; width:100%; height:auto;">
-</p>
-
-</div>
-
-</details>
-
-
-<details>
-
-<summary>
-<span class="step-label">Step 2</span><br>
-Open the Packages
-</summary>
-
-<div class="path-step-content">
-
-<p>
-Copy and paste the following code into your R Script:
-</p>
-
-<div class="code-box">
-
-<pre><code>library(readxl)
-library(rcompanion)
-library(ggplot2)</code></pre>
+<pre><code>```</code></pre>
 
 </div>
 
 <p>
-Run the lines of code.
+All of your code should now be located between the two lines.
 </p>
 
-<p>
-<strong>What will you see?</strong>
-<br>
-Nothing. That is normal.
-The packages are now available for use in your R session.
-Remember to keep these lines of code in your script.
-</p>
+<h3>Example Structure</h3>
 
-</div>
-
-</details>
-
-
-</div>
-
-</details>
-
-
-<!-- PART 4 -->
-
-<details>
-
-<summary>
-<span class="step-label">Part 4</span><br>
-Import Your Excel Dataset into RStudio
-</summary>
-
-<div class="path-step-content">
-
-<p>
-Although datasets can be imported entirely with code,
-many students experience difficulties locating file paths.
-Therefore, we will use the point-and-click method.
-</p>
-
-<ol>
-
-<li>
-Click <strong>File → Import Dataset → From Excel</strong>.
-</li>
-
-<li>
-A new window inside RStudio should appear.
-Click <strong>Browse</strong> in the top-right corner.
-</li>
-
-<li>
-Locate and select your dataset.
-
-<ol>
-
-<li>
-For students using a personal laptop:
-It should be in your
-<strong>OneDrive → AA 5221 → Assignment 4</strong> folder.
-
-<ol>
-
-<li>
-If you are having issues using Microsoft OneDrive,
-create a folder on your desktop.
-You can save the files there and upload everything to OneDrive later.
-</li>
-
-</ol>
-
-</li>
-
-<li>
-For students using a <strong>SLU-issued laptop</strong>:
-It should be in a folder on your virtual desktop.
-</li>
-
-</ol>
-
-</li>
-
-<li>
-Return to the RStudio window and click <strong>Import</strong>.
-</li>
-
-</ol>
-
-<p>
-RStudio will import the Excel dataset and automatically generate
-the code used to import it.
-</p>
-
-<p>
-<strong>General example:</strong>
-</p>
-
-<div class="code-box">
-
-<pre><code>DatasetName &lt;- read_excel("filepath")</code></pre>
-
-</div>
-
-<p>
-<strong>Example with a pretend file path:</strong>
-</p>
-
-<div class="code-box">
-
-<pre><code>DatasetName &lt;- read_excel("C:/Users/John/OneDrive/Documents/AA5221/Datasets/DatasetName.xlsx")</code></pre>
-
-</div>
-
-<p>
-Copy the import code and paste it into your R Script.
-This allows the dataset to be automatically imported the next time you run your script.
-</p>
-
-<p>
-Once imported, the dataset will appear in a new tab in RStudio.
-</p>
-
-</div>
-
-</details>
-
-
-<!-- PART 5 -->
-
-<details>
-
-<summary>
-<span class="step-label">Part 5</span><br>
-Create and View a Frequency Table
-</summary>
-
-<div class="path-step-content">
-
-
-<details>
-
-<summary>
-<span class="step-label">Step 1</span><br>
-Create the Frequency Table
-</summary>
-
-<div class="path-step-content">
-
-<ol>
-
-<li>
-Copy the fill-in-the-blank code below into your R Script.
-</li>
-
-<li>
-Replace <code>dataset</code> with the name of your dataset.
-The name must match your dataset exactly.
-</li>
-
-<li>
-Replace <code>variable</code> with the name of your variable.
-The name must match your dataset exactly.
-</li>
-
-</ol>
-
-<p>
-The <code>table()</code> function creates a frequency table.
-A frequency table shows how many observations belong to each category.
-</p>
-
-<p>
-<strong>Fill-in-the-blank code:</strong>
-</p>
-
-<div class="code-box">
-
-<pre><code>table(dataset$variable, dataset$variable)</code></pre>
-
-</div>
-
-<p>
-<strong>Example with pretend data:</strong>
-</p>
-
-<p>
-Dataset name: <code>data2026</code>
-<br>
-Variable 1 name: <code>gender</code>
-<br>
-Variable 2 name: <code>voting</code>
-</p>
-
-<div class="code-box">
-
-<pre><code>table(data2026$gender, data2026$voting)</code></pre>
-
-</div>
-
-</div>
-
-</details>
-
-
-<details>
-
-<summary>
-<span class="step-label">Step 2</span><br>
-Name the Frequency Table
-</summary>
-
-<div class="path-step-content">
-
-<p>
-Add <code>Name &lt;-</code> in front of the code you used to create your frequency table.
-</p>
-
-<p>
-In this example, we have named the table <code>polit_table</code>.
-</p>
-
-<div class="code-box">
-
-<pre><code>polit_table &lt;- table(data2026$gender, data2026$voting)</code></pre>
-
-</div>
-
-</div>
-
-</details>
-
-
-<details>
-
-<summary>
-<span class="step-label">Step 3</span><br>
-View the Frequency Table
-</summary>
-
-<div class="path-step-content">
-
-<p>
-Add the name of your frequency table on a new line.
-This tells RStudio to display the table.
-</p>
-
-<div class="code-box">
-
-<pre><code>polit_table &lt;- table(data2026$gender, data2026$voting)
-
-polit_table</code></pre>
-
-</div>
-
-<p>
-<strong>Example output:</strong>
-</p>
-
-<div class="example-box">
-
-<pre style="margin:0; font-family:'Courier New', Courier, monospace;">          Voting_Behavior
-Gender       No  Yes
-Female       42  158
-Male         55  145</pre>
-
-</div>
-
-</div>
-
-</details>
-
-
-</div>
-
-</details>
-
-
-<!-- PART 6 -->
-
-<details>
-
-<summary>
-<span class="step-label">Part 6</span><br>
-Create a Bar Chart
-</summary>
-
-<div class="path-step-content">
-
-
-<details>
-
-<summary>
-<span class="step-label">Step 1</span><br>
-Create a Bar Chart
-</summary>
-
-<div class="path-step-content">
-
-<p>
-Copy and paste the following code into your R Script.
-</p>
-
-<div class="code-box">
-
-<pre><code>barplot(
-    polit_table,
-    beside = TRUE,
-    col = rainbow(nrow(polit_table)),
-    legend = rownames(polit_table)
-)</code></pre>
-
-</div>
-
-<p>
-Replace <code>polit_table</code> with the name of your table.
-</p>
-
-<p>
-<strong>What will you see?</strong>
-</p>
-
-<p>
-The chart displays the observed frequencies for the two categorical variables.
-</p>
-
-<div class="center-image">
-
-<img src="https://live.staticflickr.com/65535/55522050289_bce936a929_b.jpg"
-alt="Voting Behavior by Gender">
-
-</div>
-
-</div>
-
-</details>
-
-
-</div>
-
-</details>
-
-
-<!-- PART 7 -->
-
-<details>
-
-<summary>
-<span class="step-label">Part 7</span><br>
-Conduct a Chi-Square Test of Independence
-</summary>
-
-<div class="path-step-content">
-
-<p>
-Copy and paste the following code into your R Script.
-</p>
-
-<p>
-Replace <code>polit_table</code> with the name of your frequency table.
-</p>
-
-<p>
-<strong>Example code:</strong>
-</p>
-
-<div class="code-box">
-
-<pre><code>chi_result &lt;- chisq.test(polit_table)
-
-chi_result</code></pre>
-
-</div>
-
-<p>
-The <code>chisq.test()</code> function conducts the Chi-Square test.
-The second line displays the results.
-</p>
-
-<p>
-<strong>Example output:</strong>
-</p>
-
-<div class="example-box">
-
-<pre style="margin:0; font-family:'Courier New', Courier, monospace;">Pearson's Chi-squared test
-
-data:  polit_table
-X-squared = 7.84, df = 1, p-value = 0.005</pre>
-
-</div>
-
-</div>
-
-</details>
-
-
-<!-- PART 8 -->
-
-<details>
-
-<summary>
-<span class="step-label">Part 8</span><br>
-Determine Statistical Significance
-</summary>
-
-<div class="path-step-content">
-
-<p>
-After running the Chi-Square test, compare the p-value to <strong>.05</strong>.
-</p>
-
-<table class="section-table">
-
-<thead>
-
-<tr>
-<th>P-Value</th>
-<th>Decision</th>
-</tr>
-
-</thead>
-
-<tbody>
-
-<tr>
-<td>p &lt; .05</td>
-<td>Statistically Significant</td>
-</tr>
-
-<tr>
-<td>p &gt; .05</td>
-<td>Not Statistically Significant</td>
-</tr>
-
-</tbody>
-
-</table>
-
-<p>
-<strong>What this means:</strong>
-</p>
-
-<p>
-A statistically significant result suggests that there is an
-<strong>association between the two categorical variables</strong>.
-</p>
-
-<p>
-A non-significant result suggests that there is not enough evidence
-to conclude that the two variables are associated.
-</p>
-
-<p>
-<a href="https://fsaffaf.github.io/AA5221/tools/p_value_interpreter.html"
-target="_blank"
-rel="noopener">
-Use my p-value interpreter
-</a>
-</p>
-
-</div>
-
-</details>
-
-
-<!-- PART 9 -->
-
-<details>
-
-<summary>
-<span class="step-label">Part 9</span><br>
-Calculate the Effect Size
-</summary>
-
-<div class="path-step-content">
-
-<p>
-Only calculate <strong>Cramér's V</strong> if your Chi-Square Test is
-statistically significant (<strong>p &lt; .05</strong>).
-</p>
-
-
-<details>
-
-<summary>
-<span class="step-label">Step 1</span><br>
-Calculate Cramér's V
-</summary>
-
-<div class="path-step-content">
-
-<p>
-Cramér's V describes the <strong>strength of the association</strong>
-between the two categorical variables.
-</p>
-
-<p>
-<strong>Example code:</strong>
-</p>
-
-<div class="code-box">
-
-<pre><code>cramer_v &lt;- rcompanion::cramerV(polit_table)
-
-cramer_v</code></pre>
-
-</div>
-
-<p>
-<strong>Example output:</strong>
-</p>
-
-<div class="example-box">
-
-<pre style="margin:0; font-family:'Courier New', Courier, monospace;">0.32</pre>
-
-</div>
-
-<p>
-<strong>Interpreting Cramér's V</strong>
-</p>
-
-<table class="section-table">
-
-<thead>
-
-<tr>
-<th>Cramér's V</th>
-<th>Interpretation</th>
-</tr>
-
-</thead>
-
-<tbody>
-
-<tr>
-<td>0.10 or less</td>
-<td>Negligible association</td>
-</tr>
-
-<tr>
-<td>0.10–0.29</td>
-<td>Small association</td>
-</tr>
-
-<tr>
-<td>0.30–0.49</td>
-<td>Moderate association</td>
-</tr>
-
-<tr>
-<td>0.50 or higher</td>
-<td>Large association</td>
-</tr>
-
-</tbody>
-
-</table>
-
-</div>
-
-</details>
-
-
-</div>
-
-</details>
-
-
-<!-- PART 10 -->
-
-<details>
-
-<summary>
-<span class="step-label">Part 10</span><br>
-Report the Results
-</summary>
-
-<div class="path-step-content">
-
-
-<details>
-
-<summary>
-<span class="step-label">Step 1</span><br>
-Report P-Values
-</summary>
-
-<div class="path-step-content">
-
-<p>
-After completing the analysis, summarize the results as comments
-at the end of your R Script.
-Begin each sentence with a hashtag (<code>#</code>).
-</p>
-
-<ul>
-
-<li>
-If your p-value is less than .001, report <strong>p &lt; .001</strong>.
-</li>
-
-<li>
-If your p-value is greater than .001 but less than .05,
-report the exact p-value to three decimal places
-(e.g., <strong>p = .003</strong>).
-</li>
-
-<li>
-If your p-value is greater than .05,
-report <strong>p &gt; .05</strong>.
-</li>
-
-</ul>
-
-</div>
-
-</details>
-
-
-<details>
-
-<summary>
-<span class="step-label">Step 2</span><br>
-Report Other Numerical Values
-</summary>
-
-<div class="path-step-content">
-
-<p>
-Report other numerical values to <strong>two decimal places</strong>.
-Remember to round.
-</p>
-
-<p>
-For example:
-<strong>.1252 → .13</strong>
-</p>
-
-</div>
-
-</details>
-
-
-<details>
-
-<summary>
-<span class="step-label">Step 3</span><br>
-Use the Reporting Template
-</summary>
-
-<div class="path-step-content">
-
-<div class="code-box">
-
-<pre><code># A Chi-Square Test of Independence was conducted to determine if there was an association between Variable 1 and Variable 2.
-
-# The results showed that there [was / was not] an association between the two variables, χ²(df) = xx.xx, p = .xxx.
-
-# The association was [negligible / small / moderate / large] (Cramer's V = .xx).</code></pre>
-
-</div>
-
-</div>
-
-</details>
-
-
-<details>
-
-<summary>
-<span class="step-label">Step 4</span><br>
-Completed Example
-</summary>
-
-<div class="path-step-content">
-
-<div class="example-box">
-
-<pre style="margin:0; font-family:'Courier New', Courier, monospace;"># A Chi-Square Test of Independence was conducted to determine if there was an association between gender (male or female) and voting behavior (yes or no).
-
-# The results showed that there was an association between the two variables, χ²(1) = 7.84, p = .005.
-
-# The association was moderate (Cramer's V = .32).</pre>
-
-</div>
-
-</div>
-
-</details>
-
-
-</div>
-
-</details>
-
-
-<!-- PART 11 -->
-
-<details>
-
-<summary>
-<span class="step-label">Part 11</span><br>
-Create an RMarkdown File
-</summary>
-
-<div class="path-step-content">
-
-<p>
-After completing your R Script, convert it into an RMarkdown file.
-</p>
-
-<p>
-Read
-<a href="https://fsaffaf.github.io/AA5221/RProgram/RMarkdown.html"
-target="_blank"
-rel="noopener">
-RMarkdown Files
-</a>
-</p>
-
-<p>
-An RMarkdown file allows others to reproduce your analysis
-while viewing both the code and the output together.
-</p>
-
-<ol>
-
-<li>
-Create an RMarkdown file:
-<strong>File → New File → RMarkdown</strong>.
-Make sure <strong>HTML</strong> is selected, then click <strong>OK</strong>.
-You do not need to fill in anything else.
-</li>
-
-<li>
-Save the file:
-<strong>File → Save As</strong>.
-
-<ol>
-
-<li>
-For students using a personal laptop:
-Save your file in your Microsoft OneDrive
-<strong>Assignment 4</strong> folder.
-
-<ol>
-
-<li>
-If you are having issues using Microsoft OneDrive,
-create a folder on your desktop.
-You can save the files there and upload everything to OneDrive later.
-</li>
-
-</ol>
-
-</li>
-
-<li>
-For students using a <strong>SLU-issued laptop</strong>:
-Save the file in a folder on your virtual desktop.
-You will upload everything to OneDrive later.
-</li>
-
-</ol>
-
-</li>
-
-<li>
-Erase all of the pre-written text inside the new RMarkdown file.
-</li>
-
-<li>
-Copy and paste the code from your R Script into the RMarkdown file.
-</li>
-
-<li>
-At the very top of the code, add:
-<code>```{r}</code>
-</li>
-
-<li>
-At the very bottom add:
-<code>```</code>
-</li>
-
-<li>
-You will know it worked if your entire code area turns gray.
-</li>
-
-<li>
-Click the <strong>Knit</strong> button at the top of the page.
-It looks like a ball of yarn with a needle in it.
-</li>
-
-<li>
-Your completed document should appear in a new screen.
-</li>
-
-<li>
-Save the file in your <strong>Assignment 4</strong> folder.
-</li>
-
-</ol>
-
-<div class="code-box">
+<div class="highlight highlight-blue">
 
 <pre><code>```{r}
 
-your code
+paste all your code here
 
 ```</code></pre>
 
 </div>
+
+<p>
+When the code chunk has been created correctly, the code region will typically
+appear shaded or highlighted within RStudio.
+</p>
+
+<hr>
+
+<h3>Step 5: Knit the Document</h3>
+
+<p>
+Once the code chunk has been created, generate the HTML report.
+</p>
+
+<ol>
+
+<li>
+Select the Knit button at the top of the R Markdown document.
+</li>
+
+<li>
+The Knit button resembles a ball of yarn with a knitting needle.
+</li>
+
+<li>
+Wait for the document to compile.
+</li>
+
+<li>
+A new HTML report should open automatically.
+</li>
+
+</ol>
+
+<p>
+The report will display your code, output, tables, charts, and statistical
+results in a web-friendly format.
+</p>
 
 </div>
 
@@ -1628,140 +1217,144 @@ your code
 
 
 <!-- PART 12 -->
-
 <details>
 
 <summary>
-<span class="step-label">Part 12</span><br>
-Publish Your Work as an RPubs HTML File
+<span class="step-label">Publish</span><br>
+Create an RPubs File
 </summary>
-
+    
 <div class="path-step-content">
 
 <p>
-An RPubs HTML file allows people to view your analysis in a web browser
-without installing RStudio.
+After creating and knitting your R Markdown document, the final step is to
+publish your report to RPubs.
 </p>
 
 <p>
-Read
-<a href="https://fsaffaf.github.io/AA5221/RProgram/RPubs.html"
-target="_blank"
-rel="noopener">
+RPubs allows you to share your analysis as a web page that can be viewed in any
+browser without requiring RStudio.
+</p>
+
+<p>
+Before beginning, review the RPubs lesson.
+</p>
+
+<p>
+<a href="../RProgram/RPubs.html">
 RPubs
 </a>
 </p>
 
-<p>
-<strong>After creating your RMarkdown file, publish it to RPubs.</strong>
-</p>
+<hr>
 
-
-<details>
-
-<summary>
-<span class="step-label">Step 1</span><br>
-Publish Your RMarkdown File
-</summary>
-
-<div class="path-step-content">
+<h3> Open Your R Markdown File</h3>
 
 <ol>
 
 <li>
-Open your R Markdown file.
+Open your completed R Markdown file.
 </li>
 
 <li>
-Click the <strong>Knit</strong> button at the top of the document.
+Verify that the document knits successfully and displays all output correctly.
 </li>
 
 <li>
-After the HTML report appears, locate the Publish button in the Viewer pane.
-</li>
-
-<li>
-Select <strong>Publish to RPubs</strong>.
-</li>
-
-<li>
-Log in or create a free RPubs account.
-</li>
-
-<li>
-Enter a title and description for your report.
-</li>
-
-<li>
-Click <strong>Publish</strong>.
-</li>
-
-<li>
-Copy the generated URL and submit the link for your assignment.
+Select the Knit button if you have not already generated the HTML report.
 </li>
 
 </ol>
 
-</div>
+<p>
+After knitting, the completed HTML report should appear in the Viewer pane or open in a web browser.
+</p>
 
-</details>
+<hr>
 
-
-<details>
-
-<summary>
-<span class="step-label">Step 2</span><br>
-Save the RPubs HTML File
-</summary>
-
-<div class="path-step-content">
+<h3> Publish to RPubs</h3>
 
 <ol>
 
 <li>
-Open your RPubs report in a web browser.
+Locate the Publish button in the Viewer pane.
 </li>
 
 <li>
-Press <strong>Ctrl + S</strong> (Windows) or
-<strong>Command + S</strong> (Mac).
+Select Publish to RPubs.
 </li>
 
 <li>
-Select a location on your computer.
+Log in to your RPubs account.
 </li>
 
 <li>
-Choose <strong>Webpage, HTML Only</strong> if available.
+If you do not already have an account, create a free RPubs account.
+</li>
+
+<li>
+Enter a title for your report.
+</li>
+
+<li>
+Optionally enter a description.
+</li>
+
+<li>
+Select Publish.
+</li>
+
+</ol>
+
+
+<hr>
+
+<h3>Save the RPubs HTML File</h3>
+
+<p>
+In addition to publishing the report online, save a copy of the HTML file for your records.
+</p>
+
+<ol>
+
+<li>
+Open your published RPubs report in a web browser.
+</li>
+
+<li>
+Press Ctrl + S (Windows) or Command + S (Mac).
+</li>
+
+<li>
+Choose a location on your computer.
+</li>
+
+<li>
+If available, select Webpage, HTML Only.
 </li>
 
 <li>
 Save the file.
 </li>
 
-<li>
-Save the RPubs HTML file to your
-<strong>Assignment 4</strong> OneDrive folder.
-</li>
-
 </ol>
 
 </div>
 
 </details>
 
+</div>
 
 </div>
 
-</details>
-
-
-</div>
 </div>
 
+</div>
 
 </div>
 
 </body>
+
+</html>
 
 </html>
