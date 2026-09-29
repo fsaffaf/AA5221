@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Data Visualization and Normality</title>
 
 <style>
@@ -26,38 +27,51 @@ body{
     padding:50px 20px;
 }
 
-.learning-objectives {
-    background: #084f8c;
-    color: #ffffff;
-    border-radius: 10px;
-    padding: 22px 26px;
-    margin: 25px 0;
-    box-shadow: 0 4px 12px rgba(8, 79, 140, 0.25);
+
+/* =========================
+   LEARNING OBJECTIVES
+========================= */
+
+.learning-objectives{
+    background:#084f8c;
+    color:#ffffff;
+    border-radius:10px;
+    padding:22px 26px;
+    margin:25px 0;
+    box-shadow:0 4px 12px rgba(8,79,140,.25);
 }
 
-.learning-objectives strong {
-    display: block;
-    color: #ffffff;
-    font-size: 20px;
-    margin-bottom: 14px;
+.learning-objectives strong{
+    display:block;
+    color:#ffffff;
+    font-size:20px;
+    margin-bottom:14px;
 }
 
-.learning-objectives ul {
-    margin: 0;
-    padding-left: 24px;
+.learning-objectives ul{
+    margin:0;
+    padding-left:24px;
 }
 
-.learning-objectives li {
-    color: #ffffff;
-    margin-bottom: 7px;
+.learning-objectives li{
+    color:#ffffff;
+    margin-bottom:7px;
 }
+
+
+/* =========================
+   BLUE TEXT
+========================= */
+
+.blue-heading{
+    color:#0e68b3;
+}
+
+
 /* =========================
    PAGE TITLE
 ========================= */
-.blue-heading {
-    color: #0e68b3;
-}
-   
+
 h1{
     text-align:left;
     color:#666666;
@@ -90,7 +104,6 @@ h2{
     margin-bottom:22px;
     padding-bottom:6px;
 }
-
 
 
 /* =========================
@@ -152,6 +165,7 @@ p{
     margin:20px 0;
 }
 
+
 /* =========================
    BUTTONS
 ========================= */
@@ -173,6 +187,8 @@ p{
     box-shadow:0 12px 25px rgba(14,104,179,.30);
     background:linear-gradient(135deg,#095491,#0e68b3);
 }
+
+
 /* =========================
    LISTS
 ========================= */
@@ -244,7 +260,7 @@ tr:hover{
 
 .scatterplot-grid{
     display:grid;
-    grid-template-columns:repeat(2, 1fr);
+    grid-template-columns:repeat(2,1fr);
     gap:25px;
     margin:25px 0;
 }
@@ -260,7 +276,7 @@ tr:hover{
 
 .outlier-grid{
     display:grid;
-    grid-template-columns:repeat(2, minmax(0, 1fr));
+    grid-template-columns:repeat(2,minmax(0,1fr));
     gap:25px;
     margin:25px 0;
 }
@@ -342,7 +358,6 @@ hr{
 
 </style>
 
-
 </head>
 
 <body>
@@ -351,16 +366,29 @@ hr{
 
 <h1>Research Design</h1>
 
+
+<!-- =========================
+     LEARNING OBJECTIVES
+========================= -->
+
 <div class="learning-objectives">
+
     <strong>Learning Objectives</strong>
+
     <ul>
         <li>Identify the variables used in research studies.</li>
         <li>Differentiate between independent and dependent variables.</li>
         <li>Explain the roles of mediators, moderators, and confounding variables.</li>
         <li>Describe the three major research study designs.</li>
     </ul>
+
 </div>
-   
+
+
+<!-- =========================
+     OVERVIEW
+========================= -->
+
 <div class="card">
 
 <h2>Overview</h2>
@@ -371,13 +399,21 @@ Before researchers can choose an appropriate research design, they must first id
 </p>
 
 <div class="highlight">
+
 <strong class="blue-heading">Variable</strong>
-   <p>
+
+<p>
 A <strong>variable</strong> is any characteristic or attribute that can take on different values. Examples include age, income, stress level, dosage, education level, and exam scores.
 </p>
+
 </div>
 
 </div>
+
+
+<!-- =========================
+     PRIMARY VARIABLES
+========================= -->
 
 <div class="card">
 
@@ -416,6 +452,11 @@ Most research studies examine the relationship between two primary variables.
 </table>
 
 </div>
+
+
+<!-- =========================
+     ADDITIONAL VARIABLES
+========================= -->
 
 <div class="card">
 
@@ -461,7 +502,10 @@ More advanced studies may include variables that explain, strengthen, or complic
 
 </div>
 
-</div>
+
+<!-- =========================
+     RESEARCH STUDY DESIGNS
+========================= -->
 
 <div class="card">
 
@@ -507,6 +551,11 @@ A <strong>research study design</strong> is the structured plan researchers use 
 
 </div>
 
+
+<!-- =========================
+     THREE FEATURES
+========================= -->
+
 <div class="card">
 
 <h2>The Three Features That Differentiate Research Designs</h2>
@@ -544,13 +593,20 @@ A <strong>research study design</strong> is the structured plan researchers use 
 </tbody>
 
 </table>
+
 </div>
+
+
+<!-- =========================
+     TRUE EXPERIMENT
+========================= -->
 
 <div class="card">
 
 <h2>True Experiment</h2>
 
 <div class="highlight">
+
 <strong class="blue-heading">True Experiment</strong>
 
 <p>
@@ -592,7 +648,9 @@ A true experiment is the only design that allows researchers to make strong caus
 
 <h3>Example Research Question</h3>
 
-<p><strong>Does studying longer improve exam performance?</strong></p>
+<p>
+<strong>Does studying longer improve exam performance?</strong>
+</p>
 
 <table>
 
@@ -631,11 +689,19 @@ A true experiment is the only design that allows researchers to make strong caus
 
 </div>
 
+</div>
+
+
+<!-- =========================
+     QUASI-EXPERIMENT
+========================= -->
+
 <div class="card">
 
 <h2>Quasi-Experiment</h2>
 
 <div class="highlight">
+
 <strong class="blue-heading">Quasi-Experiment</strong>
 
 <p>
@@ -683,10 +749,18 @@ Because participants are not randomly assigned, researchers cannot make the same
 <li>Comparing people who exercise and those who do not.</li>
 </ul>
 
-
+<p>
 Quasi-experiments provide useful evidence when true experiments are not practical or ethical.
+</p>
 
 </div>
+
+</div>
+
+
+<!-- =========================
+     CORRELATIONAL STUDY
+========================= -->
 
 <div class="card">
 
@@ -772,6 +846,13 @@ Correlational studies cannot establish cause and effect.
 
 </div>
 
+</div>
+
+
+<!-- =========================
+     TYPES OF EXPERIMENTAL DESIGNS
+========================= -->
+
 <div class="card">
 
 <h2>Types of Experimental Designs</h2>
@@ -845,6 +926,11 @@ Correlational studies cannot establish cause and effect.
 
 </div>
 
+
+<!-- =========================
+     INTERACTIVE STUDY TOOLS
+========================= -->
+
 <div class="card">
 
 <h2>Interactive Study Tools</h2>
@@ -860,10 +946,12 @@ Practice determining whether a study is a true experiment, quasi-experiment, or 
 </div>
 
 <p style="text-align:center;">
+
 <a class="button"
 href="https://fsaffaf.github.io/AA5221/tools/research_design_selector.html">
 Research Design Selector
 </a>
+
 </p>
 
 <hr>
@@ -879,10 +967,12 @@ Practice writing hypotheses appropriate for different research designs.
 </div>
 
 <p style="text-align:center;">
+
 <a class="button"
 href="https://fsaffaf.github.io/AA5221/tools/hypothesis_writer.html">
 Hypothesis Writer
 </a>
+
 </p>
 
 </div>
