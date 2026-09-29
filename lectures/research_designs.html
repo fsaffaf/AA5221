@@ -9,6 +9,10 @@
 
 <style>
 
+/* =========================
+   BASE
+========================= */
+
 body{
     margin:0;
     font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
@@ -21,6 +25,11 @@ body{
     margin:auto;
     padding:50px 20px;
 }
+
+
+/* =========================
+   PAGE TITLE
+========================= */
 
 h1{
     text-align:left;
@@ -40,34 +49,56 @@ h1{
     font-size:.95rem;
 }
 
-h2,
-h3{
+
+/* =========================
+   CARD HEADINGS
+========================= */
+
+h2{
     color:#0e68b3;
     position:relative;
     font-weight:500;
     display:inline-block;
+    margin-top:0;
+    margin-bottom:22px;
+    padding-bottom:6px;
 }
 
-h2::after,
-h3::after{
+h2::after{
     content:"";
     position:absolute;
     left:0;
-    bottom:-4px;
-    width:0;
+    bottom:0;
+    width:100%;
     height:2px;
     background:#0e68b3;
-    transition:.3s;
 }
 
-.card:hover h2::after,
-.card:hover h3::after{
-    width:100%;
+
+/* =========================
+   SUBHEADINGS
+========================= */
+
+h3{
+    color:#0e68b3;
+    font-weight:500;
+    margin-top:28px;
+    margin-bottom:12px;
 }
+
+
+/* =========================
+   BODY TEXT
+========================= */
 
 p{
     line-height:1.8;
 }
+
+
+/* =========================
+   CARDS
+========================= */
 
 .card{
     background:white;
@@ -77,7 +108,7 @@ p{
     border:1px solid #d9e2ec;
 
     box-shadow:
-      0 3px 10px rgba(0,0,0,.05);
+        0 3px 10px rgba(0,0,0,.05);
 
     animation:fadeUp .6s ease forwards;
     transition:all .25s ease;
@@ -85,17 +116,28 @@ p{
 
 .card:hover{
     transform:translateY(-4px);
+
     box-shadow:
-      0 10px 25px rgba(14,104,179,.15);
+        0 10px 25px rgba(14,104,179,.15);
 }
 
+
+/* =========================
+   CALLOUTS
+========================= */
+
 .highlight{
-    background:#eef6fc;
-    border-left:5px solid #0e68b3;
-    padding:15px;
-    border-radius:8px;
+    background:#ffffff;
+    border-left:2px solid #0e68b3;
+    padding:14px 18px;
+    border-radius:0;
     margin:20px 0;
 }
+
+
+/* =========================
+   LISTS
+========================= */
 
 ul{
     padding-left:25px;
@@ -108,6 +150,11 @@ ol{
 li{
     margin-bottom:8px;
 }
+
+
+/* =========================
+   TABLES
+========================= */
 
 table{
     width:100%;
@@ -139,6 +186,11 @@ tr:hover{
     background:#edf6ff;
 }
 
+
+/* =========================
+   SCATTERPLOTS
+========================= */
+
 .scatterplot{
     text-align:center;
     margin:25px 0;
@@ -163,6 +215,11 @@ tr:hover{
     margin:0;
 }
 
+
+/* =========================
+   OUTLIER EXAMPLES
+========================= */
+
 .outlier-grid{
     display:grid;
     grid-template-columns:repeat(2, minmax(0, 1fr));
@@ -186,6 +243,11 @@ tr:hover{
     border-radius:8px;
 }
 
+
+/* =========================
+   HORIZONTAL RULE
+========================= */
+
 hr{
     border:none;
     height:1px;
@@ -193,16 +255,29 @@ hr{
     margin:30px 0;
 }
 
+
+/* =========================
+   ANIMATION
+========================= */
+
 @keyframes fadeUp{
+
     from{
         opacity:0;
         transform:translateY(20px);
     }
+
     to{
         opacity:1;
         transform:translateY(0);
     }
+
 }
+
+
+/* =========================
+   MOBILE
+========================= */
 
 @media (max-width:768px){
 
@@ -228,6 +303,7 @@ hr{
 }
 
 </style>
+
 
 </head>
 
