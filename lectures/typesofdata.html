@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 
 <html lang="en">
@@ -5,170 +6,200 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Types of Data</title>
+
+<title>Measurement & Variables</title>
 
 <style>
 
-:root{
-    --primary:#0e68b3;
-    --primary-dark:#095491;
-    --accent:#eef6fc;
-    --text:#222222;
-    --muted:#6b7280;
-    --bg:#f4f6f9;
-    --card:#ffffff;
-}
-
-*{
-    box-sizing:border-box;
-}
+/* =========================
+   BASE
+========================= */
 
 body{
     margin:0;
     font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-    background:var(--bg);
-    color:var(--text);
-    line-height:1.8;
+    background:#f4f6f9;
+    color:#222222;
 }
 
 .container{
     max-width:1000px;
     margin:auto;
-    padding:40px 20px 70px;
+    padding:50px 20px;
 }
 
-.hero{
-    background:linear-gradient(135deg,#0e68b3,#1479cf);
-    color:white;
-    padding:60px 40px;
-    border-radius:24px;
-    margin-bottom:35px;
-    box-shadow:0 15px 35px rgba(14,104,179,.20);
+
+/* =========================
+   BLUE TEXT
+========================= */
+
+.blue-heading{
+    color:#0e68b3;
 }
 
-.hero h1{
-    margin:0;
-    color:white;
-    font-size:3rem;
-    font-weight:300;
-    letter-spacing:.05em;
-}
 
-.hero p{
-    margin-top:15px;
-    font-size:1.1rem;
-    max-width:750px;
-    opacity:.95;
+/* =========================
+   PAGE TITLE
+========================= */
+
+h1{
+    text-align:left;
+    color:#666666;
+    font-size:2.75rem;
+    font-weight:200;
+    letter-spacing:.08em;
+    margin-bottom:10px;
 }
 
 .subtitle{
+    text-align:center;
+    color:#6b7280;
     text-transform:uppercase;
-    letter-spacing:.18em;
-    font-size:.85rem;
-    opacity:.9;
+    letter-spacing:.15em;
+    margin-bottom:40px;
+    font-size:.95rem;
 }
+
+
+/* =========================
+   CARD HEADINGS
+========================= */
+
+h2{
+    color:#0e68b3;
+    position:relative;
+    font-weight:500;
+    display:inline-block;
+    margin-top:30px;
+    margin-bottom:22px;
+    padding-bottom:6px;
+}
+
+
+/* =========================
+   SUBHEADINGS
+========================= */
+
+h3{
+    color:#0e68b3;
+    font-weight:500;
+    margin-top:30px;
+    margin-bottom:12px;
+}
+
+
+/* =========================
+   BODY TEXT
+========================= */
+
+p{
+    line-height:1.8;
+}
+
+
+/* =========================
+   CARDS
+========================= */
 
 .card{
     background:white;
-    border-radius:18px;
-    padding:32px;
+    border-radius:16px;
+    padding:30px;
     margin-bottom:25px;
     border:1px solid #d9e2ec;
-    box-shadow:0 4px 12px rgba(0,0,0,.05);
+
+    box-shadow:
+        0 3px 10px rgba(0,0,0,.05);
+
     animation:fadeUp .6s ease forwards;
-    transition:.25s;
+    transition:all .25s ease;
 }
 
 .card:hover{
     transform:translateY(-4px);
-    box-shadow:0 12px 28px rgba(14,104,179,.12);
+
+    box-shadow:
+        0 10px 25px rgba(14,104,179,.15);
 }
 
-.section-banner{
-    background:linear-gradient(135deg,#0e68b3,#1c84d8);
-    color:white;
-    padding:14px 20px;
-    border-radius:12px;
-    font-weight:600;
-    margin-bottom:25px;
-    letter-spacing:.03em;
+
+/* =========================
+   CALLOUTS
+========================= */
+
+.definition{
+    background:#ffffff;
+    border-left:3px solid #0e68b3;
+    padding:14px 18px;
+    border-radius:0;
+    margin:20px 0 35px 0;
 }
 
-h2{
-    color:var(--primary);
-    font-weight:600;
-    margin-top:10px;
-    margin-bottom:10px;
-    position:relative;
+
+/* =========================
+   BUTTONS
+========================= */
+
+.button{
     display:inline-block;
+    background:linear-gradient(135deg,#0e68b3,#1c84d8);
+    color:#ffffff;
+    text-decoration:none;
+    font-weight:600;
+    padding:14px 32px;
+    border-radius:9999px;
+    box-shadow:0 8px 20px rgba(14,104,179,.20);
+    transition:all .25s ease;
 }
 
-h2::after{
-    content:"";
-    position:absolute;
-    left:0;
-    bottom:-6px;
-    height:3px;
-    width:60%;
-    background:var(--primary);
-    border-radius:10px;
+.button:hover{
+    transform:translateY(-3px);
+    box-shadow:0 12px 25px rgba(14,104,179,.30);
+    background:linear-gradient(135deg,#095491,#0e68b3);
 }
 
-p{
-    margin-bottom:18px;
+
+/* =========================
+   LISTS
+========================= */
+
+ul{
+    margin-left:25px;
+    padding-left:0;
 }
 
-ul,
 ol{
-    padding-left:25px;
+    margin-left:25px;
+    padding-left:0;
 }
 
 li{
     margin-bottom:8px;
 }
 
-.learning-box{
-    background:#f8fbff;
-    border-left:5px solid var(--primary);
-    padding:18px;
-    border-radius:10px;
-    margin:20px 0;
-}
 
-.highlight{
-    background:var(--accent);
-    border-left:5px solid var(--primary);
-    padding:18px;
-    border-radius:10px;
-    margin:20px 0;
-}
-
-.highlight strong{
-    color:var(--primary);
-}
-
-.table-wrapper{
-    overflow-x:auto;
-}
+/* =========================
+   TABLES
+========================= */
 
 table{
     width:100%;
     border-collapse:collapse;
-    margin-top:15px;
-    border-radius:12px;
+    margin-top:20px;
+    background:white;
     overflow:hidden;
+    border-radius:10px;
 }
 
 th{
-    background:var(--primary);
+    background:#0e68b3;
     color:white;
     text-align:left;
-    padding:16px;
-    font-weight:600;
+    padding:14px;
 }
 
 td{
-    padding:16px;
+    padding:14px;
     border-bottom:1px solid #e5e7eb;
     vertical-align:top;
 }
@@ -181,35 +212,67 @@ tr:hover{
     background:#edf6ff;
 }
 
-blockquote{
-    background:#f8fafc;
-    border-left:5px solid var(--primary);
-    padding:18px;
+
+/* =========================
+   SCATTERPLOTS
+========================= */
+
+.scatterplot{
+    text-align:center;
+    margin:25px 0;
+}
+
+.scatterplot img{
+    max-width:100%;
+    height:auto;
+    display:block;
+    margin:0 auto;
     border-radius:8px;
-    margin:20px 0;
-    font-style:italic;
 }
 
-.button{
-    display:inline-block;
-    background:linear-gradient(135deg,#0e68b3,#1781d9);
-    color:white;
-    text-decoration:none;
-    font-weight:600;
-    padding:14px 28px;
-    border-radius:50px;
-    transition:.25s ease;
-    box-shadow:0 8px 20px rgba(14,104,179,.20);
+.scatterplot-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:25px;
+    margin:25px 0;
 }
 
-.button:hover{
-    background:var(--primary-dark);
-    transform:translateY(-3px);
+.scatterplot-grid .scatterplot{
+    margin:0;
 }
 
-.center{
+
+/* =========================
+   OUTLIER EXAMPLES
+========================= */
+
+.outlier-grid{
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:25px;
+    margin:25px 0;
+}
+
+.outlier-example{
     text-align:center;
 }
+
+.outlier-example h3{
+    margin-top:0;
+}
+
+.outlier-example img{
+    width:100%;
+    height:auto;
+    display:block;
+    margin:20px auto 0;
+    border-radius:8px;
+}
+
+
+/* =========================
+   HORIZONTAL RULE
+========================= */
 
 hr{
     border:none;
@@ -218,56 +281,49 @@ hr{
     margin:30px 0;
 }
 
-.key-points{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-    gap:16px;
-    margin-top:20px;
-}
 
-.point{
-    background:white;
-    border:1px solid #d9e2ec;
-    padding:18px;
-    border-radius:12px;
-    text-align:center;
-}
-
-.point strong{
-    display:block;
-    color:var(--primary);
-    margin-bottom:6px;
-}
+/* =========================
+   ANIMATION
+========================= */
 
 @keyframes fadeUp{
+
     from{
         opacity:0;
         transform:translateY(20px);
     }
+
     to{
         opacity:1;
         transform:translateY(0);
     }
+
 }
+
+
+/* =========================
+   MOBILE
+========================= */
 
 @media (max-width:768px){
 
-    .hero{
-        padding:40px 25px;
-    }
-
-    .hero h1{
-        font-size:2.2rem;
+    h1{
+        font-size:2rem;
     }
 
     .card{
-        padding:22px;
+        padding:20px;
     }
 
     th,
     td{
+        padding:10px;
         font-size:.95rem;
-        padding:12px;
+    }
+
+    .scatterplot-grid,
+    .outlier-grid{
+        grid-template-columns:1fr;
     }
 
 }
@@ -276,225 +332,303 @@ hr{
 
 </head>
 
+
 <body>
 
 <div class="container">
 
-<div class="hero">
-<div class="subtitle">AA 5221 • Measurement & Variables</div>
-<h1>Types of Data</h1>
-<p>
-Understanding levels of measurement is one of the most important skills in statistics and analytics. The level of measurement determines which statistical techniques, charts, and analyses are appropriate for your data.
-</p>
-</div>
+    <h1>Measurement &amp; Variables</h1>
 
-<div class="card">
+    <div class="subtitle">
+        AA 5221 &bull; Types of Data
+    </div>
 
-<div class="section-banner">
-Why Levels of Measurement Matter
-</div>
 
-<p>
-There are four types of data, also known as <strong>levels of measurement</strong>. Correctly identifying the level of measurement for your variables is essential because it determines:
-</p>
+    <!-- =========================
+         OVERVIEW
+    ========================= -->
 
-<ul>
-<li>Which descriptive statistics can be calculated</li>
-<li>Which inferential statistical tests can be performed</li>
-<li>Which graphs are appropriate for visualizing the data</li>
-<li>How results should be interpreted and reported</li>
-</ul>
+    <div class="card">
 
-<div class="key-points">
+        <h2>Types of Data</h2>
 
-<div class="point">
-<strong>Nominal</strong>
-No ranking
-</div>
+        <p>
+            Understanding levels of measurement is one of the most important skills
+            in statistics and analytics. The level of measurement determines which
+            statistical techniques, charts, and analyses are appropriate for your data.
+        </p>
 
-<div class="point">
-<strong>Ordinal</strong>
-Ranked categories
-</div>
+        <h3>Why Levels of Measurement Matter</h3>
 
-<div class="point">
-<strong>Interval</strong>
-Equal intervals
-</div>
+        <p>
+            There are four types of data, also known as <strong>levels of measurement</strong>.
+            Correctly identifying the level of measurement for your variables is essential
+            because it determines:
+        </p>
 
-<div class="point">
-<strong>Ratio</strong>
-Equal intervals + true zero
-</div>
+        <ul>
+            <li>Which descriptive statistics can be calculated</li>
+            <li>Which inferential statistical tests can be performed</li>
+            <li>Which graphs are appropriate for visualizing the data</li>
+            <li>How results should be interpreted and reported</li>
+        </ul>
 
-</div>
+    </div>
 
-</div>
 
-<div class="card">
+    <!-- =========================
+         FOUR LEVELS
+    ========================= -->
 
-<div class="section-banner">
-Levels of Measurement
-</div>
+    <div class="card">
 
-<div class="table-wrapper">
+        <h2>Four Levels of Measurement</h2>
 
-<table>
+        <div class="definition">
+            <strong>Nominal</strong> &mdash; No ranking
+        </div>
 
-<thead>
-<tr>
-<th>Level</th>
-<th>Definition</th>
-<th>Examples</th>
-<th>Data Type</th>
-</tr>
-</thead>
+        <div class="definition">
+            <strong>Ordinal</strong> &mdash; Ranked categories
+        </div>
 
-<tbody>
+        <div class="definition">
+            <strong>Interval</strong> &mdash; Equal intervals
+        </div>
 
-<tr>
-<td><strong>Nominal</strong></td>
-<td>Categories with no rank order.</td>
-<td>Race, gender, nationality</td>
-<td>Categorical</td>
-</tr>
+        <div class="definition">
+            <strong>Ratio</strong> &mdash; Equal intervals + true zero
+        </div>
 
-<tr>
-<td><strong>Ordinal</strong></td>
-<td>Categories can be ranked, but the distance between categories is unknown.</td>
-<td>Single-item Likert scales</td>
-<td>Categorical</td>
-</tr>
+        <h3>Levels of Measurement</h3>
 
-<tr>
-<td><strong>Interval</strong></td>
-<td>Equal spacing between values, but no true zero.</td>
-<td>Temperature (°F, °C), composite Likert scales</td>
-<td>Continuous</td>
-</tr>
+        <table>
 
-<tr>
-<td><strong>Ratio</strong></td>
-<td>Equal spacing between values and a meaningful zero point.</td>
-<td>Weight, height, age, income, distance</td>
-<td>Continuous</td>
-</tr>
+            <thead>
+                <tr>
+                    <th>Level</th>
+                    <th>Definition</th>
+                    <th>Examples</th>
+                    <th>Data Type</th>
+                </tr>
+            </thead>
 
-</tbody>
+            <tbody>
 
-</table>
+                <tr>
+                    <td><strong>Nominal</strong></td>
+                    <td>
+                        Categories with no rank order.
+                    </td>
+                    <td>
+                        Race, gender, nationality
+                    </td>
+                    <td>
+                        Categorical
+                    </td>
+                </tr>
 
-</div>
+                <tr>
+                    <td><strong>Ordinal</strong></td>
+                    <td>
+                        Categories can be ranked, but the distance between
+                        categories is unknown.
+                    </td>
+                    <td>
+                        Single-item Likert scales
+                    </td>
+                    <td>
+                        Categorical
+                    </td>
+                </tr>
 
-<div class="highlight">
-<strong>Continuous (Quantitative) Data</strong><br>
-Numeric data that can be used for mathematical and statistical calculations.
-</div>
+                <tr>
+                    <td><strong>Interval</strong></td>
+                    <td>
+                        Equal spacing between values, but no true zero.
+                    </td>
+                    <td>
+                        Temperature (&deg;F, &deg;C), composite Likert scales
+                    </td>
+                    <td>
+                        Continuous
+                    </td>
+                </tr>
 
-<div class="highlight">
-<strong>Categorical (Qualitative) Data</strong><br>
-Data that classify observations into categories, groups, or characteristics.
-</div>
+                <tr>
+                    <td><strong>Ratio</strong></td>
+                    <td>
+                        Equal spacing between values and a meaningful zero point.
+                    </td>
+                    <td>
+                        Weight, height, age, income, distance
+                    </td>
+                    <td>
+                        Continuous
+                    </td>
+                </tr>
 
-</div>
+            </tbody>
 
-<div class="card">
+        </table>
 
-<div class="section-banner">
-Single-Item vs. Multiple-Item Likert Measures
-</div>
+    </div>
 
-<p>
-Researchers frequently use Likert-type scales to measure attitudes, perceptions, opinions, and psychological constructs.
-</p>
 
-<h2>Single-Item Measures</h2>
+    <!-- =========================
+         DATA TYPES
+    ========================= -->
 
-<p>
-A single-item measure uses one question to assess a variable.
-</p>
+    <div class="card">
 
-<blockquote>
-Overall, how satisfied are you with your job?
-</blockquote>
+        <h2>Continuous and Categorical Data</h2>
 
-<p>
-<strong>Advantages:</strong> Simple, efficient, quick to administer, and reduces survey fatigue.
-</p>
+        <div class="definition">
 
-<p>
-<strong>Limitation:</strong> A single question may not fully capture a complex concept.
-</p>
+            <strong>Continuous (Quantitative) Data</strong>
 
-<hr>
+            <p>
+                Numeric data that can be used for mathematical and statistical calculations.
+            </p>
 
-<h2>Multiple-Item Measures</h2>
+        </div>
 
-<p>
-A multiple-item measure uses several related questions to assess the same construct. Researchers typically combine responses by calculating either a sum score or an average score.
-</p>
+        <div class="definition">
 
-<ol>
-<li>I enjoy the work I do.</li>
-<li>I am satisfied with my current job.</li>
-<li>I would recommend my workplace to others.</li>
-<li>My job meets my expectations.</li>
-</ol>
+            <strong>Categorical (Qualitative) Data</strong>
 
-<p>
-When several items are combined into a single score, researchers often treat the resulting measure as <strong>interval-level data</strong>, allowing more advanced statistical analyses.
-</p>
+            <p>
+                Data that classify observations into categories, groups, or characteristics.
+            </p>
 
-<div class="learning-box">
+        </div>
 
-<strong>Why Researchers Prefer Multiple-Item Measures</strong>
+    </div>
 
-<ul>
-<li>Greater reliability</li>
-<li>Improved measurement precision</li>
-<li>Reduced random error</li>
-<li>Ability to evaluate measurement quality</li>
-<li>More stable and consistent results</li>
-</ul>
 
-</div>
+    <!-- =========================
+         LIKERT MEASURES
+    ========================= -->
 
-</div>
+    <div class="card">
 
-<div class="card">
+        <h2>Single-Item vs. Multiple-Item Likert Measures</h2>
 
-<div class="section-banner">
-Key Takeaway
-</div>
+        <p>
+            Researchers frequently use Likert-type scales to measure attitudes,
+            perceptions, opinions, and psychological constructs.
+        </p>
 
-<div class="highlight">
-Always identify the level of measurement before selecting statistical procedures. A variable's level of measurement determines which analyses are appropriate and how findings should be interpreted.
-</div>
 
-</div>
+        <h3>Single-Item Measures</h3>
 
-<div class="card">
+        <p>
+            A single-item measure uses one question to assess a variable.
+        </p>
 
-<div class="section-banner">
-Interactive Study Tool
-</div>
+        <div class="definition">
 
-<p>
-Practice identifying the level of measurement for different variables using the interactive tool below.
-</p>
+            <em>Overall, how satisfied are you with your job?</em>
 
-<div class="center">
+        </div>
 
-<a class="button"
-href="https://fsaffaf.github.io/AA5221/tools/data_type_selector.html">
-Launch Level of Measurement Identifier
-</a>
+        <p>
+            <strong>Advantages:</strong> Simple, efficient, quick to administer,
+            and reduces survey fatigue.
+        </p>
 
-</div>
+        <p>
+            <strong>Limitation:</strong> A single question may not fully capture
+            a complex concept.
+        </p>
 
-</div>
+
+        <h3>Multiple-Item Measures</h3>
+
+        <p>
+            A multiple-item measure uses several related questions to assess the
+            same construct. Researchers typically combine responses by calculating
+            either a sum score or an average score.
+        </p>
+
+        <ol>
+            <li>I enjoy the work I do.</li>
+            <li>I am satisfied with my current job.</li>
+            <li>I would recommend my workplace to others.</li>
+            <li>My job meets my expectations.</li>
+        </ol>
+
+        <div class="definition">
+
+            <strong>Composite Measure</strong>
+
+            <p>
+                When several items are combined into a single score, researchers
+                often treat the resulting measure as <strong>interval-level data</strong>,
+                allowing more advanced statistical analyses.
+            </p>
+
+        </div>
+
+
+        <h3>Why Researchers Prefer Multiple-Item Measures</h3>
+
+        <ul>
+            <li>Greater reliability</li>
+            <li>Improved measurement precision</li>
+            <li>Reduced random error</li>
+            <li>Ability to evaluate measurement quality</li>
+            <li>More stable and consistent results</li>
+        </ul>
+
+    </div>
+
+
+    <!-- =========================
+         KEY TAKEAWAY
+    ========================= -->
+
+    <div class="card">
+
+        <h2>Key Takeaway</h2>
+
+        <p>
+            Always identify the level of measurement before selecting statistical
+            procedures. A variable's level of measurement determines which analyses
+            are appropriate and how findings should be interpreted.
+        </p>
+
+    </div>
+
+
+    <!-- =========================
+         INTERACTIVE TOOL
+    ========================= -->
+
+    <div class="card">
+
+        <h2>Interactive Study Tool</h2>
+
+        <p>
+            Practice identifying the level of measurement for different variables
+            using the interactive tool below.
+        </p>
+
+        <p>
+            <a
+                class="button"
+                href="https://fsaffaf.github.io/AA5221/tools/data_type_selector.html"
+                target="_blank"
+                rel="noopener noreferrer">
+                Launch Level of Measurement Identifier
+            </a>
+        </p>
+
+    </div>
 
 </div>
 
 </body>
+
 </html>
+```
