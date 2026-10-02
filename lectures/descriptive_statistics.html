@@ -214,7 +214,7 @@ tr:hover{
 
 
 /* =========================
-   SCATTERPLOTS / IMAGES
+   IMAGES
 ========================= */
 
 .scatterplot{
@@ -227,45 +227,6 @@ tr:hover{
     height:auto;
     display:block;
     margin:0 auto;
-    border-radius:8px;
-}
-
-.scatterplot-grid{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:25px;
-    margin:25px 0;
-}
-
-.scatterplot-grid .scatterplot{
-    margin:0;
-}
-
-
-/* =========================
-   OUTLIER EXAMPLES
-========================= */
-
-.outlier-grid{
-    display:grid;
-    grid-template-columns:repeat(2,minmax(0,1fr));
-    gap:25px;
-    margin:25px 0;
-}
-
-.outlier-example{
-    text-align:center;
-}
-
-.outlier-example h3{
-    margin-top:0;
-}
-
-.outlier-example img{
-    width:100%;
-    height:auto;
-    display:block;
-    margin:20px auto 0;
     border-radius:8px;
 }
 
@@ -349,11 +310,6 @@ hr{
         font-size:.95rem;
     }
 
-    .scatterplot-grid,
-    .outlier-grid{
-        grid-template-columns:1fr;
-    }
-
 }
 
 </style>
@@ -367,275 +323,490 @@ hr{
 
 
 <!-- =========================
-     OVERVIEW
+     PAGE TITLE
 ========================= -->
 
 <h1>Descriptive Statistics</h1>
 
+
+<!-- =========================
+     OVERVIEW
+========================= -->
+
 <div class="card">
+
 <h2>Overview</h2>
 
 <p>
 Statistics can be divided into two major categories:
-descriptive statistics and inferential statistics.
+<strong>descriptive statistics</strong> and <strong>inferential statistics</strong>.
 This lecture focuses on descriptive statistics.
 The next lecture will discuss inferential statistics, which are used to test hypotheses.
 </p>
+
 </div>
 
+
+<!-- =========================
+     DESCRIPTIVE STATISTICS
+========================= -->
+
 <div class="card">
+
 <h2>Descriptive Statistics</h2>
 
 <div class="definition">
 
 <strong style="color:#0e68b3;">Descriptive Statistics</strong>
+
 <br>
+
 <p>
 Brief quantitative summaries that describe, show, or summarize the features of a specific dataset.
-They only describe what is happening or what the data shows, without making predictions or drawing conclusions about a larger population.
+They describe what is happening in the data without making predictions or drawing conclusions about a larger population.
 </p>
 
 </div>
 
+
 <table>
 
 <thead>
+
 <tr>
     <th>Category</th>
-    <th>"Tool"</th>
+    <th>Tool</th>
     <th>Definition</th>
 </tr>
+
 </thead>
 
 <tbody>
 
+
+<!-- CENTRAL TENDENCY -->
+
 <tr>
+
     <td rowspan="3">
-        <strong>Central Tendency</strong><br>
+
+        <strong>Central Tendency</strong>
+
+        <br>
+
         Identifies the center point or typical value of a dataset.
+
     </td>
 
-    <td><strong>Mean</strong></td>
+    <td>
+        <strong>Mean</strong>
+    </td>
 
     <td>
         The mathematical average.
     </td>
+
 </tr>
 
+
 <tr>
-    <td><strong>Median</strong></td>
+
+    <td>
+        <strong>Median</strong>
+    </td>
 
     <td>
         The middle value when numbers are put in order.
     </td>
+
 </tr>
 
+
 <tr>
-    <td><strong>Mode</strong></td>
+
+    <td>
+        <strong>Mode</strong>
+    </td>
 
     <td>
         The value that appears most often.
     </td>
+
 </tr>
 
 
+<!-- VARIABILITY -->
+
 <tr>
+
     <td rowspan="2">
-        <strong>Variability (Spread)</strong><br>
-        Shows how far apart or dispersed the data points are.
+
+        <strong>Variability (Spread)</strong>
+
+        <br>
+
+        Describes how much the values in a dataset differ from one another.
+
     </td>
 
-    <td><strong>Range</strong></td>
+    <td>
+        <strong>Range</strong>
+    </td>
 
     <td>
         The difference between the highest and lowest values.
     </td>
+
 </tr>
 
+
 <tr>
-    <td><strong>Standard Deviation</strong></td>
+
+    <td>
+        <strong>Standard Deviation</strong>
+    </td>
 
     <td>
         Shows the typical distance of observations from the mean.
     </td>
+
 </tr>
 
 
+<!-- DATA VISUALIZATION -->
+
 <tr>
+
     <td rowspan="2">
-        <strong>Data Visualization</strong><br>
+
+        <strong>Data Visualization</strong>
+
+        <br>
+
         Uses graphs to display patterns, frequencies, and distributions in the data.
+
     </td>
 
-    <td><strong>Bar Graph</strong></td>
+    <td>
+        <strong>Bar Graph</strong>
+    </td>
 
     <td>
         Displays the frequency or count of separate categories using rectangular bars.
     </td>
+
 </tr>
 
+
 <tr>
-    <td><strong>Histogram</strong></td>
+
+    <td>
+        <strong>Histogram</strong>
+    </td>
 
     <td>
         Displays the distribution of numerical data by grouping values into intervals or bins.
     </td>
+
 </tr>
+
 
 </tbody>
 
 </table>
 
-
 </div>
 
 
+<!-- =========================
+     CENTRAL TENDENCY
+========================= -->
+
+<div class="card">
+
+<h2>Central Tendency</h2>
+
 <div class="definition">
+
 <strong style="color:#0e68b3;">Central Tendency</strong>
+
 <br>
+
 <p>
 Central tendency describes the center or typical value of a dataset.
-<br>
-<strong>Mean:</strong> The mathematical average of the values.
-<br>
-<strong>Median:</strong> The middle value when the data are put in order.
-<br>
-<strong>Mode:</strong> The value that appears most often.
 </p>
+
+<strong>Mean:</strong>
+The mathematical average of the values.
+
+<br>
+
+<strong>Median:</strong>
+The middle value when the data are put in order.
+
+<br>
+
+<strong>Mode:</strong>
+The value that appears most often.
+
 </div>
-   
+
 </div>
 
 
+<!-- =========================
+     VARIABILITY
+========================= -->
 
 <div class="card">
+
 <h2>Variability (Spread)</h2>
 
+
 <div class="definition">
+
 <strong style="color:#0e68b3;">Variability</strong>
+
 <br>
+
 <p>
 Variability describes how much the values in a dataset differ from one another.
-<br>
-<strong>Purpose:</strong> Helps us understand how much individual observations differ and whether the average provides a useful summary of the data.
-<br>
-<strong>Low Variability:</strong> Observations are more similar to one another, so the mean may represent the data more consistently.
-<br>
-<strong>High Variability:</strong> Observations differ more from one another, so the mean may not describe every observation as well.
-<br>
-Measures of variability include the range and standard deviation.
 </p>
-</div>
-   
-<div class="definition">
-<strong style="color:#0e68b3;">Range</strong>
+
+<strong>Purpose:</strong>
+Helps us understand how much individual observations differ and whether the average provides a useful summary of the data.
+
 <br>
+
+<strong>Low Variability:</strong>
+Observations are more similar to one another, so the mean may represent the data more consistently.
+
+<br>
+
+<strong>High Variability:</strong>
+Observations differ more from one another, so the mean may not describe every observation as well.
+
+<br>
+
+Measures of variability include the range and standard deviation.
+
+</div>
+
+
+<div class="definition">
+
+<strong style="color:#0e68b3;">Range</strong>
+
+<br>
+
 <p>
 Range measures the overall spread of a dataset by comparing the highest and lowest values.
-<br>
-<strong>Small Range:</strong> Values are relatively close together.
-<br>
-<strong>Large Range:</strong> Values are more widely spread apart.
-<br>
-The range is calculated by subtracting the lowest value from the highest value.
 </p>
-</div>
-   
-<div class="definition">
-<strong style="color:#0e68b3;">Standard Deviation</strong>
+
+<strong>Small Range:</strong>
+Values are relatively close together.
+
 <br>
+
+<strong>Large Range:</strong>
+Values are more widely spread apart.
+
+<br>
+
+The range is calculated by subtracting the lowest value from the highest value.
+
+</div>
+
+
+<div class="definition">
+
+<strong style="color:#0e68b3;">Standard Deviation</strong>
+
+<br>
+
 <p>
 Standard deviation (SD) measures how much individual observations differ from the mean.
+</p>
+
+<strong>Low SD:</strong>
+Values are more similar to the mean.
+
 <br>
-<strong>Low SD:</strong> Values are closely clustered around the mean.
+
+<strong>High SD:</strong>
+Values are more different from the mean.
+
 <br>
-<strong>High SD:</strong> Values are widely spread around the mean.
-<br>
+
 In a normal distribution, standard deviation can be used to determine how much
 of the data falls within specific ranges.
-</div>
 
 </div>
 
-   
+</div>
+
+
+<!-- =========================
+     DATA VISUALIZATION
+========================= -->
+
 <div class="card">
+
 <h2>Data Visualization</h2>
 
 <p>
-This lecture focuses on how we can visually inspect individual variables using bar charts or histograms.
-To be clear, this means we are looking at <strong>one variable at a time</strong>.
-The purpose of descriptive statistics is to describe the data and determine the type and distribution of the variables.
-It is not to draw conclusions about our hypotheses. Testing hypotheses requires inferential statistics and typically involves examining relationships or differences involving multiple variables.
+This section focuses on how we can visually inspect individual variables using
+bar graphs or histograms. This means we are looking at
+<strong>one variable at a time</strong>.
+</p>
+
+<p>
+The purpose of descriptive statistics is to describe the data and understand
+the type and distribution of the variables. It is not to draw conclusions
+about hypotheses. Testing hypotheses requires inferential statistics.
+</p>
+
+<p>
 Understanding the type of data you have helps determine how you can visualize it.
 </p>
 
 
+<!-- BAR GRAPH -->
+
 <div class="definition">
+
 <strong style="color:#0e68b3;">Bar Graph</strong>
+
+<br>
+
 <p>
-For a single variable, a bar graph displays categorical variables.
-It shows how many times each category of the variable occurs in a dataset.
-Each bar represents a category, and the height of the bar represents the number of observations, typically the number of participants.
-Used for categorical data, including nominal and ordinal variables.
-Used to compare frequencies or values between groups.
-Each bar represents a separate category.
-Bars do not touch because the categories are separate.
-<br>
-<strong>X-axis:</strong> Categories
-<br>
-<strong>Y-axis:</strong> Frequency or value
+For a single variable, a bar graph displays categorical data.
+It shows how many times each category occurs in a dataset.
 </p>
+
+<strong>Used for:</strong>
+Categorical data, including nominal and ordinal variables.
+
+<br>
+
+<strong>Purpose:</strong>
+To compare the frequency or value of separate categories.
+
+<br>
+
+<strong>Bars:</strong>
+Each bar represents a separate category. Bars do not touch because the categories are separate.
+
+<br>
+
+<strong>X-axis:</strong>
+Categories
+
+<br>
+
+<strong>Y-axis:</strong>
+Frequency or value
+
 </div>
 
+
 <div class="scatterplot">
+
 <img
 src="https://www.basic-mathematics.com/images/vertical-bar-graph1.png"
 alt="Example of a bar graph"
 style="max-width:800px; width:70%; height:auto;"
 >
-</div>
+
 </div>
 
+
+<!-- HISTOGRAM -->
+
 <div class="definition">
+
 <strong style="color:#0e68b3;">Histogram</strong>
+
 <br>
+
 <p>
 For a single variable, a histogram displays numerical data.
-Because numerical data can contain many possible values along a scale, a histogram groups values into ranges called "bins".
-The histogram shows how many observations fall within each bin.
-Used for continuous data, including interval and ratio data.
-Used to examine the distribution and normality of data.
-Should be created for continuous variables.
-Bars touch because the values represent continuous ranges.
-<br>
-<strong>X-axis:</strong> Ranges of values (bins)
-<br>
-<strong>Y-axis:</strong> Frequency
+Because numerical data can contain many possible values along a scale,
+a histogram groups values into ranges called <strong>bins</strong>.
 </p>
-</div>
-   
-<div class="definition">
-<strong style="color:#0e68b3;">Normality</strong>
-<br>
+
 <p>
-Determines which inferential test should be used.
-Failing to examine data distribution can lead to inappropriate statistical test
-selection and inaccurate conclusions.
-Normality only applies to <strong>continuous data</strong>.
-Categorical variables, including nominal and ordinal data, do not have a normal distribution.
-A normal distribution occurs when continuous data follow a predictable,
-approximately symmetrical mathematical pattern.
+The histogram shows how many observations fall within each bin.
 </p>
+
+<strong>Used for:</strong>
+Continuous data, including interval and ratio data.
+
+<br>
+
+<strong>Purpose:</strong>
+To examine the distribution and normality of numerical data.
+
+<br>
+
+<strong>Bars:</strong>
+Bars touch because the values represent continuous ranges.
+
+<br>
+
+<strong>X-axis:</strong>
+Ranges of values (bins)
+
+<br>
+
+<strong>Y-axis:</strong>
+Frequency
+
 </div>
+
+</div>
+
+
+<!-- =========================
+     NORMALITY
+========================= -->
+
+<div class="card">
+
+<h2>Normality</h2>
+
+<div class="definition">
+
+<strong style="color:#0e68b3;">Normality</strong>
+
+<br>
+
+<p>
+Normality describes whether continuous data follow an approximately
+symmetrical, bell-shaped distribution.
+</p>
+
+<strong>Purpose:</strong>
+Understanding the distribution of the data helps determine which
+inferential statistical tests may be appropriate.
+
+<br>
+
+Normality only applies to <strong>continuous data</strong>.
+Categorical variables, including nominal and ordinal data, do not have
+a normal distribution.
+
+</div>
+
 
 <div class="section-banner">
 The Empirical Rule (68-95-99.7 Rule)
 </div>
 
 <p>
-The empirical rule describes how observations are distributed in an approximately normal distribution.
-The empirical rule allows researchers to estimate where most observations fall
-without examining every individual score.
+The empirical rule describes how observations are distributed in an
+approximately normal distribution. It allows researchers to estimate
+where most observations fall without examining every individual score.
 </p>
 
 
@@ -660,8 +831,9 @@ Approximately 99.7% of observations fall within ±3 standard deviations of the m
 
 
 <p>
-Standard deviation can also be used to determine how far an individual score is
-from the mean and allows researchers to compare scores across different distributions.
+Standard deviation can also be used to determine how far an individual score
+is from the mean and allows researchers to compare scores across different
+distributions.
 </p>
 
 
@@ -669,7 +841,9 @@ from the mean and allows researchers to compare scores across different distribu
 <strong>Key characteristics of an approximately normal distribution:</strong>
 </p>
 
+
 <ol>
+
 <li>
 <strong>Mean, median, and mode are similar:</strong>
 The three measures of central tendency occur near the center of the distribution.
@@ -682,11 +856,15 @@ The left and right sides of the distribution are approximately mirror images.
 
 <li>
 <strong>Bell-shaped curve:</strong>
-Most observations cluster near the center, with fewer observations occurring at extreme values.
+Most observations occur near the center, with fewer observations occurring
+at extreme values.
 </li>
+
 </ol>
 
+
 <div class="scatterplot">
+
 <img
 src="https://www.scribbr.de/wp-content/uploads/2023/01/Standard-normal-distribution.webp"
 alt="Standard normal distribution"
@@ -695,56 +873,95 @@ style="max-width:800px; width:100%; height:auto;"
 
 </div>
 
+
+<!-- SKEWNESS -->
+
 <div class="definition">
+
 <strong style="color:#0e68b3;">Skewness</strong>
+
+<br>
+
 <p>
-A distribution is symmetrical when each side is approximately
-a mirror image of the other. When data are not symmetrical, the distribution is considered skewed.
-Positive Skewness: The tail extends toward the right side of the distribution. Most observations are concentrated on the left side, with a few outliers scoring very high.
-Negative Skewness: The tail extends toward the left side of the distribution. Most observations are concentrated on the right side, with a few outliers scoring very low.
+Skewness describes the degree to which a distribution is not symmetrical.
 </p>
+
+<strong>Positive Skewness:</strong>
+The tail extends toward the right side of the distribution.
+Most observations are concentrated on the left side, with a few observations
+having unusually high values.
+
+<br>
+
+<strong>Negative Skewness:</strong>
+The tail extends toward the left side of the distribution.
+Most observations are concentrated on the right side, with a few observations
+having unusually low values.
+
 </div>
 
-</ul>
 
 <div class="scatterplot">
+
 <img
 src="https://www.biologyforlife.com/uploads/2/2/3/9/22392738/c101b0da6ea1a0dab31f80d9963b0368_orig.png"
 alt="Examples of positive and negative skewness"
 style="max-width:800px; width:100%; height:auto;"
 >
+
 </div>
 
 
-<div class="definition">
-<strong style="color:#0e68b3;">Skewness</strong>
-<p>
-A distribution is symmetrical when each side is approximately
-a mirror image of the other. When data are not symmetrical, the distribution is considered skewed.
-Positive Skewness: The tail extends toward the right side of the distribution. Most observations are concentrated on the left side, with a few outliers scoring very high.
-Negative Skewness: The tail extends toward the left side of the distribution. Most observations are concentrated on the right side, with a few outliers scoring very low.
-</p>
-</div>
+<!-- KURTOSIS -->
 
 <div class="definition">
+
 <strong style="color:#0e68b3;">Kurtosis</strong>
+
+<br>
+
 <p>
-Kurtosis describes the shape of a distribution, particularly the degree of peakedness (tallness) and the thickness of the tails.
-Kurtosis values are calculated automatically by statistical software.
-<strong>Leptokurtic:</strong> The distribution is more tall and thin, meaning values are highly concentrated around the center.
-<strong>Mesokurtic:</strong> The distribution is approximately normal.
-<strong>Platykurtic:</strong> The distribution is wider and flatter, meaning values are more spread out across the range.
+Kurtosis describes the shape of a distribution, particularly the
+degree of peakedness and the thickness of the tails.
 </p>
+
+<p>
+Kurtosis values are calculated automatically by statistical software.
+</p>
+
+<strong>Leptokurtic:</strong>
+The distribution is taller and narrower, with values more concentrated
+around the center.
+
+<br>
+
+<strong>Mesokurtic:</strong>
+The distribution is approximately normal.
+
+<br>
+
+<strong>Platykurtic:</strong>
+The distribution is wider and flatter, with values more spread out across
+the range.
+
 </div>
-   
+
+
 <div class="scatterplot">
+
 <img
 src="https://analystprep.com/cfa-level-1-exam/wp-content/uploads/2019/08/page-64.png"
 alt="Examples of kurtosis"
 style="max-width:800px; width:100%; height:auto;"
 >
+
 </div>
+
 </div>
+
+
+</div>
+
 </body>
 
 </html>
