@@ -524,21 +524,58 @@ They only describe what is happening or what the data shows, without making pred
 </p>
 
 </div>
-
-
 <div class="card">
 <h2>Data Visualization</h2>
 
-<div class="definition">
+<p>
+This lecture focuses on how we can visually inspect individual variables using bar charts or histograms.
+To be clear, this means we are looking at <strong>one variable at a time</strong>.
+The purpose of descriptive statistics is to describe the data and determine the type and distribution of the variables.
+It is not to draw conclusions about our hypotheses. Testing hypotheses requires inferential statistics and typically involves examining relationships or differences involving multiple variables.
+Understanding the type of data you have helps determine how you can visualize it.
+</p>
 
+
+<div class="definition">
+<strong style="color:#0e68b3;">Bar Graph</strong>
+<p>
+For a single variable, a bar graph displays categorical variables.
+It shows how many times each category of the variable occurs in a dataset.
+Each bar represents a category, and the height of the bar represents the number of observations, typically the number of participants.
+Used for categorical data, including nominal and ordinal variables.
+Used to compare frequencies or values between groups.
+Each bar represents a separate category.
+Bars do not touch because the categories are separate.
+<br>
+<strong>X-axis:</strong> Categories
+<br>
+<strong>Y-axis:</strong> Frequency or value
+</p>
+</div>
+
+<div class="scatterplot">
+<img
+src="https://www.basic-mathematics.com/images/vertical-bar-graph1.png"
+alt="Example of a bar graph"
+style="max-width:800px; width:70%; height:auto;"
+>
+</div>
+</div>
+
+<div class="definition">
 <strong style="color:#0e68b3;">Histogram</strong>
 <br>
 <p>
+For a single variable, a histogram displays numerical data.
+Because numerical data can contain many possible values along a scale, a histogram groups values into ranges called "bins".
+The histogram shows how many observations fall within each bin.
 Used for continuous data, including interval and ratio data.
 Used to examine the distribution and normality of data.
 Should be created for continuous variables.
 Bars touch because the values represent continuous ranges.
+<br>
 <strong>X-axis:</strong> Ranges of values (bins)
+<br>
 <strong>Y-axis:</strong> Frequency
 </p>
 </div>
@@ -595,6 +632,8 @@ The Empirical Rule (68-95-99.7 Rule)
 
 <p>
 The empirical rule describes how observations are distributed in an approximately normal distribution.
+The empirical rule allows researchers to estimate where most observations fall
+without examining every individual score.
 </p>
 
 
@@ -618,14 +657,6 @@ Approximately 99.7% of observations fall within ±3 standard deviations of the m
 </ul>
 
 
-<div class="highlight">
-
-The empirical rule allows researchers to estimate where most observations fall
-without examining every individual score.
-
-</div>
-
-
 <p>
 Standard deviation can also be used to determine how far an individual score is
 from the mean and allows researchers to compare scores across different distributions.
@@ -636,40 +667,24 @@ from the mean and allows researchers to compare scores across different distribu
 <strong>Key characteristics of an approximately normal distribution:</strong>
 </p>
 
-
 <ol>
-
 <li>
-
 <strong>Mean, median, and mode are similar:</strong>
-
 The three measures of central tendency occur near the center of the distribution.
-
 </li>
 
-
 <li>
-
 <strong>Symmetry:</strong>
-
 The left and right sides of the distribution are approximately mirror images.
-
 </li>
-
 
 <li>
-
 <strong>Bell-shaped curve:</strong>
-
 Most observations cluster near the center, with fewer observations occurring at extreme values.
-
 </li>
-
 </ol>
 
-
 <div class="scatterplot">
-
 <img
 src="https://www.scribbr.de/wp-content/uploads/2023/01/Standard-normal-distribution.webp"
 alt="Standard normal distribution"
@@ -678,121 +693,56 @@ style="max-width:800px; width:100%; height:auto;"
 
 </div>
 
-
-<h2>Skewness</h2>
-
+<div class="definition">
+<strong style="color:#0e68b3;">Skewness</strong>
 <p>
-A distribution is <strong>symmetrical</strong> when each side is approximately
-a mirror image of the other. When data are not symmetrical, the distribution is considered <strong>skewed</strong>.
+A distribution is symmetrical when each side is approximately
+a mirror image of the other. When data are not symmetrical, the distribution is considered skewed.
+Positive Skewness: The tail extends toward the right side of the distribution. Most observations are concentrated on the left side, with a few outliers scoring very high.
+Negative Skewness: The tail extends toward the left side of the distribution. Most observations are concentrated on the right side, with a few outliers scoring very low.
 </p>
-
-
-<h3>Positive Skewness (Right Skew)</h3>
-
-<ul>
-
-<li>
-The tail extends toward the right side of the distribution.
-</li>
-
-<li>
-Most observations are concentrated on the left side.
-</li>
+</div>
 
 </ul>
-
-
-<h3>Negative Skewness (Left Skew)</h3>
-
-<ul>
-
-<li>
-The tail extends toward the left side of the distribution.
-</li>
-
-<li>
-Most observations are concentrated on the right side.
-</li>
-
-</ul>
-
 
 <div class="scatterplot">
-
 <img
 src="https://www.biologyforlife.com/uploads/2/2/3/9/22392738/c101b0da6ea1a0dab31f80d9963b0368_orig.png"
 alt="Examples of positive and negative skewness"
 style="max-width:800px; width:100%; height:auto;"
 >
-
 </div>
 
-<h2>Kurtosis</h2>
 
+<div class="definition">
+<strong style="color:#0e68b3;">Skewness</strong>
 <p>
-<strong>Kurtosis</strong> describes the shape of a distribution,
-particularly the degree of peakedness and the thickness of the tails.
-Kurtosis values are calculated automatically by statistical software.
+A distribution is symmetrical when each side is approximately
+a mirror image of the other. When data are not symmetrical, the distribution is considered skewed.
+Positive Skewness: The tail extends toward the right side of the distribution. Most observations are concentrated on the left side, with a few outliers scoring very high.
+Negative Skewness: The tail extends toward the left side of the distribution. Most observations are concentrated on the right side, with a few outliers scoring very low.
 </p>
-
-
-<div class="highlight">
-
-<ul>
-
-<li>
-
-<strong>Leptokurtic:</strong>
-
-The distribution is more peaked, meaning values are highly concentrated around the center.
-
-</li>
-
-
-<li>
-
-<strong>Mesokurtic:</strong>
-
-The distribution is approximately normal.
-
-</li>
-
-
-<li>
-
-<strong>Platykurtic:</strong>
-
-The distribution is flatter, meaning values are more spread out across the range.
-
-</li>
-
-</ul>
-
 </div>
 
-
+<div class="definition">
+<strong style="color:#0e68b3;">Kurtosis</strong>
+<p>
+Kurtosis describes the shape of a distribution, particularly the degree of peakedness (tallness) and the thickness of the tails.
+Kurtosis values are calculated automatically by statistical software.
+<strong>Leptokurtic:</strong> The distribution is more tall and thin, meaning values are highly concentrated around the center.
+<strong>Mesokurtic:</strong> The distribution is approximately normal.
+<strong>Platykurtic:</strong> The distribution is wider and flatter, meaning values are more spread out across the range.
+</p>
+</div>
+   
 <div class="scatterplot">
-
 <img
 src="https://analystprep.com/cfa-level-1-exam/wp-content/uploads/2019/08/page-64.png"
 alt="Examples of kurtosis"
 style="max-width:800px; width:100%; height:auto;"
 >
-
 </div>
-
 </div>
-
-   
-<!-- =========================
-     DATA VISUALIZATION
-========================= -->
-
-<div class="card">
-
-<h2>How to Visually Inspect Individual Variables</h2>
-
-
 </body>
 
 </html>
