@@ -9,6 +9,10 @@
 
 <style>
 
+/* =========================
+   BASE
+========================= */
+
 body{
     margin:0;
     font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
@@ -21,6 +25,20 @@ body{
     margin:auto;
     padding:50px 20px;
 }
+
+
+/* =========================
+   BLUE TEXT
+========================= */
+
+.blue-heading{
+    color:#0e68b3;
+}
+
+
+/* =========================
+   PAGE TITLE
+========================= */
 
 h1{
     text-align:left;
@@ -40,34 +58,45 @@ h1{
     font-size:.95rem;
 }
 
-h2,
-h3{
+
+/* =========================
+   CARD HEADINGS
+========================= */
+h2{
     color:#0e68b3;
     position:relative;
     font-weight:500;
     display:inline-block;
+    margin-top:30px;
+    margin-bottom:22px;
+    padding-bottom:6px;
 }
 
-h2::after,
-h3::after{
-    content:"";
-    position:absolute;
-    left:0;
-    bottom:-4px;
-    width:0;
-    height:2px;
-    background:#0e68b3;
-    transition:.3s;
+
+/* =========================
+   SUBHEADINGS
+========================= */
+
+h3{
+    color:#0e68b3;
+    font-weight:500;
+    margin-top:30px;
+    margin-bottom:12px;
 }
 
-.card:hover h2::after,
-.card:hover h3::after{
-    width:100%;
-}
+
+/* =========================
+   BODY TEXT
+========================= */
 
 p{
     line-height:1.8;
 }
+
+
+/* =========================
+   CARDS
+========================= */
 
 .card{
     background:white;
@@ -77,7 +106,7 @@ p{
     border:1px solid #d9e2ec;
 
     box-shadow:
-      0 3px 10px rgba(0,0,0,.05);
+        0 3px 10px rgba(0,0,0,.05);
 
     animation:fadeUp .6s ease forwards;
     transition:all .25s ease;
@@ -85,29 +114,67 @@ p{
 
 .card:hover{
     transform:translateY(-4px);
+
     box-shadow:
-      0 10px 25px rgba(14,104,179,.15);
+        0 10px 25px rgba(14,104,179,.15);
 }
 
-.highlight{
-    background:#eef6fc;
-    border-left:5px solid #0e68b3;
-    padding:15px;
-    border-radius:8px;
-    margin:20px 0;
+
+/* =========================
+   CALLOUTS
+========================= */
+
+.definition{
+    background:#ffffff;
+    border-left:3px solid #0e68b3;
+    padding:14px 18px;
+    border-radius:0;
+    margin:20px 0 35px 0;
 }
+
+/* =========================
+   BUTTONS
+========================= */
+
+.button{
+    display:inline-block;
+    background:linear-gradient(135deg,#0e68b3,#1c84d8);
+    color:#ffffff;
+    text-decoration:none;
+    font-weight:600;
+    padding:14px 32px;
+    border-radius:9999px;
+    box-shadow:0 8px 20px rgba(14,104,179,.20);
+    transition:all .25s ease;
+}
+
+.button:hover{
+    transform:translateY(-3px);
+    box-shadow:0 12px 25px rgba(14,104,179,.30);
+    background:linear-gradient(135deg,#095491,#0e68b3);
+}
+
+
+/* =========================
+   LISTS
+========================= */
 
 ul{
-    padding-left:25px;
+    -left:25px;
 }
 
 ol{
-    padding-left:25px;
+    -left:25px;
 }
 
 li{
     margin-bottom:8px;
 }
+
+
+/* =========================
+   TABLES
+========================= */
 
 table{
     width:100%;
@@ -139,6 +206,11 @@ tr:hover{
     background:#edf6ff;
 }
 
+
+/* =========================
+   SCATTERPLOTS
+========================= */
+
 .scatterplot{
     text-align:center;
     margin:25px 0;
@@ -154,7 +226,7 @@ tr:hover{
 
 .scatterplot-grid{
     display:grid;
-    grid-template-columns:repeat(2, 1fr);
+    grid-template-columns:repeat(2,1fr);
     gap:25px;
     margin:25px 0;
 }
@@ -163,9 +235,14 @@ tr:hover{
     margin:0;
 }
 
+
+/* =========================
+   OUTLIER EXAMPLES
+========================= */
+
 .outlier-grid{
     display:grid;
-    grid-template-columns:repeat(2, minmax(0, 1fr));
+    grid-template-columns:repeat(2,minmax(0,1fr));
     gap:25px;
     margin:25px 0;
 }
@@ -186,6 +263,11 @@ tr:hover{
     border-radius:8px;
 }
 
+
+/* =========================
+   HORIZONTAL RULE
+========================= */
+
 hr{
     border:none;
     height:1px;
@@ -193,16 +275,29 @@ hr{
     margin:30px 0;
 }
 
+
+/* =========================
+   ANIMATION
+========================= */
+
 @keyframes fadeUp{
+
     from{
         opacity:0;
         transform:translateY(20px);
     }
+
     to{
         opacity:1;
         transform:translateY(0);
     }
+
 }
+
+
+/* =========================
+   MOBILE
+========================= */
 
 @media (max-width:768px){
 
@@ -211,12 +306,12 @@ hr{
     }
 
     .card{
-        padding:20px;
+        :20px;
     }
 
     th,
     td{
-        padding:10px;
+        :10px;
         font-size:.95rem;
     }
 
@@ -235,15 +330,16 @@ hr{
 
 <div class="container">
 
-<h1>Data Visualization and Normality</h1>
+<h1>Data Visualization</h1>
 
 <div class="card">
 
-<h2>Visual Descriptive Statistics</h2>
+<h2>How to Visually Inspect Individual Variables</h2>
 
 <p>
-<strong>Understanding the type of data you have determines how you can visualize it.
-Bar graphs and histograms are used for different purposes.</strong>
+This lecture focuses on how we can visually inspect individual variables using bar charts or histograms. 
+To be clear, this means we are looking at ONE variable at a time. The purpose of descriptive statistics is to determine the type of data we have, not to draw conclusions about our hypotheses (which would require inspecting at least TWO variables in one chart.
+Understanding the type of data you have determines how you can visualize it.
 </p>
 
 <table>
@@ -260,9 +356,8 @@ Bar graphs and histograms are used for different purposes.</strong>
 <tr>
 <td><strong>Bar Graph</strong></td>
 <td>
-A graph that displays how many times each category occurs in a dataset.
-Each bar represents a category, and the height of the bar represents the
-frequency or count of observations.
+For a single variable, a bar graph displays categorical variables. It shows how many times each category of that variable occured in a dataset.
+Each bar represents a category, and the height of the bar represents the number of observations (typically, this is the number of participants).
 </td>
 <td>Categorical Data</td>
 </tr>
@@ -270,9 +365,10 @@ frequency or count of observations.
 <tr>
 <td><strong>Histogram</strong></td>
 <td>
-A graph that displays the distribution of numerical data. Histograms group
-values into ranges called bins and show how many observations fall within
-each range.
+For a single variable, this is a graph that displays numerical data.
+Because numerical data has many points along a scale, the histgram must create it's own bars to visualize the data.
+Histograms group values along the scale into ranges called "bins."
+The histogram show how many observations fall within each bin.
 </td>
 <td>Continuous Data</td>
 </tr>
@@ -295,21 +391,6 @@ each range.
 <li><strong>Y-axis:</strong> Frequency or value</li>
 </ul>
 
-<p>
-<strong>Bar charts are only needed when there are three or more groups.</strong><br>
-The purpose of a bar chart is to make differences between multiple groups
-easier to see visually. When there are only two groups, the difference can
-usually be clearly described in a sentence, so a bar chart is unnecessary.
-</p>
-
-<p>
-<strong>Publishing limitations:</strong> Scientific journals often have strict
-limits on the number of pages, figures, and tables that can be included in
-an article. Because figures take up valuable space, scientists may leave out
-a graph when the same information can be communicated clearly in a sentence
-or table. This allows them to use the available space for results that are
-more important or difficult to explain in text.
-</p>
 <p>Below is an example of a bar graph:</p>
 
 <div class="scatterplot" style="text-align: center;">
@@ -333,38 +414,6 @@ more important or difficult to explain in text.
 <li><strong>Y-axis:</strong> Frequency</li>
 </ul>
 
-<h3>Steps to Determine Which Visual Graphs to Use</h3>
-
-<ol>
-
-<li>Identify the IV and DV in the research question.</li>
-
-<li>
-For the IV, determine if each variable is categorical
-(nominal or ordinal) or continuous (interval or ratio).
-</li>
-
-<li>
-If the IV is categorical, determine how many groups there are.
-<ol>
-<li>If there are only 2 groups, no bar chart is needed.</li>
-<li>If there are 3 or more groups, use a bar chart.</li>
-</ol>
-</li>
-
-<li>If the IV is continuous, ALWAYS use a histogram.</li>
-
-<li>
-Repeat steps 2 through 4 to determine what graph should be used
-to display the DV.
-</li>
-
-</ol>
-
-</div>
-
-<div class="card">
-
 <h2>Checking Normality</h2>
 
 <p>
@@ -378,11 +427,8 @@ Failing to examine data distribution can lead to incorrect statistical test
 selection and inaccurate conclusions.
 </p>
 
-<div class="highlight">
-<strong>Important:</strong><br>
 Normality only applies to <strong>continuous data</strong>. Categorical
 variables (nominal and ordinal data) do not have a normal distribution.
-</div>
 
 <h3>Normal Distribution</h3>
 
@@ -419,16 +465,12 @@ at extreme values.
 </div>
 </div>
 
-<div class="card">
-
 <h2>Skewness</h2>
 
 <p>
 A distribution is symmetrical when each side is a mirror image of the other.
 When data are not symmetrical, the distribution is considered skewed.
 </p>
-
-<div class="highlight">
 
 <p><strong>Positive Skewness (Right Skew)</strong></p>
 
@@ -452,8 +494,6 @@ When data are not symmetrical, the distribution is considered skewed.
 </div>
 
 </div>
-
-<div class="card">
 
 <h2>Kurtosis</h2>
 
