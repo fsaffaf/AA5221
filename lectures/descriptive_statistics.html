@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 
 <html lang="en">
@@ -5,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Descriptive Statistics</title>
 
 <style>
@@ -46,6 +48,7 @@ h1{
     font-size:2.75rem;
     font-weight:200;
     letter-spacing:.08em;
+    margin-top:0;
     margin-bottom:10px;
 }
 
@@ -62,6 +65,7 @@ h1{
 /* =========================
    CARD HEADINGS
 ========================= */
+
 h2{
     color:#0e68b3;
     position:relative;
@@ -91,6 +95,8 @@ h3{
 
 p{
     line-height:1.8;
+    margin-top:0;
+    margin-bottom:18px;
 }
 
 
@@ -132,6 +138,7 @@ p{
     margin:20px 0 35px 0;
 }
 
+
 /* =========================
    BUTTONS
 ========================= */
@@ -159,16 +166,14 @@ p{
    LISTS
 ========================= */
 
-ul{
-    -left:25px;
-}
-
+ul,
 ol{
-    -left:25px;
+    padding-left:25px;
 }
 
 li{
     margin-bottom:8px;
+    line-height:1.7;
 }
 
 
@@ -180,6 +185,7 @@ table{
     width:100%;
     border-collapse:collapse;
     margin-top:20px;
+    margin-bottom:25px;
     background:white;
     overflow:hidden;
     border-radius:10px;
@@ -196,6 +202,7 @@ td{
     padding:14px;
     border-bottom:1px solid #e5e7eb;
     vertical-align:top;
+    line-height:1.6;
 }
 
 tr:nth-child(even){
@@ -208,7 +215,7 @@ tr:hover{
 
 
 /* =========================
-   SCATTERPLOTS
+   SCATTERPLOTS / IMAGES
 ========================= */
 
 .scatterplot{
@@ -277,6 +284,30 @@ hr{
 
 
 /* =========================
+   SECTION BANNER
+========================= */
+
+.section-banner{
+    color:#0e68b3;
+    font-size:1.15rem;
+    font-weight:600;
+    margin-bottom:18px;
+}
+
+
+/* =========================
+   HIGHLIGHT
+========================= */
+
+.highlight{
+    background:#e8f4fc;
+    border-left:3px solid #0e68b3;
+    padding:14px 18px;
+    margin:20px 0;
+}
+
+
+/* =========================
    ANIMATION
 ========================= */
 
@@ -305,13 +336,17 @@ hr{
         font-size:2rem;
     }
 
+    .container{
+        padding:30px 15px;
+    }
+
     .card{
-        :20px;
+        padding:20px;
     }
 
     th,
     td{
-        :10px;
+        padding:10px;
         font-size:.95rem;
     }
 
@@ -326,15 +361,17 @@ hr{
 
 </head>
 
-<body>
-
-<div class="container">
 
 <body>
 
 <div class="container">
 
-<h1>Descriptive Statistics</h1>
+
+<!-- =========================
+     OVERVIEW
+========================= -->
+
+<h1>Overview</h1>
 
 <div class="card">
 
@@ -344,77 +381,342 @@ Statistics can be divided into two major categories:
 <strong>inferential statistics</strong>.
 </p>
 
-<div class="info-grid">
-
-<div class="info-box">
-<h3>Descriptive Statistics</h3>
-<ul>
-<li>Describe the characteristics of a sample.</li>
-<li>Summarize and organize data.</li>
-<li>Help determine which inferential tests should be used.</li>
-</ul>
-</div>
-
-<div class="info-box">
-<h3>Inferential Statistics</h3>
 <p>
-Used to test hypotheses and make conclusions about populations based on sample data.
+This lecture focuses on descriptive statistics.
+The next lecture will discuss inferential statistics, which are used to test hypotheses.
 </p>
-</div>
+
+
+<div class="definition">
+
+<strong style="color:#0e68b3;">Descriptive Statistics</strong>
+
+<p>
+Descriptive statistics describe the characteristics of a sample and the basic attributes of the variables.
+They can also be used to help determine which inferential statistical test should be used.
+</p>
 
 </div>
 
-</div>
-
-<div class="card">
 
 <h2>Numerical Descriptive Statistics</h2>
 
 <table>
+
 <thead>
+
 <tr>
 <th>Statistic</th>
 <th>Definition</th>
 <th>Appropriate Data</th>
 </tr>
+
 </thead>
 
 <tbody>
 
 <tr>
-<td><strong>Mean</strong></td>
-<td>Mathematical average.</td>
-<td>Normally distributed continuous data.</td>
+
+<td>
+<strong>Mean</strong>
+</td>
+
+<td>
+Mathematical average.
+</td>
+
+<td>
+Normally distributed continuous data.
+</td>
+
 </tr>
 
-<tr>
-<td><strong>Median</strong></td>
-<td>Middle value in an ordered dataset.</td>
-<td>Ordinal data or non-normal continuous data.</td>
-</tr>
 
 <tr>
-<td><strong>Mode</strong></td>
-<td>Most frequently occurring value.</td>
-<td>Most commonly used for categorical data.</td>
+
+<td>
+<strong>Median</strong>
+</td>
+
+<td>
+Middle value in an ordered dataset.
+</td>
+
+<td>
+Ordinal data or non-normal continuous data.
+</td>
+
 </tr>
 
-<tr>
-<td><strong>Standard Deviation</strong></td>
-<td>Measures variability around the mean.</td>
-<td>Normally distributed continuous data.</td>
-</tr>
 
 <tr>
-<td><strong>Shapiro-Wilk Test</strong></td>
-<td>Statistical test used to assess normality.</td>
-<td>Continuous data.</td>
+
+<td>
+<strong>Mode</strong>
+</td>
+
+<td>
+Most frequently occurring value.
+</td>
+
+<td>
+Most commonly used for categorical data.
+</td>
+
+</tr>
+
+
+<tr>
+
+<td>
+<strong>Standard Deviation</strong>
+</td>
+
+<td>
+Measures variability around the mean.
+</td>
+
+<td>
+Normally distributed continuous data.
+</td>
+
+</tr>
+
+
+<tr>
+
+<td>
+<strong>Shapiro-Wilk Test</strong>
+</td>
+
+<td>
+Statistical test used to assess normality.
+</td>
+
+<td>
+Continuous data.
+</td>
+
 </tr>
 
 </tbody>
+
 </table>
 
 </div>
+
+
+
+<!-- =========================
+     DATA VISUALIZATION
+========================= -->
+
+<h1>Data Visualization</h1>
+
+<div class="card">
+
+<h2>How to Visually Inspect Individual Variables</h2>
+
+<p>
+This lecture focuses on how we can visually inspect individual variables using bar charts or histograms.
+To be clear, this means we are looking at <strong>one variable at a time</strong>.
+</p>
+
+<p>
+The purpose of descriptive statistics is to describe the data and determine the type and distribution of the variables.
+It is not to draw conclusions about our hypotheses. Testing hypotheses requires inferential statistics and typically involves examining relationships or differences involving multiple variables.
+</p>
+
+<p>
+Understanding the type of data you have helps determine how you can visualize it.
+</p>
+
+
+<table>
+
+<thead>
+
+<tr>
+<th>Graph</th>
+<th>Purpose</th>
+<th>Data Type</th>
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td>
+<strong>Bar Graph</strong>
+</td>
+
+<td>
+For a single variable, a bar graph displays categorical variables.
+It shows how many times each category of the variable occurs in a dataset.
+Each bar represents a category, and the height of the bar represents the number of observations, typically the number of participants.
+</td>
+
+<td>
+Categorical Data
+</td>
+
+</tr>
+
+
+<tr>
+
+<td>
+<strong>Histogram</strong>
+</td>
+
+<td>
+For a single variable, a histogram displays numerical data.
+Because numerical data can contain many possible values along a scale, a histogram groups values into ranges called <strong>bins</strong>.
+The histogram shows how many observations fall within each bin.
+</td>
+
+<td>
+Continuous Data
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+
+
+<!-- =========================
+     BAR GRAPHS
+========================= -->
+
+<div class="card">
+
+<h2>Bar Graphs</h2>
+
+<ul>
+
+<li>
+Used for categorical data, including nominal and ordinal variables.
+</li>
+
+<li>
+Used to compare frequencies or values between groups.
+</li>
+
+<li>
+Each bar represents a separate category.
+</li>
+
+<li>
+Bars do not touch because the categories are separate.
+</li>
+
+<li>
+<strong>X-axis:</strong> Categories
+</li>
+
+<li>
+<strong>Y-axis:</strong> Frequency or value
+</li>
+
+</ul>
+
+
+<p>
+Below is an example of a bar graph:
+</p>
+
+
+<div class="scatterplot">
+
+<img
+src="https://www.basic-mathematics.com/images/vertical-bar-graph1.png"
+alt="Example of a bar graph"
+style="max-width:800px; width:100%; height:auto;"
+>
+
+</div>
+
+</div>
+
+
+
+<!-- =========================
+     HISTOGRAMS
+========================= -->
+
+<div class="card">
+
+<h2>Histograms</h2>
+
+<ul>
+
+<li>
+Used for continuous data, including interval and ratio data.
+</li>
+
+<li>
+Used to examine the distribution and normality of data.
+</li>
+
+<li>
+Should be created for continuous variables.
+</li>
+
+<li>
+Bars touch because the values represent continuous ranges.
+</li>
+
+<li>
+<strong>X-axis:</strong> Ranges of values (bins)
+</li>
+
+<li>
+<strong>Y-axis:</strong> Frequency
+</li>
+
+</ul>
+
+
+<h2>Checking Normality</h2>
+
+<p>
+Inferential statistics are used to determine whether evidence supports the
+null or alternative hypothesis. The inferential test selected depends, in part,
+on whether continuous variables are normally distributed.
+</p>
+
+<p>
+Failing to examine data distribution can lead to inappropriate statistical test
+selection and inaccurate conclusions.
+</p>
+
+<p>
+Normality only applies to <strong>continuous data</strong>.
+Categorical variables, including nominal and ordinal data, do not have a normal distribution.
+</p>
+
+
+<h3>Normal Distribution</h3>
+
+<p>
+A normal distribution occurs when continuous data follow a predictable,
+approximately symmetrical mathematical pattern.
+</p>
+
+</div>
+
+
+
+<!-- =========================
+     STANDARD DEVIATION
+========================= -->
 
 <div class="card">
 
@@ -426,18 +728,38 @@ Standard Deviation
 Standard deviation (SD) measures how much individual observations differ from the mean.
 </p>
 
+
 <div class="highlight">
+
 <ul>
-<li><strong>Low SD:</strong> Values are closely clustered around the mean.</li>
-<li><strong>High SD:</strong> Values are widely spread around the mean.</li>
+
+<li>
+<strong>Low SD:</strong>
+Values are closely clustered around the mean.
+</li>
+
+<li>
+<strong>High SD:</strong>
+Values are widely spread around the mean.
+</li>
+
 </ul>
+
 </div>
 
+
 <p>
-In a normal distribution, standard deviation can be used to determine how much of the data falls within specific ranges.
+In a normal distribution, standard deviation can be used to determine how much
+of the data falls within specific ranges.
 </p>
 
 </div>
+
+
+
+<!-- =========================
+     EMPIRICAL RULE
+========================= -->
 
 <div class="card">
 
@@ -449,224 +771,224 @@ The Empirical Rule (68-95-99.7 Rule)
 The empirical rule describes how observations are distributed in an approximately normal distribution.
 </p>
 
+
 <ul>
-<li><strong>68%:</strong> Approximately 68% of observations fall within ±1 standard deviation of the mean.</li>
-<li><strong>95%:</strong> Approximately 95% of observations fall within ±2 standard deviations of the mean.</li>
-<li><strong>99.7%:</strong> Approximately 99.7% of observations fall within ±3 standard deviations of the mean.</li>
+
+<li>
+<strong>68%:</strong>
+Approximately 68% of observations fall within ±1 standard deviation of the mean.
+</li>
+
+<li>
+<strong>95%:</strong>
+Approximately 95% of observations fall within ±2 standard deviations of the mean.
+</li>
+
+<li>
+<strong>99.7%:</strong>
+Approximately 99.7% of observations fall within ±3 standard deviations of the mean.
+</li>
+
 </ul>
+
 
 <div class="highlight">
-The empirical rule allows researchers to estimate where most observations fall without examining every individual score.
+
+The empirical rule allows researchers to estimate where most observations fall
+without examining every individual score.
+
 </div>
 
+
 <p>
-Standard deviation can also be used to determine how far an individual score is from the mean and allows researchers to compare scores across different distributions.
+Standard deviation can also be used to determine how far an individual score is
+from the mean and allows researchers to compare scores across different distributions.
 </p>
 
 </div>
 
-</div>
-<h1>Data Visualization</h1>
+
+
+<!-- =========================
+     NORMAL DISTRIBUTION
+========================= -->
 
 <div class="card">
 
-<h2>How to Visually Inspect Individual Variables</h2>
-
 <p>
-This lecture focuses on how we can visually inspect individual variables using bar charts or histograms. 
-To be clear, this means we are looking at ONE variable at a time. The purpose of descriptive statistics is to determine the type of data we have, not to draw conclusions about our hypotheses (which would require inspecting at least TWO variables in one chart.
-Understanding the type of data you have determines how you can visualize it.
+<strong>Key characteristics of an approximately normal distribution:</strong>
 </p>
 
-<table>
-<thead>
-<tr>
-<th>Graph</th>
-<th>Purpose</th>
-<th>Data Type</th>
-</tr>
-</thead>
-
-<tbody>
-
-<tr>
-<td><strong>Bar Graph</strong></td>
-<td>
-For a single variable, a bar graph displays categorical variables. It shows how many times each category of that variable occured in a dataset.
-Each bar represents a category, and the height of the bar represents the number of observations (typically, this is the number of participants).
-</td>
-<td>Categorical Data</td>
-</tr>
-
-<tr>
-<td><strong>Histogram</strong></td>
-<td>
-For a single variable, this is a graph that displays numerical data.
-Because numerical data has many points along a scale, the histgram must create it's own bars to visualize the data.
-Histograms group values along the scale into ranges called "bins."
-The histogram show how many observations fall within each bin.
-</td>
-<td>Continuous Data</td>
-</tr>
-
-</tbody>
-</table>
-
-</div>
-
-<div class="card">
-
-<h2>Bar Graphs</h2>
-
-<ul>
-<li>Used for categorical data (nominal and ordinal).</li>
-<li>Used to compare values between groups.</li>
-<li>Each bar represents a separate category.</li>
-<li>Bars do not touch because categories are separate.</li>
-<li><strong>X-axis:</strong> Categories</li>
-<li><strong>Y-axis:</strong> Frequency or value</li>
-</ul>
-
-<p>Below is an example of a bar graph:</p>
-
-<div class="scatterplot" style="text-align: center;">
-    <img src="https://www.basic-mathematics.com/images/vertical-bar-graph1.png"
-         alt="Example of a bar graph"
-         style="max-width: 800px; width: 100%; height: auto;">
-</div>
-
-</div>
-
-<div class="card">
-
-<h2>Histograms</h2>
-
-<ul>
-<li>Used for continuous data (interval and ratio).</li>
-<li>Used to examine the distribution and normality of data.</li>
-<li>Should be created for continuous variables.</li>
-<li>Bars touch because values represent continuous ranges.</li>
-<li><strong>X-axis:</strong> Ranges of values (bins)</li>
-<li><strong>Y-axis:</strong> Frequency</li>
-</ul>
-
-<h2>Checking Normality</h2>
-
-<p>
-Inferential statistics are used to determine whether evidence supports the
-null or alternative hypothesis. The inferential test selected depends on
-whether continuous variables are normally distributed.
-</p>
-
-<p>
-Failing to examine data distribution can lead to incorrect statistical test
-selection and inaccurate conclusions.
-</p>
-
-Normality only applies to <strong>continuous data</strong>. Categorical
-variables (nominal and ordinal data) do not have a normal distribution.
-
-<h3>Normal Distribution</h3>
-
-<p>
-A normal distribution occurs when continuous data follow a predictable
-mathematical pattern.
-</p>
-
-<p><strong>Key characteristics of an approximately normal distribution:</strong></p>
 
 <ol>
+
 <li>
+
 <strong>Mean, median, and mode are similar:</strong>
-The three measures of central tendency occur near the center of the
-distribution.
+
+The three measures of central tendency occur near the center of the distribution.
+
 </li>
 
+
 <li>
+
 <strong>Symmetry:</strong>
+
 The left and right sides of the distribution are approximately mirror images.
+
 </li>
 
+
 <li>
+
 <strong>Bell-shaped curve:</strong>
-Most observations cluster near the center, with fewer observations occurring
-at extreme values.
+
+Most observations cluster near the center, with fewer observations occurring at extreme values.
+
 </li>
+
 </ol>
 
+
 <div class="scatterplot">
-    <img src="https://www.scribbr.de/wp-content/uploads/2023/01/Standard-normal-distribution.webp"
-         alt="Standard normal distribution"
-         style="max-width: 800px; width: 100%; height: auto;">
+
+<img
+src="https://www.scribbr.de/wp-content/uploads/2023/01/Standard-normal-distribution.webp"
+alt="Standard normal distribution"
+style="max-width:800px; width:100%; height:auto;"
+>
+
 </div>
+
 </div>
+
+
+
+<!-- =========================
+     SKEWNESS
+========================= -->
+
+<div class="card">
 
 <h2>Skewness</h2>
 
 <p>
-A distribution is symmetrical when each side is a mirror image of the other.
-When data are not symmetrical, the distribution is considered skewed.
+A distribution is <strong>symmetrical</strong> when each side is approximately
+a mirror image of the other. When data are not symmetrical, the distribution is considered <strong>skewed</strong>.
 </p>
 
-<p><strong>Positive Skewness (Right Skew)</strong></p>
+
+<h3>Positive Skewness (Right Skew)</h3>
 
 <ul>
-<li>The tail extends toward the right side of the distribution.</li>
-<li>Most observations are concentrated on the left side.</li>
+
+<li>
+The tail extends toward the right side of the distribution.
+</li>
+
+<li>
+Most observations are concentrated on the left side.
+</li>
+
 </ul>
 
-<p><strong>Negative Skewness (Left Skew)</strong></p>
+
+<h3>Negative Skewness (Left Skew)</h3>
 
 <ul>
-<li>The tail extends toward the left side of the distribution.</li>
-<li>Most observations are concentrated on the right side.</li>
+
+<li>
+The tail extends toward the left side of the distribution.
+</li>
+
+<li>
+Most observations are concentrated on the right side.
+</li>
+
 </ul>
 
-</div>
+
 <div class="scatterplot">
-    <img src="https://www.biologyforlife.com/uploads/2/2/3/9/22392738/c101b0da6ea1a0dab31f80d9963b0368_orig.png"
-         alt="Example graph"
-         style="max-width: 800px; width: 100%; height: auto;">
+
+<img
+src="https://www.biologyforlife.com/uploads/2/2/3/9/22392738/c101b0da6ea1a0dab31f80d9963b0368_orig.png"
+alt="Examples of positive and negative skewness"
+style="max-width:800px; width:100%; height:auto;"
+>
+
 </div>
 
 </div>
+
+
+
+<!-- =========================
+     KURTOSIS
+========================= -->
+
+<div class="card">
 
 <h2>Kurtosis</h2>
 
 <p>
-<strong>Kurtosis</strong> describes the shape of the distribution curve,
-particularly the height and width of the curve. Kurtosis values are
-calculated automatically by statistical software.
+<strong>Kurtosis</strong> describes the shape of a distribution,
+particularly the degree of peakedness and the thickness of the tails.
+Kurtosis values are calculated automatically by statistical software.
 </p>
+
 
 <div class="highlight">
 
 <ul>
+
 <li>
+
 <strong>Leptokurtic:</strong>
-The distribution is too peaked, meaning values are highly concentrated
-around the center.
+
+The distribution is more peaked, meaning values are highly concentrated around the center.
+
 </li>
 
+
 <li>
+
 <strong>Mesokurtic:</strong>
+
 The distribution is approximately normal.
+
 </li>
 
+
 <li>
+
 <strong>Platykurtic:</strong>
-The distribution is too flat, meaning values are more spread out across
-the range.
+
+The distribution is flatter, meaning values are more spread out across the range.
+
 </li>
 
 </ul>
 
 </div>
 
+
 <div class="scatterplot">
-    <img src="https://analystprep.com/cfa-level-1-exam/wp-content/uploads/2019/08/page-64.png"
-         alt="Example graph"
-         style="max-width: 800px; width: 100%; height: auto;">
+
+<img
+src="https://analystprep.com/cfa-level-1-exam/wp-content/uploads/2019/08/page-64.png"
+alt="Examples of kurtosis"
+style="max-width:800px; width:100%; height:auto;"
+>
+
+</div>
+
+</div>
+
+
 </div>
 
 </body>
+
+</html>
+```
