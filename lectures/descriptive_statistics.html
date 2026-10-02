@@ -9,6 +9,10 @@
 
 <style>
 
+/* =========================
+   BASE
+========================= */
+
 body{
     margin:0;
     font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
@@ -21,6 +25,20 @@ body{
     margin:auto;
     padding:50px 20px;
 }
+
+
+/* =========================
+   BLUE TEXT
+========================= */
+
+.blue-heading{
+    color:#0e68b3;
+}
+
+
+/* =========================
+   PAGE TITLE
+========================= */
 
 h1{
     text-align:left;
@@ -40,34 +58,45 @@ h1{
     font-size:.95rem;
 }
 
-h2,
-h3{
+
+/* =========================
+   CARD HEADINGS
+========================= */
+h2{
     color:#0e68b3;
     position:relative;
     font-weight:500;
     display:inline-block;
+    margin-top:30px;
+    margin-bottom:22px;
+    padding-bottom:6px;
 }
 
-h2::after,
-h3::after{
-    content:"";
-    position:absolute;
-    left:0;
-    bottom:-4px;
-    width:0;
-    height:2px;
-    background:#0e68b3;
-    transition:.3s;
+
+/* =========================
+   SUBHEADINGS
+========================= */
+
+h3{
+    color:#0e68b3;
+    font-weight:500;
+    margin-top:30px;
+    margin-bottom:12px;
 }
 
-.card:hover h2::after,
-.card:hover h3::after{
-    width:100%;
-}
+
+/* =========================
+   BODY TEXT
+========================= */
 
 p{
     line-height:1.8;
 }
+
+
+/* =========================
+   CARDS
+========================= */
 
 .card{
     background:white;
@@ -77,7 +106,7 @@ p{
     border:1px solid #d9e2ec;
 
     box-shadow:
-      0 3px 10px rgba(0,0,0,.05);
+        0 3px 10px rgba(0,0,0,.05);
 
     animation:fadeUp .6s ease forwards;
     transition:all .25s ease;
@@ -85,34 +114,67 @@ p{
 
 .card:hover{
     transform:translateY(-4px);
+
     box-shadow:
-      0 10px 25px rgba(14,104,179,.15);
+        0 10px 25px rgba(14,104,179,.15);
 }
 
-.highlight{
-    background:#eef6fc;
-    border-left:5px solid #0e68b3;
-    padding:15px;
-    border-radius:8px;
-    margin:20px 0;
+
+/* =========================
+   CALLOUTS
+========================= */
+
+.definition{
+    background:#ffffff;
+    border-left:3px solid #0e68b3;
+    padding:14px 18px;
+    border-radius:0;
+    margin:20px 0 35px 0;
 }
 
-.section-banner{
-    background:#0e68b3;
-    color:white;
-    padding:12px 18px;
-    border-radius:10px;
+/* =========================
+   BUTTONS
+========================= */
+
+.button{
+    display:inline-block;
+    background:linear-gradient(135deg,#0e68b3,#1c84d8);
+    color:#ffffff;
+    text-decoration:none;
     font-weight:600;
-    margin-bottom:20px;
+    padding:14px 32px;
+    border-radius:9999px;
+    box-shadow:0 8px 20px rgba(14,104,179,.20);
+    transition:all .25s ease;
 }
+
+.button:hover{
+    transform:translateY(-3px);
+    box-shadow:0 12px 25px rgba(14,104,179,.30);
+    background:linear-gradient(135deg,#095491,#0e68b3);
+}
+
+
+/* =========================
+   LISTS
+========================= */
 
 ul{
-    padding-left:25px;
+    -left:25px;
+}
+
+ol{
+    -left:25px;
 }
 
 li{
     margin-bottom:8px;
 }
+
+
+/* =========================
+   TABLES
+========================= */
 
 table{
     width:100%;
@@ -144,19 +206,67 @@ tr:hover{
     background:#edf6ff;
 }
 
-.info-grid{
-    display:grid;
-    grid-template-columns:repeat(2,minmax(0,1fr));
-    gap:20px;
-    margin-top:20px;
+
+/* =========================
+   SCATTERPLOTS
+========================= */
+
+.scatterplot{
+    text-align:center;
+    margin:25px 0;
 }
 
-.info-box{
-    background:#eef6fc;
-    border-left:5px solid #0e68b3;
-    padding:18px;
-    border-radius:10px;
+.scatterplot img{
+    max-width:100%;
+    height:auto;
+    display:block;
+    margin:0 auto;
+    border-radius:8px;
 }
+
+.scatterplot-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:25px;
+    margin:25px 0;
+}
+
+.scatterplot-grid .scatterplot{
+    margin:0;
+}
+
+
+/* =========================
+   OUTLIER EXAMPLES
+========================= */
+
+.outlier-grid{
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:25px;
+    margin:25px 0;
+}
+
+.outlier-example{
+    text-align:center;
+}
+
+.outlier-example h3{
+    margin-top:0;
+}
+
+.outlier-example img{
+    width:100%;
+    height:auto;
+    display:block;
+    margin:20px auto 0;
+    border-radius:8px;
+}
+
+
+/* =========================
+   HORIZONTAL RULE
+========================= */
 
 hr{
     border:none;
@@ -165,16 +275,29 @@ hr{
     margin:30px 0;
 }
 
+
+/* =========================
+   ANIMATION
+========================= */
+
 @keyframes fadeUp{
+
     from{
         opacity:0;
         transform:translateY(20px);
     }
+
     to{
         opacity:1;
         transform:translateY(0);
     }
+
 }
+
+
+/* =========================
+   MOBILE
+========================= */
 
 @media (max-width:768px){
 
@@ -183,21 +306,17 @@ hr{
     }
 
     .card{
-        padding:20px;
+        :20px;
     }
 
     th,
     td{
-        padding:10px;
+        :10px;
         font-size:.95rem;
     }
 
-    table{
-        display:block;
-        overflow-x:auto;
-    }
-
-    .info-grid{
+    .scatterplot-grid,
+    .outlier-grid{
         grid-template-columns:1fr;
     }
 
@@ -206,6 +325,10 @@ hr{
 </style>
 
 </head>
+
+<body>
+
+<div class="container">
 
 <body>
 
@@ -343,7 +466,207 @@ Standard deviation can also be used to determine how far an individual score is 
 </div>
 
 </div>
+<h1>Data Visualization</h1>
+
+<div class="card">
+
+<h2>How to Visually Inspect Individual Variables</h2>
+
+<p>
+This lecture focuses on how we can visually inspect individual variables using bar charts or histograms. 
+To be clear, this means we are looking at ONE variable at a time. The purpose of descriptive statistics is to determine the type of data we have, not to draw conclusions about our hypotheses (which would require inspecting at least TWO variables in one chart.
+Understanding the type of data you have determines how you can visualize it.
+</p>
+
+<table>
+<thead>
+<tr>
+<th>Graph</th>
+<th>Purpose</th>
+<th>Data Type</th>
+</tr>
+</thead>
+
+<tbody>
+
+<tr>
+<td><strong>Bar Graph</strong></td>
+<td>
+For a single variable, a bar graph displays categorical variables. It shows how many times each category of that variable occured in a dataset.
+Each bar represents a category, and the height of the bar represents the number of observations (typically, this is the number of participants).
+</td>
+<td>Categorical Data</td>
+</tr>
+
+<tr>
+<td><strong>Histogram</strong></td>
+<td>
+For a single variable, this is a graph that displays numerical data.
+Because numerical data has many points along a scale, the histgram must create it's own bars to visualize the data.
+Histograms group values along the scale into ranges called "bins."
+The histogram show how many observations fall within each bin.
+</td>
+<td>Continuous Data</td>
+</tr>
+
+</tbody>
+</table>
+
+</div>
+
+<div class="card">
+
+<h2>Bar Graphs</h2>
+
+<ul>
+<li>Used for categorical data (nominal and ordinal).</li>
+<li>Used to compare values between groups.</li>
+<li>Each bar represents a separate category.</li>
+<li>Bars do not touch because categories are separate.</li>
+<li><strong>X-axis:</strong> Categories</li>
+<li><strong>Y-axis:</strong> Frequency or value</li>
+</ul>
+
+<p>Below is an example of a bar graph:</p>
+
+<div class="scatterplot" style="text-align: center;">
+    <img src="https://www.basic-mathematics.com/images/vertical-bar-graph1.png"
+         alt="Example of a bar graph"
+         style="max-width: 800px; width: 100%; height: auto;">
+</div>
+
+</div>
+
+<div class="card">
+
+<h2>Histograms</h2>
+
+<ul>
+<li>Used for continuous data (interval and ratio).</li>
+<li>Used to examine the distribution and normality of data.</li>
+<li>Should be created for continuous variables.</li>
+<li>Bars touch because values represent continuous ranges.</li>
+<li><strong>X-axis:</strong> Ranges of values (bins)</li>
+<li><strong>Y-axis:</strong> Frequency</li>
+</ul>
+
+<h2>Checking Normality</h2>
+
+<p>
+Inferential statistics are used to determine whether evidence supports the
+null or alternative hypothesis. The inferential test selected depends on
+whether continuous variables are normally distributed.
+</p>
+
+<p>
+Failing to examine data distribution can lead to incorrect statistical test
+selection and inaccurate conclusions.
+</p>
+
+Normality only applies to <strong>continuous data</strong>. Categorical
+variables (nominal and ordinal data) do not have a normal distribution.
+
+<h3>Normal Distribution</h3>
+
+<p>
+A normal distribution occurs when continuous data follow a predictable
+mathematical pattern.
+</p>
+
+<p><strong>Key characteristics of an approximately normal distribution:</strong></p>
+
+<ol>
+<li>
+<strong>Mean, median, and mode are similar:</strong>
+The three measures of central tendency occur near the center of the
+distribution.
+</li>
+
+<li>
+<strong>Symmetry:</strong>
+The left and right sides of the distribution are approximately mirror images.
+</li>
+
+<li>
+<strong>Bell-shaped curve:</strong>
+Most observations cluster near the center, with fewer observations occurring
+at extreme values.
+</li>
+</ol>
+
+<div class="scatterplot">
+    <img src="https://www.scribbr.de/wp-content/uploads/2023/01/Standard-normal-distribution.webp"
+         alt="Standard normal distribution"
+         style="max-width: 800px; width: 100%; height: auto;">
+</div>
+</div>
+
+<h2>Skewness</h2>
+
+<p>
+A distribution is symmetrical when each side is a mirror image of the other.
+When data are not symmetrical, the distribution is considered skewed.
+</p>
+
+<p><strong>Positive Skewness (Right Skew)</strong></p>
+
+<ul>
+<li>The tail extends toward the right side of the distribution.</li>
+<li>Most observations are concentrated on the left side.</li>
+</ul>
+
+<p><strong>Negative Skewness (Left Skew)</strong></p>
+
+<ul>
+<li>The tail extends toward the left side of the distribution.</li>
+<li>Most observations are concentrated on the right side.</li>
+</ul>
+
+</div>
+<div class="scatterplot">
+    <img src="https://www.biologyforlife.com/uploads/2/2/3/9/22392738/c101b0da6ea1a0dab31f80d9963b0368_orig.png"
+         alt="Example graph"
+         style="max-width: 800px; width: 100%; height: auto;">
+</div>
+
+</div>
+
+<h2>Kurtosis</h2>
+
+<p>
+<strong>Kurtosis</strong> describes the shape of the distribution curve,
+particularly the height and width of the curve. Kurtosis values are
+calculated automatically by statistical software.
+</p>
+
+<div class="highlight">
+
+<ul>
+<li>
+<strong>Leptokurtic:</strong>
+The distribution is too peaked, meaning values are highly concentrated
+around the center.
+</li>
+
+<li>
+<strong>Mesokurtic:</strong>
+The distribution is approximately normal.
+</li>
+
+<li>
+<strong>Platykurtic:</strong>
+The distribution is too flat, meaning values are more spread out across
+the range.
+</li>
+
+</ul>
+
+</div>
+
+<div class="scatterplot">
+    <img src="https://analystprep.com/cfa-level-1-exam/wp-content/uploads/2019/08/page-64.png"
+         alt="Example graph"
+         style="max-width: 800px; width: 100%; height: auto;">
+</div>
 
 </body>
-
-</html>
