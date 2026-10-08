@@ -357,6 +357,58 @@ Overview of the Test
 </summary>
 
 <div class="path-step-content">
+<p>The Chi-Square Test of Independence is used for categorical data only.</p>
+
+<p>It allows you to determine whether two categorical variables are associated with one another.</p>
+
+<p>In this context, association means that the distribution of one categorical variable differs across the categories of another categorical variable.</p>
+
+<p>The research design is observational. Therefore, the variables are not manipulated by the researcher.</p>
+
+<table>
+<tr>
+<th>Component</th>
+<th>General Structure</th>
+<th>Example</th>
+</tr>
+
+<tr>
+<td>Research Question</td>
+<td>Is there an association between Variable 1 and Variable 2?</td>
+<td>Is there an association between gender and voting behavior?</td>
+</tr>
+
+<tr>
+<td>Null Hypothesis</td>
+<td>There is no association between the two categorical variables.</td>
+<td>There is no association between gender and voting behavior.</td>
+</tr>
+
+<tr>
+<td>Alternative Hypothesis</td>
+<td>There is an association between the two categorical variables.</td>
+<td>There is an association between gender and voting behavior.</td>
+</tr>
+
+</table>
+
+<p>The Chi-Square Test of Independence compares the observed frequencies in a contingency table to the frequencies that would be expected if the two variables were completely unrelated.</p>
+
+<p>If the observed frequencies differ substantially from the expected frequencies, the test may indicate that an association exists between the variables.</p>
+
+<h3>Independent Variable and Dependent Variable</h3>
+
+<p>The Chi-Square Test of Independence does not require a traditional independent variable (IV) and dependent variable (DV).</p>
+
+<p>Because the design is observational, both variables are treated as categorical variables and the goal is to determine whether they are associated.</p>
+
+<h3>Assumptions</h3>
+
+<ul>
+<li>Each observation is independent (each participant appears only once).</li>
+<li>Categories are mutually exclusive (each participant belongs to only one category within each variable).</li>
+<li>Expected frequencies should be at least 5 in every cell. You will check this in Step 5.</li>
+</ul>
 
 <h3>Interactive Study Tools</h3>
 
@@ -399,7 +451,37 @@ Below is an example of what your code will look like. Your code will be differen
 <div class="highlight highlight-blue">
 
 <pre><code>
-insert code here
+library(readxl)
+
+data2026 <- read_excel(
+"C:/Users/John/OneDrive/Documents/AA5221/Datasets/political_data.xlsx"
+)
+
+polit_table <- table(data2026$gender, data2026$voting)
+
+polit_table
+
+barplot(
+polit_table,
+beside = TRUE,
+col = rainbow(nrow(polit_table)),
+legend = rownames(polit_table)
+)
+
+chi_result <- chisq.test(polit_table)
+
+chi_result
+
+chi_result$expected
+
+cramer_v <- rcompanion::cramerV(polit_table)
+
+cramer_v
+
+# A Chi-Square Test of Independence was conducted to determine if there was an association between gender and voting behavior.
+# The results showed that there was an association between the two variables, χ²(1) = 7.84, p = .005.
+# The association was moderate (Cramer's V = .32).
+
 </code></pre>
 
 </div>
@@ -882,6 +964,24 @@ P-Value Interpreter
 </a>
 </p>
 
+<hr>
+
+<h3>Check the Expected Counts</h3>
+
+<p>
+The Chi-Square Test of Independence is only trustworthy when the expected count in every cell is 5 or greater.
+Run the code below to display the expected frequencies.
+</p>
+
+<div class="highlight highlight-orange">
+<pre><code>chi_result$expected</code></pre>
+</div>
+
+<p>
+Review the output and confirm that every expected frequency is at least 5.
+If one or more expected frequencies are below 5, the results may not be trustworthy.
+</p>
+    
 </div>
 
 </details>
@@ -930,8 +1030,37 @@ cramer_v</code></pre>
 
 <hr>
 
-[insert table here]
+<h3>Interpreting Cramér's V</h3>
 
+<p>Use the table below to classify the strength of the association.</p>
+
+<table>
+<tr>
+<th>Cramér's V</th>
+<th>Interpretation</th>
+</tr>
+
+<tr>
+<td>Less than 0.10</td>
+<td>Negligible Association</td>
+</tr>
+
+<tr>
+<td>0.10 to less than 0.30</td>
+<td>Small Association</td>
+</tr>
+
+<tr>
+<td>0.30 to less than 0.50</td>
+<td>Moderate Association</td>
+</tr>
+
+<tr>
+<td>0.50 or Higher</td>
+<td>Large Association</td>
+</tr>
+
+</table>
 </div>
 
 </details>
@@ -994,9 +1123,12 @@ Replace the bracketed text with information from your analysis.
 
 <div class="highlight highlight-blue">
 
-<pre><code># A Chi-Square Test of Independence was conducted to determine if there was an association between Variable 1 and Variable 2.
+<pre><code>
+# A Chi-Square Test of Independence was conducted to determine if there was an association between [Variable 1] and [Variable 2].
 # The results showed that there [was / was not] an association between the two variables, χ²(df) = xx.xx, p = .xxx.
-# The association was [negligible / small / moderate / large] (Cramer's V = .xx).</code></pre>
+# The association was [small / moderate / large] (Cramer's V = .xx).
+
+</code></pre>
 
 </div>
 
@@ -1006,9 +1138,11 @@ Replace the bracketed text with information from your analysis.
 
 <div class="highlight highlight-blue">
 
-<pre><code># A Chi-Square Test of Independence was conducted to determine if there was an association between gender (male or female) and voting behavior (yes or no).
+<pre><code>
+# A Chi-Square Test of Independence was conducted to determine if there was an association between gender and voting behavior.
 # The results showed that there was an association between the two variables, χ²(1) = 7.84, p = .005.
-# The association was moderate (Cramer's V = .32).</code></pre>
+# The association was moderate (Cramer's V = .32).
+</code></pre>
 
 </div>
 
