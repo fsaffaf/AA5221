@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 
 <html lang="en">
@@ -6,7 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Independent T-Test & Mann-Whitney U Test</title>
+
+<title>Independent T-Test &amp; Mann-Whitney U Test</title>
 
 <style>
 
@@ -14,320 +14,229 @@ body {
     margin: 0;
     font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
     background: #f4f6f9;
-    color: #222222;
+    color: #333;
+    line-height: 1.6;
 }
 
 .container {
     max-width: 1000px;
-    margin: auto;
+    margin: 0 auto;
     padding: 50px 20px;
 }
 
 h1 {
-    text-align: left;
-    color: #666666;
+    color: #666;
     font-size: 2.75rem;
     font-weight: 200;
     letter-spacing: .08em;
     margin-bottom: 10px;
 }
 
-.subtitle {
-    text-align: center;
-    color: #6b7280;
-    text-transform: uppercase;
-    letter-spacing: .15em;
-    margin-bottom: 40px;
-    font-size: .95rem;
-}
-
 h2,
 h3 {
     color: #0e68b3;
-    font-weight: 500;
-    display: inline-block;
+}
+
+h2 {
+    margin-top: 0;
+}
+
+h3 {
+    margin-top: 25px;
+}
+
+.subtitle {
+    color: #666;
+    font-size: 1.1rem;
+    margin-bottom: 35px;
 }
 
 p {
-    line-height: 1.8;
+    margin: 12px 0;
+}
+
+strong {
+    font-weight: 700;
+}
+
+code {
+    font-family: Consolas, "Courier New", monospace;
+}
+
+pre {
+    background: #f7f7f7;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 18px;
+    overflow-x: auto;
+    line-height: 1.5;
+    font-size: 0.92rem;
+}
+
+pre code {
+    color: #222;
+}
+
+.highlight {
+    color: #e67e22;
+    font-weight: 700;
+}
+
+.definition {
+    background: #fff;
+    border-left: 3px solid #0e68b3;
+    padding: 15px 18px;
+    margin: 18px 0;
+    border-radius: 6px;
 }
 
 .test-path {
-    border: 1px solid #d9e2ec;
-    border-radius: 14px;
+    background: #fff;
+    border-radius: 16px;
+    margin: 25px 0;
     overflow: hidden;
-    background: #ffffff;
-    margin: 30px 0;
-    box-shadow: 0 3px 10px rgba(0, 0, 0, .05);
+    box-shadow: 0 2px 8px rgba(0,0,0,.05);
 }
 
 .test-path-header {
     background: #0e68b3;
-    color: white;
-    padding: 20px 25px;
-}
-
-.test-path-header h2,
-.test-path-header h3 {
-    color: white;
-    margin: 0;
-    font-size: 1.35rem;
-    font-weight: 600;
-}
-
-.test-path-subtitle {
-    margin: 6px 0 0;
-    font-size: .95rem;
-    opacity: .95;
+    color: #fff;
+    padding: 18px 22px;
+    font-size: 1.2rem;
+    font-weight: 700;
 }
 
 .test-path-content {
-    padding: 10px 25px 20px;
+    padding: 25px;
 }
 
-.test-path-content details {
-    border-bottom: 1px solid #e5e7eb;
+details {
+    margin: 15px 0;
+    border: 1px solid #dce3ea;
+    border-radius: 10px;
+    background: #fff;
 }
 
-.test-path-content details:last-child {
-    border-bottom: none;
-}
-
-.test-path-content summary {
-    list-style: none;
+summary {
     cursor: pointer;
-    position: relative;
-    padding: 17px 35px 17px 5px;
+    padding: 15px 18px;
     color: #0e68b3;
-    font-weight: 600;
+    font-weight: 700;
 }
 
-.test-path-content summary::-webkit-details-marker {
-    display: none;
+summary:hover {
+    background: #f7fbff;
 }
 
-.test-path-content summary::after {
-    content: "+";
-    position: absolute;
-    right: 5px;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 1.3rem;
-    font-weight: 400;
+details > div {
+    padding: 0 18px 18px 18px;
 }
 
-.test-path-content details[open] summary::after {
-    content: "−";
-}
-
-.path-step-content {
-    padding: 0 5px 20px;
-}
-
-.path-step-content p {
-    margin-top: 10px;
-}
 .path-step-content h2,
 .path-step-content h3 {
-    color: #222222;
-    font-size: 1rem;
-    font-weight: 600;
-}
-ul {
-    padding-left: 25px;
+    color: #222;
 }
 
-li {
-    margin-bottom: 8px;
+.test-paths {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+    margin: 30px 0;
+}
+
+.test-path-card {
+    background: #fff;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,.05);
+}
+
+.test-path-card-header {
+    background: #2b6cb0;
+    color: #fff;
+    padding: 18px 20px;
+    font-weight: 700;
+    font-size: 1.1rem;
+}
+
+.test-path-card-content {
+    padding: 20px;
 }
 
 table {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 20px;
-    background: white;
-    overflow: hidden;
-    border-radius: 10px;
+    margin: 20px 0;
+    background: #fff;
 }
 
-th {
-    background: #0e68b3;
-    color: white;
-    text-align: left;
-    padding: 14px;
-}
-
+th,
 td {
-    padding: 14px;
-    border-bottom: 1px solid #e5e7eb;
+    border: 1px solid #d9e0e7;
+    padding: 10px 12px;
+    text-align: left;
     vertical-align: top;
 }
 
-tr:nth-child(even) {
-    background: #f8fafc;
-}
-
-tr:hover {
-    background: #edf6ff;
-}
-
-pre {
-    white-space: pre-wrap;
-    overflow-x: auto;
-    margin: 0;
-}
-
-code {
-    font-family: Consolas, Monaco, "Courier New", monospace;
-}
-
-.highlight pre {
-    background: transparent;
-}
-
-.highlight {
-    padding: 15px 20px;
-    border-radius: 10px;
-    margin: 20px 0;
-    line-height: 1.6;
-}
-
-.highlight-blue {
-    background: #f0f7fc;
-    border-left: 5px solid #0e68b3;
-    padding: 15px 20px;
-    border-radius: 10px;
-    margin: 20px 0;
-    line-height: 1.6;
-}
-
-.highlight-orange {
-    background: #fff4e6;
-    border-left: 5px solid #e67e22;
-    padding: 15px 20px;
-    border-radius: 10px;
-    margin: 20px 0;
-    line-height: 1.6;
-}
-
-.test-paths {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 25px;
-    margin: 30px 0;
-}
-
-.test-paths .test-path {
-    margin: 0;
-}
-
-.test-paths .test-path-header {
-    background: #0e68b3;
-    color: white;
-    padding: 20px;
-    text-align: center;
-}
-
-.test-paths .test-path-header h3 {
-    color: white;
-    margin: 0;
-    font-size: 1.25rem;
-}
-
-.test-paths .test-path-content {
-    padding: 10px 20px 20px;
-}
-
-.test-paths .test-path-content details {
-    border-bottom: 1px solid #e5e7eb;
-}
-
-.test-paths .test-path-content details:last-child {
-    border-bottom: none;
-}
-
-.test-paths .test-path-content summary {
-    list-style: none;
-    cursor: pointer;
-    position: relative;
-    padding: 17px 30px 17px 5px;
-    color: #0e68b3;
-    font-weight: 600;
-}
-
-.test-paths .test-path-content summary::-webkit-details-marker {
-    display: none;
-}
-
-.test-paths .test-path-content summary::after {
-    content: "+";
-    position: absolute;
-    right: 5px;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 1.3rem;
-    font-weight: 400;
-}
-
-.test-paths .test-path-content details[open] summary::after {
-    content: "−";
-}
-
-.step-label {
-    display: inline-block;
-    font-size: .8rem;
+th {
+    background: #e8f4fc;
+    color: #084f8c;
     font-weight: 700;
-    letter-spacing: .05em;
-    text-transform: uppercase;
-    color: #6b7280;
-    margin-bottom: 5px;
 }
 
-hr {
-    border: none;
-    height: 1px;
-    background: #d6e4f0;
-    margin: 30px 0;
+tr:nth-child(even) td {
+    background: #fafafa;
 }
 
-a {
-    color: #0e68b3;
+.note {
+    background: #e8f4fc;
+    border-left: 4px solid #084f8c;
+    padding: 15px 18px;
+    margin: 20px 0;
+    border-radius: 6px;
 }
 
-a.button {
+.warning {
+    background: #fff5e8;
+    border-left: 4px solid #e67e22;
+    padding: 15px 18px;
+    margin: 20px 0;
+    border-radius: 6px;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin: 15px 0;
+}
+
+.button {
     display: inline-block;
-    background: #0e68b3;
-    color: white;
-    padding: 14px 28px;
+    background: linear-gradient(135deg, #0e68b3, #1c84d8);
+    color: #fff;
+    padding: 10px 18px;
     border-radius: 999px;
     text-decoration: none;
-    font-weight: 600;
-    transition: .3s;
+    font-weight: 700;
 }
 
-a.button:hover {
-    background: #2b6cb0;
-    transform: translateY(-2px);
-}
+@media (max-width: 750px) {
 
-@media (max-width: 768px) {
+    .container {
+        padding: 30px 15px;
+    }
 
     h1 {
         font-size: 2rem;
     }
 
-    .test-path-content {
-        padding: 10px 20px 20px;
-    }
-
-    th,
-    td {
-        padding: 10px;
-        font-size: .95rem;
-    }
-
     .test-paths {
         grid-template-columns: 1fr;
+    }
+
+    pre {
+        font-size: 0.82rem;
     }
 
 }
@@ -342,111 +251,311 @@ a.button:hover {
 
 <h1>Independent T-Test &amp; Mann-Whitney U Test</h1>
 
-<!-- MAIN PATH -->
+<p class="subtitle">
+Use this page to determine whether two independent groups differ on an outcome variable.
+</p>
+
+
+<!-- =========================================================
+     PREPARE
+========================================================= -->
 
 <div class="test-path">
 
+<div class="test-path-header">
+Prepare
+</div>
+
 <div class="test-path-content">
 
-
-<!-- OVERVIEW -->
-
 <details>
-
-<summary>
-<span class="step-label">Prepare</span><br>
-Overview of the Test
-</summary>
+<summary>Step 1: Overview of the Test</summary>
 
 <div class="path-step-content">
 
+<h2>What Are These Tests?</h2>
+
 <p>
-An Independent T-Test tests if there is a difference between the scores of two different groups.
-When two different groups are compared, this is called a between-subjects design.
+An <strong>Independent T-Test</strong> compares the means of two independent groups.
+For example, you might compare exam scores for females and males.
 </p>
+
 <p>
-The independent t-test is extremely sensitive and requires normal data. 
-When data is abnormal, the back-up test is the  Mann-Whitney U test.
+A <strong>Mann-Whitney U Test</strong> is the nonparametric alternative used when the outcome variable does not meet the normality assumption required for the independent t-test.
 </p>
 
-<p> The independent t-test is preferred because it is a more statistically powerful test. This means it is more effective at detecting an effect if there is one. 
-However, the Mann-Whitney U test is a very useful and legitimate test to use when data is abnormal.
-Because normality is so important, data analysts check normality in at least three different ways before determining which test to use.
-</p>
+<div class="definition">
+<strong style="color:#0e68b3;">Independent Groups</strong><br>
+The two groups contain different people or cases. For example, a person belongs to either the Female group or the Male group, but not both.
+</div>
 
-<table>
+<div class="definition">
+<strong style="color:#0e68b3;">Independent T-Test</strong><br>
+Tests whether the means of two independent groups are significantly different.
+</div>
 
-<tr>
-<th>Research Question</th>
-<th>General Question</th>
-<th>Example</th>
-</tr>
+<div class="definition">
+<strong style="color:#0e68b3;">Mann-Whitney U Test</strong><br>
+A nonparametric test used to compare two independent groups when the outcome does not meet the normality rule used for the independent t-test.
+</div>
 
-<tr>
-<td>Research Question</td>
-<td>Is there a mean difference between two independent groups?</td>
-<td>Is there a difference in exam scores between online students and in-person students?</td>
-</tr>
-
-<tr>
-<td>Null Hypothesis</td>
-<td>There is NO difference between the two group means.</td>
-<td>There is NO difference in exam scores between online and in-person students.</td>
-</tr>
-
-<tr>
-<td>Alternative Hypothesis</td>
-<td>There IS a difference between the two group means.</td>
-<td>There IS a difference in exam scores between online and in-person students.</td>
-</tr>
-
-</table>
+<div class="note">
+<strong>Course rule:</strong> For this course, use the Shapiro-Wilk test to determine whether the outcome variable is normally distributed within each group. If both groups have p &gt; .05, use the Independent T-Test. If either group has p &lt; .05, use the Mann-Whitney U Test.
+</div>
 
 </div>
 </details>
 
-    
-<!-- OVERVIEW -->
 
 <details>
-
-<summary>
-<span class="step-label">Prepare</span><br>
-RScript Code Template
-</summary>
+<summary>Step 2: R Code Template</summary>
 
 <div class="path-step-content">
 
-<div class="highlight highlight-blue">
+<h2>Start With the Full R Script</h2>
 
-<pre><code># install.packages("dplyr")
+<p>
+Use the following template as a guide. Replace the dataset, grouping variable, outcome variable, and group names with the variables from your dataset.
+</p>
+
+<pre><code># Install packages once if needed
+# install.packages("readxl")
+# install.packages("ggpubr")
+# install.packages("dplyr")
 # install.packages("effectsize")
 # install.packages("effsize")
-    
+
 library(readxl)
 library(ggpubr)
 library(dplyr)
 library(effectsize)
 library(effsize)
 
-DatasetZ <- read_excel("C:/Users/Joseph/Desktop/dataset.xlsx")
 
-DatasetZ %>%
-  group_by(Gender) %>%
+# Import your dataset
+# Use the point-and-click import instructions in Step 4.
+
+
+# Descriptive statistics
+
+DatasetName %&gt;%
+  group_by(GroupVariable) %&gt;%
+  summarise(
+    Mean = mean(OutcomeVariable, na.rm = TRUE),
+    Median = median(OutcomeVariable, na.rm = TRUE),
+    SD = sd(OutcomeVariable, na.rm = TRUE),
+    N = n()
+  )
+
+
+# Histograms
+
+hist(DatasetName$OutcomeVariable[DatasetName$GroupVariable == "Group1Name"],
+     breaks = 15,
+     col = "skyblue",
+     border = "white")
+
+hist(DatasetName$OutcomeVariable[DatasetName$GroupVariable == "Group2Name"],
+     breaks = 15,
+     col = "firebrick",
+     border = "white")
+
+
+# Boxplot
+
+ggboxplot(DatasetName,
+          x = "GroupVariable",
+          y = "OutcomeVariable",
+          color = "GroupVariable",
+          palette = "jco",
+          add = "jitter")
+
+
+# Shapiro-Wilk tests
+
+shapiro.test(
+  DatasetName$OutcomeVariable[
+    DatasetName$GroupVariable == "Group1Name"
+  ]
+)
+
+shapiro.test(
+  DatasetName$OutcomeVariable[
+    DatasetName$GroupVariable == "Group2Name"
+  ]
+)
+
+
+# Independent T-Test
+
+t.test(
+  OutcomeVariable ~ GroupVariable,
+  data = DatasetName,
+  var.equal = TRUE
+)
+
+
+# Cohen's d
+
+cohens_d_result &lt;- cohens_d(
+  OutcomeVariable ~ GroupVariable,
+  data = DatasetName,
+  pooled_sd = TRUE
+)
+
+print(cohens_d_result)
+
+
+# Mann-Whitney U Test
+
+wilcox.test(
+  OutcomeVariable ~ GroupVariable,
+  data = DatasetName
+)
+
+
+# Cliff's Delta
+
+mw_effect &lt;- cliff.delta(
+  OutcomeVariable ~ GroupVariable,
+  data = DatasetName
+)
+
+print(mw_effect)</code></pre>
+
+<div class="warning">
+<strong>Important:</strong> Do not copy the example dataset names into your assignment without replacing them. Your dataset and variable names will be different.
+</div>
+
+</div>
+</details>
+
+
+<details>
+<summary>Step 3: Install &amp; Open the Packages</summary>
+
+<div class="path-step-content">
+
+<h2>Install and Load the Packages</h2>
+
+<p>
+You will use several R packages for this analysis.
+</p>
+
+<pre><code># Install packages only if you have never installed them before
+
+install.packages("readxl")
+install.packages("ggpubr")
+install.packages("dplyr")
+install.packages("effectsize")
+install.packages("effsize")</code></pre>
+
+<p>
+After the packages are installed, load them with:
+</p>
+
+<pre><code>library(readxl)
+library(ggpubr)
+library(dplyr)
+library(effectsize)
+library(effsize)</code></pre>
+
+<div class="note">
+<strong>Remember:</strong> You only need to install a package once. You need to use <code>library()</code> each time you open a new R session.
+</div>
+
+</div>
+</details>
+
+
+<details>
+<summary>Step 4: Import &amp; Name the Dataset</summary>
+
+<div class="path-step-content">
+
+<h2>Import Your Dataset</h2>
+
+<p>
+Use the point-and-click method in RStudio to import your Excel dataset.
+</p>
+
+<p>
+After importing the dataset, R will assign it a name. For this example, the dataset is named <code>DatasetZ</code>.
+</p>
+
+<pre><code>library(readxl)
+
+DatasetZ &lt;- read_excel("your-file-location.xlsx")</code></pre>
+
+<p>
+Your dataset should contain:
+</p>
+
+<ul>
+<li>One grouping variable with exactly two groups.</li>
+<li>One quantitative outcome variable.</li>
+<li>Independent observations between the two groups.</li>
+</ul>
+
+<div class="definition">
+<strong style="color:#0e68b3;">Example</strong><br>
+Grouping variable: <code>Gender</code><br>
+Groups: Females and Males<br>
+Outcome variable: <code>ExamScores</code>
+</div>
+
+</div>
+</details>
+
+
+<details>
+<summary>Step 5: Calculate the Descriptive Statistics</summary>
+
+<div class="path-step-content">
+
+<h2>Describe the Two Groups</h2>
+
+<p>
+Start by calculating the mean, median, standard deviation, and sample size for each group.
+</p>
+
+<pre><code>DatasetZ %&gt;%
+  group_by(Gender) %&gt;%
   summarise(
     Mean = mean(ExamScores, na.rm = TRUE),
     Median = median(ExamScores, na.rm = TRUE),
     SD = sd(ExamScores, na.rm = TRUE),
     N = n()
-  )
+  )</code></pre>
 
-# A tibble: 2 × 5
-  Gender  Mean Median    SD     N
-  <chr>  <dbl>  <dbl> <dbl> <int>
+<h3>Example Output</h3>
+
+<pre><code># A tibble: 2 × 5
+  Gender   Mean Median    SD     N
+  &lt;chr&gt;   &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt;
 1 Females  83.0   79.3  7.50    50
-2 Males    76.7   79.5 6.00     50
-      
-hist(DatasetZ$ExamScores[DatasetZ$Gender == "Females"],
+2 Males    76.7   79.5  6.00    50</code></pre>
+
+<div class="note">
+The descriptive statistics tell you what each group looks like before you conduct the inferential test.
+</div>
+
+</div>
+</details>
+
+
+<details>
+<summary>Step 6: Normality Check 1 — Histograms</summary>
+
+<div class="path-step-content">
+
+<h2>Look at the Distribution</h2>
+
+<p>
+Create a histogram for each group. Look for a distribution that is approximately bell-shaped rather than strongly skewed or irregular.
+</p>
+
+<pre><code>hist(DatasetZ$ExamScores[DatasetZ$Gender == "Females"],
      breaks = 15,
      col = "skyblue",
      border = "white")
@@ -454,1162 +563,550 @@ hist(DatasetZ$ExamScores[DatasetZ$Gender == "Females"],
 hist(DatasetZ$ExamScores[DatasetZ$Gender == "Males"],
      breaks = 15,
      col = "firebrick",
-     border = "white")
+     border = "white")</code></pre>
 
-#Data for Males appears normally distributed.
-#Data for Females appears normally distributed.
+<img src="https://live.staticflickr.com/65535/55542281405_2e8362c649_c.jpg"
+     alt="Example histogram">
 
-ggboxplot(DatasetZ, x = "Gender", y = "ExamScores",
-          color = "Gender",
-          palette = "jco",
-          add = "jitter")
+<img src="https://live.staticflickr.com/65535/55541892441_6e9d96c158_c.jpg"
+     alt="Example histogram">
 
-# The Males boxplot does not have outliers.
-# The Females boxplot has outliers.
-      
-shapiro.test(DatasetZ$ExamScores[DatasetZ$Gender == "Females"])
-shapiro.test(DatasetZ$ExamScores[DatasetZ$Gender == "Males"])
+<p>
+Use the histograms as a visual check. Do not make your final normality decision from the histogram alone.
+</p>
 
-Females
-W = 0.91523, p-value = 0.0778
+<pre><code>#Data for Group #1 appears normally / abnormally distributed.
+#Data for Group #2 appears normally / abnormally distributed.</code></pre>
 
-Males
-W = 0.89172, p-value = 0.0611
-
-#The Females group is normally distributed, (p > .05).
-#The Males group is normally distributed, (p > .05).
-    
-t.test(ExamScores ~ Gender, data = DatasetZ, var.equal = TRUE)
-
-Two Sample t-test
-
-data:  score by gender
-t = 2.01, df = 98, p-value = 0.002
-mean in group Females = 83.0
-mean in group Males  = 76.7
-
-cohens_d_result <- cohens_d(ExamScores ~ Gender, data = DatasetZ, pooled_sd = TRUE)
-print(cohens_d_result)
-0.65
-
-#An Independent T-Test was conducted to determine if there was a difference in Exam Scores between Females and Males.
-#Females scores (M = 83.00, SD = 7.50) were significantly different from Males scores (M = 76.70, SD = 6.00), t(98) = 2.01, p = .002.
-#The effect size was medium, Cohen's d = .65.
-</code></pre>
-
-</div>
-    
 </div>
 </details>
 
 
-
-
 <details>
+<summary>Step 7: Normality Check 2 — Boxplots</summary>
 
-<summary>
-<span class="step-label">Step 1</span><br>
-Install & Open the Packages
-</summary>
-    
-<div class="path-step-content">
-    
-<p>
-Packages add additional functionality to R.
-</p>
-
-<table>
-
-<tr>
-<th>Package</th>
-<th>Purpose</th>
-</tr>
-
-<tr>
-<td><code>readxl</code></td>
-<td>Import Excel datasets</td>
-</tr>
-
-<tr>
-<td><code>ggpubr</code></td>
-<td>Create histograms and boxplots</td>
-</tr>
-
-<tr>
-<td><code>dplyr</code></td>
-<td>Calculate descriptive statistics</td>
-</tr>
-
-<tr>
-<td><code>effectsize</code></td>
-<td>Calculate effect size for Independent T-Test</td>
-</tr>
-
-<tr>
-<td><code>effsize</code></td>
-<td>Calculate effect size for Mann-Whitney U test</td>
-</tr>
-
-</table>
-
-<h3>Install the Packages</h3>
-
-<p>
-Copy-and-paste the following code into your R Script file.<br>
-Run the code once.
-</p>
-
-<div class="highlight highlight-orange">
-<pre><code>install.packages("dplyr")
-install.packages("effectsize")
-install.packages("effsize")
-</code></pre>
-
-</div>
-<h3>Output</h3>
-<p>
-You may see warning messages appear when you install a package.
-These messages do not necessarily mean that the installation failed.
-Packages only need to be installed once.
-</p>
-
-<hr>
-
-<h3>Load the Packages</h3>
-
-<p>
-Copy-and-paste the code below into your R Script.<br>
-Keep these lines of code in your R Script.
-</p>
-
-<div class="highlight highlight-orange">
-<pre><code>library(dplyr)
-library(effectsize)
-library(effsize)
-library(readxl)
-library(ggpubr)
-</code></pre>
-
-</div>
-<h3>Output</h3>
-<p>
-No output will appear. This simply opens the packages so you can use their functions in RStudio.
-</p>
-
-</div>
-
-</details>
-
-
-    
-
-<!-- IMPORT DATASET -->
-<details>
-
-<summary>
-<span class="step-label">Step 2</span><br>
-Import & Name the Dataset
-</summary>
-    
 <div class="path-step-content">
 
+<h2>Check for Potential Outliers</h2>
 
 <p>
-Although datasets can be imported entirely through code, many students
-experience difficulty locating file paths. Therefore, this course uses the point-and-click import method to generate the necessary code automatically.
+A boxplot helps you identify the center, spread, and potential outliers in each group.
 </p>
 
-<h3>Import the Excel File</h3>
-
-<ol>
-
-<li>
-Select: <span style="color: #e67e22; font-weight: bold;">File → Import Dataset → From Excel</span>
-</li>
-
-<li>
-A new import window will appear.
-Select: <span style="color: #e67e22; font-weight: bold;">Browse</span>
-</li>
-
-<li>
-Locate your assigned Excel dataset.
-</li>
-
-<li>
-Select the dataset and choose: <span style="color: #e67e22; font-weight: bold;">Open</span>
-
-</li>
-
-<li>
-Return to the import window and elect: <span style="color: #e67e22; font-weight: bold;">Import</span>
-
-</li>
-
-</ol>
-
-<h3>Output</h3>
-
-<p>
-Once imported, the dataset will appear in a new tab and will also appear
-in the Environment pane.
-</p>
-
-<p>
-RStudio also automatically generates the code used to import the dataset.
-This code appears in the Console window.
-Copy the import code and paste it into your R Script. This allows the dataset
-to be automatically imported the next time you run your script.
-</p>
-
-<p>
-The generated code will vary depending on your file location and file name.
-</p>
-
-<h3>Code Template</h3>
-
-<div class="highlight highlight-blue">
-
-<pre><code>DatasetName &lt;- read_excel("filepath")</code></pre>
-
-</div>
-
-<h3>Example</h3>
-
-<div class="highlight highlight-blue">
-
-<pre><code>DatasetName &lt;- read_excel(
-"C:/Users/John/OneDrive/Documents/AA5221/Datasets/DatasetName.xlsx"
+<pre><code>ggboxplot(
+  DatasetZ,
+  x = "Gender",
+  y = "ExamScores",
+  color = "Gender",
+  palette = "jco",
+  add = "jitter"
 )</code></pre>
 
+<img src="https://live.staticflickr.com/65535/55541892436_c4a556efa1_c.jpg"
+     alt="Example boxplot">
+
+<p>
+Look for potential outliers in each group. An extreme value can influence the distribution and may contribute to skewness.
+</p>
+
+<p>
+For example, if a dataset contains mostly typical incomes but includes one extremely high income, that value could create <strong>positive (right) skew</strong>.
+</p>
+
+<div class="note">
+<strong>Important:</strong> A boxplot does not tell you whether data are statistically normal. Use the Shapiro-Wilk test in the next step for the course's formal normality decision.
 </div>
 
 </div>
 </details>
 
 
-
-<!-- STEP 3 -->
-
 <details>
-
-<summary>
-<span class="step-label">Step 3</span><br>
-Calculate the Descriptive Statistics
-</summary>
+<summary>Step 8: Normality Check 3 — Shapiro-Wilk</summary>
 
 <div class="path-step-content">
 
-<p>Replace the bolded, orange text below with your specific information.
-<br> The code below calculates the following information for each group:</p>
-<ul>
-<li>Mean</li>
-<li>Median</li>
-<li>sd = Standard Deviation</li>
-<li>n = Sample Size</li>
-</ul>
+<h2>Conduct the Shapiro-Wilk Test</h2>
 
-<h3>Code Template</h3>
-
-<div class="highlight-blue">
-
-<pre><code><span style="color: #e67e22; font-weight: bold;">DatasetName</span> %&gt;%
-  group_by(<span style="color: #e67e22; font-weight: bold;">GroupVariable</span>) %&gt;%
-  summarise(
-    Mean = mean(<span style="color: #e67e22; font-weight: bold;">OutcomeVariable</span>, na.rm = TRUE),
-    Median = median(<span style="color: #e67e22; font-weight: bold;">OutcomeVariable</span>, na.rm = TRUE),
-    SD = sd(<span style="color: #e67e22; font-weight: bold;">OutcomeVariable</span>, na.rm = TRUE),
-    N = n()
-  )</code></pre>
-</div>
-
-<h3>Example</h3>
-
-<div class="highlight-blue">
-
-<pre><code><span style="color: #e67e22; font-weight: bold;">DatasetZ</span> %&gt;%
-  group_by(<span style="color: #e67e22; font-weight: bold;">Gender</span>) %&gt;%
-  summarise(
-    Mean = mean(<span style="color: #e67e22; font-weight: bold;">ExamScores</span>, na.rm = TRUE),
-    Median = median(<span style="color: #e67e22; font-weight: bold;">ExamScores</span>, na.rm = TRUE),
-    SD = sd(<span style="color: #e67e22; font-weight: bold;">ExamScores</span>, na.rm = TRUE),
-    N = n()
-  )</code></pre>
-
-</div>
-
-<h3>Output</h3>
-
-<div class="highlight">
-
-<pre><code># A tibble: 2 × 5
-  Gender  Mean Median    SD     N
-  &lt;chr&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt;
-1 Females  83.0   79.3  7.50    50
-2 Males    76.7   79.5 6.00     50</code></pre>
-
-</div>
-
-</div>
-
-</details>
-
-
-<!-- STEP 4 -->
-
-<details>
-
-<summary>
-<span class="step-label">Step 4</span><br>
-Normality Check 1: Histograms
-</summary>
-
-<div class="path-step-content">
-
-<p>Because normality is so important, data analysts check normality in at least three different ways before determining which test to use.
-The first way is by creating and checking histograms.</p>
-    
 <p>
-Check normality of the data in three different ways: Histogram, Boxplot, and Shapiro-Wilk.
+The Shapiro-Wilk test provides the formal normality check used for this course.
 </p>
 
-<h3>Histograms</h3>
-<p>
-A histogram is a graph that shows how the values of a continuous variable are distributed. It groups values into ranges and uses bars to show how many observations fall within each range.
-</p>
-
-<h3>Code Tempalte</h3>
-<p>
-When filling in <code>Group1Name</code> and <code>Group2Name</code>, use the actual group names in your Excel dataset.
-</p>
-
-<div class="highlight-blue">
-
-<pre><code>hist(<span style="color: #e67e22; font-weight: bold;">DatasetName</span>$<span style="color: #e67e22; font-weight: bold;">OutcomeVariable</span>[<span style="color: #e67e22; font-weight: bold;">DatasetName</span>$<span style="color: #e67e22; font-weight: bold;">GroupVariable</span> == "<span style="color: #e67e22; font-weight: bold;">Group1Name</span>"],
-     breaks = 15,
-     col = "skyblue",
-     border = "white")
-
-hist(<span style="color: #e67e22; font-weight: bold;">DatasetName</span>$<span style="color: #e67e22; font-weight: bold;">OutcomeVariable</span>[<span style="color: #e67e22; font-weight: bold;">DatasetName</span>$<span style="color: #e67e22; font-weight: bold;">GroupVariable</span> == "<span style="color: #e67e22; font-weight: bold;">Group2Name</span>"],
-     breaks = 15,
-     col = "firebrick",
-     border = "white")
-
-</code></pre>
-</div>
-
-
-<h3>Example</h3>
-
-<div class="highlight-blue">
-
-<pre><code>hist(<span style="color: #e67e22; font-weight: bold;">DatasetZ</span>$<span style="color: #e67e22; font-weight: bold;">ExamScores</span>[<span style="color: #e67e22; font-weight: bold;">DatasetZ</span>$<span style="color: #e67e22; font-weight: bold;">Gender</span> == "<span style="color: #e67e22; font-weight: bold;">Females</span>"],
-     breaks = 15,
-     col = "skyblue",
-     border = "white")
-</code></pre>
-
-<pre><code>hist(<span style="color: #e67e22; font-weight: bold;">DatasetZ</span>$<span style="color: #e67e22; font-weight: bold;">ExamScores</span>[<span style="color: #e67e22; font-weight: bold;">DatasetZ</span>$<span style="color: #e67e22; font-weight: bold;">Gender</span> == "<span style="color: #e67e22; font-weight: bold;">Males</span>"],
-     breaks = 15,
-     col = "firebrick",
-     border = "white")
-</code></pre>
-</div>
-    
-<h3>Output</h3>
-<p>
-Histograms appear in the Plots pane.
-</p>
-    
-<div style="text-align: center; margin: 30px 0;">
-    <img 
-        src="https://live.staticflickr.com/65535/55542281405_2e8362c649_c.jpg" 
-        alt="Females Exam Scores Histogram"
-        style="width: 800px; max-width: 100%; height: auto;"
-    >
-</div>
-
-<div style="text-align: center; margin: 30px 0;">
-    <img 
-        src="https://live.staticflickr.com/65535/55541892441_6e9d96c158_c.jpg" 
-        alt="Males Exam Scores Histogram"
-        style="width: 800px; max-width: 100%; height: auto;"
-    >
-</div>
-<hr>
-
-<h3>Interpret the Histograms</h3>
-
-<p>
-In your R Script, report whether you think the histogram is normal or abnormally distributed based on a visual assessment.
-Specifically, visually determine if you think the histogram has normal skewness (symmetry) and kurtosis (height).
-</p>
-    
-<p>
-You can calculate skewness and kurtosis statistically in RStudio to determine if they are normal or abnormal. 
-However, we are keeping things simple for this class.
-</p>
-
-<p>
-In order for data to be considered normal, it must have normal skewness AND kurtosis.
-Review the Data Visualization and Normality lesson (linked below) for what is considered normal skewness and kurtosis.
-</p>
-
-<p>
-<a href="../lectures/data-visualization-normality.html">
-Data Visualization and Normality
-</a>
-</p>
-
-<h3>Reporting Template</h3>
-
-<div class="highlight-blue">
-<pre><code>
-#Data for Group #1 appears <span style="color: #e67e22; font-weight: bold;">abnormally/ normally</span> distributed.
-#Data for Group #2 appears <span style="color: #e67e22; font-weight: bold;">abnormally/ normally</span> distributed.
-</code></pre>
-</div>
-
-<h3>Example</h3>
-
-<div class="highlight-blue">
-<pre><code>#Data for <span style="color: #e67e22; font-weight: bold;">Males</span> appears <span style="color: #e67e22; font-weight: bold;">normally</span> distributed.
-#Data for <span style="color: #e67e22; font-weight: bold;">Females</span> appears <span style="color: #e67e22; font-weight: bold;">normally</span> distributed.
-</code></pre>
-</div>
-    
-</div>
-</details>
-
-
-<!-- STEP 5 -->
-
-<details>
-
-<summary>
-<span class="step-label">Step 5</span><br>
-Normality Check 2: Boxplots
-</summary>
-
-<div class="path-step-content">
-
-<p>
-Before conducting the t-test, create boxplots to check for extreme outliers in your numerical variables.
-</p>
-
-<p>
-An outlier is a score that is unusually high or low compared to the other scores in the dataset.
-Outliers can affect the normality of a dataset. An outlier can increase the skewness of a dataset, which can be the difference between normal and abnormal data.
-</p>
-
-<p>
-A box-and-whisker plot, or boxplot, provides a quick visual summary of a numerical variable. 
-The box shows the middle 50% of the data, the line inside the box shows the median, and the whiskers (lines outside the box) extend to the typical lower and higher values. 
-Individual dots outside the whiskers represent potential outliers. A boxplot allows you to quickly see the center, spread, and unusual values in a continuous variable.
-</p>
-
-
-<div style="text-align: center; margin: 30px 0;">
-    <img 
-        src="https://www.simplypsychology.org/wp-content/uploads/box-and-whisker-plot-for-the-standard-normal-distribution.jpg" 
-        alt="Box-and-whisker plot showing the standard normal distribution"
-        style="display: block; width: 90%; max-width: 1000px; height: auto; margin: 0 auto;"
-    >
-</div>
-    
-<h3>Code Template</h3>
-
-<div class="highlight-blue">
-<pre><code>ggboxplot(<span style="color: #e67e22; font-weight: bold;">DatasetName</span>, x = "<span style="color: #e67e22; font-weight: bold;">GroupVariable</span>", y = "<span style="color: #e67e22; font-weight: bold;">OutcomeVariable</span>",
-     color = "<span style="color: #e67e22; font-weight: bold;">GroupVariable</span>",
-     palette = "jco",
-     add = "jitter")</code></pre>
-
-</div>
-
-<h3>Example</h3>
-
-<div class="highlight-blue">
-
-<pre><code>ggboxplot(<span style="color: #e67e22; font-weight: bold;">DatasetZ</span>, x = "<span style="color: #e67e22; font-weight: bold;">Gender</span>", y = "<span style="color: #e67e22; font-weight: bold;">ExamScores</span>",
-     color = "<span style="color: #e67e22; font-weight: bold;">Gender</span>",
-     palette = "jco",
-     add = "jitter")</code></pre>
-
-</div>
-
-<p>
-<h3>Output</h3>
-<p>
-Boxplot appears in the Plots pane.
-</p>
-
-<div style="text-align: center; margin: 30px 0;">
-    <img 
-        src="https://live.staticflickr.com/65535/55541892436_c4a556efa1_c.jpg" 
-        alt="Males Females Boxplots"
-        style="width: 800px; max-width: 100%; height: auto;"
-    >
-</div>
-
-<hr>
-
-<h3>Interpret the Boxplots</h3>
-
-<p>
-In your R Script, report if each boxplot was normal or not normal.
-There are statistical analyses we can do to definitively determine if a dot is truly an outlier.  However, we will keep things simple for our class.
-</p>
-    
-<p>
-Look for individual dots beyond the whiskers. Those are potential outliers.
-</p>
-
-<h3>Reporting Template</h3>
-
-<div class="highlight-blue">
-<pre><code># The Group 1 boxplot <span style="color: #e67e22; font-weight: bold;">does / does not have </span> outliers.
-# The Group 2 boxplot <span style="color: #e67e22; font-weight: bold;">does / does not have </span> outliers.
-</code></pre>
-</div>
-
-<h3>Example</h3>
-
-<div class="highlight-blue">
-<pre><code># The <span style="color: #e67e22; font-weight: bold;">Males</span> boxplot <span style="color: #e67e22; font-weight: bold;">does not have</span> outliers.
-# The <span style="color: #e67e22; font-weight: bold;">Females</span> boxplot <span style="color: #e67e22; font-weight: bold;">has</span> outliers.
-</code></pre>
-</div>
-
-
-<h3>What Causes an Outlier?</h3>
-  
-<p>
-Sometimes the outlier is a legitimate datapoint. For example, let's say we were collecting data on the average income of a U.S. citizen and, somehow, Elon Musk took our survey. 
-Although his data is legitimate, he would be an outlier that severely impacts our dataset and causes the data to be abnormal (specifically negatively skewed).
-Sometimes an outlier is due to a survey response error, such as a participant accidentally adding an extra zero to their annual income.
-</p>
-
-<h3>What do we do with outliers?</h3>
-
-<p>
-In more advanced data analytics classes, we investigate potential outliers before deciding what to do with them. Check the original data and consider the value in the context of the variable and research question. Ask: Is this value correct? Does it make sense? Is there a reasonable explanation for why it is unusual?
-If an outlier is the result of a data-entry or measurement error, it may be appropriate to correct or remove it. If the value is accurate and represents a legitimate observation, do not remove it simply because it is unusual. Any decision to remove an observation should have a clear justification and should be documented.
-Removing a legitimate outlier can change the distribution, sample size, and results of your analysis.
-</p>
-
-</div>
-</details>
-
-
-
-<!-- STEP 6 -->
-
-<details>
-
-<summary>
-<span class="step-label">Step 6</span><br>
-Normality Check 3: Shapiro-Wilk
-</summary>
-
-<div class="path-step-content">
-
-<p>
-The Shapiro-Wilk test allows you to check whether your data is normal or abnormal using a statistical test. The test asks: "Is there a significant difference between my data's distribution and a theoretically perfect distribution?"
-A p-value of less than .05 indicates there is a significant difference, which means the data is abnormal. A p-value of greater than .05 indicates there is no significant difference, which means the data is normal.</p>
-
-</p>
-
-<h3>Code Template</h3>
-
-<div class="highlight-blue">
-
-<pre><code>shapiro.test(<span style="color: #e67e22; font-weight: bold;">DatasetName</span>$<span style="color: #e67e22; font-weight: bold;">OutcomeVariable</span>[<span style="color: #e67e22; font-weight: bold;">DatasetName</span>$<span style="color: #e67e22; font-weight: bold;">GroupVariable</span> == "<span style="color: #e67e22; font-weight: bold;">Group1</span>"])
-shapiro.test(<span style="color: #e67e22; font-weight: bold;">DatasetName</span>$<span style="color: #e67e22; font-weight: bold;">OutcomeVariable</span>[<span style="color: #e67e22; font-weight: bold;">DatasetName</span>$<span style="color: #e67e22; font-weight: bold;">GroupVariable</span> == "<span style="color: #e67e22; font-weight: bold;">Group2</span>"])</code></pre>
-</div>
-
-<h3>Example</h3>
-
-<div class="highlight-blue">
-
-<pre><code>#The <span style="color: #e67e22; font-weight: bold;">Females</span> group is <span style="color: #e67e22; font-weight: bold;">normally</span> distributed, (p = <span style="color: #e67e22; font-weight: bold;">.078</span>).
-#The <span style="color: #e67e22; font-weight: bold;">Males</span> group is <span style="color: #e67e22; font-weight: bold;">normally</span> distributed, (p = <span style="color: #e67e22; font-weight: bold;">.061</span>).
-</code></pre>
-
-</div>
-
-<h3>Output</h3>
-
-<div class="highlight">
+<pre><code>shapiro.test(
+  DatasetZ$ExamScores[
+    DatasetZ$Gender == "Females"
+  ]
+)
+
+shapiro.test(
+  DatasetZ$ExamScores[
+    DatasetZ$Gender == "Males"
+  ]
+)</code></pre>
+
+<h3>Example Output</h3>
 
 <pre><code>Females
+
 W = 0.91523, p-value = 0.0778
 
+
 Males
-W = 0.89172, p-value = 0.0611
-</code></pre>
 
-</div>
-
-<hr>
-
-<h3>Interpret the Shapiro-Wilk Test</h3>
-
-<p>
-In your R Script, report if the data is normal or abnormal according to the Shapiro-Wilk test.
-</p>
+W = 0.89172, p-value = 0.0611</code></pre>
 
 <table>
-
+<thead>
 <tr>
-<th>p-value</th>
-<th>Interpretation</th>
-<th>Decision</th>
+<th>Shapiro-Wilk p-value</th>
+<th>Course Interpretation</th>
 </tr>
+</thead>
 
+<tbody>
 <tr>
 <td>p &gt; .05</td>
-<td>There is NO significant difference between our data's distribution and a normal distribution.</td>
-<td>Data is normal</td>
+<td>There is no statistically significant evidence that the distribution differs from a normal distribution. Treat the group as normally distributed for this course.</td>
 </tr>
 
 <tr>
 <td>p &lt; .05</td>
-<td>There is a significant difference between our data's distribution and a normal distribution.</td>
-<td>Data is abnormal</td>
+<td>There is statistically significant evidence that the distribution differs from a normal distribution. Treat the group as abnormally distributed for this course.</td>
 </tr>
-
+</tbody>
 </table>
 
-<h3>Code Template</h3>
-
-<div class="highlight-blue">
-
-<pre><code>#The <span style="color: #e67e22; font-weight: bold;">first group</span> is <span style="color: #e67e22; font-weight: bold;">normally / abnormally</span> distributed, (p<span style="color: #e67e22; font-weight: bold;"> > or < </span>.05).
-#The <span style="color: #e67e22; font-weight: bold;">second group</span> is <span style="color: #e67e22; font-weight: bold;">normally / abnormally</span> distributed, (p<span style="color: #e67e22; font-weight: bold;"> > or < </span>.05).
-</code></pre>
+<pre><code>#The first group is normally / abnormally distributed (p &gt; or &lt; .05).
+#The second group is normally / abnormally distributed (p &gt; or &lt; .05).</code></pre>
 
 </div>
-
-<h3>Example</h3>
-
-<div class="highlight-blue">
-
-<pre><code>#The <span style="color: #e67e22; font-weight: bold;">Females</span> group is <span style="color: #e67e22; font-weight: bold;">normally</span> distributed, (p<span style="color: #e67e22; font-weight: bold;"> > </span>.05).
-#The <span style="color: #e67e22; font-weight: bold;">Males</span> group is <span style="color: #e67e22; font-weight: bold;">normally</span> distributed, (p<span style="color: #e67e22; font-weight: bold;"> > </span>.05).
-</code></pre>
-
-</div>
-
-<h3>Output</h3>
-<p>NA</p>
-</div>
-
 </details>
 
-
-<!-- STEP 7 -->
 
 <details>
-
-<summary>
-<span class="step-label">Step 7</span><br>
-Select the Correct Test
-</summary>
-
-<div class="path-step-content">
-<p>
-Were any of your histograms, boxplots, or shapiro-wilk tests abnormal?
-If any of them were abnormal, this would require an investigation.
-</p>
-
-<p>
-Since we are keeping our class simple, just look at your Shapiro-Wilk tests.
-Were they both normal, or was one or both abnormal?
-</p>
-
-<p>
-If both were normal, choose the Independent t-test.
-</p>
-<p>
-If one or both were abnormal, choose the Mann-Whitney U test.
-</p>
-
-</div>
-
-</details>
-
-</div>
-
-</div>
-
-
-<!-- TEST PATHS -->
-
-<div class="test-paths">
-
-    <!-- INDEPENDENT T-TEST -->
-    <div class="test-path">
-
-        <div class="test-path-header">
-<h2>Option A: Independent t-test</h2>
-</div>
-        <div class="test-path-content">
-
-            <!-- Step 8a -->
-            <details>
-                <summary>
-                    <span class="step-label">Step 8a</span><br>
-                    Conduct the Independent T-Test (Normal Data)
-</summary>
+<summary>Step 9: Select the Correct Test</summary>
 
 <div class="path-step-content">
 
-<p>
-Conduct an Independent T-Test to determine whether there is a difference between groups.
-</p>
-
-<p>For simplicity, assume equal variances and use <code>var.equal = TRUE</code>.
-In advanced analyses, Levene's Test is often used to assess equality of variances.</li>
-</p>
-    
-<h3>Code Template</h3>
-
-<div class="highlight-blue">
-
-<pre><code>t.test(<span style="color: #e67e22; font-weight: bold;">OutcomeVariable</span> ~ <span style="color: #e67e22; font-weight: bold;">GroupVariable</span>, data = <span style="color: #e67e22; font-weight: bold;">DatasetName</span>, var.equal = TRUE)</code></pre>
-</div>
-
-<h3>Example</h3>
-
-<div class="highlight-blue">
-
-<pre><code>t.test(<span style="color: #e67e22; font-weight: bold;">ExamScores</span> ~ <span style="color: #e67e22; font-weight: bold;">Gender</span>, data = <span style="color: #e67e22; font-weight: bold;">DatasetZ</span>, var.equal = TRUE)</code></pre>
-</div>
-
-<h3>Output</h3>
-
-<div class="highlight">
-
-<pre><code>Two Sample t-test
-
-data: score by gender
-
-t = 2.01, df = 98, p-value = 0.002
-
-mean in group Females = 83.0
-mean in group Males = 76.7</code></pre>
-
-</div>
-
-</div>
-
-</details>
-
-
-<!-- STEP 9A -->
-
-<details>
-
-<summary>
-<span class="step-label">Step 9a</span><br>
-Calculate Cohen's d (Effect Size)
-</summary>
-
-<div class="path-step-content">
-
-<h3>Code Template</h3>
-
-<div class="highlight-blue">
-
-<pre><code>cohens_d_result &lt;- cohens_d(<span style="color: #e67e22; font-weight: bold;">OutcomeVariable</span> ~ <span style="color: #e67e22; font-weight: bold;">GroupVariable</span>, data = <span style="color: #e67e22; font-weight: bold;">DatasetName</span>, pooled_sd = TRUE)
-    print(cohens_d_result)</code></pre>
-
-</div>
-
-<h3>Example</h3>
-
-<div class="highlight-blue">
-
-<pre><code>cohens_d_result &lt;- cohens_d(<span style="color: #e67e22; font-weight: bold;">ExamScores</span> ~ <span style="color: #e67e22; font-weight: bold;">Gender</span>, data = <span style="color: #e67e22; font-weight: bold;">DatasetZ</span>, pooled_sd = TRUE)
-print(cohens_d_result)</code></pre>
-
-</div>
-    
-<h3>Output</h3>
-<p>
-<pre><code>0.65</code></pre>
-</p>
-
-</div>
-
-</details>
-
-
-<!-- STEP 10A -->
-
-<details>
-
-<summary>
-<span class="step-label">Step 10a</span><br>
-Report the Results
-</summary>
-
-<div class="path-step-content">
+<h2>Choose Your Statistical Test</h2>
 
 <p>
-After the analyses, report your findings in a few clear sentences in your R Script.
-</p>
-
-<p>
-Copy the template and replace the highlighted portions with your output results.
-There is a standardized method of reporting. DO NOT be creative. Use the provided reporting format.
-</p>
-
-<h3>P-Value Reporting</h3>
-
-<table style="width: 100%; border-collapse: collapse; font-size: 12pt;">
-    <thead>
-        <tr>
-            <th style="text-align: left; padding: 10px; border-bottom: 2px solid #0e68b3;">p-value</th>
-            <th style="text-align: left; padding: 10px; border-bottom: 2px solid #0e68b3;">How to Report</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td style="padding: 10px; border-bottom: 1px solid #ddd;">p &lt; .001</td>
-            <td style="padding: 10px; border-bottom: 1px solid #ddd;">Report p &lt; .001</td>
-        </tr>
-        <tr>
-            <td style="padding: 10px; border-bottom: 1px solid #ddd;">.001 &lt; p &lt; .05</td>
-            <td style="padding: 10px; border-bottom: 1px solid #ddd;">Report the exact p-value to three decimals (example: p = .003)</td>
-        </tr>
-        <tr>
-            <td style="padding: 10px; border-bottom: 1px solid #ddd;">p &gt; .05</td>
-            <td style="padding: 10px; border-bottom: 1px solid #ddd;">Report p &gt; .05</td>
-        </tr>
-        <tr>
-            <td style="padding: 10px;">All other values</td>
-            <td style="padding: 10px;">Report two decimal places (example: .1252 → .13)</td>
-        </tr>
-    </tbody>
-</table>
-
-<h3>Definitions</h3>
-<ul>
-<li>M = mean</li>
-<li>SD = standard deviation</li>
-<li>df = degrees of freedom</li>
-<li>t = t-test value</li>
-<li>p = p-value</li>
-</ul>
-
-<p>
-Degrees of Freedom: Total sample size minus the number of groups. For two groups, if <code>n = 100</code>, then <code>df = 98</code>.
+Use the Shapiro-Wilk results to select the test.
 </p>
 
 <table>
-
+<thead>
 <tr>
-<th>Effect Size</th>
-<th>Interpretation</th>
+<th>Normality Results</th>
+<th>Test to Use</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>Both groups have p &gt; .05</td>
+<td><strong>Independent T-Test</strong></td>
 </tr>
 
 <tr>
-<td>±0.00–0.19</td>
-<td>No difference between groups</td>
+<td>Either group has p &lt; .05</td>
+<td><strong>Mann-Whitney U Test</strong></td>
 </tr>
-
-<tr>
-<td>±0.20–0.49</td>
-<td>Small difference</td>
-</tr>
-
-<tr>
-<td>±0.50–0.79</td>
-<td>Medium difference</td>
-</tr>
-
-<tr>
-<td>±0.80–1.29</td>
-<td>Large difference</td>
-</tr>
-
-<tr>
-<td>±1.30+</td>
-<td>Very large difference</td>
-</tr>
-
+</tbody>
 </table>
 
-<h3>Code Template</h3>
-
-<div class="highlight-blue">
-
-<pre><code># An Independent T-Test was conducted to determine if there was a difference in <span style="color: #e67e22; font-weight: bold;">OutcomeVariable</span> between <span style="color: #e67e22; font-weight: bold;">Group1</span> and <span style="color: #e67e22; font-weight: bold;">Group2</span>.
-<span style="color: #e67e22; font-weight: bold;">Group1</span> scores (M = <span style="color: #e67e22; font-weight: bold;">xx.xx</span>, SD = <span style="color: #e67e22; font-weight: bold;">xx.xx</span>) were <span style="color: #e67e22; font-weight: bold;">significantly / not significantly</span> different from <span style="color: #e67e22; font-weight: bold;">Group2</span> scores (M = <span style="color: #e67e22; font-weight: bold;">xx.xx</span>, SD = <span style="color: #e67e22; font-weight: bold;">xx.xx</span>), (t(<span style="color: #e67e22; font-weight: bold;">df#</span>) = <span style="color: #e67e22; font-weight: bold;">xx.xx</span>, p = <span style="color: #e67e22; font-weight: bold;">.xxx</span>).
-# The effect size was <span style="color: #e67e22; font-weight: bold;">small / medium / large / very large</span>, Cohen's d = <span style="color: #e67e22; font-weight: bold;">.xxx</span>.
-
-</code></pre>
-</div>
-
-<h3>Example</h3>
-
-<div class="highlight-blue">
-
-<pre><code>#An Independent T-Test was conducted to determine if there was a difference in <span style="color: #e67e22; font-weight: bold;">Exam Scores</span> between <span style="color: #e67e22; font-weight: bold;">Females</span> and <span style="color: #e67e22; font-weight: bold;">Males</span>.
-#<span style="color: #e67e22; font-weight: bold;">Females</span> scores (M = <span style="color: #e67e22; font-weight: bold;">83.00</span>, SD = <span style="color: #e67e22; font-weight: bold;">7.50</span>) were <span style="color: #e67e22; font-weight: bold;">significantly</span> different from <span style="color: #e67e22; font-weight: bold;">Males</span> scores (M = <span style="color: #e67e22; font-weight: bold;">76.70</span>, SD = <span style="color: #e67e22; font-weight: bold;">6.00</span>), t(<span style="color: #e67e22; font-weight: bold;">98</span>) = <span style="color: #e67e22; font-weight: bold;">2.01</span>, p = <span style="color: #e67e22; font-weight: bold;">.002</span>.
-#The effect size was <span style="color: #e67e22; font-weight: bold;">medium</span>, Cohen's d = <span style="color: #e67e22; font-weight: bold;">.65</span>.
-
-</code></pre>
+<div class="note">
+<strong>Course decision rule:</strong> If both groups are normally distributed, use the Independent T-Test. If either group is abnormally distributed, use the Mann-Whitney U Test.
 </div>
 
 </div>
-
 </details>
 
 </div>
-
 </div>
 
 
-<!-- MANN-WHITNEY U -->
+<!-- =========================================================
+     TEST OPTIONS
+========================================================= -->
 
-<div class="test-path">
+<div class="test-paths">
 
-        <div class="test-path-header">
-<h2>Option B: Mann-Whitney U Test</h2>
+
+<!-- =========================================================
+     OPTION A
+========================================================= -->
+
+<div class="test-path-card">
+
+<div class="test-path-card-header">
+Option A: Independent T-Test
 </div>
 
-<div class="test-path-content">
-
-
-<!-- STEP 8B -->
+<div class="test-path-card-content">
 
 <details>
-
-<summary>
-<span class="step-label">Step 8b</span><br>
-Conduct the Mann-Whitney U Test (Abnormal Data)
-</summary>
+<summary>Step 8A: Conduct the Independent T-Test</summary>
 
 <div class="path-step-content">
 
+<h2>Run the Test</h2>
+
 <p>
-Conduct a Mann-Whitney U test to determine whether there is a difference between groups.
+If both groups meet the course normality rule, conduct an Independent T-Test.
 </p>
 
-<h3>Code Template</h3>
+<p>
+For simplicity, this course assumes equal variances and uses <code>var.equal = TRUE</code>.
+</p>
 
-<div class="highlight-blue">
-
-<pre><code>wilcox.test(<span style="color: #e67e22; font-weight: bold;">OutcomeVariable</span> ~ <span style="color: #e67e22; font-weight: bold;">GroupVariable</span>, data = <span style="color: #e67e22; font-weight: bold;">DatasetName</span>)</code></pre>
+<div class="note">
+In more advanced analyses, tests such as Levene's Test can be used to assess the equality of variances.
 </div>
+
+<pre><code>t.test(
+  ExamScores ~ Gender,
+  data = DatasetZ,
+  var.equal = TRUE
+)</code></pre>
+
+<h3>Example Output</h3>
+
+<p>
+The following is an abbreviated example. Your output will depend on your dataset.
+</p>
+
+<pre><code>Two Sample t-test
+
+data:  ExamScores by Gender
+t = 4.63, df = 98, p-value &lt; 0.001
+
+sample estimates:
+mean in group Females = 83.0
+mean in group Males   = 76.7</code></pre>
+
+<div class="note">
+Because the example means and standard deviations differ substantially, the example produces a statistically significant t-test result. Your results may be different.
+</div>
+
+</div>
+</details>
+
+
+<details>
+<summary>Step 9A: Calculate Cohen's d</summary>
+
+<div class="path-step-content">
+
+<h2>Calculate the Effect Size</h2>
+
+<p>
+If the Independent T-Test is statistically significant, calculate Cohen's d to determine the size of the difference.
+</p>
+
+<pre><code>cohens_d_result &lt;- cohens_d(
+  ExamScores ~ Gender,
+  data = DatasetZ,
+  pooled_sd = TRUE
+)
+
+print(cohens_d_result)</code></pre>
 
 <h3>Example</h3>
 
-<div class="highlight-blue">
+<pre><code>Cohen's d = 0.93</code></pre>
 
-<pre><code>wilcox.test(<span style="color: #e67e22; font-weight: bold;">ExamScores</span> ~ <span style="color: #e67e22; font-weight: bold;">Gender</span>, data = <span style="color: #e67e22; font-weight: bold;">DatasetZ</span>)</code></pre>
+<p>
+The exact output from the <code>effectsize</code> package may include additional information, such as a confidence interval. Use the Cohen's d estimate when reporting your effect size.
+</p>
+
+<table>
+<thead>
+<tr>
+<th>Absolute Cohen's d</th>
+<th>Course Interpretation</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>0.00–0.19</td>
+<td>No meaningful difference</td>
+</tr>
+
+<tr>
+<td>0.20–0.49</td>
+<td>Small</td>
+</tr>
+
+<tr>
+<td>0.50–0.79</td>
+<td>Medium</td>
+</tr>
+
+<tr>
+<td>0.80–1.29</td>
+<td>Large</td>
+</tr>
+
+<tr>
+<td>1.30+</td>
+<td>Very large</td>
+</tr>
+</tbody>
+</table>
+
+<div class="note">
+Use the <strong>absolute value</strong> of Cohen's d when determining the effect-size category. The positive or negative sign indicates the direction of the difference.
 </div>
 
-<h3>Output</h3>
+</div>
+</details>
 
-<div class="highlight">
+
+<details>
+<summary>Step 10A: Report the Results</summary>
+
+<div class="path-step-content">
+
+<h2>Write the Results</h2>
+
+<p>
+Use the following format to report an Independent T-Test.
+</p>
+
+<pre><code>#An Independent T-Test was conducted to determine if there was a difference
+#in OutcomeVariable between Group 1 and Group 2.
+
+#Group 1 scores (M = xx.xx, SD = xx.xx) were significantly different from
+#Group 2 scores (M = xx.xx, SD = xx.xx), t(df) = x.xx, p = .xxx.
+
+#The effect size was small/medium/large/very large, Cohen's d = .xx.</code></pre>
+
+<h3>Reporting p-values</h3>
+
+<table>
+<thead>
+<tr>
+<th>Actual p-value</th>
+<th>Report as</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>p &lt; .001</td>
+<td>p &lt; .001</td>
+</tr>
+
+<tr>
+<td>.001 &le; p &lt; .05</td>
+<td>Report the exact p-value to 3 decimal places.</td>
+</tr>
+
+<tr>
+<td>p &gt; .05</td>
+<td>p &gt; .05</td>
+</tr>
+</tbody>
+</table>
+
+<h3>Common Statistical Symbols</h3>
+
+<table>
+<thead>
+<tr>
+<th>Symbol</th>
+<th>Meaning</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>M</td>
+<td>Mean</td>
+</tr>
+
+<tr>
+<td>SD</td>
+<td>Standard deviation</td>
+</tr>
+
+<tr>
+<td>df</td>
+<td>Degrees of freedom</td>
+</tr>
+
+<tr>
+<td>t</td>
+<td>Independent T-Test statistic</td>
+</tr>
+
+<tr>
+<td>p</td>
+<td>Probability value used to determine statistical significance</td>
+</tr>
+</tbody>
+</table>
+
+<div class="definition">
+<strong style="color:#0e68b3;">Degrees of Freedom</strong><br>
+For an independent t-test with two groups and equal variances, degrees of freedom are calculated as the total sample size minus the number of groups. For example, with 100 participants and 2 groups: df = 100 − 2 = 98.
+</div>
+
+</div>
+</details>
+
+</div>
+</div>
+
+
+<!-- =========================================================
+     OPTION B
+========================================================= -->
+
+<div class="test-path-card">
+
+<div class="test-path-card-header">
+Option B: Mann-Whitney U Test
+</div>
+
+<div class="test-path-card-content">
+
+<details>
+<summary>Step 8B: Conduct the Mann-Whitney U Test</summary>
+
+<div class="path-step-content">
+
+<h2>Run the Test</h2>
+
+<p>
+If either group fails the course normality rule, conduct a Mann-Whitney U Test.
+</p>
+
+<pre><code>wilcox.test(
+  OutcomeVariable ~ GroupVariable,
+  data = DatasetName
+)</code></pre>
+
+<h3>Example</h3>
+
+<pre><code>wilcox.test(
+  ExamScores ~ Gender,
+  data = DatasetZ
+)</code></pre>
+
+<h3>Example Output</h3>
 
 <pre><code>Wilcoxon rank sum test with continuity correction
 
-data: score by gender
-
+data:  ExamScores by Gender
 W = 30, p-value = 0.002
 alternative hypothesis: true location shift is not equal to 0</code></pre>
 
+<div class="note">
+<strong>Important:</strong> The Mann-Whitney U Test is also called the Wilcoxon rank-sum test. R reports the test statistic as <strong>W</strong>, not U. Do not simply rename W as U in your R output.
 </div>
 
 </div>
-
 </details>
 
 
-<!-- STEP 9B -->
-
 <details>
-
-<summary>
-<span class="step-label">Step 9b</span><br>
-Calculate Cliff's Delta (Effect Size)
-</summary>
+<summary>Step 9B: Calculate Cliff's Delta</summary>
 
 <div class="path-step-content">
 
+<h2>Calculate the Effect Size</h2>
 
-<h3>Code Template</h3>
+<p>
+If the Mann-Whitney U Test is statistically significant, calculate Cliff's Delta to determine the size of the group difference.
+</p>
 
-<div class="highlight-blue">
-<pre><code>mw_effect &lt;- cliff.delta(<span style="color: #e67e22; font-weight: bold;">OutcomeVariable</span> ~ <span style="color: #e67e22; font-weight: bold;">GroupVariable</span>, data = <span style="color: #e67e22; font-weight: bold;">DatasetName</span>)
+<pre><code>mw_effect &lt;- cliff.delta(
+  OutcomeVariable ~ GroupVariable,
+  data = DatasetName
+)
+
 print(mw_effect)</code></pre>
-</div>
 
 <h3>Example</h3>
-
-<div class="highlight-blue">
-
-<pre><code>mw_effect &lt;- cliff.delta(<span style="color: #e67e22; font-weight: bold;">ExamScores</span> ~ <span style="color: #e67e22; font-weight: bold;">Gender</span>, data = <span style="color: #e67e22; font-weight: bold;">DatasetZ</span>)
-print(mw_effect)</code></pre>
-</div>
-
-<h3>Output</h3>
-
-<div class="highlight">
 
 <pre><code>Cliff's Delta
 
 delta estimate: 0.45
+
 95 percent confidence interval:
 0.21 0.66
+
 Magnitude: medium</code></pre>
 
+<p>
+The exact output may vary depending on the version of the <code>effsize</code> package and your dataset.
+</p>
+
+<div class="note">
+When interpreting Cliff's Delta, use the magnitude reported by the <code>effsize</code> package rather than applying Cohen's d cutoffs to Cliff's Delta.
 </div>
 
 </div>
-
 </details>
 
 
-<!-- STEP 10B -->
-
-<!-- Step 8a -->
-            <details>
-                <summary>
-                    <span class="step-label">Step 10b</span><br>
-                    Report the Results
-</summary>
+<details>
+<summary>Step 10B: Report the Results</summary>
 
 <div class="path-step-content">
 
-<p>
-After the analyses, report your findings in a few clear sentences in your R Script.
-</p>
+<h2>Write the Results</h2>
 
 <p>
-Copy the template and replace the highlighted portions with your output results.
-There is a standardized method of reporting. DO NOT be creative. Use the provided reporting format.
+Use the following format to report a Mann-Whitney U Test.
 </p>
 
-<h3>P-Value Reporting</h3>
-<table style="width: 100%; border-collapse: collapse; font-size: 12pt;">
-    <thead>
-        <tr>
-            <th style="text-align: left; padding: 10px; border-bottom: 2px solid #0e68b3;">p-value</th>
-            <th style="text-align: left; padding: 10px; border-bottom: 2px solid #0e68b3;">How to Report</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td style="padding: 10px; border-bottom: 1px solid #ddd;">p &lt; .001</td>
-            <td style="padding: 10px; border-bottom: 1px solid #ddd;">Report p &lt; .001</td>
-        </tr>
-        <tr>
-            <td style="padding: 10px; border-bottom: 1px solid #ddd;">.001 &lt; p &lt; .05</td>
-            <td style="padding: 10px; border-bottom: 1px solid #ddd;">Report the exact p-value to three decimals (example: p = .003)</td>
-        </tr>
-        <tr>
-            <td style="padding: 10px; border-bottom: 1px solid #ddd;">p &gt; .05</td>
-            <td style="padding: 10px; border-bottom: 1px solid #ddd;">Report p &gt; .05</td>
-        </tr>
-        <tr>
-            <td style="padding: 10px;">All other values</td>
-            <td style="padding: 10px;">Report two decimal places (example: .1252 → .13)</td>
-        </tr>
-    </tbody>
-</table>
+<pre><code>#A Mann-Whitney U Test was conducted to determine if there was a difference
+#in OutcomeVariable between Group 1 and Group 2.
 
+#Group 1 scores (Mdn = xx.xx) were significantly different from
+#Group 2 scores (Mdn = xx.xx), W = x.xx, p = .xxx.
 
-<h3>Definitions</h3>
+#The effect size was small/medium/large, Cliff's Delta = .xx.</code></pre>
 
-<ul>
-<li>Mdn = median</li>
-<li>U = Mann-Whitney U value</li>
-<li>p = p-value</li>
-</ul>
-
-<h3>Code Template</h3>
-
-<div class="highlight-blue">
-
-<pre><code>#A Mann-Whitney U test was conducted to determine if there was a difference in <span style="color: #e67e22; font-weight: bold;">OutcomeVariable</span> between <span style="color: #e67e22; font-weight: bold;">Group1</span> and <span style="color: #e67e22; font-weight: bold;">Group2</span>.
-#<span style="color: #e67e22; font-weight: bold;">Group1</span> scores (Mdn = <span style="color: #e67e22; font-weight: bold;">xx.xx</span>) were <span style="color: #e67e22; font-weight: bold;">significantly / not significantly</span> different from <span style="color: #e67e22; font-weight: bold;">Group2</span> scores (Mdn = <span style="color: #e67e22; font-weight: bold;">xx.xx</span>), W = <span style="color: #e67e22; font-weight: bold;">x.xx</span>, p = <span style="color: #e67e22; font-weight: bold;">.xxx</span>.
-#The effect size was <span style="color: #e67e22; font-weight: bold;">small / medium / large / very large</span>, Cliff's Delta = <span style="color: #e67e22; font-weight: bold;">.xxx</span>.
-
-</code></pre>
-
-</div>
-
-<h3>Example</h3>
-
-<div class="highlight-blue">
-
-<pre><code>#A Mann-Whitney U test was conducted to determine if there was a difference in <span style="color: #e67e22; font-weight: bold;">Exam Scores</span> between <span style="color: #e67e22; font-weight: bold;">Females</span> and <span style="color: #e67e22; font-weight: bold;">Males</span>.
-#<span style="color: #e67e22; font-weight: bold;">Females</span> scores (Mdn = <span style="color: #e67e22; font-weight: bold;">84.00</span>) were <span style="color: #e67e22; font-weight: bold;">significantly</span> different from <span style="color: #e67e22; font-weight: bold;">Males</span> scores (Mdn = <span style="color: #e67e22; font-weight: bold;">77.00</span>), W = <span style="color: #e67e22; font-weight: bold;">30.00</span>, p = <span style="color: #e67e22; font-weight: bold;">.002</span>.
-#The effect size was <span style="color: #e67e22; font-weight: bold;">medium</span>, Cliff's Delta = <span style="color: #e67e22; font-weight: bold;">.45</span>.
-
-</code></pre>
-
+<div class="note">
+<strong>Remember:</strong> R reports the Wilcoxon rank-sum statistic as <strong>W</strong>. Use W when reporting the statistic directly from your R output.
 </div>
 
 </div>
-
 </details>
 
-
+</div>
 </div>
 
 </div>
 
-</div>
 
-
-<!-- FINAL STEPS -->
+<!-- =========================================================
+     PREPARE TO PUBLISH
+========================================================= -->
 
 <div class="test-path">
 
+<div class="test-path-header">
+Prepare to Publish
+</div>
+
 <div class="test-path-content">
 
-<!-- PART 11 -->
-
 <details>
+<summary>Step 1: Create an R Markdown File</summary>
 
-<summary>
-<span class="step-label">Prepare to Publish</span><br>
-Create an RMarkdown File
-</summary>
-    
 <div class="path-step-content">
 
-<p>
-After completing your R Script, the next step is to convert it into an
-R Markdown document.
-</p>
+<h2>Create Your R Markdown File</h2>
 
 <p>
-An R Markdown document combines your code, output, and written explanation
-into a single HTML report. This allows others to reproduce your analysis and
-view both the code and results in one document.
+After completing your analysis in R, create an R Markdown document to organize your code, output, and written interpretation.
 </p>
-
-<p>
-Before proceeding, review the R Markdown lesson.
-</p>
-
-<p>
-<a href="../RProgram/RMarkdown.html">
-R Markdown Files
-</a>
-</p>
-
-<hr>
-
-<h3> Create a New R Markdown File</h3>
 
 <ol>
 
@@ -1618,277 +1115,132 @@ Open RStudio.
 </li>
 
 <li>
-Select:
-File → New File → R Markdown
+Select <strong>File → New File → R Markdown</strong>.
 </li>
 
 <li>
-Ensure that HTML is selected as the output format.
+Choose <strong>HTML</strong> as the output format.
 </li>
 
 <li>
-Select OK.
+Give the document a meaningful title.
+</li>
+
+<li>
+Delete the sample text and sample code.
+</li>
+
+<li>
+Copy the appropriate R code from your completed R script into the R Markdown document.
+</li>
+
+<li>
+Place R code inside an R code chunk:
 </li>
 
 </ol>
-
-<p>
-You do not need to complete any of the optional fields.
-The default settings are sufficient for this assignment.
-</p>
-
-<hr>
-
-<h3> Save the R Markdown File</h3>
-
-<ol>
-
-<li>
-Select File → Save As.
-</li>
-
-<li>
-Save the file to your desktop.
-</li>
-
-<li>
-Delete all of the prewritten sample text generated by RStudio.
-</li>
-
-<li>
-Open your completed R Script.
-</li>
-
-<li>
-Copy all of your code.
-</li>
-
-<li>
-Paste the code into the empty R Markdown document.
-</li>
-
-</ol>
-
-<hr>
-
-<h3> Create a Code Chunk</h3>
-
-<p>
-R code inside an R Markdown file must be placed inside a
-code chunk.
-</p>
-
-<p>
-Add the following line at the very beginning of your document:
-</p>
-
-<div class="highlight highlight-blue">
-
-<pre><code>```{r}</code></pre>
-
-</div>
-
-<p>
-Then add the following line at the very end of your document:
-</p>
-
-<div class="highlight highlight-blue">
-
-<pre><code>```</code></pre>
-
-</div>
-
-<p>
-All of your code should now be located between the two lines.
-</p>
-
-<h3>Example Structure</h3>
-
-<div class="highlight highlight-blue">
 
 <pre><code>```{r}
 
-paste all your code here
+YOUR R CODE HERE
 
 ```</code></pre>
 
+<p>
+Then add your interpretation below each analysis.
+</p>
+
+<div class="warning">
+<strong>Do not submit a raw .Rmd file when the assignment requires an HTML report.</strong> Knit the document to create the HTML output.
 </div>
 
-<p>
-When the code chunk has been created correctly, the code region will typically
-appear shaded or highlighted within RStudio.
-</p>
-
-<hr>
-
-<h3>Step 5: Knit the Document</h3>
-
-<p>
-Once the code chunk has been created, generate the HTML report.
-</p>
-
-<ol>
-
-<li>
-Select the Knit button at the top of the R Markdown document.
-</li>
-
-<li>
-The Knit button resembles a ball of yarn with a knitting needle.
-</li>
-
-<li>
-Wait for the document to compile.
-</li>
-
-<li>
-A new HTML report should open automatically.
-</li>
-
-</ol>
-
-<p>
-The report will display your code, output, tables, charts, and statistical
-results in a web-friendly format.
-</p>
-
 </div>
-
 </details>
 
 
-<!-- PART 12 -->
 <details>
+<summary>Step 2: Create Your RPubs File</summary>
 
-<summary>
-<span class="step-label">Publish</span><br>
-Create an RPubs File
-</summary>
-    
 <div class="path-step-content">
 
-<p>
-After creating and knitting your R Markdown document, the final step is to
-publish your report to RPubs.
-</p>
+<h2>Publish Your R Markdown Document</h2>
 
 <p>
-RPubs allows you to share your analysis as a web page that can be viewed in any
-browser without requiring RStudio.
-</p>
-
-<p>
-Before beginning, review the RPubs lesson.
-</p>
-
-<p>
-<a href="../RProgram/RPubs.html">
-RPubs
-</a>
-</p>
-
-<hr>
-
-<h3> Open Your R Markdown File</h3>
-
-<ol>
-
-<li>
-Open your completed R Markdown file.
-</li>
-
-<li>
-Verify that the document knits successfully and displays all output correctly.
-</li>
-
-<li>
-Select the Knit button if you have not already generated the HTML report.
-</li>
-
-</ol>
-
-<p>
-After knitting, the completed HTML report should appear in the Viewer pane or open in a web browser.
-</p>
-
-<hr>
-
-<h3> Publish to RPubs</h3>
-
-<ol>
-
-<li>
-Locate the Publish button in the Viewer pane.
-</li>
-
-<li>
-Select Publish to RPubs.
-</li>
-
-<li>
-Log in to your RPubs account.
-</li>
-
-<li>
-If you do not already have an account, create a free RPubs account.
-</li>
-
-<li>
-Enter a title for your report.
-</li>
-
-<li>
-Optionally enter a description.
-</li>
-
-<li>
-Select Publish.
-</li>
-
-</ol>
-
-
-<hr>
-
-<h3>Save the RPubs HTML File</h3>
-
-<p>
-In addition to publishing the report online, save a copy of the HTML file for your records.
+After successfully knitting your R Markdown document to HTML, publish the document to RPubs if your assignment requires an RPubs link.
 </p>
 
 <ol>
 
 <li>
-Open your published RPubs report in a web browser.
+In RStudio, select <strong>Publish</strong> when prompted after knitting.
 </li>
 
 <li>
-Press Ctrl + S (Windows) or Command + S (Mac).
+Select <strong>RPubs</strong>.
 </li>
 
 <li>
-Choose a location on your computer.
+Sign in or create an RPubs account if needed.
 </li>
 
 <li>
-If available, select Webpage, HTML Only.
+Give your document a meaningful title.
 </li>
 
 <li>
-Save the file.
+Publish the document.
+</li>
+
+<li>
+Copy the RPubs URL and submit it according to the assignment instructions.
 </li>
 
 </ol>
 
+<div class="note">
+Before submitting, open your RPubs link in a browser and make sure that your code, tables, statistical output, and written interpretation are visible.
 </div>
 
+</div>
 </details>
 
 </div>
-
 </div>
 
-</div>
+
+<!-- =========================================================
+     FINAL REMINDER
+========================================================= -->
+
+<div class="note">
+
+<strong>Final Check Before You Submit</strong>
+
+<ul>
+
+<li>Did you use the correct dataset?</li>
+
+<li>Did you identify the correct grouping and outcome variables?</li>
+
+<li>Did you calculate descriptive statistics for both groups?</li>
+
+<li>Did you examine the histograms?</li>
+
+<li>Did you examine the boxplots for potential outliers?</li>
+
+<li>Did you run the Shapiro-Wilk test for both groups?</li>
+
+<li>Did you select the Independent T-Test or Mann-Whitney U Test based on the course decision rule?</li>
+
+<li>If your inferential test was significant, did you calculate the appropriate effect size?</li>
+
+<li>Did you report the results using the required format?</li>
+
+<li>Did you knit your R Markdown document successfully?</li>
+
+<li>Did you check your final HTML or RPubs document before submitting?</li>
+
+</ul>
 
 </div>
 
