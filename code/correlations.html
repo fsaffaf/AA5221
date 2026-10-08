@@ -116,7 +116,7 @@ p {
     font-weight: 400;
 }
 
-.test-path-content detailsopen summary::after {
+.test-path-content details[open] summary::after {
     content: "−";
 }
 
@@ -135,7 +135,8 @@ p {
     font-weight: 600;
 }
 
-ul {
+ul,
+ol {
     padding-left: 25px;
 }
 
@@ -271,7 +272,7 @@ code {
     font-weight: 400;
 }
 
-.test-paths .test-path-content detailsopen summary::after {
+.test-paths .test-path-content details[open] summary::after {
     content: "−";
 }
 
@@ -344,13 +345,11 @@ a.button:hover {
 
 <h1>Pearson Correlation &amp; Spearman Correlation</h1>
 
-
 <!-- MAIN PATH -->
 
 <div class="test-path">
 
 <div class="test-path-content">
-
 
 <!-- CODE TEMPLATE -->
 
@@ -369,25 +368,24 @@ Your code will be different because the dataset name, variable names, normality 
 </p>
 
 <div class="highlight-blue">
-<pre><code>#library(readxl)
-#library(ggpubr)
-    
-library(readxl)
+<pre><code>library(readxl)
 library(ggpubr)
 
-data2026 &lt;- read_excel("C:/Users/John/OneDrive/Documents/AA5221/Datasets/correlation_data.xlsx")
+data2026 <- read_excel("C:/Users/John/OneDrive/Documents/AA5221/Datasets/correlation_data.xlsx")
 
 ggscatter(
-    data2026,
-    x = "Age",
-    y = "Income",
-    add = "reg.line",
-    xlab = "Age",
-    ylab = "Income"
+data2026,
+x = "Age",
+y = "Income",
+add = "reg.line",
+xlab = "Age",
+ylab = "Income"
 )
 
 # The relationship is linear.
+
 # The relationship is positive.
+
 # There are no outliers.
 
 mean(data2026$Age)
@@ -401,26 +399,31 @@ median(data2026$Income)
 hist(data2026$Age)
 hist(data2026$Income)
 
-# The variable age is normally distributed.
-# The variable USD is normally distributed.
+# The variable Age is normally distributed.
 
+# The variable Income is normally distributed.
 
 shapiro.test(data2026$Age)
 shapiro.test(data2026$Income)
 
-# The variable age is normally distributed (p = .75).
+# The variable Age was normally distributed (p = .754).
 
-# The variable USD normally distributed (p = .87).
+# The variable Income was normally distributed (p = .865).
 
 cor.test(
-    data2026$Age,
-    data2026$Income,
-    method = "pearson")
+data2026$Age,
+data2026$Income,
+method = "pearson"
+)
 
 # A Pearson correlation was conducted to test the relationship between age and income.
+
 # There was a statistically significant relationship between the variables, r(98) = .42, p = .003.
+
 # The relationship was positive and moderate.
+
 # As age increased, income increased.
+
 </code></pre>
 
 </div>
@@ -429,19 +432,17 @@ cor.test(
 
 </details>
 
-
-<!-- STEP 2 -->
-
+<!-- STEP 1 -->
 
 <details>
 
 <summary>
 <span class="step-label">Step 1</span><br>
-Install & Open the Packages
+Install &amp; Open the Packages
 </summary>
-    
+
 <div class="path-step-content">
-    
+
 <p>
 Packages add additional functionality to R.
 </p>
@@ -460,7 +461,7 @@ Packages add additional functionality to R.
 
 <tr>
 <td><code>ggpubr</code></td>
-<td>Create histograms and boxplots</td>
+<td>Create scatterplots</td>
 </tr>
 
 </table>
@@ -478,7 +479,9 @@ install.packages("ggpubr")
 </code></pre>
 
 </div>
+
 <h3>Output</h3>
+
 <p>
 You may see warning messages appear when you install a package.
 These messages do not necessarily mean that the installation failed.
@@ -500,7 +503,9 @@ library(ggpubr)
 </code></pre>
 
 </div>
+
 <h3>Output</h3>
+
 <p>
 No output will appear. This simply opens the packages so you can use their functions in RStudio.
 </p>
@@ -509,16 +514,16 @@ No output will appear. This simply opens the packages so you can use their funct
 
 </details>
 
+<!-- STEP 2 -->
 
 <details>
 
 <summary>
 <span class="step-label">Step 2</span><br>
-Import & Name the Dataset
+Import &amp; Name the Dataset
 </summary>
-    
-<div class="path-step-content">
 
+<div class="path-step-content">
 
 <p>
 Although datasets can be imported entirely through code, many students
@@ -544,12 +549,10 @@ Locate your assigned Excel dataset.
 
 <li>
 Select the dataset and choose: <span style="color: #e67e22; font-weight: bold;">Open</span>
-
 </li>
 
 <li>
-Return to the import window and elect: <span style="color: #e67e22; font-weight: bold;">Import</span>
-
+Return to the import window and select: <span style="color: #e67e22; font-weight: bold;">Import</span>
 </li>
 
 </ol>
@@ -574,13 +577,13 @@ The generated code will vary depending on your file location and file name.
 
 <h3>Code Template</h3>
 
-<div class="highlight highlight-blue">
+<div class="highlight-blue">
 <pre><code>DatasetName &lt;- read_excel("filepath")</code></pre>
 </div>
 
 <h3>Example</h3>
 
-<div class="highlight highlight-blue">
+<div class="highlight-blue">
 
 <pre><code>DatasetName &lt;- read_excel(
 "C:/Users/John/OneDrive/Documents/AA5221/Datasets/DatasetName.xlsx"
@@ -589,9 +592,9 @@ The generated code will vary depending on your file location and file name.
 </div>
 
 </div>
+
 </details>
 
-    
 <!-- STEP 4 -->
 
 <details>
@@ -636,7 +639,7 @@ Copy and paste the following code into your R Script:
     DatasetName,
     x = "IndependentVariable",
     y = "DependentVariable",
-    add = "reg.line",
+    add = "reg.line"
 )</code></pre>
 
 </div>
@@ -664,10 +667,8 @@ with the names used in your dataset.
     DatasetZ,
     x = "Age",
     y = "USD",
-    add = "reg.line",
-)
-
-</code></pre>
+    add = "reg.line"
+)</code></pre>
 
 </div>
 
@@ -731,13 +732,11 @@ Determine whether meaningful outliers are present.
 <pre><code># The relationship is linear / curved.
 # The relationship is positive / negative / does not exist.
 # There are / are no outliers.</code></pre>
-
 </div>
 
 </div>
 
 </details>
-
 
 <!-- STEP 6 -->
 
@@ -776,8 +775,7 @@ median(<span style="color: #e67e22; font-weight: bold;">DatasetName</span>$<span
 
 mean(<span style="color: #e67e22; font-weight: bold;">DatasetName</span>$<span style="color: #e67e22; font-weight: bold;">Variable2</span>)
 sd(<span style="color: #e67e22; font-weight: bold;">DatasetName</span>$<span style="color: #e67e22; font-weight: bold;">Variable2</span>)
-median(<span style="color: #e67e22; font-weight: bold;">DatasetName</span>$<span style="color: #e67e22; font-weight: bold;">Variable2</span>)
-</code></pre>
+median(<span style="color: #e67e22; font-weight: bold;">DatasetName</span>$<span style="color: #e67e22; font-weight: bold;">Variable2</span>) </code></pre>
 
 </div>
 
@@ -813,13 +811,11 @@ sd(DatasetZ$USD)
 
 median(DatasetZ$USD)
 1 41000
-
 </code></pre>
 
 </div>
 
 </details>
-
 
 <!-- STEP 7 -->
 
@@ -852,7 +848,7 @@ Create a histogram for each variable.
 </p>
 
 <p>
-A histogram is a graph that shows how the values of a continous variable are distributed. It groups values into ranges and uses bars to show how many observations fall within each range.
+A histogram is a graph that shows how the values of a continuous variable are distributed. It groups values into ranges and uses bars to show how many observations fall within each range.
 </p>
 
 <h3>Code Template</h3>
@@ -864,11 +860,9 @@ A histogram is a graph that shows how the values of a continous variable are dis
      border = "white")
 
 hist(<span style="color: #e67e22; font-weight: bold;">DatasetName</span>$<span style="color: #e67e22; font-weight: bold;">Variable2</span>,
-     breaks = 15,
-     col = "firebrick",
-     border = "white")
-
-</code></pre>
+breaks = 15,
+col = "firebrick",
+border = "white") </code></pre>
 
 </div>
 
@@ -890,19 +884,19 @@ hist(<span style="color: #e67e22; font-weight: bold;">DatasetZ</span>$<span styl
 </div>
 
 <h3>Output</h3>
+
 <p>
 Histograms appear in the Plots pane.
 </p>
 
 <hr>
-    
+
 <h3>Interpret the Histograms</h3>
 
 <p>
-In your R Script, report whether you think the histogram is normal or abnormally distributed based on a visual assessment.
-Specifically, visually determine if you think the histogram has normal skewness (symmetry) and kurtosis (height).
+In your R Script, report whether you think the histogram is normally or abnormally distributed based on a visual assessment. Specifically, look for approximate symmetry and a shape that is reasonably consistent with a bell-shaped distribution.
 </p>
-    
+
 <p>
 You can calculate skewness and kurtosis statistically in RStudio to determine if they are normal or abnormal. 
 However, we are keeping things simple for this class.
@@ -939,7 +933,6 @@ Data Visualization and Normality
 
 </details>
 
-
 <!-- STEP 9 -->
 
 <details>
@@ -952,7 +945,8 @@ Check Normality Statistically: Shapiro-Wilk Test
 <div class="path-step-content">
 
 <p>
-The Shapiro-Wilk test allows you to check whether your data is normal or abnormal using a statistical test. The test asks: "Is there a significant difference between my data's distribution and a theoretically perfect distribution?" A p-value of less than .05 indicates there is a significant difference, which means the data is abnormal. A p-value of greater than .05 indiciates there is no significant difference, which means the data is normal.</p>
+The Shapiro-Wilk test allows you to check whether your data are consistent with a normal distribution. A p-value of less than .05 indicates that the data significantly differ from a normal distribution. A p-value greater than .05 indicates that there is not enough evidence to conclude that the data differ from a normal distribution.
+</p>
 
 <h3>Code Template</h3>
 
@@ -986,10 +980,11 @@ p-value = 0.865
 </code></pre>
 
 <hr>
+
 <h3>Interpret the Shapiro-Wilk Test</h3>
 
 <p>
-In your R Script, report if the data is normal or abnormal according to the Shapiro-Wilk test.
+In your R Script, report if the data are normal or abnormal according to the Shapiro-Wilk test.
 </p>
 
 <table>
@@ -1002,14 +997,14 @@ In your R Script, report if the data is normal or abnormal according to the Shap
 
 <tr>
 <td>p &gt; .05</td>
-<td>There is NO significant difference between our data's distribution and a normal distribution.</td>
-<td>Data is normal</td>
+<td>There is no significant evidence that the data differ from a normal distribution.</td>
+<td>Treat the data as normal</td>
 </tr>
 
 <tr>
 <td>p &lt; .05</td>
-<td>There is a significant difference between our data's distribution and a normal distribution.</td>
-<td>Data is abnormal</td>
+<td>There is significant evidence that the data differ from a normal distribution.</td>
+<td>Treat the data as abnormal</td>
 </tr>
 
 </table>
@@ -1032,12 +1027,12 @@ In your R Script, report if the data is normal or abnormal according to the Shap
 </div>
 
 <h3>Output</h3>
+
 <p>NA</p>
 
 </div>
 
 </details>
-
 
 <!-- STEP 11 -->
 
@@ -1053,9 +1048,11 @@ Determine Which Correlation to Use
 <p>
 Were any of your histograms or Shapiro-Wilk tests abnormal?
 If any of them were abnormal, this would require an investigation.
+</p>
 
-In more advanced data analytics classes, we investigate potential causes of abnormal data (if we had expected it to be normal). 
-Potential causes could be data-entry errors or even major methodological errors. 
+<p>
+In more advanced data analytics classes, we investigate potential causes of abnormal data (if we had expected it to be normal).
+Potential causes could be data-entry errors or even major methodological errors.
 Sometimes abnormal data is due to errors that can be fixed.
 </p>
 
@@ -1065,28 +1062,24 @@ Were they both normal, or was one or both abnormal?
 </p>
 
 <p>
-If both were normal, choose the Pearson Correlation.
+If both variables are normally distributed and the scatterplot shows a linear relationship, choose the Pearson Correlation.
 </p>
 
 <p>
-If one or both were abnormal, choose the Spearman Correlation.
+If one or both variables are not normally distributed, choose the Spearman Correlation.
 </p>
-
 
 </div>
 
 </details>
 
-
 </div>
 
 </div>
-
 
 <!-- TEST PATHS -->
 
 <div class="test-paths">
-
 
 <!-- PEARSON -->
 
@@ -1100,7 +1093,6 @@ If one or both were abnormal, choose the Spearman Correlation.
 
 <div class="test-path-content">
 
-
 <!-- STEP 12A -->
 
 <details>
@@ -1113,8 +1105,7 @@ Conduct the Pearson Correlation
 <div class="path-step-content">
 
 <p>
-If both variables are normally distributed, conduct a
-Pearson Correlation.
+If both variables are normally distributed and the scatterplot shows a linear relationship, conduct a Pearson Correlation.
 </p>
 
 <p>
@@ -1132,7 +1123,8 @@ Replace the dataset and variable names with the names used in your dataset.
 <pre><code>cor.test(
     <span style="color: #e67e22; font-weight: bold;">DatasetName</span>$<span style="color: #e67e22; font-weight: bold;">IndependentVariable</span>,
     <span style="color: #e67e22; font-weight: bold;">DatasetName</span>$<span style="color: #e67e22; font-weight: bold;">DependentVariable</span>,
-    method = "pearson")</code></pre>
+    method = "pearson"
+)</code></pre>
 
 </div>
 
@@ -1143,12 +1135,12 @@ Replace the dataset and variable names with the names used in your dataset.
 <pre><code>cor.test(
     <span style="color: #e67e22; font-weight: bold;">DatasetZ</span>$<span style="color: #e67e22; font-weight: bold;">Age</span>,
     <span style="color: #e67e22; font-weight: bold;">DatasetZ</span>$<span style="color: #e67e22; font-weight: bold;">USD</span>,
-    method = "pearson")</code></pre>
+    method = "pearson"
+)</code></pre>
 
 </div>
 
 <h3>Output</h3>
-
 
 <pre><code>Pearson's product-moment correlation
 
@@ -1164,11 +1156,13 @@ cor
 <ul>
     <li>cor = The correlation coefficient (effect size)</li>
 
-    <li>df = Degrees of freedom. Used to calculate the p-value. For Pearson's correlation, it is the sample size minus 2.</li>
+```
+<li>df = Degrees of freedom. Used to calculate the p-value. For Pearson's correlation, it is the sample size minus 2.</li>
 
-    <li>p-Value = Used to determine whether the correlation is statistically significant.</li>
+<li>p-value = Used to determine whether the correlation is statistically significant.</li>
+```
+
 </ul>
-</div>
 
 <p>
 If you need help interpreting your p-value, use the interactive p-value interpreter.
@@ -1181,15 +1175,16 @@ href="https://fsaffaf.github.io/AA5221/tools/p_value_interpreter.html"
 target="_blank"
 rel="noopener noreferrer"
 class="button">
-P-Value Interpreter
-</a>
+P-Value Interpreter </a>
+
 </p>
 
 <hr>
 
 <h3>Effect Size (Correlation Coefficient)</h3>
+
 <p>
-For correlations, the effect size is the correlation coefficient. For Pearson's correlation, it is also known a the r-value.
+For correlations, the effect size is the correlation coefficient. For Pearson's correlation, it is also known as the r-value.
 </p>
 
 <p>
@@ -1238,8 +1233,10 @@ A negative number means that as Variable 1 increases, Variable 2 decreases.
 </tr>
 
 </table>
-</details>
 
+</div>
+
+</details>
 
 <!-- STEP 13A -->
 
@@ -1260,32 +1257,41 @@ There is a standardized method of reporting. DO NOT be creative. Use the provide
 <p>P-Value Reporting</p>
 
 <table style="width: 100%; border-collapse: collapse; font-size: 12pt;">
-    <thead>
-        <tr>
-            <th style="text-align: left; padding: 10px; border-bottom: 2px solid #0e68b3;">p-value</th>
-            <th style="text-align: left; padding: 10px; border-bottom: 2px solid #0e68b3;">How to Report</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td style="padding: 10px; border-bottom: 1px solid #ddd;">p &lt; .001</td>
-            <td style="padding: 10px; border-bottom: 1px solid #ddd;">Report p &lt; .001</td>
-        </tr>
-        <tr>
-            <td style="padding: 10px; border-bottom: 1px solid #ddd;">.001 &lt; p &lt; .05</td>
-            <td style="padding: 10px; border-bottom: 1px solid #ddd;">Report the exact p-value to three decimals (example: p = .003)</td>
-        </tr>
-        <tr>
-            <td style="padding: 10px; border-bottom: 1px solid #ddd;">p &gt; .05</td>
-            <td style="padding: 10px; border-bottom: 1px solid #ddd;">Report p &gt; .05</td>
-        </tr>
-        <tr>
-            <td style="padding: 10px;">All other values</td>
-            <td style="padding: 10px;">Report two decimal places (example: .1252 → .13)</td>
-        </tr>
-    </tbody>
-</table>
 
+<thead>
+
+<tr>
+<th style="text-align: left; padding: 10px; border-bottom: 2px solid #0e68b3;">p-value</th>
+<th style="text-align: left; padding: 10px; border-bottom: 2px solid #0e68b3;">How to Report</th>
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+<td style="padding: 10px; border-bottom: 1px solid #ddd;">p &lt; .001</td>
+<td style="padding: 10px; border-bottom: 1px solid #ddd;">Report p &lt; .001</td>
+</tr>
+
+<tr>
+<td style="padding: 10px; border-bottom: 1px solid #ddd;">.001 &lt; p &lt; .05</td>
+<td style="padding: 10px; border-bottom: 1px solid #ddd;">Report the exact p-value to three decimals (example: p = .003)</td>
+</tr>
+
+<tr>
+<td style="padding: 10px; border-bottom: 1px solid #ddd;">p &gt; .05</td>
+<td style="padding: 10px; border-bottom: 1px solid #ddd;">Report p &gt; .05</td>
+</tr>
+
+<tr>
+<td style="padding: 10px;">All other values</td>
+<td style="padding: 10px;">Report two decimal places (example: .1252 → .13)</td>
+</tr>
+
+</tbody>
+
+</table>
 
 <h3>Pearson Reporting Template</h3>
 
@@ -1298,7 +1304,6 @@ There is a standardized method of reporting. DO NOT be creative. Use the provide
 # The relationship was <span style="color: #e67e22; font-weight: bold;">positive / negative</span> and <span style="color: #e67e22; font-weight: bold;">weak / moderate / strong</span>.
 
 # As <span style="color: #e67e22; font-weight: bold;">Variable1</span> increased, <span style="color: #e67e22; font-weight: bold;">Variable2</span> <span style="color: #e67e22; font-weight: bold;">increased / decreased</span>.</code></pre>
-
 
 </div>
 
@@ -1320,11 +1325,9 @@ There is a standardized method of reporting. DO NOT be creative. Use the provide
 
 </details>
 
-
 </div>
 
 </div>
-
 
 <!-- SPEARMAN -->
 
@@ -1337,7 +1340,6 @@ There is a standardized method of reporting. DO NOT be creative. Use the provide
 </div>
 
 <div class="test-path-content">
-
 
 <!-- STEP 12B -->
 
@@ -1367,7 +1369,8 @@ monotonic relationship between two variables.
 <pre><code>cor.test(
     <span style="color: #e67e22; font-weight: bold;">DatasetName</span>$<span style="color: #e67e22; font-weight: bold;">IndependentVariable</span>,
     <span style="color: #e67e22; font-weight: bold;">DatasetName</span>$<span style="color: #e67e22; font-weight: bold;">DependentVariable</span>,
-    method = "spearman")</code></pre>
+    method = "spearman"
+)</code></pre>
 
 </div>
 
@@ -1378,7 +1381,8 @@ monotonic relationship between two variables.
 <pre><code>cor.test(
     <span style="color: #e67e22; font-weight: bold;">DatasetZ</span>$<span style="color: #e67e22; font-weight: bold;">Age</span>,
     <span style="color: #e67e22; font-weight: bold;">DatasetZ</span>$<span style="color: #e67e22; font-weight: bold;">USD</span>,
-    method = "spearman")</code></pre>
+    method = "spearman"
+)</code></pre>
 
 </div>
 
@@ -1395,13 +1399,20 @@ rho
 0.42</code></pre>
 
 <ul>
-    <li>Spearman's rho (ρ) = The correlation coefficient. Values closer to −1 or +1 indicate a stronger relationship between the two variables.</li>
 
-    <li>Degrees of Freedom (df) = Not reported for Spearman's correlation.</li>
+<li>
+Spearman's rho (ρ) = The correlation coefficient. Values closer to −1 or +1 indicate a stronger relationship between the two variables.
+</li>
 
-    <li>P-Value = Used to determine whether the correlation is statistically significant.</li>
+<li>
+Degrees of Freedom (df) = Not reported for Spearman's correlation.
+</li>
+
+<li>
+p-value = Used to determine whether the correlation is statistically significant.
+</li>
+
 </ul>
-
 
 <p>
 If you need help interpreting your p-value, use the interactive p-value interpreter.
@@ -1414,24 +1425,23 @@ href="https://fsaffaf.github.io/AA5221/tools/p_value_interpreter.html"
 target="_blank"
 rel="noopener noreferrer"
 class="button">
-P-Value Interpreter
-</a>
+P-Value Interpreter </a>
+
 </p>
-    
 
 <p>
 For correlations, the effect size is the correlation coefficient itself
-(r).
+(ρ).
 Unlike tests such as chi-square tests where a separate effect size may be calculated,
 correlation analysis directly produces a measure of effect size.
 </p>
 
 <p>
-The value of r tells us both the direction and strength of the relationship between two variables, so no additional effect size calculation is needed.
+The value of ρ tells us both the direction and strength of the relationship between two variables, so no additional effect size calculation is needed.
 </p>
-    
+
 <p>
-Correlation Coefficient: The correlation coefficient ranges from -1.00 to +1.00. The sign tells you the direction of the relationship, while the number tells you the strength of the relationship.
+The correlation coefficient ranges from -1.00 to +1.00. The sign tells you the direction of the relationship, while the number tells you the strength of the relationship.
 </p>
 
 <table style="width: 100%; border-collapse: collapse; font-size: 12pt;">
@@ -1468,13 +1478,9 @@ Correlation Coefficient: The correlation coefficient ranges from -1.00 to +1.00.
 
 </table>
 
-
 </div>
 
-
-
 </details>
-
 
 <!-- STEP 13B -->
 
@@ -1499,32 +1505,41 @@ There is a standardized method of reporting. DO NOT be creative. Use the provide
 <p>P-Value Reporting</p>
 
 <table style="width: 100%; border-collapse: collapse; font-size: 12pt;">
-    <thead>
-        <tr>
-            <th style="text-align: left; padding: 10px; border-bottom: 2px solid #0e68b3;">p-value</th>
-            <th style="text-align: left; padding: 10px; border-bottom: 2px solid #0e68b3;">How to Report</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td style="padding: 10px; border-bottom: 1px solid #ddd;">p &lt; .001</td>
-            <td style="padding: 10px; border-bottom: 1px solid #ddd;">Report p &lt; .001</td>
-        </tr>
-        <tr>
-            <td style="padding: 10px; border-bottom: 1px solid #ddd;">.001 &lt; p &lt; .05</td>
-            <td style="padding: 10px; border-bottom: 1px solid #ddd;">Report the exact p-value to three decimals (example: p = .003)</td>
-        </tr>
-        <tr>
-            <td style="padding: 10px; border-bottom: 1px solid #ddd;">p &gt; .05</td>
-            <td style="padding: 10px; border-bottom: 1px solid #ddd;">Report p &gt; .05</td>
-        </tr>
-        <tr>
-            <td style="padding: 10px;">All other values</td>
-            <td style="padding: 10px;">Report two decimal places (example: .1252 → .13)</td>
-        </tr>
-    </tbody>
-</table>
 
+<thead>
+
+<tr>
+<th style="text-align: left; padding: 10px; border-bottom: 2px solid #0e68b3;">p-value</th>
+<th style="text-align: left; padding: 10px; border-bottom: 2px solid #0e68b3;">How to Report</th>
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+<td style="padding: 10px; border-bottom: 1px solid #ddd;">p &lt; .001</td>
+<td style="padding: 10px; border-bottom: 1px solid #ddd;">Report p &lt; .001</td>
+</tr>
+
+<tr>
+<td style="padding: 10px; border-bottom: 1px solid #ddd;">.001 &lt; p &lt; .05</td>
+<td style="padding: 10px; border-bottom: 1px solid #ddd;">Report the exact p-value to three decimals (example: p = .003)</td>
+</tr>
+
+<tr>
+<td style="padding: 10px; border-bottom: 1px solid #ddd;">p &gt; .05</td>
+<td style="padding: 10px; border-bottom: 1px solid #ddd;">Report p &gt; .05</td>
+</tr>
+
+<tr>
+<td style="padding: 10px;">All other values</td>
+<td style="padding: 10px;">Report two decimal places (example: .1252 → .13)</td>
+</tr>
+
+</tbody>
+
+</table>
 
 <h3>Spearman Reporting Template</h3>
 
@@ -1537,9 +1552,8 @@ There is a standardized method of reporting. DO NOT be creative. Use the provide
 # The relationship was <span style="color: #e67e22; font-weight: bold;">positive / negative</span> and <span style="color: #e67e22; font-weight: bold;">weak / moderate / strong</span>.
 
 # As <span style="color: #e67e22; font-weight: bold;">Variable1</span> increased, <span style="color: #e67e22; font-weight: bold;">Variable2</span> <span style="color: #e67e22; font-weight: bold;">increased / decreased</span>.</code></pre>
+
 </div>
-
-
 
 <h3>Example</h3>
 
@@ -1552,20 +1566,18 @@ There is a standardized method of reporting. DO NOT be creative. Use the provide
 # The relationship was <span style="color: #e67e22; font-weight: bold;">positive</span> and <span style="color: #e67e22; font-weight: bold;">moderate</span>.
 
 # As <span style="color: #e67e22; font-weight: bold;">age</span> increased, <span style="color: #e67e22; font-weight: bold;">income</span> <span style="color: #e67e22; font-weight: bold;">increased</span>.</code></pre>
- </div>
-   
+
+</div>
 
 </div>
 
 </details>
 
-
 </div>
 
 </div>
 
 </div>
-
 
 <!-- FINAL STEPS -->
 
@@ -1573,7 +1585,7 @@ There is a standardized method of reporting. DO NOT be creative. Use the provide
 
 <div class="test-path-content">
 
-
+<!-- R MARKDOWN -->
 
 <details>
 
@@ -1581,7 +1593,7 @@ There is a standardized method of reporting. DO NOT be creative. Use the provide
 <span class="step-label">Prepare to Publish</span><br>
 Create an RMarkdown File
 </summary>
-    
+
 <div class="path-step-content">
 
 <p>
@@ -1607,7 +1619,7 @@ R Markdown Files
 
 <hr>
 
-<h3> Create a New R Markdown File</h3>
+<h3>Create a New R Markdown File</h3>
 
 <ol>
 
@@ -1637,7 +1649,7 @@ The default settings are sufficient for this assignment.
 
 <hr>
 
-<h3> Save the R Markdown File</h3>
+<h3>Save the R Markdown File</h3>
 
 <ol>
 
@@ -1669,7 +1681,7 @@ Paste the code into the empty R Markdown document.
 
 <hr>
 
-<h3> Create a Code Chunk</h3>
+<h3>Create a Code Chunk</h3>
 
 <p>
 R code inside an R Markdown file must be placed inside a
@@ -1754,15 +1766,15 @@ results in a web-friendly format.
 
 </details>
 
+<!-- RPUBS -->
 
-<!-- PART 12 -->
 <details>
 
 <summary>
 <span class="step-label">Publish</span><br>
 Create an RPubs File
 </summary>
-    
+
 <div class="path-step-content">
 
 <p>
@@ -1787,7 +1799,7 @@ RPubs
 
 <hr>
 
-<h3> Open Your R Markdown File</h3>
+<h3>Open Your R Markdown File</h3>
 
 <ol>
 
@@ -1811,7 +1823,7 @@ After knitting, the completed HTML report should appear in the Viewer pane or op
 
 <hr>
 
-<h3> Publish to RPubs</h3>
+<h3>Publish to RPubs</h3>
 
 <ol>
 
@@ -1844,7 +1856,6 @@ Select Publish.
 </li>
 
 </ol>
-
 
 <hr>
 
@@ -1890,9 +1901,6 @@ Save the file.
 
 </div>
 
-</div>
-
 </body>
 
 </html>
-
