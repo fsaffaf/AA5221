@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dependent T-Test &amp; Wilcoxon Signed-Rank Test</title>
+<title>Dependent t-Test &amp; Wilcoxon Signed-Rank Test</title>
 
 <style>
 
@@ -341,18 +341,17 @@ a.button:hover {
 
 <div class="container">
 
-<h1>Dependent T-Test &amp; Wilcoxon Signed-Rank Test</h1>
+<h1>Dependent t-Test &amp; Wilcoxon Signed-Rank Test</h1>
 
 <!-- MAIN PATH -->
 
 <div class="test-path">
 
 <div class="test-path-header">
-<h2>Steps to Conduct a Dependent t-test (or Wilcoxon Signed-Rank Test) in RStudio</h2>
+<h2>Steps to Conduct a Dependent t-Test (or Wilcoxon Signed-Rank Test) in RStudio</h2>
 </div>
 
 <div class="test-path-content">
-
 
 <!-- OVERVIEW -->
 
@@ -366,7 +365,7 @@ Overview of the Test
 <div class="path-step-content">
 
 <p>
-A <strong>Dependent T-Test</strong>, also called a <strong>Paired Samples T-Test</strong>, tests whether there is a  difference in outcome scores before versus after participants are exposed to an independent variable.
+A <strong>dependent t-test</strong>, also called a <strong>paired-samples t-test</strong>, tests whether there is a difference in outcome scores before versus after participants are exposed to an independent variable.
 </p>
 
 <p>
@@ -375,7 +374,7 @@ Because the same participants are measured twice, this is called a
 </p>
 
 <p>
-The normality assumption for a Dependent T-Test applies to the
+The normality assumption for a dependent t-test applies to the
 <strong>difference scores</strong>, not to the Before and After scores separately.
 </p>
 
@@ -387,7 +386,7 @@ The normality assumption for a Dependent T-Test applies to the
 
 <p>
 If the difference scores are normally distributed, use a
-<strong>Dependent T-Test</strong>.
+<strong>dependent t-test</strong>.
 </p>
 
 <p>
@@ -396,7 +395,7 @@ If the difference scores are not normally distributed, use the
 </p>
 
 <p>
-The Dependent T-Test is generally preferred when its assumptions are reasonably met because it uses the actual numerical values of the paired observations and can provide greater statistical power for detecting a  difference.
+The dependent t-test is generally preferred when its assumptions are reasonably met because it uses the actual numerical values of the paired observations and can provide greater statistical power for detecting a difference.
 The Wilcoxon Signed-Rank Test is a useful alternative when the difference scores are not normally distributed.
 </p>
 
@@ -410,7 +409,7 @@ The Wilcoxon Signed-Rank Test is a useful alternative when the difference scores
 
 <tr>
 <td>Research Question</td>
-<td>Is there a  difference in the outcome scores before versus after the independent variable?</td>
+<td>Is there a difference in the outcome scores before versus after the independent variable?</td>
 <td>Is there a mean difference in weight (kg) before versus after the exercise program?</td>
 </tr>
 
@@ -431,7 +430,6 @@ The Wilcoxon Signed-Rank Test is a useful alternative when the difference scores
 </div>
 
 </details>
-
 
 <!-- CODE TEMPLATE -->
 
@@ -475,7 +473,6 @@ hist(Differences,
      col = "blue",
      border = "white")
 
-
 boxplot(Differences,
         main = "Distribution of Score Differences (After - Before)",
         ylab = "Difference in Scores",
@@ -485,22 +482,21 @@ boxplot(Differences,
 # The difference scores boxplot has one outlier.
 
 shapiro.test(Differences)
-#The data is normally distributed, (p = .934).
+# The data is normally distributed, (p = .934).
 
 t.test(Before, After, paired = TRUE, na.action = na.omit)
 
 cohen.d(Before, After, paired = TRUE)
 
 # A Dependent T-Test was conducted to determine if there was a difference in weight between Before and After.
-Before scores (M = 7.82, SD = 1.64) were significantly different from After scores (M = 5.21, SD = 1.48), t(19) = 4.12, p < .001.
-#The effect size was large, Cohen's d = 0.65.
+# Before scores (M = 7.82, SD = 1.64) were significantly different from After scores (M = 5.21, SD = 1.48), t(19) = 4.12, p &lt; .001.
+# The effect size was large, Cohen's d = 0.65.
 
 </code></pre>
 
 </div>
 
 </details>
-
 
 <!-- STEP 1 -->
 
@@ -536,7 +532,7 @@ Packages add additional functionality to R.
 
 <tr>
 <td><code>effsize</code></td>
-<td>Calculate the effect size for the Dependent T-Test</td>
+<td>Calculate the effect size for the dependent t-test</td>
 </tr>
 
 <tr>
@@ -594,7 +590,6 @@ No output will appear. This simply opens the packages so you can use their funct
 </div>
 
 </details>
-
 
 <!-- STEP 2 -->
 
@@ -664,7 +659,6 @@ This allows the dataset to be automatically imported whenever you reopen your R 
 
 </details>
 
-
 <!-- STEP 3 -->
 
 <details>
@@ -682,7 +676,7 @@ Then calculate the difference score for each participant.
 </p>
 
 <p>
-This difference score is what we use to check the normality assumption for the Dependent T-Test.
+This difference score is what we use to check the normality assumption for the dependent t-test.
 </p>
 
 <p><strong>Code Template</strong></p>
@@ -715,7 +709,6 @@ Differences &lt;- After - Before</code></pre>
 
 </details>
 
-
 <!-- STEP 4 -->
 
 <details>
@@ -742,8 +735,8 @@ sd(Before, na.rm = TRUE)
 
 mean(After, na.rm = TRUE)
 median(After, na.rm = TRUE)
-sd(After, na.rm = TRUE)
-</code></pre>
+sd(After, na.rm = TRUE) </code></pre>
+
 </div>
 
 <p><strong>Example Output</strong></p>
@@ -764,7 +757,6 @@ sd(After, na.rm = TRUE)
 
 </details>
 
-
 <!-- STEP 5 -->
 
 <details>
@@ -777,16 +769,17 @@ Normality Check 1: Histogram
 <div class="path-step-content">
 
 <p>
-Because normnality is so important, data analysts check normality in at least three different ways before determining which test to use. The first way is by creating and checking histograms.
+Because normality is important, data analysts examine the distribution of the data in several ways before determining which test to use.
 <br>
 For dependent t-tests, we check the normality of the <strong>difference scores</strong>.
 </p>
 
-    
 <h3>Create the Histogram</h3>
 
-For a Dependent T-Test, the normality assumption applies to the
+<p>
+For a dependent t-test, the normality assumption applies to the
 <strong>difference scores</strong>, not to the Before and After scores separately.
+</p>
 
 <p>
 A histogram is a graph that shows how the values of a numerical variable are distributed. It groups values into ranges and uses bars to show how many observations fall within each range.
@@ -802,7 +795,6 @@ A histogram is a graph that shows how the values of a numerical variable are dis
      border = "white")
 </code></pre>
 
-
 </div>
 
 <p>
@@ -816,18 +808,18 @@ A histogram is a graph that shows how the values of a numerical variable are dis
         style="width: 800px; max-width: 100%; height: auto;"
     >
 </div>
-    
+
 <hr>
 
-<h3>Interpret the Histograms</h3>
+<h3>Interpret the Histogram</h3>
 
 <p>
-In your R Script, report whether you think the histogram is normal or abnormally distributed based on a visual assessment.
+In your R Script, report whether you think the histogram is normally or abnormally distributed based on a visual assessment.
 <br>
 Specifically, visually determine if you think the histogram has normal skewness (symmetry) and kurtosis (height).
 <br>
-You can calculate statistics such as skewness and kurtosis to describe the shape of a distribution more precisely. 
-However, we are keeping it simple in this class. You do not need to calculate these statistics by hand. 
+You can calculate statistics such as skewness and kurtosis to describe the shape of a distribution more precisely.
+However, we are keeping it simple in this class. You do not need to calculate these statistics by hand.
 Instead, use the histogram to visually assess whether the data look approximately normal or noticeably skewed.
 </p>
 
@@ -843,15 +835,18 @@ Data Visualization and Normality
 </p>
 
 <p><strong>Reporting Template</strong></p>
+
 <div class="highlight-blue">
+
 <pre><code>
-#Data for the difference scores appears [abnormally / normally] distributed.
+# Data for the difference scores appears [abnormally / normally] distributed.
 </code></pre>
+
 </div>
+
 </div>
 
 </details>
-
 
 <!-- STEP 6 -->
 
@@ -864,28 +859,29 @@ Normality Check 2: Boxplot
 
 <div class="path-step-content">
 
-
 <p>
-Before conducting the t-test, create boxplots to check for outliers in your numerical variables. An <strong>outlier</strong> is a score that is unusually high or low compared to the other scores in the dataset.
-Outliers can affect the normality of a dataset. An outlier can increase the <strong>skewness</strong> of a dataset, which can be the difference between normal and abnormal data.
-<p>
-
-<h3>Boxplots</h3>
-
-<p>
-A box-and-whisker plot, or <strong>boxplot</strong>, provides a quick visual summary of a numerical variable. 
-The box shows the middle 50% of the data, the line inside the box shows the median, and the whiskers (lines outside the box) extend to the typical lower and higher values. 
-Individual dots outside the whiskers represent potential outliers. A boxplot allows you to quickly see the center, spread, and unusual values in a continuous variable.
+Before conducting the t-test, create a boxplot to check for potential outliers in the difference scores.
+An <strong>outlier</strong> is a score that is unusually high or low compared to the other scores in the dataset.
+Outliers can affect the distribution of the data and may influence the results of statistical analyses.
+An outlier can also increase the <strong>skewness</strong> of a dataset.
 </p>
 
+<h3>Boxplot</h3>
 
-    
+<p>
+A box-and-whisker plot, or <strong>boxplot</strong>, provides a quick visual summary of a numerical variable.
+The box shows the middle 50% of the data, the line inside the box shows the median, and the whiskers (lines outside the box) extend to the typical lower and higher values.
+Individual dots outside the whiskers represent potential outliers.
+A boxplot allows you to quickly see the center, spread, and unusual values in a continuous variable.
+</p>
+
 <div style="text-align: center; margin: 30px 0;">
 
 <img
 src="https://www.simplypsychology.org/wp-content/uploads/box-and-whisker-plot-for-the-standard-normal-distribution.jpg"
 alt="Box-and-whisker plot showing the standard normal distribution"
 style="display: block; width: 90%; max-width: 1000px; height: auto; margin: 0 auto;"
+
 >
 
 </div>
@@ -907,63 +903,78 @@ style="display: block; width: 90%; max-width: 1000px; height: auto; margin: 0 au
 <p>
 <strong>Output:</strong> The boxplot appears in the Plots pane.
 </p>
+
 <div style="text-align: center; margin: 30px 0;">
-    <img 
-        src="https://live.staticflickr.com/65535/55542050334_854a1da479_c.jpg" 
-        alt="Differences Boxplot"
-        style="width: 800px; max-width: 100%; height: auto;"
-    >
+
+```
+<img 
+    src="https://live.staticflickr.com/65535/55542050334_854a1da479_c.jpg" 
+    alt="Differences Boxplot"
+    style="width: 800px; max-width: 100%; height: auto;"
+>
+```
+
 </div>
+
 <hr>
 
-<h3>Interpret the Boxplots</h3>
+<h3>Interpret the Boxplot</h3>
 
 <p>
-In your R Script, report if each boxplot was normal or not normal.
-There are statistical analyses we can do to definitively determine if a dot is truly an outlier.  However, we will keep things simple for our class.
+In your R Script, report whether the difference scores boxplot has any potential outliers.
+There are statistical analyses we can use to investigate potential outliers more definitively.
+However, we will keep things simple for our class.
 </p>
-    
+
 <p>
-Look for individual dots <strong>beyond</strong> the whiskers. Those are potential outliers.
+Look for individual dots <strong>beyond</strong> the whiskers.
+Those are potential outliers.
 </p>
 
 <p><strong>Reporting Template</strong></p>
 
 <div class="highlight-blue">
+
 <pre><code>
 # The difference scores boxplot <span style="color: #e67e22; font-weight: bold;">does / does not have</span> outliers.
 </code></pre>
+
 </div>
 
 <p><strong>Example</strong></p>
 
 <div class="highlight-blue">
+
 <pre><code>
 # The difference scores boxplot has one outlier.
 </code></pre>
+
 </div>
 
+<h3>What Causes Outliers?</h3>
 
-<h3>What Causes Outlier?</h3>
-  
 <p>
-Sometimes the outlier is a legitimate datapoint. For example, let's say we were collecting data on the average income of a U.S. citizen and, somehow, Elon Musk took our survey. 
-Although his data is legitimate, he would be an outlier that severely impacts our dataset and causes the data to be abnormal (specifically negatively skewed).
+Sometimes the outlier is a legitimate data point.
+For example, let's say we were collecting data on the average income of a U.S. citizen and, somehow, Elon Musk took our survey.
+Although his data is legitimate, he would be an outlier that could severely impact our dataset and contribute to a skewed distribution.
 Sometimes an outlier is due to a survey response error, such as a participant accidentally adding an extra zero to their annual income.
-<p>
+</p>
 
-<h3>What do we do with outliers?</h3>
+<h3>What Do We Do with Outliers?</h3>
 
 <p>
-In more advanced data analytics classes, we investigate potential outliers before deciding what to do with them. Check the original data and consider the value in the context of the variable and research question. Ask: Is this value correct? Does it make sense? Is there a reasonable explanation for why it is unusual?</em>
-If an outlier is the result of a data-entry or measurement error, it may be appropriate to correct or remove it. If the value is accurate and represents a legitimate observation</strong>, do not remove it simply because it is unusual. Any decision to remove an observation should have a clear justification and should be documented.
+In more advanced data analytics classes, we investigate potential outliers before deciding what to do with them.
+Check the original data and consider the value in the context of the variable and research question.
+Ask: Is this value correct? Does it make sense? Is there a reasonable explanation for why it is unusual?
+If an outlier is the result of a data-entry or measurement error, it may be appropriate to correct or remove it.
+If the value is accurate and represents a legitimate observation, do not remove it simply because it is unusual.
+Any decision to remove an observation should have a clear justification and should be documented.
 Removing a legitimate outlier can change the distribution, sample size, and results of your analysis.
 </p>
 
 </div>
 
 </details>
-
 
 <!-- STEP 7 -->
 
@@ -1035,8 +1046,8 @@ W = 0.99388, p-value = 0.9349</code></pre>
 
 <div class="highlight-blue">
 
-<pre><code>#Shapiro-Wilk Difference Scores
-#The data is [normally / abnormally] distributed, (p = .xxx).</code></pre>
+<pre><code># Shapiro-Wilk Difference Scores
+# The data is [normally / abnormally] distributed, (p = .xxx).</code></pre>
 
 </div>
 
@@ -1044,19 +1055,18 @@ W = 0.99388, p-value = 0.9349</code></pre>
 
 <div class="highlight-blue">
 
-<pre><code>#Shapiro-Wilk Difference Scores
-#The data is normally distributed, (p = .934).</code></pre>
+<pre><code># Shapiro-Wilk Difference Scores
+# The data is normally distributed, (p = .934).</code></pre>
 
 </div>
 
 <p>
-<strong>Output:</strong> NA
+<strong>Output:</strong> The Shapiro-Wilk test results appear in the Console.
 </p>
 
 </div>
 
 </details>
-
 
 <!-- STEP 8 -->
 
@@ -1068,19 +1078,20 @@ Select the Correct Test
 </summary>
 
 <div class="path-step-content">
+
 <p>
-Was the histogram, boxplot, or shapiro-wilk test abnormal?
+Was the histogram, boxplot, or Shapiro-Wilk test abnormal?
 If any of them were abnormal, this would require an investigation.
 </p>
 
 <p>
-Since we are keeping our class simple, just look at your Shapiro-Wilk tests.
+Since we are keeping our class simple, just look at your Shapiro-Wilk test.
 Was it normal?
 </p>
 
 <p>
 If it was normal, choose the dependent t-test.
-If it was not normal, choose the wilcoxon signed-rank test.
+If it was not normal, choose the Wilcoxon Signed-Rank Test.
 </p>
 
 </div>
@@ -1091,18 +1102,19 @@ If it was not normal, choose the wilcoxon signed-rank test.
 
 </div>
 
-
 <!-- TEST PATHS -->
 
 <div class="test-paths">
-
 
 <!-- DEPENDENT T-TEST -->
 
 <div class="test-path">
 
-<div class="test-path-content">
+<div class="test-path-header">
+<h3>Dependent t-Test</h3>
+</div>
 
+<div class="test-path-content">
 
 <!-- STEP 9A -->
 
@@ -1110,13 +1122,13 @@ If it was not normal, choose the wilcoxon signed-rank test.
 
 <summary>
 <span class="step-label">Step 9a</span><br>
-Conduct the Dependent T-Test
+Conduct the Dependent t-Test
 </summary>
 
 <div class="path-step-content">
 
 <p>
-Conduct the Dependent T-Test determines whether there is a statistically significant difference between the Before and After scores.
+Conduct the dependent t-test to determine whether there is a statistically significant difference between the Before and After scores.
 </p>
 
 <p><strong>Exact Code</strong></p>
@@ -1150,7 +1162,6 @@ mean of the differences
 </div>
 
 </details>
-
 
 <!-- STEP 10A -->
 
@@ -1212,14 +1223,13 @@ Calculate Cohen's d (Effect Size)
 
 </details>
 
-
 <!-- STEP 11A -->
 
 <details>
 
 <summary>
 <span class="step-label">Step 11a</span><br>
-Report the Dependent T-Test
+Report the Dependent t-Test
 </summary>
 
 <div class="path-step-content">
@@ -1236,30 +1246,55 @@ There is a standardized method of reporting. DO NOT be creative. Use the provide
 <p><strong>P-Value Reporting</strong></p>
 
 <table style="width: 100%; border-collapse: collapse; font-size: 12pt;">
-    <thead>
-        <tr>
-            <th style="text-align: left; padding: 10px; border-bottom: 2px solid #0e68b3;">p-value</th>
-            <th style="text-align: left; padding: 10px; border-bottom: 2px solid #0e68b3;">How to Report</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td style="padding: 10px; border-bottom: 1px solid #ddd;"><strong>p &lt; .001</strong></td>
-            <td style="padding: 10px; border-bottom: 1px solid #ddd;">Report <strong>p &lt; .001</strong></td>
-        </tr>
-        <tr>
-            <td style="padding: 10px; border-bottom: 1px solid #ddd;"><strong>.001 &lt; p &lt; .05</strong></td>
-            <td style="padding: 10px; border-bottom: 1px solid #ddd;">Report the exact p-value to three decimals (example: <strong>p = .003</strong>)</td>
-        </tr>
-        <tr>
-            <td style="padding: 10px; border-bottom: 1px solid #ddd;"><strong>p &gt; .05</strong></td>
-            <td style="padding: 10px; border-bottom: 1px solid #ddd;">Report <strong>p &gt; .05</strong></td>
-        </tr>
-        <tr>
-            <td style="padding: 10px;"><strong>All other values</strong></td>
-            <td style="padding: 10px;">Report two decimal places (example: <strong>.1252 → .13</strong>)</td>
-        </tr>
-    </tbody>
+
+<thead>
+
+<tr>
+<th style="text-align: left; padding: 10px; border-bottom: 2px solid #0e68b3;">
+p-value
+</th>
+
+<th style="text-align: left; padding: 10px; border-bottom: 2px solid #0e68b3;">
+How to Report
+</th>
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+<td style="padding: 10px; border-bottom: 1px solid #ddd;">
+<strong>p &lt; .001</strong>
+</td>
+
+<td style="padding: 10px; border-bottom: 1px solid #ddd;">
+Report <strong>p &lt; .001</strong>
+</td>
+</tr>
+
+<tr>
+<td style="padding: 10px; border-bottom: 1px solid #ddd;">
+<strong>.001 &lt; p &lt; .05</strong>
+</td>
+
+<td style="padding: 10px; border-bottom: 1px solid #ddd;">
+Report the exact p-value to three decimals (example: <strong>p = .003</strong>)
+</td>
+</tr>
+
+<tr>
+<td style="padding: 10px;">
+<strong>p &gt; .05</strong>
+</td>
+
+<td style="padding: 10px;">
+Report <strong>p &gt; .05</strong>
+</td>
+</tr>
+
+</tbody>
+
 </table>
 
 <h3>Definitions</h3>
@@ -1279,7 +1314,7 @@ There is a standardized method of reporting. DO NOT be creative. Use the provide
 </ul>
 
 <p>
-For the Dependent T-Test, degrees of freedom are calculated as the number of paired observations minus 1.
+For the dependent t-test, degrees of freedom are calculated as the number of paired observations minus 1.
 For example, if there are 20 participants:
 <strong>df = 20 − 1 = 19</strong>.
 </p>
@@ -1288,35 +1323,39 @@ For example, if there are 20 participants:
 
 <div class="highlight-blue">
 
-<pre><code># A Dependent T-Test was conducted to determine if there was a difference in <span style="color: #e67e22; font-weight: bold;">OutcomeVariable</span> between <span style="color: #e67e22; font-weight: bold;">Group1</span> and <span style="color: #e67e22; font-weight: bold;">Group2</span>.
-<span style="color: #e67e22; font-weight: bold;">Group1</span> scores (M = <span style="color: #e67e22; font-weight: bold;">xx.xx</span>, SD = <span style="color: #e67e22; font-weight: bold;">xx.xx</span>) were <span style="color: #e67e22; font-weight: bold;">significantly / not significantly</span> different from <span style="color: #e67e22; font-weight: bold;">Group2</span> scores (M = <span style="color: #e67e22; font-weight: bold;">xx.xx</span>, SD = <span style="color: #e67e22; font-weight: bold;">xx.xx</span>), (t(<span style="color: #e67e22; font-weight: bold;">df#</span> = <span style="color: #e67e22; font-weight: bold;">xx.xx</span>, p = <span style="color: #e67e22; font-weight: bold;">.xxx</span>)
-#The effect size was [small / medium / large / very large], Cohen's d = .xxx.</code></pre>
+<pre><code># A Dependent t-Test was conducted to determine if there was a difference in <span style="color: #e67e22; font-weight: bold;">OutcomeVariable</span> between <span style="color: #e67e22; font-weight: bold;">Group1</span> and <span style="color: #e67e22; font-weight: bold;">Group2</span>.
+# <span style="color: #e67e22; font-weight: bold;">Group1</span> scores (M = <span style="color: #e67e22; font-weight: bold;">xx.xx</span>, SD = <span style="color: #e67e22; font-weight: bold;">xx.xx</span>) were <span style="color: #e67e22; font-weight: bold;">significantly / not significantly</span> different from <span style="color: #e67e22; font-weight: bold;">Group2</span> scores (M = <span style="color: #e67e22; font-weight: bold;">xx.xx</span>, SD = <span style="color: #e67e22; font-weight: bold;">xx.xx</span>), t(<span style="color: #e67e22; font-weight: bold;">df#</span>) = <span style="color: #e67e22; font-weight: bold;">xx.xx</span>, p = <span style="color: #e67e22; font-weight: bold;">.xxx</span>.
+# The effect size was [small / medium / large / very large], Cohen's d = .xxx.</code></pre>
+
 </div>
 
 <p><strong>Example Report</strong></p>
 
 <div class="highlight-blue">
-<pre><code># A Dependent T-Test was conducted to determine if there was a difference in <span style="color: #e67e22; font-weight: bold;">weight</span> between <span style="color: #e67e22; font-weight: bold;">Before</span> and <span style="color: #e67e22; font-weight: bold;">After</span>.
-<span style="color: #e67e22; font-weight: bold;">Before</span> scores (M = <span style="color: #e67e22; font-weight: bold;">7.82</span>, SD = <span style="color: #e67e22; font-weight: bold;">1.64</span>) were <span style="color: #e67e22; font-weight: bold;">significantly</span> different from <span style="color: #e67e22; font-weight: bold;">After</span> scores (M = <span style="color: #e67e22; font-weight: bold;">5.21</span>, SD = <span style="color: #e67e22; font-weight: bold;">1.48</span>), t(<span style="color: #e67e22; font-weight: bold;">19</span>) = <span style="color: #e67e22; font-weight: bold;">4.12</span>, p &lt; <span style="color: #e67e22; font-weight: bold;">.001</span>.
-#The effect size was <span style="color: #e67e22; font-weight: bold;">large</span>, Cohen's d = <span style="color: #e67e22; font-weight: bold;">0.65</span>.</code></pre>
+
+<pre><code># A Dependent t-Test was conducted to determine if there was a difference in <span style="color: #e67e22; font-weight: bold;">weight</span> between <span style="color: #e67e22; font-weight: bold;">Before</span> and <span style="color: #e67e22; font-weight: bold;">After</span>.
+# <span style="color: #e67e22; font-weight: bold;">Before</span> scores (M = <span style="color: #e67e22; font-weight: bold;">7.82</span>, SD = <span style="color: #e67e22; font-weight: bold;">1.64</span>) were <span style="color: #e67e22; font-weight: bold;">significantly</span> different from <span style="color: #e67e22; font-weight: bold;">After</span> scores (M = <span style="color: #e67e22; font-weight: bold;">5.21</span>, SD = <span style="color: #e67e22; font-weight: bold;">1.48</span>), t(<span style="color: #e67e22; font-weight: bold;">19</span>) = <span style="color: #e67e22; font-weight: bold;">4.12</span>, p &lt; <span style="color: #e67e22; font-weight: bold;">.001</span>.
+# The effect size was <span style="color: #e67e22; font-weight: bold;">large</span>, Cohen's d = <span style="color: #e67e22; font-weight: bold;">0.65</span>.</code></pre>
+
 </div>
 
 </div>
 
 </details>
 
-
 </div>
 
 </div>
-
 
 <!-- WILCOXON -->
 
 <div class="test-path">
 
-<div class="test-path-content">
+<div class="test-path-header">
+<h3>Wilcoxon Signed-Rank Test</h3>
+</div>
 
+<div class="test-path-content">
 
 <!-- STEP 9B -->
 
@@ -1330,7 +1369,7 @@ Conduct the Wilcoxon Signed-Rank Test
 <div class="path-step-content">
 
 <p>
-Conduct the Wilcoxon Signed-Rank Test determine whether there is a statistically significant difference between the Before and After scores.
+Conduct the Wilcoxon Signed-Rank Test to determine whether there is a statistically significant difference between the Before and After scores.
 </p>
 
 <p><strong>Exact Code</strong></p>
@@ -1359,7 +1398,6 @@ true location shift is not equal to 0</code></pre>
 
 </details>
 
-
 <!-- STEP 10B -->
 
 <details>
@@ -1372,7 +1410,7 @@ Calculate the Effect Size
 <div class="path-step-content">
 
 <p>
-The effect size is reported as <strong>r</strong>.
+The Wilcoxon effect size is reported as <strong>r</strong>.
 </p>
 
 <p><strong>Exact Code</strong></p>
@@ -1380,7 +1418,7 @@ The effect size is reported as <strong>r</strong>.
 <div class="highlight-orange">
 
 <pre><code>df_long &lt;- data.frame(id = rep(1:length(Before), 2), time = rep(c("Before", "After"), each = length(Before)), score = c(Before, After))
-<br>wilcox_effsize(df_long, score ~ time, paired = TRUE)</code></pre>
+wilcox_effsize(df_long, score ~ time, paired = TRUE)</code></pre>
 
 </div>
 
@@ -1423,7 +1461,6 @@ The effect size is reported as <strong>r</strong>.
 
 </details>
 
-
 <!-- STEP 11B -->
 
 <details>
@@ -1447,30 +1484,55 @@ There is a standardized method of reporting. DO NOT be creative. Use the provide
 <p><strong>P-Value Reporting</strong></p>
 
 <table style="width: 100%; border-collapse: collapse; font-size: 12pt;">
-    <thead>
-        <tr>
-            <th style="text-align: left; padding: 10px; border-bottom: 2px solid #0e68b3;">p-value</th>
-            <th style="text-align: left; padding: 10px; border-bottom: 2px solid #0e68b3;">How to Report</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td style="padding: 10px; border-bottom: 1px solid #ddd;"><strong>p &lt; .001</strong></td>
-            <td style="padding: 10px; border-bottom: 1px solid #ddd;">Report <strong>p &lt; .001</strong></td>
-        </tr>
-        <tr>
-            <td style="padding: 10px; border-bottom: 1px solid #ddd;"><strong>.001 &lt; p &lt; .05</strong></td>
-            <td style="padding: 10px; border-bottom: 1px solid #ddd;">Report the exact p-value to three decimals (example: <strong>p = .003</strong>)</td>
-        </tr>
-        <tr>
-            <td style="padding: 10px; border-bottom: 1px solid #ddd;"><strong>p &gt; .05</strong></td>
-            <td style="padding: 10px; border-bottom: 1px solid #ddd;">Report <strong>p &gt; .05</strong></td>
-        </tr>
-        <tr>
-            <td style="padding: 10px;"><strong>All other values</strong></td>
-            <td style="padding: 10px;">Report two decimal places (example: <strong>.1252 → .13</strong>)</td>
-        </tr>
-    </tbody>
+
+<thead>
+
+<tr>
+<th style="text-align: left; padding: 10px; border-bottom: 2px solid #0e68b3;">
+p-value
+</th>
+
+<th style="text-align: left; padding: 10px; border-bottom: 2px solid #0e68b3;">
+How to Report
+</th>
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+<td style="padding: 10px; border-bottom: 1px solid #ddd;">
+<strong>p &lt; .001</strong>
+</td>
+
+<td style="padding: 10px; border-bottom: 1px solid #ddd;">
+Report <strong>p &lt; .001</strong>
+</td>
+</tr>
+
+<tr>
+<td style="padding: 10px; border-bottom: 1px solid #ddd;">
+<strong>.001 &lt; p &lt; .05</strong>
+</td>
+
+<td style="padding: 10px; border-bottom: 1px solid #ddd;">
+Report the exact p-value to three decimals (example: <strong>p = .003</strong>)
+</td>
+</tr>
+
+<tr>
+<td style="padding: 10px;">
+<strong>p &gt; .05</strong>
+</td>
+
+<td style="padding: 10px;">
+Report <strong>p &gt; .05</strong>
+</td>
+</tr>
+
+</tbody>
+
 </table>
 
 <h3>Definitions</h3>
@@ -1495,7 +1557,7 @@ Only report the effect size when the results are statistically significant
 </p>
 
 <p>
-The effect size is reported as <strong>r</strong>.
+The Wilcoxon effect size is reported as <strong>r</strong>.
 </p>
 
 </div>
@@ -1504,9 +1566,9 @@ The effect size is reported as <strong>r</strong>.
 
 <div class="highlight-blue">
 
-<pre><code>#A Wilcoxon Signed-Rank Test was conducted to determine if there was a difference in <span style="color: #e67e22; font-weight: bold;">OutcomeVariable</span> before <span style="color: #e67e22; font-weight: bold;">Independent Variable</span> versus after <span style="color: #e67e22; font-weight: bold;">Independent Variable</span>.
-#Before scores (Mdn = <span style="color: #e67e22; font-weight: bold;">xx.xx</span>) were <span style="color: #e67e22; font-weight: bold;">[significantly / not significantly]</span> different from after scores (Mdn = <span style="color: #e67e22; font-weight: bold;">xx.xx</span>), V = <span style="color: #e67e22; font-weight: bold;">xx</span>, p = <span style="color: #e67e22; font-weight: bold;">[&lt; .001 / = .xxx / &gt; .05]</span>.
-#The effect size was <span style="color: #e67e22; font-weight: bold;">[small / medium / large]</span>, r = <span style="color: #e67e22; font-weight: bold;">.xxx</span>.</code></pre>
+<pre><code># A Wilcoxon Signed-Rank Test was conducted to determine if there was a difference in <span style="color: #e67e22; font-weight: bold;">OutcomeVariable</span> between <span style="color: #e67e22; font-weight: bold;">Before</span> and <span style="color: #e67e22; font-weight: bold;">After</span>.
+# Before scores (Mdn = <span style="color: #e67e22; font-weight: bold;">xx.xx</span>) were <span style="color: #e67e22; font-weight: bold;">[significantly / not significantly]</span> different from After scores (Mdn = <span style="color: #e67e22; font-weight: bold;">xx.xx</span>), V = <span style="color: #e67e22; font-weight: bold;">xx</span>, p = <span style="color: #e67e22; font-weight: bold;">[&lt; .001 / = .xxx / &gt; .05]</span>.
+# The effect size was <span style="color: #e67e22; font-weight: bold;">[small / medium / large]</span>, r = <span style="color: #e67e22; font-weight: bold;">.xxx</span>.</code></pre>
 
 </div>
 
@@ -1514,9 +1576,9 @@ The effect size is reported as <strong>r</strong>.
 
 <div class="highlight-blue">
 
-<pre><code>#A Wilcoxon Signed-Rank Test was conducted to determine if there was a difference in <span style="color: #e67e22; font-weight: bold;">OutcomeVariable</span> before <span style="color: #e67e22; font-weight: bold;">Independent Variable</span> versus after <span style="color: #e67e22; font-weight: bold;">Independent Variable</span>.
-#Before scores (Mdn = <span style="color: #e67e22; font-weight: bold;">7.50</span>) were <span style="color: #e67e22; font-weight: bold;">significantly</span> different from after scores (Mdn = <span style="color: #e67e22; font-weight: bold;">5.00</span>), V = <span style="color: #e67e22; font-weight: bold;">35</span>, p = <span style="color: #e67e22; font-weight: bold;">.012</span>.
-#The effect size was <span style="color: #e67e22; font-weight: bold;">medium</span>, r = <span style="color: #e67e22; font-weight: bold;">.46</span>.</code></pre>
+<pre><code># A Wilcoxon Signed-Rank Test was conducted to determine if there was a difference in <span style="color: #e67e22; font-weight: bold;">OutcomeVariable</span> between <span style="color: #e67e22; font-weight: bold;">Before</span> and <span style="color: #e67e22; font-weight: bold;">After</span>.
+# Before scores (Mdn = <span style="color: #e67e22; font-weight: bold;">7.50</span>) were <span style="color: #e67e22; font-weight: bold;">significantly</span> different from After scores (Mdn = <span style="color: #e67e22; font-weight: bold;">5.00</span>), V = <span style="color: #e67e22; font-weight: bold;">35</span>, p = <span style="color: #e67e22; font-weight: bold;">.012</span>.
+# The effect size was <span style="color: #e67e22; font-weight: bold;">medium</span>, r = <span style="color: #e67e22; font-weight: bold;">.42</span>.</code></pre>
 
 </div>
 
@@ -1524,13 +1586,11 @@ The effect size is reported as <strong>r</strong>.
 
 </details>
 
-
 </div>
 
 </div>
 
 </div>
-
 
 <!-- FINAL STEPS -->
 
@@ -1546,7 +1606,7 @@ The effect size is reported as <strong>r</strong>.
 <span class="step-label">Step 11</span><br>
 Create an RMarkdown File
 </summary>
-    
+
 <div class="path-step-content">
 
 <p>
@@ -1572,7 +1632,7 @@ R Markdown Files
 
 <hr>
 
-<h3> Create a New R Markdown File</h3>
+<h3>Create a New R Markdown File</h3>
 
 <ol>
 
@@ -1602,7 +1662,7 @@ The default settings are sufficient for this assignment.
 
 <hr>
 
-<h3> Save the R Markdown File</h3>
+<h3>Save the R Markdown File</h3>
 
 <ol>
 
@@ -1634,7 +1694,7 @@ Paste the code into the empty R Markdown document.
 
 <hr>
 
-<h3> Create a Code Chunk</h3>
+<h3>Create a Code Chunk</h3>
 
 <p>
 R code inside an R Markdown file must be placed inside a
@@ -1719,15 +1779,15 @@ results in a web-friendly format.
 
 </details>
 
-
 <!-- PART 12 -->
+
 <details>
 
 <summary>
 <span class="step-label">Step 12</span><br>
 Create an RPubs File
 </summary>
-    
+
 <div class="path-step-content">
 
 <p>
@@ -1752,7 +1812,7 @@ RPubs
 
 <hr>
 
-<h3> Open Your R Markdown File</h3>
+<h3>Open Your R Markdown File</h3>
 
 <ol>
 
@@ -1776,7 +1836,7 @@ After knitting, the completed HTML report should appear in the Viewer pane or op
 
 <hr>
 
-<h3> Publish to RPubs</h3>
+<h3>Publish to RPubs</h3>
 
 <ol>
 
@@ -1809,7 +1869,6 @@ Select <strong>Publish</strong>.
 </li>
 
 </ol>
-
 
 <hr>
 
@@ -1846,8 +1905,6 @@ Save the file.
 </div>
 
 </details>
-
-</div>
 
 </div>
 
