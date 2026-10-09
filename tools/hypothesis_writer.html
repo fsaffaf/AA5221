@@ -93,6 +93,68 @@ body::after {
 }
 
 /* =========================================
+   RESEARCH DESIGN SELECTOR LINK
+   ========================================= */
+
+.selector-help {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.65rem;
+  margin: 0 0 1.25rem;
+  padding: 1rem;
+  border: 1px solid #d9eaf7;
+  border-radius: 12px;
+  background: #f3f9fe;
+}
+
+.selector-help-text {
+  margin: 0;
+  color: #444444;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.selector-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  padding: 0.65rem 1rem;
+  border: 1px solid #0e68b3;
+  border-radius: 999px;
+  background: #0e68b3;
+  color: #ffffff;
+  font-size: 0.88rem;
+  font-weight: 650;
+  line-height: 1.4;
+  text-decoration: none;
+  transition: background 0.2s ease,
+              border-color 0.2s ease,
+              transform 0.2s ease,
+              box-shadow 0.2s ease;
+}
+
+.selector-pill:hover {
+  background: #2b6cb0;
+  border-color: #2b6cb0;
+  color: #ffffff;
+  text-decoration: none;
+  transform: translateY(-1px);
+  box-shadow: 0 3px 8px rgba(14, 104, 179, 0.2);
+}
+
+.selector-pill:focus-visible {
+  outline: 3px solid rgba(14, 104, 179, 0.3);
+  outline-offset: 3px;
+}
+
+.selector-arrow {
+  font-size: 1rem;
+  line-height: 1;
+}
+
+/* =========================================
    RESEARCH DESIGN OPTIONS
    ========================================= */
 
@@ -157,10 +219,16 @@ body::after {
   animation: fadeIn 0.3s ease;
 }
 
+/* Two-column layout:
+   Variable 1 name | Variable 1 unit
+   Variable 2 name | Variable 2 unit
+*/
+
 .input-grid {
   display: grid;
-  grid-template-columns: 1fr;
-  gap: 1rem;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 1.25rem 1rem;
+  align-items: start;
 }
 
 .input-group {
@@ -177,9 +245,11 @@ body::after {
 }
 
 .input-group input {
+  display: block;
   width: 100%;
+  min-width: 0;
   box-sizing: border-box;
-  padding: 1rem;
+  padding: 0.9rem;
   border-radius: 12px;
   border: 1px solid #d9e2ec;
   background: #ffffff;
@@ -205,7 +275,7 @@ body::after {
    ========================================= */
 
 .generate-btn {
-  margin-top: 1.25rem;
+  margin-top: 1.5rem;
   width: 100%;
   box-sizing: border-box;
   padding: 1rem;
@@ -280,6 +350,7 @@ body::after {
   padding: 1rem;
   color: #333333;
   line-height: 1.8;
+  overflow-wrap: anywhere;
 }
 
 /* =========================================
@@ -313,6 +384,16 @@ body::after {
 
   .feature-list {
     grid-template-columns: 1fr;
+  }
+
+  .input-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1rem;
+  }
+
+  .selector-help {
+    align-items: flex-start;
+    flex-direction: column;
   }
 
   .result-panel {
@@ -349,19 +430,26 @@ body::after {
         What is your research design?
       </div>
 
-      
-<p style="text-align: left; font-size: 0.95rem; margin: 0 0 1rem; line-height: 1.6;">
-  Not sure which research design to choose?
-  <a
-    href="https://fsaffaf.github.io/AA5221/tools/research_design_selector.html"
-    target="_blank"
-    rel="noopener noreferrer"
-    style="color: #0e68b3; font-weight: 600; text-decoration: underline;"
-  >
-    Use the Research Design Selector
-  </a>
-  to help you decide.
-</p>
+      <!-- RESEARCH DESIGN SELECTOR LINK -->
+
+      <div class="selector-help">
+
+        <p class="selector-help-text">
+          Not sure which research design to choose?
+        </p>
+
+        <a
+          class="selector-pill"
+          href="https://fsaffaf.github.io/AA5221/tools/research_design_selector.html"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Open the Research Design Selector in a new tab"
+        >
+          Explore the Research Design Selector
+          <span class="selector-arrow" aria-hidden="true">→</span>
+        </a>
+
+      </div>
 
       <div class="feature-list">
 
@@ -461,7 +549,7 @@ body::after {
         <div class="input-group">
 
           <label id="unitLabel1" for="unit1">
-            Unit for Variable 1
+            Unit for Variable 1 (optional)
           </label>
 
           <input
@@ -493,7 +581,7 @@ body::after {
         <div class="input-group">
 
           <label id="unitLabel2" for="unit2">
-            Unit for Variable 2
+            Unit for Variable 2 (optional)
           </label>
 
           <input
@@ -524,15 +612,11 @@ body::after {
 
       <div class="result-top">
 
-        <div>
-
-          <div
-            class="result-title"
-            id="resultTitle"
-          >
-            Results
-          </div>
-
+        <div
+          class="result-title"
+          id="resultTitle"
+        >
+          Results
         </div>
 
       </div>
@@ -686,7 +770,7 @@ function selectDesign(type) {
       "Example: Weight";
 
     unit1.placeholder =
-      "Example: Leave blank for Diet A vs. Diet B";
+      "Leave blank for Diet A vs. Diet B";
 
     unit2.placeholder =
       "Example: Kilograms";
