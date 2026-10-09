@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Unit of Measurement to Level of Measurement Converter</title>
+<title>Level of Measurement Converter</title>
 
 <style>
 html, body {
@@ -20,10 +20,6 @@ body {
   overflow-x: hidden;
 }
 
-/* =========================================
-   MAIN LAYOUT
-   ========================================= */
-
 .measurement-wrapper {
   min-height: 100vh;
   display: flex;
@@ -35,7 +31,7 @@ body {
 
 .glass {
   width: 100%;
-  max-width: 800px;
+  max-width: 900px;
   padding: 2.5rem;
   box-sizing: border-box;
   background: #ffffff;
@@ -43,10 +39,6 @@ body {
   border-radius: 14px;
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
 }
-
-/* =========================================
-   TITLE AND DESCRIPTION
-   ========================================= */
 
 .glass h2 {
   margin: 0 0 0.75rem;
@@ -66,20 +58,12 @@ body {
   line-height: 1.8;
 }
 
-/* =========================================
-   CONVERTER LAYOUT
-   ========================================= */
-
 .converter-grid {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   gap: 1.25rem;
   align-items: stretch;
 }
-
-/* =========================================
-   INPUT AND OUTPUT PANELS
-   ========================================= */
 
 .converter-panel {
   min-width: 0;
@@ -102,10 +86,6 @@ body {
   font-weight: 650;
   line-height: 1.5;
 }
-
-/* =========================================
-   DROPDOWN
-   ========================================= */
 
 .input-group label {
   display: block;
@@ -146,10 +126,6 @@ body {
   line-height: 1.6;
 }
 
-/* =========================================
-   NUMERICAL ANSWER
-   ========================================= */
-
 .answer-area {
   display: flex;
   flex-direction: column;
@@ -168,9 +144,9 @@ body {
 
 .answer-number {
   color: #0e68b3;
-  font-size: clamp(3rem, 7vw, 4.5rem);
+  font-size: clamp(2rem, 5vw, 3rem);
   font-weight: 650;
-  line-height: 1.1;
+  line-height: 1.2;
   overflow-wrap: anywhere;
 }
 
@@ -187,10 +163,6 @@ body {
   font-weight: 400;
   line-height: 1.6;
 }
-
-/* =========================================
-   RESET BUTTON
-   ========================================= */
 
 .reset-btn {
   display: block;
@@ -222,16 +194,11 @@ body {
   outline-offset: 3px;
 }
 
-/* =========================================
-   ANIMATION
-   ========================================= */
-
 @keyframes fadeIn {
   from {
     opacity: 0;
     transform: translateY(8px);
   }
-
   to {
     opacity: 1;
     transform: translateY(0);
@@ -241,10 +208,6 @@ body {
 .answer-area.updated {
   animation: fadeIn 0.25s ease;
 }
-
-/* =========================================
-   TABLET AND MOBILE
-   ========================================= */
 
 @media (max-width: 600px) {
   .measurement-wrapper {
@@ -275,113 +238,152 @@ body {
 <body>
 
 <div class="measurement-wrapper">
-
   <main class="glass">
 
-    <h2>Unit of Measurement to Level of Measurement Converter</h2>
+    <h2>Level of Measurement Converter</h2>
 
     <p>
-      Select an option from the dropdown menu to display its corresponding
-      numerical answer.
+      Select a variable from the dropdown menu to identify its
+      level of measurement.
     </p>
 
     <div class="converter-grid">
 
-      <!-- ========================================= -->
-      <!-- LEFT: DROPDOWN -->
-      <!-- ========================================= -->
+      <!-- LEFT: VARIABLE DROPDOWN -->
 
       <section class="converter-panel">
 
-        <h3 class="panel-title">Select an Option</h3>
+        <h3 class="panel-title">Select a Variable</h3>
 
         <div class="input-group">
+          <label for="variableSelect">Choose a variable</label>
 
-          <label for="letterSelect">
-            Choose a letter
-          </label>
+          <select id="variableSelect" onchange="updateAnswer()">
+            <option value="">Select a variable...</option>
 
-          <select
-            id="letterSelect"
-            onchange="updateAnswer()"
-          >
+            <optgroup label="Ratio">
+              <option value="Age">Age</option>
+              <option value="Distance">Distance</option>
+              <option value="Expenses">Expenses</option>
+              <option value="Height">Height</option>
+              <option value="Hours">Hours</option>
+              <option value="Hours_Worked">Hours Worked</option>
+              <option value="Income">Income</option>
+              <option value="Minutes">Minutes</option>
+              <option value="Months">Months (Elapsed Time)</option>
+              <option value="Number_of_Absences">Number of Absences</option>
+              <option value="Number_of_Children">Number of Children</option>
+              <option value="Number_of_Courses">Number of Courses</option>
+              <option value="Number_of_Employees">Number of Employees</option>
+              <option value="Number_of_Students">Number of Students</option>
+              <option value="Revenue">Revenue</option>
+              <option value="Salary">Salary</option>
+              <option value="Seconds">Seconds</option>
+              <option value="Tuition">Tuition</option>
+              <option value="Weeks">Weeks (Elapsed Time)</option>
+              <option value="Weight">Weight</option>
+              <option value="Years">Years (Elapsed Time)</option>
+              <option value="Years_of_Experience">Years of Experience</option>
+            </optgroup>
 
-            <option value="">Select a letter...</option>
-            <option value="A">A</option>
-            <option value="B">B</option>
-            <option value="C">C</option>
-            <option value="D">D</option>
-            <option value="E">E</option>
-            <option value="F">F</option>
-            <option value="G">G</option>
-            <option value="H">H</option>
-            <option value="I">I</option>
-            <option value="J">J</option>
-            <option value="K">K</option>
-            <option value="L">L</option>
-            <option value="M">M</option>
-            <option value="N">N</option>
-            <option value="O">O</option>
-            <option value="P">P</option>
-            <option value="Q">Q</option>
-            <option value="R">R</option>
-            <option value="S">S</option>
-            <option value="T">T</option>
-            <option value="U">U</option>
-            <option value="V">V</option>
-            <option value="W">W</option>
-            <option value="X">X</option>
-            <option value="Y">Y</option>
-            <option value="Z">Z</option>
+            <optgroup label="Nominal">
+              <option value="Blood_Type">Blood Type</option>
+              <option value="City">City</option>
+              <option value="Country">Country</option>
+              <option value="Department">Department</option>
+              <option value="Employee_ID">Employee ID</option>
+              <option value="Employment_Status">Employment Status</option>
+              <option value="Ethnicity">Ethnicity</option>
+              <option value="Eye_Color">Eye Color</option>
+              <option value="Gender">Gender</option>
+              <option value="Hair_Color">Hair Color</option>
+              <option value="Job_Title">Job Title</option>
+              <option value="Major">Major</option>
+              <option value="Marital_Status">Marital Status</option>
+              <option value="Nationality">Nationality</option>
+              <option value="Political_Party">Political Party</option>
+              <option value="Product_Category">Product Category</option>
+              <option value="Race">Race</option>
+              <option value="Religion">Religion</option>
+              <option value="Research_Group">Research Group</option>
+              <option value="School">School</option>
+              <option value="State">State</option>
+              <option value="Student_ID">Student ID</option>
+              <option value="University">University</option>
+              <option value="Yes_No">Yes/No Response</option>
+            </optgroup>
+
+            <optgroup label="Ordinal">
+              <option value="Agreement_Level">Agreement Level</option>
+              <option value="Class_Rank">Class Rank</option>
+              <option value="Education_Level">Education Level</option>
+              <option value="Frequency_Category">Frequency Category</option>
+              <option value="Income_Bracket">Income Bracket</option>
+              <option value="Letter_Grade">Letter Grade</option>
+              <option value="Pain_Level">Pain Level</option>
+              <option value="Performance_Rating">Performance Rating</option>
+              <option value="Priority_Level">Priority Level</option>
+              <option value="Risk_Level">Risk Level</option>
+              <option value="Satisfaction_Level">Satisfaction Level</option>
+              <option value="Socioeconomic_Status">Socioeconomic Status</option>
+              <option value="Stress_Level">Stress Level</option>
+              <option value="Survey_Response_Rating">Survey Response Rating</option>
+              <option value="TShirt_Size">T-shirt Size</option>
+            </optgroup>
+
+            <optgroup label="Interval">
+              <option value="ACT_Score">ACT Score</option>
+              <option value="Calendar_Year">Calendar Year</option>
+              <option value="Elevation_Above_Sea_Level">Elevation Above Sea Level</option>
+              <option value="IQ_Score">IQ Score</option>
+              <option value="SAT_Score">SAT Score</option>
+              <option value="Standardized_Test_Score">Standardized Test Score</option>
+              <option value="T_Score">T Score</option>
+              <option value="Temperature_Celsius">Temperature (Celsius)</option>
+              <option value="Temperature_Fahrenheit">Temperature (Fahrenheit)</option>
+              <option value="Z_Score">Z Score</option>
+            </optgroup>
 
           </select>
-
         </div>
 
         <p class="helper-text">
-          Choose a letter to see its assigned numerical answer.
+          Choose a variable to see whether it is nominal, ordinal,
+          interval, or ratio.
         </p>
 
         <button
           type="button"
           class="reset-btn"
-          onclick="resetConverter()"
-        >
+          onclick="resetConverter()">
           Reset
         </button>
 
       </section>
 
-      <!-- ========================================= -->
-      <!-- RIGHT: NUMERICAL ANSWER -->
-      <!-- ========================================= -->
+      <!-- RIGHT: ANSWER -->
 
       <section
         class="converter-panel output-panel"
         aria-live="polite"
-        aria-atomic="true"
-      >
+        aria-atomic="true">
 
-        <h3 class="panel-title">Numerical Answer</h3>
+        <h3 class="panel-title">Level of Measurement</h3>
 
         <div class="answer-area" id="answerArea">
 
-          <div class="answer-label">
+          <div class="answer-label" id="answerLabel">
             Your answer will appear here
           </div>
 
           <div
             class="answer-number answer-placeholder"
-            id="answerNumber"
-          >
+            id="answerNumber">
             —
           </div>
 
-          <p
-            class="answer-description"
-            id="answerDescription"
-          >
-            Select a letter to begin.
+          <p class="answer-description" id="answerDescription">
+            Select a variable to begin.
           </p>
 
         </div>
@@ -389,57 +391,94 @@ body {
       </section>
 
     </div>
-
   </main>
-
 </div>
 
 <script>
-
 /* =========================================
    ANSWER KEY
    ========================================= */
 
-/*
-   PLACEHOLDER ANSWERS
-
-   Replace these numerical values with your own answers.
-
-   Example:
-   A: 1
-   B: 2
-   C: 3
-
-   You can also change individual values independently.
-*/
-
 const answerKey = {
-  A: 1,
-  B: 2,
-  C: 3,
-  D: 4,
-  E: 5,
-  F: 6,
-  G: 7,
-  H: 8,
-  I: 9,
-  J: 10,
-  K: 11,
-  L: 12,
-  M: 13,
-  N: 14,
-  O: 15,
-  P: 16,
-  Q: 17,
-  R: 18,
-  S: 19,
-  T: 20,
-  U: 21,
-  V: 22,
-  W: 23,
-  X: 24,
-  Y: 25,
-  Z: 26
+  // Ratio
+  Seconds: "Ratio",
+  Minutes: "Ratio",
+  Hours: "Ratio",
+  Days: "Ratio",
+  Weeks: "Ratio",
+  Months: "Ratio",
+  Years: "Ratio",
+  Age: "Ratio",
+  Income: "Ratio",
+  Salary: "Ratio",
+  Height: "Ratio",
+  Weight: "Ratio",
+  Distance: "Ratio",
+  Number_of_Children: "Ratio",
+  Number_of_Employees: "Ratio",
+  Number_of_Courses: "Ratio",
+  Number_of_Absences: "Ratio",
+  Tuition: "Ratio",
+  Expenses: "Ratio",
+  Revenue: "Ratio",
+  Hours_Worked: "Ratio",
+  Years_of_Experience: "Ratio",
+  Number_of_Students: "Ratio",
+
+  // Nominal
+  Gender: "Nominal",
+  Race: "Nominal",
+  Ethnicity: "Nominal",
+  Nationality: "Nominal",
+  Religion: "Nominal",
+  Political_Party: "Nominal",
+  Marital_Status: "Nominal",
+  Employment_Status: "Nominal",
+  Department: "Nominal",
+  Major: "Nominal",
+  Job_Title: "Nominal",
+  School: "Nominal",
+  University: "Nominal",
+  Country: "Nominal",
+  State: "Nominal",
+  City: "Nominal",
+  Eye_Color: "Nominal",
+  Hair_Color: "Nominal",
+  Blood_Type: "Nominal",
+  Yes_No: "Nominal",
+  Student_ID: "Nominal",
+  Employee_ID: "Nominal",
+  Product_Category: "Nominal",
+  Research_Group: "Nominal",
+
+  // Ordinal
+  Satisfaction_Level: "Ordinal",
+  Agreement_Level: "Ordinal",
+  Education_Level: "Ordinal",
+  Class_Rank: "Ordinal",
+  Letter_Grade: "Ordinal",
+  Performance_Rating: "Ordinal",
+  Pain_Level: "Ordinal",
+  Stress_Level: "Ordinal",
+  Income_Bracket: "Ordinal",
+  Socioeconomic_Status: "Ordinal",
+  Frequency_Category: "Ordinal",
+  Risk_Level: "Ordinal",
+  Priority_Level: "Ordinal",
+  TShirt_Size: "Ordinal",
+  Survey_Response_Rating: "Ordinal",
+
+  // Interval
+  Temperature_Celsius: "Interval",
+  Temperature_Fahrenheit: "Interval",
+  Calendar_Year: "Interval",
+  IQ_Score: "Interval",
+  Standardized_Test_Score: "Interval",
+  SAT_Score: "Interval",
+  ACT_Score: "Interval",
+  Z_Score: "Interval",
+  T_Score: "Interval",
+  Elevation_Above_Sea_Level: "Interval"
 };
 
 
@@ -448,9 +487,8 @@ const answerKey = {
    ========================================= */
 
 function updateAnswer() {
-
-  const selectedLetter =
-    document.getElementById("letterSelect").value;
+  const selectedVariable =
+    document.getElementById("variableSelect").value;
 
   const answerNumber =
     document.getElementById("answerNumber");
@@ -458,45 +496,45 @@ function updateAnswer() {
   const answerDescription =
     document.getElementById("answerDescription");
 
+  const answerLabel =
+    document.getElementById("answerLabel");
+
   const answerArea =
     document.getElementById("answerArea");
 
-
-  /* NO SELECTION */
-
-  if (!selectedLetter) {
-
+  if (!selectedVariable) {
     answerNumber.textContent = "—";
-
     answerNumber.classList.add("answer-placeholder");
 
-    answerDescription.textContent =
-      "Select a letter to begin.";
+    answerLabel.textContent = "Your answer will appear here";
+    answerDescription.textContent = "Select a variable to begin.";
 
+    answerArea.classList.remove("updated");
     return;
-
   }
 
+  const level = answerKey[selectedVariable];
 
-  /* DISPLAY THE ASSIGNED NUMBER */
+  if (!level) {
+    answerNumber.textContent = "Not found";
+    answerNumber.classList.add("answer-placeholder");
+    answerLabel.textContent = "Unable to identify level";
+    answerDescription.textContent =
+      "This variable is not listed in the answer key.";
+    return;
+  }
 
-  answerNumber.textContent =
-    answerKey[selectedLetter];
-
+  answerNumber.textContent = level;
   answerNumber.classList.remove("answer-placeholder");
 
+  answerLabel.textContent = "Correct Level";
   answerDescription.textContent =
-    "Selected option: " + selectedLetter;
-
-
-  /* REPLAY THE ANIMATION */
+    "Selected variable: " +
+    selectedVariable.replaceAll("_", " ");
 
   answerArea.classList.remove("updated");
-
   void answerArea.offsetWidth;
-
   answerArea.classList.add("updated");
-
 }
 
 
@@ -505,13 +543,9 @@ function updateAnswer() {
    ========================================= */
 
 function resetConverter() {
-
-  document.getElementById("letterSelect").value = "";
-
+  document.getElementById("variableSelect").value = "";
   updateAnswer();
-
 }
-
 </script>
 
 </body>
