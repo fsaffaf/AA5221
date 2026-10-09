@@ -731,16 +731,16 @@ function selectDesign(type) {
       "Unit for Variable 2 (optional)";
 
     input1.placeholder =
-      "Example: Study Time";
+      "Example: Training Time";
 
     input2.placeholder =
-      "Example: Test Score";
+      "Example: Communication Score";
 
     unit1.placeholder =
       "Example: Hours";
 
     unit2.placeholder =
-      "Example: Points";
+      "Example: Scale of 1-10";
 
   }
 
@@ -764,16 +764,16 @@ function selectDesign(type) {
       "Unit for Outcome Variable (optional)";
 
     input1.placeholder =
-      "Example: Diet";
+      "Example: Service Type";
 
     input2.placeholder =
-      "Example: Weight";
+      "Example: Satisfaction";
 
     unit1.placeholder =
-      "Leave blank for Diet A vs. Diet B";
+      "Example: AI vs. Human";
 
     unit2.placeholder =
-      "Example: Kilograms";
+      "Example: Percentage";
 
   }
 
@@ -844,11 +844,11 @@ function generateHypotheses() {
      ========================================= */
 
   const variable1 = unit1
-    ? `${var1} (measured in ${unit1})`
+    ? `${var1} (${unit1})`
     : var1;
 
   const variable2 = unit2
-    ? `${var2} (measured in ${unit2})`
+    ? `${var2} (${unit2})`
     : var2;
 
 
