@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -43,7 +44,6 @@ body::after {
   max-width: 720px;
   padding: 2.5rem;
   box-sizing: border-box;
-
   background: #ffffff;
   border: 1px solid #d9e2ec;
   border-radius: 14px;
@@ -93,7 +93,7 @@ body::after {
 }
 
 /* =========================================
-   OPTIONS
+   RESEARCH DESIGN OPTIONS
    ========================================= */
 
 .feature-list {
@@ -108,11 +108,9 @@ body::after {
   gap: 0.85rem;
   padding: 1rem 1.15rem;
   border-radius: 12px;
-
   background: #ffffff;
   border: 1px solid #d9e2ec;
   color: #222222;
-
   cursor: pointer;
   transition: 0.25s ease;
 }
@@ -121,6 +119,11 @@ body::after {
   background: #f0f7fc;
   border-color: #0e68b3;
   transform: translateY(-1px);
+}
+
+.feature-option:has(input:checked) {
+  background: #f0f7fc;
+  border-color: #0e68b3;
 }
 
 .feature-option input {
@@ -141,10 +144,11 @@ body::after {
   color: #555555;
   margin-top: 0.15rem;
   display: block;
+  line-height: 1.6;
 }
 
 /* =========================================
-   QUESTION 2 INPUT PANEL
+   VARIABLE AND UNIT INPUT PANEL
    ========================================= */
 
 .input-panel {
@@ -155,7 +159,12 @@ body::after {
 
 .input-grid {
   display: grid;
+  grid-template-columns: 1fr;
   gap: 1rem;
+}
+
+.input-group {
+  min-width: 0;
 }
 
 .input-group label {
@@ -163,6 +172,8 @@ body::after {
   margin-bottom: 0.5rem;
   color: #333333;
   font-size: 0.95rem;
+  font-weight: 600;
+  line-height: 1.5;
 }
 
 .input-group input {
@@ -170,15 +181,18 @@ body::after {
   box-sizing: border-box;
   padding: 1rem;
   border-radius: 12px;
-
   border: 1px solid #d9e2ec;
   background: #ffffff;
   color: #222222;
-
   font-family: inherit;
   font-size: 1rem;
   outline: none;
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.input-group input::placeholder {
+  color: #777777;
+  opacity: 1;
 }
 
 .input-group input:focus {
@@ -186,24 +200,22 @@ body::after {
   box-shadow: 0 0 0 3px rgba(14, 104, 179, 0.12);
 }
 
-/* GENERATE BUTTON */
+/* =========================================
+   GENERATE BUTTON
+   ========================================= */
 
 .generate-btn {
   margin-top: 1.25rem;
   width: 100%;
   box-sizing: border-box;
   padding: 1rem;
-
   border: 1px solid #0e68b3;
   border-radius: 999px;
-
   background: #0e68b3;
   color: #ffffff;
-
   font-family: inherit;
   font-size: 1rem;
   font-weight: 650;
-
   cursor: pointer;
   transition: 0.25s ease;
 }
@@ -227,11 +239,9 @@ body::after {
   display: none;
   margin-top: 1.5rem;
   padding: 1.5rem;
-
   border-radius: 12px;
   border: 1px solid #b9d8ef;
   background: #f0f7fc;
-
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
   animation: fadeIn 0.3s ease;
 }
@@ -264,12 +274,10 @@ body::after {
 .hypothesis-item {
   display: flex;
   gap: 0.75rem;
-
   background: #ffffff;
   border: 1px solid #d9e2ec;
   border-radius: 12px;
   padding: 1rem;
-
   color: #333333;
   line-height: 1.8;
 }
@@ -316,9 +324,7 @@ body::after {
   }
 }
 </style>
-
 </head>
-
 
 <body>
 
@@ -332,9 +338,8 @@ body::after {
       Answer each question to turn a research question into hypotheses.
     </p>
 
-
     <!-- ========================================= -->
-    <!-- QUESTION 1 -->
+    <!-- QUESTION 1: RESEARCH DESIGN -->
     <!-- ========================================= -->
 
     <div class="question-row" id="question1">
@@ -344,13 +349,9 @@ body::after {
         What is your research design?
       </div>
 
-
       <div class="feature-list">
 
-
-        <!-- ========================================= -->
         <!-- CORRELATION -->
-        <!-- ========================================= -->
 
         <label class="feature-option">
 
@@ -371,8 +372,7 @@ body::after {
 
             <span class="feature-subtitle">
               Testing if there is a relationship between two variables.
-              <br>
-              <br>
+              <br><br>
               Example: Is there a relationship between Variable 1 and Variable 2?
             </span>
 
@@ -380,10 +380,7 @@ body::after {
 
         </label>
 
-
-        <!-- ========================================= -->
-        <!-- QUASI / TRUE EXPERIMENT -->
-        <!-- ========================================= -->
+        <!-- QUASI-EXPERIMENT OR TRUE EXPERIMENT -->
 
         <label class="feature-option">
 
@@ -404,8 +401,7 @@ body::after {
 
             <span class="feature-subtitle">
               Testing if there is a difference between groups.
-              <br>
-              <br>
+              <br><br>
               Example: Is there a difference between Group A and Group B?
             </span>
 
@@ -413,65 +409,91 @@ body::after {
 
         </label>
 
-
       </div>
 
     </div>
 
-
     <!-- ========================================= -->
-    <!-- QUESTION 2: VARIABLE NAMES -->
+    <!-- QUESTION 2: VARIABLE NAMES AND UNITS -->
     <!-- ========================================= -->
 
     <div id="inputPanel" class="input-panel">
 
       <div class="question-title">
         <span class="question-number">2.</span>
-        What are your variable names?
+        Enter your variable names and units.
       </div>
-
 
       <div class="input-grid">
 
-
-        <!-- VARIABLE 1 -->
+        <!-- VARIABLE 1 NAME -->
 
         <div class="input-group">
 
-          <label id="label1">
-            Variable 1
+          <label id="label1" for="input1">
+            Variable 1 Name
           </label>
 
           <input
             type="text"
             id="input1"
-            placeholder="Enter variable name"
+            placeholder="Example: Study Time"
           >
 
         </div>
 
-
-        <!-- VARIABLE 2 -->
+        <!-- VARIABLE 1 UNIT -->
 
         <div class="input-group">
 
-          <label id="label2">
-            Variable 2
+          <label id="unitLabel1" for="unit1">
+            Unit for Variable 1
+          </label>
+
+          <input
+            type="text"
+            id="unit1"
+            placeholder="Example: Hours"
+          >
+
+        </div>
+
+        <!-- VARIABLE 2 NAME -->
+
+        <div class="input-group">
+
+          <label id="label2" for="input2">
+            Variable 2 Name
           </label>
 
           <input
             type="text"
             id="input2"
-            placeholder="Enter variable name"
+            placeholder="Example: Test Score"
           >
 
         </div>
 
+        <!-- VARIABLE 2 UNIT -->
+
+        <div class="input-group">
+
+          <label id="unitLabel2" for="unit2">
+            Unit for Variable 2
+          </label>
+
+          <input
+            type="text"
+            id="unit2"
+            placeholder="Example: Points"
+          >
+
+        </div>
 
       </div>
 
-
       <button
+        type="button"
         class="generate-btn"
         onclick="generateHypotheses()"
       >
@@ -480,15 +502,11 @@ body::after {
 
     </div>
 
-
     <!-- ========================================= -->
     <!-- RESULTS -->
     <!-- ========================================= -->
 
-    <div
-      id="resultPanel"
-      class="result-panel"
-    >
+    <div id="resultPanel" class="result-panel">
 
       <div class="result-top">
 
@@ -505,9 +523,7 @@ body::after {
 
       </div>
 
-
       <div class="hypothesis-list">
-
 
         <!-- NULL HYPOTHESIS -->
 
@@ -519,7 +535,6 @@ body::after {
 
         </div>
 
-
         <!-- ALTERNATIVE HYPOTHESIS -->
 
         <div class="hypothesis-item">
@@ -530,7 +545,6 @@ body::after {
 
         </div>
 
-
       </div>
 
     </div>
@@ -539,9 +553,7 @@ body::after {
 
 </div>
 
-
 <script>
-
 
 /* =========================================
    TRACK SELECTED DESIGN
@@ -558,15 +570,8 @@ function selectDesign(type) {
 
   selectedDesign = type;
 
-
   const inputPanel =
     document.getElementById("inputPanel");
-
-  const correlationBtn =
-    document.getElementById("correlationBtn");
-
-  const groupsBtn =
-    document.getElementById("groupsBtn");
 
   const label1 =
     document.getElementById("label1");
@@ -580,23 +585,33 @@ function selectDesign(type) {
   const input2 =
     document.getElementById("input2");
 
+  const unit1 =
+    document.getElementById("unit1");
+
+  const unit2 =
+    document.getElementById("unit2");
+
+  const unitLabel1 =
+    document.getElementById("unitLabel1");
+
+  const unitLabel2 =
+    document.getElementById("unitLabel2");
+
   const resultPanel =
     document.getElementById("resultPanel");
 
 
   /* =========================================
-     RESET RESULTS
+     RESET RESULTS AND PREVIOUS INPUTS
      ========================================= */
 
   resultPanel.style.display = "none";
-
   resultPanel.classList.remove("groups-style");
-
-
-  /* Clear previous variable names */
 
   input1.value = "";
   input2.value = "";
+  unit1.value = "";
+  unit2.value = "";
 
 
   /* =========================================
@@ -605,23 +620,29 @@ function selectDesign(type) {
 
   if (type === "correlation") {
 
-    correlationBtn.classList.add("active");
-
-    groupsBtn.classList.remove("active");
-
-
     label1.textContent =
-      "Variable 1";
+      "Variable 1 Name";
 
     label2.textContent =
-      "Variable 2";
+      "Variable 2 Name";
 
+    unitLabel1.textContent =
+      "Unit for Variable 1 (optional)";
+
+    unitLabel2.textContent =
+      "Unit for Variable 2 (optional)";
 
     input1.placeholder =
-      "Enter your first variable (Example: Phone Use (Hours)";
+      "Example: Study Time";
 
     input2.placeholder =
-      "Enter your second variable (Example: Sleep (Hours)";
+      "Example: Test Score";
+
+    unit1.placeholder =
+      "Example: Hours";
+
+    unit2.placeholder =
+      "Example: Points";
 
   }
 
@@ -632,23 +653,29 @@ function selectDesign(type) {
 
   if (type === "groups") {
 
-    groupsBtn.classList.add("active");
-
-    correlationBtn.classList.remove("active");
-
-
     label1.textContent =
       "Independent Variable (Grouping Variable)";
 
     label2.textContent =
-      "Dependent Variable";
+      "Dependent Variable (Outcome)";
 
+    unitLabel1.textContent =
+      "Unit for Grouping Variable (optional)";
+
+    unitLabel2.textContent =
+      "Unit for Outcome Variable (optional)";
 
     input1.placeholder =
-      "Enter your grouping variable (Example: Diet (Diet A vs Diet B)";
+      "Example: Diet";
 
     input2.placeholder =
-      "Enter your outcome variable (Example: Weight (Kilograms)";
+      "Example: Weight";
+
+    unit1.placeholder =
+      "Example: Leave blank for Diet A vs. Diet B";
+
+    unit2.placeholder =
+      "Example: Kilograms";
 
   }
 
@@ -660,7 +687,7 @@ function selectDesign(type) {
   inputPanel.style.display = "block";
 
 
-  /* Scroll Question 2 into view */
+  /* SCROLL QUESTION 2 INTO VIEW */
 
   setTimeout(function() {
 
@@ -686,6 +713,12 @@ function generateHypotheses() {
   const var2 =
     document.getElementById("input2").value.trim();
 
+  const unit1 =
+    document.getElementById("unit1").value.trim();
+
+  const unit2 =
+    document.getElementById("unit2").value.trim();
+
 
   /* =========================================
      VALIDATE INPUTS
@@ -699,7 +732,6 @@ function generateHypotheses() {
 
   }
 
-
   if (!var1 || !var2) {
 
     alert("Please enter both variable names.");
@@ -707,6 +739,19 @@ function generateHypotheses() {
     return;
 
   }
+
+
+  /* =========================================
+     COMBINE VARIABLE NAMES AND UNITS
+     ========================================= */
+
+  const variable1 = unit1
+    ? `${var1} (measured in ${unit1})`
+    : var1;
+
+  const variable2 = unit2
+    ? `${var2} (measured in ${unit2})`
+    : var2;
 
 
   /* =========================================
@@ -726,7 +771,7 @@ function generateHypotheses() {
     document.getElementById("altHypothesis");
 
 
-  /* Show result panel */
+  /* SHOW RESULT PANEL */
 
   resultPanel.style.display = "block";
 
@@ -739,17 +784,14 @@ function generateHypotheses() {
 
     resultPanel.classList.remove("groups-style");
 
-
     resultTitle.textContent =
       "Testing Relationships";
 
-
     nullHypothesis.textContent =
-      `Null hypothesis: There is no relationship between ${var1} and ${var2}.`;
-
+      `Null hypothesis: There is no relationship between ${variable1} and ${variable2}.`;
 
     altHypothesis.textContent =
-      `Alternative hypothesis: There is a relationship between ${var1} and ${var2}.`;
+      `Alternative hypothesis: There is a relationship between ${variable1} and ${variable2}.`;
 
   }
 
@@ -762,22 +804,25 @@ function generateHypotheses() {
 
     resultPanel.classList.add("groups-style");
 
-
     resultTitle.textContent =
       "Testing Group Differences";
 
+    const groupingVariable = unit1
+      ? `${var1} (measured in ${unit1})`
+      : var1;
 
     nullHypothesis.textContent =
-      `Null hypothesis: There is no statistically significant difference in ${var2} between the two ${var1} groups.`;
-
+      `Null hypothesis: There is no statistically significant difference in ${variable2} between the two ${groupingVariable} groups.`;
 
     altHypothesis.textContent =
-      `Alternative hypothesis: There is a statistically significant difference in ${var2} between the two ${var1} groups.`;
+      `Alternative hypothesis: There is a statistically significant difference in ${variable2} between the two ${groupingVariable} groups.`;
 
   }
 
 
-  /* Scroll to results */
+  /* =========================================
+     SCROLL TO RESULTS
+     ========================================= */
 
   setTimeout(function() {
 
