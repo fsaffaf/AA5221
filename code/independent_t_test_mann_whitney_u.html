@@ -176,11 +176,56 @@ tr:hover {
 pre {
     white-space: pre-wrap;
     overflow-x: auto;
-    margin: 0;
+    margin: 20px 0;
+    padding: 15px 20px;
+    border-radius: 10px;
+    background: #f0f7fc;
+    border-left: 5px solid #0e68b3;
+    line-height: 1.6;
+    overflow-wrap: anywhere;
 }
 
 code {
     font-family: Consolas, Monaco, "Courier New", monospace;
+}
+
+.definition {
+    background: #ffffff;
+    border-left: 3px solid #0e68b3;
+    border-radius: 8px;
+    padding: 15px 20px;
+    margin: 18px 0;
+    line-height: 1.7;
+}
+
+.note {
+    background: #f0f7fc;
+    border-left: 5px solid #0e68b3;
+    border-radius: 10px;
+    padding: 15px 20px;
+    margin: 20px 0;
+    line-height: 1.6;
+}
+
+.warning {
+    background: #fff4e6;
+    border-left: 5px solid #e67e22;
+    border-radius: 10px;
+    padding: 15px 20px;
+    margin: 20px 0;
+    line-height: 1.6;
+}
+
+pre code {
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin: 20px auto;
 }
 
 .highlight pre {
@@ -328,6 +373,15 @@ a.button:hover {
         font-size: .95rem;
     }
 
+    pre {
+        padding: 12px 14px;
+        font-size: .9rem;
+    }
+
+    .container {
+        padding: 30px 15px;
+    }
+
     .test-paths {
         grid-template-columns: 1fr;
     }
@@ -357,7 +411,7 @@ Use this page to determine whether two independent groups differ on an outcome v
 <div class="test-path">
 
 <div class="test-path-header">
-Prepare
+<h2>Prepare</h2>
 </div>
 
 <div class="test-path-content">
