@@ -1,19 +1,9 @@
 <!DOCTYPE html>
-
 <html lang="en">
-
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Independent T-Test &amp; Mann-Whitney U Test</title>
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Chi-Square Goodness of Fit</title>
 
 <style>
 body { margin: 0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background: #f4f6f9; color: #222222; }
@@ -54,6 +44,26 @@ hr { border: none; height: 1px; background: #d6e4f0; margin: 30px 0; }
 a { color: #0e68b3; }
 a.button { display: inline-block; background: #0e68b3; color: white; padding: 14px 28px; border-radius: 999px; text-decoration: none; font-weight: 600; transition: .3s; }
 a.button:hover { background: #2b6cb0; transform: translateY(-2px); }
+
+/* Supporting styles used throughout the page */
+.definition, .note {
+    background: #ffffff;
+    border-left: 4px solid #0e68b3;
+    padding: 15px 18px;
+    margin: 18px 0;
+    line-height: 1.7;
+}
+.note { background: #f0f7fc; }
+.test-path-header {
+    background: #0e68b3;
+    color: #ffffff;
+    padding: 16px 25px;
+    font-size: 1.1rem;
+}
+.test-path-header strong { color: #ffffff; }
+.test-paths { display: block; }
+img { max-width: 100%; height: auto; display: block; margin: 18px auto; }
+
 
 @media (max-width: 768px) {
     h1 { font-size: 2rem; }
@@ -201,8 +211,8 @@ print(cohens_d_result)
 # Mann-Whitney U Test
 
 wilcox.test(
-  OutcomeVariable ~ GroupVariable,
-  data = DatasetName
+  ExamScores ~ Gender,
+  data = DatasetZ
 )
 
 
