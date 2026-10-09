@@ -6,14 +6,13 @@
 <title>Hypothesis Writer</title>
 
 <style>
-
 html, body {
   margin: 0;
   padding: 0;
   min-height: 100%;
-  font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
-  background: #020617;
-  color: white;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  background: #f4f6f9;
+  color: #222222;
 }
 
 body {
@@ -22,28 +21,10 @@ body {
   overflow-x: hidden;
 }
 
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  background:
-    radial-gradient(circle at top, rgba(125,211,252,0.16), transparent 35%),
-    radial-gradient(circle at bottom, rgba(99,102,241,0.14), transparent 40%);
-  z-index: -2;
-}
-
+body::before,
 body::after {
-  content: "";
-  position: fixed;
-  inset: 0;
-  opacity: 0.3;
-  background-image:
-    linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
-  background-size: 42px 42px;
-  z-index: -1;
+  content: none;
 }
-
 
 /* =========================================
    MAIN LAYOUT
@@ -61,31 +42,30 @@ body::after {
   width: 100%;
   max-width: 720px;
   padding: 2.5rem;
-  background: rgba(255,255,255,0.08);
-  border: 1px solid rgba(255,255,255,0.15);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
-  border-radius: 24px;
-  box-shadow: 0 25px 80px rgba(0,0,0,0.45);
+  box-sizing: border-box;
+
+  background: #ffffff;
+  border: 1px solid #d9e2ec;
+  border-radius: 14px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
 }
 
 .glass h2 {
   margin: 0 0 0.75rem;
   text-align: center;
   font-size: clamp(2rem, 5vw, 3.25rem);
-  font-weight: 650;
+  font-weight: 500;
   letter-spacing: -0.03em;
-  color: white;
+  color: #0e68b3;
 }
 
 .glass p {
   margin: 0 0 2rem;
   text-align: center;
-  color: rgb(203,213,225);
+  color: #444444;
   font-size: 1.05rem;
-  line-height: 1.6;
+  line-height: 1.8;
 }
-
 
 /* =========================================
    QUESTION ROWS
@@ -104,14 +84,13 @@ body::after {
   margin-bottom: 0.75rem;
   font-size: 1.05rem;
   font-weight: 650;
-  color: white;
+  color: #0e68b3;
 }
 
 .question-number {
-  color: rgb(125,211,252);
+  color: #0e68b3;
   margin-right: 0.4rem;
 }
-
 
 /* =========================================
    OPTIONS
@@ -128,38 +107,41 @@ body::after {
   align-items: center;
   gap: 0.85rem;
   padding: 1rem 1.15rem;
-  border-radius: 16px;
-  background: rgba(255,255,255,0.08);
-  border: 1px solid rgba(255,255,255,0.12);
-  color: rgb(241,245,249);
+  border-radius: 12px;
+
+  background: #ffffff;
+  border: 1px solid #d9e2ec;
+  color: #222222;
+
   cursor: pointer;
   transition: 0.25s ease;
 }
 
 .feature-option:hover {
-  background: rgba(255,255,255,0.13);
+  background: #f0f7fc;
+  border-color: #0e68b3;
   transform: translateY(-1px);
 }
 
 .feature-option input {
   width: 1.1rem;
   height: 1.1rem;
-  accent-color: #38bdf8;
+  accent-color: #0e68b3;
   cursor: pointer;
+  flex-shrink: 0;
 }
 
 .feature-title {
   font-weight: 600;
-  color: white;
+  color: #0e68b3;
 }
 
 .feature-subtitle {
   font-size: 0.85rem;
-  color: rgb(203,213,225);
-  margin-top: 6px;
+  color: #555555;
+  margin-top: 0.15rem;
   display: block;
 }
-
 
 /* =========================================
    QUESTION 2 INPUT PANEL
@@ -179,7 +161,7 @@ body::after {
 .input-group label {
   display: block;
   margin-bottom: 0.5rem;
-  color: rgb(226,232,240);
+  color: #333333;
   font-size: 0.95rem;
 }
 
@@ -187,36 +169,55 @@ body::after {
   width: 100%;
   box-sizing: border-box;
   padding: 1rem;
-  border-radius: 14px;
-  border: 1px solid rgba(255,255,255,0.12);
-  background: rgba(255,255,255,0.08);
-  color: white;
+  border-radius: 12px;
+
+  border: 1px solid #d9e2ec;
+  background: #ffffff;
+  color: #222222;
+
+  font-family: inherit;
   font-size: 1rem;
   outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .input-group input:focus {
-  border-color: rgba(125,211,252,0.65);
+  border-color: #0e68b3;
+  box-shadow: 0 0 0 3px rgba(14, 104, 179, 0.12);
 }
+
+/* GENERATE BUTTON */
 
 .generate-btn {
   margin-top: 1.25rem;
   width: 100%;
+  box-sizing: border-box;
   padding: 1rem;
-  border: none;
-  border-radius: 16px;
-  background: linear-gradient(135deg, #0ea5e9, #6366f1);
-  color: white;
+
+  border: 1px solid #0e68b3;
+  border-radius: 999px;
+
+  background: #0e68b3;
+  color: #ffffff;
+
+  font-family: inherit;
   font-size: 1rem;
   font-weight: 650;
+
   cursor: pointer;
   transition: 0.25s ease;
 }
 
 .generate-btn:hover {
-  transform: translateY(-2px);
+  background: #2b6cb0;
+  border-color: #2b6cb0;
+  transform: translateY(-1px);
 }
 
+.generate-btn:focus-visible {
+  outline: 3px solid rgba(14, 104, 179, 0.3);
+  outline-offset: 3px;
+}
 
 /* =========================================
    RESULTS
@@ -224,25 +225,20 @@ body::after {
 
 .result-panel {
   display: none;
-  border-radius: 20px;
-  border: 1px solid rgba(125,211,252,0.30);
-  background: linear-gradient(
-    135deg,
-    rgba(3,105,161,0.70),
-    rgba(49,46,129,0.80)
-  );
-  padding: 1.75rem;
-  box-shadow: 0 20px 50px rgba(0,0,0,0.35);
+  margin-top: 1.5rem;
+  padding: 1.5rem;
+
+  border-radius: 12px;
+  border: 1px solid #b9d8ef;
+  background: #f0f7fc;
+
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
   animation: fadeIn 0.3s ease;
 }
 
 .result-panel.groups-style {
-  border-color: rgba(148,163,184,0.25);
-  background: linear-gradient(
-    135deg,
-    rgba(51,65,85,0.85),
-    rgba(15,23,42,0.90)
-  );
+  border-color: #d9e2ec;
+  background: #f4f6f9;
 }
 
 .result-top {
@@ -253,8 +249,10 @@ body::after {
 }
 
 .result-title {
+  margin: 0;
   font-size: clamp(1.5rem, 4vw, 2rem);
   font-weight: 650;
+  color: #0e68b3;
 }
 
 .hypothesis-list {
@@ -266,21 +264,37 @@ body::after {
 .hypothesis-item {
   display: flex;
   gap: 0.75rem;
-  background: rgba(255,255,255,0.10);
-  border: 1px solid rgba(255,255,255,0.10);
-  border-radius: 14px;
+
+  background: #ffffff;
+  border: 1px solid #d9e2ec;
+  border-radius: 12px;
   padding: 1rem;
-  color: rgb(241,245,249);
-  line-height: 1.5;
+
+  color: #333333;
+  line-height: 1.8;
 }
 
+/* =========================================
+   ANIMATION
+   ========================================= */
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 
 /* =========================================
    MOBILE
    ========================================= */
 
 @media (max-width: 700px) {
-
   .measurement-wrapper {
     padding: 1rem;
   }
@@ -293,28 +307,16 @@ body::after {
     grid-template-columns: 1fr;
   }
 
-}
-
-
-/* =========================================
-   ANIMATION
-   ========================================= */
-
-@keyframes fadeIn {
-
-  from {
-    opacity: 0;
-    transform: translateY(5px);
+  .result-panel {
+    padding: 1.25rem;
   }
 
-  to {
-    opacity: 1;
-    transform: translateY(0);
+  .result-top {
+    align-items: flex-start;
   }
-
 }
-
 </style>
+
 </head>
 
 
@@ -792,4 +794,3 @@ function generateHypotheses() {
 
 </body>
 </html>
-```
