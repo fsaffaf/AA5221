@@ -399,16 +399,19 @@ a.button:hover {
 
 <h1>Independent T-Test &amp; Mann-Whitney U Test</h1>
 
-<!-- =========================================================
-     PREPARE
-========================================================= -->
+<!-- MAIN PATH -->
 
 <div class="test-path">
-
 <div class="test-path-content">
 
+<!-- OVERVIEW -->
+
 <details>
-<summary>Step 1: Overview of the Test</summary>
+
+<summary>
+<span class="step-label">Prepare</span><br>
+Overview of the Test
+</summary>
 
 <div class="path-step-content">
 
@@ -446,8 +449,14 @@ A nonparametric test used to compare two independent groups when the outcome doe
 </details>
 
 
+<!-- CODE TEMPLATE -->
+
 <details>
-<summary>Step 2: R Code Template</summary>
+
+<summary>
+<span class="step-label">Prepare</span><br>
+RScript Code Template
+</summary>
 
 <div class="path-step-content">
 
@@ -569,9 +578,14 @@ print(mw_effect)</code></pre>
 </div>
 </details>
 
+<!-- STEP 1 -->
 
 <details>
-<summary>Step 3: Install &amp; Open the Packages</summary>
+
+<summary>
+<span class="step-label">Step 1</span><br>
+Install &amp; Open the Packages
+</summary>
 
 <div class="path-step-content">
 
@@ -607,48 +621,83 @@ library(effsize)</code></pre>
 </details>
 
 
+<!-- STEP 2 -->
+
 <details>
-<summary>Step 4: Import &amp; Name the Dataset</summary>
+
+<summary>
+<span class="step-label">Step 2</span><br>
+Import &amp; Name the Dataset
+</summary>
 
 <div class="path-step-content">
 
-<h2>Import Your Dataset</h2>
+<p>
+Although datasets can be imported entirely through code, many students experience difficulty locating file paths.
+Therefore, this course uses the <strong>point-and-click import method</strong> to generate the necessary code automatically.
+</p>
+
+<h3>Import the Excel File</h3>
+
+<ol>
+
+<li>Select <strong>File → Import Dataset → From Excel</strong>.</li>
+
+<li>Select <strong>Browse</strong>.</li>
+
+<li>Locate where you saved the downloaded dataset.</li>
+
+<li>Select the dataset and choose <strong>Open</strong>.</li>
+
+<li>Return to the import window and select <strong>Import</strong>.</li>
+
+</ol>
+
+<hr>
+
+<h3>What Happens When You Click Import?</h3>
 
 <p>
-Use the point-and-click method in RStudio to import your Excel dataset.
+Once imported, the dataset will appear in the Environment pane.
 </p>
 
 <p>
-After importing the dataset, R will assign it a name. For this example, the dataset is named <code>DatasetZ</code>.
+RStudio also automatically generates the code used to import the dataset.
+Copy this line of code into your R Script.
+This allows the dataset to be automatically imported whenever you reopen your R Script.
 </p>
 
-<pre><code>library(readxl)
+<h3>General Example</h3>
 
-DatasetZ &lt;- read_excel("your-file-location.xlsx")</code></pre>
+<div class="highlight-blue">
 
-<p>
-Your dataset should contain:
-</p>
+<pre><code>DatasetName &lt;- read_excel("filepath")</code></pre>
 
-<ul>
-<li>One grouping variable with exactly two groups.</li>
-<li>One quantitative outcome variable.</li>
-<li>Independent observations between the two groups.</li>
-</ul>
+</div>
 
-<div class="definition">
-<strong style="color:#0e68b3;">Example</strong><br>
-Grouping variable: <code>Gender</code><br>
-Groups: Females and Males<br>
-Outcome variable: <code>ExamScores</code>
+<h3>Example with a Sample File Path</h3>
+
+<div class="highlight-blue">
+
+<pre><code>DatasetZ &lt;- read_excel(
+"C:/Users/John/OneDrive/Documents/AA5221/Datasets/DatasetZ.xlsx"
+)</code></pre>
+
 </div>
 
 </div>
+
 </details>
 
 
+<!-- STEP 4 -->
+
 <details>
-<summary>Step 5: Calculate the Descriptive Statistics</summary>
+
+<summary>
+<span class="step-label">Step 3</span><br>
+Calculate the Descriptive Statistics
+</summary>
 
 <div class="path-step-content">
 
@@ -683,8 +732,14 @@ The descriptive statistics tell you what each group looks like before you conduc
 </details>
 
 
+<!-- STEP 4 -->
+
 <details>
-<summary>Step 6: Normality Check 1 — Histograms</summary>
+
+<summary>
+<span class="step-label">Step 4</span><br>
+Normality Check 1: Histogram
+</summary>
 
 <div class="path-step-content">
 
@@ -721,11 +776,16 @@ Use the histograms as a visual check. Do not make your final normality decision 
 </details>
 
 
+<!-- STEP 5 -->
+
 <details>
-<summary>Step 7: Normality Check 2 — Boxplots</summary>
+
+<summary>
+<span class="step-label">Step 5</span><br>
+Normality Check 2: Boxplot
+</summary>
 
 <div class="path-step-content">
-
 <h2>Check for Potential Outliers</h2>
 
 <p>
@@ -760,10 +820,17 @@ For example, if a dataset contains mostly typical incomes but includes one extre
 </details>
 
 
+<!-- STEP 6 -->
+
 <details>
-<summary>Step 8: Normality Check 3 — Shapiro-Wilk</summary>
+
+<summary>
+<span class="step-label">Step 6</span><br>
+Normality Check 3: Shapiro-Wilk
+</summary>
 
 <div class="path-step-content">
+
 
 <h2>Conduct the Shapiro-Wilk Test</h2>
 
