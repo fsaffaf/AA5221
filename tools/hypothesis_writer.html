@@ -1,4 +1,4 @@
-
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -37,6 +37,7 @@ body::after {
   align-items: center;
   justify-content: center;
   padding: 2rem;
+  box-sizing: border-box;
 }
 
 .glass {
@@ -93,6 +94,25 @@ body::after {
 }
 
 /* =========================================
+   QUESTION 1: TWO-COLUMN HEADER
+   ========================================= */
+
+.question-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.question-header .question-title {
+  flex: 1;
+  min-width: 0;
+  margin-bottom: 0;
+  text-align: left;
+}
+
+/* =========================================
    RESEARCH DESIGN SELECTOR LINK
    ========================================= */
 
@@ -133,6 +153,9 @@ body::after {
               border-color 0.2s ease,
               transform 0.2s ease,
               box-shadow 0.2s ease;
+  box-sizing: border-box;
+  flex-shrink: 0;
+  white-space: nowrap;
 }
 
 .selector-pill:hover {
@@ -175,6 +198,8 @@ body::after {
   color: #222222;
   cursor: pointer;
   transition: 0.25s ease;
+  min-width: 0;
+  box-sizing: border-box;
 }
 
 .feature-option:hover {
@@ -370,7 +395,7 @@ body::after {
 }
 
 /* =========================================
-   MOBILE
+   TABLET AND MOBILE
    ========================================= */
 
 @media (max-width: 700px) {
@@ -405,25 +430,18 @@ body::after {
   }
 }
 
-```css
-.question-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 16px;
-  flex-wrap: wrap;
-  margin-bottom: 20px;
-}
+/* Stack Question 1 on narrow screens */
 
-.question-title {
-  flex: 1;
-  min-width: 220px;
-  text-align: left;
-}
+@media (max-width: 520px) {
+  .question-header {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
 
-.selector-pill {
-  flex-shrink: 0;
-  white-space: nowrap;
+  .question-header .selector-pill {
+    white-space: normal;
+  }
 }
 
 </style>
@@ -445,71 +463,68 @@ body::after {
     <!-- QUESTION 1: RESEARCH DESIGN -->
     <!-- ========================================= -->
 
+    <div class="question-row" id="question1">
 
-<div class="question-row" id="question1">
+      <div class="question-header">
 
-  <div class="question-header">
+        <div class="question-title">
+          <span class="question-number">1.</span>
+          What is your research design?
+        </div>
 
-    <div class="question-title">
-      <span class="question-number">1.</span>
-      What is your research design?
+        <a
+          class="selector-pill"
+          href="https://fsaffaf.github.io/AA5221/tools/research_design_selector.html"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Open the Research Design Selector in a new tab"
+        >Try the Research Design Selector</a>
+
+      </div>
+
+      <div class="feature-list">
+
+        <!-- CORRELATION -->
+
+        <label class="feature-option">
+
+          <input
+            type="radio"
+            name="design"
+            id="correlationBtn"
+            onchange="selectDesign('correlation')"
+          >
+
+          <span>
+            <span class="feature-title">
+              Correlation
+            </span>
+          </span>
+
+        </label>
+
+        <!-- QUASI-EXPERIMENT OR TRUE EXPERIMENT -->
+
+        <label class="feature-option">
+
+          <input
+            type="radio"
+            name="design"
+            id="groupsBtn"
+            onchange="selectDesign('groups')"
+          >
+
+          <span>
+            <span class="feature-title">
+              Quasi-Experiment or<br>True Experiment
+            </span>
+          </span>
+
+        </label>
+
+      </div>
+
     </div>
-
-    <a
-      class="selector-pill"
-      href="https://fsaffaf.github.io/AA5221/tools/research_design_selector.html"
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label="Open the Research Design Selector in a new tab"
-    >Try the Research Design Selector</a>
-
-  </div>
-
-  <div class="feature-list">
-
-    <!-- CORRELATION -->
-
-    <label class="feature-option">
-
-      <input
-        type="radio"
-        name="design"
-        id="correlationBtn"
-        onchange="selectDesign('correlation')"
-      >
-
-      <span>
-        <span class="feature-title">
-          Correlation
-        </span>
-      </span>
-
-    </label>
-
-    <!-- QUASI-EXPERIMENT OR TRUE EXPERIMENT -->
-
-    <label class="feature-option">
-
-      <input
-        type="radio"
-        name="design"
-        id="groupsBtn"
-        onchange="selectDesign('groups')"
-      >
-
-      <span>
-        <span class="feature-title">
-          Quasi-Experiment or
-          <br> True Experiment
-        </span>
-      </span>
-
-    </label>
-
-  </div>
-
-</div>
-
 
     <!-- ========================================= -->
     <!-- QUESTION 2: VARIABLE NAMES AND UNITS -->
@@ -933,3 +948,4 @@ function generateHypotheses() {
 
 </body>
 </html>
+```
