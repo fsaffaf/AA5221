@@ -441,10 +441,6 @@ Tests whether the means of two independent groups are significantly different.
 A nonparametric test used to compare two independent groups when the outcome does not meet the normality rule used for the independent t-test.
 </div>
 
-<div class="note">
-<strong>Course rule:</strong> For this course, use the Shapiro-Wilk test to determine whether the outcome variable is normally distributed within each group. If both groups have p &gt; .05, use the Independent T-Test. If either group has p &lt; .05, use the Mann-Whitney U Test.
-</div>
-
 </div>
 </details>
 
@@ -460,31 +456,17 @@ RScript Code Template
 
 <div class="path-step-content">
 
-<h2>Start With the Full R Script</h2>
-
 <p>
-Use the following template as a guide. Replace the dataset, grouping variable, outcome variable, and group names with the variables from your dataset.
+Below is an example of what your code will look like. 
+Your code will be different because the dataset name, variable name, expected proportions, results, and interpretations will depend on your assigned dataset.
 </p>
 
-<pre><code># Install packages once if needed
-# install.packages("readxl")
-# install.packages("ggpubr")
-# install.packages("dplyr")
-# install.packages("effectsize")
-# install.packages("effsize")
-
+<pre><code>
 library(readxl)
 library(ggpubr)
 library(dplyr)
 library(effectsize)
 library(effsize)
-
-
-# Import your dataset
-# Use the point-and-click import instructions in Step 4.
-
-
-# Descriptive statistics
 
 DatasetName %&gt;%
   group_by(GroupVariable) %&gt;%
@@ -494,9 +476,6 @@ DatasetName %&gt;%
     SD = sd(OutcomeVariable, na.rm = TRUE),
     N = n()
   )
-
-
-# Histograms
 
 hist(DatasetName$OutcomeVariable[DatasetName$GroupVariable == "Group1Name"],
      breaks = 15,
@@ -509,8 +488,6 @@ hist(DatasetName$OutcomeVariable[DatasetName$GroupVariable == "Group2Name"],
      border = "white")
 
 
-# Boxplot
-
 ggboxplot(DatasetName,
           x = "GroupVariable",
           y = "OutcomeVariable",
@@ -518,8 +495,6 @@ ggboxplot(DatasetName,
           palette = "jco",
           add = "jitter")
 
-
-# Shapiro-Wilk tests
 
 shapiro.test(
   DatasetName$OutcomeVariable[
@@ -534,16 +509,14 @@ shapiro.test(
 )
 
 
-# Independent T-Test
+# Independent t-test
+
 
 t.test(
   OutcomeVariable ~ GroupVariable,
   data = DatasetName,
   var.equal = TRUE
 )
-
-
-# Cohen's d
 
 cohens_d_result &lt;- cohens_d(
   OutcomeVariable ~ GroupVariable,
@@ -571,9 +544,6 @@ mw_effect &lt;- cliff.delta(
 
 print(mw_effect)</code></pre>
 
-<div class="warning">
-<strong>Important:</strong> Do not copy the example dataset names into your assignment without replacing them. Your dataset and variable names will be different.
-</div>
 
 </div>
 </details>
