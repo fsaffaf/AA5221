@@ -1,54 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-<title>Level of Measurement Identifier</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Unit of Measurement to Level of Measurement Converter</title>
 
 <style>
-
 html, body {
   margin: 0;
   padding: 0;
   min-height: 100%;
-  font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
-  background: #020617;
-  color: white;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  background: #f4f6f9;
+  color: #222222;
 }
 
 body {
   min-height: 100vh;
-  position: relative;
   overflow-x: hidden;
 }
-
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-
-  background:
-    radial-gradient(circle at top, rgba(125,211,252,0.16), transparent 35%),
-    radial-gradient(circle at bottom, rgba(99,102,241,0.14), transparent 40%);
-
-  z-index: -2;
-}
-
-body::after {
-  content: "";
-  position: fixed;
-  inset: 0;
-  opacity: 0.3;
-
-  background-image:
-    linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
-
-  background-size: 42px 42px;
-  z-index: -1;
-}
-
 
 /* =========================================
    MAIN LAYOUT
@@ -56,222 +26,207 @@ body::after {
 
 .measurement-wrapper {
   min-height: 100vh;
-
   display: flex;
   align-items: center;
   justify-content: center;
-
   padding: 2rem;
+  box-sizing: border-box;
 }
 
 .glass {
   width: 100%;
-  max-width: 720px;
+  max-width: 800px;
   padding: 2.5rem;
-
-  background: rgba(255,255,255,0.08);
-  border: 1px solid rgba(255,255,255,0.15);
-
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
-
-  border-radius: 24px;
-  box-shadow: 0 25px 80px rgba(0,0,0,0.45);
+  box-sizing: border-box;
+  background: #ffffff;
+  border: 1px solid #d9e2ec;
+  border-radius: 14px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
 }
+
+/* =========================================
+   TITLE AND DESCRIPTION
+   ========================================= */
 
 .glass h2 {
   margin: 0 0 0.75rem;
   text-align: center;
-
-  font-size: clamp(2rem, 5vw, 3.25rem);
-  font-weight: 650;
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  font-weight: 500;
   letter-spacing: -0.03em;
-
-  color: white;
+  line-height: 1.2;
+  color: #0e68b3;
 }
 
-.glass p {
+.glass > p {
   margin: 0 0 2rem;
   text-align: center;
-
-  color: rgb(203,213,225);
-  font-size: 1.05rem;
-  line-height: 1.6;
+  color: #444444;
+  font-size: 1rem;
+  line-height: 1.8;
 }
-
 
 /* =========================================
-   QUESTION ROWS
+   CONVERTER LAYOUT
    ========================================= */
 
-.question-row {
-  margin-bottom: 1.5rem;
-  animation: fadeIn 0.3s ease;
-}
-
-.question-row.hidden {
-  display: none;
-}
-
-.question-title {
-  margin-bottom: 0.75rem;
-
-  font-size: 1.05rem;
-  font-weight: 650;
-
-  color: white;
-}
-
-.question-number {
-  color: rgb(125,211,252);
-  margin-right: 0.4rem;
-}
-
-
-/* =========================================
-   OPTIONS
-   ========================================= */
-
-.feature-list {
+.converter-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1rem;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 1.25rem;
+  align-items: stretch;
 }
-
-.feature-option {
-  display: flex;
-  align-items: center;
-  gap: 0.85rem;
-
-  padding: 1rem 1.15rem;
-  border-radius: 16px;
-
-  background: rgba(255,255,255,0.08);
-  border: 1px solid rgba(255,255,255,0.12);
-
-  color: rgb(241,245,249);
-
-  cursor: pointer;
-  transition: 0.25s ease;
-}
-
-.feature-option:hover {
-  background: rgba(255,255,255,0.13);
-  transform: translateY(-1px);
-}
-
-.feature-option input {
-  width: 1.1rem;
-  height: 1.1rem;
-
-  accent-color: #38bdf8;
-  cursor: pointer;
-}
-
-.feature-title {
-  font-weight: 600;
-  color: white;
-}
-
-.feature-subtitle {
-  font-size: 0.85rem;
-  color: rgb(203,213,225);
-  margin-top: 6px;
-  display: block;
-}
-
-.examples {
-  display: block;
-  margin-top: 6px;
-}
-
 
 /* =========================================
-   RESULT PANEL
+   INPUT AND OUTPUT PANELS
    ========================================= */
 
-.result-panel {
-  display: none;
-
-  margin-top: 1.5rem;
+.converter-panel {
+  min-width: 0;
   padding: 1.5rem;
-
-  border-radius: 20px;
-  border: 1px solid rgba(125,211,252,0.30);
-
-  background: linear-gradient(
-    135deg,
-    rgba(3,105,161,0.70),
-    rgba(49,46,129,0.80)
-  );
-
-  box-shadow: 0 20px 50px rgba(0,0,0,0.35);
-  animation: fadeIn 0.3s ease;
+  box-sizing: border-box;
+  border: 1px solid #d9e2ec;
+  border-radius: 12px;
+  background: #ffffff;
 }
 
-.result-label {
-  font-size: 0.78rem;
-  text-transform: uppercase;
-  letter-spacing: 0.22em;
-
-  color: rgb(203,213,225);
-  margin-bottom: 0.4rem;
+.converter-panel.output-panel {
+  background: #f0f7fc;
+  border-color: #b9d8ef;
 }
 
-.result-title {
-  margin: 0;
-
-  font-size: clamp(1.5rem, 4vw, 2rem);
+.panel-title {
+  margin: 0 0 1rem;
+  color: #0e68b3;
+  font-size: 1.05rem;
   font-weight: 650;
-
-  color: white;
+  line-height: 1.5;
 }
 
-.result-description {
-  margin-top: 0.75rem;
+/* =========================================
+   DROPDOWN
+   ========================================= */
 
-  color: rgb(226,232,240);
+.input-group label {
+  display: block;
+  margin-bottom: 0.6rem;
+  color: #333333;
+  font-size: 0.95rem;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+.input-group select {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+  padding: 0.9rem;
+  border: 1px solid #d9e2ec;
+  border-radius: 12px;
+  background: #ffffff;
+  color: #222222;
+  font-family: inherit;
+  font-size: 1rem;
+  cursor: pointer;
+  outline: none;
+  transition: border-color 0.2s ease,
+              box-shadow 0.2s ease;
+}
+
+.input-group select:focus {
+  border-color: #0e68b3;
+  box-shadow: 0 0 0 3px rgba(14, 104, 179, 0.12);
+}
+
+.helper-text {
+  margin: 0.75rem 0 0;
+  color: #555555;
+  font-size: 0.85rem;
   line-height: 1.6;
 }
 
+/* =========================================
+   NUMERICAL ANSWER
+   ========================================= */
+
+.answer-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 150px;
+  text-align: center;
+}
+
+.answer-label {
+  margin-bottom: 0.5rem;
+  color: #444444;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.answer-number {
+  color: #0e68b3;
+  font-size: clamp(3rem, 7vw, 4.5rem);
+  font-weight: 650;
+  line-height: 1.1;
+  overflow-wrap: anywhere;
+}
+
+.answer-description {
+  margin: 0.75rem 0 0;
+  color: #555555;
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.answer-placeholder {
+  color: #7a8794;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.6;
+}
 
 /* =========================================
    RESET BUTTON
    ========================================= */
 
-.reset-button {
-  display: none;
-
+.reset-btn {
+  display: block;
   width: 100%;
-  margin-top: 1rem;
-
-  border: 1px solid rgba(255,255,255,0.18);
-  border-radius: 18px;
-
-  padding: 0.9rem 1.25rem;
-
-  background: #1e90ff;
-  color: white;
-
+  margin-top: 1.5rem;
+  padding: 0.9rem 1rem;
+  box-sizing: border-box;
+  border: 1px solid #0e68b3;
+  border-radius: 999px;
+  background: #0e68b3;
+  color: #ffffff;
   font-family: inherit;
-  font-size: 1rem;
-  font-weight: 600;
-
+  font-size: 0.95rem;
+  font-weight: 650;
   cursor: pointer;
-  transition: 0.25s ease;
+  transition: background 0.2s ease,
+              border-color 0.2s ease,
+              transform 0.2s ease;
 }
 
-.reset-button:hover {
-  background: rgba(255,255,255,0.14);
+.reset-btn:hover {
+  background: #2b6cb0;
+  border-color: #2b6cb0;
+  transform: translateY(-1px);
 }
 
+.reset-btn:focus-visible {
+  outline: 3px solid rgba(14, 104, 179, 0.3);
+  outline-offset: 3px;
+}
 
 /* =========================================
    ANIMATION
    ========================================= */
 
 @keyframes fadeIn {
-
   from {
     opacity: 0;
     transform: translateY(8px);
@@ -281,628 +236,279 @@ body::after {
     opacity: 1;
     transform: translateY(0);
   }
-
 }
 
+.answer-area.updated {
+  animation: fadeIn 0.25s ease;
+}
 
 /* =========================================
-   MOBILE
+   TABLET AND MOBILE
    ========================================= */
 
-@media (max-width: 700px) {
-
+@media (max-width: 600px) {
   .measurement-wrapper {
     padding: 1rem;
+    align-items: flex-start;
   }
 
   .glass {
-    padding: 1.5rem;
+    padding: 1.25rem;
   }
 
-  .feature-list {
-    grid-template-columns: 1fr;
+  .converter-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1rem;
   }
 
+  .converter-panel {
+    padding: 1.25rem;
+  }
+
+  .answer-area {
+    min-height: 120px;
+  }
 }
-
 </style>
 </head>
-
 
 <body>
 
 <div class="measurement-wrapper">
 
-  <div class="glass">
+  <main class="glass">
 
-    <h2>Level of Measurement Identifier</h2>
+    <h2>Unit of Measurement to Level of Measurement Converter</h2>
 
     <p>
-      Answer each question to identify the level of measurement.
+      Select an option from the dropdown menu to display its corresponding
+      numerical answer.
     </p>
 
+    <div class="converter-grid">
 
-    <!-- ========================================= -->
-    <!-- QUESTION 1 -->
-    <!-- ========================================= -->
+      <!-- ========================================= -->
+      <!-- LEFT: DROPDOWN -->
+      <!-- ========================================= -->
 
-    <div class="question-row" id="question1">
+      <section class="converter-panel">
 
-      <div class="question-title">
-        <span class="question-number">1.</span>
-        Do you have categories?
-      </div>
+        <h3 class="panel-title">Select an Option</h3>
 
-      <div class="feature-list">
+        <div class="input-group">
 
+          <label for="letterSelect">
+            Choose a letter
+          </label>
 
-        <!-- YES -->
-        <label class="feature-option">
-
-          <input
-            type="radio"
-            name="categories"
-            id="categoriesYes"
-            onchange="handleCategories()"
+          <select
+            id="letterSelect"
+            onchange="updateAnswer()"
           >
 
-          <span>
+            <option value="">Select a letter...</option>
+            <option value="A">A</option>
+            <option value="B">B</option>
+            <option value="C">C</option>
+            <option value="D">D</option>
+            <option value="E">E</option>
+            <option value="F">F</option>
+            <option value="G">G</option>
+            <option value="H">H</option>
+            <option value="I">I</option>
+            <option value="J">J</option>
+            <option value="K">K</option>
+            <option value="L">L</option>
+            <option value="M">M</option>
+            <option value="N">N</option>
+            <option value="O">O</option>
+            <option value="P">P</option>
+            <option value="Q">Q</option>
+            <option value="R">R</option>
+            <option value="S">S</option>
+            <option value="T">T</option>
+            <option value="U">U</option>
+            <option value="V">V</option>
+            <option value="W">W</option>
+            <option value="X">X</option>
+            <option value="Y">Y</option>
+            <option value="Z">Z</option>
 
-            <span class="feature-title">
-              Yes
-            </span>
+          </select>
 
-            <br>
+        </div>
 
-            <span class="feature-subtitle">
-              The variable places observations into distinct categories or groups.
+        <p class="helper-text">
+          Choose a letter to see its assigned numerical answer.
+        </p>
 
-              <span class="examples">
-                Examples: Red or blue, Group 1 or Group 2.
-              </span>
+        <button
+          type="button"
+          class="reset-btn"
+          onclick="resetConverter()"
+        >
+          Reset
+        </button>
 
-            </span>
+      </section>
 
-          </span>
+      <!-- ========================================= -->
+      <!-- RIGHT: NUMERICAL ANSWER -->
+      <!-- ========================================= -->
 
-        </label>
+      <section
+        class="converter-panel output-panel"
+        aria-live="polite"
+        aria-atomic="true"
+      >
 
+        <h3 class="panel-title">Numerical Answer</h3>
 
-        <!-- NO -->
-        <label class="feature-option">
+        <div class="answer-area" id="answerArea">
 
-          <input
-            type="radio"
-            name="categories"
-            id="categoriesNo"
-            onchange="handleCategories()"
+          <div class="answer-label">
+            Your answer will appear here
+          </div>
+
+          <div
+            class="answer-number answer-placeholder"
+            id="answerNumber"
           >
+            —
+          </div>
 
-          <span>
+          <p
+            class="answer-description"
+            id="answerDescription"
+          >
+            Select a letter to begin.
+          </p>
 
-            <span class="feature-title">
-              No
-            </span>
+        </div>
 
-            <br>
-
-            <span class="feature-subtitle">
-              The variable is measured using numerical values rather than categories.
-
-              <span class="examples">
-                Example: Hours, inches, stress levels, temperature.
-              </span>
-
-            </span>
-
-          </span>
-
-        </label>
-
-      </div>
+      </section>
 
     </div>
 
-
-    <!-- ========================================= -->
-    <!-- QUESTION 2A: CATEGORICAL -->
-    <!-- ========================================= -->
-
-    <div
-      class="question-row hidden"
-      id="question2Categories"
-    >
-
-      <div class="question-title">
-        <span class="question-number">2.</span>
-        Do the categories have a meaningful order or ranking?
-      </div>
-
-      <div class="feature-list">
-
-
-        <!-- YES -->
-        <label class="feature-option">
-
-          <input
-            type="radio"
-            name="ranking"
-            id="rankingYes"
-            onchange="handleRanking()"
-          >
-
-          <span>
-
-            <span class="feature-title">
-              Yes
-            </span>
-
-            <br>
-
-            <span class="feature-subtitle">
-
-              The categories can be meaningfully ranked, such as low, medium, and high.
-
-              <span class="examples">
-                Examples: Single-item Likert scale, degree (High School, Bachelor's, Master's, Doctorate), letter grades (A, B, C, D, F), class rank (1st, 2nd, 3rd).
-              </span>
-
-            </span>
-
-          </span>
-
-        </label>
-
-
-        <!-- NO -->
-        <label class="feature-option">
-
-          <input
-            type="radio"
-            name="ranking"
-            id="rankingNo"
-            onchange="handleRanking()"
-          >
-
-          <span>
-
-            <span class="feature-title">
-              No
-            </span>
-
-            <br>
-
-            <span class="feature-subtitle">
-
-              The categories are labels only and cannot be meaningfully ranked.
-
-              <span class="examples">
-                Examples: Gender, nationality, eye color.
-              </span>
-
-            </span>
-
-          </span>
-
-        </label>
-
-      </div>
-
-    </div>
-
-
-    <!-- ========================================= -->
-    <!-- QUESTION 2B: NUMERICAL -->
-    <!-- ========================================= -->
-
-    <div
-      class="question-row hidden"
-      id="question2Numbers"
-    >
-
-      <div class="question-title">
-        <span class="question-number">2.</span>
-        Does the scale have a meaningful zero point?
-      </div>
-
-      <div class="feature-list">
-
-
-        <!-- YES -->
-        <label class="feature-option">
-
-          <input
-            type="radio"
-            name="zero"
-            id="zeroYes"
-            onchange="handleZero()"
-          >
-
-          <span>
-
-            <span class="feature-title">
-              Yes
-            </span>
-
-            <br>
-
-            <span class="feature-subtitle">
-
-              A value of zero represents the complete absence of the quantity being measured. Zero is the lowest you can go on the scale.
-
-              <span class="examples">
-                Examples: Kilograms, pounds, centimeters, inches, kilometers, miles, years, hours.
-              </span>
-
-            </span>
-
-          </span>
-
-        </label>
-
-
-        <!-- NO -->
-        <label class="feature-option">
-
-          <input
-            type="radio"
-            name="zero"
-            id="zeroNo"
-            onchange="handleZero()"
-          >
-
-          <span>
-
-            <span class="feature-title">
-              No
-            </span>
-
-            <br>
-
-            <span class="feature-subtitle">
-
-              Zero does not represent the complete absence of the quantity being measured. You can go below zero.
-
-              <span class="examples">
-                Examples: Multiple-item Likert scale, Celsius, or Fahrenheit.
-              </span>
-
-            </span>
-
-          </span>
-
-        </label>
-
-      </div>
-
-    </div>
-
-
-    <!-- ========================================= -->
-    <!-- RESULT -->
-    <!-- ========================================= -->
-
-    <div
-      id="resultPanel"
-      class="result-panel"
-    >
-
-      <div class="result-label">
-        Level of Measurement
-      </div>
-
-      <h3
-        id="result"
-        class="result-title"
-      ></h3>
-
-      <div
-        id="resultDescription"
-        class="result-description"
-      ></div>
-
-    </div>
-
-
-    <!-- ========================================= -->
-    <!-- RESET -->
-    <!-- ========================================= -->
-
-    <button
-      id="resetButton"
-      class="reset-button"
-      onclick="resetSelector()"
-    >
-      Start Over
-    </button>
-
-  </div>
+  </main>
 
 </div>
 
-
 <script>
 
-
 /* =========================================
-   QUESTION 1
-   CATEGORIES?
+   ANSWER KEY
    ========================================= */
 
-function handleCategories() {
+/*
+   PLACEHOLDER ANSWERS
 
-  const categoriesYes =
-    document.getElementById("categoriesYes").checked;
+   Replace these numerical values with your own answers.
 
-  const categoriesNo =
-    document.getElementById("categoriesNo").checked;
+   Example:
+   A: 1
+   B: 2
+   C: 3
+
+   You can also change individual values independently.
+*/
+
+const answerKey = {
+  A: 1,
+  B: 2,
+  C: 3,
+  D: 4,
+  E: 5,
+  F: 6,
+  G: 7,
+  H: 8,
+  I: 9,
+  J: 10,
+  K: 11,
+  L: 12,
+  M: 13,
+  N: 14,
+  O: 15,
+  P: 16,
+  Q: 17,
+  R: 18,
+  S: 19,
+  T: 20,
+  U: 21,
+  V: 22,
+  W: 23,
+  X: 24,
+  Y: 25,
+  Z: 26
+};
 
 
-  const question2Categories =
-    document.getElementById("question2Categories");
+/* =========================================
+   UPDATE THE ANSWER
+   ========================================= */
 
-  const question2Numbers =
-    document.getElementById("question2Numbers");
+function updateAnswer() {
 
-  const resultPanel =
-    document.getElementById("resultPanel");
+  const selectedLetter =
+    document.getElementById("letterSelect").value;
 
-  const resetButton =
-    document.getElementById("resetButton");
+  const answerNumber =
+    document.getElementById("answerNumber");
 
+  const answerDescription =
+    document.getElementById("answerDescription");
 
-  /*
-    Reset all later answers whenever
-    Question 1 changes.
-  */
-
-  document.getElementById("rankingYes").checked = false;
-  document.getElementById("rankingNo").checked = false;
-
-  document.getElementById("zeroYes").checked = false;
-  document.getElementById("zeroNo").checked = false;
+  const answerArea =
+    document.getElementById("answerArea");
 
 
-  /*
-    Hide previous results.
-  */
+  /* NO SELECTION */
 
-  resultPanel.style.display = "none";
-  resetButton.style.display = "none";
+  if (!selectedLetter) {
 
+    answerNumber.textContent = "—";
 
-  /*
-    YES = Categorical pathway
-  */
+    answerNumber.classList.add("answer-placeholder");
 
-  if (categoriesYes) {
+    answerDescription.textContent =
+      "Select a letter to begin.";
 
-    question2Categories.classList.remove("hidden");
-
-    question2Numbers.classList.add("hidden");
+    return;
 
   }
 
 
-  /*
-    NO = Numerical pathway
-  */
+  /* DISPLAY THE ASSIGNED NUMBER */
 
-  if (categoriesNo) {
+  answerNumber.textContent =
+    answerKey[selectedLetter];
 
-    question2Numbers.classList.remove("hidden");
+  answerNumber.classList.remove("answer-placeholder");
 
-    question2Categories.classList.add("hidden");
+  answerDescription.textContent =
+    "Selected option: " + selectedLetter;
 
-  }
+
+  /* REPLAY THE ANIMATION */
+
+  answerArea.classList.remove("updated");
+
+  void answerArea.offsetWidth;
+
+  answerArea.classList.add("updated");
 
 }
 
 
 /* =========================================
-   QUESTION 2A
-   CATEGORIES HAVE ORDER?
+   RESET THE CONVERTER
    ========================================= */
 
-function handleRanking() {
+function resetConverter() {
 
-  const rankingYes =
-    document.getElementById("rankingYes").checked;
+  document.getElementById("letterSelect").value = "";
 
-  const rankingNo =
-    document.getElementById("rankingNo").checked;
-
-
-  /*
-    YES = ORDINAL
-  */
-
-  if (rankingYes) {
-
-    showResult(
-      "Ordinal",
-      "This variable is measured at the ordinal level. The values represent distinct categories that have a meaningful order or ranking, but the exact distance between categories is not necessarily equal."
-    );
-
-  }
-
-
-  /*
-    NO = NOMINAL
-  */
-
-  if (rankingNo) {
-
-    showResult(
-      "Nominal",
-      "This variable is measured at the nominal level. The values represent distinct categories or labels, but the categories do not have a meaningful order or ranking."
-    );
-
-  }
-
-}
-
-
-/* =========================================
-   QUESTION 2B
-   MEANINGFUL ZERO?
-   ========================================= */
-
-function handleZero() {
-
-  const zeroYes =
-    document.getElementById("zeroYes").checked;
-
-  const zeroNo =
-    document.getElementById("zeroNo").checked;
-
-
-  /*
-    YES = RATIO
-  */
-
-  if (zeroYes) {
-
-    showResult(
-      "Ratio",
-      "This variable is measured at the ratio level. The values have equal intervals, and zero represents the complete absence of the quantity being measured. This allows meaningful ratio comparisons."
-    );
-
-  }
-
-
-  /*
-    NO = INTERVAL
-  */
-
-  if (zeroNo) {
-
-    showResult(
-      "Interval",
-      "This variable is measured at the interval level. The values have meaningful and equal intervals, but zero does not represent the complete absence of the quantity being measured."
-    );
-
-  }
-
-}
-
-
-/* =========================================
-   SHOW RESULT
-   ========================================= */
-
-function showResult(title, descriptionText) {
-
-  const resultPanel =
-    document.getElementById("resultPanel");
-
-  const result =
-    document.getElementById("result");
-
-  const description =
-    document.getElementById("resultDescription");
-
-
-  /*
-    Insert result.
-  */
-
-  result.textContent = title;
-
-  description.textContent = descriptionText;
-
-
-  /*
-    Show result panel.
-  */
-
-  resultPanel.style.display = "block";
-
-
-  /*
-    Show reset button.
-  */
-
-  document
-    .getElementById("resetButton")
-    .style.display = "block";
-
-
-  /*
-    Scroll to result.
-  */
-
-  setTimeout(function() {
-
-    resultPanel.scrollIntoView({
-      behavior: "smooth",
-      block: "nearest"
-    });
-
-  }, 100);
-
-}
-
-
-/* =========================================
-   RESET SELECTOR
-   ========================================= */
-
-function resetSelector() {
-
-
-  /*
-    Clear all selections.
-  */
-
-  document
-    .querySelectorAll('input[type="radio"]')
-    .forEach(function(input) {
-
-      input.checked = false;
-
-    });
-
-
-  /*
-    Hide both Question 2 pathways.
-  */
-
-  document
-    .getElementById("question2Categories")
-    .classList.add("hidden");
-
-  document
-    .getElementById("question2Numbers")
-    .classList.add("hidden");
-
-
-  /*
-    Hide result.
-  */
-
-  document
-    .getElementById("resultPanel")
-    .style.display = "none";
-
-
-  /*
-    Hide reset button.
-  */
-
-  document
-    .getElementById("resetButton")
-    .style.display = "none";
-
-
-  /*
-    Return to top.
-  */
-
-  window.scrollTo({
-    top: 0,
-    behavior: "smooth"
-  });
+  updateAnswer();
 
 }
 
@@ -910,4 +516,3 @@ function resetSelector() {
 
 </body>
 </html>
-```
