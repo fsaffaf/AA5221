@@ -429,65 +429,61 @@ body::after {
     <span class="question-number">1.</span>
     What is your research design?
   </div>
-<a
-class="selector-pill"
-href="https://fsaffaf.github.io/AA5221/tools/research_design_selector.html"
-target="_blank"
-rel="noopener noreferrer"
-aria-label="Open the Research Design Selector in a new tab"
->Try the Research Design Selector
+
+  <a
+    class="selector-pill"
+    href="https://fsaffaf.github.io/AA5221/tools/research_design_selector.html"
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="Open the Research Design Selector in a new tab"
+  >Try the Research Design Selector</a>
+
+  <div class="feature-list">
+
+    <!-- CORRELATION -->
+
+    <label class="feature-option">
+
+      <input
+        type="radio"
+        name="design"
+        id="correlationBtn"
+        onchange="selectDesign('correlation')"
+      >
+
+      <span>
+        <span class="feature-title">
+          Correlation
+        </span>
+      </span>
+
+    </label>
+
+    <!-- QUASI-EXPERIMENT OR TRUE EXPERIMENT -->
+
+    <label class="feature-option">
+
+      <input
+        type="radio"
+        name="design"
+        id="groupsBtn"
+        onchange="selectDesign('groups')"
+      >
+
+      <span>
+        <span class="feature-title">
+          Quasi-Experiment or
+          <br> True Experiment
+        </span>
+        <br>
+      </span>
+
+    </label>
+
+  </div>
+
 </div>
 
-
-      <div class="feature-list">
-
-        <!-- CORRELATION -->
-
-        <label class="feature-option">
-
-          <input
-            type="radio"
-            name="design"
-            id="correlationBtn"
-            onchange="selectDesign('correlation')"
-          >
-
-          <span>
-
-            <span class="feature-title">
-              Correlation
-            </span>
-         </span>
-
-        </label>
-
-        <!-- QUASI-EXPERIMENT OR TRUE EXPERIMENT -->
-
-        <label class="feature-option">
-
-          <input
-            type="radio"
-            name="design"
-            id="groupsBtn"
-            onchange="selectDesign('groups')"
-          >
-
-          <span>
-
-            <span class="feature-title">
-              Quasi-Experiment or 
-              <br> True Experiment
-            </span>
-
-            <br>
-
-         </span>
-
-        </label>
-
-      </div>
-
-    </div>
 
     <!-- ========================================= -->
     <!-- QUESTION 2: VARIABLE NAMES AND UNITS -->
