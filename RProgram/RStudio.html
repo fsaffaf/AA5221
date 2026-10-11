@@ -9,6 +9,17 @@
 <title>Pearson &amp; Spearman Correlation</title>
 
 <style>
+/* =========================================
+   GLOBAL STYLES
+========================================= */
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
 
 body {
     margin: 0;
@@ -18,10 +29,15 @@ body {
 }
 
 .container {
+    width: 100%;
     max-width: 1000px;
     margin: auto;
     padding: 50px 20px;
 }
+
+/* =========================================
+   HEADINGS AND TEXT
+========================================= */
 
 h1 {
     text-align: left;
@@ -29,6 +45,8 @@ h1 {
     font-size: 2.75rem;
     font-weight: 200;
     letter-spacing: .08em;
+    text-transform: none;
+    margin-top: 0;
     margin-bottom: 10px;
 }
 
@@ -45,12 +63,71 @@ h2,
 h3 {
     color: #0e68b3;
     font-weight: 500;
+}
+
+.card h2,
+.card h3 {
+    position: relative;
     display: inline-block;
+}
+
+.card h2::after,
+.card h3::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    width: 0;
+    height: 2px;
+    background: #0e68b3;
+    transition: width .3s ease;
+}
+
+.card:hover h2::after,
+.card:hover h3::after {
+    width: 100%;
 }
 
 p {
     line-height: 1.8;
 }
+
+ul,
+ol {
+    padding-left: 25px;
+}
+
+li {
+    margin-bottom: 8px;
+}
+
+a {
+    color: #0e68b3;
+}
+
+/* =========================================
+   GENERAL CONTENT CARDS
+========================================= */
+
+.card {
+    background: #ffffff;
+    border: 1px solid #d9e2ec;
+    border-radius: 16px;
+    padding: 30px;
+    margin-bottom: 25px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, .05);
+    animation: fadeUp .6s ease forwards;
+    transition: transform .25s ease, box-shadow .25s ease;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px rgba(14, 104, 179, .15);
+}
+
+/* =========================================
+   TWO-COLUMN TEST PATH CARDS
+========================================= */
 
 .test-path {
     border: 1px solid #d9e2ec;
@@ -61,15 +138,17 @@ p {
     box-shadow: 0 3px 10px rgba(0, 0, 0, .05);
 }
 
+/* Blue card header */
+
 .test-path-header {
     background: #0e68b3;
-    color: white;
+    color: #ffffff;
     padding: 20px 25px;
 }
 
 .test-path-header h2,
 .test-path-header h3 {
-    color: white;
+    color: #ffffff;
     margin: 0;
     font-size: 1.35rem;
     font-weight: 600;
@@ -78,12 +157,59 @@ p {
 .test-path-subtitle {
     margin: 6px 0 0;
     font-size: .95rem;
+    line-height: 1.5;
+    color: #ffffff;
     opacity: .95;
 }
+
+/* Card content */
 
 .test-path-content {
     padding: 10px 25px 20px;
 }
+
+/* =========================================
+   TWO-COLUMN GRID
+========================================= */
+
+.test-paths {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 25px;
+    margin: 30px 0;
+    align-items: start;
+}
+
+/* Remove outside margins when cards are in a grid */
+
+.test-paths .test-path {
+    margin: 0;
+    min-width: 0;
+}
+
+/* Grid card headers */
+
+.test-paths .test-path-header {
+    padding: 20px;
+    text-align: center;
+}
+
+.test-paths .test-path-header h2,
+.test-paths .test-path-header h3 {
+    color: #ffffff;
+    margin: 0;
+    font-size: 1.25rem;
+}
+
+/* Grid card content */
+
+.test-paths .test-path-content {
+    padding: 10px 20px 20px;
+}
+
+/* =========================================
+   EXPANDABLE DETAILS
+========================================= */
 
 .test-path-content details {
     border-bottom: 1px solid #e5e7eb;
@@ -100,11 +226,14 @@ p {
     padding: 17px 35px 17px 5px;
     color: #0e68b3;
     font-weight: 600;
+    line-height: 1.5;
 }
 
 .test-path-content summary::-webkit-details-marker {
     display: none;
 }
+
+/* Plus icon */
 
 .test-path-content summary::after {
     content: "+";
@@ -116,9 +245,13 @@ p {
     font-weight: 400;
 }
 
+/* Minus icon when expanded */
+
 .test-path-content details[open] summary::after {
     content: "−";
 }
+
+/* Expanded step content */
 
 .path-step-content {
     padding: 0 5px 20px;
@@ -135,27 +268,91 @@ p {
     font-weight: 600;
 }
 
-ul,
-ol {
-    padding-left: 25px;
+/* Grid-specific expandable elements */
+
+.test-paths .test-path-content details {
+    border-bottom: 1px solid #e5e7eb;
 }
 
-li {
-    margin-bottom: 8px;
+.test-paths .test-path-content details:last-child {
+    border-bottom: none;
 }
+
+.test-paths .test-path-content summary {
+    padding: 17px 30px 17px 5px;
+}
+
+/* =========================================
+   HIGHLIGHT BOXES
+========================================= */
+
+/* General blue highlight */
+
+.highlight {
+    background: #eef6fc;
+    border-left: 5px solid #0e68b3;
+    padding: 15px 20px;
+    border-radius: 8px;
+    margin: 20px 0;
+    line-height: 1.6;
+}
+
+.highlight pre {
+    background: transparent;
+}
+
+/* Explicit blue highlight */
+
+.highlight-blue {
+    background: #f0f7fc;
+    border-left: 5px solid #0e68b3;
+    padding: 15px 20px;
+    border-radius: 8px;
+    margin: 20px 0;
+    line-height: 1.6;
+}
+
+/* Orange highlight */
+
+.highlight-orange {
+    background: #fff4e6;
+    border-left: 5px solid #e67e22;
+    padding: 15px 20px;
+    border-radius: 8px;
+    margin: 20px 0;
+    line-height: 1.6;
+}
+
+/* =========================================
+   STEP LABELS
+========================================= */
+
+.step-label {
+    display: inline-block;
+    font-size: .8rem;
+    font-weight: 700;
+    letter-spacing: .05em;
+    text-transform: uppercase;
+    color: #6b7280;
+    margin-bottom: 5px;
+}
+
+/* =========================================
+   TABLES
+========================================= */
 
 table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
-    background: white;
-    overflow: hidden;
+    background: #ffffff;
     border-radius: 10px;
+    overflow: hidden;
 }
 
 th {
     background: #0e68b3;
-    color: white;
+    color: #ffffff;
     text-align: left;
     padding: 14px;
 }
@@ -174,117 +371,45 @@ tr:hover {
     background: #edf6ff;
 }
 
+/* =========================================
+   CODE BLOCKS
+========================================= */
+
 pre {
     white-space: pre-wrap;
     overflow-x: auto;
     margin: 0;
+    max-width: 100%;
 }
 
 code {
     font-family: Consolas, Monaco, "Courier New", monospace;
+    overflow-wrap: anywhere;
 }
 
-.highlight pre {
-    background: transparent;
-}
+/* =========================================
+   BUTTONS
+========================================= */
 
-.highlight {
-    padding: 15px 20px;
-    border-radius: 0px;
-    margin: 20px 0;
-    line-height: 1.6;
-}
-
-.highlight-blue {
-    background: #f0f7fc;
-    border-left: 5px solid #0e68b3;
-    padding: 15px 20px;
-    border-radius: 0px;
-    margin: 20px 0;
-    line-height: 1.6;
-}
-
-.highlight-orange {
-    background: #fff4e6;
-    border-left: 5px solid #e67e22;
-    padding: 15px 20px;
-    border-radius: 0px;
-    margin: 20px 0;
-    line-height: 1.6;
-}
-
-.test-paths {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 25px;
-    margin: 30px 0;
-}
-
-.test-paths .test-path {
-    margin: 0;
-}
-
-.test-paths .test-path-header {
-    background: #0e68b3;
-    color: white;
-    padding: 20px;
-    text-align: center;
-}
-
-.test-paths .test-path-header h3 {
-    color: white;
-    margin: 0;
-    font-size: 1.25rem;
-}
-
-.test-paths .test-path-content {
-    padding: 10px 20px 20px;
-}
-
-.test-paths .test-path-content details {
-    border-bottom: 1px solid #e5e7eb;
-}
-
-.test-paths .test-path-content details:last-child {
-    border-bottom: none;
-}
-
-.test-paths .test-path-content summary {
-    list-style: none;
-    cursor: pointer;
-    position: relative;
-    padding: 17px 30px 17px 5px;
-    color: #0e68b3;
-    font-weight: 600;
-}
-
-.test-paths .test-path-content summary::-webkit-details-marker {
-    display: none;
-}
-
-.test-paths .test-path-content summary::after {
-    content: "+";
-    position: absolute;
-    right: 5px;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 1.3rem;
-    font-weight: 400;
-}
-
-.test-paths .test-path-content details[open] summary::after {
-    content: "−";
-}
-
-.step-label {
+a.button {
     display: inline-block;
-    font-size: .8rem;
-    font-weight: 700;
-    letter-spacing: .05em;
-    text-transform: uppercase;
-    color: #6b7280;
-    margin-bottom: 5px;
+    background: #0e68b3;
+    color: #ffffff;
+    padding: 14px 28px;
+    border-radius: 999px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background .3s ease, transform .3s ease;
 }
+
+a.button:hover {
+    background: #2b6cb0;
+    transform: translateY(-2px);
+}
+
+/* =========================================
+   DIVIDERS
+========================================= */
 
 hr {
     border: none;
@@ -293,34 +418,46 @@ hr {
     margin: 30px 0;
 }
 
-a {
-    color: #0e68b3;
+/* =========================================
+   ANIMATION
+========================================= */
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
-a.button {
-    display: inline-block;
-    background: #0e68b3;
-    color: white;
-    padding: 14px 28px;
-    border-radius: 999px;
-    text-decoration: none;
-    font-weight: 600;
-    transition: .3s;
-}
-
-a.button:hover {
-    background: #2b6cb0;
-    transform: translateY(-2px);
-}
+/* =========================================
+   TABLET AND MOBILE
+========================================= */
 
 @media (max-width: 768px) {
+
+    .container {
+        padding: 30px 16px;
+    }
 
     h1 {
         font-size: 2rem;
     }
 
+    .card {
+        padding: 20px;
+    }
+
     .test-path-content {
         padding: 10px 20px 20px;
+    }
+
+    .test-path-header {
+        padding: 18px 20px;
     }
 
     th,
@@ -329,12 +466,28 @@ a.button:hover {
         font-size: .95rem;
     }
 
+    /* Stack the two cards on smaller screens */
+
     .test-paths {
         grid-template-columns: 1fr;
+        gap: 20px;
     }
-
 }
 
+/* =========================================
+   ACCESSIBILITY
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: .01ms !important;
+    }
+}
 </style>
 
 
