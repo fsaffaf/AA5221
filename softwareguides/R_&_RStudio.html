@@ -488,18 +488,12 @@ hr{
 
 <div class="card">
 
-    <h2>Navigating the RStudio Interface</h2>
+    <h2>The Four RStudio Panes</h2>e</h2>
 
     <p>
         RStudio is divided into several panes that help you write code, manage files,
         view output, and explore data. Understanding the purpose of each pane will
         make it easier to work efficiently in RStudio.
-    </p>
-
-
-    <h3>The Four RStudio Panes</h3>
-
-    <p>
         Watch a guided tour of the RStudio interface to become familiar with the layout
         and major features of each pane.
     </p>
@@ -577,29 +571,20 @@ hr{
 
 <div class="card">
 
-    <h2>Source Pane Files: RScript & RMarkdown</h2>
+    <h2>Source Pane Files Types: <br>
+       RScript & RMarkdown</h2>
 
-    <div class="highlight">
-        <strong>RScripts:</strong> 
-               An R Script file is a text file containing a series of instructions written in the R programming language. 
+   <h3>RScripts:</h3> 
+      <p>
+      An R Script file is a text file containing a series of instructions written in the R programming language. 
        These instructions tell the computer how to work with data, perform calculations, create visualizations, and generate reports.
-
        R Scripts make data analysis faster, more consistent, and easier to reproduce.
-    </div>
-
-    <p>
         Once a script is created, it can be reused whenever new data become available, ensuring the same analysis is performed the same way each time.
-    </p>
-
-    <p>
         An <strong>R Script makes your data analysis easily reproducible.</strong>
     </p>
 
     <p>
         Think about creating a graph in Excel. If your dataset changes, you may need to update formulas, recreate charts, and repeat several steps manually. Similarly, in programs such as SPSS, JASP, or Minitab, you often perform analyses by clicking through menus each time.
-    </p>
-
-    <p>
         An R Script works differently. It saves every step of the analysis as code. This gives you:
     </p>
 
@@ -611,21 +596,18 @@ hr{
     </ol>
 
     <p>
-        This can reduce a process that might take hours of clicking to just a few seconds.
+       <strong>This can reduce a process that might take hours of clicking to just a few seconds</strong>.
     </p>
 
 </div>
 
 <div class="card">
 
-    <h2>R Markdown</h2>
+    <h3>R Markdown</h3>
 
     <p>
-        An R Script contains the instructions needed to perform an analysis; however, someone else must have access to your script, your data files, and R software to reproduce your results.
-        An R Script shows <strong>how</strong> an analysis was performed, but it does not automatically include the results, graphs, tables, or explanations needed to understand the findings.
-        <strong>R Markdown</strong> solves this problem by combining multiple types of information into a single document.
-        R Scripts are excellent tools for conducting data analyses, but they are not always the best format for sharing your work with others.
-        An <strong>R Script</strong> records the steps of an analysis, while an <strong>R Markdown document</strong> communicates the entire research process by combining code, results, and explanations into one reproducible report.
+        An R Script can perform a full set of analyses with the click of a button. However, the RScript will only run if you also have access to the raw data (e.g, the exel dataset).
+      An <strong>R Markdown document</strong> communicates the entire research process by combining code, results, and explanations into one reproducible report.
         The purpose of converting an R Script into R Markdown is not simply to run code.
         It is to create a complete, readable report where another person can understand your analysis from beginning to end.
     </p>
@@ -982,122 +964,7 @@ library(rmarkdown)
 
 </div>
 
-
-<div class="card">
-
-    <h2>Publishing with RPubs</h2>
-
-    <p>
-        <strong>RPubs</strong> is a free publishing service that allows you to share HTML reports created from R Markdown documents online.
-        After creating and knitting an R Markdown file into an HTML report, you can publish the report to RPubs and receive a web link that can be shared with instructors, classmates, colleagues, or other audiences.
-        Think of RPubs as a simple website that hosts the HTML version of your R Markdown report.
-        Instead of sending someone your R script, data files, graphs, and written explanations separately, RPubs allows you to share a single link displaying your completed analysis in an organized format.
-        Viewers do not need R, RStudio, or programming experience to view an RPubs report.
-        Anyone with the link can open the report in a web browser and view the content included in the published document, such as written explanations, tables, graphs, and, if included, R code.
-    </p>
-
-    <p>
-        RPubs is commonly used by students, researchers, and data analysts because it provides a quick and convenient way to publish and share statistical analyses, assignments, and reports online.
-    </p>
-
 </div>
-
-<div class="card">
-
-    <h2>Benefits of RPubs</h2>
-
-    <table>
-
-        <thead>
-            <tr>
-                <th>Benefit</th>
-                <th>Explanation</th>
-            </tr>
-        </thead>
-
-        <tbody>
-
-            <tr>
-                <td><strong>Free</strong></td>
-                <td>RPubs provides free online publishing for R Markdown HTML reports.</td>
-            </tr>
-
-            <tr>
-                <td><strong>Shareable</strong></td>
-                <td>Creates a web link that can be shared with others.</td>
-            </tr>
-
-            <tr>
-                <td><strong>Accessible</strong></td>
-                <td>Viewers only need a web browser to view the published report.</td>
-            </tr>
-
-            <tr>
-                <td><strong>Professional Format</strong></td>
-                <td>Displays text, code, graphs, and tables together in one organized document.</td>
-            </tr>
-
-        </tbody>
-
-    </table>
-
-</div>
-
-<div class="card">
-
-    <h2>How to Publish R Markdown Files to RPubs</h2>
-
-    <ol>
-        <li>Open your R Markdown file.</li>
-        <li>Click the <strong>Knit</strong> button at the top of the document.</li>
-        <li>After the HTML report appears, locate the <strong>Publish</strong> button in the Viewer pane.</li>
-        <li>Select <strong>Publish to RPubs</strong>.</li>
-        <li>Log in or create a free RPubs account.</li>
-        <li>Enter a title and description for your report.</li>
-        <li>Click <strong>Publish</strong>.</li>
-        <li>Copy the generated URL and submit the link for your assignment.</li>
-    </ol>
-
-</div>
-
-<div class="card">
-
-    <h2>How to Update an RPubs Report</h2>
-
-    <ol>
-        <li>Open your R Markdown file and make your edits.</li>
-        <li>Click <strong>Knit</strong> to generate an updated HTML report.</li>
-        <li>Click <strong>Publish</strong>.</li>
-        <li>Select <strong>Yes</strong> when asked whether you want to update the existing document.</li>
-    </ol>
-
-</div>
-
-<div class="card">
-
-    <h2>How to Save an RPubs HTML File in Microsoft OneDrive</h2>
-
-    <ol>
-        <li>Open your RPubs report in a web browser.</li>
-        <li>Press <strong>Ctrl + S</strong> (Windows) or <strong>Command + S</strong> (Mac).</li>
-        <li>Select a location on your computer.</li>
-        <li>Choose <strong>Webpage, HTML Only</strong> if available.</li>
-        <li>Save the file.</li>
-    </ol>
-
-</div>
-
-<div class="card">
-
-    <h2>Key Takeaway</h2>
-
-    <div class="highlight">
-        RPubs allows you to publish and share R Markdown reports online through a simple web link. Recipients can view your completed analysis, graphs, tables, and written explanations without needing R or RStudio.
-    </div>
-
-    <p>
-        In this course, RPubs will often be used to submit and share your completed R Markdown assignments because it provides an easy way to distribute professional, web-based reports.
-    </p>
 
 </div>
 
