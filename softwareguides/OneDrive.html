@@ -1,16 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Microsoft OneDrive</title>
-
 <style>
+
+/* =========================
+   BASE
+========================= */
 
 body{
     margin:0;
-    font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
     background:#f4f6f9;
     color:#222222;
 }
@@ -21,53 +17,40 @@ body{
     padding:50px 20px;
 }
 
+/* =========================
+   PAGE TITLE
+========================= */
+
 h1{
     text-align:left;
     color:#666666;
     font-size:2.75rem;
     font-weight:200;
     letter-spacing:.08em;
-    text-transform:none;
     margin-bottom:10px;
 }
 
-.subtitle{
-    text-align:center;
-    color:#6b7280;
-    text-transform:uppercase;
-    letter-spacing:.15em;
-    margin-bottom:40px;
-    font-size:.95rem;
+h2{
+    color:#0e68b3;
+    font-weight:500;
+    margin-top:0;
+    margin-bottom:22px;
 }
 
-h2,
 h3{
     color:#0e68b3;
-    position:relative;
     font-weight:500;
-    display:inline-block;
-}
-
-h2::after,
-h3::after{
-    content:"";
-    position:absolute;
-    left:0;
-    bottom:-4px;
-    width:0;
-    height:2px;
-    background:#0e68b3;
-    transition:.3s;
-}
-
-.card:hover h2::after,
-.card:hover h3::after{
-    width:100%;
+    margin-top:28px;
+    margin-bottom:12px;
 }
 
 p{
     line-height:1.8;
 }
+
+/* =========================
+   CARDS
+========================= */
 
 .card{
     background:white;
@@ -75,29 +58,84 @@ p{
     padding:30px;
     margin-bottom:25px;
     border:1px solid #d9e2ec;
-
-    box-shadow:
-      0 3px 10px rgba(0,0,0,.05);
-
-    animation:fadeUp .6s ease forwards;
-    transition:all .25s ease;
+    box-shadow:0 3px 10px rgba(0,0,0,.05);
 }
 
 .card:hover{
     transform:translateY(-4px);
-    box-shadow:
-      0 10px 25px rgba(14,104,179,.15);
+    transition:.25s;
+    box-shadow:0 10px 25px rgba(14,104,179,.15);
 }
+
+/* =========================
+   CALLOUTS
+========================= */
 
 .highlight{
     background:#eef6fc;
     border-left:5px solid #0e68b3;
-    padding:15px;
-    border-radius:8px;
+    padding:15px 20px;
     margin:20px 0;
 }
 
-ul{
+.note{
+    background:#f0f7fc;
+    border-left:5px solid #0e68b3;
+    padding:15px 20px;
+    margin:20px 0;
+}
+
+.warning{
+    background:#fff4e6;
+    border-left:5px solid #e67e22;
+    padding:15px 20px;
+    margin:20px 0;
+}
+
+.definition{
+    background:#f8fafc;
+    border-left:5px solid #6b7280;
+    padding:15px 20px;
+    margin:20px 0;
+}
+
+/* =========================
+   BUTTONS
+========================= */
+
+.button{
+    display:inline-block;
+    background:linear-gradient(135deg,#0e68b3,#1c84d8);
+    color:white;
+    text-decoration:none;
+    font-weight:600;
+    padding:14px 28px;
+    border-radius:999px;
+}
+
+.button:hover{
+    background:#095491;
+}
+
+/* =========================
+   LINKS
+========================= */
+
+a{
+    color:#0e68b3;
+    text-decoration:none;
+}
+
+a:hover{
+    text-decoration:underline;
+}
+
+/* =========================
+   LISTS
+========================= */
+
+ul,
+ol{
     padding-left:25px;
 }
 
@@ -105,35 +143,95 @@ li{
     margin-bottom:8px;
 }
 
+/* =========================
+   TABLES
+========================= */
+
 table{
     width:100%;
     border-collapse:collapse;
     margin-top:20px;
-    background:white;
-    overflow:hidden;
-    border-radius:10px;
 }
 
 th{
     background:#0e68b3;
     color:white;
-    text-align:left;
     padding:14px;
+    text-align:left;
 }
 
 td{
     padding:14px;
     border-bottom:1px solid #e5e7eb;
-    vertical-align:top;
 }
 
 tr:nth-child(even){
     background:#f8fafc;
 }
 
-tr:hover{
-    background:#edf6ff;
+/* =========================
+   ACCORDION
+========================= */
+
+.test-path{
+    border:1px solid #d9e2ec;
+    border-radius:14px;
+    overflow:hidden;
 }
+
+.test-path-header{
+    background:#0e68b3;
+    color:white;
+    padding:20px 25px;
+    font-size:1.25rem;
+    font-weight:600;
+}
+
+.test-path-content{
+    padding:10px 25px 20px;
+}
+
+.test-path-content details{
+    border-bottom:1px solid #e5e7eb;
+}
+
+.test-path-content details:last-child{
+    border-bottom:none;
+}
+
+.test-path-content summary{
+    list-style:none;
+    cursor:pointer;
+    position:relative;
+    padding:18px 35px 18px 5px;
+    color:#0e68b3;
+    font-weight:600;
+}
+
+.test-path-content summary::-webkit-details-marker{
+    display:none;
+}
+
+.test-path-content summary::after{
+    content:"+";
+    position:absolute;
+    right:5px;
+    top:50%;
+    transform:translateY(-50%);
+    font-size:1.3rem;
+}
+
+.test-path-content details[open] summary::after{
+    content:"−";
+}
+
+.path-step-content{
+    padding:0 5px 20px;
+}
+
+/* =========================
+   HR
+========================= */
 
 hr{
     border:none;
@@ -142,16 +240,9 @@ hr{
     margin:30px 0;
 }
 
-@keyframes fadeUp{
-    from{
-        opacity:0;
-        transform:translateY(20px);
-    }
-    to{
-        opacity:1;
-        transform:translateY(0);
-    }
-}
+/* =========================
+   MOBILE
+========================= */
 
 @media (max-width:768px){
 
@@ -168,293 +259,205 @@ hr{
         padding:10px;
         font-size:.95rem;
     }
+
 }
 
 </style>
-</head>
-
-<body>
 
 <div class="container">
 
-<div class="note">
-    <strong>Video Tutorial:</strong><br>
-    Watch this video for a visual walkthrough of how to create and share a folder in OneDrive:
-    <br><br>
-    <a href="https://www.youtube.com/watch?v=vq5QLYI6kXA" target="_blank" rel="noopener">
-        How to Create and Share a OneDrive Folder
-    </a>
-</div>
-    
-<h1>Microsoft OneDrive</h1>
-
-<div class="card">
-<h2>Overview</h2>
-
-<p>
-In this course, Microsoft OneDrive is used to organize coding assignment files and provide access to submitted work.
-Microsoft OneDrive helps protect your work, keeps files organized, and allows you to access your assignments from multiple devices.
-Developing good file organization habits now will make coursework easier and prepare you for professional environments where cloud storage and digital collaboration are standard practice.
-Microsoft OneDrive is Microsoft's cloud storage service. It allows you to store files online, access them from multiple devices, and share documents with others.
-
-<div class="highlight">
-<strong>Important:</strong>
-Do NOT use Google Drive for course submissions. Google Drive is a separate cloud storage system. All course files should be stored and shared through Microsoft OneDrive.
-</div>
-
-<h2>What is Cloud Storage?</h2>
-
-<div class="highlight">
-<strong>Simple Definition:</strong>
-Files can be stored using <strong>local storage</strong> or <strong>cloud storage</strong>.
-</div>
-
-<table>
-
-<thead>
-<tr>
-<th>Topic</th>
-<th>Local Storage</th>
-<th>Cloud Storage</th>
-</tr>
-</thead>
-
-<tbody>
-
-<tr>
-<td><strong>Where are files stored?</strong></td>
-<td>On your computer, USB drive, flash drive, or external hard drive.</td>
-<td>On secure internet-based servers.</td>
-</tr>
-
-<tr>
-<td><strong>How do you access them?</strong></td>
-<td>Directly from the device where they are stored.</td>
-<td>From multiple devices by signing in and connecting to the internet.</td>
-</tr>
-
-<tr>
-<td><strong>If the device is lost or damaged</strong></td>
-<td>You may lose access to your files.</td>
-<td>Your files remain available online.</td>
-</tr>
-
-<tr>
-<td><strong>Think of it Like...</strong></td>
-<td>Keeping important documents in your home.</td>
-<td>Keeping important documents in a secure bank vault.</td>
-</tr>
-
-<tr>
-<td><strong>Example</strong></td>
-<td>Saving your R files only on your computer.</td>
-<td>Saving your R files to Microsoft OneDrive.</td>
-</tr>
-
-<tr>
-<td><strong>Final Point</strong></td>
-<td>Your files depend on a single physical device.</td>
-<td>Your files remain accessible from multiple devices.</td>
-</tr>
-
-</tbody>
-
-</table>
-</div>
-
-<h2>Why is Digital File Organization Important?</h2>
-
-<p>
-Effective file organization is an essential skill in both academic and professional settings. Organizing files into clearly labeled folders helps you quickly locate documents, prevent lost work, and maintain a logical structure for projects and assignments.
-</p>
-
-<p>
-File organization becomes especially important when working with multiple versions of documents, submitting assignments, or collaborating with others.
-</p>
-
-<h3>Professional File Organization Practices</h3>
-
-<ul>
-<li>Create folders with clear and descriptive names.</li>
-<li>Keep related files together in the same location.</li>
-<li>Avoid storing important course files only on your personal computer.</li>
-<li>Use consistent naming conventions for assignments and projects.</li>
-<li>Share files using appropriate permissions.</li>
-<li>Use shared cloud storage to share the most current version of a file without repeatedly sending email attachments.</li>
-</ul>
-
-</div>
-
-<div class="card">
-
-<div class="test-path">
-
-    <div class="test-path-header">
-        Create and Share a OneDrive Folder
+    <div class="note">
+        <strong>Video Tutorial:</strong><br>
+        Watch this video for a visual walkthrough of how to create and share a folder in OneDrive:
+        <br><br>
+        <a href="https://www.youtube.com/watch?v=vq5QLYI6kXA" target="_blank">
+            How to Create and Share a OneDrive Folder
+        </a>
     </div>
 
-    <div class="test-path-content">
+    <h1>Microsoft OneDrive</h1>
 
-        <div class="note">
-            <strong>Why are you doing this?</strong><br>
-            You can use a OneDrive folder to keep your course files organized and share your work with your instructor or classmates when needed.
+    <div class="card">
+
+        <h2>Overview</h2>
+
+        <p>
+            In this course, Microsoft OneDrive is used to organize coding assignment files and provide access to submitted work.
+            Microsoft OneDrive helps protect your work, keeps files organized, and allows you to access your assignments from multiple devices.
+            Developing good file organization habits now will make coursework easier and prepare you for professional environments where cloud storage and digital collaboration are standard practice.
+        </p>
+
+        <p>
+            Microsoft OneDrive is Microsoft's cloud storage service. It allows you to store files online, access them from multiple devices, and share documents with others.
+        </p>
+
+        <div class="highlight">
+            <strong>Important:</strong>
+            Do NOT use Google Drive for course submissions. Google Drive is a separate cloud storage system. All course files should be stored and shared through Microsoft OneDrive.
         </div>
 
-        <details>
-            <summary>Step 1: Open OneDrive</summary>
+        <h2>What is Cloud Storage?</h2>
 
-            <div class="path-step-content">
+        <div class="highlight">
+            <strong>Simple Definition:</strong>
+            Files can be stored using <strong>local storage</strong> or <strong>cloud storage</strong>.
+        </div>
 
-                <h2>Open OneDrive</h2>
+        <table>
 
-                <ol>
-                    <li>Sign in to your SLU Microsoft 365 account.</li>
-                    <li>Open <strong>OneDrive</strong>.</li>
-                    <li>You should see your OneDrive files and folders.</li>
-                </ol>
+            <thead>
+                <tr>
+                    <th>Topic</th>
+                    <th>Local Storage</th>
+                    <th>Cloud Storage</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                <tr>
+                    <td><strong>Where are files stored?</strong></td>
+                    <td>On your computer, USB drive, flash drive, or external hard drive.</td>
+                    <td>On secure internet-based servers.</td>
+                </tr>
+
+                <tr>
+                    <td><strong>How do you access them?</strong></td>
+                    <td>Directly from the device where they are stored.</td>
+                    <td>From multiple devices by signing in and connecting to the internet.</td>
+                </tr>
+
+                <tr>
+                    <td><strong>If the device is lost or damaged</strong></td>
+                    <td>You may lose access to your files.</td>
+                    <td>Your files remain available online.</td>
+                </tr>
+
+                <tr>
+                    <td><strong>Think of it Like...</strong></td>
+                    <td>Keeping important documents in your home.</td>
+                    <td>Keeping important documents in a secure bank vault.</td>
+                </tr>
+
+                <tr>
+                    <td><strong>Example</strong></td>
+                    <td>Saving your R files only on your computer.</td>
+                    <td>Saving your R files to Microsoft OneDrive.</td>
+                </tr>
+
+            </tbody>
+
+        </table>
+
+        <h2>Why is Digital File Organization Important?</h2>
+
+        <p>
+            Effective file organization is an essential skill in both academic and professional settings.
+            Organizing files into clearly labeled folders helps you quickly locate documents, prevent lost work, and maintain a logical structure for projects and assignments.
+        </p>
+
+        <p>
+            File organization becomes especially important when working with multiple versions of documents, submitting assignments, or collaborating with others.
+        </p>
+
+        <h3>Professional File Organization Practices</h3>
+
+        <ul>
+            <li>Create folders with clear and descriptive names.</li>
+            <li>Keep related files together in the same location.</li>
+            <li>Avoid storing important course files only on your personal computer.</li>
+            <li>Use consistent naming conventions for assignments and projects.</li>
+            <li>Share files using appropriate permissions.</li>
+            <li>Use shared cloud storage to share the most current version of a file without repeatedly sending email attachments.</li>
+        </ul>
+
+    </div>
+
+    <div class="card">
+
+        <div class="test-path">
+
+            <div class="test-path-header">
+                Create and Share a OneDrive Folder
+            </div>
+
+            <div class="test-path-content">
+
+                <details>
+                    <summary>Step 1: Open OneDrive</summary>
+                    <div class="path-step-content">
+                        <ol>
+                            <li>Sign in to your SLU Microsoft 365 account.</li>
+                            <li>Open <strong>OneDrive</strong>.</li>
+                            <li>You should see your OneDrive files and folders.</li>
+                        </ol>
+                    </div>
+                </details>
+
+                <details>
+                    <summary>Step 2: Create a New Folder</summary>
+                    <div class="path-step-content">
+                        <ol>
+                            <li>Select <strong>New</strong>.</li>
+                            <li>Select <strong>Folder</strong>.</li>
+                            <li>Enter a name for your folder.</li>
+                            <li>Select <strong>Create</strong>.</li>
+                        </ol>
+
+                        <div class="definition">
+                            <strong>Example Folder Name:</strong><br>
+                            AA 5221 Assignment 5
+                        </div>
+                    </div>
+                </details>
+
+                <details>
+                    <summary>Step 3: Add Your Files</summary>
+                    <div class="path-step-content">
+                        <ol>
+                            <li>Open the folder.</li>
+                            <li>Select <strong>Upload</strong>.</li>
+                            <li>Choose the files from your computer.</li>
+                            <li>Wait for the upload to finish.</li>
+                        </ol>
+                    </div>
+                </details>
+
+                <details>
+                    <summary>Step 4: Share the Folder</summary>
+                    <div class="path-step-content">
+                        <ol>
+                            <li>Select <strong>Share</strong>.</li>
+                            <li>Enter the recipient's SLU email address.</li>
+                            <li>Select the desired permission level.</li>
+                            <li>Send the invitation.</li>
+                        </ol>
+                    </div>
+                </details>
+
+                <details>
+                    <summary>Step 5: Copy a Share Link</summary>
+                    <div class="path-step-content">
+
+                        <ol>
+                            <li>Select <strong>Share</strong>.</li>
+                            <li>Select <strong>Copy Link</strong>.</li>
+                            <li>Review the permissions.</li>
+                            <li>Copy and submit the link.</li>
+                        </ol>
+
+                        <div class="warning">
+                            <strong>Important:</strong>
+                            Test your link before submitting it. Open it in a private browser window and verify that it works correctly.
+                        </div>
+
+                    </div>
+                </details>
 
             </div>
-        </details>
 
+        </div>
 
-        <details>
-            <summary>Step 2: Create a New Folder</summary>
-
-            <div class="path-step-content">
-
-                <h2>Create Your Folder</h2>
-
-                <ol>
-                    <li>In OneDrive, select <strong>New</strong>.</li>
-                    <li>Select <strong>Folder</strong>.</li>
-                    <li>Enter a name for your folder.</li>
-                    <li>Select <strong>Create</strong>.</li>
-                </ol>
-
-                <div class="definition">
-                    <strong style="color:#0e68b3;">Example Folder Name</strong><br>
-                    AA 5221 Assignment 5
-                </div>
-
-                <p>
-                    Use a clear folder name so you can easily find your files later.
-                </p>
-
-            </div>
-        </details>
-
-
-        <details>
-            <summary>Step 3: Add Your Files</summary>
-
-            <div class="path-step-content">
-
-                <h2>Upload or Move Files Into the Folder</h2>
-
-                <p>
-                    Open your new folder and add the files you want to keep together.
-                </p>
-
-                <ol>
-                    <li>Open the folder you created.</li>
-                    <li>Select <strong>Add new</strong> or <strong>Upload</strong>.</li>
-                    <li>Select <strong>Files</strong>.</li>
-                    <li>Choose the file or files from your computer.</li>
-                    <li>Wait for the files to finish uploading.</li>
-                </ol>
-
-                <div class="note">
-                    <strong>Tip:</strong> Keep all files related to the same assignment in the same folder. This makes it easier to find and share your work.
-                </div>
-
-            </div>
-        </details>
-
-
-        <details>
-            <summary>Step 4: Share the Folder</summary>
-
-            <div class="path-step-content">
-
-                <h2>Share Your Folder</h2>
-
-                <ol>
-                    <li>Find the folder you want to share.</li>
-                    <li>Right-click the folder or select the <strong>Share</strong> button.</li>
-                    <li>Enter the person's SLU email address.</li>
-                    <li>Choose the appropriate permission.</li>
-                </ol>
-
-                <div class="definition">
-                    <strong style="color:#0e68b3;">Can edit</strong><br>
-                    The person can open, edit, add, and delete files in the shared folder.
-                </div>
-
-                <div class="definition">
-                    <strong style="color:#0e68b3;">Can view</strong><br>
-                    The person can open and view the files but cannot make changes.
-                </div>
-
-                <p>
-                    For most course assignments, use the permission specified in your assignment instructions.
-                </p>
-
-            </div>
-        </details>
-
-
-        <details>
-            <summary>Step 5: Send the Share Invitation</summary>
-
-            <div class="path-step-content">
-
-                <h2>Send the Invitation</h2>
-
-                <ol>
-                    <li>Confirm that the correct email address is entered.</li>
-                    <li>Confirm that the correct permission is selected.</li>
-                    <li>Add a message if needed.</li>
-                    <li>Select <strong>Send</strong>.</li>
-                </ol>
-
-                <p>
-                    The person you shared the folder with will receive an email with access to the folder.
-                </p>
-
-            </div>
-        </details>
-
-
-        <details>
-            <summary>Step 6: Copy a Share Link</summary>
-
-            <div class="path-step-content">
-
-                <h2>Copy the Folder Link</h2>
-
-                <p>
-                    You can also share the folder by copying a link.
-                </p>
-
-                <ol>
-                    <li>Right-click the folder or select <strong>Share</strong>.</li>
-                    <li>Select <strong>Copy link</strong>.</li>
-                    <li>Check the link settings before copying the link.</li>
-                    <li>Make sure the person receiving the link has the appropriate access.</li>
-                    <li>Select <strong>Copy</strong>.</li>
-                    <li>Paste the link into your assignment submission, email, or message as instructed.</li>
-                </ol>
-
-                <div class="warning">
-                    <strong>Important:</strong> Test your link before submitting it. Open the link in a private or incognito browser window if possible. Make sure you can access the folder with the permissions you intended to provide.
-                </div>
-
-            </div>
-        </details>
-
-
+    </div>
 
 </div>
-
-</body>
-</html>
