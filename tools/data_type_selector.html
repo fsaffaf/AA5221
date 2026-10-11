@@ -577,11 +577,6 @@ function updateAnswer() {
   answerNumber.classList.remove("answer-placeholder");
   answerNumber.textContent = level;
 
-  answerLabel.textContent = "This variable is classified as " + level + ".";
-  answerDescription.textContent =
-    definitionKey[selectedVariable] ||
-    "This variable is classified as " + level.toLowerCase() +
-    ". Review how the variable is recorded to confirm that this level of measurement is appropriate.";
 
   // Restart the animation each time a selection changes.
   void answerArea.offsetWidth;
