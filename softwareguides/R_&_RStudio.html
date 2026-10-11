@@ -1,986 +1,1036 @@
+
 <!DOCTYPE html>
-
 <html lang="en">
-
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>R &amp; RStudio</title>
 
-<title>R & RStudio</title>
 <style>
-
 /* =========================
    BASE
 ========================= */
 
-body{
-    margin:0;
-    font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-    background:#f4f6f9;
-    color:#222222;
+* {
+    box-sizing: border-box;
 }
 
-.container{
-    max-width:1000px;
-    margin:auto;
-    padding:50px 20px;
+body {
+    margin: 0;
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+    background: #f4f6f9;
+    color: #222222;
 }
 
-/* =========================
-   PAGE TITLE
-========================= */
-
-h1{
-    text-align:left;
-    color:#666666;
-    font-size:2.75rem;
-    font-weight:200;
-    letter-spacing:.08em;
-    margin-bottom:10px;
+.container {
+    max-width: 1000px;
+    margin: auto;
+    padding: 40px 20px;
 }
 
-h2{
-    color:#0e68b3;
-    font-weight:500;
-    margin-top:0;
-    margin-bottom:22px;
+h1 {
+    text-align: left;
+    color: #666666;
+    font-size: 2.75rem;
+    font-weight: 300;
+    letter-spacing: .04em;
+    margin: 0 0 25px;
 }
 
-h3{
-    color:#0e68b3;
-    font-weight:500;
-    margin-top:28px;
-    margin-bottom:12px;
+h2 {
+    color: #0e68b3;
+    font-size: 1.65rem;
+    font-weight: 600;
+    margin: 0 0 18px;
 }
 
-p{
-    line-height:1.8;
+h3 {
+    color: #0e68b3;
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin: 26px 0 12px;
+}
+
+p {
+    line-height: 1.7;
+    margin: 12px 0;
+}
+
+a {
+    color: #0e68b3;
+    text-decoration: none;
+    overflow-wrap: anywhere;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+ul,
+ol {
+    padding-left: 25px;
+}
+
+li {
+    margin-bottom: 8px;
+    line-height: 1.65;
 }
 
 /* =========================
    CARDS
 ========================= */
 
-.card{
-    background:white;
-    border-radius:16px;
-    padding:30px;
-    margin-bottom:25px;
-    border:1px solid #d9e2ec;
-    box-shadow:0 3px 10px rgba(0,0,0,.05);
+.card {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 28px;
+    margin-bottom: 25px;
+    border: 1px solid #d9e2ec;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, .05);
 }
 
-.card:hover{
-    transform:translateY(-4px);
-    transition:.25s;
-    box-shadow:0 10px 25px rgba(14,104,179,.15);
-}
-
-/* =========================
-   CALLOUTS
-========================= */
-
-.highlight{
-    background:#eef6fc;
-    border-left:5px solid #0e68b3;
-    padding:15px 20px;
-    margin:20px 0;
-}
-
-.note{
-    background:#f0f7fc;
-    border-left:5px solid #0e68b3;
-    padding:15px 20px;
-    margin:20px 0;
-}
-
-.warning{
-    background:#fff4e6;
-    border-left:5px solid #e67e22;
-    padding:15px 20px;
-    margin:20px 0;
-}
-
-.definition{
-    background:#f8fafc;
-    border-left:5px solid #6b7280;
-    padding:15px 20px;
-    margin:20px 0;
+.card:hover {
+    box-shadow: 0 8px 20px rgba(14, 104, 179, .10);
 }
 
 /* =========================
-   BUTTONS
+   TWO-COLUMN LAYOUT
 ========================= */
 
-.button{
-    display:inline-block;
-    background:linear-gradient(135deg,#0e68b3,#1c84d8);
-    color:white;
-    text-decoration:none;
-    font-weight:600;
-    padding:14px 28px;
-    border-radius:999px;
+.test-paths {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+    align-items: start;
+    margin-bottom: 25px;
 }
 
-.button:hover{
-    background:#095491;
+.test-path {
+    min-width: 0;
+    background: #ffffff;
+    border: 1px solid #d9e2ec;
+    border-radius: 14px;
+    overflow: hidden;
 }
 
-/* =========================
-   LINKS
-========================= */
-
-a{
-    color:#0e68b3;
-    text-decoration:none;
+.test-path-header {
+    background: #0e68b3;
+    color: #ffffff;
+    padding: 18px 22px;
 }
 
-a:hover{
-    text-decoration:underline;
+.test-path-header h2,
+.test-path-header h3 {
+    color: #ffffff;
+    margin: 0;
 }
 
-/* =========================
-   LISTS
-========================= */
-
-ul,
-ol{
-    padding-left:25px;
+.test-path-content {
+    padding: 8px 22px 18px;
+    background: #ffffff;
 }
 
-li{
-    margin-bottom:8px;
-}
-
-/* =========================
-   TABLES
-========================= */
-
-table{
-    width:100%;
-    border-collapse:collapse;
-    margin-top:20px;
-}
-
-th{
-    background:#0e68b3;
-    color:white;
-    padding:14px;
-    text-align:left;
-}
-
-td{
-    padding:14px;
-    border-bottom:1px solid #e5e7eb;
-}
-
-tr:nth-child(even){
-    background:#f8fafc;
+.path-step-content {
+    padding: 0 5px 20px;
+    background: #ffffff;
 }
 
 /* =========================
    ACCORDION
 ========================= */
 
-.test-path{
-    border:1px solid #d9e2ec;
-    border-radius:14px;
-    overflow:hidden;
-   background:white; /* Add this */
-6
+.test-path-content details {
+    background: #ffffff;
+    border-bottom: 1px solid #e5e7eb;
 }
 
-.test-path-header{
-    background:#0e68b3;
-    color:white;
-    padding:20px 25px;
-    font-size:1.25rem;
-    font-weight:600;
+.test-path-content details:last-child {
+    border-bottom: none;
 }
 
-.test-path-content{
-    padding:10px 25px 20px;
-   background:white; /* Add this */
-6
+.test-path-content summary {
+    list-style: none;
+    cursor: pointer;
+    position: relative;
+    padding: 17px 32px 17px 5px;
+    color: #0e68b3;
+    font-weight: 600;
+    line-height: 1.5;
 }
 
-.test-path-content details{
-    border-bottom:1px solid #e5e7eb;
+.test-path-content summary::-webkit-details-marker {
+    display: none;
 }
 
-.test-path-content details:last-child{
-    border-bottom:none;
+.test-path-content summary::after {
+    content: "+";
+    position: absolute;
+    right: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.3rem;
 }
 
-.test-path-content summary{
-    list-style:none;
-    cursor:pointer;
-    position:relative;
-    padding:18px 35px 18px 5px;
-    color:#0e68b3;
-    font-weight:600;
+.test-path-content details[open] summary::after {
+    content: "\2212";
 }
 
-.test-path-content summary::-webkit-details-marker{
-    display:none;
-}
-
-.test-path-content summary::after{
-    content:"+";
-    position:absolute;
-    right:5px;
-    top:50%;
-    transform:translateY(-50%);
-    font-size:1.3rem;
-}
-.test-path-content details{
-14
-background:white; /* Add this */
-15
-border-bottom:1px solid #e5e7eb;
-16
-}
-.test-path-content details[open] summary::after{
-    content:"−";
-}
-
-.path-step-content{
-    padding:0 5px 20px;
-   background:white; /* Add this */
-21
+.test-path-content summary:focus-visible {
+    outline: 2px solid #0e68b3;
+    outline-offset: 2px;
 }
 
 /* =========================
-   HR
+   CALLOUTS
 ========================= */
 
-hr{
-    border:none;
-    height:1px;
-    background:#d6e4f0;
-    margin:30px 0;
+.highlight,
+.note,
+.highlight-blue {
+    background: #eef6fc;
+    border-left: 5px solid #0e68b3;
+    padding: 15px 20px;
+    margin: 20px 0;
+    line-height: 1.7;
+}
+
+.definition {
+    background: #f8fafc;
+    border-left: 5px solid #6b7280;
+    padding: 15px 20px;
+    margin: 20px 0;
+}
+
+.warning {
+    background: #fff4e6;
+    border-left: 5px solid #e67e22;
+    padding: 15px 20px;
+    margin: 20px 0;
+}
+
+/* =========================
+   BUTTONS
+========================= */
+
+.button {
+    display: inline-block;
+    background: linear-gradient(135deg, #0e68b3, #1c84d8);
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 600;
+    padding: 12px 22px;
+    border-radius: 999px;
+    margin: 8px 0;
+    text-align: center;
+}
+
+.button:hover {
+    background: #095491;
+    color: #ffffff;
+    text-decoration: none;
+}
+
+/* =========================
+   TABLES
+========================= */
+
+.table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    margin: 20px 0;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #ffffff;
+}
+
+th {
+    background: #0e68b3;
+    color: #ffffff;
+    padding: 13px;
+    text-align: left;
+    vertical-align: top;
+}
+
+td {
+    padding: 13px;
+    border-bottom: 1px solid #e5e7eb;
+    text-align: left;
+    vertical-align: top;
+    line-height: 1.6;
+}
+
+tbody tr:nth-child(even) {
+    background: #f8fafc;
+}
+
+/* =========================
+   CODE
+========================= */
+
+pre {
+    background: #f3f6fa;
+    border: 1px solid #d9e2ec;
+    border-radius: 8px;
+    padding: 15px;
+    overflow-x: auto;
+    white-space: pre;
+    line-height: 1.6;
+    color: #222222;
+}
+
+code {
+    font-family: Consolas, "Courier New", monospace;
+}
+
+hr {
+    border: none;
+    height: 1px;
+    background: #d6e4f0;
+    margin: 30px 0;
+}
+
+/* =========================
+   IMAGE
+========================= */
+
+.rstudio-image {
+    text-align: center;
+    margin: 22px auto;
+    max-width: 900px;
+}
+
+.rstudio-image img {
+    display: block;
+    width: 100%;
+    height: auto;
+    margin: 0 auto;
+    border-radius: 8px;
 }
 
 /* =========================
    MOBILE
 ========================= */
 
-@media (max-width:768px){
-
-    h1{
-        font-size:2rem;
+@media (max-width: 768px) {
+    .container {
+        padding: 25px 14px;
     }
 
-    .card{
-        padding:20px;
+    h1 {
+        font-size: 2rem;
+    }
+
+    h2 {
+        font-size: 1.4rem;
+    }
+
+    .card {
+        padding: 20px;
+    }
+
+    .test-paths {
+        grid-template-columns: 1fr;
+        gap: 18px;
+    }
+
+    .test-path-content {
+        padding: 8px 16px 16px;
     }
 
     th,
-    td{
-        padding:10px;
-        font-size:.95rem;
+    td {
+        padding: 10px;
+        font-size: .92rem;
     }
-
 }
-
 </style>
+</head>
 
+<body>
 <div class="container">
 
-    <h1>R & RStudio</h1>
+    <h1>R &amp; RStudio</h1>
 
-     <div class="card">
+    <!-- OVERVIEW -->
+
+    <div class="card">
         <h2>Overview</h2>
 
         <p>
-            <strong>R</strong> is a free, open-source programming language used for data analysis,
-            statistics, and visualization. <strong>RStudio</strong> is an integrated development
-            environment (IDE) that provides a user-friendly interface for working with R.
+            <strong>R</strong> is a free, open-source programming language used for
+            data analysis, statistics, and visualization. <strong>RStudio</strong>
+            is an integrated development environment (IDE) that provides a
+            user-friendly interface for working with R.
         </p>
     </div>
 
-<div class="test-paths">
+    <!-- INSTALLATION OPTIONS -->
 
-    <!-- Personal Laptop Column -->
-    <div class="test-path">
+    <div class="test-paths">
 
-        <div class="test-path-header">
-            <h3>Personal Laptops</h3>
-        </div>
+        <!-- PERSONAL LAPTOPS -->
 
-        <div class="test-path-content">
+        <div class="test-path">
+            <div class="test-path-header">
+                <h3>Personal Laptops</h3>
+            </div>
 
-            <details>
-                <summary>Install R</summary>
+            <div class="test-path-content">
 
-                <div class="path-step-content">
-
-                    <ol>
-                        <li>
-                            Visit the CRAN website:
-                            <a href="https://cran.r-project.org/" target="_blank">
-                                https://cran.r-project.org/
-                            </a>
-                        </li>
-
-                        <li>Select your operating system (Windows, macOS, or Linux).</li>
-
-                        <li>Download the latest version of R.</li>
-
-                        <li>Run the installer and accept the default settings.</li>
-
-                        <li>Open R after installation to confirm it launches successfully.</li>
-                    </ol>
-
-                </div>
-            </details>
-
-            <details>
-                <summary>Install RStudio</summary>
-
-                <div class="path-step-content">
-
-                    <ol>
-                        <li>
-                            Visit the Posit download page:
-                            <a href="https://posit.co/download/rstudio-desktop/" target="_blank">
-                                https://posit.co/download/rstudio-desktop/
-                            </a>
-                        </li>
-
-                        <li>Download the free <strong>RStudio Desktop</strong> version.</li>
-
-                        <li>Run the installer and follow the installation prompts.</li>
-
-                        <li>Open RStudio after installation.</li>
-
-                        <li>Verify that RStudio detects your R installation automatically.</li>
-                    </ol>
-
-                </div>
-            </details>
-
-<details>
-    <summary>Verify Installation</summary>
-
-    <div class="path-step-content">
-
-        <p>Enter the following command in the RStudio Console:</p>
-
-<pre><code>2 + 2</code></pre>
-
-        <p>You should see:</p>
-
-<pre><code>[1] 4</code></pre>
-
-    </div>
-
-</details>
-
-</details>
-
-            <details>
-                <summary>Video Tutorial</summary>
-
-                <div class="path-step-content">
-
-                    <p>
-                        Watch a step-by-step installation tutorial:
-                    </p>
-
-                    <a href="https://www.youtube.com/" target="_blank" class="button">
-                        Watch Installation Tutorial
-                    </a>
-
-                </div>
-
-            </details>
-
-        </div>
-
-    </div>
-
-    <div class="test-path">
-
-        <div class="test-path-header">
-            <h3>SLU Laptops</h3>
-        </div>
-
-        <div class="test-path-content">
-
-            <details>
-                <summary>Using Apporto</summary>
-
-                <div class="path-step-content">
-
-                    <div class="highlight-blue">
-                        Students using a Saint Louis University-issued laptop
-                        cannot install R or RStudio locally. Instead,
-                        use RStudio through Apporto.
+                <details>
+                    <summary>Install R</summary>
+                    <div class="path-step-content">
+                        <ol>
+                            <li>
+                                Visit the CRAN website:
+                                <a href="https://cran.r-project.org/"
+                                   target="_blank"
+                                   rel="noopener noreferrer">CRAN</a>.
+                            </li>
+                            <li>Select your operating system: Windows, macOS, or Linux.</li>
+                            <li>Download the latest version of R.</li>
+                            <li>Run the installer and accept the default settings.</li>
+                            <li>Open R to confirm that it launches successfully.</li>
+                        </ol>
                     </div>
+                </details>
 
-                </div>
+                <details>
+                    <summary>Install RStudio</summary>
+                    <div class="path-step-content">
+                        <ol>
+                            <li>
+                                Visit the
+                                <a href="https://posit.co/download/rstudio-desktop/"
+                                   target="_blank"
+                                   rel="noopener noreferrer">Posit RStudio Desktop download page</a>.
+                            </li>
+                            <li>Download the free RStudio Desktop version.</li>
+                            <li>Run the installer and follow the installation prompts.</li>
+                            <li>Open RStudio after installation.</li>
+                            <li>Verify that RStudio detects your R installation.</li>
+                        </ol>
+                    </div>
+                </details>
 
-            </details>
+                <details>
+                    <summary>Verify Installation</summary>
+                    <div class="path-step-content">
+                        <p>Enter this command in the RStudio Console:</p>
+                        <pre><code>2 + 2</code></pre>
 
-            <details>
-                <summary>Step 1: Open Apporto</summary>
+                        <p>You should see:</p>
+                        <pre><code>[1] 4</code></pre>
+                    </div>
+                </details>
 
-                <div class="path-step-content">
+                <details>
+                    <summary>Video Tutorial</summary>
+                    <div class="path-step-content">
+                        <p>
+                            Use the official installation instructions above to
+                            install R and RStudio.
+                        </p>
+                        <a href="https://posit.co/download/rstudio-desktop/"
+                           target="_blank"
+                           rel="noopener noreferrer"
+                           class="button">RStudio Download Instructions</a>
+                    </div>
+                </details>
 
-                    <p>
-                        If you have a SLU-issued Mac, Apporto may not work
-                        properly in Safari. Please use
-                        <strong>Google Chrome</strong>.
-                    </p>
+            </div>
+        </div>
 
-                    <p>
-                        In Canvas, click the <strong>Apporto</strong> page from the
-                        navigation menu on the left side of the course.
-                    </p>
+        <!-- SLU LAPTOPS -->
 
-                    <p>
-                        The tab will appear alongside Home,
-                        Announcements, Syllabus, and other course links.
-                    </p>
+        <div class="test-path">
+            <div class="test-path-header">
+                <h3>SLU Laptops</h3>
+            </div>
 
-                </div>
+            <div class="test-path-content">
 
-            </details>
+                <details>
+                    <summary>Using Apporto</summary>
+                    <div class="path-step-content">
+                        <div class="highlight-blue">
+                            If you are using a Saint Louis University-issued
+                            laptop and cannot install R or RStudio locally,
+                            use RStudio through Apporto.
+                        </div>
+                    </div>
+                </details>
 
-            <details>
-                <summary>Step 2: Launch RStudio</summary>
+                <details>
+                    <summary>Step 1: Open Apporto</summary>
+                    <div class="path-step-content">
+                        <p>
+                            If you have a SLU-issued Mac, Apporto may not work
+                            properly in Safari. Use <strong>Google Chrome</strong>
+                            if you experience compatibility issues.
+                        </p>
 
-                <div class="path-step-content">
+                        <p>
+                            In Canvas, click the <strong>Apporto</strong> page
+                            in the navigation menu on the left side of the course.
+                        </p>
 
-                    <ol>
-                        <li>Select the <strong>Windows Desktop</strong> option.</li>
-                        <li>Locate and launch <strong>RStudio</strong>.</li>
-                        <li>Use RStudio normally within Apporto.</li>
-                    </ol>
+                        <p>
+                            The link appears alongside Home, Announcements,
+                            Syllabus, and other course links.
+                        </p>
+                    </div>
+                </details>
 
-                </div>
+                <details>
+                    <summary>Step 2: Launch RStudio</summary>
+                    <div class="path-step-content">
+                        <ol>
+                            <li>Select the <strong>Windows Desktop</strong> option.</li>
+                            <li>Locate and launch <strong>RStudio</strong>.</li>
+                            <li>Use RStudio within Apporto.</li>
+                        </ol>
+                    </div>
+                </details>
 
-            </details>
+                <details>
+                    <summary>IT Support</summary>
+                    <div class="path-step-content">
+                        <p>
+                            Contact SLU Information Technology Services if you
+                            have problems accessing RStudio.
+                        </p>
 
-            <details>
-                <summary>IT Support</summary>
+                        <a href="https://www.slu.edu/its/index.php"
+                           target="_blank"
+                           rel="noopener noreferrer"
+                           class="button">Contact SLU IT</a>
+                    </div>
+                </details>
 
-                <div class="path-step-content">
-
-                    <p>
-                        Contact SLU IT if you are having any issues accessing RStudio
-                    </p>
-
-                    <a href="https://www.slu.edu/its/index.php" target="_blank" class="button">
-                        Contact SLU IT
-                    </a>
-
-                </div>
-
-            </details>
-
+            </div>
         </div>
 
     </div>
 
-</div>
+    <!-- FOUR PANES -->
 
-<div class="card">
+    <div class="card">
+        <h2>The Four RStudio Panes</h2>
 
-    <h2>The Four RStudio Panes</h2>e</h2>
+        <p>
+            RStudio is divided into several panes that help you write code,
+            manage files, view output, and explore data. Understanding the
+            purpose of each pane will make it easier to work efficiently.
+        </p>
 
-    <p>
-        RStudio is divided into several panes that help you write code, manage files,
-        view output, and explore data. Understanding the purpose of each pane will
-        make it easier to work efficiently in RStudio.
-        Watch a guided tour of the RStudio interface to become familiar with the layout
-        and major features of each pane.
-    </p>
+        <p>
+            Review the image and table below to become familiar with the
+            RStudio interface.
+        </p>
 
-    <a href="https://www.youtube.com/"
-       target="_blank"
-       class="button">
-        Watch RStudio Layout Walkthrough
-    </a>
-<div style="text-align: center; margin: 20px auto; max-width: 1024px;">
-  <a
-    data-flickr-embed="true"
-    href="https://www.flickr.com/photos/204970225@N06/55583468879/in/dateposted-public/"
-    title="RStudio Panes"
-    target="_blank"
-    rel="noopener noreferrer"
-  >
-    <img
-      src="https://live.staticflickr.com/65535/55583468879_a52528c2f9_b.jpg"
-      alt="RStudio interface showing its different panes"
-      style="display: block; width: 100%; max-width: 1024px; height: auto; margin: 0 auto; border-radius: 8px;"
-    />
-  </a>
-</div>
+        <div class="rstudio-image">
+            <a href="https://www.flickr.com/photos/204970225@N06/55583468879/in/dateposted-public/"
+               target="_blank"
+               rel="noopener noreferrer"
+               title="Open the RStudio Panes image on Flickr">
+                <img
+                    src="https://live.staticflickr.com/65535/55583468879_a52528c2f9_b.jpg"
+                    alt="RStudio interface showing the Source, Console, Environment, and output panes">
+            </a>
+        </div>
 
-<script
-  async
-  src="https://embedr.flickr.com/assets/client-code.js"
-  charset="utf-8">
-</script>
-    <table>
-        <thead>
-            <tr>
-                <th>Pane</th>
-                <th>Purpose</th>
-            </tr>
-        </thead>
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Pane</th>
+                        <th>Purpose</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Source</strong></td>
+                        <td>
+                            Used to create, edit, and save R scripts, R Markdown
+                            files, and other project files. This is where you
+                            write, organize, and save your R code. Scripts can
+                            be reopened, shared, and reused.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>Console</strong></td>
+                        <td>
+                            Executes R code and displays text results, warnings,
+                            and error messages. Code typed directly into the
+                            Console is not automatically saved in a script.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>Environment</strong></td>
+                        <td>
+                            Displays objects currently stored in memory,
+                            including variables, data frames, functions,
+                            and other R objects created during a session.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>Output / Files / Plots / Packages / Help</strong></td>
+                        <td>
+                            The lower-right pane contains tabs for browsing
+                            files, viewing generated plots, managing packages,
+                            and accessing function documentation. The exact
+                            tabs depend on your RStudio configuration.
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 
-        <tbody>
+    <!-- SOURCE FILE TYPES -->
 
-            <tr>
-                <td><strong>Source</strong></td>
-                <td>
-                    Used to create, edit, and save R scripts, R Markdown files,
-                    and other project files. This is where you write, edit, organize, and save your R code. Scripts can be reopened, shared, and reused.
-                </td>
-            </tr>
+    <div class="card">
+        <h2>Source Pane File Types</h2>
 
-            <tr>
-                <td><strong>Console</strong></td>
-                <td>
-                    The area where R executes code and displays text results, warnings, and error messages. Code typed directly into the Console is not saved.
-                </td>
-            </tr>
+        <p>
+            Two important file types you will use in the Source pane are
+            R Script (<code>.R</code>) and R Markdown (<code>.Rmd</code>).
+        </p>
 
-            <tr>
-                <td><strong>Environment</strong></td>
-                <td>
-                    Displays objects currently stored in memory, including variables,
-                    data frames, functions, and other R objects created during a session.
-                </td>
-            </tr>
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Feature</th>
+                        <th>R Script (.R)</th>
+                        <th>R Markdown (.Rmd)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Main Purpose</strong></td>
+                        <td>Write and execute R code.</td>
+                        <td>
+                            Create a report combining code, results,
+                            and written explanations.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>Contains</strong></td>
+                        <td>Primarily R code and comments.</td>
+                        <td>Code, text, tables, graphs, and interpretation.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Output</strong></td>
+                        <td>Results appear in the Console or Plots pane.</td>
+                        <td>
+                            Can generate a formatted report, such as an HTML document.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>Sharing</strong></td>
+                        <td>
+                            Others generally need the script, the data,
+                            and a compatible R environment to rerun the analysis.
+                        </td>
+                        <td>
+                            A knitted HTML report can be viewed in a browser
+                            without installing R or RStudio. Reproducing the
+                            analysis still requires the source file and data.
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 
-            <tr>
-                <td><strong>Output</strong></td>
-                <td>
-                  Browse your working directory, view generated data visualizations, manage installed packages, and access function documentation.
-                </td>
-            </tr>
+    <!-- R SCRIPT -->
 
-        </tbody>
-    </table>
+    <div class="card">
+        <h2>R Script Files</h2>
 
-</div>
+        <p>
+            An R Script is a text file containing instructions written in
+            the R programming language. These instructions tell the computer
+            how to work with data, perform calculations, create visualizations,
+            and conduct statistical analyses.
+        </p>
 
-<div class="card">
+        <p>
+            R Scripts make data analysis faster, more consistent, and easier
+            to reproduce. Once a script is created, it can be reused whenever
+            new data become available, helping ensure that the same analysis
+            is performed the same way each time.
+        </p>
 
-    <h2>Source Pane Files Types</h2>
+        <div class="highlight">
+            <strong>An R Script makes your data analysis reproducible.</strong>
+        </div>
 
-   <p>The two main file types you will open in the source pane are RScript (.r) and RMarkdown (.rmd).</p>
+        <p>
+            Think about creating a graph in Excel. If your dataset changes,
+            you may need to update formulas, recreate charts, and repeat
+            several steps manually. Similarly, in programs such as SPSS,
+            JASP, or Minitab, you may perform analyses by clicking through
+            menus each time.
+        </p>
 
-    <table>
+        <p>
+            An R Script saves the analysis steps as code. This gives you:
+        </p>
 
-        <thead>
-            <tr>
-                <th>Feature</th>
-                <th>R Script (.R)</th>
-                <th>R Markdown (.Rmd)</th>
-            </tr>
-        </thead>
+        <ol>
+            <li>A clear record of how the data were analyzed.</li>
+            <li>
+                The ability to rerun analyses on updated data without
+                repeating every step manually.
+            </li>
+            <li>
+                The ability to fix an error, edit a line of code,
+                and rerun the analysis.
+            </li>
+            <li>
+                The ability to save your work and continue later.
+            </li>
+        </ol>
 
-        <tbody>
+        <p>
+            <strong>
+                A reproducible script can reduce repeated manual work
+                from hours to seconds.
+            </strong>
+        </p>
 
-            <tr>
-                <td><strong>Main Purpose</strong></td>
-                <td>Write and execute R code.</td>
-                <td>Create a complete report combining code, results, and explanations.</td>
-            </tr>
+        <h3>Common R Script Shortcuts and Tasks</h3>
 
-            <tr>
-                <td><strong>Contains</strong></td>
-                <td>Primarily R code and comments.</td>
-                <td>Code, text, tables, graphs, and statistical interpretation.</td>
-            </tr>
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Task</th>
+                        <th>Instructions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Create a New R Script</strong></td>
+                        <td>File → New File → R Script</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Save an R Script</strong></td>
+                        <td>
+                            File → Save<br><br>
+                            Windows: Ctrl + S<br>
+                            Mac: Command + S
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>Run Selected Code</strong></td>
+                        <td>
+                            Highlight the code and press:<br><br>
+                            Windows: Ctrl + Enter<br>
+                            Mac: Command + Enter<br><br>
+                            You can also click <strong>Run</strong>.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>Run an Entire Script</strong></td>
+                        <td>
+                            Click <strong>Source</strong> at the top of the
+                            Source pane to run the script.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>Open an Existing Script</strong></td>
+                        <td>File → Open File → Select the desired .R file</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Add Comments</strong></td>
+                        <td>
+                            Begin a line with the <code>#</code> symbol.
+                            Comments are notes for yourself and are ignored
+                            when R executes the code.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>Find Text</strong></td>
+                        <td>
+                            Windows: Ctrl + F<br>
+                            Mac: Command + F
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>Undo and Redo Changes</strong></td>
+                        <td>
+                            Undo: Ctrl + Z (Windows); Command + Z (Mac).<br><br>
+                            Redo: Ctrl + Y (Windows); Command + Shift + Z (Mac).
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 
-            <tr>
-                <td><strong>Output</strong></td>
-                <td>Results appear in the Console or Plot pane.</td>
-                <td>Creates a formatted report such as an HTML document.</td>
-            </tr>
+    <!-- R MARKDOWN INTRODUCTION -->
 
-            <tr>
-                <td><strong>Sharing</strong></td>
-                <td>Requires others to have R, your files, and your script.</td>
-                <td>Can be shared through a web link without requiring R or RStudio.</td>
-            </tr>
+    <div class="card">
+        <h2>R Markdown</h2>
 
-        </tbody>
+        <p>
+            An R Script can perform a full set of analyses with the click
+            of a button. However, the script may also require access to the
+            original dataset and any other files used in the analysis.
+        </p>
 
-    </table>
-</div>
+        <p>
+            An <strong>R Markdown document</strong> communicates the research
+            process by combining code, results, and written explanations
+            into one reproducible report.
+        </p>
 
-<div class="card">
-   <h2>RScript Files</h2> 
-      <p>
-      An R Script file is a text file containing a series of instructions written in the R programming language. 
-       These instructions tell the computer how to work with data, perform calculations, create visualizations, and generate reports.
-       R Scripts make data analysis faster, more consistent, and easier to reproduce.
-        Once a script is created, it can be reused whenever new data become available, ensuring the same analysis is performed the same way each time.
-        An <strong>R Script makes your data analysis easily reproducible.</strong>
-    </p>
+        <p>
+            The purpose of converting an R Script into R Markdown is not
+            simply to run code. It is to create a complete, readable report
+            that helps another person understand your analysis from beginning
+            to end.
+        </p>
+    </div>
 
-    <p>
-        Think about creating a graph in Excel. If your dataset changes, you may need to update formulas, recreate charts, and repeat several steps manually. Similarly, in programs such as SPSS, JASP, or Minitab, you often perform analyses by clicking through menus each time.
-        An R Script works differently. It saves every step of the analysis as code. This gives you:
-    </p>
+    <!-- R MARKDOWN STEPS -->
 
-    <ol>
-        <li>A clear record of how the data was analyzed</li>
-        <li>The ability to reanalyze an updated dataset with the click of a single button ("re-run all analyses")</li>
-        <li>The ability to fix a single error, edit one line of code, and rerun the analysis</li>
-        <li>The ability to save your work midway through an analysis and continue later</li>
-    </ol>
-
-    <p>
-       <strong>This can reduce a process that might take hours of clicking to just a few seconds</strong>.
-    </p>
-    <h3>Common RScript Shortcuts & Tasks</h3>
-
-    <table>
-
-        <thead>
-            <tr>
-                <th>Task</th>
-                <th>Instructions</th>
-            </tr>
-        </thead>
-
-        <tbody>
-
-            <tr>
-                <td><strong>Create a New R Script</strong></td>
-                <td>File → New File → R Script</td>
-            </tr>
-
-            <tr>
-                <td><strong>Save an R Script</strong></td>
-                <td>
-                    File → Save<br><br>
-                    Windows: Ctrl + S<br>
-                    Mac: Command + S
-                </td>
-            </tr>
-
-            <tr>
-                <td><strong>Run Selected Code</strong></td>
-                <td>
-                    Highlight the code and press:<br><br>
-                    Windows: Ctrl + Enter<br>
-                    Mac: Command + Enter<br><br>
-                    You can also click the <strong>Run</strong> button.
-                </td>
-            </tr>
-
-            <tr>
-                <td><strong>Run an Entire Script</strong></td>
-                <td>
-                    Click <strong>Source</strong> at the top of the Script Pane.
-                </td>
-            </tr>
-
-            <tr>
-                <td><strong>Open an Existing Script</strong></td>
-                <td>
-                    File → Open File → Select the desired .R file
-                </td>
-            </tr>
-
-            <tr>
-                <td><strong>Add Comments</strong></td>
-                <td>
-                    Begin a line with the <strong>#</strong> symbol.<br><br>
-                    Comments are notes for yourself and are ignored by R.
-                </td>
-            </tr>
-
-            <tr>
-                <td><strong>Find and Replace Text</strong></td>
-                <td>
-                    Windows: Ctrl + F<br>
-                    Mac: Command + F
-                </td>
-            </tr>
-
-            <tr>
-                <td><strong>Undo and Redo Changes</strong></td>
-                <td>
-                    Undo:<br>
-                    Windows: Ctrl + Z<br>
-                    Mac: Command + Z<br><br>
-
-                    Redo:<br>
-                    Windows: Ctrl + Y<br>
-                    Mac: Command + Shift + Z
-                </td>
-            </tr>
-
-        </tbody>
-
-    </table>
-</div>
-
-<div class="card">
-
-    <h3>R Markdown</h3>
-
-    <p>
-        An R Script can perform a full set of analyses with the click of a button. However, the RScript will only run if you also have access to the raw data (e.g, the exel dataset).
-      An <strong>R Markdown document</strong> communicates the entire research process by combining code, results, and explanations into one reproducible report.
-        The purpose of converting an R Script into R Markdown is not simply to run code.
-        It is to create a complete, readable report where another person can understand your analysis from beginning to end.
-    </p>
-</div>
-
-       <div class="test-path">
-
+    <div class="test-path">
         <div class="test-path-header">
-            <h3>SLU Laptops</h3>
+            <h3>How to Create an R Markdown Report</h3>
         </div>
 
         <div class="test-path-content">
 
-            <details>
-                <summary>How to Create an RMarkdown Report</summary>
-
-                <div class="path-step-content">
-
-                    <div class="highlight-blue">
-                        The following steps describe the process for converting an R analysis into a complete R Markdown report. In this course, you will use R Markdown to organize your statistical analyses and create shareable HTML reports.
-                    </div>
-
-                </div>
-
-            </details>
+            <p>
+                Follow these steps to organize your statistical analyses
+                and create a shareable HTML report.
+            </p>
 
             <details>
                 <summary>Step 1: Install the R Markdown Package</summary>
-
                 <div class="path-step-content">
+                    <p>
+                        Before creating an R Markdown document, install
+                        the <code>rmarkdown</code> package if it is not
+                        already available.
+                    </p>
+
+                    <div class="highlight">
+                        <p><strong>Run this installation command once:</strong></p>
+                        <pre><code>install.packages("rmarkdown")</code></pre>
+
+                        <p>
+                            After installation, load the package when
+                            you need it:
+                        </p>
+                        <pre><code>library(rmarkdown)</code></pre>
+                    </div>
 
                     <p>
-                        Before creating an R Markdown document, you must install and load the rmarkdown package.
+                        Do not reinstall the package every time you open
+                        RStudio. Installation and loading are different tasks.
                     </p>
-    <div class="highlight">
-
-<pre>
-install.packages("rmarkdown")
-
-library(rmarkdown)
-</pre>
-
-    </div>
-
-                  </div>
-
+                </div>
             </details>
 
             <details>
                 <summary>Step 2: Create a New R Markdown File</summary>
-
                 <div class="path-step-content">
+                    <p>In RStudio, select:</p>
 
-                   <p>File → New File → R Markdown</p>
- <p>
-        A window will appear asking for information about your document.
-    </p>
+                    <div class="highlight">
+                        <strong>File → New File → R Markdown</strong>
+                    </div>
 
-    <table>
+                    <p>A window will appear asking for information about your document.</p>
 
-        <thead>
-            <tr>
-                <th>Setting</th>
-                <th>What to Enter</th>
-            </tr>
-        </thead>
+                    <div class="table-wrapper">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Setting</th>
+                                    <th>What to Enter</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Title</strong></td>
+                                    <td>Enter your assignment or project title, such as Assignment 1.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Author</strong></td>
+                                    <td>Enter your name.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Output Format</strong></td>
+                                    <td>Select HTML.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
 
-        <tbody>
+                    <p>Click <strong>OK</strong>. A new R Markdown file will open.</p>
 
-            <tr>
-                <td><strong>Title</strong></td>
-                <td>
-                    Enter your assignment or project title.<br>
-                    Example: <em>Assignment 1</em>
-                </td>
-            </tr>
-
-            <tr>
-                <td><strong>Author</strong></td>
-                <td>Enter your name.</td>
-            </tr>
-
-            <tr>
-                <td><strong>Output Format</strong></td>
-                <td>Select <strong>HTML</strong>.</td>
-            </tr>
-
-        </tbody>
-
-    </table>
-
-    <p>
-        Click <strong>OK</strong>. A new R Markdown file will open.
-    </p>
-
-    <p>
-        RStudio automatically creates a sample R Markdown document. Delete the example text and code before beginning your assignment.
-    </p>
-                   
+                    <p>
+                        RStudio automatically creates a sample document.
+                        Remove the example text and code before beginning
+                        your assignment.
+                    </p>
                 </div>
-
             </details>
 
             <details>
-                <summary>Step 3: Copy the code from your RScript file</summary>
-
+                <summary>Step 3: Copy Code from Your R Script</summary>
                 <div class="path-step-content">
- <p>
-        R Markdown documents contain two types of content:
-    </p>
+                    <p>R Markdown documents contain two main types of content:</p>
 
-    <table>
+                    <div class="table-wrapper">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Content Type</th>
+                                    <th>Purpose</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Narrative Text</strong></td>
+                                    <td>
+                                        Written explanations describing the
+                                        methods, results, and interpretations.
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Code Chunks</strong></td>
+                                    <td>
+                                        R code that performs calculations,
+                                        creates graphs, and produces output.
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
 
-        <thead>
-            <tr>
-                <th>Content Type</th>
-                <th>Purpose</th>
-            </tr>
-        </thead>
-
-        <tbody>
-
-            <tr>
-                <td><strong>Narrative Text</strong></td>
-                <td>
-                    Written explanations that describe your methods, results, and interpretations.
-                </td>
-            </tr>
-
-            <tr>
-                <td><strong>Code Chunks</strong></td>
-                <td>
-                    R code that performs calculations, creates graphs, and produces statistical output.
-                </td>
-            </tr>
-
-        </tbody>
-
-    </table>
-
-    <p>
-        Copy the analysis code from your existing <strong>.R script</strong> file and paste it into your new <strong>.Rmd file</strong>.
-    </p>
-
-
+                    <p>
+                        Copy the analysis code from your existing
+                        <strong>.R script</strong> and paste it into your
+                        new <strong>.Rmd file</strong>. You will need to
+                        place the code inside code chunks.
+                    </p>
                 </div>
+            </details>
 
+            <details>
+                <summary>Step 4: Convert Your R Script to R Markdown Format</summary>
+                <div class="path-step-content">
+                    <p>
+                        An R Script and an R Markdown document use different
+                        formatting rules. When transferring code, separate
+                        your <strong>explanations</strong> from your
+                        <strong>R code</strong>.
+                    </p>
+
+                    <div class="highlight">
+                        <p>
+                            <strong>Outside code chunks:</strong>
+                            Written explanations, instructions, and interpretations.
+                        </p>
+                        <p>
+                            <strong>Inside code chunks:</strong>
+                            R code that will be executed by the program.
+                        </p>
+                    </div>
+
+                    <h3>Converting Comments into Written Text</h3>
+
+                    <p>
+                        In an R Script, comments begin with the
+                        <code>#</code> symbol. Comments are notes for yourself
+                        and are ignored by R when the code runs.
+                    </p>
+
+                    <p>
+                        In R Markdown, explanations should usually be written
+                        as regular text rather than as R comments.
+                    </p>
+
+                    <div class="table-wrapper">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>R Script</th>
+                                    <th>R Markdown</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><pre><code># Calculate descriptive statistics</code></pre></td>
+                                    <td>Calculate descriptive statistics.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <h3>Creating Code Chunks</h3>
+
+                    <p>
+                        R code must be placed inside a code chunk so that
+                        R Markdown knows which instructions to execute.
+                    </p>
+
+                    <p>
+                        A code chunk begins with three backticks followed
+                        by <code>{r}</code>. It ends with three backticks
+                        on a separate line.
+                    </p>
+
+                    <pre><code>```{r}
+2 * 2
+```</code></pre>
+
+                    <p>
+                        When you knit the document, R executes the code
+                        chunks and includes their results in the report.
+                    </p>
+                </div>
+            </details>
+
+            <details>
+                <summary>Step 5: Knit the HTML Report</summary>
+                <div class="path-step-content">
+                    <p>
+                        Save your R Markdown file using the
+                        <code>.Rmd</code> extension.
+                    </p>
+
+                    <ol>
+                        <li>Save the document.</li>
+                        <li>Click the <strong>Knit</strong> button in RStudio.</li>
+                        <li>Select HTML if RStudio asks for an output format.</li>
+                        <li>Review the generated report for errors and missing results.</li>
+                        <li>Save and submit the required files according to your assignment instructions.</li>
+                    </ol>
+
+                    <div class="warning">
+                        <strong>Important:</strong> If knitting fails, read the
+                        error message. Check that your code chunks are formatted
+                        correctly, required packages are available, and your
+                        data files can be found by the document.
+                    </div>
+                </div>
             </details>
 
         </div>
-
-
-      <div class="path-step-content">
-
-                </div>
-
-            </details>
-
-            <details>
-                <summary>Step 4: Convert Your R Script Into R Markdown Format</summary>
-
-                <div class="path-step-content">
-
-                    <p>
-        An R Script and an R Markdown document use different formatting rules.
-    </p>
-
-    <p>
-        When transferring code from an R Script into R Markdown, you must separate your
-        <strong>explanations</strong> from your <strong>R code</strong>.
-    </p>
-
-    <div class="highlight">
-
-        <strong>Outside Code Chunks:</strong>
-        Written explanations, instructions, and interpretations.
-
-        <br><br>
-
-        <strong>Inside Code Chunks:</strong>
-        R code that will be executed by the program.
-
     </div>
 
-
-    <h2>Converting Comments Into Written Text</h2>
-
-    <p>
-        In an R Script, comments are created using the <strong>#</strong> symbol.
-        Comments are notes for yourself and are ignored by R when the code runs.
-    </p>
-
-    <p>
-        In R Markdown, explanations should be written as regular text instead of comments.
-    </p>
-
-    <table>
-
-        <thead>
-            <tr>
-                <th>R Script</th>
-                <th>R Markdown</th>
-            </tr>
-        </thead>
-
-        <tbody>
-
-            <tr>
-                <td>
-<pre># Calculate descriptive statistics</pre>
-                </td>
-
-                <td>
-                    Calculate descriptive statistics.
-                </td>
-            </tr>
-
-        </tbody>
-
-    </table>
-
-    <h2>Creating Code Chunks</h2>
-
-    <p>
-        R code must be placed inside a <strong>code chunk</strong> so that R Markdown knows which instructions should be executed.
-    </p>
-
-    <p>
-        Code chunks begin with three backticks followed by <strong>{r}</strong> and end with three backticks.
-    </p>
-
-    <div class="highlight">
-
-<pre>
-```{r}
-
-2 * 2
-  
-```
 </div>
-
-          
-
-
-</div>
-
-</div>
-
-</div>
-
-</div>
+</body>
+</html>
