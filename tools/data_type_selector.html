@@ -135,9 +135,27 @@ body {
   overflow-wrap: anywhere;
 }
 
+.definition-box {
+  width: 100%;
+  box-sizing: border-box;
+  margin-top: 1.25rem;
+  padding: 1rem;
+  border: 1px solid #b9d8ef;
+  border-radius: 10px;
+  background: #ffffff;
+  text-align: left;
+}
+
+.definition-heading {
+  margin: 0 0 0.4rem;
+  color: #0e68b3;
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
 .answer-description {
-  margin: 0.75rem 0 0;
-  color: #555555;
+  margin: 0;
+  color: #444444;
   font-size: 0.9rem;
   line-height: 1.6;
 }
@@ -351,9 +369,12 @@ body {
             —
           </div>
 
-          <p class="answer-description" id="answerDescription">
-            Select a variable to begin.
-          </p>
+          <div class="definition-box" id="definitionBox">
+            <div class="definition-heading">Definition</div>
+            <p class="answer-description" id="answerDescription">
+              Select a variable to see why it belongs to its level of measurement.
+            </p>
+          </div>
 
         </div>
 
@@ -443,6 +464,78 @@ const answerKey = {
   ACT_Score: "Interval"
 };
 
+const definitionKey = {
+  Seconds: "Elapsed time in seconds is ratio because zero seconds means no elapsed time, and differences and ratios are meaningful. A calendar time or clock reading measured in seconds would need a different interpretation.",
+  Minutes: "Elapsed time in minutes is ratio because zero means no elapsed time, equal differences are meaningful, and 10 minutes is twice as long as 5 minutes.",
+  Hours: "Elapsed time in hours is ratio because zero means no elapsed time and ratios are meaningful. This applies to duration, such as hours worked, rather than a clock time such as 2:00 p.m.",
+  Days: "A count of elapsed days is ratio because zero means no days have elapsed and values can be compared using meaningful ratios.",
+  Weeks: "A count of elapsed weeks is ratio because zero means no weeks have elapsed and ratios of durations are meaningful.",
+  Months: "A duration measured in months is ratio when it counts elapsed time. Calendar month names (January, February, etc.) are nominal, not ratio.",
+  Years: "A duration measured in years, such as years of experience, is ratio because zero means no years and ratios are meaningful. Calendar years (such as 2025 and 2026) are interval.",
+  Inches: "Length in inches is ratio because zero means no length, equal units represent equal increments, and ratios are meaningful.",
+  Yards: "Length in yards is ratio because zero means no length and a 6-yard length is twice a 3-yard length.",
+  Miles: "Distance in miles is ratio because zero means no distance and ratios are meaningful.",
+  Ounces: "Weight or volume measured in ounces is ratio when zero means none of the measured amount. Specify whether ounces refer to weight or fluid volume.",
+  Gallons: "Volume in gallons is ratio because zero means no volume and ratios are meaningful.",
+  Pounds: "Weight measured in pounds is ratio because zero represents none of the measured weight and ratios are meaningful.",
+  Millimeters: "Length in millimeters is ratio because zero means no length and equal numerical differences represent equal differences in length.",
+  Centimeters: "Length in centimeters is ratio because zero means no length and ratios are meaningful.",
+  Kilograms: "Mass in kilograms is ratio because zero means no mass and ratios are meaningful.",
+  Kilometers: "Distance in kilometers is ratio because zero means no distance and ratios are meaningful.",
+  Grams: "Mass in grams is ratio because zero means no mass and ratios are meaningful.",
+  Number_of_: "A count (for example, number of courses or number of employees) is ratio because zero means none and counts can be compared with meaningful ratios. Replace the example with the specific thing being counted.",
+  USD: "An amount of money in U.S. dollars is ratio because $0 means no money and differences and ratios of amounts are meaningful.",
+  Gender: "Gender is nominal when responses are recorded as categories. The categories identify groups but do not have a required numerical order.",
+  Race: "Race is nominal when recorded as categories because the categories are labels, not ranked levels.",
+  Ethnicity: "Ethnicity is nominal when recorded as categories because the categories identify groups without a natural ranking.",
+  Nationality: "Nationality is nominal because country-based nationality categories are labels and have no inherent order.",
+  Religion: "Religion is nominal when recorded as categories because the responses do not have a natural ranking.",
+  Political_Party: "Political party is nominal because party names are categories, not ordered levels.",
+  Marital_Status: "Marital status is nominal when categories such as single, married, or divorced are used; these categories do not form a single meaningful ranking.",
+  Employment_Status: "Employment status is nominal when categories such as employed, unemployed, or retired are used. The categories are labels rather than ranked levels.",
+  Department: "Department is nominal because department names identify groups and have no inherent order.",
+  Major: "Academic major is nominal because major names are categories without a natural ranking.",
+  Job_Title: "Job title is nominal when titles are treated as category labels. If the variable is explicitly coded as ordered job grades or ranks, its measurement level may differ.",
+  School: "School is nominal when it identifies a school by name or category; the names do not have a natural order.",
+  University: "University is nominal when it identifies an institution by name or category, rather than measuring an ordered ranking.",
+  Country: "Country is nominal because country names are categories without a natural order.",
+  State: "State is nominal when it records a state name or abbreviation. The labels are not ranked.",
+  City: "City is nominal because city names are categories, not ordered values.",
+  Eye_Color: "Eye color is nominal because colors are categories without a natural ranking.",
+  Hair_Color: "Hair color is nominal because color categories do not have a natural order.",
+  Blood_Type: "Blood type is nominal because categories such as A, B, AB, and O identify types but are not ranked.",
+  Yes_or_No: "A yes/no response is nominal when it represents two categories. Coding Yes as 1 and No as 0 does not by itself make it a ratio variable.",
+  Student_ID: "A student ID is nominal because it is an identifier used to distinguish people. The number does not measure how much of something a student has.",
+  Employee_ID: "An employee ID is nominal because it identifies a person. Differences between ID numbers are not meaningful measurements.",
+  Product_Category: "Product category is nominal because category labels identify types of products without ranking them.",
+  Research_Group: "Research group is nominal when it labels the group a participant belongs to. The group labels themselves are not ranked.",
+  Single_Question_on_Agreement: "A single agreement item (for example, strongly disagree to strongly agree) is ordinal because responses have an order, but the distance between adjacent response options cannot be assumed equal.",
+  Single_Question_on_Stress: "A single stress-rating item with ordered response choices is ordinal because responses can be ranked from lower to higher stress, but the gaps between choices are not known to be equal.",
+  Single_Question_on_Satisfaction: "A single satisfaction item with ordered response choices is ordinal because responses have a meaningful order, but the spacing between response options is not guaranteed to be equal.",
+  Education_Level: "Education level is ordinal when categories progress from lower to higher attainment (for example, high school, bachelor's, master's, doctorate). The gaps between categories are not equal units.",
+  Class_Rank: "Class rank is ordinal because it indicates order (first, second, third, and so on). The ranking does not tell you that the differences in performance between ranks are equal.",
+  Letter_Grade: "Letter grades are ordinal because A is generally higher than B, and B higher than C, but the difference between adjacent grades is not necessarily equal.",
+  Performance_Rating: "A performance rating is ordinal when categories such as needs improvement, meets expectations, and exceeds expectations are ordered but the gaps between them are not known to be equal.",
+  Pain_Level: "A pain rating using ordered categories is ordinal because one response indicates more pain than another, but the difference between levels is not necessarily equal.",
+  Stress_Level: "Stress level is ordinal when recorded as ordered categories (for example, low, moderate, high) because the categories have an order but not equal, measured intervals.",
+  Income_Bracket: "Income brackets are ordinal because the categories are ordered from lower to higher income, but each category represents a range rather than an exact income amount.",
+  Socioeconomic_Status: "Socioeconomic status is ordinal when recorded in ranked categories such as low, middle, and high. The categories have an order, but the distances between them are not equal units.",
+  Frequency_Category: "Frequency categories such as never, rarely, sometimes, often, and always are ordinal because they are ordered, but the differences between adjacent categories are not necessarily equal.",
+  Risk_Level: "Risk level is ordinal when categories such as low, moderate, and high have a clear order but do not represent equal numerical intervals.",
+  Priority_Level: "Priority level is ordinal when categories such as low, medium, and high are ranked. The order is meaningful, but the gaps between levels are not necessarily equal.",
+  TShirt_Size: "T-shirt size is ordinal because sizes such as XS, S, M, L, and XL have a natural order, but the differences between sizes are not equal numerical units.",
+  Multiple_Item_Scale_on_Agreement: "A summed or averaged score from multiple agreement items is often treated as approximately interval when the items form a coherent scale. This assumes the combined score behaves like equal steps; it is not automatically interval just because multiple items are used.",
+  Multiple_Item_Scale_on_Stress: "A summed or averaged score from multiple stress items is often treated as approximately interval when the items form a reliable, coherent scale. The classification depends on how the scale is constructed and validated.",
+  Multiple_Item_Scale_on_Satisfaction: "A summed or averaged score from multiple satisfaction items is often treated as approximately interval when the items form a coherent scale. This is an analytical convention, not a guarantee that every score increment is exactly equal.",
+  Temperature_Celsius: "Temperature in Celsius is interval because equal differences represent equal temperature changes, but 0°C does not mean there is no temperature. Therefore, ratios such as 20°C being twice as hot as 10°C are not meaningful.",
+  Temperature_Fahrenheit: "Temperature in Fahrenheit is interval because equal differences represent equal temperature changes, but 0°F is not an absence of temperature. Ratios are not meaningful.",
+  Calendar_Year: "Calendar year is interval because differences between years are meaningful and equally spaced, but year zero is not a true absence of time, so ratios of calendar years are not meaningful.",
+  IQ_Score: "IQ scores are generally treated as interval because score differences are interpreted as comparable across the scale. A score of 120 is not meaningfully twice the intelligence of a score of 60.",
+  Standardized_Test_Score: "A standardized test score is often treated as interval when score differences are designed to be comparable across the scale. A score of 80 is not necessarily twice the ability represented by a score of 40.",
+  SAT_Score: "SAT scores are commonly treated as approximately interval for many analyses because score differences are designed to have interpretable meaning across the scale. A score twice as large does not mean twice the ability.",
+  ACT_Score: "ACT scores are commonly treated as approximately interval for many analyses because score differences are intended to be interpretable across the scale. A score twice as large does not mean twice the ability."
+};
+
 function updateAnswer() {
   const selectedVariable =
     document.getElementById("variableSelect").value;
@@ -466,7 +559,7 @@ function updateAnswer() {
     answerNumber.classList.add("answer-placeholder");
 
     answerLabel.textContent = "Your answer will appear here";
-    answerDescription.textContent = "Select a variable to begin.";
+    answerDescription.textContent = "Select a variable to see why it belongs to its level of measurement.";
     return;
   }
 
@@ -477,15 +570,18 @@ function updateAnswer() {
     answerNumber.classList.add("answer-placeholder");
     answerLabel.textContent = "Unable to identify level";
     answerDescription.textContent =
-      "This variable is not listed in the answer key.";
+      "A definition is not available for this selection. Please check the variable name in the answer key.";
     return;
   }
 
   answerNumber.classList.remove("answer-placeholder");
   answerNumber.textContent = level;
 
-  answerLabel.textContent = "";
-  answerDescription.textContent = "";
+  answerLabel.textContent = "This variable is classified as " + level + ".";
+  answerDescription.textContent =
+    definitionKey[selectedVariable] ||
+    "This variable is classified as " + level.toLowerCase() +
+    ". Review how the variable is recorded to confirm that this level of measurement is appropriate.";
 
   // Restart the animation each time a selection changes.
   void answerArea.offsetWidth;
