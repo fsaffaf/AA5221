@@ -233,6 +233,7 @@ body::after {
   line-height: 1.6;
 }
 
+
 /* =========================================
    VARIABLE AND UNIT INPUT PANEL
    ========================================= */
@@ -243,29 +244,30 @@ body::after {
   animation: fadeIn 0.3s ease;
 }
 
-/* Two-column layout:
-   Variable 1 name | Variable 1 unit
-   Variable 2 name | Variable 2 unit
-*/
-
 .input-grid {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  gap: 1.25rem 1rem;
-  align-items: start;
+  grid-template-columns: minmax(105px, 0.8fr) minmax(0, 1.2fr) minmax(0, 1fr);
+  gap: 0.75rem 1rem;
+  align-items: center;
+}
+
+.input-column-header {
+  color: #0e68b3;
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-align: left;
+  padding-bottom: 0.2rem;
+}
+
+.variable-row-label {
+  color: #333333;
+  font-size: 0.9rem;
+  font-weight: 600;
+  line-height: 1.4;
 }
 
 .input-group {
   min-width: 0;
-}
-
-.input-group label {
-  display: block;
-  margin-bottom: 0.5rem;
-  color: #333333;
-  font-size: 0.95rem;
-  font-weight: 600;
-  line-height: 1.5;
 }
 
 .input-group input {
@@ -273,13 +275,13 @@ body::after {
   width: 100%;
   min-width: 0;
   box-sizing: border-box;
-  padding: 0.9rem;
-  border-radius: 12px;
+  padding: 0.75rem;
+  border-radius: 8px;
   border: 1px solid #d9e2ec;
   background: #ffffff;
   color: #222222;
   font-family: inherit;
-  font-size: 1rem;
+  font-size: 0.95rem;
   outline: none;
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
@@ -293,6 +295,29 @@ body::after {
   border-color: #0e68b3;
   box-shadow: 0 0 0 3px rgba(14, 104, 179, 0.12);
 }
+
+/* MOBILE LAYOUT */
+
+@media (max-width: 520px) {
+  .input-grid {
+    grid-template-columns: 85px minmax(0, 1.2fr) minmax(0, 1fr);
+    gap: 0.75rem 0.5rem;
+  }
+
+  .variable-row-label {
+    font-size: 0.78rem;
+  }
+
+  .input-column-header {
+    font-size: 0.8rem;
+  }
+
+  .input-group input {
+    padding: 0.65rem 0.4rem;
+    font-size: 0.85rem;
+  }
+}
+
 
 /* =========================================
    GENERATE BUTTON
@@ -529,90 +554,88 @@ body::after {
     <!-- QUESTION 2: VARIABLE NAMES AND UNITS -->
     <!-- ========================================= -->
 
-    <div id="inputPanel" class="input-panel">
+    
+<div id="inputPanel" class="input-panel">
 
-      <div class="question-title">
-        <span class="question-number">2.</span>
-        Enter your variable names and unit of measurement.
-      </div>
+  <div class="question-title">
+    <span class="question-number">2.</span>
+    Enter your variable names and units of measurement.
+  </div>
 
-      <div class="input-grid">
+  <div class="input-grid">
 
-        <!-- VARIABLE 1 NAME -->
+    <!-- COLUMN HEADERS -->
 
-        <div class="input-group">
+    <div></div>
 
-          <label id="label1" for="input1">
-            Variable 1 Name
-          </label>
-
-          <input
-            type="text"
-            id="input1"
-            placeholder="Example: Study Time"
-          >
-
-        </div>
-
-        <!-- VARIABLE 1 UNIT -->
-
-        <div class="input-group">
-
-          <label id="unitLabel1" for="unit1">
-            Unit of Measurement (optional)
-          </label>
-
-          <input
-            type="text"
-            id="unit1"
-            placeholder="Example: Hours"
-          >
-
-        </div>
-
-        <!-- VARIABLE 2 NAME -->
-
-        <div class="input-group">
-
-          <label id="label2" for="input2">
-            Variable 2 Name
-          </label>
-
-          <input
-            type="text"
-            id="input2"
-            placeholder="Example: Test Score"
-          >
-
-        </div>
-
-        <!-- VARIABLE 2 UNIT -->
-
-        <div class="input-group">
-
-          <label id="unitLabel2" for="unit2">
-            Unit of Measurement (optional)
-          </label>
-
-          <input
-            type="text"
-            id="unit2"
-            placeholder="Example: Points"
-          >
-
-        </div>
-
-      </div>
-
-      <button
-        type="button"
-        class="generate-btn"
-        onclick="generateHypotheses()"
-      >
-        Write My Hypotheses
-      </button>
-
+    <div class="input-column-header">
+      Name
     </div>
+
+    <div class="input-column-header">
+      Unit
+    </div>
+
+    <!-- VARIABLE 1 -->
+
+    <div class="variable-row-label" id="label1">
+      Variable 1:
+    </div>
+
+    <div class="input-group">
+      <input
+        type="text"
+        id="input1"
+        aria-label="Variable 1 name"
+        placeholder="Study Time"
+      >
+    </div>
+
+    <div class="input-group">
+      <input
+        type="text"
+        id="unit1"
+        aria-label="Variable 1 unit"
+        placeholder="Hours"
+      >
+    </div>
+
+    <!-- VARIABLE 2 -->
+
+    <div class="variable-row-label" id="label2">
+      Variable 2:
+    </div>
+
+    <div class="input-group">
+      <input
+        type="text"
+        id="input2"
+        aria-label="Variable 2 name"
+        placeholder="Test Score"
+      >
+    </div>
+
+    <div class="input-group">
+      <input
+        type="text"
+        id="unit2"
+        aria-label="Variable 2 unit"
+        placeholder="Points"
+      >
+    </div>
+
+  </div>
+
+  <button
+    type="button"
+    class="generate-btn"
+    onclick="generateHypotheses()"
+  >
+    Write My Hypotheses
+  </button>
+
+</div>
+
 
     <!-- ========================================= -->
     <!-- RESULTS -->
