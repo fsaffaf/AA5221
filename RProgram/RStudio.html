@@ -1,18 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>RStudio</title>
-
 <style>
+
+/* =========================
+   BASE
+========================= */
 
 body{
     margin:0;
     font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
     background:#f4f6f9;
-    color:#222;
+    color:#222222;
 }
 
 .container{
@@ -21,90 +17,171 @@ body{
     padding:50px 20px;
 }
 
+/* =========================
+   LEARNING OBJECTIVES
+========================= */
+
+.learning-objectives{
+    background:#e8f4fc;
+    border-left:5px solid #084f8c;
+    padding:16px 20px;
+    border-radius:8px;
+    margin:20px 0;
+}
+
+.learning-objectives strong{
+    color:#0e68b3;
+}
+
+/* =========================
+   BLUE TEXT
+========================= */
+
+.blue-heading{
+    color:#0e68b3;
+}
+
+/* =========================
+   PAGE TITLE
+========================= */
+
 h1{
     text-align:left;
-    color:#666;
+    color:#666666;
     font-size:2.75rem;
     font-weight:200;
     letter-spacing:.08em;
-    margin-bottom:20px;
+    margin-bottom:10px;
 }
 
-h2,
+.subtitle{
+    text-align:center;
+    color:#6b7280;
+    text-transform:uppercase;
+    letter-spacing:.15em;
+    margin-bottom:40px;
+    font-size:.95rem;
+}
+
+/* =========================
+   CARD HEADINGS
+========================= */
+
+h2{
+    color:#0e68b3;
+    position:relative;
+    font-weight:500;
+    display:inline-block;
+    margin-top:0;
+    margin-bottom:22px;
+    padding-bottom:6px;
+}
+
+/* =========================
+   SUBHEADINGS
+========================= */
+
 h3{
     color:#0e68b3;
     font-weight:500;
-    position:relative;
-    display:inline-block;
+    margin-top:28px;
+    margin-bottom:12px;
 }
 
-h2::after,
-h3::after{
-    content:"";
-    position:absolute;
-    left:0;
-    bottom:-4px;
-    width:0;
-    height:2px;
-    background:#0e68b3;
-    transition:.3s;
-}
-
-.card:hover h2::after,
-.card:hover h3::after{
-    width:100%;
-}
+/* =========================
+   BODY TEXT
+========================= */
 
 p{
     line-height:1.8;
 }
 
+/* =========================
+   CARDS
+========================= */
+
 .card{
-    background:#fff;
+    background:white;
     border-radius:16px;
     padding:30px;
     margin-bottom:25px;
     border:1px solid #d9e2ec;
-    box-shadow:0 3px 10px rgba(0,0,0,.05);
-    transition:all .25s ease;
+
+    box-shadow:
+        0 3px 10px rgba(0,0,0,.05);
+
     animation:fadeUp .6s ease forwards;
+    transition:all .25s ease;
 }
 
 .card:hover{
     transform:translateY(-4px);
-    box-shadow:0 10px 25px rgba(14,104,179,.15);
+
+    box-shadow:
+        0 10px 25px rgba(14,104,179,.15);
 }
 
+/* =========================
+   CALLOUTS
+========================= */
+
 .highlight{
-    background:#eef6fc;
-    border-left:5px solid #0e68b3;
-    padding:15px;
-    border-radius:8px;
+    background:#ffffff;
+    border-left:3px solid #0e68b3;
+    padding:14px 18px;
+    border-radius:0;
     margin:20px 0;
 }
 
-ul,
+/* =========================
+   BUTTONS
+========================= */
+
+.button{
+    display:inline-block;
+    background:linear-gradient(135deg,#0e68b3,#1c84d8);
+    color:#ffffff;
+    text-decoration:none;
+    font-weight:600;
+    padding:14px 32px;
+    border-radius:9999px;
+    box-shadow:0 8px 20px rgba(14,104,179,.20);
+    transition:all .25s ease;
+}
+
+.button:hover{
+    transform:translateY(-3px);
+    box-shadow:0 12px 25px rgba(14,104,179,.30);
+    background:linear-gradient(135deg,#095491,#0e68b3);
+}
+
+/* =========================
+   LISTS
+========================= */
+
+ul{
+    padding-left:25px;
+}
+
 ol{
     padding-left:25px;
 }
 
 li{
-    margin-bottom:10px;
+    margin-bottom:8px;
 }
 
-img{
-    max-width:100%;
-    height:auto;
-    border-radius:8px;
-    margin:15px 0;
-    border:1px solid #d9e2ec;
-}
+/* =========================
+   TABLES
+========================= */
 
 table{
     width:100%;
     border-collapse:collapse;
     margin-top:20px;
-    background:#fff;
+    background:white;
+    overflow:hidden;
+    border-radius:10px;
 }
 
 th{
@@ -128,31 +205,38 @@ tr:hover{
     background:#edf6ff;
 }
 
-.button{
-    display:inline-block;
-    background:#0e68b3;
-    color:white;
-    text-decoration:none;
-    padding:12px 20px;
-    border-radius:10px;
-    font-weight:500;
-    transition:.25s;
+/* =========================
+   HORIZONTAL RULE
+========================= */
+
+hr{
+    border:none;
+    height:1px;
+    background:#d6e4f0;
+    margin:30px 0;
 }
 
-.button:hover{
-    background:#0b5795;
-}
+/* =========================
+   ANIMATION
+========================= */
 
 @keyframes fadeUp{
+
     from{
         opacity:0;
         transform:translateY(20px);
     }
+
     to{
         opacity:1;
         transform:translateY(0);
     }
+
 }
+
+/* =========================
+   MOBILE
+========================= */
 
 @media (max-width:768px){
 
@@ -169,315 +253,173 @@ tr:hover{
         padding:10px;
         font-size:.95rem;
     }
+
 }
 
 </style>
-</head>
-
-<body>
 
 <div class="container">
 
-<h1>RStudio</h1>
+    <h1>Installing R and RStudio</h1>
 
-<div class="card">
-    <h2>Overview</h2>
+    <div class="learning-objectives">
+        <strong>Learning Objectives</strong>
+        <ul>
+            <li>Install the R programming language on your computer.</li>
+            <li>Install the RStudio integrated development environment (IDE).</li>
+            <li>Verify that both programs are working correctly.</li>
+            <li>Access additional resources and installation tutorials.</li>
+        </ul>
+    </div>
 
-    <p>
-        RStudio is a free program used for data analysis and visualization.
-        It allows you to write, run, save, and share R code.
-    </p>
+    <div class="card">
+        <h2>What Are R and RStudio?</h2>
 
-    <p>
-        RStudio is divided into several panes. Each pane has a different purpose.
-    </p>
-</div>
+        <p>
+            <strong>R</strong> is a free, open-source programming language widely used for
+            statistical analysis, data visualization, and data science.
+        </p>
 
-<div class="card">
+        <p>
+            <strong>RStudio</strong> is an integrated development environment (IDE) that makes
+            working with R easier by providing a user-friendly interface for writing code,
+            viewing plots, managing files, and creating reports.
+        </p>
 
-    <h2>Installing R and RStudio</h2>
+        <div class="highlight">
+            You must install <strong>R first</strong> and then install
+            <strong>RStudio</strong>.
+        </div>
+    </div>
 
-    <p>
-        <strong>R</strong> and <strong>RStudio</strong> are the primary software programs used throughout this course
-        for statistical analysis and data visualization.
-    </p>
+    <div class="card">
+        <h2>Step 1: Install R</h2>
 
-    <ul>
-        <li><strong>R</strong> is the statistical programming language used to perform calculations, statistical tests, and data processing.</li>
-        <li><strong>RStudio</strong> is the interface used to write, organize, and run R code more efficiently.</li>
-    </ul>
+        <ol>
+            <li>
+                Visit the Comprehensive R Archive Network (CRAN):
+                <br>
+                https://cran.r-project.org/
+                    https://cran.r-project.org/
+                </a>
+            </li>
 
-    <div class="highlight">
-        <strong>Important:</strong> You must install <strong>R</strong> first and then install <strong>RStudio</strong>.
+            <li>
+                Select your operating system:
+                <ul>
+                    <li>Windows</li>
+                    <li>macOS</li>
+                    <li>Linux</li>
+                </ul>
+            </li>
+
+            <li>
+                Download the most recent version of R for your operating system.
+            </li>
+
+            <li>
+                Run the installer and accept the default installation options unless
+                instructed otherwise.
+            </li>
+
+            <li>
+                After installation is complete, open R to confirm that it launches successfully.
+            </li>
+        </ol>
+    </div>
+
+    <div class="card">
+        <h2>Step 2: Install RStudio</h2>
+
+        <ol>
+            <li>
+                Visit the Posit (formerly RStudio) download page:
+                <br>
+                https://posit.co/download/rstudio-desktop/
+                    https://posit.co/download/rstudio-desktop/
+                </a>
+            </li>
+
+            <li>
+                Download the free <strong>RStudio Desktop</strong> version.
+            </li>
+
+            <li>
+                Run the installer and follow the installation instructions.
+            </li>
+
+            <li>
+                Open RStudio after installation.
+            </li>
+
+            <li>
+                Verify that RStudio automatically detects your R installation.
+            </li>
+        </ol>
+    </div>
+
+    <div class="card">
+        <h2>Verify Your Installation</h2>
+
+        <p>
+            Once RStudio is open, enter the following command in the Console:
+        </p>
+
+<pre>
+2 + 2
+</pre>
+
+        <p>
+            If your installation is working correctly, RStudio should return:
+        </p>
+
+<pre>
+[1] 4
+</pre>
+
+        <p>
+            Congratulations! You are ready to begin using R and RStudio.
+        </p>
+    </div>
+
+    <div class="card">
+        <h2>Video Tutorial</h2>
+
+        <p>
+            If you prefer a walkthrough, you can watch a video tutorial demonstrating the installation process.
+            Replace the link below with your preferred YouTube video.
+        </p>
+
+        https://www.youtube.com/
+            Watch Installation Tutorial on YouTube
+        </a>
+    </div>
+
+    <div class="card">
+        <h2>Common Issues and Solutions</h2>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Issue</th>
+                    <th>Possible Solution</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>RStudio cannot find R</td>
+                    <td>Install R first, then restart and reinstall RStudio if necessary.</td>
+                </tr>
+                <tr>
+                    <td>Installation fails</td>
+                    <td>Download the latest installer and run it with administrator privileges.</td>
+                </tr>
+                <tr>
+                    <td>RStudio opens but displays errors</td>
+                    <td>Update both R and RStudio to their latest versions.</td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 
 </div>
-
-<div class="card">
-
-    <h2>Students with Personal Laptops</h2>
-
-    <h3>Video Directions</h3>
-
-    <p>
-        <a href="https://www.youtube.com/watch?v=EEeZzraCARM" target="_blank">
-            Watch Installation Video
-        </a>
-    </p>
-
-    <h3>Written Directions</h3>
-
-    <ol>
-
-        <li>
-            Download and install R:
-            <br>
-            https://cran.r-project.org/
-                Download R
-            </a>
-        </li>
-
-        <li>
-            Install the proper version based on your computer type (Mac or Windows).
-        </li>
-
-        <li>
-            Verify that R installed correctly by:
-            <ul>
-                <li>Checking whether an R shortcut appears on your desktop, or</li>
-                <li>Typing <strong>R</strong> into your computer's search bar.</li>
-            </ul>
-        </li>
-
-        <li>
-            Download and install RStudio:
-            <br>
-            <a href="https://posit.co/download/rstudio-desktop/Download">
-                Download RStudio
-            </a>
-        </li>
-
-        <li>
-            Install the proper version based on your computer type (Mac or Windows).
-        </li>
-
-        <li>
-            Verify that RStudio installed correctly by:
-            <ul>
-                <li>Checking whether an RStudio shortcut appears on your desktop, or</li>
-                <li>Typing <strong>RStudio</strong> into your computer's search bar.</li>
-            </ul>
-        </li>
-
-        <li>
-            Open RStudio and then close the program using the Close (X) button.
-        </li>
-
-        <li>
-            Additional instructions for using RStudio will be provided in <strong>Assignment 1</strong>.
-        </li>
-
-    </ol>
-
-</div>
-
-<div class="card">
-
-    <h2>Students with SLU-Issued Laptops</h2>
-
-    <p>
-        If you are using a Saint Louis University-issued laptop, you cannot install R or RStudio locally.
-        Instead, you will access RStudio through <strong>Apporto</strong>, SLU's virtual application platform.
-    </p>
-
-    <h3>Step 1: Open Apporto in Google Chrome</h3>
-
-    <p>
-        If you have a SLU-issued Mac, Apporto may not work in Safari.
-        Please use <strong>Google Chrome</strong>.
-    </p>
-
-    <p>
-        Open the <strong>Apporto</strong> page in Canvas. The tab should appear on the left side of your screen
-        alongside Home, Announcements, Syllabus, and other course navigation links.
-    </p>
-
-    images/apporto-appstore.png
-
-    <h3>Step 2: Open RStudio</h3>
-
-    <ol>
-        <li>Select the <strong>Windows Desktop</strong> option.</li>
-        <li>Locate and launch <strong>RStudio</strong> within the Windows Desktop environment.</li>
-    </ol>
-
-    images/apporto-rstudio.png
-
-    <h3>Step 3: Update RStudio</h3>
-
-    <ul>
-        <li>If prompted to update RStudio, select <strong>Quit and Download</strong>.</li>
-        <li>Choose the latest Windows version of RStudio.</li>
-        <li>Follow the installation prompts.</li>
-        <li>When asked whether to install for everyone or just you, select <strong>Just You</strong>.</li>
-        <li>Be patient while the installation completes.</li>
-    </ul>
-
-    images/quit-and-download.png
-    images/windows11.png
-
-</div>
-
-<div class="card">
-
-    <h2>Need Additional Help?</h2>
-
-    <p>
-        Whether you are struggling to install RStudio on your personal laptop or trying to launch
-        Apporto on a SLU-issued laptop, SLU Information Technology Services is available to help.
-    </p>
-
-    <h3>Online Support</h3>
-
-    <p>
-        Email <a href="mailto:ask@slu.edu">ask@slu.edu</a> or submit a support request through
-        SLU Information Technology Services.
-    </p>
-
-    <h3>In-Person Support</h3>
-
-    <table>
-        <thead>
-            <tr>
-                <th>Location</th>
-                <th>Hours</th>
-            </tr>
-        </thead>
-
-        <tbody>
-
-            <tr>
-                <td><strong>Pius Library</strong></td>
-                <td>
-                    Monday-Friday: 9:00 a.m.-5:00 p.m.<br>
-                    Saturday-Sunday: 10:00 a.m.-6:00 p.m.
-                </td>
-            </tr>
-
-            <tr>
-                <td><strong>Caroline Hall</strong></td>
-                <td>
-                    Monday-Friday: 12:00 p.m.-5:00 p.m.
-                </td>
-            </tr>
-
-            <tr>
-                <td><strong>Scott Hall</strong></td>
-                <td>
-                    Tuesday-Wednesday: 12:00 p.m.-2:00 p.m.
-                </td>
-            </tr>
-
-        </tbody>
-    </table>
-
-</div>
-
-<div class="card">
-
-    <h2>RStudio User Interface</h2>
-
-    <p>
-        The video linked below provides a brief introduction to the RStudio interface.
-        As you begin working with R, you will primarily use four areas:
-        the <strong>Source</strong>, <strong>Console</strong>,
-        <strong>Environment</strong>, and <strong>Plots</strong> panes.
-    </p>
-
-    <p>
-        <a class="button"
-           href="https://www.youtube.com/watch?v=FIrsOBy5k58&t=15s"
-           target="_blank">
-            ▶ Watch RStudio Introduction Video
-        </a>
-    </p>
-
-    <h2>Major RStudio Panes</h2>
-
-    <div class="highlight">
-        The four panes listed below are the areas you will use most frequently throughout this course when writing code, viewing results, and creating graphs.
-    </div>
-
-    <table>
-
-        <thead>
-            <tr>
-                <th>Pane</th>
-                <th>Location</th>
-                <th>Purpose</th>
-            </tr>
-        </thead>
-
-        <tbody>
-
-            <tr>
-                <td><strong>Source</strong></td>
-                <td>Top Left</td>
-                <td>
-                    Write and save your R code. Your R Script stores the instructions
-                    you give R so that you can run them again later.
-                </td>
-            </tr>
-
-            <tr>
-                <td><strong>Console</strong></td>
-                <td>Bottom Left</td>
-                <td>
-                    Run code and view results. Code entered directly into the Console
-                    is not automatically saved.
-                </td>
-            </tr>
-
-            <tr>
-                <td><strong>Environment</strong></td>
-                <td>Top Right</td>
-                <td>
-                    Displays datasets, variables, tables, and other objects currently
-                    stored in memory.
-                </td>
-            </tr>
-
-            <tr>
-                <td><strong>Plots</strong></td>
-                <td>Bottom Right</td>
-                <td>
-                    Displays graphs and charts you create and also provides access
-                    to tools such as Help and Packages.
-                </td>
-            </tr>
-
-        </tbody>
-
-    </table>
-
-</div>
-
-<div class="card">
-
-    <h2>Key Takeaway</h2>
-
-    <p>
-        Think of RStudio as your workspace. You write code in the
-        <strong>Source</strong>, run code in the
-        <strong>Console</strong>, view objects in the
-        <strong>Environment</strong>, and see graphs in the
-        <strong>Plots</strong> pane.
-        Understanding the purpose of each pane will make it much easier to follow course demonstrations, complete assignments, and troubleshoot your code.
-    </p>
-
-</div>
-
-</div>
-
-</body>
-</html>
