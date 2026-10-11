@@ -41,7 +41,7 @@ body {
 }
 
 .glass h2 {
-  margin: 0 0 0.75rem;
+  margin: 0 0 1.5rem;
   text-align: center;
   font-size: clamp(1.8rem, 4vw, 2.6rem);
   font-weight: 500;
@@ -50,12 +50,13 @@ body {
   color: #0e68b3;
 }
 
-.glass > p {
-  margin: 0 0 2rem;
+.measurement-note {
+  max-width: 700px;
+  margin: -0.5rem auto 1.5rem;
+  color: #555555;
+  font-size: 0.9rem;
+  line-height: 1.6;
   text-align: center;
-  color: #444444;
-  font-size: 1rem;
-  line-height: 1.8;
 }
 
 .converter-grid {
@@ -87,15 +88,6 @@ body {
   line-height: 1.5;
 }
 
-.input-group label {
-  display: block;
-  margin-bottom: 0.6rem;
-  color: #333333;
-  font-size: 0.95rem;
-  font-weight: 600;
-  line-height: 1.5;
-}
-
 .input-group select {
   display: block;
   width: 100%;
@@ -117,13 +109,6 @@ body {
 .input-group select:focus {
   border-color: #0e68b3;
   box-shadow: 0 0 0 3px rgba(14, 104, 179, 0.12);
-}
-
-.helper-text {
-  margin: 0.75rem 0 0;
-  color: #555555;
-  font-size: 0.85rem;
-  line-height: 1.6;
 }
 
 .answer-area {
@@ -242,9 +227,9 @@ body {
 
     <h2>Level of Measurement Converter</h2>
 
-    <p>
-      Select a variable from the dropdown menu to identify its
-      level of measurement.
+    <p class="measurement-note">
+      These classifications are common examples. The correct level of measurement
+      depends on how a variable is defined and recorded in your study.
     </p>
 
     <div class="converter-grid">
@@ -256,79 +241,83 @@ body {
         <h3 class="panel-title">Select a Variable</h3>
 
         <div class="input-group">
-          <select id="variableSelect" onchange="updateAnswer()">
+          <select
+            id="variableSelect"
+            onchange="updateAnswer()"
+            aria-label="Select a variable">
+
             <option value="">Select a variable...</option>
+
             <option value="ACT_Score">ACT Score</option>
-            <option value="Age">Age</option>
-            <option value="Agreement_Level">Agreement Level</option>
             <option value="Blood_Type">Blood Type</option>
             <option value="Calendar_Year">Calendar Year</option>
+            <option value="Centimeters">Centimeters</option>
             <option value="City">City</option>
             <option value="Class_Rank">Class Rank</option>
             <option value="Country">Country</option>
             <option value="Days">Days</option>
             <option value="Department">Department</option>
-            <option value="Distance">Distance</option>
             <option value="Education_Level">Education Level</option>
             <option value="Employee_ID">Employee ID</option>
             <option value="Employment_Status">Employment Status</option>
             <option value="Ethnicity">Ethnicity</option>
-            <option value="Elevation_Above_Sea_Level">Elevation Above Sea Level</option>
-            <option value="Expenses">Expenses</option>
             <option value="Eye_Color">Eye Color</option>
             <option value="Frequency_Category">Frequency Category</option>
+            <option value="Gallons">Gallons</option>
             <option value="Gender">Gender</option>
+            <option value="Grams">Grams</option>
             <option value="Hair_Color">Hair Color</option>
-            <option value="Height">Height</option>
             <option value="Hours">Hours</option>
-            <option value="Hours_Worked">Hours Worked</option>
-            <option value="Income">Income</option>
             <option value="Income_Bracket">Income Bracket</option>
             <option value="IQ_Score">IQ Score</option>
+            <option value="Inches">Inches</option>
             <option value="Job_Title">Job Title</option>
+            <option value="Kilograms">Kilograms</option>
+            <option value="Kilometers">Kilometers</option>
             <option value="Letter_Grade">Letter Grade</option>
             <option value="Major">Major</option>
             <option value="Marital_Status">Marital Status</option>
+            <option value="Miles">Miles</option>
+            <option value="Millimeters">Millimeters</option>
             <option value="Minutes">Minutes</option>
-            <option value="Months">Months (Elapsed Time)</option>
+            <option value="Months">Months</option>
+            <option value="Multiple_Item_Scale_on_Agreement">Multiple-Item Scale on Agreement</option>
+            <option value="Multiple_Item_Scale_on_Satisfaction">Multiple-Item Scale on Satisfaction</option>
+            <option value="Multiple_Item_Scale_on_Stress">Multiple-Item Scale on Stress</option>
             <option value="Nationality">Nationality</option>
-            <option value="Number_of_Absences">Number of Absences</option>
-            <option value="Number_of_Children">Number of Children</option>
-            <option value="Number_of_Courses">Number of Courses</option>
-            <option value="Number_of_Employees">Number of Employees</option>
-            <option value="Number_of_Students">Number of Students</option>
+            <option value="Number_of_">Number of ...</option>
+            <option value="Ounces">Ounces</option>
             <option value="Pain_Level">Pain Level</option>
             <option value="Performance_Rating">Performance Rating</option>
+            <option value="Pounds">Pounds</option>
             <option value="Political_Party">Political Party</option>
             <option value="Priority_Level">Priority Level</option>
             <option value="Product_Category">Product Category</option>
             <option value="Race">Race</option>
             <option value="Religion">Religion</option>
-            <option value="Revenue">Revenue</option>
             <option value="Research_Group">Research Group</option>
             <option value="Risk_Level">Risk Level</option>
             <option value="SAT_Score">SAT Score</option>
-            <option value="Salary">Salary</option>
-            <option value="Satisfaction_Level">Satisfaction Level</option>
             <option value="School">School</option>
             <option value="Seconds">Seconds</option>
+            <option value="Single_Question_on_Agreement">Single Question on Agreement</option>
+            <option value="Single_Question_on_Satisfaction">Single Question on Satisfaction</option>
+            <option value="Single_Question_on_Stress">Single Question on Stress</option>
             <option value="Socioeconomic_Status">Socioeconomic Status</option>
             <option value="Standardized_Test_Score">Standardized Test Score</option>
             <option value="State">State</option>
             <option value="Stress_Level">Stress Level</option>
             <option value="Student_ID">Student ID</option>
-            <option value="Survey_Response_Rating">Survey Response Rating</option>
-            <option value="T_Score">T Score</option>
             <option value="Temperature_Celsius">Temperature (Celsius)</option>
             <option value="Temperature_Fahrenheit">Temperature (Fahrenheit)</option>
             <option value="TShirt_Size">T-shirt Size</option>
-            <option value="Tuition">Tuition</option>
             <option value="University">University</option>
-            <option value="Weeks">Weeks (Elapsed Time)</option>
-            <option value="Weight">Weight</option>
-            <option value="Years_of_Experience">Years of Experience</option>
-            <option value="Yes_No">Yes/No Response</option>
-            <option value="Z_Score">Z Score</option>
+            <option value="USD">USD</option>
+            <option value="Weeks">Weeks</option>
+            <option value="Yards">Yards</option>
+            <option value="Years">Years</option>
+            <option value="Yes_or_No">Yes or No</option>
+
           </select>
         </div>
 
@@ -390,7 +379,7 @@ const answerKey = {
   Ounces: "Ratio",
   Gallons: "Ratio",
   Pounds: "Ratio",
-  Milimeters: "Ratio",
+  Millimeters: "Ratio",
   Centimeters: "Ratio",
   Kilograms: "Ratio",
   Kilometers: "Ratio",
@@ -425,7 +414,9 @@ const answerKey = {
   Research_Group: "Nominal",
 
   // Ordinal
-  Single_Question_on_Agreement, Stres, Satisfaction, etc: "Ordinal",
+  Single_Question_on_Agreement: "Ordinal",
+  Single_Question_on_Stress: "Ordinal",
+  Single_Question_on_Satisfaction: "Ordinal",
   Education_Level: "Ordinal",
   Class_Rank: "Ordinal",
   Letter_Grade: "Ordinal",
@@ -440,14 +431,16 @@ const answerKey = {
   TShirt_Size: "Ordinal",
 
   // Interval
-  Multiple_Item_Scale_on_Agreement, Stres, Satisfaction, etc: "Interval",
+  Multiple_Item_Scale_on_Agreement: "Interval",
+  Multiple_Item_Scale_on_Stress: "Interval",
+  Multiple_Item_Scale_on_Satisfaction: "Interval",
   Temperature_Celsius: "Interval",
   Temperature_Fahrenheit: "Interval",
   Calendar_Year: "Interval",
   IQ_Score: "Interval",
   Standardized_Test_Score: "Interval",
   SAT_Score: "Interval",
-  ACT_Score: "Interval",
+  ACT_Score: "Interval"
 };
 
 function updateAnswer() {
@@ -466,14 +459,14 @@ function updateAnswer() {
   const answerArea =
     document.getElementById("answerArea");
 
+  answerArea.classList.remove("updated");
+
   if (!selectedVariable) {
     answerNumber.textContent = "—";
     answerNumber.classList.add("answer-placeholder");
 
     answerLabel.textContent = "Your answer will appear here";
     answerDescription.textContent = "Select a variable to begin.";
-
-    answerArea.classList.remove("updated");
     return;
   }
 
@@ -488,13 +481,13 @@ function updateAnswer() {
     return;
   }
 
-  answerNumber.textContent = level;
   answerNumber.classList.remove("answer-placeholder");
+  answerNumber.textContent = level;
 
   answerLabel.textContent = "";
   answerDescription.textContent = "";
 
-  answerArea.classList.remove("updated");
+  // Restart the animation each time a selection changes.
   void answerArea.offsetWidth;
   answerArea.classList.add("updated");
 }
