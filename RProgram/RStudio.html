@@ -1,263 +1,3 @@
-<style>
-
-/* =========================
-   BASE
-========================= */
-
-body{
-    margin:0;
-    font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-    background:#f4f6f9;
-    color:#222222;
-}
-
-.container{
-    max-width:1000px;
-    margin:auto;
-    padding:50px 20px;
-}
-
-/* =========================
-   LEARNING OBJECTIVES
-========================= */
-
-.learning-objectives{
-    background:#e8f4fc;
-    border-left:5px solid #084f8c;
-    padding:16px 20px;
-    border-radius:8px;
-    margin:20px 0;
-}
-
-.learning-objectives strong{
-    color:#0e68b3;
-}
-
-/* =========================
-   BLUE TEXT
-========================= */
-
-.blue-heading{
-    color:#0e68b3;
-}
-
-/* =========================
-   PAGE TITLE
-========================= */
-
-h1{
-    text-align:left;
-    color:#666666;
-    font-size:2.75rem;
-    font-weight:200;
-    letter-spacing:.08em;
-    margin-bottom:10px;
-}
-
-.subtitle{
-    text-align:center;
-    color:#6b7280;
-    text-transform:uppercase;
-    letter-spacing:.15em;
-    margin-bottom:40px;
-    font-size:.95rem;
-}
-
-/* =========================
-   CARD HEADINGS
-========================= */
-
-h2{
-    color:#0e68b3;
-    position:relative;
-    font-weight:500;
-    display:inline-block;
-    margin-top:0;
-    margin-bottom:22px;
-    padding-bottom:6px;
-}
-
-/* =========================
-   SUBHEADINGS
-========================= */
-
-h3{
-    color:#0e68b3;
-    font-weight:500;
-    margin-top:28px;
-    margin-bottom:12px;
-}
-
-/* =========================
-   BODY TEXT
-========================= */
-
-p{
-    line-height:1.8;
-}
-
-/* =========================
-   CARDS
-========================= */
-
-.card{
-    background:white;
-    border-radius:16px;
-    padding:30px;
-    margin-bottom:25px;
-    border:1px solid #d9e2ec;
-
-    box-shadow:
-        0 3px 10px rgba(0,0,0,.05);
-
-    animation:fadeUp .6s ease forwards;
-    transition:all .25s ease;
-}
-
-.card:hover{
-    transform:translateY(-4px);
-
-    box-shadow:
-        0 10px 25px rgba(14,104,179,.15);
-}
-
-/* =========================
-   CALLOUTS
-========================= */
-
-.highlight{
-    background:#ffffff;
-    border-left:3px solid #0e68b3;
-    padding:14px 18px;
-    border-radius:0;
-    margin:20px 0;
-}
-
-/* =========================
-   BUTTONS
-========================= */
-
-.button{
-    display:inline-block;
-    background:linear-gradient(135deg,#0e68b3,#1c84d8);
-    color:#ffffff;
-    text-decoration:none;
-    font-weight:600;
-    padding:14px 32px;
-    border-radius:9999px;
-    box-shadow:0 8px 20px rgba(14,104,179,.20);
-    transition:all .25s ease;
-}
-
-.button:hover{
-    transform:translateY(-3px);
-    box-shadow:0 12px 25px rgba(14,104,179,.30);
-    background:linear-gradient(135deg,#095491,#0e68b3);
-}
-
-/* =========================
-   LISTS
-========================= */
-
-ul{
-    padding-left:25px;
-}
-
-ol{
-    padding-left:25px;
-}
-
-li{
-    margin-bottom:8px;
-}
-
-/* =========================
-   TABLES
-========================= */
-
-table{
-    width:100%;
-    border-collapse:collapse;
-    margin-top:20px;
-    background:white;
-    overflow:hidden;
-    border-radius:10px;
-}
-
-th{
-    background:#0e68b3;
-    color:white;
-    text-align:left;
-    padding:14px;
-}
-
-td{
-    padding:14px;
-    border-bottom:1px solid #e5e7eb;
-    vertical-align:top;
-}
-
-tr:nth-child(even){
-    background:#f8fafc;
-}
-
-tr:hover{
-    background:#edf6ff;
-}
-
-/* =========================
-   HORIZONTAL RULE
-========================= */
-
-hr{
-    border:none;
-    height:1px;
-    background:#d6e4f0;
-    margin:30px 0;
-}
-
-/* =========================
-   ANIMATION
-========================= */
-
-@keyframes fadeUp{
-
-    from{
-        opacity:0;
-        transform:translateY(20px);
-    }
-
-    to{
-        opacity:1;
-        transform:translateY(0);
-    }
-
-}
-
-/* =========================
-   MOBILE
-========================= */
-
-@media (max-width:768px){
-
-    h1{
-        font-size:2rem;
-    }
-
-    .card{
-        padding:20px;
-    }
-
-    th,
-    td{
-        padding:10px;
-        font-size:.95rem;
-    }
-
-}
-
-</style>
-
 <div class="container">
 
     <h1>Installing R and RStudio</h1>
@@ -266,103 +6,68 @@ hr{
         <strong>Learning Objectives</strong>
         <ul>
             <li>Install the R programming language on your computer.</li>
-            <li>Install the RStudio integrated development environment (IDE).</li>
-            <li>Verify that both programs are working correctly.</li>
-            <li>Access additional resources and installation tutorials.</li>
+            <li>Install RStudio Desktop.</li>
+            <li>Verify that your installation is working properly.</li>
+            <li>Access additional installation resources.</li>
         </ul>
     </div>
 
     <div class="card">
-        <h2>What Are R and RStudio?</h2>
+        <h2>Overview</h2>
 
         <p>
-            <strong>R</strong> is a free, open-source programming language widely used for
-            statistical analysis, data visualization, and data science.
-        </p>
-
-        <p>
-            <strong>RStudio</strong> is an integrated development environment (IDE) that makes
-            working with R easier by providing a user-friendly interface for writing code,
-            viewing plots, managing files, and creating reports.
+            <strong>R</strong> is a free, open-source programming language used for data analysis,
+            statistics, and visualization. <strong>RStudio</strong> is an integrated development
+            environment (IDE) that provides a user-friendly interface for working with R.
         </p>
 
         <div class="highlight">
-            You must install <strong>R first</strong> and then install
-            <strong>RStudio</strong>.
+            <strong>Important:</strong> Install <strong>R first</strong>, then install
+            <strong>RStudio</strong>. RStudio requires an existing R installation.
         </div>
     </div>
 
     <div class="card">
-        <h2>Step 1: Install R</h2>
+        <h2>Installation Instructions</h2>
+
+        <h3>Step 1: Install R</h3>
 
         <ol>
             <li>
-                Visit the Comprehensive R Archive Network (CRAN):
-                <br>
+                Visit the CRAN website:
                 https://cran.r-project.org/
                     https://cran.r-project.org/
                 </a>
             </li>
-
-            <li>
-                Select your operating system:
-                <ul>
-                    <li>Windows</li>
-                    <li>macOS</li>
-                    <li>Linux</li>
-                </ul>
-            </li>
-
-            <li>
-                Download the most recent version of R for your operating system.
-            </li>
-
-            <li>
-                Run the installer and accept the default installation options unless
-                instructed otherwise.
-            </li>
-
-            <li>
-                After installation is complete, open R to confirm that it launches successfully.
-            </li>
+            <li>Select your operating system (Windows, macOS, or Linux).</li>
+            <li>Download the latest version of R.</li>
+            <li>Run the installer and accept the default settings.</li>
+            <li>Open R after installation to confirm it launches successfully.</li>
         </ol>
-    </div>
 
-    <div class="card">
-        <h2>Step 2: Install RStudio</h2>
+        <hr>
+
+        <h3>Step 2: Install RStudio</h3>
 
         <ol>
             <li>
-                Visit the Posit (formerly RStudio) download page:
-                <br>
+                Visit the Posit download page:
                 https://posit.co/download/rstudio-desktop/
                     https://posit.co/download/rstudio-desktop/
                 </a>
             </li>
-
-            <li>
-                Download the free <strong>RStudio Desktop</strong> version.
-            </li>
-
-            <li>
-                Run the installer and follow the installation instructions.
-            </li>
-
-            <li>
-                Open RStudio after installation.
-            </li>
-
-            <li>
-                Verify that RStudio automatically detects your R installation.
-            </li>
+            <li>Download the free <strong>RStudio Desktop</strong> version.</li>
+            <li>Run the installer and follow the installation prompts.</li>
+            <li>Open RStudio after installation.</li>
+            <li>Verify that RStudio detects your R installation automatically.</li>
         </ol>
-    </div>
 
-    <div class="card">
-        <h2>Verify Your Installation</h2>
+        <hr>
+
+        <h3>Verify Your Installation</h3>
 
         <p>
-            Once RStudio is open, enter the following command in the Console:
+            Enter the following command in the RStudio Console:
         </p>
 
 <pre>
@@ -370,7 +75,7 @@ hr{
 </pre>
 
         <p>
-            If your installation is working correctly, RStudio should return:
+            You should see:
         </p>
 
 <pre>
@@ -378,48 +83,51 @@ hr{
 </pre>
 
         <p>
-            Congratulations! You are ready to begin using R and RStudio.
+            If this output appears, your installation is working correctly.
         </p>
-    </div>
 
-    <div class="card">
-        <h2>Video Tutorial</h2>
+        <hr>
+
+        <h3>Video Tutorial</h3>
 
         <p>
-            If you prefer a walkthrough, you can watch a video tutorial demonstrating the installation process.
-            Replace the link below with your preferred YouTube video.
+            Watch a step-by-step installation tutorial on YouTube
+            (replace this link with your preferred video):
         </p>
 
-        https://www.youtube.com/
-            Watch Installation Tutorial on YouTube
-        </a>
-    </div>
+        <p>
+            https://www.youtube.com/
+                Watch Installation Tutorial
+            </a>
+        </p>
 
-    <div class="card">
-        <h2>Common Issues and Solutions</h2>
+        <hr>
+
+        <h3>Troubleshooting</h3>
 
         <table>
             <thead>
                 <tr>
                     <th>Issue</th>
-                    <th>Possible Solution</th>
+                    <th>Solution</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
                     <td>RStudio cannot find R</td>
-                    <td>Install R first, then restart and reinstall RStudio if necessary.</td>
+                    <td>Install R first, then restart or reinstall RStudio.</td>
                 </tr>
                 <tr>
                     <td>Installation fails</td>
-                    <td>Download the latest installer and run it with administrator privileges.</td>
+                    <td>Download the latest installer and run it as an administrator.</td>
                 </tr>
                 <tr>
-                    <td>RStudio opens but displays errors</td>
-                    <td>Update both R and RStudio to their latest versions.</td>
+                    <td>RStudio opens with errors</td>
+                    <td>Update both R and RStudio to the latest versions.</td>
                 </tr>
             </tbody>
         </table>
+
     </div>
 
 </div>
