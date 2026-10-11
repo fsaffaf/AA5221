@@ -686,55 +686,39 @@ body::after {
 
 <script>
 
-/* =========================================
-   TRACK SELECTED DESIGN
-   ========================================= */
-
 let selectedDesign = "";
-
 
 /* =========================================
    SELECT RESEARCH DESIGN
-   ========================================= */
+========================================= */
 
 function selectDesign(type) {
 
   selectedDesign = type;
 
-  const inputPanel =
-    document.getElementById("inputPanel");
+  const inputPanel = document.getElementById("inputPanel");
+  const resultPanel = document.getElementById("resultPanel");
 
-  const label1 =
-    document.getElementById("label1");
+  const label1 = document.getElementById("label1");
+  const label2 = document.getElementById("label2");
 
-  const label2 =
-    document.getElementById("label2");
+  const input1 = document.getElementById("input1");
+  const input2 = document.getElementById("input2");
 
-  const input1 =
-    document.getElementById("input1");
+  const unit1 = document.getElementById("unit1");
+  const unit2 = document.getElementById("unit2");
 
-  const input2 =
-    document.getElementById("input2");
+  document
+    .querySelectorAll(".feature-option")
+    .forEach(option => option.classList.remove("selected"));
 
-  const unit1 =
-    document.getElementById("unit1");
+  const selectedRadio =
+    document.querySelector(`input[onchange="selectDesign('${type}')"]`);
 
-  const unit2 =
-    document.getElementById("unit2");
-
-  const unitLabel1 =
-    document.getElementById("unitLabel1");
-
-  const unitLabel2 =
-    document.getElementById("unitLabel2");
-
-  const resultPanel =
-    document.getElementById("resultPanel");
-
-
-  /* =========================================
-     RESET RESULTS AND PREVIOUS INPUTS
-     ========================================= */
+  if (selectedRadio) {
+    selectedRadio.closest(".feature-option")
+      .classList.add("selected");
+  }
 
   resultPanel.style.display = "none";
   resultPanel.classList.remove("groups-style");
@@ -744,83 +728,35 @@ function selectDesign(type) {
   unit1.value = "";
   unit2.value = "";
 
-
-  /* =========================================
-     CORRELATION
-     ========================================= */
-
   if (type === "correlation") {
 
-    label1.textContent =
-      "Variable 1 Name";
+    label1.textContent = "Variable 1";
+    label2.textContent = "Variable 2";
 
-    label2.textContent =
-      "Variable 2 Name";
+    input1.placeholder = "Example: Study Time";
+    input2.placeholder = "Example: Test Score";
 
-    unitLabel1.textContent =
-      "Unit for Variable 1 (optional)";
-
-    unitLabel2.textContent =
-      "Unit for Variable 2 (optional)";
-
-    input1.placeholder =
-      "Example: Training Time";
-
-    input2.placeholder =
-      "Example: Communication Score";
-
-    unit1.placeholder =
-      "Example: Hours";
-
-    unit2.placeholder =
-      "Example: Scale of 1-10";
+    unit1.placeholder = "Example: Hours";
+    unit2.placeholder = "Example: Points";
 
   }
-
-
-  /* =========================================
-     GROUP DIFFERENCE
-     ========================================= */
 
   if (type === "groups") {
 
-    label1.textContent =
-      "Independent Variable (Grouping Variable)";
+    label1.textContent = "Independent Variable";
+    label2.textContent = "Dependent Variable";
 
-    label2.textContent =
-      "Dependent Variable (Outcome)";
+    input1.placeholder = "Example: Service Type";
+    input2.placeholder = "Example: Satisfaction";
 
-    unitLabel1.textContent =
-      "Unit for Grouping Variable (optional)";
-
-    unitLabel2.textContent =
-      "Unit for Outcome Variable (optional)";
-
-    input1.placeholder =
-      "Example: Service Type";
-
-    input2.placeholder =
-      "Example: Satisfaction";
-
-    unit1.placeholder =
-      "Example: AI vs. Human";
-
-    unit2.placeholder =
-      "Example: Percentage";
+    unit1.placeholder = "Example: AI vs Human";
+    unit2.placeholder = "Example: Percentage";
 
   }
 
-
-  /* =========================================
-     SHOW QUESTION 2
-     ========================================= */
-
   inputPanel.style.display = "block";
 
-
-  /* SCROLL QUESTION 2 INTO VIEW */
-
-  setTimeout(function() {
+  setTimeout(() => {
 
     inputPanel.scrollIntoView({
       behavior: "smooth",
@@ -834,7 +770,7 @@ function selectDesign(type) {
 
 /* =========================================
    GENERATE HYPOTHESES
-   ========================================= */
+========================================= */
 
 function generateHypotheses() {
 
@@ -850,15 +786,9 @@ function generateHypotheses() {
   const unit2 =
     document.getElementById("unit2").value.trim();
 
-
-  /* =========================================
-     VALIDATE INPUTS
-     ========================================= */
-
   if (!selectedDesign) {
 
     alert("Please select a research design.");
-
     return;
 
   }
@@ -866,28 +796,15 @@ function generateHypotheses() {
   if (!var1 || !var2) {
 
     alert("Please enter both variable names.");
-
     return;
 
   }
 
+  const variable1 =
+    unit1 ? `${var1} (${unit1})` : var1;
 
-  /* =========================================
-     COMBINE VARIABLE NAMES AND UNITS
-     ========================================= */
-
-  const variable1 = unit1
-    ? `${var1} (${unit1})`
-    : var1;
-
-  const variable2 = unit2
-    ? `${var2} (${unit2})`
-    : var2;
-
-
-  /* =========================================
-     GET RESULT ELEMENTS
-     ========================================= */
+  const variable2 =
+    unit2 ? `${var2} (${unit2})` : var2;
 
   const resultPanel =
     document.getElementById("resultPanel");
@@ -901,15 +818,7 @@ function generateHypotheses() {
   const altHypothesis =
     document.getElementById("altHypothesis");
 
-
-  /* SHOW RESULT PANEL */
-
   resultPanel.style.display = "block";
-
-
-  /* =========================================
-     CORRELATION RESULTS
-     ========================================= */
 
   if (selectedDesign === "correlation") {
 
@@ -919,17 +828,12 @@ function generateHypotheses() {
       "Testing Relationships";
 
     nullHypothesis.textContent =
-      `Null hypothesis: There is no relationship between ${variable1} and ${variable2}.`;
+      `Null hypothesis: There is no statistically significant relationship between ${variable1} and ${variable2}.`;
 
     altHypothesis.textContent =
-      `Alternative hypothesis: There is a relationship between ${variable1} and ${variable2}.`;
+      `Alternative hypothesis: There is a statistically significant relationship between ${variable1} and ${variable2}.`;
 
   }
-
-
-  /* =========================================
-     GROUP DIFFERENCE RESULTS
-     ========================================= */
 
   if (selectedDesign === "groups") {
 
@@ -938,24 +842,17 @@ function generateHypotheses() {
     resultTitle.textContent =
       "Testing Group Differences";
 
-    const groupingVariable = unit1
-      ? `${var1} (measured in ${unit1})`
-      : var1;
+    const groupLabel = unit1 || var1;
 
     nullHypothesis.textContent =
-      `Null hypothesis: There is no statistically significant difference in ${variable2} between the two ${groupingVariable} groups.`;
+      `Null hypothesis: There is no statistically significant difference in ${variable2} between the ${groupLabel} groups.`;
 
     altHypothesis.textContent =
-      `Alternative hypothesis: There is a statistically significant difference in ${variable2} between the two ${groupingVariable} groups.`;
+      `Alternative hypothesis: There is a statistically significant difference in ${variable2} between the ${groupLabel} groups.`;
 
   }
 
-
-  /* =========================================
-     SCROLL TO RESULTS
-     ========================================= */
-
-  setTimeout(function() {
+  setTimeout(() => {
 
     resultPanel.scrollIntoView({
       behavior: "smooth",
