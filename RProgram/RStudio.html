@@ -1,262 +1,342 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Pearson &amp; Spearman Correlation</title>
+
 <style>
 
-/* =========================
-   BASE
-========================= */
-
-body{
-    margin:0;
-    font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-    background:#f4f6f9;
-    color:#222222;
+body {
+    margin: 0;
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    background: #f4f6f9;
+    color: #222222;
 }
 
-.container{
-    max-width:1000px;
-    margin:auto;
-    padding:50px 20px;
+.container {
+    max-width: 1000px;
+    margin: auto;
+    padding: 50px 20px;
 }
 
-/* =========================
-   LEARNING OBJECTIVES
-========================= */
-
-.learning-objectives{
-    background:#e8f4fc;
-    border-left:5px solid #084f8c;
-    padding:16px 20px;
-    border-radius:8px;
-    margin:20px 0;
+h1 {
+    text-align: left;
+    color: #666666;
+    font-size: 2.75rem;
+    font-weight: 200;
+    letter-spacing: .08em;
+    margin-bottom: 10px;
 }
 
-.learning-objectives strong{
-    color:#0e68b3;
+.subtitle {
+    text-align: center;
+    color: #6b7280;
+    text-transform: uppercase;
+    letter-spacing: .15em;
+    margin-bottom: 40px;
+    font-size: .95rem;
 }
 
-/* =========================
-   BLUE TEXT
-========================= */
-
-.blue-heading{
-    color:#0e68b3;
+h2,
+h3 {
+    color: #0e68b3;
+    font-weight: 500;
+    display: inline-block;
 }
 
-/* =========================
-   PAGE TITLE
-========================= */
-
-h1{
-    text-align:left;
-    color:#666666;
-    font-size:2.75rem;
-    font-weight:200;
-    letter-spacing:.08em;
-    margin-bottom:10px;
+p {
+    line-height: 1.8;
 }
 
-.subtitle{
-    text-align:center;
-    color:#6b7280;
-    text-transform:uppercase;
-    letter-spacing:.15em;
-    margin-bottom:40px;
-    font-size:.95rem;
+.test-path {
+    border: 1px solid #d9e2ec;
+    border-radius: 14px;
+    overflow: hidden;
+    background: #ffffff;
+    margin: 30px 0;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, .05);
 }
 
-/* =========================
-   CARD HEADINGS
-========================= */
-
-h2{
-    color:#0e68b3;
-    position:relative;
-    font-weight:500;
-    display:inline-block;
-    margin-top:0;
-    margin-bottom:22px;
-    padding-bottom:6px;
+.test-path-header {
+    background: #0e68b3;
+    color: white;
+    padding: 20px 25px;
 }
 
-/* =========================
-   SUBHEADINGS
-========================= */
-
-h3{
-    color:#0e68b3;
-    font-weight:500;
-    margin-top:28px;
-    margin-bottom:12px;
+.test-path-header h2,
+.test-path-header h3 {
+    color: white;
+    margin: 0;
+    font-size: 1.35rem;
+    font-weight: 600;
 }
 
-/* =========================
-   BODY TEXT
-========================= */
-
-p{
-    line-height:1.8;
+.test-path-subtitle {
+    margin: 6px 0 0;
+    font-size: .95rem;
+    opacity: .95;
 }
 
-/* =========================
-   CARDS
-========================= */
-
-.card{
-    background:white;
-    border-radius:16px;
-    padding:30px;
-    margin-bottom:25px;
-    border:1px solid #d9e2ec;
-
-    box-shadow:
-        0 3px 10px rgba(0,0,0,.05);
-
-    animation:fadeUp .6s ease forwards;
-    transition:all .25s ease;
+.test-path-content {
+    padding: 10px 25px 20px;
 }
 
-.card:hover{
-    transform:translateY(-4px);
-
-    box-shadow:
-        0 10px 25px rgba(14,104,179,.15);
+.test-path-content details {
+    border-bottom: 1px solid #e5e7eb;
 }
 
-/* =========================
-   CALLOUTS
-========================= */
-
-.highlight{
-    background:#ffffff;
-    border-left:3px solid #0e68b3;
-    padding:14px 18px;
-    border-radius:0;
-    margin:20px 0;
+.test-path-content details:last-child {
+    border-bottom: none;
 }
 
-/* =========================
-   BUTTONS
-========================= */
-
-.button{
-    display:inline-block;
-    background:linear-gradient(135deg,#0e68b3,#1c84d8);
-    color:#ffffff;
-    text-decoration:none;
-    font-weight:600;
-    padding:14px 32px;
-    border-radius:9999px;
-    box-shadow:0 8px 20px rgba(14,104,179,.20);
-    transition:all .25s ease;
+.test-path-content summary {
+    list-style: none;
+    cursor: pointer;
+    position: relative;
+    padding: 17px 35px 17px 5px;
+    color: #0e68b3;
+    font-weight: 600;
 }
 
-.button:hover{
-    transform:translateY(-3px);
-    box-shadow:0 12px 25px rgba(14,104,179,.30);
-    background:linear-gradient(135deg,#095491,#0e68b3);
+.test-path-content summary::-webkit-details-marker {
+    display: none;
 }
 
-/* =========================
-   LISTS
-========================= */
-
-ul{
-    padding-left:25px;
+.test-path-content summary::after {
+    content: "+";
+    position: absolute;
+    right: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.3rem;
+    font-weight: 400;
 }
 
-ol{
-    padding-left:25px;
+.test-path-content details[open] summary::after {
+    content: "−";
 }
 
-li{
-    margin-bottom:8px;
+.path-step-content {
+    padding: 0 5px 20px;
 }
 
-/* =========================
-   TABLES
-========================= */
-
-table{
-    width:100%;
-    border-collapse:collapse;
-    margin-top:20px;
-    background:white;
-    overflow:hidden;
-    border-radius:10px;
+.path-step-content p {
+    margin-top: 10px;
 }
 
-th{
-    background:#0e68b3;
-    color:white;
-    text-align:left;
-    padding:14px;
+.path-step-content h2,
+.path-step-content h3 {
+    color: #222222;
+    font-size: 1rem;
+    font-weight: 600;
 }
 
-td{
-    padding:14px;
-    border-bottom:1px solid #e5e7eb;
-    vertical-align:top;
+ul,
+ol {
+    padding-left: 25px;
 }
 
-tr:nth-child(even){
-    background:#f8fafc;
+li {
+    margin-bottom: 8px;
 }
 
-tr:hover{
-    background:#edf6ff;
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background: white;
+    overflow: hidden;
+    border-radius: 10px;
 }
 
-/* =========================
-   HORIZONTAL RULE
-========================= */
-
-hr{
-    border:none;
-    height:1px;
-    background:#d6e4f0;
-    margin:30px 0;
+th {
+    background: #0e68b3;
+    color: white;
+    text-align: left;
+    padding: 14px;
 }
 
-/* =========================
-   ANIMATION
-========================= */
+td {
+    padding: 14px;
+    border-bottom: 1px solid #e5e7eb;
+    vertical-align: top;
+}
 
-@keyframes fadeUp{
+tr:nth-child(even) {
+    background: #f8fafc;
+}
 
-    from{
-        opacity:0;
-        transform:translateY(20px);
+tr:hover {
+    background: #edf6ff;
+}
+
+pre {
+    white-space: pre-wrap;
+    overflow-x: auto;
+    margin: 0;
+}
+
+code {
+    font-family: Consolas, Monaco, "Courier New", monospace;
+}
+
+.highlight pre {
+    background: transparent;
+}
+
+.highlight {
+    padding: 15px 20px;
+    border-radius: 0px;
+    margin: 20px 0;
+    line-height: 1.6;
+}
+
+.highlight-blue {
+    background: #f0f7fc;
+    border-left: 5px solid #0e68b3;
+    padding: 15px 20px;
+    border-radius: 0px;
+    margin: 20px 0;
+    line-height: 1.6;
+}
+
+.highlight-orange {
+    background: #fff4e6;
+    border-left: 5px solid #e67e22;
+    padding: 15px 20px;
+    border-radius: 0px;
+    margin: 20px 0;
+    line-height: 1.6;
+}
+
+.test-paths {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 25px;
+    margin: 30px 0;
+}
+
+.test-paths .test-path {
+    margin: 0;
+}
+
+.test-paths .test-path-header {
+    background: #0e68b3;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+.test-paths .test-path-header h3 {
+    color: white;
+    margin: 0;
+    font-size: 1.25rem;
+}
+
+.test-paths .test-path-content {
+    padding: 10px 20px 20px;
+}
+
+.test-paths .test-path-content details {
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.test-paths .test-path-content details:last-child {
+    border-bottom: none;
+}
+
+.test-paths .test-path-content summary {
+    list-style: none;
+    cursor: pointer;
+    position: relative;
+    padding: 17px 30px 17px 5px;
+    color: #0e68b3;
+    font-weight: 600;
+}
+
+.test-paths .test-path-content summary::-webkit-details-marker {
+    display: none;
+}
+
+.test-paths .test-path-content summary::after {
+    content: "+";
+    position: absolute;
+    right: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.3rem;
+    font-weight: 400;
+}
+
+.test-paths .test-path-content details[open] summary::after {
+    content: "−";
+}
+
+.step-label {
+    display: inline-block;
+    font-size: .8rem;
+    font-weight: 700;
+    letter-spacing: .05em;
+    text-transform: uppercase;
+    color: #6b7280;
+    margin-bottom: 5px;
+}
+
+hr {
+    border: none;
+    height: 1px;
+    background: #d6e4f0;
+    margin: 30px 0;
+}
+
+a {
+    color: #0e68b3;
+}
+
+a.button {
+    display: inline-block;
+    background: #0e68b3;
+    color: white;
+    padding: 14px 28px;
+    border-radius: 999px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: .3s;
+}
+
+a.button:hover {
+    background: #2b6cb0;
+    transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+
+    h1 {
+        font-size: 2rem;
     }
 
-    to{
-        opacity:1;
-        transform:translateY(0);
-    }
-
-}
-
-/* =========================
-   MOBILE
-========================= */
-
-@media (max-width:768px){
-
-    h1{
-        font-size:2rem;
-    }
-
-    .card{
-        padding:20px;
+    .test-path-content {
+        padding: 10px 20px 20px;
     }
 
     th,
-    td{
-        padding:10px;
-        font-size:.95rem;
+    td {
+        padding: 10px;
+        font-size: .95rem;
+    }
+
+    .test-paths {
+        grid-template-columns: 1fr;
     }
 
 }
 
 </style>
+
 
 <div class="container">
 
