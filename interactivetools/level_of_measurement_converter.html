@@ -533,53 +533,45 @@ const definitionKey = {
 };
 
 function updateAnswer() {
-  const selectedVariable =
-    document.getElementById("variableSelect").value;
+  const selectedVariable = document.getElementById("variableSelect").value;
+  const answerNumber = document.getElementById("answerNumber");
+  const answerDescription = document.getElementById("answerDescription");
+  const answerArea = document.getElementById("answerArea");
 
-  const answerNumber =
-    document.getElementById("answerNumber");
-
-  const answerDescription =
-    document.getElementById("answerDescription");
-
-  const answerLabel =
-    document.getElementById("answerLabel");
-
-  const answerArea =
-    document.getElementById("answerArea");
-
+  // Restart the animation whenever the selection changes.
   answerArea.classList.remove("updated");
 
   if (!selectedVariable) {
     answerNumber.textContent = "—";
     answerNumber.classList.add("answer-placeholder");
-
-    answerDescription.textContent = "Select a variable to see why it belongs to its level of measurement.";
+    answerDescription.textContent =
+      "Select a variable to see examples and why it belongs to its level of measurement.";
     return;
   }
 
   const level = answerKey[selectedVariable];
+  const definition = definitionKey[selectedVariable];
 
   if (!level) {
     answerNumber.textContent = "Not found";
     answerNumber.classList.add("answer-placeholder");
-    answerLabel.textContent = "Unable to identify level";
     answerDescription.textContent =
-      "A definition is not available for this selection. Please check the variable name in the answer key.";
+      "The measurement level is not available for this selection. Please check the answer key.";
     return;
   }
 
-  answerNumber.classList.remove("answer-placeholder");
   answerNumber.textContent = level;
+  answerNumber.classList.remove("answer-placeholder");
 
+  answerDescription.textContent = definition ||
+    "A definition has not yet been added for this variable.";
 
-  // Restart the animation each time a selection changes.
+  // Force a reflow so the fade-in animation can run again.
   void answerArea.offsetWidth;
   answerArea.classList.add("updated");
 }
-
 function resetConverter() {
-  document.getElementById("variableSelect").value = "";
+  document.getElementById("variableSelect").selectedIndex = 0;
   updateAnswer();
 }
 </script>
