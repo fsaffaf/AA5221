@@ -10,62 +10,55 @@ html, body {
   margin: 0;
   padding: 0;
   min-height: 100%;
-  font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
-  background: #020617;
-  color: white;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  background: #f4f6f9;
+  color: #222222;
+  box-sizing: border-box;
 }
 
-/* Background */
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+
 body {
   min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 2rem;
   position: relative;
+  overflow-x: hidden;
 }
 
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  background:
-    radial-gradient(circle at top, rgba(125,211,252,0.16), transparent 35%),
-    radial-gradient(circle at bottom, rgba(99,102,241,0.14), transparent 40%);
-  z-index: -2;
-}
-
+body::before,
 body::after {
-  content: "";
-  position: fixed;
-  inset: 0;
-  opacity: 0.3;
-  background-image:
-    linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
-  background-size: 42px 42px;
-  z-index: -1;
+  content: none;
 }
 
-/* Card */
+/* =========================================
+   MAIN LAYOUT
+   ========================================= */
+
 .wrapper {
   width: 100%;
   max-width: 780px;
+  margin: 0 auto;
+  padding: 2rem;
 }
 
 .card {
-  background: rgba(255,255,255,0.08);
-  border: 1px solid rgba(255,255,255,0.15);
-  backdrop-filter: blur(24px);
-  border-radius: 24px;
-  box-shadow: 0 25px 80px rgba(0,0,0,0.45);
+  width: 100%;
+  background: #ffffff;
+  border: 1px solid #d9e2ec;
+  border-radius: 14px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
 }
 
 .content {
   padding: 2.5rem;
 }
 
-/* Header */
+/* =========================================
+   HEADER
+   ========================================= */
+
 .header {
   text-align: center;
   margin-bottom: 2rem;
@@ -75,26 +68,35 @@ body::after {
   display: inline-block;
   padding: 0.45rem 1rem;
   border-radius: 999px;
-  background: rgba(255,255,255,0.10);
-  border: 1px solid rgba(255,255,255,0.15);
+  background: #f0f7fc;
+  border: 1px solid #d9eaf7;
+  color: #0e68b3;
   font-size: 0.9rem;
+  font-weight: 600;
   margin-bottom: 1.25rem;
 }
 
 .header h1 {
   margin: 0 0 0.75rem;
-  font-size: clamp(2rem, 5vw, 3.5rem);
-  font-weight: 650;
+  font-size: clamp(2rem, 5vw, 3.25rem);
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  color: #0e68b3;
+  line-height: 1.2;
 }
 
 .header p {
-  color: rgb(203,213,225);
+  color: #444444;
   max-width: 620px;
   margin: 0 auto;
-  line-height: 1.6;
+  line-height: 1.8;
+  font-size: 1.05rem;
 }
 
-/* Buttons */
+/* =========================================
+   CHOICE BUTTONS
+   ========================================= */
+
 .choice-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -103,78 +105,108 @@ body::after {
 }
 
 .choice {
-  border: 1px solid rgba(255,255,255,0.15);
-  border-radius: 20px;
+  display: block;
+  width: 100%;
+  min-width: 0;
   padding: 1.5rem;
+  border: 1px solid #d9e2ec;
+  border-radius: 12px;
+  background: #ffffff;
+  color: #222222;
+  text-align: left;
   cursor: pointer;
-  transition: 0.25s ease;
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 .choice.nonsig {
-  background: rgba(255,255,255,0.10);
+  background: #ffffff;
+  border-color: #d9e2ec;
 }
 
 .choice.sig {
-  background: rgba(14,165,233,0.18);
-  border-color: rgba(125,211,252,0.25);
+  background: #f3f9fe;
+  border-color: #b9d8ef;
 }
 
 .choice:hover {
-  transform: translateY(-2px);
-  background: rgba(255,255,255,0.18);
+  background: #f0f7fc;
+  border-color: #0e68b3;
+  transform: translateY(-1px);
 }
 
 .choice.active {
-  box-shadow: 0 0 0 2px rgba(125,211,252,0.6);
+  background: #f0f7fc;
+  border-color: #0e68b3;
+  box-shadow: 0 0 0 2px rgba(14, 104, 179, 0.12);
+}
+
+.choice:focus-visible {
+  outline: 3px solid rgba(14, 104, 179, 0.3);
+  outline-offset: 3px;
 }
 
 .choice-title {
-  font-size: 1.25rem;
+  display: block;
+  font-size: 1.15rem;
   font-weight: 650;
+  color: #0e68b3;
+  line-height: 1.5;
 }
 
 .choice-sub {
+  display: block;
   font-size: 0.9rem;
-  color: rgb(203,213,225);
-  margin-top: 0.3rem;
+  color: #555555;
+  margin-top: 0.4rem;
+  line-height: 1.6;
 }
 
-/* Result */
+/* =========================================
+   RESULTS
+   ========================================= */
+
 .result {
   display: none;
-  border-radius: 20px;
+  margin-top: 1.5rem;
   padding: 1.75rem;
-  box-shadow: 0 20px 50px rgba(0,0,0,0.35);
-  animation: fadeIn 0.25s ease;
+  border-radius: 12px;
+  background: #f0f7fc;
+  border: 1px solid #b9d8ef;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+  animation: fadeIn 0.3s ease;
 }
 
 .result.sig {
-  background: linear-gradient(
-    135deg,
-    rgba(3,105,161,0.75),
-    rgba(49,46,129,0.85)
-  );
-  border: 1px solid rgba(125,211,252,0.35);
+  background: #f0f7fc;
+  border-color: #b9d8ef;
 }
 
 .result.nonsig {
-  background: linear-gradient(
-    135deg,
-    rgba(51,65,85,0.85),
-    rgba(15,23,42,0.9)
-  );
-  border: 1px solid rgba(148,163,184,0.25);
+  background: #f4f6f9;
+  border-color: #d9e2ec;
 }
 
 .result h2 {
-  margin: 0 0 0.4rem;
-  font-size: 1.9rem;
+  margin: 0 0 0.75rem;
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  font-weight: 650;
+  color: #0e68b3;
+  line-height: 1.3;
 }
 
 .result p {
-  color: rgb(226,232,240);
-  margin-bottom: 1.2rem;
+  color: #444444;
+  margin: 0 0 1.2rem;
+  line-height: 1.8;
 }
+
+/* =========================================
+   RESULT ITEMS
+   ========================================= */
 
 .list {
   display: flex;
@@ -183,11 +215,18 @@ body::after {
 }
 
 .item {
-  background: rgba(255,255,255,0.10);
-  border: 1px solid rgba(255,255,255,0.10);
-  border-radius: 14px;
   padding: 1rem;
+  background: #ffffff;
+  border: 1px solid #d9e2ec;
+  border-radius: 12px;
+  color: #333333;
+  line-height: 1.8;
+  overflow-wrap: anywhere;
 }
+
+/* =========================================
+   ANIMATION
+   ========================================= */
 
 @keyframes fadeIn {
   from {
@@ -201,9 +240,47 @@ body::after {
   }
 }
 
+/* =========================================
+   TABLET AND MOBILE
+   ========================================= */
+
 @media (max-width: 700px) {
+  .wrapper {
+    padding: 1rem;
+  }
+
+  .content {
+    padding: 1.5rem;
+  }
+
   .choice-grid {
     grid-template-columns: 1fr;
+  }
+
+  .result {
+    padding: 1.25rem;
+  }
+}
+
+@media (max-width: 420px) {
+  .wrapper {
+    padding: 0.75rem;
+  }
+
+  .content {
+    padding: 1.25rem;
+  }
+
+  .choice {
+    padding: 1.15rem;
+  }
+
+  .result {
+    padding: 1rem;
+  }
+
+  .header p {
+    font-size: 0.95rem;
   }
 }
 </style>
