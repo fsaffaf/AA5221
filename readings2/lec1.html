@@ -1,0 +1,1178 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Data Visualization and Normality</title>
+
+<style>
+
+/* =========================
+   BASE
+========================= */
+
+body{
+    margin:0;
+    font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+    background:#f4f6f9;
+    color:#222222;
+}
+
+.container{
+    max-width:1000px;
+    margin:auto;
+    padding:50px 20px;
+}
+
+
+/* =========================
+   BLUE TEXT
+========================= */
+
+.blue-heading{
+    color:#0e68b3;
+}
+
+
+/* =========================
+   PAGE TITLE
+========================= */
+
+h1{
+    text-align:left;
+    color:#666666;
+    font-size:2.75rem;
+    font-weight:200;
+    letter-spacing:.08em;
+    margin-bottom:10px;
+}
+
+.subtitle{
+    text-align:center;
+    color:#6b7280;
+    text-transform:uppercase;
+    letter-spacing:.15em;
+    margin-bottom:40px;
+    font-size:.95rem;
+}
+
+
+/* =========================
+   CARD HEADINGS
+========================= */
+h2{
+    color:#0e68b3;
+    position:relative;
+    font-weight:500;
+    display:inline-block;
+    margin-top:30px;
+    margin-bottom:22px;
+    padding-bottom:6px;
+}
+
+
+/* =========================
+   SUBHEADINGS
+========================= */
+
+h3{
+    color:#0e68b3;
+    font-weight:500;
+    margin-top:30px;
+    margin-bottom:12px;
+}
+
+
+/* =========================
+   BODY TEXT
+========================= */
+
+p{
+    line-height:1.8;
+}
+
+
+/* =========================
+   CARDS
+========================= */
+
+.card{
+    background:white;
+    border-radius:16px;
+    padding:30px;
+    margin-bottom:25px;
+    border:1px solid #d9e2ec;
+
+    box-shadow:
+        0 3px 10px rgba(0,0,0,.05);
+
+    animation:fadeUp .6s ease forwards;
+    transition:all .25s ease;
+}
+
+.card:hover{
+    transform:translateY(-4px);
+
+    box-shadow:
+        0 10px 25px rgba(14,104,179,.15);
+}
+
+
+/* =========================
+   CALLOUTS
+========================= */
+
+.definition{
+    background:#ffffff;
+    border-left:3px solid #0e68b3;
+    padding:14px 18px;
+    border-radius:0;
+    margin:20px 0 35px 0;
+}
+
+/* =========================
+   BUTTONS
+========================= */
+
+.button{
+    display:inline-block;
+    background:linear-gradient(135deg,#0e68b3,#1c84d8);
+    color:#ffffff;
+    text-decoration:none;
+    font-weight:600;
+    padding:14px 32px;
+    border-radius:9999px;
+    box-shadow:0 8px 20px rgba(14,104,179,.20);
+    transition:all .25s ease;
+}
+
+.button:hover{
+    transform:translateY(-3px);
+    box-shadow:0 12px 25px rgba(14,104,179,.30);
+    background:linear-gradient(135deg,#095491,#0e68b3);
+}
+
+
+/* =========================
+   LISTS
+========================= */
+
+ul{
+    -left:25px;
+}
+
+ol{
+    -left:25px;
+}
+
+li{
+    margin-bottom:8px;
+}
+
+
+/* =========================
+   TABLES
+========================= */
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:20px;
+    background:white;
+    overflow:hidden;
+    border-radius:10px;
+}
+
+th{
+    background:#0e68b3;
+    color:white;
+    text-align:left;
+    padding:14px;
+}
+
+td{
+    padding:14px;
+    border-bottom:1px solid #e5e7eb;
+    vertical-align:top;
+}
+
+tr:nth-child(even){
+    background:#f8fafc;
+}
+
+tr:hover{
+    background:#edf6ff;
+}
+
+
+/* =========================
+   SCATTERPLOTS
+========================= */
+
+.scatterplot{
+    text-align:center;
+    margin:25px 0;
+}
+
+.scatterplot img{
+    max-width:100%;
+    height:auto;
+    display:block;
+    margin:0 auto;
+    border-radius:8px;
+}
+
+.scatterplot-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:25px;
+    margin:25px 0;
+}
+
+.scatterplot-grid .scatterplot{
+    margin:0;
+}
+
+
+/* =========================
+   OUTLIER EXAMPLES
+========================= */
+
+.outlier-grid{
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:25px;
+    margin:25px 0;
+}
+
+.outlier-example{
+    text-align:center;
+}
+
+.outlier-example h3{
+    margin-top:0;
+}
+
+.outlier-example img{
+    width:100%;
+    height:auto;
+    display:block;
+    margin:20px auto 0;
+    border-radius:8px;
+}
+
+
+/* =========================
+   HORIZONTAL RULE
+========================= */
+
+hr{
+    border:none;
+    height:1px;
+    background:#d6e4f0;
+    margin:30px 0;
+}
+
+
+/* =========================
+   ANIMATION
+========================= */
+
+@keyframes fadeUp{
+
+    from{
+        opacity:0;
+        transform:translateY(20px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width:768px){
+
+    h1{
+        font-size:2rem;
+    }
+
+    .card{
+        :20px;
+    }
+
+    th,
+    td{
+        :10px;
+        font-size:.95rem;
+    }
+
+    .scatterplot-grid,
+    .outlier-grid{
+        grid-template-columns:1fr;
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+  
+  <h1>Week 1 Reading: Preparing Data for Business Analysis</h1>
+<p><strong>Course:</strong> Predictive Causality &amp; Forecasting Analytics<br><strong>Week 1 Topic:</strong> Preparing Data for Business Analysis<br><strong>Software:</strong> Python, Google Colab, and Microsoft Excel</p>
+<h2>Learning Objectives</h2>
+<p>By the end of this reading, you should be able to:</p>
+<ol start="1">
+    <li>
+        <p>Explain why data quality matters for business decisions.</p>
+    </li>
+    <li>
+        <p>Identify common data-quality problems, including missing values, duplicate records, inconsistent entries, and outliers.</p>
+    </li>
+    <li>
+        <p>Distinguish between numerical and categorical variables.</p>
+    </li>
+    <li>
+        <p>Recognize how poor data quality and sampling bias can affect business conclusions.</p>
+    </li>
+    <li>
+        <p>Use basic Python commands in Google Colab to inspect and prepare an Excel dataset.</p>
+    </li>
+    <li>
+        <p>Document data-cleaning decisions and explain why those decisions are appropriate.</p>
+    </li>
+</ol>
+<h2>1. Why Data Preparation Matters</h2>
+<p>Businesses use data to make decisions about sales, staffing, customer satisfaction, inventory, marketing, and financial performance. However, the quality of an analysis depends on the quality of the data used to conduct it.</p>
+<p>Imagine that a retail company wants to determine which products generate the most revenue. The company has an Excel spreadsheet containing thousands of transactions. Some transactions have missing prices, several records appear more than once, and some dates are entered incorrectly.</p>
+<p>If an analyst calculates revenue without examining these problems, the results may be inaccurate. Duplicate transactions could inflate revenue, missing prices could cause sales to be underestimated, and incorrect dates could distort monthly sales patterns.</p>
+<p><strong>Data preparation</strong> is the process of examining, organizing, correcting, and documenting data before conducting an analysis.</p>
+<p>Data preparation does not guarantee that an analysis will be correct. However, it helps reduce avoidable errors and makes the results more reliable.</p>
+<h3>Why data preparation matters to businesses</h3>
+<p>Poor data quality can lead to:</p>
+<ul>
+    <li>
+        <p><strong>Financial errors:</strong> Incorrect revenue, expenses, or profit estimates.</p>
+    </li>
+    <li>
+        <p><strong>Operational problems:</strong> Inaccurate inventory forecasts or staffing plans.</p>
+    </li>
+    <li>
+        <p><strong>Poor customer decisions:</strong> Incorrect conclusions about customer satisfaction or purchasing behavior.</p>
+    </li>
+    <li>
+        <p><strong>Unreliable predictions:</strong> Predictive models that perform poorly when used with new data.</p>
+    </li>
+    <li>
+        <p><strong>Unfair decisions:</strong> Analyses that systematically misrepresent certain customers, employees, or groups.</p>
+    </li>
+</ul>
+<p>For example, a company might conclude that a marketing campaign increased sales. However, if the sales data contain duplicate transactions or omit returns, the apparent increase may not reflect actual business performance.</p>
+<p>An analyst should therefore examine the data before interpreting the results.</p>
+<h2>2. Understanding a Dataset</h2>
+<p>A dataset is an organized collection of information. In business analytics, datasets are often provided as Excel spreadsheets.</p>
+<p>Consider a company that tracks customer orders.</p>
+<table>
+    <thead>
+        <tr>
+            <th>Customer ID</th>
+            <th>Region</th>
+            <th>Age</th>
+            <th>Order Value</th>
+            <th>Satisfaction</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>C101</td>
+            <td>North</td>
+            <td>34</td>
+            <td>125.00</td>
+            <td>5</td>
+        </tr>
+        <tr>
+            <td>C102</td>
+            <td>South</td>
+            <td>42</td>
+            <td>89.50</td>
+            <td>4</td>
+        </tr>
+        <tr>
+            <td>C103</td>
+            <td>North</td>
+            <td>29</td>
+            <td>210.00</td>
+            <td>5</td>
+        </tr>
+        <tr>
+            <td>C104</td>
+            <td>West</td>
+            <td>37</td>
+            <td>75.00</td>
+            <td>3</td>
+        </tr>
+    </tbody>
+</table>
+<p>A dataset contains several important elements.</p>
+<ul>
+    <li>
+        <p><strong>Rows:</strong> Individual records or observations. In this example, each row represents a customer order.</p>
+    </li>
+    <li>
+        <p><strong>Columns:</strong> Variables recorded for each observation.</p>
+    </li>
+    <li>
+        <p><strong>Variables:</strong> Characteristics or measurements being recorded, such as region, age, and order value.</p>
+    </li>
+    <li>
+        <p><strong>Observations:</strong> The individual cases represented by the rows, such as customers, orders, employees, or months.</p>
+    </li>
+</ul>
+<p>It is important to understand what each row represents. A dataset with one row per transaction is different from a dataset with one row per customer. One customer may have multiple transactions, so the number of rows does not necessarily equal the number of customers.</p>
+<h3>Why the unit of observation matters</h3>
+<p>Suppose a company has 500 customers who collectively make 2,000 purchases. A transaction-level dataset might contain 2,000 rows, while a customer-level dataset might contain 500 rows.</p>
+<p>If an analyst counts rows to determine how many customers the company has, the transaction-level dataset would produce an incorrect answer.</p>
+<p>Before analyzing data, determine:</p>
+<ol start="1">
+    <li>
+        <p>What does one row represent?</p>
+    </li>
+    <li>
+        <p>What does each column measure?</p>
+    </li>
+    <li>
+        <p>What period does the dataset cover?</p>
+    </li>
+    <li>
+        <p>Which records should be included in the analysis?</p>
+    </li>
+</ol>
+<p>These questions help establish whether the dataset is appropriate for the business question.</p>
+<h2>3. Common Data-Quality Problems</h2>
+<p>Data-quality problems occur when information is missing, incorrect, inconsistent, duplicated, or unsuitable for the intended analysis.</p>
+<h3>3.1 Missing values</h3>
+<p>A missing value occurs when information has not been recorded or is unavailable.</p>
+<p>For example:</p>
+<table>
+    <thead>
+        <tr>
+            <th>Employee ID</th>
+            <th>Department</th>
+            <th>Salary</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>E101</td>
+            <td>Sales</td>
+            <td>55000</td>
+        </tr>
+        <tr>
+            <td>E102</td>
+            <td>Marketing</td>
+            <td><br></td>
+        </tr>
+        <tr>
+            <td>E103</td>
+            <td>Finance</td>
+            <td>62000</td>
+        </tr>
+    </tbody>
+</table>
+<p>The salary for E102 is missing.</p>
+<p>Missing information can occur for several reasons:</p>
+<ul>
+    <li>
+        <p>A person did not answer a question.</p>
+    </li>
+    <li>
+        <p>A system failed to collect information.</p>
+    </li>
+    <li>
+        <p>A value was accidentally deleted.</p>
+    </li>
+    <li>
+        <p>A variable was not applicable to a particular record.</p>
+    </li>
+    <li>
+        <p>Information was unavailable when the dataset was created.</p>
+    </li>
+</ul>
+<p>Missing values can affect an analysis, but they do not always indicate an error.</p>
+<p>For example, a customer who has never made a purchase may not have a previous-purchase date. That value may be missing because the information does not apply, rather than because someone made a mistake.</p>
+<p><strong>How should missing values be handled?</strong></p>
+<p>The appropriate decision depends on the variable, the amount of missing information, and the purpose of the analysis.</p>
+<p>Possible approaches include:</p>
+<ul>
+    <li>
+        <p>Leaving the value missing when it is not needed.</p>
+    </li>
+    <li>
+        <p>Removing a record when it cannot support the intended analysis and exclusion is justified.</p>
+    </li>
+    <li>
+        <p>Replacing a missing value with a reasonable estimate when the method is appropriate and documented.</p>
+    </li>
+    <li>
+        <p>Obtaining the missing information from a reliable source.</p>
+    </li>
+</ul>
+<p>For example, replacing every missing salary with zero would generally be inappropriate because a missing salary does not mean an employee earns nothing.</p>
+<p>Similarly, replacing every missing satisfaction rating with the average rating could distort the results.</p>
+<p><strong>Key principle:</strong> Never assume that a missing value should automatically be replaced with zero or that the entire row should be deleted.</p>
+<h3>3.2 Duplicate records</h3>
+<p>A duplicate occurs when the same record appears more than once when it should appear only once.</p>
+<p>For example:</p>
+<table>
+    <thead>
+        <tr>
+            <th>Order ID</th>
+            <th>Customer</th>
+            <th>Order Value</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>O1001</td>
+            <td>Jordan</td>
+            <td>150.00</td>
+        </tr>
+        <tr>
+            <td>O1002</td>
+            <td>Morgan</td>
+            <td>90.00</td>
+        </tr>
+        <tr>
+            <td>O1001</td>
+            <td>Jordan</td>
+            <td>150.00</td>
+        </tr>
+    </tbody>
+</table>
+<p>Order O1001 appears twice.</p>
+<p>If both records are included in a revenue calculation, the company may overestimate its sales.</p>
+<p>However, repeated values do not always indicate duplicates. A customer may legitimately place several orders, and an employee may appear in multiple monthly records.</p>
+<p>Before deleting a record, determine what makes a record unique. An order ID might identify a unique transaction, while a customer ID alone might not.</p>
+<h3>3.3 Inconsistent entries</h3>
+<p>Inconsistent entries occur when the same information is recorded in different ways.</p>
+<p>For example, a region variable might contain:</p>
+<ul>
+    <li>
+        <p>North</p>
+    </li>
+    <li>
+        <p>north</p>
+    </li>
+    <li>
+        <p>NORTH</p>
+    </li>
+    <li>
+        <p>N.</p>
+    </li>
+</ul>
+<p>These entries might refer to the same region, but a computer may initially treat them as different categories.</p>
+<p>Other examples include:</p>
+<ul>
+    <li>
+        <p>&quot;Full-Time&quot; and &quot;Full Time&quot;</p>
+    </li>
+    <li>
+        <p>&quot;USA&quot; and &quot;United States&quot;</p>
+    </li>
+    <li>
+        <p>Dates recorded in different formats</p>
+    </li>
+    <li>
+        <p>Extra spaces before or after a value</p>
+    </li>
+    <li>
+        <p>Different spellings of the same department</p>
+    </li>
+</ul>
+<p>Inconsistent entries can create problems when counting categories, comparing groups, or building predictive models.</p>
+<p>An analyst may standardize entries when the underlying meaning is the same. However, similar-looking values should not be combined without checking that they actually represent the same category.</p>
+<p>For example, &quot;North&quot; and &quot;Northwest&quot; may represent different sales regions and should not be merged merely because they share a word.</p>
+<h3>3.4 Incorrect values</h3>
+<p>Incorrect values are values that do not accurately represent the information they are intended to record.</p>
+<p>Examples include:</p>
+<ul>
+    <li>
+        <p>An employee age of 250 years.</p>
+    </li>
+    <li>
+        <p>A sales transaction dated in an unintended future period.</p>
+    </li>
+    <li>
+        <p>A satisfaction rating of 12 when the permitted scale is 1&ndash;5.</p>
+    </li>
+    <li>
+        <p>A negative quantity sold when negative sales quantities are not allowed by the business rules.</p>
+    </li>
+</ul>
+<p>An unusual value is not necessarily incorrect. The analyst should compare values with the definitions, rules, and context of the dataset before making changes.</p>
+<p>For example, a negative transaction amount might represent a refund. Removing it could overestimate net sales.</p>
+<h3>3.5 Outliers</h3>
+<p>An&nbsp;<strong>outlier</strong> is an observation that is unusually far from other observations in the dataset.</p>
+<p>Suppose a store records the following order values:</p>
+<p>$45, $52, $61, $68, $74, $82, $1,200</p>
+<p>The $1,200 order is much larger than the other orders and may be an outlier.</p>
+<p>Outliers can occur because of:</p>
+<ul>
+    <li>
+        <p>Data-entry errors.</p>
+    </li>
+    <li>
+        <p>System or measurement errors.</p>
+    </li>
+    <li>
+        <p>Unusual but legitimate events.</p>
+    </li>
+    <li>
+        <p>Differences among customers, products, or business units.</p>
+    </li>
+    <li>
+        <p>Rare events that are important to the business.</p>
+    </li>
+</ul>
+<p>An unusually large purchase may be a legitimate bulk order. Alternatively, the value may contain an extra zero.</p>
+<p>Outliers can influence averages, correlations, regression coefficients, and predictive models. However, removing an outlier simply because it is unusual can also eliminate important information.</p>
+<p><strong>An outlier should be investigated, not automatically deleted.</strong></p>
+<p>An analyst should check whether the value is possible, whether it reflects a recording error, and whether it belongs in the analysis.</p>
+<h2>4. Understanding Variable Types</h2>
+<p>Before analyzing a dataset, an analyst must understand what each variable represents. The type of variable influences how it should be summarized, visualized, and analyzed.</p>
+<h3>4.1 Numerical variables</h3>
+<p>Numerical variables represent quantities that can be expressed numerically.</p>
+<p>Examples include:</p>
+<ul>
+    <li>
+        <p>Employee age in years.</p>
+    </li>
+    <li>
+        <p>Annual salary in dollars.</p>
+    </li>
+    <li>
+        <p>Number of products sold.</p>
+    </li>
+    <li>
+        <p>Customer satisfaction scores.</p>
+    </li>
+    <li>
+        <p>Monthly revenue.</p>
+    </li>
+</ul>
+<p>Numerical variables can be divided into two broad types.</p>
+<p><strong>Discrete numerical variables</strong> represent countable quantities, usually whole numbers.</p>
+<p>Examples: number of employees, number of customer complaints, and number of orders.</p>
+<p><strong>Continuous numerical variables</strong> can take many possible values within a range, including decimal values.</p>
+<p>Examples: time spent on a website, delivery duration, and product weight.</p>
+<p>Some variables, such as age, can be recorded as whole numbers even though the underlying measurement is continuous.</p>
+<h3>4.2 Categorical variables</h3>
+<p>Categorical variables identify groups, labels, or classifications.</p>
+<p>Examples include:</p>
+<ul>
+    <li>
+        <p>Department: Sales, Marketing, Finance.</p>
+    </li>
+    <li>
+        <p>Region: North, South, East, West.</p>
+    </li>
+    <li>
+        <p>Employment status: Full-time, Part-time, Contract.</p>
+    </li>
+    <li>
+        <p>Product category: Electronics, Clothing, Furniture.</p>
+    </li>
+</ul>
+<p>Categorical variables may be nominal or ordinal.</p>
+<p><strong>Nominal variables</strong> represent categories without a natural order.</p>
+<p>Examples: department, country, product type, and region.</p>
+<p><strong>Ordinal variables</strong> represent categories with a meaningful order.</p>
+<p>Examples: low, medium, high; beginner, intermediate, advanced; and satisfaction ratings such as very dissatisfied through very satisfied.</p>
+<p>A number does not automatically make a variable numerical. An employee ID such as 1042 is an identifier, not a measurement. Adding employee IDs together or calculating their average would not provide a meaningful result.</p>
+<p>Similarly, a satisfaction rating from 1 to 5 is ordered, but the distance between ratings may not represent precisely equal differences in satisfaction.</p>
+<h3>4.3 Why variable types matter</h3>
+<p>Suppose a company wants to determine the average salary by department.</p>
+<p>Salary is numerical, so calculating a mean is meaningful. Department is categorical, so the analyst can group employees by department and compare their salaries.</p>
+<p>However, calculating the average department code would not be meaningful if Sales = 1, Marketing = 2, and Finance = 3. These numbers are labels rather than quantities.</p>
+<p>Correctly identifying variable types helps prevent inappropriate calculations and supports the selection of suitable analytical methods.</p>
+<h2>5. Introducing Python and Google Colab</h2>
+<p>Python is a programming language widely used for data analysis, automation, forecasting, and machine learning.</p>
+<p>Google Colab is a browser-based environment that allows users to write and run Python code without installing a full programming environment on their computers.</p>
+<p>In this course, you will use Python to examine and prepare Excel datasets before applying analytical methods.</p>
+<h3>5.1 Understanding code</h3>
+<p>A line of code is an instruction that tells the computer to perform an action.</p>
+<p>For example:</p>
+<pre><code>print(&quot;Hello, business analytics!&quot;)</code></pre>
+<p>This instruction displays the text inside the quotation marks.</p>
+<p>You do not need to memorize every command immediately. The goal is to learn what the code does, how to run it, and how to interpret the output.</p>
+<h3>5.2 Working with code cells</h3>
+<p>A Google Colab notebook contains cells. Some cells contain code, while others contain explanatory text.</p>
+<p>To run a code cell:</p>
+<ol start="1">
+    <li>
+        <p>Open the notebook in Google Colab.</p>
+    </li>
+    <li>
+        <p>Click the code cell.</p>
+    </li>
+    <li>
+        <p>Select the run button or press Shift + Enter.</p>
+    </li>
+    <li>
+        <p>Examine the output displayed below the cell.</p>
+    </li>
+</ol>
+<p>Run the cells in order when one cell depends on an earlier cell.</p>
+<p>If an error appears, read the message carefully. An error often indicates that a variable name is incorrect, a file cannot be found, or a required step has not been completed.</p>
+<p>You can edit a cell and run it again.</p>
+<h3>5.3 Understanding libraries</h3>
+<p>A Python library is a collection of existing code that helps users perform particular tasks.</p>
+<p>This course will use several libraries.</p>
+<ul>
+    <li>
+        <p><strong>pandas:</strong> Organizes and analyzes data in rows and columns.</p>
+    </li>
+    <li>
+        <p><strong>statsmodels:</strong> Supports statistical modeling and forecasting.</p>
+    </li>
+    <li>
+        <p><strong>scikit-learn:</strong> Supports predictive modeling and model evaluation.</p>
+    </li>
+    <li>
+        <p><strong>Visualization libraries:</strong> Create charts and graphs.</p>
+    </li>
+</ul>
+<p>The pandas library is especially important in Week 1 because it provides tools for reading, inspecting, and preparing datasets.</p>
+<p>A common convention is to import pandas using the abbreviation&nbsp;<code>pd</code>:</p>
+<pre><code>import pandas as pd</code></pre>
+<p>This instruction makes pandas available in the current notebook session.</p>
+<h2>6. Loading an Excel File into Google Colab</h2>
+<p>Business datasets are frequently stored in Excel workbooks. Python can read these files so that the data can be inspected and analyzed.</p>
+<p>First, open Google Colab and create a new notebook.</p>
+<p>Then run the following code in a cell:</p>
+<pre><code>import pandas as pd
+from google.colab import files
+
+uploaded = files.upload()</code></pre>
+<p>When prompted, select the Excel file you want to analyze from your computer.</p>
+<p>Next, read the file into Python. Replace&nbsp;<code>business_data.xlsx</code> with the exact name of your uploaded file.</p>
+<pre><code>df = pd.read_excel(&quot;business_data.xlsx&quot;)</code></pre>
+<p>In this example,&nbsp;<code>df</code> is the variable name used to store the dataset. The dataset is now available for analysis within the notebook.</p>
+<p>A variable is a named place where Python stores information for later use. You can choose other names, but using consistent names makes your code easier to follow.</p>
+<p>If your workbook contains multiple sheets, you can specify a sheet by name:</p>
+<pre><code>df = pd.read_excel(
+    &quot;business_data.xlsx&quot;,
+    sheet_name=&quot;Sales&quot;
+)</code></pre>
+<p>The sheet name must match the name in your Excel workbook.</p>
+<p>If Python reports that an Excel-reading engine is missing, run the following in a separate cell:</p>
+<pre><code>%pip install openpyxl</code></pre>
+<p>Then rerun the cell that reads the Excel file.</p>
+<h2>7. Inspecting a Dataset Before Cleaning It</h2>
+<p>After loading a dataset, begin by examining its structure. Do not immediately delete records or replace values.</p>
+<h3>7.1 View the first few rows</h3>
+<pre><code>df.head()</code></pre>
+<p>This command displays the first five rows by default.</p>
+<p>Use it to check whether the dataset loaded correctly and whether the column names and values look reasonable.</p>
+<h3>7.2 Check the number of rows and columns</h3>
+<pre><code>df.shape</code></pre>
+<p>The output contains two numbers:</p>
+<ul>
+    <li>
+        <p>The first number is the number of rows.</p>
+    </li>
+    <li>
+        <p>The second number is the number of columns.</p>
+    </li>
+</ul>
+<p>For example,&nbsp;<code>(500, 8)</code> means the dataset contains 500 rows and eight columns.</p>
+<p>This is a useful first check, but it does not tell you whether the records are accurate or whether any duplicates exist.</p>
+<h3>7.3 Examine column names and data types</h3>
+<pre><code>df.info()</code></pre>
+<p>This command displays information about the dataset, including column names, the number of nonmissing values, and the data types recognized by Python.</p>
+<p>A column might contain numbers, text, dates, or other types of information.</p>
+<p>For example, a sales column should generally contain numerical values if you intend to calculate revenue. If the column contains text entries such as&nbsp;<code>&quot;unknown&quot;</code> or&nbsp;<code>&quot;$150&quot;</code>, it may need additional examination before calculations can be performed.</p>
+<h3>7.4 Review numerical summaries</h3>
+<pre><code>df.describe()</code></pre>
+<p>This command produces summary statistics for numerical columns, including:</p>
+<ul>
+    <li>
+        <p><strong>Count:</strong> Number of nonmissing numerical observations.</p>
+    </li>
+    <li>
+        <p><strong>Mean:</strong> Arithmetic average.</p>
+    </li>
+    <li>
+        <p><strong>Standard deviation:</strong> A measure of how spread out values are.</p>
+    </li>
+    <li>
+        <p><strong>Minimum:</strong> Smallest observed value.</p>
+    </li>
+    <li>
+        <p><strong>Maximum:</strong> Largest observed value.</p>
+    </li>
+</ul>
+<p>The output can help identify unusual values or unexpected ranges.</p>
+<p>For example, if employee ages range from 18 to 250, the maximum value deserves investigation. The summary alone does not establish whether a value is an error.</p>
+<p>For categorical columns, you can use:</p>
+<pre><code>df.describe(include=&quot;object&quot;)</code></pre>
+<p>This can summarize text columns by displaying the number of nonmissing entries, distinct values, most frequent value, and its frequency.</p>
+<p>These commands provide an initial understanding of the dataset. They do not replace examining the meaning of each variable.</p>
+<h2>8. Identifying Missing Values and Duplicates in Python</h2>
+<p>Python can help identify data-quality issues systematically.</p>
+<h3>8.1 Count missing values</h3>
+<p>Run:</p>
+<pre><code>df.isna().sum()</code></pre>
+<p>This command reports the number of missing values in each column.</p>
+<p>For example, if the output shows 12 missing values in the Salary column, 12 rows do not contain a recorded salary value.</p>
+<p>You can also calculate the percentage of missing values in each column:</p>
+<pre><code>df.isna().mean() * 100</code></pre>
+<p>This is useful when comparing columns of different sizes or datasets with many variables.</p>
+<p>A column with 2 missing values out of 20 records has a different missing-data rate from a column with 2 missing values out of 2,000 records.</p>
+<h3>8.2 Identify duplicate rows</h3>
+<p>To count fully duplicated rows:</p>
+<pre><code>df.duplicated().sum()</code></pre>
+<p>To display the rows that are duplicates of earlier rows:</p>
+<pre><code>df[df.duplicated()]</code></pre>
+<p>These commands identify records that match earlier rows across all columns.</p>
+<p>However, they do not identify every possible duplicate. For example, two records may have the same order ID but different values in another column.</p>
+<p>If order ID should uniquely identify a transaction, you can examine repeated IDs:</p>
+<pre><code>df[df.duplicated(subset=[&quot;Order ID&quot;], keep=False)]</code></pre>
+<p>Replace&nbsp;<code>&quot;Order ID&quot;</code> with the actual column name in your dataset.</p>
+<p>This displays all records sharing an order ID that occurs more than once. Investigate these records before deciding whether they should be removed.</p>
+<h2>9. Examining Unusual Values and Outliers</h2>
+<p>Outliers can affect some statistical analyses and predictive models. A first step is to examine the distribution of a numerical variable.</p>
+<p>For example:</p>
+<pre><code>df[&quot;Order Value&quot;].describe()</code></pre>
+<p>Replace&nbsp;<code>&quot;Order Value&quot;</code> with the name of a numerical column in your dataset.</p>
+<p>You can also create a boxplot using pandas:</p>
+<pre><code>df.boxplot(column=&quot;Order Value&quot;)</code></pre>
+<p>A boxplot provides a visual summary of the distribution. Points beyond the whiskers may indicate potential outliers.</p>
+<p>One common screening rule identifies potential outliers using the interquartile range (IQR).</p>
+<ul>
+    <li>
+        <p>The first quartile (Q1) is the 25th percentile.</p>
+    </li>
+    <li>
+        <p>The third quartile (Q3) is the 75th percentile.</p>
+    </li>
+    <li>
+        <p>The interquartile range is Q3 minus Q1.</p>
+    </li>
+</ul>
+<p>Potential outliers are values below Q1 &minus; 1.5 &times; IQR or above Q3 + 1.5 &times; IQR.</p>
+<p>The following code identifies values outside those boundaries:</p>
+<pre><code>Q1 = df[&quot;Order Value&quot;].quantile(0.25)
+Q3 = df[&quot;Order Value&quot;].quantile(0.75)
+
+IQR = Q3 - Q1
+
+lower_bound = Q1 - 1.5 * IQR
+upper_bound = Q3 + 1.5 * IQR
+
+df[
+    (df[&quot;Order Value&quot;] &lt; lower_bound) |
+    (df[&quot;Order Value&quot;] &gt; upper_bound)
+]</code></pre>
+<p>This code displays the rows with potential outliers in the Order Value column.</p>
+<p><strong>Important:</strong> This rule flags unusual values; it does not prove that they are errors. The appropriate response depends on the business context and the purpose of the analysis.</p>
+<p>For example, a large order may be exactly the type of transaction a company wants to study. Automatically deleting it could remove important business information.</p>
+<h2>10. Checking Data Types and Inconsistent Values</h2>
+<p>Python may not always interpret a column in the way an analyst expects.</p>
+<h3>10.1 Examine a column&apos;s data type</h3>
+<pre><code>df[&quot;Order Value&quot;].dtype</code></pre>
+<p>This displays the data type that Python recognizes for the selected column.</p>
+<p>If numerical values are stored as text, mathematical operations may fail or produce unintended results.</p>
+<p>For example, a column containing values such as&nbsp;<code>&quot;100&quot;</code>,&nbsp;<code>&quot;150&quot;</code>, and&nbsp;<code>&quot;200&quot;</code> may be stored as text rather than numbers.</p>
+<p>Before converting a column, inspect its contents and identify any unexpected entries.</p>
+<h3>10.2 Examine categorical values</h3>
+<p>To list the distinct values in a categorical column:</p>
+<pre><code>df[&quot;Region&quot;].unique()</code></pre>
+<p>To count the number of records in each category:</p>
+<pre><code>df[&quot;Region&quot;].value_counts(dropna=False)</code></pre>
+<p>These commands can help identify inconsistent entries such as&nbsp;<code>&quot;North&quot;</code>,&nbsp;<code>&quot;north&quot;</code>, and&nbsp;<code>&quot;North &quot;</code>.</p>
+<p>If these values refer to the same region, you can remove extra spaces and standardize capitalization:</p>
+<pre><code>df[&quot;Region&quot;] = (
+    df[&quot;Region&quot;]
+    .astype(&quot;string&quot;)
+    .str.strip()
+    .str.title()
+)</code></pre>
+<p>This example converts the column to a text type, removes extra spaces at the beginning and end of each entry, and standardizes capitalization.</p>
+<p>Only apply this transformation when it is appropriate for the variable. Capitalization changes do not resolve every type of inconsistency, and some names or codes may require a different standardization process.</p>
+<h3>10.3 Check dates</h3>
+<p>Dates may be stored as text or interpreted incorrectly when formats differ.</p>
+<p>For a column containing dates, you can examine the values first:</p>
+<pre><code>df[&quot;Order Date&quot;].head()</code></pre>
+<p>If the values need conversion, use:</p>
+<pre><code>df[&quot;Order Date&quot;] = pd.to_datetime(
+    df[&quot;Order Date&quot;],
+    errors=&quot;coerce&quot;
+)</code></pre>
+<p>The&nbsp;<code>errors=&quot;coerce&quot;</code> argument converts values that cannot be interpreted as dates into missing values. Those new missing values should be investigated rather than ignored.</p>
+<p>Date formats can be ambiguous. For example,&nbsp;<code>04/05/2026</code> could mean April 5 or May 4, depending on the convention used. Confirm the intended format before converting dates.</p>
+<h2>11. Recognizing Bias in Business Data</h2>
+<p>A dataset can be free of obvious errors and still produce misleading conclusions. One reason is&nbsp;<strong>bias</strong>, which occurs when the data or the way they are collected systematically misrepresents the population or situation of interest.</p>
+<h3>11.1 Sampling bias</h3>
+<p>Sampling bias occurs when the people, transactions, or other observations included in a dataset do not adequately represent the group about which the analyst wants to draw conclusions.</p>
+<p>Consider a company that surveys customers about a new mobile application. The survey is distributed only through the application itself.</p>
+<p>Customers who rarely use the application may be less likely to see the survey. As a result, the responses may overrepresent frequent users.</p>
+<p>If the company concludes that all customers are satisfied based on these responses, it may overlook the experiences of customers who rarely use the application.</p>
+<h3>11.2 Missing-data bias</h3>
+<p>Missing information can also create bias when the probability of a value being missing is related to the characteristic being studied.</p>
+<p>For example, employees who are dissatisfied may be less likely to complete an employee satisfaction survey. The observed average satisfaction score could then be higher than the true average among all employees.</p>
+<p>Simply deleting records with missing satisfaction scores would not necessarily solve this problem.</p>
+<h3>11.3 Measurement bias</h3>
+<p>Measurement bias occurs when the process used to collect information systematically produces inaccurate measurements.</p>
+<p>For example, one department may record customer complaints consistently, while another records only complaints that require a formal investigation.</p>
+<p>Comparing complaint counts across the departments may be misleading because the departments do not use the same recording process.</p>
+<h3>11.4 Historical and organizational bias</h3>
+<p>Business datasets reflect the decisions, policies, and practices that generated them.</p>
+<p>For example, a predictive hiring model trained on historical hiring decisions may reproduce patterns in those decisions. If the historical process systematically favored certain applicants, the model could learn those patterns rather than identify the most job-relevant characteristics.</p>
+<p>Data cleaning alone cannot eliminate this problem.</p>
+<p><strong>Key principle:</strong> Data preparation should include questions about how the data were collected, who or what is represented, and which observations may be missing from the dataset.</p>
+<h2>12. Making and Documenting Data-Cleaning Decisions</h2>
+<p>Data cleaning involves judgment. Two analysts may encounter the same unusual value but need additional context to determine the appropriate response.</p>
+<p>A defensible cleaning decision should be based on evidence, a clear rule, and the intended business question.</p>
+<p>Consider the following examples.</p>
+<table>
+    <thead>
+        <tr>
+            <th>Issue</th>
+            <th>Possible action</th>
+            <th>Reason</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Extra spaces in a region name</td>
+            <td>Standardize spacing</td>
+            <td>The spaces do not change the intended category.</td>
+        </tr>
+        <tr>
+            <td>Duplicate order ID</td>
+            <td>Investigate the repeated records</td>
+            <td>The records may represent duplicate transactions or a legitimate data issue.</td>
+        </tr>
+        <tr>
+            <td>Missing salary</td>
+            <td>Retain as missing while investigating</td>
+            <td>Zero would incorrectly imply that the employee earns nothing.</td>
+        </tr>
+        <tr>
+            <td>Unusually large order value</td>
+            <td>Verify the transaction</td>
+            <td>The value may be legitimate or a recording error.</td>
+        </tr>
+        <tr>
+            <td>Customer satisfaction score outside the permitted scale</td>
+            <td>Check the original response or data source</td>
+            <td>The value may violate the survey&apos;s measurement rules.</td>
+        </tr>
+    </tbody>
+</table>
+<p>A data-cleaning log records the issue, the action taken, and the reason for the decision.</p>
+<p>For example:</p>
+<table>
+    <thead>
+        <tr>
+            <th>Data-quality issue</th>
+            <th>Action taken</th>
+            <th>Reason</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Region entries contained extra spaces</td>
+            <td>Removed leading and trailing spaces</td>
+            <td>Entries represented the same region.</td>
+        </tr>
+        <tr>
+            <td>Two records shared an order ID</td>
+            <td>Flagged records for review; did not automatically delete them</td>
+            <td>It was necessary to verify whether both records represented the same transaction.</td>
+        </tr>
+        <tr>
+            <td>One order value was unusually high</td>
+            <td>Flagged the record for verification</td>
+            <td>The value could represent a legitimate bulk purchase.</td>
+        </tr>
+    </tbody>
+</table>
+<p>Documentation makes the analysis more transparent and reproducible. Another analyst should be able to understand what was changed, why it was changed, and which issues remain unresolved.</p>
+<p>Do not make changes simply to make the dataset look cleaner. Every change should have a defensible reason.</p>
+<h2>13. Saving a Prepared Dataset</h2>
+<p>After reviewing the data and making justified changes, you may need to save the prepared dataset as a new Excel file.</p>
+<p>For example:</p>
+<pre><code>df.to_excel(
+    &quot;business_data_cleaned.xlsx&quot;,
+    index=False
+)</code></pre>
+<p>This saves the dataset to an Excel file without adding the DataFrame&apos;s row index as an extra column.</p>
+<p>In Google Colab, you can download the resulting file with:</p>
+<pre><code>files.download(&quot;business_data_cleaned.xlsx&quot;)</code></pre>
+<p>Keep the original dataset unchanged. Saving a separate cleaned file allows you to compare the original and prepared versions and helps preserve a record of the analysis process.</p>
+<p>A cleaned dataset is not necessarily a perfect dataset. Some missing values, unusual observations, or unresolved questions may remain. The analyst should document these limitations.</p>
+<h2>14. A Practical Data-Preparation Workflow</h2>
+<p>The following workflow provides a consistent starting point for business analytics projects.</p>
+<p><strong>Step 1: Understand the business question.</strong></p>
+<p>Determine what the company wants to learn and what the dataset needs to measure.</p>
+<p><strong>Step 2: Understand the dataset.</strong></p>
+<p>Identify the unit of observation, variables, time period, and expected number of records.</p>
+<p><strong>Step 3: Inspect the data.</strong></p>
+<p>Review the rows, columns, data types, numerical summaries, and distinct categorical values.</p>
+<p><strong>Step 4: Identify potential problems.</strong></p>
+<p>Check for missing values, duplicates, inconsistent entries, incorrect values, outliers, and possible sources of bias.</p>
+<p><strong>Step 5: Investigate before changing values.</strong></p>
+<p>Use the dataset&apos;s definitions, business rules, and available source information to determine whether a value is actually incorrect.</p>
+<p><strong>Step 6: Make and document decisions.</strong></p>
+<p>Record the issue, the action taken, and the justification. Identify unresolved problems.</p>
+<p><strong>Step 7: Recheck the prepared dataset.</strong></p>
+<p>Confirm that changes were applied as intended and that the dataset still represents the intended observations.</p>
+<p><strong>Step 8: Save the prepared dataset.</strong></p>
+<p>Preserve the original and save a separate version of the prepared data.</p>
+<p>This process creates a more reliable foundation for subsequent analysis. In later weeks, the same principles will support regression, causal evaluation, forecasting, and predictive modeling.</p>
+<h2>15. Summary</h2>
+<p>Data preparation is an essential part of business analytics because analytical results are only as trustworthy as the data and methods used to produce them.</p>
+<p>In this reading, you learned that:</p>
+<ul>
+    <li>
+        <p>Data preparation involves inspecting, organizing, correcting, and documenting data.</p>
+    </li>
+    <li>
+        <p>Rows represent observations, while columns represent variables.</p>
+    </li>
+    <li>
+        <p>Missing values, duplicates, inconsistent entries, incorrect values, and outliers require investigation.</p>
+    </li>
+    <li>
+        <p>Numerical and categorical variables must be understood before selecting analytical methods.</p>
+    </li>
+    <li>
+        <p>Python and pandas can help analysts inspect Excel datasets and identify potential data-quality problems.</p>
+    </li>
+    <li>
+        <p>Data may be systematically biased even when its values appear accurate.</p>
+    </li>
+    <li>
+        <p>Cleaning decisions should be justified and documented rather than made automatically.</p>
+    </li>
+    <li>
+        <p>Original data should be preserved, and prepared data should be checked before analysis.</p>
+    </li>
+</ul>
+<p>The objective is not to make every dataset look perfect. It is to understand the data well enough to identify its strengths, limitations, and potential problems before drawing conclusions.</p>
+<h2>Key Terms</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Term</th>
+            <th>Definition</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Data preparation</td>
+            <td>Examining, organizing, correcting, and documenting data before analysis.</td>
+        </tr>
+        <tr>
+            <td>Dataset</td>
+            <td>An organized collection of records and variables.</td>
+        </tr>
+        <tr>
+            <td>Observation</td>
+            <td>An individual case represented in a dataset.</td>
+        </tr>
+        <tr>
+            <td>Variable</td>
+            <td>A characteristic or measurement recorded for each observation.</td>
+        </tr>
+        <tr>
+            <td>Missing value</td>
+            <td>Information that is not recorded or is unavailable.</td>
+        </tr>
+        <tr>
+            <td>Duplicate record</td>
+            <td>A repeated record that may represent the same observation or transaction.</td>
+        </tr>
+        <tr>
+            <td>Outlier</td>
+            <td>A value unusually far from other observations.</td>
+        </tr>
+        <tr>
+            <td>Numerical variable</td>
+            <td>A variable representing a measurable quantity or count.</td>
+        </tr>
+        <tr>
+            <td>Categorical variable</td>
+            <td>A variable representing a group, label, or classification.</td>
+        </tr>
+        <tr>
+            <td>Sampling bias</td>
+            <td>A systematic problem in how observations are selected or represented.</td>
+        </tr>
+        <tr>
+            <td>Measurement bias</td>
+            <td>Systematic inaccuracy in the process used to measure or record information.</td>
+        </tr>
+        <tr>
+            <td>pandas</td>
+            <td>A Python library used to organize and analyze tabular data.</td>
+        </tr>
+        <tr>
+            <td>Google Colab</td>
+            <td>A browser-based environment for writing and running Python code.</td>
+        </tr>
+        <tr>
+            <td>Data-cleaning log</td>
+            <td>A record of identified data-quality issues, actions, and justifications.</td>
+        </tr>
+    </tbody>
+</table>
+<h2>Preparation for the Week 1 Assignment</h2>
+<p>For the Data Quality Audit, you will examine a flawed business dataset and document the issues you identify and the decisions you make.</p>
+<p>As you work, ask yourself:</p>
+<ol start="1">
+    <li>
+        <p>What does each row represent?</p>
+    </li>
+    <li>
+        <p>Which variables are numerical, and which are categorical?</p>
+    </li>
+    <li>
+        <p>Are any values missing, duplicated, inconsistent, or outside reasonable ranges?</p>
+    </li>
+    <li>
+        <p>Which unusual values require investigation rather than automatic removal?</p>
+    </li>
+    <li>
+        <p>Could the data-collection process have introduced bias?</p>
+    </li>
+    <li>
+        <p>What did you change, what did you leave unchanged, and why?</p>
+    </li>
+    <li>
+        <p>What limitations should someone know before using this dataset for business analysis?</p>
+    </li>
+</ol>
+<p>Your goal is to produce a dataset that is better understood, appropriately prepared, and accompanied by clear documentation of your decisions. These skills will form the foundation for the analytical methods introduced in the remainder of the course.</p>
+<div style="bottom: 10px; right: 10px; position: absolute;"><a href="https://signatureforemail.com/?utm_source=wth_free_link&utm_medium=external" target="_blank" rel="noopener" style="font-size:11px; color: #c0c0c0;">No-Code Email Signature Tool</a></div>
+
+
+</div>
+
+</div>
+
+</body>
+
+</html>
