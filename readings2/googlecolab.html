@@ -1,0 +1,537 @@
+<style>
+
+/* =========================
+   BASE
+========================= */
+
+body{
+    margin:0;
+    font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+    background:#f4f6f9;
+    color:#222222;
+}
+
+.container{
+    max-width:1000px;
+    margin:auto;
+    padding:50px 20px;
+}
+
+
+/* =========================
+   LEARNING OBJECTIVES
+========================= */
+
+.learning-objectives{
+    background:#e8f4fc;
+    border-left:5px solid #084f8c;
+    padding:16px 20px;
+    border-radius:8px;
+    margin:20px 0;
+}
+
+.learning-objectives strong{
+    color:#0e68b3;
+}
+
+
+/* =========================
+   BLUE TEXT
+========================= */
+
+.blue-heading{
+    color:#0e68b3;
+}
+
+
+/* =========================
+   PAGE TITLE
+========================= */
+
+h1{
+    text-align:left;
+    color:#666666;
+    font-size:2.75rem;
+    font-weight:200;
+    letter-spacing:.08em;
+    margin-bottom:10px;
+}
+
+.subtitle{
+    text-align:center;
+    color:#6b7280;
+    text-transform:uppercase;
+    letter-spacing:.15em;
+    margin-bottom:40px;
+    font-size:.95rem;
+}
+
+
+/* =========================
+   CARD HEADINGS
+========================= */
+
+h2{
+    color:#0e68b3;
+    position:relative;
+    font-weight:500;
+    display:inline-block;
+    margin-top:0;
+    margin-bottom:22px;
+    padding-bottom:6px;
+}
+
+
+/* =========================
+   SUBHEADINGS
+========================= */
+
+h3{
+    color:#0e68b3;
+    font-weight:500;
+    margin-top:28px;
+    margin-bottom:12px;
+}
+
+
+/* =========================
+   BODY TEXT
+========================= */
+
+p{
+    line-height:1.8;
+}
+
+
+/* =========================
+   CARDS
+========================= */
+
+.card{
+    background:white;
+    border-radius:16px;
+    padding:30px;
+    margin-bottom:25px;
+    border:1px solid #d9e2ec;
+
+    box-shadow:
+        0 3px 10px rgba(0,0,0,.05);
+
+    animation:fadeUp .6s ease forwards;
+    transition:all .25s ease;
+}
+
+.card:hover{
+    transform:translateY(-4px);
+
+    box-shadow:
+        0 10px 25px rgba(14,104,179,.15);
+}
+
+
+/* =========================
+   CALLOUTS
+========================= */
+
+.highlight{
+    background:#ffffff;
+    border-left:3px solid #0e68b3;
+    padding:14px 18px;
+    border-radius:0;
+    margin:20px 0;
+}
+
+
+/* =========================
+   BUTTONS
+========================= */
+
+.button{
+    display:inline-block;
+    background:linear-gradient(135deg,#0e68b3,#1c84d8);
+    color:#ffffff;
+    text-decoration:none;
+    font-weight:600;
+    padding:14px 32px;
+    border-radius:9999px;
+    box-shadow:0 8px 20px rgba(14,104,179,.20);
+    transition:all .25s ease;
+}
+
+.button:hover{
+    transform:translateY(-3px);
+    box-shadow:0 12px 25px rgba(14,104,179,.30);
+    background:linear-gradient(135deg,#095491,#0e68b3);
+}
+
+
+/* =========================
+   LISTS
+========================= */
+
+ul{
+    padding-left:25px;
+}
+
+ol{
+    padding-left:25px;
+}
+
+li{
+    margin-bottom:8px;
+}
+
+
+/* =========================
+   TABLES
+========================= */
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:20px;
+    background:white;
+    overflow:hidden;
+    border-radius:10px;
+}
+
+th{
+    background:#0e68b3;
+    color:white;
+    text-align:left;
+    padding:14px;
+}
+
+td{
+    padding:14px;
+    border-bottom:1px solid #e5e7eb;
+    vertical-align:top;
+}
+
+tr:nth-child(even){
+    background:#f8fafc;
+}
+
+tr:hover{
+    background:#edf6ff;
+}
+
+
+/* =========================
+   SCATTERPLOTS
+========================= */
+
+.scatterplot{
+    text-align:center;
+    margin:25px 0;
+}
+
+.scatterplot img{
+    max-width:100%;
+    height:auto;
+    display:block;
+    margin:0 auto;
+    border-radius:8px;
+}
+
+.scatterplot-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:25px;
+    margin:25px 0;
+}
+
+.scatterplot-grid .scatterplot{
+    margin:0;
+}
+
+
+/* =========================
+   OUTLIER EXAMPLES
+========================= */
+
+.outlier-grid{
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:25px;
+    margin:25px 0;
+}
+
+.outlier-example{
+    text-align:center;
+}
+
+.outlier-example h3{
+    margin-top:0;
+}
+
+.outlier-example img{
+    width:100%;
+    height:auto;
+    display:block;
+    margin:20px auto 0;
+    border-radius:8px;
+}
+
+
+/* =========================
+   HORIZONTAL RULE
+========================= */
+
+hr{
+    border:none;
+    height:1px;
+    background:#d6e4f0;
+    margin:30px 0;
+}
+
+
+/* =========================
+   ANIMATION
+========================= */
+
+@keyframes fadeUp{
+
+    from{
+        opacity:0;
+        transform:translateY(20px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width:768px){
+
+    h1{
+        font-size:2rem;
+    }
+
+    .card{
+        padding:20px;
+    }
+
+    th,
+    td{
+        padding:10px;
+        font-size:.95rem;
+    }
+
+    .scatterplot-grid,
+    .outlier-grid{
+        grid-template-columns:1fr;
+    }
+
+}
+
+</style>
+
+
+<div class="container">
+
+    <h1>Google Colab</h1>
+
+
+    <!-- =========================
+         WHAT IS GOOGLE COLAB
+    ========================== -->
+
+    <section class="card">
+
+        <h2>What Is Google Colab?</h2>
+
+        <p>
+            Google Colab (short for Google Colaboratory) is a free,
+            web-based tool that allows you to write and run Python code
+            in your internet browser. You do not need to install Python
+            or other programming software on your computer.
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         HOW IT WORKS
+    ========================== -->
+
+    <section class="card">
+
+        <h2>How Does It Work?</h2>
+
+        <p>
+            Google Colab uses notebooks. A notebook contains different
+            types of cells:
+        </p>
+
+        <ul>
+            <li>
+                <strong>Text cells:</strong>
+                Display instructions, explanations, and questions.
+            </li>
+
+            <li>
+                <strong>Code cells:</strong>
+                Run Python code and display the results.
+            </li>
+        </ul>
+
+        <div class="highlight">
+            <strong class="blue-heading">For This Course:</strong>
+            For this course, you will use Google Colab notebooks to
+            complete assignments, follow instructions, answer questions,
+            and learn basic data analysis concepts.
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         ACCESS GOOGLE COLAB
+    ========================== -->
+
+    <section class="card">
+
+        <h2>How Do I Access Google Colab?</h2>
+
+        <ol>
+            <li>Open your internet browser.</li>
+
+            <li>
+                Go to
+                <a href="https://colab.research.google.com/"
+                   target="_blank"
+                   rel="noopener noreferrer">Google Colab</a>.
+            </li>
+
+            <li>Sign in with your Google account if prompted.</li>
+
+            <li>Open the notebook linked in your course.</li>
+
+            <li>
+                Save your own copy to Google Drive before completing
+                the assignment.
+            </li>
+        </ol>
+
+        <p>
+            <a class="button"
+               href="https://colab.research.google.com/"
+               target="_blank"
+               rel="noopener noreferrer">
+                Open Google Colab
+            </a>
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         COMPLETE ASSIGNMENT
+    ========================== -->
+
+    <section class="card">
+
+        <h2>How Do I Complete an Assignment?</h2>
+
+        <ol>
+            <li>Read the instructions in each section.</li>
+
+            <li>
+                Type your answers wherever the notebook asks you
+                to respond.
+            </li>
+
+            <li>
+                If a code cell is provided, run it by clicking the
+                play button next to the cell.
+            </li>
+
+            <li>
+                Review your work and make sure you have answered
+                every question.
+            </li>
+
+            <li>
+                Rename your notebook as instructed in the assignment.
+            </li>
+
+            <li>
+                Share your completed notebook with your instructor
+                using the course sharing instructions.
+            </li>
+        </ol>
+
+    </section>
+
+
+    <!-- =========================
+         WHAT STUDENTS NEED TO KNOW
+    ========================== -->
+
+    <section class="card">
+
+        <h2>What Do I Need to Know?</h2>
+
+        <ul>
+            <li>
+                You do not need to install Python on your computer.
+            </li>
+
+            <li>
+                You can access your notebook through an internet browser.
+            </li>
+
+            <li>
+                Your work can be saved in Google Drive.
+            </li>
+
+            <li>
+                You can return to your notebook later to continue working.
+            </li>
+
+            <li>
+                Always work in your own copy of the assignment.
+            </li>
+        </ul>
+
+    </section>
+
+
+    <!-- =========================
+         HELP
+    ========================== -->
+
+    <section class="card">
+
+        <h2>Need Help?</h2>
+
+        <p>
+            Visit the
+            <a href="https://colab.research.google.com/"
+               target="_blank"
+               rel="noopener noreferrer">Google Colab website</a>
+            to access your notebooks. Follow the instructions in each
+            course assignment, and contact your instructor if you have
+            trouble accessing or sharing your work.
+        </p>
+
+        <p>
+            <a class="button"
+               href="https://colab.research.google.com/"
+               target="_blank"
+               rel="noopener noreferrer">
+                Visit Google Colab
+            </a>
+        </p>
+
+    </section>
+
+</div>
