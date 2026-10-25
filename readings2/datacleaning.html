@@ -1,0 +1,623 @@
+<style>
+
+/* =========================
+   BASE
+========================= */
+
+body{
+    margin:0;
+    font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+    background:#f4f6f9;
+    color:#222222;
+}
+
+.container{
+    max-width:1000px;
+    margin:auto;
+    padding:50px 20px;
+}
+
+
+/* =========================
+   LEARNING OBJECTIVES
+========================= */
+
+.learning-objectives{
+    background:#e8f4fc;
+    border-left:5px solid #084f8c;
+    padding:16px 20px;
+    border-radius:8px;
+    margin:20px 0;
+}
+
+.learning-objectives strong{
+    color:#0e68b3;
+}
+
+
+/* =========================
+   BLUE TEXT
+========================= */
+
+.blue-heading{
+    color:#0e68b3;
+}
+
+
+/* =========================
+   PAGE TITLE
+========================= */
+
+h1{
+    text-align:left;
+    color:#666666;
+    font-size:2.75rem;
+    font-weight:200;
+    letter-spacing:.08em;
+    margin-bottom:10px;
+}
+
+.subtitle{
+    text-align:center;
+    color:#6b7280;
+    text-transform:uppercase;
+    letter-spacing:.15em;
+    margin-bottom:40px;
+    font-size:.95rem;
+}
+
+
+/* =========================
+   CARD HEADINGS
+========================= */
+
+h2{
+    color:#0e68b3;
+    position:relative;
+    font-weight:500;
+    display:inline-block;
+    margin-top:0;
+    margin-bottom:22px;
+    padding-bottom:6px;
+}
+
+
+/* =========================
+   SUBHEADINGS
+========================= */
+
+h3{
+    color:#0e68b3;
+    font-weight:500;
+    margin-top:28px;
+    margin-bottom:12px;
+}
+
+
+/* =========================
+   BODY TEXT
+========================= */
+
+p{
+    line-height:1.8;
+}
+
+
+/* =========================
+   CARDS
+========================= */
+
+.card{
+    background:white;
+    border-radius:16px;
+    padding:30px;
+    margin-bottom:25px;
+    border:1px solid #d9e2ec;
+
+    box-shadow:
+        0 3px 10px rgba(0,0,0,.05);
+
+    animation:fadeUp .6s ease forwards;
+    transition:all .25s ease;
+}
+
+.card:hover{
+    transform:translateY(-4px);
+
+    box-shadow:
+        0 10px 25px rgba(14,104,179,.15);
+}
+
+
+/* =========================
+   CALLOUTS
+========================= */
+
+.highlight{
+    background:#ffffff;
+    border-left:3px solid #0e68b3;
+    padding:14px 18px;
+    border-radius:0;
+    margin:20px 0;
+}
+
+
+/* =========================
+   BUTTONS
+========================= */
+
+.button{
+    display:inline-block;
+    background:linear-gradient(135deg,#0e68b3,#1c84d8);
+    color:#ffffff;
+    text-decoration:none;
+    font-weight:600;
+    padding:14px 32px;
+    border-radius:9999px;
+    box-shadow:0 8px 20px rgba(14,104,179,.20);
+    transition:all .25s ease;
+}
+
+.button:hover{
+    transform:translateY(-3px);
+    box-shadow:0 12px 25px rgba(14,104,179,.30);
+    background:linear-gradient(135deg,#095491,#0e68b3);
+}
+
+
+/* =========================
+   LISTS
+========================= */
+
+ul{
+    padding-left:25px;
+}
+
+ol{
+    padding-left:25px;
+}
+
+li{
+    margin-bottom:8px;
+}
+
+
+/* =========================
+   TABLES
+========================= */
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:20px;
+    background:white;
+    overflow:hidden;
+    border-radius:10px;
+}
+
+th{
+    background:#0e68b3;
+    color:white;
+    text-align:left;
+    padding:14px;
+}
+
+td{
+    padding:14px;
+    border-bottom:1px solid #e5e7eb;
+    vertical-align:top;
+}
+
+tr:nth-child(even){
+    background:#f8fafc;
+}
+
+tr:hover{
+    background:#edf6ff;
+}
+
+
+/* =========================
+   SCATTERPLOTS
+========================= */
+
+.scatterplot{
+    text-align:center;
+    margin:25px 0;
+}
+
+.scatterplot img{
+    max-width:100%;
+    height:auto;
+    display:block;
+    margin:0 auto;
+    border-radius:8px;
+}
+
+.scatterplot-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:25px;
+    margin:25px 0;
+}
+
+.scatterplot-grid .scatterplot{
+    margin:0;
+}
+
+
+/* =========================
+   OUTLIER EXAMPLES
+========================= */
+
+.outlier-grid{
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:25px;
+    margin:25px 0;
+}
+
+.outlier-example{
+    text-align:center;
+}
+
+.outlier-example h3{
+    margin-top:0;
+}
+
+.outlier-example img{
+    width:100%;
+    height:auto;
+    display:block;
+    margin:20px auto 0;
+    border-radius:8px;
+}
+
+
+/* =========================
+   HORIZONTAL RULE
+========================= */
+
+hr{
+    border:none;
+    height:1px;
+    background:#d6e4f0;
+    margin:30px 0;
+}
+
+
+/* =========================
+   ANIMATION
+========================= */
+
+@keyframes fadeUp{
+
+    from{
+        opacity:0;
+        transform:translateY(20px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width:768px){
+
+    h1{
+        font-size:2rem;
+    }
+
+    .card{
+        padding:20px;
+    }
+
+    th,
+    td{
+        padding:10px;
+        font-size:.95rem;
+    }
+
+}
+
+</style>
+
+<div class="container">
+
+    <h1>Why Data Quality Must Come Before Descriptive Statistics</h1>
+
+    <div class="learning-objectives">
+        <strong>Learning Objectives</strong>
+        <ul>
+            <li>Explain why data quality should be evaluated before calculating descriptive statistics.</li>
+            <li>Identify common data quality problems, including missing values, duplicates, inconsistent labels, and incorrect values.</li>
+            <li>Describe how poor data quality can affect analytical conclusions.</li>
+            <li>Apply a basic data inspection process before conducting statistical analysis.</li>
+            <li>Recognize the importance of documenting data-cleaning decisions.</li>
+        </ul>
+    </div>
+
+    <div class="card">
+        <h2>1. Introduction: Think Like an Analyst</h2>
+
+        <p>
+            Imagine that you work as a cybersecurity analyst, IT specialist, or organizational leader.
+            Your manager asks you to review a dataset and report what is happening in the organization.
+        </p>
+
+        <ul>
+            <li>A cybersecurity analyst might examine the number of security incidents reported each month.</li>
+            <li>An IT analyst might examine help desk tickets, system downtime, or technical support response times.</li>
+            <li>An organizational leader might examine employee productivity, job satisfaction, or staff turnover.</li>
+        </ul>
+
+        <p>
+            Your manager wants answers supported by data. You might begin by calculating the average,
+            counting records, or identifying the most common category.
+        </p>
+
+        <p>
+            However, there is an important step you must complete first: <strong>check the quality of your data.</strong>
+        </p>
+
+        <p>
+            Real-world datasets are not always clean or accurate. They may contain missing values,
+            duplicate records, inconsistent labels, or values that were entered incorrectly.
+        </p>
+
+        <div class="highlight">
+            <strong>Key Principle:</strong> Before asking what your data tells you, make sure you understand what your data contains.
+        </div>
+    </div>
+
+    <div class="card">
+        <h2>2. What Is Data Quality?</h2>
+
+        <p>
+            Data quality refers to how suitable data is for the task you want to complete.
+            High-quality data is sufficiently accurate, complete, consistent, and relevant
+            for the analysis.
+        </p>
+
+        <p>
+            Consider a dataset containing cybersecurity incidents reported by employees.
+            Before calculating the average number of incidents per department, you need to determine
+            whether the records are complete, whether incidents have been counted more than once,
+            and whether department names are recorded consistently.
+        </p>
+
+        <h3>Four Common Data Quality Problems</h3>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Problem</th>
+                    <th>Example</th>
+                    <th>Why It Matters</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Missing Values</strong></td>
+                    <td>An IT ticket dataset contains response times for most tickets, but some tickets have no recorded response time.</td>
+                    <td>Missing information can lead to inaccurate summary statistics and incomplete analysis.</td>
+                </tr>
+                <tr>
+                    <td><strong>Duplicate Records</strong></td>
+                    <td>A cybersecurity incident is entered twice because it was submitted through multiple reporting channels.</td>
+                    <td>Duplicates can inflate counts and create a misleading picture of organizational activity.</td>
+                </tr>
+                <tr>
+                    <td><strong>Inconsistent Labels</strong></td>
+                    <td>Departments are listed as "IT," "Information Technology," and "Info Tech."</td>
+                    <td>Software may treat identical categories as different groups.</td>
+                </tr>
+                <tr>
+                    <td><strong>Incorrect or Unusual Values</strong></td>
+                    <td>A help desk ticket shows a response time of −25 minutes.</td>
+                    <td>Impossible or inaccurate values can distort statistics and conclusions.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="card">
+        <h2>3. How Poor Data Quality Affects Descriptive Statistics</h2>
+
+        <p>
+            Descriptive statistics summarize the characteristics of a dataset. Common examples include
+            the mean, median, mode, minimum, maximum, and frequency counts.
+        </p>
+
+        <p>
+            Although these statistics are useful, they do not automatically tell you whether the data
+            is reliable.
+        </p>
+
+        <h3>Example: Ticket Resolution Times</h3>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Ticket</th>
+                    <th>Resolution Time (Minutes)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>1</td><td>20</td></tr>
+                <tr><td>2</td><td>25</td></tr>
+                <tr><td>3</td><td>30</td></tr>
+                <tr><td>4</td><td>35</td></tr>
+                <tr><td>5</td><td>300</td></tr>
+            </tbody>
+        </table>
+
+        <p>
+            The final ticket took 300 minutes, or five hours. The mean resolution time is 82 minutes,
+            even though four of the five tickets took between 20 and 35 minutes.
+        </p>
+
+        <div class="highlight">
+            The unusually high value of 300 pulls the mean upward and changes the overall summary.
+        </div>
+
+        <p>
+            Before using the result, you should investigate the 300-minute value. It may represent
+            a legitimate long-duration ticket, or it could be a data-entry error. Statistics summarize
+            all values in a dataset, including values that may be incorrect.
+        </p>
+    </div>
+
+    <div class="card">
+        <h2>4. Why Data Quality Matters in Your Field</h2>
+
+        <h3>Cybersecurity</h3>
+        <p>
+            Duplicate incident reports can inflate incident counts, while missing records can make the
+            organization appear safer than it actually is. Analysts should verify incident classifications,
+            duplicates, and missing information before reporting trends.
+        </p>
+
+        <h3>Information Technology</h3>
+        <p>
+            Comparing support teams using average resolution times can be misleading if data is recorded
+            differently across teams or if important fields are missing. Consistency matters before
+            making comparisons.
+        </p>
+
+        <h3>Leadership and Organizational Decision-Making</h3>
+        <p>
+            Employee productivity studies can be distorted by duplicate employee records, inconsistent
+            department names, or missing performance information. Decisions about staffing, budgets,
+            and training should be based on reliable data.
+        </p>
+
+        <div class="highlight">
+            Poor data quality can lead to poor decisions. Analysts must evaluate the trustworthiness
+            of the data before drawing conclusions.
+        </div>
+    </div>
+
+    <div class="card">
+        <h2>5. What Should You Check Before Calculating Statistics?</h2>
+
+        <ol>
+            <li>
+                <strong>Inspect column names and data types.</strong>
+                Verify that each field contains the type of data you expect, such as numbers, text, or dates.
+            </li>
+
+            <li>
+                <strong>Check for missing values.</strong>
+                Determine where information is missing and evaluate whether it affects your analysis.
+            </li>
+
+            <li>
+                <strong>Check for duplicate records.</strong>
+                Investigate repeated rows and determine whether they are accidental duplicates or legitimate events.
+            </li>
+
+            <li>
+                <strong>Inspect category labels.</strong>
+                Look for inconsistent spelling, abbreviations, capitalization, and naming conventions.
+            </li>
+
+            <li>
+                <strong>Look for unusual or impossible values.</strong>
+                Investigate negative durations, unrealistic measurements, impossible dates, and values outside expected ranges.
+            </li>
+
+            <li>
+                <strong>Document your decisions.</strong>
+                Record what you found, what you changed, and the reasoning behind each decision.
+            </li>
+        </ol>
+    </div>
+
+    <div class="card">
+        <h2>6. Cleaning Data Requires Judgment</h2>
+
+        <p>
+            Data cleaning is not simply deleting anything that looks incorrect. Analysts must evaluate
+            the meaning of the data and the purpose of the analysis before deciding how to handle issues.
+        </p>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Issue</th>
+                    <th>Possible Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Missing Values</td>
+                    <td>Exclude records from a calculation, retain them for another analysis, or investigate why data is missing.</td>
+                </tr>
+                <tr>
+                    <td>Duplicate Records</td>
+                    <td>Remove confirmed duplicates while retaining valid repeated events.</td>
+                </tr>
+                <tr>
+                    <td>Inconsistent Labels</td>
+                    <td>Standardize labels once you confirm they represent the same category.</td>
+                </tr>
+                <tr>
+                    <td>Unusual Values</td>
+                    <td>Correct verified errors or retain unusual observations if they are valid.</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <p>
+            Analysts should never change data simply to produce more desirable results. If uncertainty
+            remains, document it and explain how it may influence the findings.
+        </p>
+    </div>
+
+    <div class="card">
+        <h2>7. Putting It All Together</h2>
+
+        <p>
+            Imagine your manager asks you to calculate the average number of cybersecurity incidents
+            reported by each department. Before calculating those averages, ask:
+        </p>
+
+        <ul>
+            <li>Are any incident records missing important information?</li>
+            <li>Are some incidents recorded more than once?</li>
+            <li>Are department names consistent?</li>
+            <li>Are incident counts recorded correctly?</li>
+            <li>Do I understand what each row represents?</li>
+            <li>Have I documented any decisions I made about the data?</li>
+        </ul>
+
+        <p>
+            After inspecting the data, addressing issues you can verify, and documenting your decisions,
+            you can proceed with descriptive statistics more confidently.
+        </p>
+    </div>
+
+    <div class="card">
+        <h2>Key Takeaway</h2>
+
+        <div class="highlight">
+            <strong>Check the data before calculating the statistics.</strong>
+        </div>
+
+        <p>
+            Descriptive statistics can reveal patterns and summarize information, but their usefulness
+            depends on the quality of the underlying data. Analysts in cybersecurity, information
+            technology, and leadership roles must inspect their data, investigate potential problems,
+            make defensible decisions, and document their process before using statistics to inform decisions.
+        </p>
+    </div>
+
+</div>
